@@ -2,7 +2,6 @@ jul6art/symfony-skeleton
 ==
 Base sf4 admin project
 -
-### Home(../README.md)
 
 > This project si still in development so please keep calm
 
