@@ -3,14 +3,13 @@
 set -e
 
 echo '--- DATABASE LOADING ---'
-# php bin/console doctrine:schema:drop --forcess
-# php bin/console doctrine:schema:update --force
+php bin/console doctrine:schema:drop --force
+php bin/console doctrine:schema:update --force
 # php bin/console doctrine:fixtures:load --no-interaction
 
 echo '--- FILES LOADING ---'
 # yarn install
 composer install --no-suggest
-# php bin/console assetic:dump
 php bin/console cache:clear
 php bin/console cache:warmup
 
