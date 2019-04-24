@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jenkins_project" default="build">
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <property environment="env"/>
+    <property name="server.user" value="server_user"/>
+    <property name="server.ssh" value="server_name"/>
+    <property name="server.path" value="/var/www/"/>
+
+    <property name="symfony_env" value="dev"/>
+    <property name="composer" value="composer"/>
+    <property name="php" value="php"/>
+    <property name="phpunit" value="phpunit"/>
+    <property name="parameters" value="/PATH/TO/PARAMETERS"/>
+
+    <!--<target name="build" description="Build"-->
+            <!--depends="php_version, parameters, yarn, composer, assets, unit_tests"-->
+    <!--/>-->
+
+    <target name="php_version" description="Switch PHP Version">
+        <exec executable="sudo" failonerror="true">
+            <arg value="update-alternatives"/>
+            <arg value="--set"/>
+            <arg value="php"/>
+            <arg value="${php}"/>
+        </exec>
+    </target>
+
+    <target name="parameters" description="Copy parameters from test server">
+        <exec executable="cp" failonerror="true">
+            <arg path="${parameters}"/>
+            <arg path="app/config/parameters.yml"/>
+        </exec>
+    </target>
+
+    <target name="yarn" description="Installing yarn dependencies">
+        <exec executable="yarn" failonerror="true">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="composer" description="Installing composer dependencies">
+        <condition property="composer.dev" value="no-dev" else="dev">
+            <equals arg1="${symfony_env}" arg2="prod" />
+        </condition>
+    </target>
+
+    <target name="assets" description="Assetic dump">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="assetic:dump"/>
+            <env key="SYMFONY_ENV" value="${symfony_env}"/>
+        </exec>
+    </target>
+
+    <target name="unit_tests" description="Launch Unit Tests">
+        <exec executable="php" failonerror="false">
+            <arg value="${phpunit}"/>
+        </exec>
+    </target>
+
+    <target name="build" description="Build"
+        depends="info"
+    />
+
+    <target name="info" description="Log infos">
+        <echo>Start build</echo>
+    </target>
+
+    <target name="deploy" description="Deploy and deployment process"
+            depends="deploy_files, deploy_script"
+    />
+
+    <target name="deploy_files" description="Deploy files">
+        <exec executable="rsync" dir="${env.WORKSPACE}" failonerror="true">
+            <arg value="-rltv"/>
+            <arg value="${env.WORKSPACE}/"/>
+            <arg value="${server.user}@${server.ssh}:${server.path}"/>
+            <arg value="--delete"/>
+            <!-- EXCLUDE SERVER HOME FILES -->
+            <arg value="--exclude=.awstats-htpasswd"/>
+            <arg value="--exclude=.git/"/>
+            <arg value="--exclude=.backup/"/>
+            <arg value="--exclude=.backup.lock"/>
+            <arg value="--exclude=.bash_logout"/>
+            <arg value="--exclude=.bashrc"/>
+            <arg value="--exclude=.profile"/>
+            <arg value="--exclude=.spamassassin/"/>
+            <arg value="--exclude=.stats-htpasswd"/>
+            <arg value="--exclude=.usermin/"/>
+            <arg value="--exclude=.virtualmin-src"/>
+            <arg value="--exclude=.well-known/"/>
+            <arg value="--exclude=awstats/"/>
+            <arg value="--exclude=awstats-icon/"/>
+            <arg value="--exclude=awstatsicons/"/>
+            <arg value="--exclude=cgi-bin/"/>
+            <arg value="--exclude=etc/"/>
+            <arg value="--exclude=fcgi-bin/"/>
+            <arg value="--exclude=homes/"/>
+            <arg value="--exclude=logs/"/>
+            <arg value="--exclude=Maildir/"/>
+            <arg value="--exclude=ssl.*"/>
+            <arg value="--exclude=stats/"/>
+            <arg value="--exclude=tmp/"/>
+            <!-- EXCLUDE PROJECT FILES -->
+            <arg value="--exclude=.env"/>
+            <arg value="--exclude=var/cache"/>
+            <arg value="--exclude=var/logs"/>
+            <arg value="--exclude=*.md"/>
+            <arg value="--exclude=build.xml"/>
+            <arg value="--stats"/>
+            <arg value="--human-readable"/>
+        </exec>
+    </target>
+
+    <target name="deploy_script" description="Deployment process">
+        <exec executable="ssh" failonerror="true">
+            <arg value="${server.user}@${server.ssh}"/>
+            <arg line="'bash ${server.path}/hook_prod.sh'"/>
+        </exec>
+    </target>
+</project>
