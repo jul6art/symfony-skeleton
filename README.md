@@ -6,6 +6,8 @@ Base sf4 admin project
 
 > This project si still in development so please keep calm
 
+[&#9758; DEMO](https://symfony-skeleton.vsweb.be/)
+
 Install
 
 ```bash
