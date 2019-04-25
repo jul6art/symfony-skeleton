@@ -13,9 +13,16 @@ Install
 git clone https://github.com/jul6art/symfony-skeleton.git
 ```
 
+Configure
+
+```bash
+nano .env
+```
+
 Launch
 
 ```bash
+sh hook_local.sh
 php bin/console server:start
 ```
 
