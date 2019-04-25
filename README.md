@@ -3,7 +3,7 @@ jul6art/symfony-skeleton
 Base sf4 admin project
 -
 
-> This project si still in development so please keep calm
+> This project is still in development so please keep calm
 
 [&#9758; DEMO](https://symfony-skeleton.vsweb.be/)
 
