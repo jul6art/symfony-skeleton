@@ -15,4 +15,6 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    App\Jul6art\TemplateBundle\TemplateBundle::class => ['all' => true],
+    App\Jul6art\DatatableBundle\DatatableBundle::class => ['all' => true],
 ];

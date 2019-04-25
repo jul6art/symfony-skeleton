@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Test;
 use App\Form\TestType;
 use App\Repository\TestRepository;
+use App\Security\Voter\TestVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,8 @@ class TestController extends AbstractController
      */
     public function index(TestRepository $testRepository): Response
     {
+    	$this->denyAccessUnlessGranted(TestVoter::LIST, Test::class);
+
         return $this->render('test/index.html.twig', [
             'tests' => $testRepository->findAll(),
         ]);
