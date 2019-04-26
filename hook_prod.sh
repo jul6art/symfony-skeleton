@@ -11,4 +11,4 @@ php bin/console cache:warmup
 
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:migrations:migrate --no-interaction
-php bin/console doctrine:fixtures:load --no-interaction
+php bin/console doctrine:fixtures:load --no-interaction --env=dev
