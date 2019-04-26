@@ -12,7 +12,7 @@ php bin/console cache:warmup
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:schema:drop --force
 php bin/console doctrine:schema:update --force
-# php bin/console doctrine:fixtures:load --no-interaction
+php bin/console doctrine:fixtures:load --no-interaction
 
 # echo '--- TESTS LAUNCHING ---'
 # ./vendor/bin/simple-phpunit > tests_output.txt

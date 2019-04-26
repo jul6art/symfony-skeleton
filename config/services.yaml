@@ -9,6 +9,8 @@ parameters:
         - fr
         - en
         - de
+    project_name: 'Symfony skeleton'
+    base_title: ' | Symfony Skeleton'
 
 services:
     _defaults:
