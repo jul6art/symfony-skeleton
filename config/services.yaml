@@ -27,5 +27,11 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Maker\MakeSkeleton:
+        arguments:
+            - '@maker.doctrine_helper'
+            - '@maker.renderer.form_type_renderer'
+        tags: ['maker.command']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
