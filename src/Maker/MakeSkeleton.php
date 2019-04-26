@@ -136,7 +136,7 @@ final class MakeSkeleton extends AbstractMaker
 
         $generator->generateController(
             $controllerClassDetails->getFullName(),
-            '/../../../../../../templates/crud/controller/Controller.tpl.php',
+            '../../../../../../templates/crud/controller/Controller.tpl.php',
             array_merge([
                     'entity_full_class_name' => $entityClassDetails->getFullName(),
                     'entity_class_name' => $entityClassDetails->getShortName(),
@@ -198,7 +198,7 @@ final class MakeSkeleton extends AbstractMaker
         foreach ($templates as $template => $variables) {
             $generator->generateFile(
                 'templates/'.$templatesPath.'/'.$template.'.html.twig',
-                '/../../../../../../templates/crud/templates/'.$template.'.tpl.php',
+                '../../../../../../templates/crud/templates/'.$template.'.tpl.php',
                 $variables
             );
         }

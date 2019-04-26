@@ -21,7 +21,7 @@ class <?= $class_name ?> extends <?= $parent_class_name; ?><?= "\n" ?>
      * @Route("/", name="<?= $route_name ?>_index", methods={"GET"})
      */
 <?php if (isset($repository_full_class_name)): ?>
-    public function list(<?= $repository_class_name ?> $<?= $repository_var ?>): Response
+    public function index(<?= $repository_class_name ?> $<?= $repository_var ?>): Response
     {
         return $this->render('<?= $templates_path ?>/index.html.twig', [
             '<?= $entity_twig_var_plural ?>' => $<?= $repository_var ?>->findAll(),
