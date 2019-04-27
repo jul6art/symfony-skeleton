@@ -9,13 +9,14 @@
 namespace App\Manager;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class UserManager
  * @package App\Manager
  */
-class UserManager {
+class UserManager extends AbstractManager {
 
 	/**
 	 * @var string
@@ -38,8 +39,9 @@ class UserManager {
 	 * @param string $default_theme
 	 * @param string $locale
 	 */
-	public function __construct(string $default_theme, string $locale, GroupManager $groupManager)
+	public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale, GroupManager $groupManager)
 	{
+		parent::__construct($entityManager);
 		$this->default_theme = $default_theme;
 		$this->locale = $locale;
 		$this->groupManager = $groupManager;

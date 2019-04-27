@@ -16,7 +16,7 @@ use Doctrine\ORM\NonUniqueResultException;
  * Class GroupManager
  * @package App\Manager
  */
-class GroupManager {
+class GroupManager extends AbstractManager {
 	/**
 	 * @var GroupRepository
 	 */
@@ -29,7 +29,8 @@ class GroupManager {
 	 */
 	public function __construct(EntityManagerInterface $entityManager)
 	{
-		$this->groupRepository = $entityManager->getRepository(Group::class);
+		parent::__construct($entityManager);
+		$this->groupRepository = $this->entityManager->getRepository(Group::class);
 	}
 
 	/**
