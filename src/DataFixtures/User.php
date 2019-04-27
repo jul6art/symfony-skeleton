@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Manager\UserManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class User
@@ -15,48 +17,61 @@ class User extends Fixture implements DependentFixtureInterface
 	const LIMIT = 30;
 
 	/**
+	 * @var UserManager
+	 */
+	private $userManager;
+
+	/**
+	 * User constructor.
+	 *
+	 * @param UserManager $userManager
+	 */
+	public function __construct(UserManager $userManager)
+	{
+		$this->userManager = $userManager;
+	}
+
+	/**
 	 * @param ObjectManager $manager
+	 *
+	 * @throws NonUniqueResultException
 	 */
     public function load(ObjectManager $manager)
     {
-        $user = (new \App\Entity\User())
+        $user = $this->userManager
+	        ->create()
 	        ->setUsername('user')
 	        ->setPlainPassword('user')
-	        ->setEmail('user@vsweb.be')
-	        ->setEnabled(true)
-	        ->addGroup($this->getReference('group_user'));
+	        ->setEmail('user@vsweb.be');
 
         $this->setReference('user_user', $user);
         $manager->persist($user);
 
-        $admin = (new \App\Entity\User())
+	    $admin = $this->userManager
+		    ->createAdmin()
 	        ->setUsername('admin')
 	        ->setPlainPassword('admin')
-	        ->setEmail('admin@vsweb.be')
-	        ->setEnabled(true)
-	        ->addGroup($this->getReference('group_admin'));
+	        ->setEmail('admin@vsweb.be');
 
 	    $this->setReference('user_admin', $admin);
         $manager->persist($admin);
 
-        $superAdmin = (new \App\Entity\User())
+        $superAdmin = $this->userManager
+	        ->createAdmin()
 	        ->setUsername('superadmin')
 	        ->setPlainPassword('superadmin')
 	        ->setEmail('super_admin@vsweb.be')
-	        ->setEnabled(true)
-	        ->addGroup($this->getReference('group_admin'))
 	        ->addGroup($this->getReference('group_super_admin'));
 
 	    $this->setReference('user_super_admin', $superAdmin);
         $manager->persist($superAdmin);
 
         for ($i = 0; $i < self::LIMIT; $i ++) {
-	        $user = (new \App\Entity\User())
+	        $user = $this->userManager
+		        ->create()
 		        ->setUsername('user_' . $i)
 		        ->setPlainPassword('user')
-		        ->setEmail('user_' . $i . '@vsweb.be')
-		        ->setEnabled(true)
-		        ->addGroup($this->getReference('group_user'));
+		        ->setEmail('user_' . $i . '@vsweb.be');
 
 	        $this->setReference('user_user_' . $i, $user);
 	        $manager->persist($user);
