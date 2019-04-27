@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/layout_base.html.twig' %}
 
-{% block title %}Test index{% endblock %}
+{% block page_title %}Test index{% endblock page_title %}
 
-{% block body %}
+{% block content %}
     <h1>Test index</h1>
 
     <table class="table">
@@ -32,4 +32,4 @@
     </table>
 
     <a href="{{ path('test_new') }}">Create new</a>
-{% endblock %}
+{% endblock content %}

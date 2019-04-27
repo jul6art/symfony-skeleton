@@ -11,7 +11,7 @@ parameters:
         - de
     project_name: 'Symfony skeleton'
     base_title: ' | Symfony Skeleton'
-    default_theme: 1
+    default_theme: red
 
 services:
     _defaults:

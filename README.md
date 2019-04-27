@@ -7,24 +7,30 @@ Base sf4 admin project
 
 [&#9758; DEMO](https://symfony-skeleton.vsweb.be/)
 
-Install
+### Install
 
 ```bash
 git clone https://github.com/jul6art/symfony-skeleton.git
 ```
 
-Configure
+### Configure
 
 ```bash
 nano .env
 ```
 
-Launch
+### Launch
 
 ```bash
 sh hook_local.sh
 php bin/console server:start
 ```
+
+### Theme
+
+> Default theme is set in services.yml then, in user profile page, every user can choose the theme he wants
+
+You can deactivate this feature in configuration page
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 

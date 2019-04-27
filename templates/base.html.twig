@@ -1,12 +1,36 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!--[if IE 8]>
+<html lang="{{ app.request.locale }}" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="{{ app.request.locale }}" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="{{ app.request.locale }}">
+<!--<![endif]-->
+<!--
+ __    __    ___            __    __    __   ____
+ \ \  / /   / __|           \ \  /  \  / /  |  __\   __
+  \ \/ / _  \__ \  _         \ \/ /\ \/ /   |  __|  |  _\
+   \__/ (_) |___/ (_)         \__/  \__/    |  __/  |___/
+                https://vsweb.be
+-->
+<head>
+    {% block head %}
+        <title>
+            {% block title %}{{ base_title }}{% endblock %}
+        </title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="symfony skeleton by Jul6art for VsWeb"/>
+        <meta name="author" content="VsWeb"/>
+
+        {% block stylesheets %}{% endblock stylesheets %}
+
+    {% endblock head %}
+</head>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+{% block body_content %}{% endblock body_content %}
+{% block javascripts %}{% endblock javascripts %}
+</body>
 </html>
