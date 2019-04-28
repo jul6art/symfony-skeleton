@@ -21,6 +21,13 @@
 /**
 SKINS
  */
+.navbar-brand > img {
+  vertical-align: top;
+  height: 50px;
+  margin-top: -15px;
+  display: inline !important
+}
+
 .dropdown-menu ul.menu {
   list-style: none;
 }

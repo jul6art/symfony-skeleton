@@ -104,8 +104,8 @@
             <arg value="--exclude=tmp/"/>
             <!-- EXCLUDE PROJECT FILES -->
             <arg value="--exclude=.env"/>
-            <arg value="--exclude=var/cache"/>
-            <arg value="--exclude=var/logs"/>
+            <arg value="--exclude=var/cache/"/>
+            <arg value="--exclude=var/logs/"/>
             <arg value="--exclude=*.md"/>
             <arg value="--exclude=build.xml"/>
             <arg value="--stats"/>
