@@ -48,11 +48,11 @@ class ThemeExtension extends AbstractExtension
 	/**
 	 * @return string
 	 */
-    public function getThemeName()
+    public function getThemeName(): string
     {
     	$user = $this->tokenStorage->getToken()->getUser();
 
-        if ($user instanceof User) {
+        if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
         	return $user->getTheme();
         }
 

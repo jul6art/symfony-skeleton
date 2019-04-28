@@ -5,12 +5,31 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
-    available_locale:
-        - fr
-        - en
-        - de
+    available_locales: fr|en|de
+    available_colors:
+        - red
+        - pink
+        - purple
+        - deep-purple
+        - indigo
+        - blue
+        - light-blue
+        - cyan
+        - teal
+        - green
+        - light-green
+        - lime
+        - yellow
+        - amber
+        - orange
+        - deep-orange
+        - brown
+        - grey
+        - blue-grey
+        - black
     project_name: 'Symfony skeleton'
     base_title: ' | Symfony Skeleton'
+    skeleton_version: 1.0.1
     default_theme: red
 
 services:
@@ -19,7 +38,9 @@ services:
         autoconfigure: true
         bind:
             $locale: '%locale%'
+            $available_locales: '%available_locales%'
             $default_theme: '%default_theme%'
+            $available_colors: '%available_colors%'
 
     App\:
         resource: '../src/*'

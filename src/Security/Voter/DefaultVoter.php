@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class DefaultVoter extends Voter
 {
 	const SWITCH_THEME = 'app.voters.admin.switch_theme';
+	const SWITCH_LOCALE = 'app.voters.admin.switch_locale';
 
 	/**
 	 * @param string $attribute
@@ -25,6 +26,7 @@ class DefaultVoter extends Voter
     {
         if (!in_array($attribute, [
         	    self::SWITCH_THEME,
+        	    self::SWITCH_LOCALE,
 	        ])) {
         	return false;
         }
@@ -54,6 +56,9 @@ class DefaultVoter extends Voter
 	        case self::SWITCH_THEME:
 	        	return $this->canSwicthTheme($subject, $token);
                 break;
+	        case self::SWITCH_LOCALE:
+	        	return $this->canSwitchLocale($subject, $token);
+                break;
         }
 
         return false;
@@ -66,6 +71,16 @@ class DefaultVoter extends Voter
 	 * @return bool
 	 */
     public function canSwicthTheme(string $subject, TokenInterface $token) {
+    	return true;
+    }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canSwitchLocale(string $subject, TokenInterface $token) {
     	return true;
     }
 }

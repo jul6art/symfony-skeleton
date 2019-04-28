@@ -2,9 +2,13 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\User;
+use App\Manager\UserManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class LocaleSubscriber
@@ -18,13 +22,41 @@ class LocaleSubscriber implements EventSubscriberInterface
 	private $defaultLocale;
 
 	/**
-	 * LocaleListener constructor.
+	 * @var string
+	 */
+	private $available_locales;
+
+	/**
+	 * @var TokenStorageInterface
+	 */
+	private $tokenStorage;
+
+	/**
+	 * @var TranslatorInterface
+	 */
+	private $translator;
+
+	/**
+	 * @var UserManager
+	 */
+	private $userManager;
+
+	/**
+	 * LocaleSubscriber constructor.
 	 *
 	 * @param string $locale
+	 * @param string $available_locales
+	 * @param TokenStorageInterface $tokenStorage
+	 * @param TranslatorInterface $translator
+	 * @param UserManager $userManager
 	 */
-	public function __construct(string $locale)
+	public function __construct(string $locale, string $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator, UserManager $userManager)
 	{
 		$this->defaultLocale = $locale;
+		$this->available_locales = $available_locales;
+		$this->tokenStorage = $tokenStorage;
+		$this->translator = $translator;
+		$this->userManager = $userManager;
 	}
 
 	/**
@@ -33,15 +65,41 @@ class LocaleSubscriber implements EventSubscriberInterface
 	public function onKernelRequest(GetResponseEvent $event)
 	{
 		$request = $event->getRequest();
-		if (!$request->hasPreviousSession()) {
+		if (!$event->isMasterRequest()) {
 			return;
 		}
 
-		if ($locale = $request->query->get('_locale')) {
-			$request->getSession()->set('_locale', $locale);
-			$request->setLocale($locale);
-		} else {
-			$request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
+		$user = $this->tokenStorage->getToken()->getUser();
+
+		$newLocale = $request->query->get('_locale', null);
+
+		if (!in_array($newLocale, explode('|', $this->available_locales))) {
+			$newLocale = null;
+		}
+
+		$userLocale = null;
+
+		if ($user instanceof User
+		    && $user->hasSetting(User::SETTING_LOCALE)) {
+			$userLocale = $user->getLocale();
+
+			if (is_null($newLocale)) {
+				$newLocale = $userLocale;
+			}
+		}
+
+		if (!is_null($userLocale)) {
+			if ($newLocale !== $userLocale) {
+				$user->setLocale($newLocale);
+				$this->userManager->save($user);
+			}
+		}
+
+		if (!is_null($newLocale)
+		    && $newLocale !== $request->getLocale()) {
+			$request->getSession()->set('_locale', $newLocale);
+			$request->setLocale($newLocale);
+			$this->translator->setLocale($newLocale);
 		}
 	}
 
@@ -51,7 +109,7 @@ class LocaleSubscriber implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return [
-			KernelEvents::REQUEST => [['onKernelRequest', 10]],
+			KernelEvents::REQUEST => [['onKernelRequest', 5]],
 		];
 	}
 }

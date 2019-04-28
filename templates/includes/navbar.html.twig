@@ -4,7 +4,7 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="images/user.png" width="48" height="48" alt="User" />
+                <img src="{{ asset('images/user.png') }}" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
@@ -369,10 +369,10 @@
         <!-- Footer -->
         <div class="legal">
             <div class="copyright">
-                &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                &copy; {{ 'now' | date('Y') }} <a href="https://vsweb.be" target="_blank">VsWeb</a>.
             </div>
             <div class="version">
-                <b>Version: </b> 1.0.5
+                <b>{{ 'layout.version' | trans({}, 'layout') }}: </b>{{ skeleton_version }}
             </div>
         </div>
         <!-- #Footer -->
@@ -397,10 +397,7 @@
                 <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
                     <ul class="demo-choose-skin">
                         {% include 'includes/theme_switcher.html.twig' with {
-                            colors: ['red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue', 'cyan',
-                                'teal', 'green', 'light-green', 'lime', 'yellow', 'amber', 'orange', 'deep-orange',
-                                'brown', 'grey', 'blue-grey', 'black'
-                            ]
+                            colors: available_colors
                         } %}
                     </ul>
                 </div>

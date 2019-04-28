@@ -21,6 +21,14 @@
 /**
 SKINS
  */
+.dropdown-menu ul.menu {
+  list-style: none;
+}
+
+aside#rightsidebar {
+  overflow-y: auto;
+}
+
 ul.demo-choose-skin a {
   text-decoration: none;
 }

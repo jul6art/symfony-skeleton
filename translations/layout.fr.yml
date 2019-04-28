@@ -26,3 +26,8 @@ layout:
             grey: Gris
             blue-grey: 'Gris bleu'
             black: Noir
+    locales:
+        fr: Français
+        en: English
+        de: Deutsch
+    version: Version
