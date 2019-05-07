@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "af47c9470981c4ba688dc2eb273ce0ee",
+    "content-hash": "f2d167211bcbfd54d4c29f780618148e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2019,6 +2019,43 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "saacsos/randomgenerator",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saacsos/randomgenerator.git",
+                "reference": "08e104ded97fcb340efafe1c30cc1ceca5abed4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saacsos/randomgenerator/zipball/08e104ded97fcb340efafe1c30cc1ceca5abed4c",
+                "reference": "08e104ded97fcb340efafe1c30cc1ceca5abed4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Saacsos\\Randomgenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "saacsos",
+                    "email": "saac.sornchai@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate Random String by level and length",
+            "time": "2016-05-09T11:17:12+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",

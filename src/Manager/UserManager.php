@@ -11,6 +11,7 @@ namespace App\Manager;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Saacsos\Randomgenerator\Util\RandomGenerator;
 
 /**
  * Class UserManager
@@ -70,5 +71,15 @@ class UserManager extends AbstractManager {
 			->create()
 			->removeGroup($this->groupManager->findOneByName('user'))
 			->addGroup($this->groupManager->findOneByName('admin'));
+	}
+
+	/**
+	 * @return string
+	 */
+	public function generatePassword(): string
+	{
+		$generator = new RandomGenerator();
+
+		return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
 	}
 }

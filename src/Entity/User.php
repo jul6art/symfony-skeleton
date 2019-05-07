@@ -18,6 +18,7 @@ class User extends BaseUser
 	const GENDER_FEMALE = 'user.gender.female';
 	const SETTING_LOCALE = 'locale';
 	const SETTING_THEME = 'theme';
+	const LENGTH_GENERATED_PASSWORD = 8;
 
 	/**
 	 * @ORM\Id
@@ -129,6 +130,14 @@ class User extends BaseUser
 		$this->lastname = $lastname;
 
 		return $this;
+	}
+
+	/**
+	 * @return null|string
+	 */
+	public function getFullname(): ?string
+	{
+		return ucwords(sprintf('%s %s', $this->firstname, $this->lastname));
 	}
 
 	/**
