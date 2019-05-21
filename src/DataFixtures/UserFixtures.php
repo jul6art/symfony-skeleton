@@ -2,17 +2,19 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
 use App\Manager\UserManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;
+use Faker\Factory;
 
 /**
- * Class User
+ * Class UserFixtures
  * @package App\DataFixtures
  */
-class User extends Fixture implements DependentFixtureInterface
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
 	const LIMIT = 30;
 
@@ -38,10 +40,14 @@ class User extends Fixture implements DependentFixtureInterface
 	 */
     public function load(ObjectManager $manager)
     {
+	    $faker = Factory::create();
+
         $user = $this->userManager
 	        ->create()
 	        ->setUsername('user')
-	        ->setPlainPassword('user')
+	        ->setFirstname($faker->firstName)
+	        ->setLastname($faker->lastName)
+	        ->setPlainPassword(User::DEFAULT_PASSWORD)
 	        ->setEmail('user@vsweb.be');
 
         $this->setReference('user_user', $user);
@@ -50,7 +56,9 @@ class User extends Fixture implements DependentFixtureInterface
 	    $admin = $this->userManager
 		    ->createAdmin()
 	        ->setUsername('admin')
-	        ->setPlainPassword('admin')
+	        ->setFirstname($faker->firstName)
+	        ->setLastname($faker->lastName)
+	        ->setPlainPassword(User::DEFAULT_PASSWORD)
 	        ->setEmail('admin@vsweb.be');
 
 	    $this->setReference('user_admin', $admin);
@@ -59,7 +67,9 @@ class User extends Fixture implements DependentFixtureInterface
         $superAdmin = $this->userManager
 	        ->createAdmin()
 	        ->setUsername('superadmin')
-	        ->setPlainPassword('superadmin')
+	        ->setFirstname($faker->firstName)
+	        ->setLastname($faker->lastName)
+	        ->setPlainPassword(User::DEFAULT_PASSWORD)
 	        ->setEmail('super_admin@vsweb.be')
 	        ->addGroup($this->getReference('group_super_admin'));
 
@@ -69,9 +79,11 @@ class User extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::LIMIT; $i ++) {
 	        $user = $this->userManager
 		        ->create()
-		        ->setUsername('user_' . $i)
-		        ->setPlainPassword('user')
-		        ->setEmail('user_' . $i . '@vsweb.be');
+		        ->setUsername($faker->userName)
+		        ->setFirstname($faker->firstName)
+		        ->setLastname($faker->lastName)
+		        ->setPlainPassword(User::DEFAULT_PASSWORD)
+		        ->setEmail($faker->email);
 
 	        $this->setReference('user_user_' . $i, $user);
 	        $manager->persist($user);
@@ -85,7 +97,7 @@ class User extends Fixture implements DependentFixtureInterface
 	 */
     public function getDependencies() {
 	    return [
-	    	Group::class,
+	    	GroupFixtures::class,
 	    ];
     }
 }

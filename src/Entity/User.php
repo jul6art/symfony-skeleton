@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
  */
 class User extends BaseUser
@@ -19,6 +19,7 @@ class User extends BaseUser
 	const SETTING_LOCALE = 'locale';
 	const SETTING_THEME = 'theme';
 	const LENGTH_GENERATED_PASSWORD = 8;
+	const DEFAULT_PASSWORD = 'vsweb';
 
 	/**
 	 * @ORM\Id

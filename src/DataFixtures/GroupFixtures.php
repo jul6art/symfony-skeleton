@@ -2,11 +2,19 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Group;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class Group extends Fixture
+/**
+ * Class GroupFixtures
+ * @package App\DataFixtures
+ */
+class GroupFixtures extends Fixture
 {
+	/**
+	 * @param ObjectManager $manager
+	 */
     public function load(ObjectManager $manager)
     {
 	    $groups = [
@@ -16,7 +24,7 @@ class Group extends Fixture
 	    ];
 
 	    foreach ($groups as $value) {
-		    $group = (new \App\Entity\Group($value))
+		    $group = (new Group($value))
 			    ->setRoles([
 		    	    sprintf('ROLE_%s', strtoupper($value)),
 		        ]);

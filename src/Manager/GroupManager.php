@@ -39,7 +39,7 @@ class GroupManager extends AbstractManager {
 	 * @return Group|null
 	 * @throws NonUniqueResultException
 	 */
-	public function findOneByName(string $name)
+	public function findOneByName(string $name): ?Group
 	{
 		return $this->groupRepository->findOneByName($name);
 	}

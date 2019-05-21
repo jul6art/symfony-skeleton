@@ -58,12 +58,17 @@ abstract class AbstractManager {
 
 	/**
 	 * @param $entity
+	 * @param bool $flush
 	 *
 	 * @return bool
 	 */
-	public function delete($entity): bool
+	public function delete($entity, bool $flush = true): bool
 	{
 		$this->entityManager->remove($entity);
+
+		if ($flush) {
+			$this->entityManager->flush();
+		}
 
 		return true;
 	}

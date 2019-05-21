@@ -52,7 +52,7 @@ class UserManager extends AbstractManager {
 	 * @return User
 	 * @throws NonUniqueResultException
 	 */
-	public function create()
+	public function create(): User
 	{
 		return (new User())
 			->setEnabled(true)
@@ -65,12 +65,13 @@ class UserManager extends AbstractManager {
 	 * @return User
 	 * @throws NonUniqueResultException
 	 */
-	public function createAdmin()
+	public function createAdmin(): User
 	{
-		return $this
-			->create()
-			->removeGroup($this->groupManager->findOneByName('user'))
-			->addGroup($this->groupManager->findOneByName('admin'));
+		return (new User())
+			->setEnabled(true)
+			->addGroup($this->groupManager->findOneByName('admin'))
+			->setLocale($this->locale)
+			->setTheme($this->default_theme);
 	}
 
 	/**

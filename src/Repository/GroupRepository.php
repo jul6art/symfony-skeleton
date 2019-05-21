@@ -5,13 +5,16 @@ namespace App\Repository;
 use App\Entity\Group;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class GroupRepository
- * @package App\Repository
+ * @method Group|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Group|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Group[]    findAll()
+ * @method Group[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class GroupRepository extends ServiceEntityRepository
 {
@@ -33,9 +36,9 @@ class GroupRepository extends ServiceEntityRepository
 	 */
     public function filterByUser(QueryBuilder $builder, User $user): self
     {
-    	$builder->andWhere(
-    		$builder->expr()->eq('g.user', $user)
-	    );
+	    $builder
+		    ->andWhere($builder->expr()->eq('g.user', ':user'))
+		    ->setParameter('user', $user);
 
     	return $this;
     }
@@ -48,9 +51,9 @@ class GroupRepository extends ServiceEntityRepository
 	 */
     public function filterByName(QueryBuilder $builder, string $name): self
     {
-    	$builder->andWhere(
-    		$builder->expr()->eq('g.name', $name)
-	    );
+	    $builder
+		    ->andWhere($builder->expr()->eq('g.name', ':name'))
+		    ->setParameter('name', $name, Type::STRING);
 
     	return $this;
     }

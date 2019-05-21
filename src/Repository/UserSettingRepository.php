@@ -7,8 +7,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class UserSettingRepository
- * @package App\Repository
+ * @method UserSetting|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UserSetting|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UserSetting[]    findAll()
+ * @method UserSetting[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class UserSettingRepository extends ServiceEntityRepository
 {
