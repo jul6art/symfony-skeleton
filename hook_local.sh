@@ -18,3 +18,5 @@ php bin/console doctrine:fixtures:load --no-interaction
 # ./vendor/bin/simple-phpunit > tests_output.txt
 # echo 'tests output saved in tests_output.txt file'
 # cat tests_output.txt
+
+echo '--- SUCCESSFULL DEPLOY ---'
