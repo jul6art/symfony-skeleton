@@ -2,19 +2,20 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Functionality;
 use App\Entity\User;
+use App\Manager\FunctionalityManager;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class DefaultVoter
  * @package App\Security\Voter
  */
-class DefaultVoter extends Voter
+class DefaultVoter extends AbstractVoter
 {
-	const SWITCH_THEME = 'app.voters.admin.switch_theme';
-	const SWITCH_LOCALE = 'app.voters.admin.switch_locale';
+	const MANAGE_SETTINGS = 'app.voters.admin.manage_settings';
 
 	/**
 	 * @param string $attribute
@@ -25,8 +26,7 @@ class DefaultVoter extends Voter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
-        	    self::SWITCH_THEME,
-        	    self::SWITCH_LOCALE,
+        	    self::MANAGE_SETTINGS,
 	        ])) {
         	return false;
         }
@@ -53,11 +53,8 @@ class DefaultVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-	        case self::SWITCH_THEME:
-	        	return $this->canSwicthTheme($subject, $token);
-                break;
-	        case self::SWITCH_LOCALE:
-	        	return $this->canSwitchLocale($subject, $token);
+	        case self::MANAGE_SETTINGS:
+	        	return $this->canManageSettings($subject, $token);
                 break;
         }
 
@@ -70,17 +67,7 @@ class DefaultVoter extends Voter
 	 *
 	 * @return bool
 	 */
-    public function canSwicthTheme(string $subject, TokenInterface $token) {
-    	return true;
-    }
-
-	/**
-	 * @param string $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-    public function canSwitchLocale(string $subject, TokenInterface $token) {
-    	return true;
+    public function canManageSettings(string $subject, TokenInterface $token) {
+    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 }

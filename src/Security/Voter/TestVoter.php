@@ -4,14 +4,12 @@ namespace App\Security\Voter;
 
 use App\Entity\Test;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class TestVoter
  * @package App\Security\Voter
  */
-class TestVoter extends Voter
+class TestVoter extends AbstractVoter
 {
 	const LIST = 'app.voters.test.list';
 	const EDIT = 'app.voters.test.edit';

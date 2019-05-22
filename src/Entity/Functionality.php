@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FunctionalityRepository")
+ * @UniqueEntity(fields={"name"})
  */
 class Functionality
 {
 	const FUNC_SWITCH_THEME = 'func.switch_theme';
+	const FUNC_SWITCH_LOCALE = 'func.switch_locale';
 
     /**
      * @ORM\Id()
@@ -20,7 +23,7 @@ class Functionality
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
      */
     private $name;
@@ -47,7 +50,7 @@ class Functionality
         return $this;
     }
 
-    public function getActive(): ?bool
+    public function isActive(): ?bool
     {
         return $this->active;
     }

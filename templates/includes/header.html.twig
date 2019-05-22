@@ -126,27 +126,32 @@
                 </li>
                 <!-- #END# Notifications -->
                 <!-- Locale -->
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="fa fa-globe fa-2x"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="body">
-                            <ul class="menu">
-                                <li class="active">
-                                    <a href="#!" disabled="">{{ ('layout.locales.' ~ locale()) | trans({}, 'layout') }}</a>
-                                </li>
-                                {% for item in available_locales | split('|') if item != locale() %}
-                                    <li>
-                                        <a href="{{ path('admin_locale_switch', {locale: item}) }}">{{ ('layout.locales.' ~ item) | trans({}, 'layout') }}</a>
+                {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_LOCALE'), 'App\\Entity\\Functionality') %}
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-globe fa-2x"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="body">
+                                <ul class="menu">
+                                    <li class="active">
+                                        <a href="#!" disabled="">{{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
                                     </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                                    {% for item in available_locales | split('|') if item != locale() %}
+                                        <li>
+                                            <a href="{{ path('admin_locale_switch', {locale: item}) }}">{{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
                 <!-- #END# Locale -->
-                <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_THEME'), 'App\\Entity\\Functionality')
+                    or is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

@@ -1,0 +1,26 @@
+sidebar:
+    skins:
+        title: THÈMES
+        colors:
+            red: Rouge
+            pink: Rose
+            purple: Mauve
+            deep-purple: 'Mauve foncé'
+            indigo: Indigo
+            blue: Bleu
+            light-blue: 'Bleu clair'
+            cyan: Cyan
+            teal: 'Bleu vert'
+            green: Vert
+            light-green: 'Vert pomme'
+            lime: Citron
+            yellow: Jaune
+            amber: Ambre
+            orange: Orange
+            deep-orange: 'Orange foncé'
+            brown: Brun
+            grey: Gris
+            blue-grey: 'Gris bleu'
+            black: Noir
+    settings:
+        title: PARAMÈTRES

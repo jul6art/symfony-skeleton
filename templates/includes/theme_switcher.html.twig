@@ -1,8 +1,0 @@
-{% for color in colors %}
-    <li data-theme="{{ color }}"{{ color == theme_name() ? ' class="active"' : '' }}>
-        <a href="{{ path('admin_theme_switch', {name: color}) }}" class="block">
-            <div class="{{ color }}"></div>
-            <span>{{ ('layout.skins.colors.' ~ color) | trans({}, 'layout') }}</span>
-        </a>
-    </li>
-{% endfor %}

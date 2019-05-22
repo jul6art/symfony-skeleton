@@ -1,0 +1,82 @@
+<aside id="rightsidebar" class="right-sidebar">
+    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+        {% set second_tab_active_class = 'active' %}
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_THEME'), 'App\\Entity\\Functionality') %}
+            {% set second_tab_active_class = '' %}
+            <li role="presentation" class="active"><a href="#skins" data-toggle="tab">{{ 'sidebar.skins.title' | trans({}, 'sidebar') }}</a></li>
+        {% endif %}
+
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
+            <li role="presentation" class="{{ second_tab_active_class }}">
+                <a href="#settings" data-toggle="tab">{{ 'sidebar.settings.title' | trans({}, 'sidebar') }}</a>
+            </li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_THEME'), 'App\\Entity\\Functionality') %}
+            <div role="tabpanel" class="tab-pane fade in active" id="skins">
+                <ul class="demo-choose-skin">
+                    {% for color in available_colors %}
+                        <li data-theme="{{ color }}"{{ color == theme_name() ? ' class="active"' : '' }}>
+                            <a href="{{ path('admin_theme_switch', {name: color}) }}" class="block">
+                                <div class="{{ color }}"></div>
+                                <span>{{ ('sidebar.skins.colors.' ~ color) | trans({}, 'sidebar') }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
+            <div role="tabpanel" class="tab-pane fade{{ second_tab_active_class == '' ? '' : ' in active' }}" id="settings">
+                <div class="demo-settings">
+                    <p>GENERAL SETTINGS</p>
+                    <ul class="setting-list">
+                        <li>
+                            <span>Report Panel Usage</span>
+                            <div class="switch">
+                                <label><input type="checkbox" checked><span class="lever"></span></label>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Email Redirect</span>
+                            <div class="switch">
+                                <label><input type="checkbox"><span class="lever"></span></label>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>SYSTEM SETTINGS</p>
+                    <ul class="setting-list">
+                        <li>
+                            <span>Notifications</span>
+                            <div class="switch">
+                                <label><input type="checkbox" checked><span class="lever"></span></label>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Auto Updates</span>
+                            <div class="switch">
+                                <label><input type="checkbox" checked><span class="lever"></span></label>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>ACCOUNT SETTINGS</p>
+                    <ul class="setting-list">
+                        <li>
+                            <span>Offline</span>
+                            <div class="switch">
+                                <label><input type="checkbox"><span class="lever"></span></label>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Location Permission</span>
+                            <div class="switch">
+                                <label><input type="checkbox" checked><span class="lever"></span></label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</aside>
