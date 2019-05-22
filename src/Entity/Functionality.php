@@ -23,7 +23,8 @@ class Functionality
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=80, unique=true)
+     * @Assert\Length(max="80")
      * @Assert\NotBlank()
      */
     private $name;
