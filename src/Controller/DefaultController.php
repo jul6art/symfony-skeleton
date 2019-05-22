@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Functionality;
 use App\Manager\UserManager;
-use App\Security\Voter\DefaultVoter;
+use App\Security\Voter\FunctionalityVoter;
 use App\Service\RefererService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class DefaultController extends AbstractController
      */
     public function theme(Request $request, string $name, array $available_colors, UserManager $userManager, RefererService $refererService): Response
     {
-    	$this->denyAccessUnlessGranted(DefaultVoter::SWITCH_THEME, User::class);
+    	$this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class);
 
     	$referer = $refererService->getFormReferer($request, 'theme');
 
@@ -52,7 +52,7 @@ class DefaultController extends AbstractController
      */
     public function locale(Request $request, string $locale, UserManager $userManager, RefererService $refererService): Response
     {
-    	$this->denyAccessUnlessGranted(DefaultVoter::SWITCH_LOCALE, User::class);
+    	$this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
 
     	$referer = $refererService->getFormReferer($request, 'locale');
 

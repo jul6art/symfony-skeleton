@@ -135,11 +135,11 @@
                             <li class="body">
                                 <ul class="menu">
                                     <li class="active">
-                                        <a href="#!" disabled="">{{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
+                                        <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale() == 'en' ? 'gb' : locale() }}"></span> {{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
                                     </li>
                                     {% for item in available_locales | split('|') if item != locale() %}
                                         <li>
-                                            <a href="{{ path('admin_locale_switch', {locale: item}) }}">{{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
+                                            <a href="{{ path('admin_locale_switch', {locale: item}) }}"><span class="flag-icon flag-icon-{{ item == 'en' ? 'gb' : item }}"></span> {{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
