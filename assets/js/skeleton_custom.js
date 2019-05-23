@@ -1,0 +1,1 @@
+console.log(window.routing.generate('admin_homepage'));

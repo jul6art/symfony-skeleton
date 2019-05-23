@@ -9,6 +9,7 @@
 namespace App\Manager;
 
 use App\Entity\User;
+use App\Factory\UserFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Saacsos\Randomgenerator\Util\RandomGenerator;
@@ -54,11 +55,7 @@ class UserManager extends AbstractManager {
 	 */
 	public function create(): User
 	{
-		return (new User())
-			->setEnabled(true)
-			->addGroup($this->groupManager->findOneByName('user'))
-			->setLocale($this->locale)
-			->setTheme($this->default_theme);
+		return UserFactory::create($this->groupManager, $this->locale, $this->default_theme);
 	}
 
 	/**
@@ -67,11 +64,7 @@ class UserManager extends AbstractManager {
 	 */
 	public function createAdmin(): User
 	{
-		return (new User())
-			->setEnabled(true)
-			->addGroup($this->groupManager->findOneByName('admin'))
-			->setLocale($this->locale)
-			->setTheme($this->default_theme);
+		return UserFactory::createAdmin($this->groupManager, $this->locale, $this->default_theme);
 	}
 
 	/**

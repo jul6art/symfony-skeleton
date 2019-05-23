@@ -8,6 +8,9 @@ require('bootstrap');
 require('jquery-slimscroll');
 require('node-waves');
 
+// routing
+window.routing = require('./routing');
+
 // theme
 require('./skeleton_script');
 require('./skeleton_custom');

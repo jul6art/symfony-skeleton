@@ -3,9 +3,10 @@ cd /home/symfony-skeleton/public_html/
 set -e
 
 echo '--- FILES LOADING ---'
+composer install --no-suggest
+php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 yarn install
 yarn encore production
-composer install --no-suggest
 php bin/console cache:clear
 php bin/console cache:warmup
 

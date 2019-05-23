@@ -34,7 +34,15 @@ class Functionality
      */
     private $active;
 
-    public function getId(): ?int
+	/**
+	 * Functionality constructor.
+	 */
+    public function __construct()
+    {
+    	$this->active = true;
+    }
+
+	public function getId(): ?int
     {
         return $this->id;
     }

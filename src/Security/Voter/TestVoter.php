@@ -14,6 +14,7 @@ class TestVoter extends AbstractVoter
 	const LIST = 'app.voters.test.list';
 	const EDIT = 'app.voters.test.edit';
 	const ADD = 'app.voters.test.add';
+	const VIEW = 'app.voters.test.view';
 	const DELETE = 'app.voters.test.delete';
 
 	/**
@@ -28,6 +29,7 @@ class TestVoter extends AbstractVoter
         	    self::LIST,
         	    self::EDIT,
         	    self::ADD,
+        	    self::VIEW,
         	    self::DELETE,
 	        ])) {
         	return false;
@@ -57,6 +59,14 @@ class TestVoter extends AbstractVoter
         switch ($attribute) {
 	        case self::LIST:
 	        	return $this->canList($subject, $token);
+	        case self::EDIT:
+	        	return $this->canEdit($subject, $token);
+	        case self::ADD:
+	        	return $this->canAdd($subject, $token);
+	        case self::VIEW:
+	        	return $this->canView($subject, $token);
+	        case self::DELETE:
+	        	return $this->canDelete($subject, $token);
                 break;
         }
 
@@ -72,4 +82,44 @@ class TestVoter extends AbstractVoter
     public function canList(string $subject, TokenInterface $token) {
     	return true;
     }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canAdd(string $subject, TokenInterface $token) {
+    	return $this->canList($subject, $token);
+    }
+
+	/**
+	 * @param Test $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canEdit(Test $subject, TokenInterface $token) {
+    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    }
+
+	/**
+	 * @param Test $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canView(Test $subject, TokenInterface $token) {
+    	return true;
+    }
+
+	/**
+	 * @param Test $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canDelete(Test $subject, TokenInterface $token) {
+		return $this->canEdit($subject, $token);
+	}
 }

@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"admin_homepage":{"tokens":[["text","\/admin\/"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}

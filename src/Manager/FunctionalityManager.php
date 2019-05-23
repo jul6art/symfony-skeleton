@@ -9,6 +9,7 @@
 namespace App\Manager;
 
 use App\Entity\Functionality;
+use App\Factory\FunctionalityFactory;
 use App\Repository\FunctionalityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -39,8 +40,7 @@ class FunctionalityManager extends AbstractManager
 	 */
 	public function create(): Functionality
 	{
-		return (new Functionality())
-			->setActive(true);
+		return FunctionalityFactory::create();
 	}
 
 	/**
