@@ -19,16 +19,6 @@ trait UserManagerTrait {
 	private $userManager;
 
 	/**
-	 * UserManagerTrait constructor.
-	 *
-	 * @param UserManager $userManager
-	 */
-	public function __construct(UserManager $userManager)
-	{
-		$this->userManager = $userManager;
-	}
-
-	/**
 	 * @return UserManager
 	 */
 	public function getUserManager(): UserManager
@@ -39,12 +29,12 @@ trait UserManagerTrait {
 	/**
 	 * @param UserManager $userManager
 	 *
+	 * @required
+	 *
 	 * @return UserManagerTrait
 	 */
-	public function setUserManager(UserManager $userManager): UserManagerTrait
+	public function setUserManager(UserManager $userManager): void
 	{
 		$this->userManager = $userManager;
-
-		return $this;
 	}
 }

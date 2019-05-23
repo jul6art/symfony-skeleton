@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Functionality;
 use App\Manager\FunctionalityManager;
+use App\Manager\FunctionalityManagerTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;
@@ -14,20 +15,7 @@ use Doctrine\ORM\NonUniqueResultException;
  */
 class FunctionalityFixtures extends Fixture
 {
-	/**
-	 * @var FunctionalityManager
-	 */
-	private $functionalityManager;
-
-	/**
-	 * Functionality constructor.
-	 *
-	 * @param FunctionalityManager $functionalityManager
-	 */
-	public function __construct(FunctionalityManager $functionalityManager)
-	{
-		$this->functionalityManager = $functionalityManager;
-	}
+	use FunctionalityManagerTrait;
 
 	/**
 	 * @param ObjectManager $manager

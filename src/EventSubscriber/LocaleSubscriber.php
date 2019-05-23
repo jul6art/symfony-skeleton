@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\User;
 use App\Manager\UserManager;
+use App\Manager\UserManagerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -16,6 +17,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class LocaleSubscriber implements EventSubscriberInterface
 {
+	use UserManagerTrait;
+
 	/**
 	 * @var string
 	 */
@@ -37,26 +40,19 @@ class LocaleSubscriber implements EventSubscriberInterface
 	private $translator;
 
 	/**
-	 * @var UserManager
-	 */
-	private $userManager;
-
-	/**
 	 * LocaleSubscriber constructor.
 	 *
 	 * @param string $locale
 	 * @param string $available_locales
 	 * @param TokenStorageInterface $tokenStorage
 	 * @param TranslatorInterface $translator
-	 * @param UserManager $userManager
 	 */
-	public function __construct(string $locale, string $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator, UserManager $userManager)
+	public function __construct(string $locale, string $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
 	{
 		$this->defaultLocale = $locale;
 		$this->available_locales = $available_locales;
 		$this->tokenStorage = $tokenStorage;
 		$this->translator = $translator;
-		$this->userManager = $userManager;
 	}
 
 	/**

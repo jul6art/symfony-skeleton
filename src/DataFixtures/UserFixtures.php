@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Manager\UserManager;
+use App\Manager\UserManagerTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -16,22 +16,9 @@ use Faker\Factory;
  */
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
+	use UserManagerTrait;
+
 	const LIMIT = 30;
-
-	/**
-	 * @var UserManager
-	 */
-	private $userManager;
-
-	/**
-	 * User constructor.
-	 *
-	 * @param UserManager $userManager
-	 */
-	public function __construct(UserManager $userManager)
-	{
-		$this->userManager = $userManager;
-	}
 
 	/**
 	 * @param ObjectManager $manager

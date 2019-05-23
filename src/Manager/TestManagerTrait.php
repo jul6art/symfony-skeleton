@@ -19,16 +19,6 @@ trait TestManagerTrait {
 	private $testManager;
 
 	/**
-	 * TestManagerTrait constructor.
-	 *
-	 * @param TestManager $testManager
-	 */
-	public function __construct(TestManager $testManager)
-	{
-		$this->testManager = $testManager;
-	}
-
-	/**
 	 * @return TestManager
 	 */
 	public function getTestManager(): TestManager
@@ -39,12 +29,10 @@ trait TestManagerTrait {
 	/**
 	 * @param TestManager $testManager
 	 *
-	 * @return TestManagerTrait
+	 * @required
 	 */
-	public function setTestManager( TestManager $testManager ): TestManagerTrait
+	public function setTestManager( TestManager $testManager ): void
 	{
 		$this->testManager = $testManager;
-
-		return $this;
 	}
 }

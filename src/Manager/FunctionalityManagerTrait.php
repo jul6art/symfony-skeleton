@@ -19,16 +19,6 @@ trait FunctionalityManagerTrait {
 	private $functionalityManager;
 
 	/**
-	 * FunctionalityManagerTrait constructor.
-	 *
-	 * @param FunctionalityManager $functionalityManager
-	 */
-	public function __construct(FunctionalityManager $functionalityManager)
-	{
-		$this->functionalityManager = $functionalityManager;
-	}
-
-	/**
 	 * @return FunctionalityManager
 	 */
 	public function getFunctionalityManager(): FunctionalityManager
@@ -39,12 +29,10 @@ trait FunctionalityManagerTrait {
 	/**
 	 * @param FunctionalityManager $functionalityManager
 	 *
-	 * @return FunctionalityManagerTrait
+	 * @required
 	 */
-	public function setFunctionalityManager(FunctionalityManager $functionalityManager): FunctionalityManagerTrait
+	public function setFunctionalityManager(FunctionalityManager $functionalityManager): void
 	{
 		$this->functionalityManager = $functionalityManager;
-
-		return $this;
 	}
 }

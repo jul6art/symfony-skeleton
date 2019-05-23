@@ -18,7 +18,9 @@ use Saacsos\Randomgenerator\Util\RandomGenerator;
  * Class UserManager
  * @package App\Manager
  */
-class UserManager extends AbstractManager {
+class UserManager extends AbstractManager
+{
+	use GroupManagerTrait;
 
 	/**
 	 * @var string
@@ -31,22 +33,17 @@ class UserManager extends AbstractManager {
 	private $locale;
 
 	/**
-	 * @var GroupManager
-	 */
-	private $groupManager;
-
-	/**
-	 * User constructor.
+	 * UserManager constructor.
 	 *
+	 * @param EntityManagerInterface $entityManager
 	 * @param string $default_theme
 	 * @param string $locale
 	 */
-	public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale, GroupManager $groupManager)
+	public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
 	{
 		parent::__construct($entityManager);
 		$this->default_theme = $default_theme;
 		$this->locale = $locale;
-		$this->groupManager = $groupManager;
 	}
 
 	/**

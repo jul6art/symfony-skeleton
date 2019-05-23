@@ -2,12 +2,9 @@
 
 namespace App\Twig;
 
-use App\Entity\User;
-use App\Manager\FunctionalityManager;
+use App\Manager\FunctionalityManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 /**
@@ -16,20 +13,7 @@ use Twig\TwigFunction;
  */
 class FunctionalityExtension extends AbstractExtension
 {
-	/**
-	 * @var FunctionalityManager
-	 */
-	private $functionalityManager;
-
-	/**
-	 * FunctionalityExtension constructor.
-	 *
-	 * @param FunctionalityManager $functionalityManager
-	 */
-	public function __construct(FunctionalityManager $functionalityManager)
-	{
-		$this->functionalityManager = $functionalityManager;
-	}
+	use FunctionalityManagerTrait;
 
 	/**
 	 * @return array

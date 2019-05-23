@@ -19,16 +19,6 @@ trait GroupManagerTrait {
 	private $groupManager;
 
 	/**
-	 * GroupManagerTrait constructor.
-	 *
-	 * @param GroupManager $groupManager
-	 */
-	public function __construct(GroupManager $groupManager)
-	{
-		$this->groupManager = $groupManager;
-	}
-
-	/**
 	 * @return GroupManager
 	 */
 	public function getGroupManager(): GroupManager
@@ -39,12 +29,10 @@ trait GroupManagerTrait {
 	/**
 	 * @param GroupManager $groupManager
 	 *
-	 * @return GroupManagerTrait
+	 * @required
 	 */
-	public function setGroupManager(GroupManager $groupManager): GroupManagerTrait
+	public function setGroupManager(GroupManager $groupManager): void
 	{
 		$this->groupManager = $groupManager;
-
-		return $this;
 	}
 }

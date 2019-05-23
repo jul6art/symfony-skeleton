@@ -4,9 +4,9 @@ namespace App\Security\Voter;
 
 use App\Entity\Functionality;
 use App\Manager\FunctionalityManager;
+use App\Manager\FunctionalityManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -15,25 +15,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class FunctionalityVoter extends AbstractVoter
 {
+	use FunctionalityManagerTrait;
+
 	const SWITCH_THEME = 'app.voters.functionality.switch_theme';
 	const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
 	const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
-
-	/**
-	 * @var FunctionalityManager
-	 */
-	private $functionalityManager;
-
-	/**
-	 * FunctionalityVoter constructor.
-	 *
-	 * @param AccessDecisionManagerInterface $accessDecisionManager
-	 * @param FunctionalityManager $functionalityManager
-	 */
-	public function __construct( AccessDecisionManagerInterface $accessDecisionManager, FunctionalityManager $functionalityManager) {
-		parent::__construct( $accessDecisionManager );
-		$this->functionalityManager = $functionalityManager;
-	}
 
 	/**
 	 * @param string $attribute
