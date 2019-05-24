@@ -1,0 +1,15 @@
+table:
+    default:
+        lengthMenu: '_MENU_ résultats par page'
+        zeroRecords: 'Aucun résultat - désolé'
+        info: 'Page _PAGE_ de _PAGES_'
+        infoEmpty: 'Aucune donnée disponible'
+        infoFiltered: '(filtrés sur _MAX_ éléments)'
+        search: 'Rechercher'
+        previous: 'Précedent'
+        next: 'Suivant'
+    head:
+        actions: Actions
+        test:
+            id: ID
+            name: Nom

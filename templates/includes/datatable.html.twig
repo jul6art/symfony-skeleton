@@ -1,9 +1,13 @@
 <div class="table-responsive">
-    <table id="example" class="mdl-data-table dataTable {{ class }}" style="width:100%">
+    <table id="example"
+           class="table table-bordered table-striped table-hover dataTable js-exportable dataTable {{ class }}"
+           style="width:100%"
+           {% for plugin in plugins %} data-{{ plugin }}="true"{% endfor %}
+    >
         <thead>
         <tr>
             {% for item in header %}
-                <th>{{ item | trans({}, 'table') }}</th>
+                <th>{{ ('table.head.' ~ item) | trans({}, 'table') }}</th>
             {% endfor %}
         </tr>
         </thead>
@@ -12,13 +16,14 @@
             <tr>
                 <td>{{ row.id }}</td>
                 <td>{{ row.name }}</td>
+                <td></td>
             </tr>
         {% endfor %}
         </tbody>
         <tfoot>
         <tr>
             {% for item in header %}
-                <th>{{ item | trans({}, 'table') }}</th>
+                <th>{{ ('table.head.' ~ item) | trans({}, 'table') }}</th>
             {% endfor %}
         </tr>
         </tfoot>
