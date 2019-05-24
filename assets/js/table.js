@@ -203,23 +203,32 @@ $(document).ready(function() {
     var tables = $('table.dataTable');
 
     tables.each(function () {
+        var table = $(this);
         var datatableOptions = {
             dom: 'Bfrtip',
             language: DATATABLE_TRANSLATIONS,
         };
 
-        if ($(this).data('export')) {
-            require('datatables.net-buttons');
+        if (table.data('export')) {
+            require('datatables.net-buttons/js/dataTables.buttons.min');
+            require('datatables.net-buttons/js/buttons.flash.min');
+            require('jszip');
+            require('pdfmake');
+            require('./vfs_fonts');
+            require('datatables.net-buttons/js/buttons.html5.min');
+            require('datatables.net-buttons/js/buttons.print.min');
             datatableOptions.buttons = [
-                'copy', 'csv', 'excel', 'pdf'
+                'copy', 'csv', 'excel', 'pdf', 'print'
             ];
         }
 
-        if ($(this).data('responsive')) {
+        if (table.data('responsive')) {
             require('datatables.net-responsive');
+            require('datatables.net-responsive-dt/css/responsive.dataTables.min.css');
+            require('datatables.net-responsive-dt');
             datatableOptions.responsive = true;
         }
 
-        $(this).DataTable(datatableOptions);
+        table.DataTable(datatableOptions);
     });
 } );
