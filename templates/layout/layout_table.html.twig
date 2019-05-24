@@ -1,0 +1,13 @@
+{% extends 'layout/layout_base.html.twig' %}
+
+{% block page_title %}{% endblock page_title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('table') }}
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('table') }}
+{% endblock javascripts %}

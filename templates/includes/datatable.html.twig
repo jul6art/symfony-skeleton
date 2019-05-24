@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="example" class="mdl-data-table dataTable {{ class }}" style="width:100%">
+        <thead>
+        <tr>
+            {% for item in header %}
+                <th>{{ item | trans({}, 'table') }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            {% for item in header %}
+                <th>{{ item | trans({}, 'table') }}</th>
+            {% endfor %}
+        </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,35 +1,19 @@
-{% extends 'layout/layout_base.html.twig' %}
+{% extends 'layout/layout_table.html.twig' %}
 
 {% block page_title %}Test index{% endblock page_title %}
 
 {% block content %}
     <h1>Test index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for test in tests %}
-            <tr>
-                <td>{{ test.id }}</td>
-                <td>{{ test.name }}</td>
-                <td>
-                    <a href="{{ path('admin_test_show', {'id': test.id}) }}">show</a>
-                    <a href="{{ path('admin_test_edit', {'id': test.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
     <a href="{{ path('admin_test_new') }}">Create new</a>
+
+    {% include 'includes/datatable.html.twig' with {
+        class: 'my-super-class',
+        header: [
+            'Id',
+            'Name',
+            'actions',
+        ],
+        rows: tests
+    } %}
 {% endblock content %}
