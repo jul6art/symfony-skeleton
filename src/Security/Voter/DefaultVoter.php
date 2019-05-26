@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class DefaultVoter extends AbstractVoter
 {
-	const MANAGE_SETTINGS = 'app.voters.admin.manage_settings';
+	const CACHE_CLEAR = 'app.voters.admin.cache_clear';
 
 	/**
 	 * @param string $attribute
@@ -26,7 +26,7 @@ class DefaultVoter extends AbstractVoter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
-        	    self::MANAGE_SETTINGS,
+        	    self::CACHE_CLEAR,
 	        ])) {
         	return false;
         }
@@ -53,8 +53,8 @@ class DefaultVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-	        case self::MANAGE_SETTINGS:
-	        	return $this->canManageSettings($subject, $token);
+	        case self::CACHE_CLEAR:
+	        	return $this->canCacheClear($subject, $token);
                 break;
         }
 
@@ -67,7 +67,7 @@ class DefaultVoter extends AbstractVoter
 	 *
 	 * @return bool
 	 */
-    public function canManageSettings(string $subject, TokenInterface $token) {
+    public function canCacheClear(string $subject, TokenInterface $token) {
     	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 }

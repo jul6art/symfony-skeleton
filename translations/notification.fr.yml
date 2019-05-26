@@ -1,0 +1,4 @@
+admin:
+    notification:
+        cache:
+            cleared: 'Cache vidé. Taille avant: %size%'

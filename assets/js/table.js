@@ -229,6 +229,11 @@ $(document).ready(function() {
             datatableOptions.responsive = true;
         }
 
+        if (table.data('colReorder')) {
+            require('datatables.net-colreorder/js/dataTables.colReorder.min');
+            datatableOptions.colReorder = true;
+        }
+
         table.DataTable(datatableOptions);
     });
 } );
