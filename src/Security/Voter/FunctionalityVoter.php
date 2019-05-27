@@ -19,6 +19,7 @@ class FunctionalityVoter extends AbstractVoter
 
 	const SWITCH_THEME = 'app.voters.functionality.switch_theme';
 	const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
+	const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
 	const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
 
 	/**
@@ -32,6 +33,7 @@ class FunctionalityVoter extends AbstractVoter
         if (!in_array($attribute, [
         	    self::SWITCH_THEME,
         	    self::SWITCH_LOCALE,
+        	    self::CACHE_CLEAR,
         	    self::MANAGE_SETTINGS,
 	        ])) {
         	return false;
@@ -72,6 +74,9 @@ class FunctionalityVoter extends AbstractVoter
 	        case self::SWITCH_LOCALE:
 	        	return $this->canSwitchLocale($subject, $token);
                 break;
+	        case self::CACHE_CLEAR:
+	        	return $this->canClearCache($subject, $token);
+                break;
 	        case self::MANAGE_SETTINGS:
 	        	return $this->canManageSettings($subject, $token);
                 break;
@@ -102,6 +107,18 @@ class FunctionalityVoter extends AbstractVoter
 	 */
     public function canSwitchLocale(string $subject, TokenInterface $token) {
 	    return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE);
+    }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 * @throws NonUniqueResultException
+	 */
+    public function canClearCache(string $subject, TokenInterface $token) {
+	    return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
     }
 
 	/**

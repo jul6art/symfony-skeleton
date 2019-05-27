@@ -27,6 +27,7 @@ class FunctionalityFixtures extends Fixture
 	    $functionalities = [
 		    Functionality::FUNC_SWITCH_THEME,
 		    Functionality::FUNC_SWITCH_LOCALE,
+		    Functionality::FUNC_CLEAR_CACHE,
 	    ];
 
         foreach ($functionalities as $value) {

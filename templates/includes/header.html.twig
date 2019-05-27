@@ -17,8 +17,8 @@
                 {#<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>#}
                 {#<!-- #END# Call Search -->#}
                 <!-- Cache clear -->
-                {% if is_granted(constant('App\\Security\\Voter\\DefaultVoter::CACHE_CLEAR'), app.user) %}
-                    <li><a href="{{ path('admin_cache') }}"><i class="material-icons">refresh</i></a></li>
+                {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CACHE_CLEAR'), 'App\\Entity\\Functionality') %}
+                    <li><a href="{{ path('admin_cache') }}"><i class="material-icons">sync</i></a></li>
                 {% endif %}
                 <!-- #END# Cache clear -->
                 {#<!-- Notifications -->#}

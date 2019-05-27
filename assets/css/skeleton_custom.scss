@@ -39,3 +39,31 @@ aside#rightsidebar {
 ul.demo-choose-skin a {
   text-decoration: none;
 }
+
+/**
+CARD ACTIONS
+ */
+.card {
+  transition: all .3s linear;
+}
+
+.card.collapsed .body {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.card.expanded:not(.collapsed) .body {
+  height: calc(100% - 40px);
+  overflow-y: auto!important;
+}
+
+.card.expanded {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  height: 100vh;
+}

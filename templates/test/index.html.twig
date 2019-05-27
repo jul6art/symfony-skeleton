@@ -2,49 +2,26 @@
 
 {% block page_title %}Test index{% endblock page_title %}
 
-{% block content %}
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        BASIC EXAMPLE
-                    </h2>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right" id="datatableButtons">
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="body">
-                    {% include 'includes/datatable.html.twig' with {
-                        class: 'skeleton-datatable',
-                        rows: tests,
-                        header: [
-                            'test.id',
-                            'test.name',
-                            'actions',
-                        ],
-                        plugins: [
-                            'export',
-                            'responsive',
-                        ],
-                    } %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
+{% block table_before %}
     <a href="{{ path('admin_test_new') }}">Create new</a>
+{% endblock table_before %}
 
+{% block table_title %}
+    BASIC EXAMPLE
+{% endblock table_title %}
 
-{% endblock content %}
+{% block table_content %}
+    {% include 'includes/datatable.html.twig' with {
+        class: 'skeleton-datatable',
+        rows: tests,
+        header: [
+            'test.id',
+            'test.name',
+            'actions',
+        ],
+        plugins: [
+            'export',
+            'responsive',
+        ],
+    } %}
+{% endblock table_content %}

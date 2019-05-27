@@ -5,6 +5,20 @@ if (typeof jQuery === "undefined") {
 require('bootstrap-notify');
 
 $.App = {
+    init: function () {
+        $('[data-toggle="grid-collapse"]').on('click', function () {
+            $(this).closest('.card').toggleClass('collapsed');
+        });
+
+        $('[data-toggle="grid-expand"]').on('click', function () {
+            $(this).closest('.card').removeClass('collapsed');
+            $(this).closest('.card').toggleClass('expanded');
+        });
+
+        $('[data-toggle="grid-close"]').on('click', function () {
+            $(this).closest('.card').remove();
+        });
+    },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
         if (colorName === null || colorName === '') { colorName = 'bg-black'; }
         if (text === null || text === '') { text = 'Turning standard Bootstrap alerts'; }
@@ -44,6 +58,8 @@ $.App = {
 
 
 $(document).ready(function () {
+    $.App.init();
+
     ['success', 'notice', 'error', 'warning'].forEach(function (level) {
         if (FLASH_MESSAGES[level]) {
             var colorClass = 'alert-' + level;

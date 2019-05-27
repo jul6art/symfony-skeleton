@@ -1,0 +1,5 @@
+card:
+    actions:
+        collapse: 'réduire'
+        fullscreen: 'plein écran'
+        close: 'fermer'

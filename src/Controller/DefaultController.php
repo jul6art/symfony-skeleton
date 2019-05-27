@@ -44,7 +44,7 @@ class DefaultController extends AbstractFOSRestController
 	 */
     public function cache(Request $request, RefererService $refererService, FileService $fileService, KernelInterface $kernel, TranslatorInterface $translator): Response
     {
-    	$this->denyAccessUnlessGranted(DefaultVoter::CACHE_CLEAR, $this->getUser());
+    	$this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class);
 
 	    $size = $fileService->getSizeAndUnit($this->getParameter('kernel.cache_dir'));
 

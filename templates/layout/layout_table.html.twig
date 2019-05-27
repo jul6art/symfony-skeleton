@@ -7,6 +7,17 @@
     {{ encore_entry_link_tags('table') }}
 {% endblock stylesheets %}
 
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {% include 'layout/layout_card.html.twig' with {
+                card_title: block('table_title'),
+                card_content: block('table_content')
+            } %}
+        </div>
+    </div>
+{% endblock content %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('table') }}
