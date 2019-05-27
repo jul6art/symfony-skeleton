@@ -5,27 +5,27 @@
            {% for plugin in plugins %} data-{{ plugin }}="true"{% endfor %}
     >
         <thead>
-        <tr>
-            {% for item in header %}
-                <th>{{ ('table.head.' ~ item) | trans({}, 'table') }}</th>
-            {% endfor %}
-        </tr>
+            <tr>
+                {% for item in header %}
+                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label) | trans({}, 'table') }}</th>
+                {% endfor %}
+            </tr>
         </thead>
         <tbody>
-        {% for row in rows %}
-            <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.name }}</td>
-                <td></td>
-            </tr>
-        {% endfor %}
+            {% for row in rows %}
+                <tr>
+                    {% for key, value in row %}
+                        <td>{{ row[key] | raw }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
         </tbody>
         <tfoot>
-        <tr>
-            {% for item in header %}
-                <th>{{ ('table.head.' ~ item) | trans({}, 'table') }}</th>
-            {% endfor %}
-        </tr>
+            <tr>
+                {% for item in header %}
+                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label) | trans({}, 'table') }}</th>
+                {% endfor %}
+            </tr>
         </tfoot>
     </table>
 </div>

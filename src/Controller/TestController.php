@@ -6,6 +6,7 @@ use App\Entity\Test;
 use App\Form\TestType;
 use App\Manager\TestManagerTrait;
 use App\Security\Voter\TestVoter;
+use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,17 +22,26 @@ class TestController extends AbstractFOSRestController
 {
 	use TestManagerTrait;
 
-    /**
-     * @Route("/", name="test_index", methods={"GET"})
-     */
-    public function index(): Response
+	/**
+	 * @param TestDataTableTransformer $testDataTableTransformer
+	 *
+	 * @Route("/", name="test_index", methods={"GET"})
+	 *
+	 * @return Response
+	 * @throws ExceptionInterface
+	 */
+    public function index(TestDataTableTransformer $testDataTableTransformer): Response
     {
     	$this->denyAccessUnlessGranted(TestVoter::LIST, Test::class);
+
+	    $serializer = new Serializer([$testDataTableTransformer]);
+
+	    $tests = $serializer->normalize($this->testManager->findAllForTable(), 'json');
 
 	    $view = $this->view()
 	                 ->setTemplate('test/index.html.twig')
 	                 ->setTemplateData([
-		                 'tests' => $this->testManager->findAllForTable(),
+		                 'tests' => $tests,
 	                 ]);
 
 	    return $this->handleView($view);
