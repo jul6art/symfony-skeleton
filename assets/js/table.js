@@ -205,7 +205,8 @@ $(document).ready(function() {
     tables.each(function () {
         var table = $(this);
         var datatableOptions = {
-            dom: 'Bfrtip',
+            dom: 'BflrRtip',
+            lengthMenu: [10, 25, 50, 100, 500, 1000],
             language: DATATABLE_TRANSLATIONS,
         };
 

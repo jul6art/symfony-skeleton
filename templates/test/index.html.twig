@@ -1,13 +1,38 @@
 {% extends 'layout/layout_table.html.twig' %}
 
-{% block page_title %}Test index{% endblock page_title %}
+{% block page_title %}{{ 'title.test.list' | trans({}, 'title') }}{% endblock page_title %}
 
-{% block table_before %}
-    <a href="{{ path('admin_test_new') }}">Create new</a>
-{% endblock table_before %}
+{% block breadcrumb %}
+    <li class="active"><i class="material-icons">list</i> {{ 'breadcrumb.test.list' | trans({}, 'breadcrumb') }}</li>
+{% endblock breadcrumb %}
+
+{% block page_actions %}
+    <div class="pull-right btn-group">
+        {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE_MULTIPLE'), 'App\\Entity\\Test') %}
+            <div class="btn-group">
+                <button type="button" class="btn bg-blue-grey waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <small><i class="material-icons">settings</i></small> {{ 'button.multiple_actions.title' | trans({}, 'button') }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Separated link</a></li>
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if is_granted(constant('App\\Security\\Voter\\TestVoter::ADD'), 'App\\Entity\\Test') %}
+            <a class="btn bg-{{ theme_name() }} white waves-effect" href="{{ path('admin_test_new') }}">
+                <i class="material-icons">add</i> {{ 'button.add' | trans({}, 'button') }}
+            </a>
+        {% endif %}
+    </div>
+{% endblock page_actions %}
 
 {% block table_title %}
-    BASIC EXAMPLE
+    {{ 'list.test.title' | trans({}, 'list') }}
 {% endblock table_title %}
 
 {% block table_content %}
@@ -31,6 +56,7 @@
         plugins: [
             'export',
             'responsive',
+            'colReorder',
         ],
     } %}
 {% endblock table_content %}

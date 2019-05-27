@@ -1,0 +1,11 @@
+button:
+    add: Ajouter
+    save: Enregistrer
+    delete: Supprimer
+    back: Retour
+    cancel: Annuler
+    multiple_actions:
+        title: 'Actions groupées'
+        select: 'Tout sélectionner'
+        unselect: 'Tout désélectionner'
+        delete: 'Supprimer la sélection'

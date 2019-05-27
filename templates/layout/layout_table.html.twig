@@ -1,7 +1,5 @@
 {% extends 'layout/layout_base.html.twig' %}
 
-{% block page_title %}{% endblock page_title %}
-
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('table') }}
@@ -10,10 +8,17 @@
 {% block content %}
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            {% block table_before %}{% endblock table_before %}
+
             {% include 'layout/layout_card.html.twig' with {
                 card_title: block('table_title'),
-                card_content: block('table_content')
+                card_content: block('table_content'),
+                card_footer: not block('table_footer') is defined ? '' : block('table_footer')
             } %}
+
+            {% block table_after %}{% endblock table_after %}
+
         </div>
     </div>
 {% endblock content %}

@@ -25,9 +25,20 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2>{{ block('page_title') }}</h2>
-            </div>
+            {% if not breadcrumb is defined %}
+                <!-- Breadcrumb -->
+                <div class="card">
+                    <div class="body">
+                        {% block page_actions %}{% endblock page_actions %}
+
+                        <ol class="breadcrumb breadcrumb-col-{{ theme_name() }}">
+                            <li><a href="{{ path('admin_homepage') }}"><i class="material-icons">home</i> {{ 'breadcrumb.home' | trans({}, 'breadcrumb') }}</a></li>
+                            {% block breadcrumb %}{% endblock breadcrumb %}
+                        </ol>
+                    </div>
+                </div>
+                <!-- #END# Breadcrumb -->
+            {% endif %}
 
             {% block content %}
 

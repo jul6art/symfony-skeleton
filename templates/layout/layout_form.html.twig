@@ -1,0 +1,44 @@
+{% extends 'layout/layout_base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('form') }}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row clearfix">
+
+        {% if block('form_sidebar') is defined %}
+            <div class="col-xs-12 col-sm-3">
+                {{ block('form_sidebar') }}
+            </div>
+        {% endif %}
+
+        <div class="{{ block('form_sidebar') is defined ? 'col-lg-9 col-md-9 col-sm-9' : 'col-lg-12 col-md-12 col-sm-12' }} col-xs-12">
+
+            {{ form_start(form) }}
+
+            <div class="row table-actions-before">
+                <div class="col-xs-12">
+                    {% block form_before %}{% endblock form_before %}
+                </div>
+            </div>
+
+            {% include 'layout/layout_card.html.twig' with {
+                card_title: block('form_title'),
+                card_content: block('form_content'),
+                card_footer: not block('form_footer') is defined ? '' : block('form_footer')
+            } %}
+
+            {% block form_after %}{% endblock form_after %}
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('form') }}
+{% endblock javascripts %}

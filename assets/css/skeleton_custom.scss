@@ -74,3 +74,27 @@ DATATABLES
 table.dataTable .icon-button-demo {
   display: inline;
 }
+
+.breadcrumb {
+  margin-bottom: 0;
+}
+
+.dataTables_length {
+  margin-top: 10px;
+}
+
+/**
+BUTTONNS BEFORE LISTS
+ */
+.table-actions-before {
+  position: relative;
+  top: -15px;
+
+  .col-xs-12 > .btn-group {
+    > button:not(:last-child),
+    > div:not(:last-child),
+    > a:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

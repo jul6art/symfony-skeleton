@@ -16,6 +16,7 @@ class TestVoter extends AbstractVoter
 	const ADD = 'app.voters.test.add';
 	const VIEW = 'app.voters.test.view';
 	const DELETE = 'app.voters.test.delete';
+	const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
 
 	/**
 	 * @param string $attribute
@@ -31,6 +32,7 @@ class TestVoter extends AbstractVoter
         	    self::ADD,
         	    self::VIEW,
         	    self::DELETE,
+        	    self::DELETE_MULTIPLE,
 	        ])) {
         	return false;
         }
@@ -67,6 +69,8 @@ class TestVoter extends AbstractVoter
 	        	return $this->canView($subject, $token);
 	        case self::DELETE:
 	        	return $this->canDelete($subject, $token);
+	        case self::DELETE_MULTIPLE:
+	        	return $this->canDeleteMultiple($subject, $token);
                 break;
         }
 
@@ -90,7 +94,7 @@ class TestVoter extends AbstractVoter
 	 * @return bool
 	 */
     public function canAdd(string $subject, TokenInterface $token) {
-    	return $this->canList($subject, $token);
+	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
 	/**
@@ -110,7 +114,7 @@ class TestVoter extends AbstractVoter
 	 * @return bool
 	 */
     public function canView(Test $subject, TokenInterface $token) {
-    	return true;
+    	return $this->canList($subject, $token);
     }
 
 	/**
@@ -121,5 +125,15 @@ class TestVoter extends AbstractVoter
 	 */
 	public function canDelete(Test $subject, TokenInterface $token) {
 		return $this->canEdit($subject, $token);
+	}
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canDeleteMultiple(string $subject, TokenInterface $token) {
+		return $this->canAdd($subject, $token);
 	}
 }

@@ -15,5 +15,5 @@
         </ul>
     </div>
     <div class="body">{{ card_content | raw }}</div>
-    <div class="footer">{{ card_footer is defined ? card_footer | raw : '' }}</div>
+    <div class="footer">{{ not card_footer is defined ? '' : card_footer | raw }}</div>
 </div>

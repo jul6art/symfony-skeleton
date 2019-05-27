@@ -61,7 +61,7 @@ class DefaultController extends AbstractFOSRestController
 	    $output = new BufferedOutput();
 	    $application->run($input, $output);
 
-	    $this->addFlash('success', $translator->trans('admin.notification.cache.cleared', ['%size%' => $size], 'notification'));
+	    $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 
 	    if (!is_null($referer)) {
 		    return $this->redirect($referer);
