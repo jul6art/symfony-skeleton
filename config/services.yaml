@@ -56,5 +56,15 @@ services:
             - '@maker.renderer.form_type_renderer'
         tags: ['maker.command']
 
+    App\Menu\NavbarBuilder:
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu, alias: navbar }
+
+    App\Menu\TopbarBuilder:
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu, alias: topbar }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

@@ -9,6 +9,7 @@
         "friendsofsymfony/rest-bundle": "^2.5",
         "friendsofsymfony/user-bundle": "^2.1",
         "fzaninotto/faker": "^1.8",
+        "knplabs/knp-menu-bundle": "^2.0",
         "saacsos/randomgenerator": "^1.1",
         "sensio/framework-extra-bundle": "^5.3",
         "symfony/apache-pack": "^1.0",
