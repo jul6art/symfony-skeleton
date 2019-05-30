@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Test;
+use App\Event\TestEvent;
 use App\Form\TestType;
 use App\Manager\TestManagerTrait;
 use App\Security\Voter\TestVoter;
 use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -56,7 +58,7 @@ class TestController extends AbstractFOSRestController
 	 * @return Response
 	 * @throws ExceptionInterface
 	 */
-    public function add(Request $request, TestTransformer $testTransformer): Response
+    public function add(Request $request, TestTransformer $testTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
 	    $this->denyAccessUnlessGranted(TestVoter::ADD, Test::class);
 
@@ -67,6 +69,7 @@ class TestController extends AbstractFOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
 	        $this->testManager->save($test);
+	        $eventDispatcher->dispatch(TestEvent::ADDED, new TestEvent($test));
 
             return $this->redirectToRoute('admin_test_list');
         }
@@ -115,13 +118,14 @@ class TestController extends AbstractFOSRestController
 	 * @param Request $request
 	 * @param Test $test
 	 * @param TestTransformer $testTransformer
+	 * @param EventDispatcherInterface $eventDispatcher
 	 *
 	 * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
 	 *
 	 * @return Response
 	 * @throws ExceptionInterface
 	 */
-    public function edit(Request $request, Test $test, TestTransformer $testTransformer): Response
+    public function edit(Request $request, Test $test, TestTransformer $testTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
 	    $this->denyAccessUnlessGranted(TestVoter::EDIT, $test);
 
@@ -130,6 +134,7 @@ class TestController extends AbstractFOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->testManager->save($test);
+	        $eventDispatcher->dispatch(TestEvent::EDITED, new TestEvent($test));
 
             return $this->redirectToRoute('admin_test_list', [
                 'id' => $test->getId(),
@@ -153,16 +158,18 @@ class TestController extends AbstractFOSRestController
 	/**
 	 * @param Request $request
 	 * @param Test $test
+	 * @param EventDispatcherInterface $eventDispatcher
 	 *
 	 * @Route("/{id}", name="test_delete", methods={"DELETE"})
 	 *
 	 * @return Response
 	 */
-    public function delete(Request $request, Test $test): Response
+    public function delete(Request $request, Test $test, EventDispatcherInterface $eventDispatcher): Response
     {
 	    $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);
 
         if ($this->isCsrfTokenValid('delete'.$test->getId(), $request->request->get('_token'))) {
+	        $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
             $this->testManager->delete($test);
         }
 

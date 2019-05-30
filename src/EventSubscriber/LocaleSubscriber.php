@@ -3,7 +3,6 @@
 namespace App\EventSubscriber;
 
 use App\Entity\User;
-use App\Manager\UserManager;
 use App\Manager\UserManagerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -56,6 +55,16 @@ class LocaleSubscriber implements EventSubscriberInterface
 	}
 
 	/**
+	 * @return array
+	 */
+	public static function getSubscribedEvents()
+	{
+		return [
+			KernelEvents::REQUEST => [['onKernelRequest', 5]],
+		];
+	}
+
+	/**
 	 * @param GetResponseEvent $event
 	 */
 	public function onKernelRequest(GetResponseEvent $event)
@@ -97,15 +106,5 @@ class LocaleSubscriber implements EventSubscriberInterface
 			$request->setLocale($newLocale);
 			$this->translator->setLocale($newLocale);
 		}
-	}
-
-	/**
-	 * @return array
-	 */
-	public static function getSubscribedEvents()
-	{
-		return [
-			KernelEvents::REQUEST => [['onKernelRequest', 5]],
-		];
 	}
 }

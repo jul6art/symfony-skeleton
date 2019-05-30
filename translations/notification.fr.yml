@@ -1,3 +1,11 @@
 notification:
     cache:
         cleared: 'Cache vidé. Taille avant: %size%'
+    test:
+        added: 'Le test a bien été ajouté'
+        edited: 'Le test a bien été modifié'
+        deleted: 'Le test a bien été supprimé'
+    user:
+        added: 'L''utilisateur a bien été ajouté'
+        edited: 'L''utilisateur a bien été modifié'
+        deleted: 'L''utilisateur a bien été supprimé'
