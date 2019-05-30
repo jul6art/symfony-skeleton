@@ -2,12 +2,7 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Functionality;
-use App\Entity\User;
-use App\Manager\FunctionalityManager;
-use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class DefaultVoter
@@ -15,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class DefaultVoter extends AbstractVoter
 {
-	const CACHE_CLEAR = 'app.voters.admin.cache_clear';
+	const ACCESS_PAGE_HOME = 'app.voters.pages.home';
 
 	/**
 	 * @param string $attribute
@@ -26,35 +21,26 @@ class DefaultVoter extends AbstractVoter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
-        	    self::CACHE_CLEAR,
+        	    self::ACCESS_PAGE_HOME,
 	        ])) {
         	return false;
         }
 
-        if ($subject instanceof User) {
-        	return true;
-        };
-
-        if ($subject === User::class) {
-        	return true;
-        };
-
-        return false;
+        return true;
     }
 
-
+	/**
+	 * @param string $attribute
+	 * @param mixed $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $user = $token->getUser();
-        // if the user is anonymous, do not grant access
-        if (!$user instanceof UserInterface) {
-            return false;
-        }
-
-        // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-	        case self::CACHE_CLEAR:
-	        	return $this->canCacheClear($subject, $token);
+	        case self::ACCESS_PAGE_HOME:
+	        	return $this->canAccessPageHome($subject, $token);
                 break;
         }
 
@@ -62,12 +48,12 @@ class DefaultVoter extends AbstractVoter
     }
 
 	/**
-	 * @param string $subject
+	 * @param $subject
 	 * @param TokenInterface $token
 	 *
 	 * @return bool
 	 */
-    public function canCacheClear(string $subject, TokenInterface $token) {
-    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    public function canAccessPageHome($subject, TokenInterface $token) {
+    	return $this->isConnected($token);
     }
 }

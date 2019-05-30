@@ -200,9 +200,7 @@ factory(jQuery, jQuery.fn.dataTable);
 })(window, document);
 
 $(document).ready(function() {
-    var tables = $('table.dataTable');
-
-    tables.each(function () {
+    $('table.dataTable').each(function () {
         var table = $(this);
         var datatableOptions = {
             dom: 'BflrRtip',

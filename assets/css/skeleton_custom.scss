@@ -19,6 +19,15 @@
 }
 
 /**
+MENU
+ */
+@media (max-width: 767px) {
+  .navbar .dropdown-menu {
+    margin-left: 0;
+  }
+}
+
+/**
 SKINS
  */
 .navbar-brand > img {

@@ -1,4 +1,5 @@
 breadcrumb:
     home: Accueil
     test:
+        title: 'Tests'
         list: 'Liste des tests'

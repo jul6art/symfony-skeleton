@@ -25,7 +25,7 @@ class TestController extends AbstractFOSRestController
 	/**
 	 * @param TestDataTableTransformer $testDataTableTransformer
 	 *
-	 * @Route("/", name="test_index", methods={"GET"})
+	 * @Route("/", name="test_list", methods={"GET"})
 	 *
 	 * @return Response
 	 * @throws ExceptionInterface
@@ -39,7 +39,7 @@ class TestController extends AbstractFOSRestController
 	    $tests = $serializer->normalize($this->testManager->findAllForTable(), 'json');
 
 	    $view = $this->view()
-	                 ->setTemplate('test/index.html.twig')
+	                 ->setTemplate('test/list.html.twig')
 	                 ->setTemplateData([
 		                 'tests' => $tests,
 	                 ]);
@@ -51,12 +51,12 @@ class TestController extends AbstractFOSRestController
 	 * @param Request $request
 	 * @param TestTransformer $testTransformer
 	 *
-	 * @Route("/new", name="test_new", methods={"GET","POST"})
+	 * @Route("/add", name="test_add", methods={"GET","POST"})
 	 *
 	 * @return Response
 	 * @throws ExceptionInterface
 	 */
-    public function new(Request $request, TestTransformer $testTransformer): Response
+    public function add(Request $request, TestTransformer $testTransformer): Response
     {
 	    $this->denyAccessUnlessGranted(TestVoter::ADD, Test::class);
 
@@ -68,7 +68,7 @@ class TestController extends AbstractFOSRestController
         if ($form->isSubmitted() && $form->isValid()) {
 	        $this->testManager->save($test);
 
-            return $this->redirectToRoute('admin_test_index');
+            return $this->redirectToRoute('admin_test_list');
         }
 
 	    $serializer = new Serializer([$testTransformer]);
@@ -116,7 +116,7 @@ class TestController extends AbstractFOSRestController
 	 * @param Test $test
 	 * @param TestTransformer $testTransformer
 	 *
-	 * @Route("/{id}/edit", name="test_edit", methods={"GET","POST"})
+	 * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
 	 *
 	 * @return Response
 	 * @throws ExceptionInterface
@@ -131,7 +131,7 @@ class TestController extends AbstractFOSRestController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->testManager->save($test);
 
-            return $this->redirectToRoute('admin_test_index', [
+            return $this->redirectToRoute('admin_test_list', [
                 'id' => $test->getId(),
             ]);
         }
@@ -166,6 +166,6 @@ class TestController extends AbstractFOSRestController
             $this->testManager->delete($test);
         }
 
-        return $this->redirectToRoute('admin_test_index');
+        return $this->redirectToRoute('admin_test_list');
     }
 }

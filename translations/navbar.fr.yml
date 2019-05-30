@@ -1,0 +1,14 @@
+navbar:
+    title: 'NAVIGATION PRINCIPALE'
+    home: 'Accueil'
+    profile: 'Mon profil'
+    change_password: 'Sécurité'
+    logout: 'Déconnecter'
+    test:
+        title: Tests
+        list: 'Liste des tests'
+        add: 'Créer un test'
+    user:
+        title: Utilisateurs
+        list: 'Liste des utilisateurs'
+        add: 'Créer un utilisateur'

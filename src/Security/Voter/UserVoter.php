@@ -2,22 +2,25 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Test;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class TestVoter
+ * Class UserVoter
  * @package App\Security\Voter
  */
-class TestVoter extends AbstractVoter
+class UserVoter extends AbstractVoter
 {
-	const LIST = 'app.voters.test.list';
-	const EDIT = 'app.voters.test.edit';
-	const ADD = 'app.voters.test.add';
-	const VIEW = 'app.voters.test.view';
-	const DELETE = 'app.voters.test.delete';
-	const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
+	const PROFILE = 'app.voters.user.profile';
+	const CHANGE_PASSWORD = 'app.voters.user.change_password';
+	const LOGOUT = 'app.voters.user.logout';
+	const LIST = 'app.voters.user.list';
+	const EDIT = 'app.voters.user.edit';
+	const ADD = 'app.voters.user.add';
+	const VIEW = 'app.voters.user.view';
+	const DELETE = 'app.voters.user.delete';
+	const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
 
 	/**
 	 * @param string $attribute
@@ -28,6 +31,9 @@ class TestVoter extends AbstractVoter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
+        	    self::PROFILE,
+        	    self::CHANGE_PASSWORD,
+        	    self::LOGOUT,
         	    self::LIST,
         	    self::EDIT,
         	    self::ADD,
@@ -38,11 +44,11 @@ class TestVoter extends AbstractVoter
         	return false;
         }
 
-        if ($subject instanceof Test) {
+        if ($subject instanceof User) {
         	return true;
         };
 
-        if ($subject === Test::class) {
+        if ($subject === User::class) {
         	return true;
         };
 
@@ -60,6 +66,12 @@ class TestVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
+	        case self::PROFILE:
+	        	return $this->canProfile($subject, $token);
+	        case self::CHANGE_PASSWORD:
+	        	return $this->canChangePassword($subject, $token);
+	        case self::LOGOUT:
+	        	return $this->canLogout($subject, $token);
 	        case self::LIST:
 	        	return $this->canList($subject, $token);
 	        case self::EDIT:
@@ -84,6 +96,36 @@ class TestVoter extends AbstractVoter
 	 *
 	 * @return bool
 	 */
+    public function canProfile(string $subject, TokenInterface $token) {
+	    return true;
+    }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canChangePassword(string $subject, TokenInterface $token) {
+	    return true;
+    }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canLogout(string $subject, TokenInterface $token) {
+	    return true;
+    }
+
+	/**
+	 * @param string $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
     public function canList(string $subject, TokenInterface $token) {
 	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -99,32 +141,32 @@ class TestVoter extends AbstractVoter
     }
 
 	/**
-	 * @param Test $subject
+	 * @param User $subject
 	 * @param TokenInterface $token
 	 *
 	 * @return bool
 	 */
-    public function canEdit(Test $subject, TokenInterface $token) {
+    public function canEdit(User $subject, TokenInterface $token) {
     	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
 	/**
-	 * @param Test $subject
+	 * @param User $subject
 	 * @param TokenInterface $token
 	 *
 	 * @return bool
 	 */
-    public function canView(Test $subject, TokenInterface $token) {
+    public function canView(User $subject, TokenInterface $token) {
     	return $this->canList($subject, $token);
     }
 
 	/**
-	 * @param Test $subject
+	 * @param User $subject
 	 * @param TokenInterface $token
 	 *
 	 * @return bool
 	 */
-	public function canDelete(Test $subject, TokenInterface $token) {
+	public function canDelete(User $subject, TokenInterface $token) {
 		return $this->canEdit($subject, $token);
 	}
 

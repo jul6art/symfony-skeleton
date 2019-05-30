@@ -1,4 +1,11 @@
-<?= $helper->getHeadPrintCode($entity_class_name.' index'); ?>
+{% extends 'layout/layout_table.html.twig' %}
+
+{% block page_title %}{{ 'title.test.list' | trans({}, 'title') }}{% endblock page_title %}
+
+{% block breadcrumb %}
+<li class="active"><i class="material-icons">print</i> {{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</li>
+<li class="active"><i class="material-icons">list</i> {{ 'breadcrumb.test.list' | trans({}, 'breadcrumb') }}</li>
+{% endblock breadcrumb %}
 
 {% block body %}
     <h1><?= $entity_class_name ?> index</h1>

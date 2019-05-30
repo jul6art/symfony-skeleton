@@ -8,8 +8,10 @@
 
 namespace App\Security\Voter;
 
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class AbstractVoter
@@ -29,5 +31,15 @@ abstract class AbstractVoter extends Voter {
 	public function __construct(AccessDecisionManagerInterface $accessDecisionManager)
 	{
 		$this->accessDecisionManager = $accessDecisionManager;
+	}
+
+	/**
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	protected function isConnected(TokenInterface $token): bool
+	{
+		return $token->getUser() instanceof UserInterface;
 	}
 }
