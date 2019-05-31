@@ -28,6 +28,12 @@ php bin/console server:start
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+### Audits
+
+> This command removes audits older tha a year
+
+    bin/console audit:clean --no-confirm
+
 ### Theme
 
 > Default theme is set in services.yml then, in user profile page, every user can choose the theme he wants

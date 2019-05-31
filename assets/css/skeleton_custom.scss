@@ -88,6 +88,14 @@ CARD ACTIONS
       color: #DDDDDD;
     }
   }
+
+  .audit-updates-container {
+    margin-top: 15px;
+    p {
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
 }
 
 .card.expanded .collapsible-audits {

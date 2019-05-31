@@ -7,7 +7,7 @@
         <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
             <div class="panel-group full-body collapsible-audits" id="accordion_19" role="tablist" aria-multiselectable="true">
                 {% for audit in audits %}
-                    <div class="panel panel-col-{{ audit.type == 'remove' ? 'blue-grey' : 'grey   ' }}">
+                    <div class="panel panel-col-{{ audit.type == 'remove' ? 'black' : 'grey   ' }}">
                         <div class="panel-heading" role="tab" id="headingOne_{{ loop.index }}">
                             <h4 class="panel-title">
                                 <time class="pull-right" datetime="{{ audit.createdAt | date('Y-m-dTH:i:s') }}"><small><em>{{ audit.createdAt | localizeddate }}</em></small></time>
@@ -31,20 +31,21 @@
                             <div id="collapseOne_{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{ loop.index }}" aria-expanded="false" style="height: 0px;">
                                 <div class="panel-body">
                                     {% if username is not null %}
-                                        <p>{{ 'card.audit.actions.made_by' | trans({'%username%': username}, 'card') }}</p>
+                                        <em class="col-blue-grey">{{ 'card.audit.actions.made_by' | trans({'%username%': username}, 'card') }}</em>
                                     {% endif %}
 
                                     {% if audit.type == 'update' %}
-                                        <h4>{{ 'card.audit.updates.title' | trans({}, 'card') }}</h4>
-                                        {% for key, value in audit.diffs %}
-                                            <p>
-                                                {{ 'card.audit.updates.text' | trans({
-                                                    '%property%': key,
-                                                    '%old%': value.old | json_encode,
-                                                    '%new%': value.new | json_encode,
-                                                }, 'card') | raw }}
-                                            </p>
-                                        {% endfor %}
+                                        <div class="audit-updates-container">
+                                            {% for key, value in audit.diffs %}
+                                                <p class="font-underline">
+                                                    {{ 'card.audit.updates.text' | trans({
+                                                        '%property%': key,
+                                                        '%old%': value.old | json_encode,
+                                                        '%new%': value.new | json_encode,
+                                                    }, 'card') | raw }}
+                                                </p>
+                                            {% endfor %}
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
