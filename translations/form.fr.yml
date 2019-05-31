@@ -1,0 +1,4 @@
+form:
+    test:
+        edit:
+            title: 'Modifier le test <strong>%name%</strong>'

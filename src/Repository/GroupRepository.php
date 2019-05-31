@@ -108,4 +108,17 @@ class GroupRepository extends ServiceEntityRepository
 
         return $builder->getQuery()->getOneOrNullResult();
     }
+
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
+	public function countAll(): int
+	{
+		$builder = $this->createQueryBuilder('g');
+
+		$builder->select('COUNT(g.id)');
+
+		return $builder->getQuery()->getSingleScalarResult();
+	}
 }

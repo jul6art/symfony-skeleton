@@ -96,4 +96,30 @@ class UserManager extends AbstractManager
 
         return $result;
     }
+
+	/**
+	 * @return User[]
+	 */
+	public function findAllForTable(): array
+	{
+		return $this->userRepository->findAll();
+	}
+
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
+	public function countAll(): int
+	{
+		return $this->userRepository->countAll();
+	}
+
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
+	public function countAllForTable(): int
+	{
+		return $this->countAll();
+	}
 }

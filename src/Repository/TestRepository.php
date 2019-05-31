@@ -55,4 +55,17 @@ class TestRepository extends ServiceEntityRepository
 
         return $builder->getQuery()->getOneOrNullResult();
     }
+
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
+    public function countAll(): int
+    {
+    	$builder = $this->createQueryBuilder('t');
+
+    	$builder->select('COUNT(t.id)');
+
+    	return $builder->getQuery()->getSingleScalarResult();
+    }
 }

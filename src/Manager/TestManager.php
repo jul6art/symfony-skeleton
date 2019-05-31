@@ -59,12 +59,22 @@ class TestManager extends AbstractManager
         return $this->testRepository->findAll();
     }
 
-    /**
-     * @return int
-     */
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
+    public function countAll(): int
+    {
+        return $this->testRepository->countAll();
+    }
+
+	/**
+	 * @return int
+	 * @throws NonUniqueResultException
+	 */
     public function countAllForTable(): int
     {
-        return count($this->findAllForTable());
+        return $this->countAll();
     }
 
     /**

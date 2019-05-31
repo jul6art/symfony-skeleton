@@ -1,5 +1,11 @@
 {% extends 'layout/layout_base.html.twig' %}
 
+{% if custom_form_theme is defined %}
+    {% form_theme form custom_form_theme %}
+{% else %}
+    {% form_theme form 'includes/form_fields.html.twig' %}
+{% endif %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('form') }}

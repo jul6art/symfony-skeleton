@@ -3,3 +3,5 @@ breadcrumb:
     test:
         title: 'Tests'
         list: 'Liste des tests'
+        add: 'Créer un test'
+        edit: 'Modifier le test <strong>%name%</strong>'

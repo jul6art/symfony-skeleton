@@ -28,6 +28,12 @@ php bin/console server:start
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+### Forms
+
+> You can override the form theme when extending the layout_form.html.twig
+
+    {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}
+
 ### Audits
 
 > To acctivate audit for an entity you need  to

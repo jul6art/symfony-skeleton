@@ -1,5 +1,5 @@
 audit:
-    title: Audits
+    title: 'Historique de l''activité'
     actions:
         insert: 'Création de l''élément #%id%'
         update: 'Modification de l''élément #%id%'

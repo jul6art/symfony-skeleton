@@ -122,5 +122,9 @@
         {% else %}
             {{ block('label') }}
         {% endif %}
+
+        {% if item.extra('badge') %}
+            <span class="badge col-white">{{ item.extra('badge') | raw }}</span>
+        {% endif %}
     </a>
 {% endblock %}
