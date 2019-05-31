@@ -85,7 +85,7 @@ CARD ACTIONS
     padding: 10px;
 
     em {
-      color: #DDDDDD;
+      color: #999;
     }
   }
 
@@ -96,6 +96,28 @@ CARD ACTIONS
       line-height: 12px;
     }
   }
+}
+
+.panel-col-audit .panel-title,
+.panel-col-audit .panel-body {
+  background-color: #EEE;
+}
+
+.panel-col-audit.dark .panel-title,
+.panel-col-audit.dark .panel-body {
+  background-color: #DDD;
+}
+
+.panel-col-audit {
+  border-color: #EEE;
+}
+
+.panel-col-audit.dark {
+  border-color: #DDD;
+}
+
+.panel-col-audit .panel-body {
+  border-top-color: #FFF!important;
 }
 
 .card.expanded .collapsible-audits {
