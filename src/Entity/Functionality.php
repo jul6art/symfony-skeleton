@@ -14,12 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Functionality
 {
-	const FUNC_SWITCH_THEME = 'func.switch_theme';
-	const FUNC_SWITCH_LOCALE = 'func.switch_locale';
-	const FUNC_CLEAR_CACHE = 'func.clear_cache';
+    const FUNC_SWITCH_THEME = 'func.switch_theme';
+    const FUNC_SWITCH_LOCALE = 'func.switch_locale';
+    const FUNC_CLEAR_CACHE = 'func.clear_cache';
 
-	use BlameableEntity;
-	use TimestampableEntity;
+    use BlameableEntity;
+    use TimestampableEntity;
 
     /**
      * @ORM\Id()
@@ -40,15 +40,15 @@ class Functionality
      */
     private $active;
 
-	/**
-	 * Functionality constructor.
-	 */
+    /**
+     * Functionality constructor.
+     */
     public function __construct()
     {
-    	$this->active = true;
+        $this->active = true;
     }
 
-	public function getId(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }

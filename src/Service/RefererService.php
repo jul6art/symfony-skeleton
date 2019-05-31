@@ -19,7 +19,7 @@ class RefererService
      * @param Request $request
      * @param string  $domain
      *
-     * @return null|string
+     * @return string|null
      */
     public function getFormReferer(Request $request, string $domain): ?string
     {

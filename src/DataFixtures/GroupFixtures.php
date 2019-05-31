@@ -7,32 +7,31 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class GroupFixtures
- * @package App\DataFixtures
+ * Class GroupFixtures.
  */
 class GroupFixtures extends Fixture
 {
-	/**
-	 * @param ObjectManager $manager
-	 */
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-	    $groups = [
-		    'user',
-		    'admin',
-		    'super_admin',
-	    ];
+        $groups = [
+            'user',
+            'admin',
+            'super_admin',
+        ];
 
-	    foreach ($groups as $value) {
-		    $group = (new Group($value))
-			    ->setRoles([
-		    	    sprintf('ROLE_%s', strtoupper($value)),
-		        ]);
+        foreach ($groups as $value) {
+            $group = (new Group($value))
+                ->setRoles([
+                    sprintf('ROLE_%s', strtoupper($value)),
+                ]);
 
-		    $this->addReference('group_' . $value, $group);
-		    $manager->persist($group);
-	    }
+            $this->addReference('group_'.$value, $group);
+            $manager->persist($group);
+        }
 
-	    $manager->flush();
+        $manager->flush();
     }
 }

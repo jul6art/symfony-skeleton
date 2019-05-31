@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: gkratz
  * Date: 27/04/2019
- * Time: 13:09
+ * Time: 13:09.
  */
 
 namespace App\Manager;
@@ -15,59 +15,61 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 
 /**
- * Class FunctionalityManager
- * @package App\Manager
+ * Class FunctionalityManager.
  */
 class FunctionalityManager extends AbstractManager
 {
-	/**
-	 * @var FunctionalityRepository
-	 */
-	private $functionalityRepository;
+    /**
+     * @var FunctionalityRepository
+     */
+    private $functionalityRepository;
 
-	/**
-	 * FunctionalityManager constructor.
-	 *
-	 * @param EntityManagerInterface $entityManager
-	 */
-	public function __construct(EntityManagerInterface $entityManager) {
-		parent::__construct($entityManager);
-		$this->functionalityRepository = $this->entityManager->getRepository(Functionality::class);
-	}
+    /**
+     * FunctionalityManager constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct($entityManager);
+        $this->functionalityRepository = $this->entityManager->getRepository(Functionality::class);
+    }
 
-	/**
-	 * @return Functionality
-	 */
-	public function create(): Functionality
-	{
-		return FunctionalityFactory::create();
-	}
+    /**
+     * @return Functionality
+     */
+    public function create(): Functionality
+    {
+        return FunctionalityFactory::create();
+    }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return bool
-	 * @throws NonUniqueResultException
-	 */
-	public function isActive(string $name): bool
-	{
-		$functionality = $this->findOneByName($name);
+    /**
+     * @param string $name
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function isActive(string $name): bool
+    {
+        $functionality = $this->findOneByName($name);
 
-		if (!is_null($functionality)) {
-			return $functionality->isActive();
-		}
+        if (!is_null($functionality)) {
+            return $functionality->isActive();
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return Functionality|null
-	 * @throws NonUniqueResultException
-	 */
-	public function findOneByName(string $name): ?Functionality
-	{
-		return $this->functionalityRepository->findOneByName($name);
-	}
+    /**
+     * @param string $name
+     *
+     * @return Functionality|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneByName(string $name): ?Functionality
+    {
+        return $this->functionalityRepository->findOneByName($name);
+    }
 }

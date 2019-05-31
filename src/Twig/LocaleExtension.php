@@ -8,35 +8,34 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class LocaleExtension
- * @package App\Twig
+ * Class LocaleExtension.
  */
 class LocaleExtension extends AbstractExtension
 {
-	/**
-	 * @var TokenStorageInterface
-	 */
-	private $tokenStorage;
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
 
-	/**
-	 * @var string
-	 */
-	private $locale;
+    /**
+     * @var string
+     */
+    private $locale;
 
-	/**
-	 * ThemeExtension constructor.
-	 *
-	 * @param TokenStorageInterface $tokenStorage
-	 */
-	public function __construct(TokenStorageInterface $tokenStorage, string $locale)
-	{
-		$this->tokenStorage = $tokenStorage;
-		$this->locale = $locale;
-	}
+    /**
+     * ThemeExtension constructor.
+     *
+     * @param TokenStorageInterface $tokenStorage
+     */
+    public function __construct(TokenStorageInterface $tokenStorage, string $locale)
+    {
+        $this->tokenStorage = $tokenStorage;
+        $this->locale = $locale;
+    }
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
     public function getFunctions(): array
     {
         return [
@@ -45,27 +44,27 @@ class LocaleExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
     public function getLocale(): string
     {
-    	if (!is_null($locale = $this->getUserLocale())) {
-    		return $locale;
-	    }
+        if (!is_null($locale = $this->getUserLocale())) {
+            return $locale;
+        }
 
         return $this->locale;
     }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
     public function getUserLocale(): ?string
     {
-    	$user = $this->tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
 
         if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
-        	return $user->getLocale();
+            return $user->getLocale();
         }
 
         return null;

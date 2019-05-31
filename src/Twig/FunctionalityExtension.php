@@ -8,16 +8,15 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class FunctionalityExtension
- * @package App\Twig
+ * Class FunctionalityExtension.
  */
 class FunctionalityExtension extends AbstractExtension
 {
-	use FunctionalityManagerTrait;
+    use FunctionalityManagerTrait;
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
     public function getFunctions(): array
     {
         return [
@@ -25,14 +24,15 @@ class FunctionalityExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return bool
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param string $name
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
     public function isFunctionalityActive(string $name): bool
     {
-    	return $this->functionalityManager->isActive($name);
+        return $this->functionalityManager->isActive($name);
     }
 }

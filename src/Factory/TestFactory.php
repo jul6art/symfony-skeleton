@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: gkratz
  * Date: 23/05/2019
- * Time: 09:25
+ * Time: 09:25.
  */
 
 namespace App\Factory;
@@ -11,15 +11,15 @@ namespace App\Factory;
 use App\Entity\Test;
 
 /**
- * Class TestFactory
- * @package App\Factory
+ * Class TestFactory.
  */
-class TestFactory {
-	/**
-	 * @return Test
-	 */
-	public static function create(): Test
-	{
-		return new Test();
-	}
+class TestFactory
+{
+    /**
+     * @return Test
+     */
+    public static function create(): Test
+    {
+        return new Test();
+    }
 }

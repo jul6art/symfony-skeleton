@@ -7,48 +7,46 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class TestVoter
- * @package App\Security\Voter
+ * Class TestVoter.
  */
 class TestVoter extends AbstractVoter
 {
-	const LIST = 'app.voters.test.list';
-	const EDIT = 'app.voters.test.edit';
-	const ADD = 'app.voters.test.add';
-	const VIEW = 'app.voters.test.view';
-	const DELETE = 'app.voters.test.delete';
-	const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
+    const LIST = 'app.voters.test.list';
+    const EDIT = 'app.voters.test.edit';
+    const ADD = 'app.voters.test.add';
+    const VIEW = 'app.voters.test.view';
+    const DELETE = 'app.voters.test.delete';
+    const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
 
-	/**
-	 * @param string $attribute
-	 * @param mixed $subject
-	 *
-	 * @return bool
-	 */
+    /**
+     * @param string $attribute
+     * @param mixed  $subject
+     *
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
-        	    self::LIST,
-        	    self::EDIT,
-        	    self::ADD,
-        	    self::VIEW,
-        	    self::DELETE,
-        	    self::DELETE_MULTIPLE,
-	        ])) {
-        	return false;
+                self::LIST,
+                self::EDIT,
+                self::ADD,
+                self::VIEW,
+                self::DELETE,
+                self::DELETE_MULTIPLE,
+            ])) {
+            return false;
         }
 
         if ($subject instanceof Test) {
-        	return true;
-        };
+            return true;
+        }
 
-        if ($subject === Test::class) {
-        	return true;
-        };
+        if (Test::class === $subject) {
+            return true;
+        }
 
         return false;
     }
-
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
@@ -60,81 +58,87 @@ class TestVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-	        case self::LIST:
-	        	return $this->canList($subject, $token);
-	        case self::EDIT:
-	        	return $this->canEdit($subject, $token);
-	        case self::ADD:
-	        	return $this->canAdd($subject, $token);
-	        case self::VIEW:
-	        	return $this->canView($subject, $token);
-	        case self::DELETE:
-	        	return $this->canDelete($subject, $token);
-	        case self::DELETE_MULTIPLE:
-	        	return $this->canDeleteMultiple($subject, $token);
+            case self::LIST:
+                return $this->canList($subject, $token);
+            case self::EDIT:
+                return $this->canEdit($subject, $token);
+            case self::ADD:
+                return $this->canAdd($subject, $token);
+            case self::VIEW:
+                return $this->canView($subject, $token);
+            case self::DELETE:
+                return $this->canDelete($subject, $token);
+            case self::DELETE_MULTIPLE:
+                return $this->canDeleteMultiple($subject, $token);
                 break;
         }
 
         return false;
     }
 
-	/**
-	 * @param string $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-    public function canList(string $subject, TokenInterface $token) {
-	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    /**
+     * @param string         $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canList(string $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
-	/**
-	 * @param string $subject
-	 * @param TokenInterface $tokens
-	 *
-	 * @return bool
-	 */
-    public function canAdd(string $subject, TokenInterface $token) {
-	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    /**
+     * @param string         $subject
+     * @param TokenInterface $tokens
+     *
+     * @return bool
+     */
+    public function canAdd(string $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
-	/**
-	 * @param Test $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-    public function canEdit(Test $subject, TokenInterface $token) {
-    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    /**
+     * @param Test           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canEdit(Test $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
-	/**
-	 * @param Test $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-    public function canView(Test $subject, TokenInterface $token) {
-    	return $this->canList($subject, $token);
+    /**
+     * @param Test           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canView(Test $subject, TokenInterface $token)
+    {
+        return $this->canList($subject, $token);
     }
 
-	/**
-	 * @param Test $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canDelete(Test $subject, TokenInterface $token) {
-		return $this->canEdit($subject, $token);
-	}
+    /**
+     * @param Test           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canDelete(Test $subject, TokenInterface $token)
+    {
+        return $this->canEdit($subject, $token);
+    }
 
-	/**
-	 * @param string $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canDeleteMultiple(string $subject, TokenInterface $token) {
-		return $this->canAdd($subject, $token);
-	}
+    /**
+     * @param string         $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canDeleteMultiple(string $subject, TokenInterface $token)
+    {
+        return $this->canAdd($subject, $token);
+    }
 }

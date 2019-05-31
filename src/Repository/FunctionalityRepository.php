@@ -17,44 +17,45 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class FunctionalityRepository extends ServiceEntityRepository
 {
-	/**
-	 * FunctionalityRepository constructor.
-	 *
-	 * @param RegistryInterface $registry
-	 */
+    /**
+     * FunctionalityRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Functionality::class);
     }
 
-	/**
-	 * @param QueryBuilder $builder
-	 * @param string $name
-	 *
-	 * @return self
-	 */
-	public function filterByName(QueryBuilder $builder, string $name): self
-	{
-		$builder
-			->andWhere($builder->expr()->eq('f.name', ':name'))
-			->setParameter('name', $name, Type::STRING);
+    /**
+     * @param QueryBuilder $builder
+     * @param string       $name
+     *
+     * @return self
+     */
+    public function filterByName(QueryBuilder $builder, string $name): self
+    {
+        $builder
+            ->andWhere($builder->expr()->eq('f.name', ':name'))
+            ->setParameter('name', $name, Type::STRING);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return Functionality|null
-	 * @throws NonUniqueResultException
-	 */
-	public function findOneByName(string $name): ?Functionality
-	{
-		$builder = $this->createQueryBuilder('f');
+    /**
+     * @param string $name
+     *
+     * @return Functionality|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneByName(string $name): ?Functionality
+    {
+        $builder = $this->createQueryBuilder('f');
 
-		$this
-			->filterByName($builder, $name);
+        $this
+            ->filterByName($builder, $name);
 
-		return $builder->getQuery()->getOneOrNullResult();
-	}
+        return $builder->getQuery()->getOneOrNullResult();
+    }
 }

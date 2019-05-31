@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: gkratz
  * Date: 27/04/2019
- * Time: 13:09
+ * Time: 13:09.
  */
 
 namespace App\Manager;
@@ -15,62 +15,63 @@ use Doctrine\ORM\NonUniqueResultException;
 use Saacsos\Randomgenerator\Util\RandomGenerator;
 
 /**
- * Class UserManager
- * @package App\Manager
+ * Class UserManager.
  */
 class UserManager extends AbstractManager
 {
-	use GroupManagerTrait;
+    use GroupManagerTrait;
 
-	/**
-	 * @var string
-	 */
-	private $default_theme;
+    /**
+     * @var string
+     */
+    private $default_theme;
 
-	/**
-	 * @var string
-	 */
-	private $locale;
+    /**
+     * @var string
+     */
+    private $locale;
 
-	/**
-	 * UserManager constructor.
-	 *
-	 * @param EntityManagerInterface $entityManager
-	 * @param string $default_theme
-	 * @param string $locale
-	 */
-	public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
-	{
-		parent::__construct($entityManager);
-		$this->default_theme = $default_theme;
-		$this->locale = $locale;
-	}
+    /**
+     * UserManager constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $default_theme
+     * @param string                 $locale
+     */
+    public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
+    {
+        parent::__construct($entityManager);
+        $this->default_theme = $default_theme;
+        $this->locale = $locale;
+    }
 
-	/**
-	 * @return User
-	 * @throws NonUniqueResultException
-	 */
-	public function create(): User
-	{
-		return UserFactory::create($this->groupManager, $this->locale, $this->default_theme);
-	}
+    /**
+     * @return User
+     *
+     * @throws NonUniqueResultException
+     */
+    public function create(): User
+    {
+        return UserFactory::create($this->groupManager, $this->locale, $this->default_theme);
+    }
 
-	/**
-	 * @return User
-	 * @throws NonUniqueResultException
-	 */
-	public function createAdmin(): User
-	{
-		return UserFactory::createAdmin($this->groupManager, $this->locale, $this->default_theme);
-	}
+    /**
+     * @return User
+     *
+     * @throws NonUniqueResultException
+     */
+    public function createAdmin(): User
+    {
+        return UserFactory::createAdmin($this->groupManager, $this->locale, $this->default_theme);
+    }
 
-	/**
-	 * @return string
-	 */
-	public function generatePassword(): string
-	{
-		$generator = new RandomGenerator();
+    /**
+     * @return string
+     */
+    public function generatePassword(): string
+    {
+        $generator = new RandomGenerator();
 
-		return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
-	}
+        return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
+    }
 }

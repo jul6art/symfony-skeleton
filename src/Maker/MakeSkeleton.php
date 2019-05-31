@@ -34,8 +34,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Validator\Validation;
 
 /**
- * Class MakeSkeleton
- * @package Symfony\Bundle\MakerBundle\Maker
+ * Class MakeSkeleton.
  */
 final class MakeSkeleton extends AbstractMaker
 {

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Entity\Traits\BlameableEntity;
@@ -12,90 +13,96 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class UserSetting
 {
-	use TimestampableEntity;
-	use BlameableEntity;
+    use TimestampableEntity;
+    use BlameableEntity;
 
-	/**
-	 * @var int
-	 *
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	protected $id;
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(type="string")
-	 */
-	protected $name;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $name;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $value;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $value;
 
-	/**
-	 * @var User|null
-	 *
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="settings")
-	 */
-	protected $user = null;
+    /**
+     * @var User|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="settings")
+     */
+    protected $user = null;
 
-	/**
-	 * @return string
-	 */
-	public function getName(): string {
-		return $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return UserSetting
-	 */
-	public function setName( string $name ): UserSetting {
-		$this->name = $name;
+    /**
+     * @param string $name
+     *
+     * @return UserSetting
+     */
+    public function setName(string $name): UserSetting
+    {
+        $this->name = $name;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getValue(): string {
-		return $this->value;
-	}
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
 
-	/**
-	 * @param string $value
-	 *
-	 * @return UserSetting
-	 */
-	public function setValue( string $value ): UserSetting {
-		$this->value = $value;
+    /**
+     * @param string $value
+     *
+     * @return UserSetting
+     */
+    public function setValue(string $value): UserSetting
+    {
+        $this->value = $value;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return User|null
-	 */
-	public function getUser(): ?User {
-		return $this->user;
-	}
+    /**
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-	/**
-	 * @param User|null $user
-	 *
-	 * @return UserSetting
-	 */
-	public function setUser( ?User $user ): UserSetting {
-		$this->user = $user;
+    /**
+     * @param User|null $user
+     *
+     * @return UserSetting
+     */
+    public function setUser(?User $user): UserSetting
+    {
+        $this->user = $user;
 
-		return $this;
-	}
+        return $this;
+    }
 }

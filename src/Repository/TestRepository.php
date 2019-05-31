@@ -10,49 +10,49 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class TestRepository
- * @package App\Repository
+ * Class TestRepository.
  */
 class TestRepository extends ServiceEntityRepository
 {
-	/**
-	 * TestRepository constructor.
-	 *
-	 * @param RegistryInterface $registry
-	 */
+    /**
+     * TestRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Test::class);
     }
 
-	/**
-	 * @param QueryBuilder $builder
-	 * @param string $name
-	 *
-	 * @return self
-	 */
-	public function filterByName(QueryBuilder $builder, string $name): self
-	{
-		$builder
-			->andWhere($builder->expr()->eq('t.name', ':name'))
-			->setParameter('name', $name, Type::STRING);
+    /**
+     * @param QueryBuilder $builder
+     * @param string       $name
+     *
+     * @return self
+     */
+    public function filterByName(QueryBuilder $builder, string $name): self
+    {
+        $builder
+            ->andWhere($builder->expr()->eq('t.name', ':name'))
+            ->setParameter('name', $name, Type::STRING);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return Test|null
-	 * @throws NonUniqueResultException
-	 */
-	public function findOneByName(string $name): ?Test
-	{
-		$builder = $this->createQueryBuilder('t');
+    /**
+     * @param string $name
+     *
+     * @return Test|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneByName(string $name): ?Test
+    {
+        $builder = $this->createQueryBuilder('t');
 
-		$this
-			->filterByName($builder, $name);
+        $this
+            ->filterByName($builder, $name);
 
-		return $builder->getQuery()->getOneOrNullResult();
-	}
+        return $builder->getQuery()->getOneOrNullResult();
+    }
 }

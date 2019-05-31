@@ -11,8 +11,8 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Test
 {
-	use BlameableEntity;
-	use TimestampableEntity;
+    use BlameableEntity;
+    use TimestampableEntity;
 
     /**
      * @ORM\Id()
@@ -28,27 +28,27 @@ class Test
      */
     private $name;
 
-	/**
-	 * @return int|null
-	 */
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-	/**
-	 * @return null|string
-	 */
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return Test
-	 */
+    /**
+     * @param string $name
+     *
+     * @return Test
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
