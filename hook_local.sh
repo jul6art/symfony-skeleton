@@ -14,6 +14,7 @@ echo '--- DATABASE LOADING ---'
 php bin/console doctrine:schema:drop --force
 php bin/console doctrine:schema:update --force
 php bin/console doctrine:fixtures:load --no-interaction
+php bin/console audit:clean
 
 # echo '--- TESTS LAUNCHING ---'
 # ./vendor/bin/simple-phpunit > tests_output.txt
