@@ -30,6 +30,25 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Audits
 
+> To acctivate audit for an entity you need  to
+
+    - enable in configuration
+    - make the voter retur true
+    
+> Custom audit level (6chars max)
+
+```php
+use AuditManagerTrait;
+
+public function onTestAdded(TestEvent $event)
+{
+    $this->getAuditManager()->audit('test01', $event->getTest(), [
+        'id' => $event->getTest()->getId(),
+        'planet' => 'Mars',
+    ]);
+}
+```
+
 > This command removes audits older tha a year
 
     bin/console audit:clean --no-confirm
@@ -42,7 +61,7 @@ You can deactivate this feature in configuration page
 
 ### Crud
 
-> Html files and controller is adapted to this current architecture but you must write some files manually
+> Html files and controller are adapted to this current architecture but you must write some files manually
 
 - Voter
 - Manager
@@ -50,7 +69,9 @@ You can deactivate this feature in configuration page
 - Event
 - EventListener
 
-Translation keys are not set
+> Audit, blameable and timestapable must be set manually
+
+> Translation keys are not set
 
 > You can edit controller and twig skeleton files in /templates/crud
 

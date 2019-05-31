@@ -1,6 +1,6 @@
 {% extends 'layout/layout_card.html.twig' %}
 
-{% set card_title = 'card.audit.title' | trans({}, 'card') %}
+{% set card_title = 'audit.title' | trans({}, 'audit') %}
 
 {% block card_content %}
     <div class="row clearfix">
@@ -15,13 +15,23 @@
                                 <a role="button" data-toggle="collapse" href="#collapseOne_{{ loop.index }}" aria-expanded="false" aria-controls="collapseOne_{{ loop.index }}" class="collapsed">
                                     {% if audit.type == 'insert' %}
                                         <i class="material-icons">add</i>
-                                        {{ 'card.audit.actions.insert' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'card') }}
+                                        {{ 'audit.actions.insert' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% elseif audit.type == 'update' %}
                                         <i class="material-icons">edit</i>
-                                        {{ 'card.audit.actions.update' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'card') }}
-                                    {% else %}
+                                        {{ 'audit.actions.update' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
+                                    {% elseif audit.type == 'remove' %}
                                         <i class="material-icons">close</i>
-                                        {{ 'card.audit.actions.delete' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'card') }}
+                                        {{ 'audit.actions.delete' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
+                                    {% else %}
+                                        <i class="material-icons">info_outline</i>
+
+                                        {% set diffs = {} %}
+
+                                        {% for key, value in audit.diffs if value is not iterable %}
+                                            {% set diffs = {('%' ~ key ~ '%'): value} | merge(diffs) %}
+                                        {% endfor %}
+
+                                        {{ ('audit.actions.' ~ audit.type) | trans(diffs,  'audit') }}
                                     {% endif %}
                                 </a>
                             </h4>
@@ -31,22 +41,24 @@
                             <div id="collapseOne_{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{ loop.index }}" aria-expanded="false" style="height: 0px;">
                                 <div class="panel-body">
                                     {% if username is not null %}
-                                        <em class="col-{{ theme_name() }}">{{ 'card.audit.actions.made_by' | trans({'%username%': username}, 'card') }}</em>
+                                        <em class="col-{{ theme_name() }}">{{ 'audit.actions.made_by' | trans({'%username%': username}, 'audit') }}</em>
                                     {% endif %}
 
                                     {% if audit.type == 'update' %}
                                         <div class="audit-updates-container">
                                             {% for key, value in audit.diffs %}
                                                 <p class="font-underline">
-                                                    {{ 'card.audit.updates.text' | trans({
+                                                    {{ 'audit.updates.text' | trans({
                                                         '%property%': key,
                                                         '%old%': value.old | json_encode,
                                                         '%new%': value.new | json_encode,
-                                                    }, 'card') | raw }}
+                                                    }, 'audit') | raw }}
                                                 </p>
                                             {% endfor %}
                                         </div>
                                     {% endif %}
+
+                                    {# @TODO Put your logic here to display diffs with your custom levels #}
                                 </div>
                             </div>
                         {% endif %}

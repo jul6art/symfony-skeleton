@@ -6,6 +6,13 @@ require('bootstrap-notify');
 
 $.App = {
     init: function () {
+        this.colorize();
+        this.card();
+    },
+    colorize: function () {
+        $('.pagination li.active a').addClass('bg-' + THEME_NAME);
+    },
+    card: function () {
         $('[data-toggle="grid-collapse"]').on('click', function () {
             $(this).closest('.card').toggleClass('collapsed');
         });

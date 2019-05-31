@@ -233,6 +233,10 @@ $(document).ready(function() {
             datatableOptions.colReorder = true;
         }
 
-        table.DataTable(datatableOptions);
+        var datatable = table.DataTable(datatableOptions);
+
+        datatable.on('draw.dt', function () {
+            console.log('ici');
+        });
     });
 } );
