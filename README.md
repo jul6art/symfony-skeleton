@@ -49,6 +49,10 @@ public function onTestAdded(TestEvent $event)
 }
 ```
 
+in audit translation domain
+
+    audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
+
 > This command removes audits older tha a year
 
     bin/console audit:clean --no-confirm

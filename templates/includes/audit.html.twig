@@ -25,7 +25,10 @@
                                     {% else %}
                                         <i class="material-icons">info_outline</i>
 
-                                        {% set diffs = {} %}
+                                        {% set diffs = {
+                                            '%objectId%': audit.objectId,
+                                            '%auditId%': audit.id
+                                        } %}
 
                                         {% for key, value in audit.diffs if value is not iterable %}
                                             {% set diffs = {('%' ~ key ~ '%'): value} | merge(diffs) %}
