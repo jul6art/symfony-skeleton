@@ -7,6 +7,8 @@ use App\Manager\UserManagerTrait;
 use App\Security\Voter\FunctionalityVoter;
 use App\Service\FileService;
 use App\Service\RefererService;
+use DH\DoctrineAuditBundle\Helper\AuditHelper;
+use DH\DoctrineAuditBundle\Reader\AuditReader;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -126,5 +128,27 @@ class DefaultController extends AbstractFOSRestController
         }
 
         return $this->redirectToRoute('admin_homepage');
+    }
+
+	/**
+	 * @param $class
+	 * @param null $id
+	 * @param AuditReader $auditReader
+	 * @param int $audit_limit
+	 *
+	 * @return Response
+	 */
+    public function audit($class, $id = null, AuditReader $auditReader, int $audit_limit): Response
+    {
+	    $auditEntity = AuditHelper::paramToNamespace($class);
+	    $audits = $auditReader->getAudits($auditEntity, $id, 1, $audit_limit);
+
+	    $view = $this->view()
+	                 ->setTemplate('includes/audit.html.twig')
+	                 ->setTemplateData([
+		                 'audits' => $audits,
+	                 ]);
+
+	    return $this->handleView($view);
     }
 }

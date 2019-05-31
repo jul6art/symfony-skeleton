@@ -7,8 +7,11 @@ use App\Event\TestEvent;
 use App\Form\TestType;
 use App\Manager\TestManagerTrait;
 use App\Security\Voter\TestVoter;
+use App\Transformer\AuditDataTableTransformer;
 use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
+use DH\DoctrineAuditBundle\Helper\AuditHelper;
+use DH\DoctrineAuditBundle\Reader\AuditReader;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,15 +27,14 @@ class TestController extends AbstractFOSRestController
 {
     use TestManagerTrait;
 
-    /**
-     * @param TestDataTableTransformer $testDataTableTransformer
-     *
-     * @Route("/", name="test_list", methods={"GET"})
-     *
-     * @return Response
-     *
-     * @throws ExceptionInterface
-     */
+	/**
+	 * @param TestDataTableTransformer $testDataTableTransformer
+	 *
+	 * @Route("/", name="test_list", methods={"GET"})
+	 *
+	 * @return Response
+	 * @throws ExceptionInterface
+	 */
     public function index(TestDataTableTransformer $testDataTableTransformer): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::LIST, Test::class);

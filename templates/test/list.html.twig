@@ -38,7 +38,7 @@
 
 {% block table_content %}
     {% include 'includes/datatable.html.twig' with {
-        class: 'skeleton-datatable',
+        id: 'datatable_test',
         rows: tests,
         header: [
             {
@@ -61,3 +61,13 @@
         ],
     } %}
 {% endblock table_content %}
+
+{% block table_after %}
+    <div class="row">
+        <div class="col-xs-12">
+            {{ render(controller('App\\Controller\\DefaultController::audit', {
+                class: 'App\\Entity\\Test'
+            })) }}
+        </div>
+    </div>
+{% endblock table_after %}

@@ -1,6 +1,6 @@
 <div class="table-responsive">
-    <table id="example"
-           class="table table-bordered table-striped table-hover dataTable js-exportable display {{ class }}"
+    <table id="{{ id }}"
+           class="table table-bordered table-striped table-hover dataTable js-exportable display {{ class is defined ? class : '' }}"
            style="width:100%"
            {% for plugin in plugins %} data-{{ plugin }}="true"{% endfor %}
     >

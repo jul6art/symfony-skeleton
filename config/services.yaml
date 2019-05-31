@@ -31,6 +31,7 @@ parameters:
     base_title: ' | Symfony Skeleton'
     skeleton_version: 1.0.1
     default_theme: red
+    audit_limit: 200
 
 services:
     _defaults:
@@ -41,6 +42,7 @@ services:
             $available_locales: '%available_locales%'
             $default_theme: '%default_theme%'
             $available_colors: '%available_colors%'
+            $audit_limit: '%audit_limit%'
 
     App\:
         resource: '../src/*'

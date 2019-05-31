@@ -2,6 +2,18 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "damienharper/doctrine-audit-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "30332c596941d2ac263e6d2e34a055d6556f6871"
+        },
+        "files": [
+            "config/packages/dh_doctrine_audit.yaml"
+        ]
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -167,6 +179,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "pagerfanta/pagerfanta": {
+        "version": "v2.1.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -597,6 +612,9 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "white-october/pagerfanta-bundle": {
+        "version": "v1.2.4"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"

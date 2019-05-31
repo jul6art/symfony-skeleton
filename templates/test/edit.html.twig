@@ -10,4 +10,14 @@
     <a href="{{ path('admin_test_list') }}">back to list</a>
 
     {{ include('test/_delete_form.html.twig') }}
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            {{ render(controller('App\\Controller\\DefaultController::audit', {
+                class: 'App\\Entity\\Test',
+                id: test.id
+            })) }}
+        </div>
+    </div>
 {% endblock %}
