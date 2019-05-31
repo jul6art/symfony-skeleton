@@ -1,7 +1,9 @@
 <?php
 namespace App\Entity;
 
+use App\Entity\Traits\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Class UserSetting.
@@ -10,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserSetting
 {
+	use TimestampableEntity;
+	use BlameableEntity;
+
 	/**
 	 * @var int
 	 *

@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\BlameableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,6 +22,9 @@ class User extends BaseUser
 	const SETTING_THEME = 'theme';
 	const LENGTH_GENERATED_PASSWORD = 8;
 	const DEFAULT_PASSWORD = 'vsweb';
+
+	use TimestampableEntity;
+	use BlameableEntity;
 
 	/**
 	 * @ORM\Id

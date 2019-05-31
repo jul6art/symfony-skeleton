@@ -57,26 +57,22 @@ services:
         tags: ['maker.command']
 
     App\Menu\Builder\NavbarBuilder:
-        arguments: ["@knp_menu.factory"]
+        arguments: ['@knp_menu.factory']
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: navbar }
 
     App\Menu\Builder\TopbarBuilder:
-        arguments: ["@knp_menu.factory"]
+        arguments: ['@knp_menu.factory']
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: topbar }
 
     App\Menu\Builder\UserDropdownBuilder:
-        arguments: ["@knp_menu.factory"]
+        arguments: ['@knp_menu.factory']
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: usernav }
 
     App\Menu\Renderer\TopbarRenderer:
         arguments:
             - '@knp_menu.matcher'
-            - []
         tags:
             - { name: knp_menu.renderer, alias: topbar_renderer }
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones

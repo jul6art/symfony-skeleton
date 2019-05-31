@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +17,9 @@ class Functionality
 	const FUNC_SWITCH_THEME = 'func.switch_theme';
 	const FUNC_SWITCH_LOCALE = 'func.switch_locale';
 	const FUNC_CLEAR_CACHE = 'func.clear_cache';
+
+	use BlameableEntity;
+	use TimestampableEntity;
 
     /**
      * @ORM\Id()
