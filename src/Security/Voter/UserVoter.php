@@ -3,6 +3,7 @@
 namespace App\Security\Voter;
 
 use App\Entity\User;
+use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,6 +19,7 @@ class UserVoter extends AbstractVoter
     const EDIT = 'app.voters.user.edit';
     const ADD = 'app.voters.user.add';
     const VIEW = 'app.voters.user.view';
+    const AUDIT = 'app.voters.user.audit';
     const DELETE = 'app.voters.user.delete';
     const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
 
@@ -37,6 +39,7 @@ class UserVoter extends AbstractVoter
                 self::EDIT,
                 self::ADD,
                 self::VIEW,
+                self::AUDIT,
                 self::DELETE,
                 self::DELETE_MULTIPLE,
             ])) {
@@ -78,6 +81,8 @@ class UserVoter extends AbstractVoter
                 return $this->canAdd($subject, $token);
             case self::VIEW:
                 return $this->canView($subject, $token);
+            case self::AUDIT:
+                return $this->canAudit($subject, $token);
             case self::DELETE:
                 return $this->canDelete($subject, $token);
             case self::DELETE_MULTIPLE:
@@ -164,6 +169,27 @@ class UserVoter extends AbstractVoter
     {
         return $this->canList($subject, $token);
     }
+
+	/**
+	 * @param $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canAudit($subject, TokenInterface $token)
+	{
+		if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
+			return false;
+		}
+
+		$auditEntity = AuditHelper::paramToNamespace(User::class);
+
+		$id = $subject instanceof User ? $subject->getId() : null;
+
+		$audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
+
+		return !empty($audits);
+	}
 
     /**
      * @param User           $subject

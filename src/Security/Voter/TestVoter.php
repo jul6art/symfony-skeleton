@@ -137,13 +137,9 @@ class TestVoter extends AbstractVoter
         	return false;
         }
 
-        dump($subject);
-
 	    $auditEntity = AuditHelper::paramToNamespace(Test::class);
 
         $id = $subject instanceof Test ? $subject->getId() : null;
-
-        dump($id);
 
 	    $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
 
