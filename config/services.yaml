@@ -78,3 +78,8 @@ services:
             - '@knp_menu.matcher'
         tags:
             - { name: knp_menu.renderer, alias: topbar_renderer }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

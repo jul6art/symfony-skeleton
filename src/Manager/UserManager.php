@@ -10,6 +10,7 @@ namespace App\Manager;
 
 use App\Entity\User;
 use App\Factory\UserFactory;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Saacsos\Randomgenerator\Util\RandomGenerator;
@@ -22,6 +23,11 @@ class UserManager extends AbstractManager
     use GroupManagerTrait;
 
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
      * @var string
      */
     private $default_theme;
@@ -31,16 +37,17 @@ class UserManager extends AbstractManager
      */
     private $locale;
 
-    /**
-     * UserManager constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $default_theme
-     * @param string                 $locale
-     */
+	/**
+	 * UserManager constructor.
+	 *
+	 * @param EntityManagerInterface $entityManager
+	 * @param string $default_theme
+	 * @param string $locale
+	 */
     public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
     {
         parent::__construct($entityManager);
+        $this->userRepository = $entityManager->getRepository(User::class);
         $this->default_theme = $default_theme;
         $this->locale = $locale;
     }
@@ -73,5 +80,20 @@ class UserManager extends AbstractManager
         $generator = new RandomGenerator();
 
         return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
+    }
+
+	/**
+	 * @return array
+	 */
+    public function findAllForAudit(): array
+    {
+        $result = [];
+        $users = $this->userRepository->findAll();
+
+        array_walk($users, function (User $user) use (&$result) {
+        	$result[$user->getId()] = $user->getFullname();
+        });
+
+        return $result;
     }
 }

@@ -41,12 +41,10 @@ class TestController extends AbstractFOSRestController
 
         $serializer = new Serializer([$testDataTableTransformer]);
 
-        $tests = $serializer->normalize($this->testManager->findAllForTable(), 'json');
-
         $view = $this->view()
                      ->setTemplate('test/list.html.twig')
                      ->setTemplateData([
-                         'tests' => $tests,
+                         'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json'),
                      ]);
 
         return $this->handleView($view);
@@ -80,12 +78,10 @@ class TestController extends AbstractFOSRestController
 
         $serializer = new Serializer([$testTransformer]);
 
-        $test = $serializer->normalize($test, 'json');
-
         $view = $this->view()
                      ->setTemplate('test/new.html.twig')
                      ->setTemplateData([
-                         'test' => $test,
+                         'test' => $serializer->normalize($test, 'json'),
                          'form' => $form->createView(),
                      ]);
 
@@ -149,12 +145,11 @@ class TestController extends AbstractFOSRestController
 
         $serializer = new Serializer([$testTransformer]);
 
-        $test = $serializer->normalize($test, 'json');
-
         $view = $this->view()
                      ->setTemplate('test/edit.html.twig')
                      ->setTemplateData([
-                         'test' => $test,
+                         'entity' => $test,
+                         'test' => $serializer->normalize($test, 'json'),
                          'form' => $form->createView(),
                      ]);
 

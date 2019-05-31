@@ -147,6 +147,7 @@ class DefaultController extends AbstractFOSRestController
 	                 ->setTemplate('includes/audit.html.twig')
 	                 ->setTemplateData([
 		                 'audits' => $audits,
+		                 'users' => $this->userManager->findAllForAudit(),
 	                 ]);
 
 	    return $this->handleView($view);

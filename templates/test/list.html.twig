@@ -63,11 +63,13 @@
 {% endblock table_content %}
 
 {% block table_after %}
-    <div class="row">
-        <div class="col-xs-12">
-            {{ render(controller('App\\Controller\\DefaultController::audit', {
-                class: 'App\\Entity\\Test'
-            })) }}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::AUDIT'), 'App\\Entity\\Test') %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\Test'
+                })) }}
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock table_after %}

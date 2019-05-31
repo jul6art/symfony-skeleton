@@ -77,6 +77,23 @@ CARD ACTIONS
   height: 100vh;
 }
 
+.collapsible-audits {
+  max-height: 390px;
+  overflow-y: auto;
+
+  .panel-title time {
+    padding: 10px;
+
+    em {
+      color: #DDDDDD;
+    }
+  }
+}
+
+.card.expanded .collapsible-audits {
+  max-height: calc(100vh - 120px);
+}
+
 /**
 DATATABLES
  */

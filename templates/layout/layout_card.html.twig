@@ -14,6 +14,10 @@
             </li>
         </ul>
     </div>
-    <div class="body">{{ card_content | raw }}</div>
+    <div class="body">
+        {% block card_content %}
+            {{ not card_content is defined ? '' : card_content | raw }}
+        {% endblock card_content %}
+    </div>
     <div class="footer">{{ not card_footer is defined ? '' : card_footer | raw }}</div>
 </div>

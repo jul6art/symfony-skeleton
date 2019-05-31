@@ -3,6 +3,7 @@
 namespace App\Security\Voter;
 
 use App\Entity\Test;
+use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -15,6 +16,7 @@ class TestVoter extends AbstractVoter
     const EDIT = 'app.voters.test.edit';
     const ADD = 'app.voters.test.add';
     const VIEW = 'app.voters.test.view';
+    const AUDIT = 'app.voters.test.audit';
     const DELETE = 'app.voters.test.delete';
     const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
 
@@ -31,6 +33,7 @@ class TestVoter extends AbstractVoter
                 self::EDIT,
                 self::ADD,
                 self::VIEW,
+                self::AUDIT,
                 self::DELETE,
                 self::DELETE_MULTIPLE,
             ])) {
@@ -66,6 +69,8 @@ class TestVoter extends AbstractVoter
                 return $this->canAdd($subject, $token);
             case self::VIEW:
                 return $this->canView($subject, $token);
+            case self::AUDIT:
+                return $this->canAudit($subject, $token);
             case self::DELETE:
                 return $this->canDelete($subject, $token);
             case self::DELETE_MULTIPLE:
@@ -118,6 +123,31 @@ class TestVoter extends AbstractVoter
     public function canView(Test $subject, TokenInterface $token)
     {
         return $this->canList($subject, $token);
+    }
+
+	/**
+	 * @param $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canAudit($subject, TokenInterface $token)
+    {
+        if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
+        	return false;
+        }
+
+        dump($subject);
+
+	    $auditEntity = AuditHelper::paramToNamespace(Test::class);
+
+        $id = $subject instanceof Test ? $subject->getId() : null;
+
+        dump($id);
+
+	    $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
+
+	    return !empty($audits);
     }
 
     /**
