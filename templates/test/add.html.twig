@@ -1,7 +1,7 @@
 {% extends 'layout/layout_form.html.twig' %}
 
 {% block page_title %}
-    {{ 'title.test.edit' | trans({'%name%': test.name}, 'title') }}
+    {{ 'title.test.add' | trans({}, 'title') }}
 {% endblock page_title %}
 
 {% block breadcrumb %}
@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'breadcrumb.test.edit' | trans({'%name%': test.name}, 'breadcrumb') | raw }}</span>
+        <i class="material-icons">add</i> <span class="hidden-xs">{{ 'breadcrumb.test.add' | trans({}, 'breadcrumb') | raw }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -26,7 +26,7 @@
 {% endblock page_actions %}
 
 {% block form_title %}
-    {{ 'form.test.edit.title' | trans({'%name%': test.name}, 'form') | raw }}
+    {{ 'form.test.add.title' | trans({}, 'form') | raw }}
 {% endblock form_title %}
 
 {% block form_content %}
@@ -37,13 +37,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="btn-group btn-group-justified">
-                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
-                    <div class="btn">
-                        <a class="btn btn-block waves-effect bg-black" type="reset" href="{{ path('admin_test_delete', {id: test.id}) }}">
-                            <i class="material-icons">close</i> <span class="hidden-xs">{{ 'button.delete' | trans({}, 'button') }}</span>
-                        </a>
-                    </div>
-                {% endif %}
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">
                         <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_test_list') }}">
@@ -60,16 +53,3 @@
         </div>
     </div>
 {% endblock form_footer %}
-
-{% block form_after %}
-    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::AUDIT'), entity) %}
-        <div class="row clearfix">
-            <div class="col-xs-12">
-                {{ render(controller('App\\Controller\\DefaultController::audit', {
-                    class: 'App\\Entity\\Test',
-                    id: entity.id,
-                })) }}
-            </div>
-        </div>
-    {% endif %}
-{% endblock form_after %}

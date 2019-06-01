@@ -54,6 +54,15 @@ CARD ACTIONS
  */
 .card {
   transition: all .3s linear;
+
+  div.btn {
+    cursor: default;
+    padding: 0;
+
+    > .btn {
+      border-radius: 0;
+    }
+  }
 }
 
 .card.collapsed .body {

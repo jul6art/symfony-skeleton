@@ -28,6 +28,13 @@ php bin/console server:start
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+### Breadcrumb
+
+> You can disabled the breadcrumb for a specific page
+
+    {% set breadcrumb = false %}
+
+
 ### Forms
 
 > You can override the form theme when extending the layout_form.html.twig
@@ -84,5 +91,15 @@ You can deactivate this feature in configuration page
 > Translation keys are not set
 
 > You can edit controller and twig skeleton files in /templates/crud
+
+### Credits
+
+    Bootstrap
+    Materialize
+    Datatables.net
+    Gedmo
+    Stof
+    FriendsOfSymfony
+    Basic theme: https://gurayyarar.github.io/AdminBSBMaterialDesign/
 
 &copy; 2019 [VsWeb](https://vsweb.be)

@@ -76,7 +76,7 @@ class TestController extends AbstractFOSRestController
         $serializer = new Serializer([$testTransformer]);
 
         $view = $this->view()
-                     ->setTemplate('test/new.html.twig')
+                     ->setTemplate('test/add.html.twig')
                      ->setTemplateData([
                          'test' => $serializer->normalize($test, 'json'),
                          'form' => $form->createView(),
@@ -104,7 +104,7 @@ class TestController extends AbstractFOSRestController
         $test = $serializer->normalize($test, 'json');
 
         $view = $this->view()
-                     ->setTemplate('test/show.html.twig')
+                     ->setTemplate('test/view.html.twig')
                      ->setTemplateData([
                          'test' => $test,
                      ]);
@@ -158,7 +158,7 @@ class TestController extends AbstractFOSRestController
      * @param Test                     $test
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/{id}", name="test_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="test_delete", methods={"GET"})
      *
      * @return Response
      */
@@ -166,10 +166,8 @@ class TestController extends AbstractFOSRestController
     {
         $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);
 
-        if ($this->isCsrfTokenValid('delete'.$test->getId(), $request->request->get('_token'))) {
-            $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
-            $this->testManager->delete($test);
-        }
+        $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
+        $this->testManager->delete($test);
 
         return $this->redirectToRoute('admin_test_list');
     }

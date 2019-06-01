@@ -8,6 +8,7 @@ $.App = {
     init: function () {
         this.colorize();
         this.card();
+        this.console();
     },
     colorize: function () {
         $('.pagination li.active a').addClass('bg-' + THEME_NAME);
@@ -60,6 +61,59 @@ $.App = {
                 '<a href="{3}" target="{4}" data-notify="url"></a>' +
                 '</div>'
             });
+    },
+    console: function () {
+        var vsweb_console_message = function () {
+            if (window.console) {
+                var message = '' +
+                    ' __    __    ___            __    __    __   ____\n' +
+                    ' \\ \\  / /   / __|           \\ \\  /  \\  / /  |  __\\   __\n' +
+                    '  \\ \\/ / _  \\__ \\  _         \\ \\/ /\\ \\/ /   |  __|  |  _\\\n' +
+                    '   \\__/ (_) |___/ (_)         \\__/  \\__/    |  __/  |___/\n' +
+                    '                https://vsweb.be\n' +
+                    '\n' +
+                    '\n' +
+                    'VsWeb, all about web' +
+                    '\n' +
+                    '\n' +
+                    'This is the story of the guy who loved code so much that he wanted to know all the languages ​​and all the frameworks.\n' +
+                    'This love pushed him to constantly exceed his limits to build his experience\n' +
+                    '\n' +
+                    'Follow him on https://vsweb.be\n' +
+                    'NB : To stop seeing this message, window.vsweb_console_stop();';
+
+                console.log(message);
+            }
+        };
+
+        var localStorageSupported = function (){
+            test = 'test';
+            try {
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch(e) {
+                return false;
+            }
+        };
+
+        window.vsweb_console_start = function () {
+            if (localStorageSupported()){
+                localStorage["vsweb-console-message"]=1;
+            }
+            return true;
+        };
+
+        window.vsweb_console_stop = function () {
+            if (localStorageSupported()) {
+                localStorage["vsweb-console-message"]=0;
+            }
+            return true;
+        };
+
+        if (localStorageSupported() && localStorage["vsweb-console-message"]!=='0') {
+            vsweb_console_message();
+        }
     }
 };
 
@@ -91,4 +145,6 @@ $(document).ready(function () {
 
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 });
