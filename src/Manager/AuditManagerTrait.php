@@ -16,25 +16,25 @@ trait AuditManagerTrait
     /**
      * @var AuditManager
      */
-    private $userManager;
+    private $auditManager;
 
     /**
      * @return AuditManager
      */
     public function getAuditManager(): AuditManager
     {
-        return $this->userManager;
+        return $this->auditManager;
     }
 
     /**
-     * @param AuditManager $userManager
+     * @param AuditManager $auditManager
      *
      * @required
      *
      * @return AuditManagerTrait
      */
-    public function setAuditManager(AuditManager $userManager): void
+    public function setAuditManager(AuditManager $auditManager): void
     {
-        $this->userManager = $userManager;
+        $this->auditManager = $auditManager;
     }
 }

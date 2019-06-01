@@ -1,12 +1,8 @@
-<div class="icon-button-demo">
-    <a href="" class="btn btn-primary waves-effect"><i class="material-icons">extension</i></a>
-</div>
-<div class="icon-button-demo">
-    <a href="" class="btn btn-primary waves-effect"><i class="material-icons">extension</i></a>
-</div>
-<div class="icon-button-demo">
-    <a href="" class="btn btn-primary waves-effect"><i class="material-icons">extension</i></a>
-</div>
-<div class="icon-button-demo">
-    <a href="" class="btn btn-primary waves-effect"><i class="material-icons">extension</i></a>
-</div>
+{% for action in actions %}
+    <div class="icon-button-demo">
+        <a href="{{ path(action.route, action.routeParams) }}" class="btn bg-{{ action.color == 'theme' ? theme_name() : action.color }} btn-circle waves-effect waves-circle waves-float"
+           data-toggle="tooltip" data-placement="bottom" data-original-title="{{ action.label | trans({}, 'table') }}">
+            <i class="material-icons">{{ action.icon }}</i>
+        </a>
+    </div>
+{% endfor %}
