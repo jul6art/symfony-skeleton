@@ -20,18 +20,15 @@
                             <i class="fa fa-globe fa-2x"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="body">
-                                <ul class="menu">
-                                    <li class="active">
-                                        <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale() == 'en' ? 'gb' : locale() }}"></span> {{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
-                                    </li>
-                                    {% for item in available_locales | split('|') if item != locale() %}
-                                        <li>
-                                            <a href="{{ path('admin_locale_switch', {locale: item}) }}"><span class="flag-icon flag-icon-{{ item == 'en' ? 'gb' : item }}"></span> {{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                            <li>
+                                <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale() == 'en' ? 'gb' : locale() }}"></span> {{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
                             </li>
+                            <li class="divider" role="separator"></li>
+                            {% for item in available_locales | split('|') if item != locale() %}
+                                <li>
+                                    <a href="{{ path('admin_locale_switch', {locale: item}) }}"><span class="flag-icon flag-icon-{{ item == 'en' ? 'gb' : item }}"></span> {{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </li>
                 {% endif %}
