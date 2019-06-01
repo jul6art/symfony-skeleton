@@ -1,5 +1,6 @@
 button:
     add: Ajouter
+    edit: Modifier
     save: Enregistrer
     delete: Supprimer
     back: Retour

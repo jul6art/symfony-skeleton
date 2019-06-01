@@ -30,7 +30,7 @@
 
         {% if is_granted(constant('App\\Security\\Voter\\TestVoter::ADD'), 'App\\Entity\\Test') %}
             <a class="btn bg-{{ theme_name() }} white waves-effect" href="{{ path('admin_test_add') }}">
-                <i class="material-icons">add</i> <span class="hidden-xs">{{ 'button.add' | trans({}, 'button') }}</span>
+                <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'button.add' | trans({}, 'button') }}</span>
             </a>
         {% endif %}
     </div>

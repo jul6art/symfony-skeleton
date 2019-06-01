@@ -2,4 +2,5 @@ title:
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'
-        edit: 'Tests | Modification test "%name%"'
+        edit: 'Tests | Modification du test "%name%"'
+        view: 'Tests | Aperçu du test "%name%"'

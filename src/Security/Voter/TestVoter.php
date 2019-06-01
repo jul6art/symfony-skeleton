@@ -122,7 +122,7 @@ class TestVoter extends AbstractVoter
      */
     public function canView(Test $subject, TokenInterface $token)
     {
-        return $this->canList($subject, $token);
+	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
 	/**

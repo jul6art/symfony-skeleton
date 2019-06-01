@@ -102,7 +102,7 @@ class NavbarBuilder
             ])->setExtras([
                 'icon' => 'print',
                 'translation_domain' => 'navbar',
-                'activated_routes' => ['admin_test_list', 'admin_test_edit', 'admin_test_add'],
+                'activated_routes' => ['admin_test_list', 'admin_test_edit', 'admin_test_view', 'admin_test_add'],
                 'badge' => $badge,
             ])->setLinkAttribute('class', 'waves-effect waves-block menu-toggle');
         }
@@ -112,7 +112,7 @@ class NavbarBuilder
                 'route' => 'admin_test_list',
             ])->setExtras([
                 'translation_domain' => 'navbar',
-                'activated_routes' => ['admin_test_index', 'admin_test_edit'],
+                'activated_routes' => ['admin_test_index', 'admin_test_edit', 'admin_test_view'],
 	            'badge' => $badge,
             ])->setLinkAttribute('class', 'waves-effect waves-block');
         }

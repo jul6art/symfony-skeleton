@@ -5,3 +5,4 @@ breadcrumb:
         list: 'Liste des tests'
         add: 'Créer un test'
         edit: 'Modifier le test <strong>%name%</strong>'
+        view: 'Voir le test <strong>%name%</strong>'

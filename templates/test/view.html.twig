@@ -1,26 +1,86 @@
-{% extends 'layout/layout_base.html.twig' %}
+{% extends 'layout/layout_details.html.twig' %}
 
-{% block title %}Test{% endblock %}
+{% block page_title %}
+    {{ 'title.test.view' | trans({'%name%': test.name}, 'title') }}
+{% endblock page_title %}
 
-{% block content %}
-    <h1>Test</h1>
+{% block breadcrumb %}
+    <li class="active">
+        <a href="{{ path('admin_test_list') }}">
+            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</span>
+        </a>
+    </li>
+    <li class="active">
+        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.test.view' | trans({'%name%': test.name}, 'breadcrumb') | raw }}</span>
+    </li>
+{% endblock breadcrumb %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ test.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ test.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block page_actions %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+        <div class="pull-right btn-group">
+            <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_test_list') }}">
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back' | trans({}, 'button') }}</span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock page_actions %}
 
-    <a href="{{ path('admin_test_list') }}">back to list</a>
+{% block details_title %}
+    {{ 'details.test.title' | trans({'%name%': test.name}, 'details') | raw }}
+{% endblock details_title %}
 
-    <a href="{{ path('admin_test_edit', {'id': test.id}) }}">edit</a>
+{% block details_content %}
+    <div class="table-responsive">
+        <table class="table table table-bordered table-striped table-hover">
+            <tbody>
+            {% for key, value in test %}
+                <tr>
+                    <th>{{ ('details.test.' ~ key) | trans({}, 'details') }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock details_content %}
 
-    {{ include('test/_delete_form.html.twig') }}
-{% endblock %}
+{% block details_footer %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group btn-group-justified">
+                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
+                    <div class="btn">
+                        <a class="btn btn-block waves-effect bg-black" type="reset" href="{{ path('admin_test_delete', {id: test.id}) }}">
+                            <i class="material-icons">remove_circle_outline</i> <span class="hidden-xs">{{ 'button.delete' | trans({}, 'button') }}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+                    <div class="btn">
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_test_list') }}">
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel' | trans({}, 'button') }}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="btn">
+                    <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('admin_test_edit', {id: test.id}) }}">
+                        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'button.edit' | trans({}, 'button') }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock details_footer %}
+
+{% block details_after %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::AUDIT'), entity) %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\Test',
+                    id: entity.id,
+                })) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock details_after %}

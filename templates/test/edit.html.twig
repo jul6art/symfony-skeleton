@@ -40,13 +40,13 @@
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
                     <div class="btn">
                         <a class="btn btn-block waves-effect bg-black" type="reset" href="{{ path('admin_test_delete', {id: test.id}) }}">
-                            <i class="material-icons">close</i> <span class="hidden-xs">{{ 'button.delete' | trans({}, 'button') }}</span>
+                            <i class="material-icons">remove_circle_outline</i> <span class="hidden-xs">{{ 'button.delete' | trans({}, 'button') }}</span>
                         </a>
                     </div>
                 {% endif %}
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">
-                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_test_list') }}">
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer is not null ? referer : path('admin_test_list') }}">
                             <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel' | trans({}, 'button') }}</span>
                         </a>
                     </div>

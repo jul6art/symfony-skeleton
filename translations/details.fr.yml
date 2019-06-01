@@ -1,0 +1,5 @@
+details:
+    test:
+        title: 'Aperçu du test <strong>%name%</strong>'
+        id: ID
+        name: Nom

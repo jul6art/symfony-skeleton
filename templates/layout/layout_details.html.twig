@@ -1,0 +1,19 @@
+{% extends 'layout/layout_base.html.twig' %}
+
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            {% block details_before %}{% endblock details_before %}
+
+            {% include 'layout/layout_card.html.twig' with {
+                card_title: block('details_title'),
+                card_content: block('details_content'),
+                card_footer: not block('details_footer') is defined ? '' : block('details_footer')
+            } %}
+
+            {% block details_after %}{% endblock details_after %}
+
+        </div>
+    </div>
+{% endblock content %}
