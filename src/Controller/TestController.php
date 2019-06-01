@@ -25,14 +25,15 @@ class TestController extends AbstractFOSRestController
 {
     use TestManagerTrait;
 
-	/**
-	 * @param TestDataTableTransformer $testDataTableTransformer
-	 *
-	 * @Route("/", name="test_list", methods={"GET"})
-	 *
-	 * @return Response
-	 * @throws ExceptionInterface
-	 */
+    /**
+     * @param TestDataTableTransformer $testDataTableTransformer
+     *
+     * @Route("/", name="test_list", methods={"GET"})
+     *
+     * @return Response
+     *
+     * @throws ExceptionInterface
+     */
     public function index(TestDataTableTransformer $testDataTableTransformer): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::LIST, Test::class);
@@ -86,15 +87,16 @@ class TestController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Test $test
-	 * @param TestTransformer $testTransformer
-	 *
-	 * @Route("/view/{id}", name="test_view", methods={"GET"})
-	 *
-	 * @return Response
-	 * @throws ExceptionInterface
-	 */
+    /**
+     * @param Test            $test
+     * @param TestTransformer $testTransformer
+     *
+     * @Route("/view/{id}", name="test_view", methods={"GET"})
+     *
+     * @return Response
+     *
+     * @throws ExceptionInterface
+     */
     public function show(Test $test, TestTransformer $testTransformer): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::VIEW, $test);
@@ -111,23 +113,24 @@ class TestController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request $request
-	 * @param Test $test
-	 * @param TestTransformer $testTransformer
-	 * @param EventDispatcherInterface $eventDispatcher
-	 * @param RefererService $refererService
-	 *
-	 * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
-	 *
-	 * @return Response
-	 * @throws ExceptionInterface
-	 */
+    /**
+     * @param Request                  $request
+     * @param Test                     $test
+     * @param TestTransformer          $testTransformer
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param RefererService           $refererService
+     *
+     * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
+     *
+     * @return Response
+     *
+     * @throws ExceptionInterface
+     */
     public function edit(Request $request, Test $test, TestTransformer $testTransformer, EventDispatcherInterface $eventDispatcher, RefererService $refererService): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::EDIT, $test);
 
-	    $referer = $refererService->getFormReferer($request, 'test');
+        $referer = $refererService->getFormReferer($request, 'test');
 
         $form = $this->createForm(TestType::class, $test);
         $form->handleRequest($request);
@@ -136,9 +139,9 @@ class TestController extends AbstractFOSRestController
             $this->testManager->save($test);
             $eventDispatcher->dispatch(TestEvent::EDITED, new TestEvent($test));
 
-	        if (!is_null($referer)) {
-		        return $this->redirect($referer);
-	        }
+            if (!is_null($referer)) {
+                return $this->redirect($referer);
+            }
 
             return $this->redirectToRoute('admin_test_list');
         }

@@ -24,17 +24,17 @@ abstract class AbstractVoter extends Voter
      */
     protected $accessDecisionManager;
 
-	/**
-	 * @var AuditReader
-	 */
-	protected $auditReader;
+    /**
+     * @var AuditReader
+     */
+    protected $auditReader;
 
-	/**
-	 * @var int
-	 */
-	protected $audit_limit;
+    /**
+     * @var int
+     */
+    protected $audit_limit;
 
-	/**
+    /**
      * AbstractVoter constructor.
      *
      * @param AccessDecisionManagerInterface $accessDecisionManager
@@ -42,8 +42,8 @@ abstract class AbstractVoter extends Voter
     public function __construct(AccessDecisionManagerInterface $accessDecisionManager, AuditReader $auditReader, int $audit_limit)
     {
         $this->accessDecisionManager = $accessDecisionManager;
-	    $this->auditReader = $auditReader;
-	    $this->audit_limit = $audit_limit;
+        $this->auditReader = $auditReader;
+        $this->audit_limit = $audit_limit;
     }
 
     /**

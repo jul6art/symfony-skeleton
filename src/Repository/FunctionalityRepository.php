@@ -59,16 +59,17 @@ class FunctionalityRepository extends ServiceEntityRepository
         return $builder->getQuery()->getOneOrNullResult();
     }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		$builder = $this->createQueryBuilder('f');
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        $builder = $this->createQueryBuilder('f');
 
-		$builder->select('COUNT(f.id)');
+        $builder->select('COUNT(f.id)');
 
-		return $builder->getQuery()->getSingleScalarResult();
-	}
+        return $builder->getQuery()->getSingleScalarResult();
+    }
 }

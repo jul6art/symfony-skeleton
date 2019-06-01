@@ -61,31 +61,33 @@ class FunctionalityManager extends AbstractManager
         return false;
     }
 
-	/**
-	 * @return Functionality[]
-	 */
-	public function findAllForTable(): array
-	{
-		return $this->functionalityRepository->findAll();
-	}
+    /**
+     * @return Functionality[]
+     */
+    public function findAllForTable(): array
+    {
+        return $this->functionalityRepository->findAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		return $this->functionalityRepository->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        return $this->functionalityRepository->countAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAllForTable(): int
-	{
-		return $this->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAllForTable(): int
+    {
+        return $this->countAll();
+    }
 
     /**
      * @param string $name

@@ -37,13 +37,13 @@ class UserManager extends AbstractManager
      */
     private $locale;
 
-	/**
-	 * UserManager constructor.
-	 *
-	 * @param EntityManagerInterface $entityManager
-	 * @param string $default_theme
-	 * @param string $locale
-	 */
+    /**
+     * UserManager constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $default_theme
+     * @param string                 $locale
+     */
     public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
     {
         parent::__construct($entityManager);
@@ -82,44 +82,46 @@ class UserManager extends AbstractManager
         return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
     }
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
     public function findAllForAudit(): array
     {
         $result = [];
         $users = $this->userRepository->findAll();
 
         array_walk($users, function (User $user) use (&$result) {
-        	$result[$user->getId()] = $user->getFullname();
+            $result[$user->getId()] = $user->getFullname();
         });
 
         return $result;
     }
 
-	/**
-	 * @return User[]
-	 */
-	public function findAllForTable(): array
-	{
-		return $this->userRepository->findAll();
-	}
+    /**
+     * @return User[]
+     */
+    public function findAllForTable(): array
+    {
+        return $this->userRepository->findAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		return $this->userRepository->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        return $this->userRepository->countAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAllForTable(): int
-	{
-		return $this->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAllForTable(): int
+    {
+        return $this->countAll();
+    }
 }

@@ -130,26 +130,26 @@ class DefaultController extends AbstractFOSRestController
         return $this->redirectToRoute('admin_homepage');
     }
 
-	/**
-	 * @param $class
-	 * @param null $id
-	 * @param AuditReader $auditReader
-	 * @param int $audit_limit
-	 *
-	 * @return Response
-	 */
+    /**
+     * @param $class
+     * @param null        $id
+     * @param AuditReader $auditReader
+     * @param int         $audit_limit
+     *
+     * @return Response
+     */
     public function audit($class, $id = null, AuditReader $auditReader, int $audit_limit): Response
     {
-	    $auditEntity = AuditHelper::paramToNamespace($class);
-	    $audits = $auditReader->getAudits($auditEntity, $id, 1, $audit_limit);
+        $auditEntity = AuditHelper::paramToNamespace($class);
+        $audits = $auditReader->getAudits($auditEntity, $id, 1, $audit_limit);
 
-	    $view = $this->view()
-	                 ->setTemplate('includes/audit.html.twig')
-	                 ->setTemplateData([
-		                 'audits' => $audits,
-		                 'users' => $this->userManager->findAllForAudit(),
-	                 ]);
+        $view = $this->view()
+                     ->setTemplate('includes/audit.html.twig')
+                     ->setTemplateData([
+                         'audits' => $audits,
+                         'users' => $this->userManager->findAllForAudit(),
+                     ]);
 
-	    return $this->handleView($view);
+        return $this->handleView($view);
     }
 }

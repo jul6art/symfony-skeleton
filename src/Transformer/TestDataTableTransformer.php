@@ -23,17 +23,18 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
 {
     use DataTableTransformerTrait;
 
-	/**
-	 * @param mixed $test
-	 * @param null $format
-	 * @param array $context
-	 *
-	 * @return array|bool|float|int|string
-	 * @throws ExceptionInterface
-	 * @throws LoaderError
-	 * @throws RuntimeError
-	 * @throws SyntaxError
-	 */
+    /**
+     * @param mixed $test
+     * @param null  $format
+     * @param array $context
+     *
+     * @return array|bool|float|int|string
+     *
+     * @throws ExceptionInterface
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function normalize($test, $format = null, array $context = [])
     {
         if (!$test instanceof Test) {
@@ -45,39 +46,42 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
         $output = parent::normalize($test, $format, $context);
 
         if ($this->authorizationChecker->isGranted(TestVoter::VIEW, $test)) {
-        	$this->addAction('view', [
-        		'route' => 'admin_test_view',
-		        'routeParams' => [
-			        'id' => $test->getId(),
-		        ],
-		        'icon' => 'visibility',
-		        'color' => 'blue-grey',
-		        'label' => 'table.actions.test.view',
-	        ]);
+            $this->addAction(
+                'view',
+                'admin_test_view',
+                [
+                    'id' => $test->getId(),
+                ],
+                'table.actions.test.view',
+                'visibility',
+                'blue-grey'
+            );
         }
 
         if ($this->authorizationChecker->isGranted(TestVoter::EDIT, $test)) {
-        	$this->addAction('edit', [
-        		'route' => 'admin_test_edit',
-		        'routeParams' => [
-			        'id' => $test->getId(),
-		        ],
-		        'icon' => 'edit',
-		        'color' => 'theme',
-		        'label' => 'table.actions.test.edit',
-	        ]);
+            $this->addAction(
+                'edit',
+                'admin_test_edit',
+                [
+                    'id' => $test->getId(),
+                ],
+                'table.actions.test.edit',
+                'edit',
+                'theme'
+            );
         }
 
         if ($this->authorizationChecker->isGranted(TestVoter::DELETE, $test)) {
-        	$this->addAction('delete', [
-        		'route' => 'admin_test_delete',
-		        'routeParams' => [
-			        'id' => $test->getId(),
-		        ],
-		        'icon' => 'remove_circle_outline',
-		        'color' => 'black',
-		        'label' => 'table.actions.test.delete',
-	        ]);
+            $this->addAction(
+                'delete',
+                'admin_test_delete',
+                [
+                    'id' => $test->getId(),
+                ],
+                'table.actions.test.delete',
+                'remove_circle_outline',
+                'black'
+            );
         }
 
         $output['actions'] = $this->renderActions($this->actions, 'includes/datatable_actions_dropdown.html.twig');

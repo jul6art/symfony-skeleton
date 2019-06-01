@@ -20,20 +20,20 @@ class AuditExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @param string|null $idAsString
-	 * @param array $usernameList
-	 *
-	 * @return null|string
-	 */
+    /**
+     * @param string|null $idAsString
+     * @param array       $usernameList
+     *
+     * @return string|null
+     */
     public function blameAudit(string $idAsString = null, array $usernameList): ?string
     {
         if (!is_null($idAsString)) {
-	        $id = (int) $idAsString;
+            $id = (int) $idAsString;
 
-	        if (key_exists($id, $usernameList)) {
-		        return $usernameList[$id];
-	        }
+            if (key_exists($id, $usernameList)) {
+                return $usernameList[$id];
+            }
         }
 
         return null;

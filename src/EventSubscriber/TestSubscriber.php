@@ -11,7 +11,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterface
 {
-	/**
+    /**
      * @return array
      */
     public static function getSubscribedEvents()
@@ -23,9 +23,9 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
         ];
     }
 
-	/**
-	 * @param TestEvent $event
-	 */
+    /**
+     * @param TestEvent $event
+     */
     public function onTestAdded(TestEvent $event)
     {
         $this->flashBag->add('success', $this->translator->trans('notification.test.added', [], 'notification'));

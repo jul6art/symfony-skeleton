@@ -122,28 +122,28 @@ class TestVoter extends AbstractVoter
      */
     public function canView(Test $subject, TokenInterface $token)
     {
-	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
-	/**
-	 * @param $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
+    /**
+     * @param $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
     public function canAudit($subject, TokenInterface $token)
     {
         if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
-        	return false;
+            return false;
         }
 
-	    $auditEntity = AuditHelper::paramToNamespace(Test::class);
+        $auditEntity = AuditHelper::paramToNamespace(Test::class);
 
         $id = $subject instanceof Test ? $subject->getId() : null;
 
-	    $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
+        $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
 
-	    return !empty($audits);
+        return !empty($audits);
     }
 
     /**

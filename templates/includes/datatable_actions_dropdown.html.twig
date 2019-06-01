@@ -1,7 +1,7 @@
 {% if actions is not empty %}
     <div class="btn-group">
         <button type="button" class="btn bg-{{ theme_name() }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <small><i class="fa fa-cog"></i></small>  <span class="hidden-xs">Actions <span class="caret"></span></span>
+            <small><i class="fa fa-cog"></i></small>  <span class="hidden-xs">{{ 'table.head.actions' | trans({}, 'table') }} <span class="caret"></span></span>
         </button>
         <ul class="dropdown-menu">
             {% for key, action in actions %}

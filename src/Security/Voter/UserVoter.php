@@ -170,26 +170,26 @@ class UserVoter extends AbstractVoter
         return $this->canList($subject, $token);
     }
 
-	/**
-	 * @param $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canAudit($subject, TokenInterface $token)
-	{
-		if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
-			return false;
-		}
+    /**
+     * @param $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canAudit($subject, TokenInterface $token)
+    {
+        if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
+            return false;
+        }
 
-		$auditEntity = AuditHelper::paramToNamespace(User::class);
+        $auditEntity = AuditHelper::paramToNamespace(User::class);
 
-		$id = $subject instanceof User ? $subject->getId() : null;
+        $id = $subject instanceof User ? $subject->getId() : null;
 
-		$audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
+        $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
 
-		return !empty($audits);
-	}
+        return !empty($audits);
+    }
 
     /**
      * @param User           $subject

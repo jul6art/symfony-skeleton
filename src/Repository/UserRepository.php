@@ -74,16 +74,17 @@ class UserRepository extends ServiceEntityRepository
         return $builder->getQuery()->getOneOrNullResult();
     }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		$builder = $this->createQueryBuilder('u');
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        $builder = $this->createQueryBuilder('u');
 
-		$builder->select('COUNT(u.id)');
+        $builder->select('COUNT(u.id)');
 
-		return $builder->getQuery()->getSingleScalarResult();
-	}
+        return $builder->getQuery()->getSingleScalarResult();
+    }
 }

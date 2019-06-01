@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class NavbarBuilder
 {
-	use TestManagerTrait;
+    use TestManagerTrait;
 
     /**
      * @var FactoryInterface
@@ -78,22 +78,23 @@ class NavbarBuilder
         return $this;
     }
 
-	/**
-	 * @param ItemInterface $menu
-	 *
-	 * @return NavbarBuilder
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return NavbarBuilder
+     *
+     * @throws NonUniqueResultException
+     */
     private function menuTests(ItemInterface $menu): self
     {
-	    $badge = false;
+        $badge = false;
 
-	    if ($this->authorizationChecker->isGranted(TestVoter::LIST, Test::class)) {
-	    	$count = $this->testManager->countAll();
-	    	if ($count > 0) {
-	    		$badge = $count;
-		    }
-	    }
+        if ($this->authorizationChecker->isGranted(TestVoter::LIST, Test::class)) {
+            $count = $this->testManager->countAll();
+            if ($count > 0) {
+                $badge = $count;
+            }
+        }
 
         if ($this->authorizationChecker->isGranted(TestVoter::LIST, Test::class)
             || $this->authorizationChecker->isGranted(TestVoter::ADD, Test::class)) {
@@ -113,7 +114,7 @@ class NavbarBuilder
             ])->setExtras([
                 'translation_domain' => 'navbar',
                 'activated_routes' => ['admin_test_index', 'admin_test_edit', 'admin_test_view'],
-	            'badge' => $badge,
+                'badge' => $badge,
             ])->setLinkAttribute('class', 'waves-effect waves-block');
         }
 

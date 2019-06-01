@@ -34,31 +34,33 @@ class GroupManager extends AbstractManager
         $this->groupRepository = $this->entityManager->getRepository(Group::class);
     }
 
-	/**
-	 * @return Group[]
-	 */
-	public function findAllForTable(): array
-	{
-		return $this->groupRepository->findAll();
-	}
+    /**
+     * @return Group[]
+     */
+    public function findAllForTable(): array
+    {
+        return $this->groupRepository->findAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		return $this->groupRepository->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        return $this->groupRepository->countAll();
+    }
 
-	/**
-	 * @return int
-	 * @throws NonUniqueResultException
-	 */
-	public function countAllForTable(): int
-	{
-		return $this->countAll();
-	}
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAllForTable(): int
+    {
+        return $this->countAll();
+    }
 
     /**
      * @param string $name
