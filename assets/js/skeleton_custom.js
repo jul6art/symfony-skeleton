@@ -8,6 +8,7 @@ $.App = {
         this.tooltip();
         this.dialog();
         this.card();
+        this.settings();
         this.console();
     },
     colorize: function () {
@@ -31,44 +32,44 @@ $.App = {
                 ],
                 dangerMode: true,
             })
-            .then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: link.attr('href'),
-                        method: 'get',
-                        success: function (response) {
-                            if (response.success) {
-                                swal(link.data('dialog-success'), {
-                                    icon: "success",
-                                }).then(() => {
-                                    if (link.data('redirect')) {
-                                        window.location = link.data('redirect');
-                                    }
-                                });
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: link.attr('href'),
+                            method: 'get',
+                            success: function (response) {
+                                if (response.success) {
+                                    swal(link.data('dialog-success'), {
+                                        icon: "success",
+                                    }).then(() => {
+                                        if (link.data('redirect')) {
+                                            window.location = link.data('redirect');
+                                        }
+                                    });
+                                }
                             }
-                        }
-                    }).catch(err => {
-                        if (err) {
-                            console.log(err);
-                            swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                        } else {
-                            swal.stopLoading();
-                            swal.close();
-                        }
-                    });
-                } else {
-                    swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
-                }
-            })
-            .catch(err => {
-                if (err) {
-                    console.log(err);
-                    swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                } else {
-                    swal.stopLoading();
-                    swal.close();
-                }
-            });
+                        }).catch(err => {
+                            if (err) {
+                                console.log(err);
+                                swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                            } else {
+                                swal.stopLoading();
+                                swal.close();
+                            }
+                        });
+                    } else {
+                        swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
+                    }
+                })
+                .catch(err => {
+                    if (err) {
+                        console.log(err);
+                        swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                    } else {
+                        swal.stopLoading();
+                        swal.close();
+                    }
+                });
         });
     },
     blockUI: function (elem) {
@@ -97,6 +98,34 @@ $.App = {
 
         $('[data-toggle="grid-close"]').on('click', function () {
             $(this).closest('.card').remove();
+        });
+    },
+    settings: function () {
+        $('body').on('change', '#settings input[type="checkbox"]', function (e) {
+            var input = $(this);
+
+            $.ajax({
+                url: window.routing.generate('admin_functionality_switch', {functionality: input.data('id'), state: input.prop('checked') ? 1 : 0}),
+                method: 'GET',
+                success: function (result) {
+                    if (result.success) {
+                        swal(DIALOG_TRANSLATIONS.refresh_title, {
+                            icon: "success",
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                }
+            }).catch(err => {
+                if (err) {
+                    console.log(err);
+                    console.log(err.responseText);
+                    swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                } else {
+                    swal.stopLoading();
+                    swal.close();
+                }
+            });
         });
     },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {

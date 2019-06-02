@@ -43,6 +43,17 @@ class FunctionalityManager extends AbstractManager
         return FunctionalityFactory::create();
     }
 
+	/**
+	 * @param Functionality $functionality
+	 * @param bool $state
+	 *
+	 * @return Functionality
+	 */
+    public function update(Functionality $functionality, bool $state): Functionality
+    {
+        return $functionality->setActive($state);
+    }
+
     /**
      * @param string $name
      *

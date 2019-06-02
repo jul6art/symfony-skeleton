@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use App\Entity\Functionality;
 use App\Manager\FunctionalityManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Twig\Extension\AbstractExtension;
@@ -21,6 +22,7 @@ class FunctionalityExtension extends AbstractExtension
     {
         return [
             new TwigFunction('is_functionality_active', [$this, 'isFunctionalityActive']),
+            new TwigFunction('functionalities', [$this, 'getFunctionalities']),
         ];
     }
 
@@ -34,5 +36,13 @@ class FunctionalityExtension extends AbstractExtension
     public function isFunctionalityActive(string $name): bool
     {
         return $this->functionalityManager->isActive($name);
+    }
+
+	/**
+	 * @return Functionality[]
+	 */
+    public function getFunctionalities(): array
+    {
+        return $this->functionalityManager->findAll();
     }
 }

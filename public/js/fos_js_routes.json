@@ -1,1 +1,1 @@
-{"base_url":"","routes":{"admin_homepage":{"tokens":[["text","\/admin\/"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}
+{"base_url":"","routes":{"admin_functionality_switch":{"tokens":[["variable","\/","0|1","state",true],["variable","\/","[^\/]++","functionality",true],["text","\/admin\/functionality"]],"defaults":{"state":0},"requirements":{"state":"0|1"},"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}

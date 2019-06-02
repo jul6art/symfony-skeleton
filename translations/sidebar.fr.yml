@@ -24,3 +24,8 @@ sidebar:
             black: Noir
     settings:
         title: PARAMÈTRES
+    func:
+        title: FONCTIONALITÉS
+        switch_theme: 'Choix du thème'
+        switch_locale: 'Multilangue'
+        clear_cache: 'Rechargement'

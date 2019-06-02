@@ -30,54 +30,20 @@
         {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
             <div role="tabpanel" class="tab-pane fade{{ second_tab_active_class == '' ? '' : ' in active' }}" id="settings">
                 <div class="demo-settings">
-                    <p>FUNCTIONNALITES</p>
+                    <p>{{ 'sidebar.func.title' | trans({}, 'sidebar') }}</p>
                     <ul class="setting-list">
-                        <li>
-                            <span>Multilangue</span>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox"
-                                            {{ not is_functionality_active(constant('App\\Entity\\Functionality::FUNC_SWITCH_LOCALE')) ? '' : 'checked' }}
-                                    ><span class="lever"></span>
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <span>Email Redirect</span>
-                            <div class="switch">
-                                <label><input type="checkbox"><span class="lever"></span></label>
-                            </div>
-                        </li>
-                    </ul>
-                    <p>SYSTEM SETTINGS</p>
-                    <ul class="setting-list">
-                        <li>
-                            <span>Notifications</span>
-                            <div class="switch">
-                                <label><input type="checkbox" checked><span class="lever"></span></label>
-                            </div>
-                        </li>
-                        <li>
-                            <span>Auto Updates</span>
-                            <div class="switch">
-                                <label><input type="checkbox" checked><span class="lever"></span></label>
-                            </div>
-                        </li>
-                    </ul>
-                    <p>ACCOUNT SETTINGS</p>
-                    <ul class="setting-list">
-                        <li>
-                            <span>Offline</span>
-                            <div class="switch">
-                                <label><input type="checkbox"><span class="lever"></span></label>
-                            </div>
-                        </li>
-                        <li>
-                            <span>Location Permission</span>
-                            <div class="switch">
-                                <label><input type="checkbox" checked><span class="lever"></span></label>
-                            </div>
-                        </li>
+                        {% for functionality in functionalities() %}
+                            <li>
+                                <span>{{ ('sidebar.' ~ functionality.name) | trans({}, 'sidebar') }}</span>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" data-id="{{ functionality.id }}"
+                                                {{ not functionality.isActive ? '' : 'checked' }}
+                                        ><span class="lever"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

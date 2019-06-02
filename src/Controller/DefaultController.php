@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Functionality;
-use App\Form\Functionality\FunctionalitiesType;
+use App\Manager\FunctionalityManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\FunctionalityVoter;
 use App\Service\FileService;
@@ -26,9 +26,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class DefaultController extends AbstractFOSRestController
 {
     use UserManagerTrait;
+    use FunctionalityManagerTrait;
 
     /**
-     * @Route("/", name="homepage", methods={"GET"}, options={"expose"=true})
+     * @Route("/", name="homepage", methods={"GET"})
      */
     public function index(): Response
     {
@@ -153,4 +154,30 @@ class DefaultController extends AbstractFOSRestController
 
         return $this->handleView($view);
     }
+
+	/**
+	 * @param Request        $request
+	 * @param string         $locale
+	 * @param RefererService $refererService
+	 *
+	 * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
+	 *
+	 * @return Response
+	 */
+	public function functionality(Request $request, Functionality $functionality, int $state = 0): Response
+	{
+		$this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class);
+
+		if ($request->isXmlHttpRequest()) {
+			$this->functionalityManager->update($functionality, (bool) $state);
+
+			$this->functionalityManager->save($functionality);
+
+			return $this->json([
+				'success' => true,
+			]);
+		}
+
+		return $this->redirectToRoute('admin_homepage');
+	}
 }

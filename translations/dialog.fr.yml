@@ -10,6 +10,8 @@ dialog:
             text: 'La requête a échoué, désolé!'
         cancel:
             title: 'Annulé!'
+        refresh:
+            title: 'Vous devez recharger la page!'
         test:
             confirm: 'Une fois supprimé, vous ne pourrez pas récupérer ce test!'
             cancel: 'Votre test est toujours là!'
