@@ -30,12 +30,16 @@
         {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
             <div role="tabpanel" class="tab-pane fade{{ second_tab_active_class == '' ? '' : ' in active' }}" id="settings">
                 <div class="demo-settings">
-                    <p>GENERAL SETTINGS</p>
+                    <p>FUNCTIONNALITES</p>
                     <ul class="setting-list">
                         <li>
-                            <span>Report Panel Usage</span>
+                            <span>Multilangue</span>
                             <div class="switch">
-                                <label><input type="checkbox" checked><span class="lever"></span></label>
+                                <label>
+                                    <input type="checkbox"
+                                            {{ not is_functionality_active(constant('App\\Entity\\Functionality::FUNC_SWITCH_LOCALE')) ? '' : 'checked' }}
+                                    ><span class="lever"></span>
+                                </label>
                             </div>
                         </li>
                         <li>

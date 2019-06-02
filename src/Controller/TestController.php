@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Test;
 use App\Event\TestEvent;
-use App\Form\TestType;
+use App\Form\Test\AddTestType;
+use App\Form\Test\EditTestType;
 use App\Manager\TestManagerTrait;
 use App\Security\Voter\TestVoter;
 use App\Service\RefererService;
@@ -69,7 +70,7 @@ class TestController extends AbstractFOSRestController
 
         $test = $this->testManager->create();
 
-        $form = $this->createForm(TestType::class, $test);
+        $form = $this->createForm(AddTestType::class, $test);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -136,7 +137,7 @@ class TestController extends AbstractFOSRestController
 
         $referer = $refererService->getFormReferer($request, 'test');
 
-        $form = $this->createForm(TestType::class, $test);
+        $form = $this->createForm(EditTestType::class, $test);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

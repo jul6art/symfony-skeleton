@@ -72,7 +72,15 @@ $.App = {
         });
     },
     blockUI: function (elem) {
-        $(elem).block();
+        if (typeof elem === 'undefined') {
+            $.blockUI({
+                message: $('#loader')
+            });
+        } else {
+            $(elem).block({
+                message: $('#loader')
+            });
+        }
     },
     unblockUI: function (elem) {
         $.unblockUI();

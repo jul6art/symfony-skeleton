@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Functionality;
+use App\Form\Functionality\FunctionalitiesType;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\FunctionalityVoter;
 use App\Service\FileService;

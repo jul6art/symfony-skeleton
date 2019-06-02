@@ -238,8 +238,5 @@ $(document).ready(function() {
         datatable.on('draw.dt', function () {
             console.log('ici');
         });
-
-        $.App.blockUI('body');
-        $.App.unblockUI();
     });
 } );

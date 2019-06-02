@@ -163,3 +163,23 @@ BUTTONNS BEFORE LISTS
     }
   }
 }
+
+/**
+BLOCKUI
+ */
+.blockUI.blockMsg {
+  border: none!important;
+  background: none!important;
+}
+
+.blockUI.blockMsg,
+#loader {
+  position: absolute;
+  top: 50%!important;
+  left: 50%!important;
+  transform: translate(-50%, -50%);
+}
+
+.blockOverlay {
+  opacity: 0.3!important;
+}

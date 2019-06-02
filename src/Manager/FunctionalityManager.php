@@ -70,6 +70,14 @@ class FunctionalityManager extends AbstractManager
     }
 
     /**
+     * @return Functionality[]
+     */
+    public function findAll(): array
+    {
+        return $this->functionalityRepository->findAll();
+    }
+
+    /**
      * @return int
      *
      * @throws NonUniqueResultException

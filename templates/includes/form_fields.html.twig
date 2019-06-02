@@ -32,6 +32,28 @@
     {% endif %}
 {%- endblock money_widget %}
 
+{% block switch_row -%}
+    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
+        {{- block('switch_label') -}}
+        {{- block('switch_widget') -}}
+        {{ form_errors(form) }}
+    </div>
+{%- endblock switch_row %}
+
+{% block switch_widget -%}
+    <div class="switch">
+        <label>
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            <span class="lever"></span>
+        </label>
+    </div>
+{%- endblock switch_widget %}
+
+{% block switch_label -%}
+    {% set element = 'span' %}
+    {{- block('form_label') -}}
+{%- endblock switch_label %}
+
 {% block checkbox_widget -%}
     {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
     {% if 'checkbox-inline' in parent_label_class %}
@@ -111,7 +133,7 @@
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
-    <div class="form-group form-group-lg form-float{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="form-group form-float{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         <div class="form-line">
             {{ form_widget(form, widget_attr) }} {# -#}
             {{- form_label(form) }} {# -#}
@@ -147,14 +169,14 @@
 {%- endblock datetime_row %}
 
 {% block checkbox_row -%}
-    <div class="form-group{% if not valid %} has-error{% endif %}">
+    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
     </div>
 {%- endblock checkbox_row %}
 
 {% block radio_row -%}
-    <div class="form-group{% if not valid %} has-error{% endif %}">
+    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
     </div>

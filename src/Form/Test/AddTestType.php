@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Test;
 
 use App\Entity\Test;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TestType extends AbstractType
+/**
+ * Class AddTestType
+ * @package App\Form\Test
+ */
+class AddTestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
