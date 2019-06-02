@@ -18,7 +18,7 @@ $.App = {
         $('[data-toggle="tooltip"]').tooltip();
     },
     dialog: function () {
-        $('body').on('click', '[data-toggle="confirm"]', function (e) {
+        $('body').on('click', '[data-confirm="confirm"]', function (e) {
             e.preventDefault();
             var link = $(this);
 

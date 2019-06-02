@@ -9,7 +9,7 @@
                     <li role="separator" class="divider"></li>
                 {% endif %}
                 <li>
-                    <a href="{{ path(action.route, action.routeParams) }}" class=" waves-effect waves-block"
+                    <a href="{{ path(action.route, action.routeParams) }}" class="waves-effect waves-block"
                     {% for key, value in action.parameters %}
                         {{ key }}=
                         {% if key in ['data-dialog-confirm', 'data-dialog-cancel', 'data-dialog-success'] %}

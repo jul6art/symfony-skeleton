@@ -87,7 +87,7 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
                 'remove_circle_outline',
                 'black',
                 [
-                	'data-toggle' => 'confirm',
+                	'data-confirm' => 'confirm',
 	                'data-dialog-confirm' => 'dialog.ajax.test.confirm',
 	                'data-dialog-cancel' => 'dialog.ajax.test.cancel',
 	                'data-dialog-success' => 'dialog.ajax.test.success',
