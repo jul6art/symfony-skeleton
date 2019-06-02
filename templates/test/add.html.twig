@@ -35,7 +35,7 @@
 
 {% block form_footer %}
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
             <div class="btn-group btn-group-justified">
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">

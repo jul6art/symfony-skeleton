@@ -46,17 +46,8 @@
 
 {% block details_footer %}
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
             <div class="btn-group btn-group-justified">
-                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
-                    <div class="btn">
-                        <a class="btn btn-block waves-effect bg-black" type="reset" href="{{ path('admin_test_delete', {id: test.id}) }}"
-                           data-toggle="confirm" data-redirect="{{ path('admin_test_list') }}" data-dialog-confirm="{{ 'dialog.ajax.test.confirm' | trans({}, 'dialog') }}"
-                           data-dialog-cancel="{{ 'dialog.ajax.test.cancel' | trans({}, 'dialog') }}" data-dialog-success="{{ 'dialog.ajax.test.success' | trans({}, 'dialog') }}">
-                            <i class="material-icons">remove_circle_outline</i> <span class="hidden-xs">{{ 'button.delete' | trans({}, 'button') }}</span>
-                        </a>
-                    </div>
-                {% endif %}
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">
                         <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_test_list') }}">
@@ -84,5 +75,13 @@
                 })) }}
             </div>
         </div>
+    {% endif %}
+
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
+        <a class="col-{{ theme_name() }}" href="{{ path('admin_test_delete', {id: test.id}) }}" data-toggle="confirm"
+           data-redirect="{{ path('admin_test_list') }}" data-dialog-confirm="{{ 'dialog.ajax.test.confirm' | trans({}, 'dialog') }}"
+           data-dialog-cancel="{{ 'dialog.ajax.test.cancel' | trans({}, 'dialog') }}" data-dialog-success="{{ 'dialog.ajax.test.success' | trans({}, 'dialog') }}">
+            {{ 'button.test.delete' | trans({'%name%': test.name}, 'button') | raw }}
+        </a>
     {% endif %}
 {% endblock details_after %}

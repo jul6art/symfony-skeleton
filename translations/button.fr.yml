@@ -10,3 +10,5 @@ button:
         select: 'Tout sélectionner'
         unselect: 'Tout désélectionner'
         delete: 'Supprimer la sélection'
+    test:
+        delete: 'Supprimer le test <strong>%name%</strong>'
