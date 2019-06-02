@@ -38,9 +38,9 @@ class FunctionalityExtension extends AbstractExtension
         return $this->functionalityManager->isActive($name);
     }
 
-	/**
-	 * @return Functionality[]
-	 */
+    /**
+     * @return Functionality[]
+     */
     public function getFunctionalities(): array
     {
         return $this->functionalityManager->findAll();

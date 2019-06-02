@@ -8,8 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class AddTestType
- * @package App\Form\Test
+ * Class AddTestType.
  */
 class AddTestType extends AbstractType
 {

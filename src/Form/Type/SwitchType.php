@@ -6,15 +6,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
- * Class SwitchType
- * @package App\Form\Test
+ * Class SwitchType.
  */
 class SwitchType extends AbstractType
 {
-	/**
-	 * @return null|string
-	 */
-    public function getParent() {
-	    return CheckboxType::class;
+    /**
+     * @return string|null
+     */
+    public function getParent()
+    {
+        return CheckboxType::class;
     }
 }

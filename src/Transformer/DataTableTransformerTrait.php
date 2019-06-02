@@ -79,23 +79,23 @@ trait DataTableTransformerTrait
         return $this->actions;
     }
 
-	/**
-	 * @required
-	 */
+    /**
+     * @required
+     */
     public function setActions(): void
     {
         $this->actions = new ArrayCollection();
     }
 
-	/**
-	 * @return mixed
-	 */
+    /**
+     * @return mixed
+     */
     public function init()
     {
-	    $this->setActions();
+        $this->setActions();
 
         if (method_exists($this, '__init')) {
-        	return $this->__init();
+            return $this->__init();
         }
     }
 
@@ -141,13 +141,13 @@ trait DataTableTransformerTrait
         return $this;
     }
 
-	/**
-	 * @return self
-	 */
+    /**
+     * @return self
+     */
     public function addForm(): self
     {
-    	//@TODO;
+        //@TODO;
 
-	    return $this;
+        return $this;
     }
 }

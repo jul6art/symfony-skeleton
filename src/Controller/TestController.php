@@ -47,7 +47,6 @@ class TestController extends AbstractFOSRestController
                      ->setTemplate('test/list.html.twig')
                      ->setTemplateData([
                          'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json', [
-
                          ]),
                      ]);
 
@@ -165,15 +164,15 @@ class TestController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request $request
-	 * @param Test $test
-	 * @param EventDispatcherInterface $eventDispatcher
-	 *
-	 * @Route("/delete/{id}", name="test_delete", methods={"GET"})
-	 *
-	 * @return JsonResponse|RedirectResponse
-	 */
+    /**
+     * @param Request                  $request
+     * @param Test                     $test
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @Route("/delete/{id}", name="test_delete", methods={"GET"})
+     *
+     * @return JsonResponse|RedirectResponse
+     */
     public function delete(Request $request, Test $test, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);
@@ -182,7 +181,7 @@ class TestController extends AbstractFOSRestController
         $this->testManager->delete($test);
 
         if ($request->isXmlHttpRequest()) {
-        	return $this->json(['success' => true]);
+            return $this->json(['success' => true]);
         }
 
         return $this->redirectToRoute('admin_test_list');

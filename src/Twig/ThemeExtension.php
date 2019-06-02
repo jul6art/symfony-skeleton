@@ -15,7 +15,7 @@ use Twig\TwigFunction;
  */
 class ThemeExtension extends AbstractExtension
 {
-	use FunctionalityManagerTrait;
+    use FunctionalityManagerTrait;
 
     /**
      * @var TokenStorageInterface
@@ -48,16 +48,17 @@ class ThemeExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @return string
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @return string
+     *
+     * @throws NonUniqueResultException
+     */
     public function getThemeName(): string
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
         if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
-	        return $this->default_theme;
+            return $this->default_theme;
         }
 
         if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {

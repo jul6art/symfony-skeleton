@@ -148,33 +148,33 @@ class DefaultController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request        $request
-	 * @param string         $locale
-	 * @param RefererService $refererService
-	 *
-	 * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
-	 *
-	 * @return Response
-	 */
-	public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
-	{
-		$this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class);
+    /**
+     * @param Request        $request
+     * @param string         $locale
+     * @param RefererService $refererService
+     *
+     * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
+     *
+     * @return Response
+     */
+    public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
+    {
+        $this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class);
 
-		$referer = $refererService->getFormReferer($request, 'functionality');
+        $referer = $refererService->getFormReferer($request, 'functionality');
 
-		$this->functionalityManager->updateState($functionality, (bool) $state);
+        $this->functionalityManager->updateState($functionality, (bool) $state);
 
-		if ($request->isXmlHttpRequest()) {
-			return $this->json([
-				'success' => true,
-			]);
-		}
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'success' => true,
+            ]);
+        }
 
-		if (!is_null($referer)) {
-			return $this->redirect($referer);
-		}
+        if (!is_null($referer)) {
+            return $this->redirect($referer);
+        }
 
-		return $this->redirectToRoute('admin_homepage');
-	}
+        return $this->redirectToRoute('admin_homepage');
+    }
 }

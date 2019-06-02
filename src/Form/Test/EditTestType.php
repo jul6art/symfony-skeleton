@@ -2,21 +2,18 @@
 
 namespace App\Form\Test;
 
-use App\Entity\Test;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class EditTestType
- * @package App\Form\Test
+ * Class EditTestType.
  */
 class EditTestType extends AbstractType
 {
-	/**
-	 * @return null|string
-	 */
-    public function getParent() {
-	    return AddTestType::class;
+    /**
+     * @return string|null
+     */
+    public function getParent()
+    {
+        return AddTestType::class;
     }
 }
