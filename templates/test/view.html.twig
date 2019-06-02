@@ -78,7 +78,7 @@
     {% endif %}
 
     {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
-        <a class="col-{{ theme_name() }}" href="{{ path('admin_test_delete', {id: test.id}) }}" data-toggle="confirm"
+        <a class="col-{{ theme_name() }}" href="{{ path('admin_test_delete', {id: test.id}) }}" data-confirm="confirm"
            data-redirect="{{ path('admin_test_list') }}" data-dialog-confirm="{{ 'dialog.ajax.test.confirm' | trans({}, 'dialog') }}"
            data-dialog-cancel="{{ 'dialog.ajax.test.cancel' | trans({}, 'dialog') }}" data-dialog-success="{{ 'dialog.ajax.test.success' | trans({}, 'dialog') }}">
             {{ 'button.test.delete' | trans({'%name%': test.name}, 'button') | raw }}
