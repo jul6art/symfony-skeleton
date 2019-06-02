@@ -2,15 +2,12 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
-import 'jquery.are-you-sure/jquery.are-you-sure';
-
 $.App = {
     init: function () {
         this.colorize();
         this.tooltip();
         this.dialog();
         this.card();
-        this.form();
         this.console();
     },
     colorize: function () {
@@ -74,6 +71,12 @@ $.App = {
             });
         });
     },
+    blockUI: function (elem) {
+        $(elem).block();
+    },
+    unblockUI: function (elem) {
+        $.unblockUI();
+    },
     card: function () {
         $('[data-toggle="grid-collapse"]').on('click', function () {
             $(this).closest('.card').toggleClass('collapsed');
@@ -87,9 +90,6 @@ $.App = {
         $('[data-toggle="grid-close"]').on('click', function () {
             $(this).closest('.card').remove();
         });
-    },
-    form: function () {
-
     },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
         if (colorName === null || colorName === '') { colorName = 'bg-black'; }
@@ -151,7 +151,7 @@ $.App = {
         };
 
         var localStorageSupported = function (){
-            test = 'test';
+            var test = 'test';
             try {
                 localStorage.setItem(test, test);
                 localStorage.removeItem(test);
@@ -181,7 +181,6 @@ $.App = {
     }
 };
 
-
 $(document).ready(function () {
     $.App.init();
 
@@ -208,16 +207,5 @@ $(document).ready(function () {
         var text = $(this).data('original-text');
 
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
-    });
-
-    $('form:not(.no-watch)').areYouSure({
-        change: function() {
-            // Enable save button only if the form is dirty. i.e. something to save.
-            if ($(this).hasClass('dirty')) {
-                $(this).find('input[type="submit"]').removeAttr('disabled');
-            } else {
-                $(this).find('input[type="submit"]').attr('disabled', 'disabled');
-            }
-        }
     });
 });
