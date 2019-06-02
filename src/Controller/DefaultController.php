@@ -91,10 +91,7 @@ class DefaultController extends AbstractFOSRestController
         $referer = $refererService->getFormReferer($request, 'theme');
 
         if (in_array($name, $available_colors)) {
-            $user = ($this->getUser())
-                ->setTheme($name);
-
-            $this->userManager->save($user);
+            $this->userManager->updateTheme($this->getUser(), $name);
         }
 
         if (!is_null($referer)) {
@@ -119,11 +116,7 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $refererService->getFormReferer($request, 'locale');
 
-        $user = $this->getUser();
-
-        $user->setLocale($locale);
-
-        $this->userManager->save($user);
+        $this->userManager->updateLocale($this->getUser(), $locale);
 
         if (!is_null($referer)) {
             return $this->redirect($referer);
@@ -164,18 +157,22 @@ class DefaultController extends AbstractFOSRestController
 	 *
 	 * @return Response
 	 */
-	public function functionality(Request $request, Functionality $functionality, int $state = 0): Response
+	public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
 	{
 		$this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class);
 
+		$referer = $refererService->getFormReferer($request, 'functionality');
+
+		$this->functionalityManager->updateState($functionality, (bool) $state);
+
 		if ($request->isXmlHttpRequest()) {
-			$this->functionalityManager->update($functionality, (bool) $state);
-
-			$this->functionalityManager->save($functionality);
-
 			return $this->json([
 				'success' => true,
 			]);
+		}
+
+		if (!is_null($referer)) {
+			return $this->redirect($referer);
 		}
 
 		return $this->redirectToRoute('admin_homepage');

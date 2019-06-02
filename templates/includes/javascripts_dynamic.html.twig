@@ -22,4 +22,8 @@
         "confirm_button": "{{ 'dialog.ajax.buttons.success' | trans({}, 'dialog') }}",
         "cancel_button": "{{ 'dialog.ajax.buttons.cancel' | trans({}, 'dialog') }}",
     };
+    const ACTIVATED_FUNCTIONS = {};
+    {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_CONFIRM_DELETE')) %}
+        ACTIVATED_FUNCTIONS.confirm_delete = true;
+    {% endif %}
 </script>

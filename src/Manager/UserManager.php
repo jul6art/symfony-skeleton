@@ -72,6 +72,32 @@ class UserManager extends AbstractManager
         return UserFactory::createAdmin($this->groupManager, $this->locale, $this->default_theme);
     }
 
+	/**
+	 * @param User $user
+	 * @param string $locale
+	 *
+	 * @return bool
+	 */
+    public function updateLocale(user $user, string $locale): bool
+    {
+    	$user->setLocale($locale);
+
+    	return $this->save($user);
+    }
+
+	/**
+	 * @param User $user
+	 * @param string $locale
+	 *
+	 * @return bool
+	 */
+    public function updateTheme(user $user, string $theme): bool
+    {
+    	$user->setTheme($theme);
+
+    	return $this->save($user);
+    }
+
     /**
      * @return string
      */

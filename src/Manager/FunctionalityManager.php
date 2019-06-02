@@ -47,11 +47,13 @@ class FunctionalityManager extends AbstractManager
 	 * @param Functionality $functionality
 	 * @param bool $state
 	 *
-	 * @return Functionality
+	 * @return bool
 	 */
-    public function update(Functionality $functionality, bool $state): Functionality
+    public function updateState(Functionality $functionality, bool $state): bool
     {
-        return $functionality->setActive($state);
+        $functionality->setActive($state);
+
+        return $this->save($functionality);
     }
 
     /**

@@ -29,3 +29,4 @@ sidebar:
         switch_theme: 'Choix du thème'
         switch_locale: 'Multilangue'
         clear_cache: 'Rechargement'
+        confirm_delete: 'Popup de confirmation'

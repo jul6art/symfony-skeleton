@@ -18,59 +18,61 @@ $.App = {
         $('[data-toggle="tooltip"]').tooltip();
     },
     dialog: function () {
-        $('body').on('click', '[data-confirm="confirm"]', function (e) {
-            e.preventDefault();
-            var link = $(this);
+        if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
+            $('body').on('click', '[data-confirm="confirm"]', function (e) {
+                e.preventDefault();
+                var link = $(this);
 
-            swal({
-                title: DIALOG_TRANSLATIONS.confirm_title,
-                text: link.data('dialog-confirm'),
-                icon: "warning",
-                buttons: [
-                    DIALOG_TRANSLATIONS.cancel_button,
-                    DIALOG_TRANSLATIONS.confirm_button,
-                ],
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: link.attr('href'),
-                            method: 'get',
-                            success: function (response) {
-                                if (response.success) {
-                                    swal(link.data('dialog-success'), {
-                                        icon: "success",
-                                    }).then(() => {
-                                        if (link.data('redirect')) {
-                                            window.location = link.data('redirect');
-                                        }
-                                    });
-                                }
-                            }
-                        }).catch(err => {
-                            if (err) {
-                                console.log(err);
-                                swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                            } else {
-                                swal.stopLoading();
-                                swal.close();
-                            }
-                        });
-                    } else {
-                        swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
-                    }
+                swal({
+                    title: DIALOG_TRANSLATIONS.confirm_title,
+                    text: link.data('dialog-confirm'),
+                    icon: "warning",
+                    buttons: [
+                        DIALOG_TRANSLATIONS.cancel_button,
+                        DIALOG_TRANSLATIONS.confirm_button,
+                    ],
+                    dangerMode: true,
                 })
-                .catch(err => {
-                    if (err) {
-                        console.log(err);
-                        swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                    } else {
-                        swal.stopLoading();
-                        swal.close();
-                    }
-                });
-        });
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: link.attr('href'),
+                                method: 'get',
+                                success: function (response) {
+                                    if (response.success) {
+                                        swal(link.data('dialog-success'), {
+                                            icon: "success",
+                                        }).then(() => {
+                                            if (link.data('redirect')) {
+                                                window.location = link.data('redirect');
+                                            }
+                                        });
+                                    }
+                                }
+                            }).catch(err => {
+                                if (err) {
+                                    console.log(err);
+                                    swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                                } else {
+                                    swal.stopLoading();
+                                    swal.close();
+                                }
+                            });
+                        } else {
+                            swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
+                        }
+                    })
+                    .catch(err => {
+                        if (err) {
+                            console.log(err);
+                            swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                        } else {
+                            swal.stopLoading();
+                            swal.close();
+                        }
+                    });
+            });
+        }
     },
     blockUI: function (elem) {
         if (typeof elem === 'undefined') {
@@ -104,28 +106,38 @@ $.App = {
         $('body').on('change', '#settings input[type="checkbox"]', function (e) {
             var input = $(this);
 
-            $.ajax({
-                url: window.routing.generate('admin_functionality_switch', {functionality: input.data('id'), state: input.prop('checked') ? 1 : 0}),
-                method: 'GET',
-                success: function (result) {
-                    if (result.success) {
-                        swal(DIALOG_TRANSLATIONS.refresh_title, {
-                            icon: "success",
-                        }).then(() => {
-                            window.location.reload();
-                        });
+            if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
+                $.ajax({
+                    url: window.routing.generate('admin_functionality_switch', {
+                        functionality: input.data('id'),
+                        state: input.prop('checked') ? 1 : 0
+                    }),
+                    method: 'GET',
+                    success: function (result) {
+                        if (result.success) {
+                            swal(DIALOG_TRANSLATIONS.refresh_title, {
+                                icon: "success",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
                     }
-                }
-            }).catch(err => {
-                if (err) {
-                    console.log(err);
-                    console.log(err.responseText);
-                    swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                } else {
-                    swal.stopLoading();
-                    swal.close();
-                }
-            });
+                }).catch(err => {
+                    if (err) {
+                        console.log(err);
+                        console.log(err.responseText);
+                        swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                    } else {
+                        swal.stopLoading();
+                        swal.close();
+                    }
+                });
+            } else {
+                window.location = window.routing.generate('admin_functionality_switch', {
+                    functionality: input.data('id'),
+                    state: input.prop('checked') ? 1 : 0
+                });
+            }
         });
     },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
