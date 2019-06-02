@@ -36,6 +36,10 @@ $.App = {
                             if (response.success) {
                                 swal(link.data('dialog-success'), {
                                     icon: "success",
+                                }).then(() => {
+                                    if (link.data('redirect')) {
+                                        window.location = link.data('redirect');
+                                    }
                                 });
                             }
                         }
