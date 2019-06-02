@@ -26,4 +26,7 @@
     {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_CONFIRM_DELETE')) %}
         ACTIVATED_FUNCTIONS.confirm_delete = true;
     {% endif %}
+    {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_FORM_WATCHER')) %}
+        ACTIVATED_FUNCTIONS.form_watcher = true;
+    {% endif %}
 </script>

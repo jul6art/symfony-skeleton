@@ -45,7 +45,8 @@
                     </div>
                 {% endif %}
                 <div class="btn">
-                    <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit" disabled>
+                    <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
+                            {{ not is_functionality_active(constant('App\\Entity\\Functionality::FUNC_FORM_WATCHER')) ? '' : 'disabled' }}>
                         <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save' | trans({}, 'button') }}</span>
                     </button>
                 </div>

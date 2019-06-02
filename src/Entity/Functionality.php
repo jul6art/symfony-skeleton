@@ -18,6 +18,7 @@ class Functionality
     const FUNC_SWITCH_LOCALE = 'func.switch_locale';
     const FUNC_CLEAR_CACHE = 'func.clear_cache';
     const FUNC_CONFIRM_DELETE = 'func.confirm_delete';
+    const FUNC_FORM_WATCHER = 'func.form_watcher';
 
     use BlameableEntity;
     use TimestampableEntity;

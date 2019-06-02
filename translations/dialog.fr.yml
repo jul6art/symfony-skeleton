@@ -13,6 +13,6 @@ dialog:
         refresh:
             title: 'Vous devez recharger la page!'
         test:
-            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer ce test!'
-            cancel: 'Ce test est toujours là!'
-            success: 'Ce test a bien été supprimé!'
+            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test!'
+            cancel: 'Le test est toujours là!'
+            success: 'Le test a bien été supprimé!'

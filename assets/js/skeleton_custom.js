@@ -19,6 +19,7 @@ $.App = {
     },
     dialog: function () {
         if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
+            require ('sweetalert');
             $('body').on('click', '[data-confirm="confirm"]', function (e) {
                 e.preventDefault();
                 var link = $(this);

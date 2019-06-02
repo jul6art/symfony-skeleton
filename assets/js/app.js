@@ -6,7 +6,6 @@ import 'bootstrap';
 
 // plugins
 import 'bootstrap-notify';
-import 'sweetalert';
 import 'jquery-slimscroll';
 import 'node-waves';
 import 'blockui';
