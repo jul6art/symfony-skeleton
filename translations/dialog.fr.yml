@@ -1,5 +1,8 @@
 dialog:
     ajax:
+        buttons:
+            success: 'OK'
+            cancel: 'annuler'
         confirm:
             title: 'Êtes-vous sure ?'
         error:
@@ -9,5 +12,5 @@ dialog:
             title: 'Annulé!'
         test:
             confirm: 'Une fois supprimé, vous ne pourrez pas récupérer ce test!'
-            cancel: 'Votre test est toujours intact!'
-            success: 'Votre test a bie été supprimé!'
+            cancel: 'Votre test est toujours là!'
+            success: 'Votre test a bien été supprimé!'

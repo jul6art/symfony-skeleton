@@ -1,7 +1,7 @@
 // datatable
-require('../css/table.scss');
-require('datatables.net');
-require('datatables.net-dt');
+import '../css/table.scss';
+import 'datatables.net';
+import 'datatables.net-dt';
 
 /*! DataTables Bootstrap 3 integration
  * ©2011-2014 SpryMedia Ltd - datatables.net/license

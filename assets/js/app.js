@@ -1,16 +1,20 @@
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.scss');
+import '../css/app.scss';
+
+const $ = require('jquery');
 
 // bootstrap
-require('bootstrap');
+import 'bootstrap';
 
 // plugins
-require('jquery-slimscroll');
-require('node-waves');
+import 'bootstrap-notify';
+import 'sweetalert';
+import 'jquery-slimscroll';
+import 'node-waves';
 
 // routing
 window.routing = require('./routing');
 
 // theme
-require('./skeleton_script');
-require('./skeleton_custom');
+import './skeleton_script';
+import './skeleton_custom';

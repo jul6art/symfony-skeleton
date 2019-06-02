@@ -2,18 +2,22 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
-require('bootstrap-notify');
-require('sweetalert');
+import 'jquery.are-you-sure/jquery.are-you-sure';
 
 $.App = {
     init: function () {
         this.colorize();
+        this.tooltip();
         this.dialog();
         this.card();
+        this.form();
         this.console();
     },
     colorize: function () {
         $('.pagination li.active a').addClass('bg-' + THEME_NAME);
+    },
+    tooltip: function () {
+        $('[data-toggle="tooltip"]').tooltip();
     },
     dialog: function () {
         $('body').on('click', '[data-toggle="confirm"]', function (e) {
@@ -24,7 +28,10 @@ $.App = {
                 title: DIALOG_TRANSLATIONS.confirm_title,
                 text: link.data('dialog-confirm'),
                 icon: "warning",
-                buttons: true,
+                buttons: [
+                    DIALOG_TRANSLATIONS.cancel_button,
+                    DIALOG_TRANSLATIONS.confirm_button,
+                ],
                 dangerMode: true,
             })
             .then((willDelete) => {
@@ -80,6 +87,9 @@ $.App = {
         $('[data-toggle="grid-close"]').on('click', function () {
             $(this).closest('.card').remove();
         });
+    },
+    form: function () {
+
     },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
         if (colorName === null || colorName === '') { colorName = 'bg-black'; }
@@ -200,5 +210,14 @@ $(document).ready(function () {
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('form:not(.no-watch)').areYouSure({
+        change: function() {
+            // Enable save button only if the form is dirty. i.e. something to save.
+            if ($(this).hasClass('dirty')) {
+                $(this).find('input[type="submit"]').removeAttr('disabled');
+            } else {
+                $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+            }
+        }
+    });
 });
