@@ -9,7 +9,16 @@
                     <li role="separator" class="divider"></li>
                 {% endif %}
                 <li>
-                    <a href="{{ path(action.route, action.routeParams) }}" class=" waves-effect waves-block">
+                    <a href="{{ path(action.route, action.routeParams) }}" class=" waves-effect waves-block"
+                    {% for key, value in action.parameters %}
+                        {{ key }}=
+                        {% if key in ['data-dialog-confirm', 'data-dialog-cancel', 'data-dialog-success'] %}
+                            "{{ value | trans({}, 'dialog') }}"
+                        {% else %}
+                            "{{ value }}"
+                        {% endif %}
+                    {% endfor %}
+                    >
                         <i class="material-icons">{{ action.icon }}</i> {{ action.label | trans({}, 'table') }}
                     </a>
                 </li>

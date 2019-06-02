@@ -23,6 +23,11 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
 {
     use DataTableTransformerTrait;
 
+	/**
+	 * Automatically called on each iteration
+	 */
+    public function __init() {}
+
     /**
      * @param mixed $test
      * @param null  $format
@@ -41,9 +46,9 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
             return [];
         }
 
-        $this->init();
-
         $output = parent::normalize($test, $format, $context);
+
+	    $this->init();
 
         if ($this->authorizationChecker->isGranted(TestVoter::VIEW, $test)) {
             $this->addAction(
@@ -80,7 +85,13 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
                 ],
                 'table.actions.test.delete',
                 'remove_circle_outline',
-                'black'
+                'black',
+                [
+                	'data-toggle' => 'confirm',
+	                'data-dialog-confirm' => 'dialog.ajax.test.confirm',
+	                'data-dialog-cancel' => 'dialog.ajax.test.cancel',
+	                'data-dialog-success' => 'dialog.ajax.test.success',
+                ]
             );
         }
 

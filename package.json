@@ -33,6 +33,7 @@
         "jquery.are-you-sure": "^1.9.0",
         "jszip": "^3.2.1",
         "node-waves": "^0.7.6",
-        "pdfmake": "^0.1.56"
+        "pdfmake": "^0.1.56",
+        "sweetalert": "^2.1.2"
     }
 }

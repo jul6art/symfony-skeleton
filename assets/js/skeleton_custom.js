@@ -3,15 +3,65 @@ if (typeof jQuery === "undefined") {
 }
 
 require('bootstrap-notify');
+require('sweetalert');
 
 $.App = {
     init: function () {
         this.colorize();
+        this.dialog();
         this.card();
         this.console();
     },
     colorize: function () {
         $('.pagination li.active a').addClass('bg-' + THEME_NAME);
+    },
+    dialog: function () {
+        $('body').on('click', '[data-toggle="confirm"]', function (e) {
+            e.preventDefault();
+            var link = $(this);
+
+            swal({
+                title: DIALOG_TRANSLATIONS.confirm_title,
+                text: link.data('dialog-confirm'),
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: link.attr('href'),
+                        method: 'get',
+                        success: function (response) {
+                            if (response.success) {
+                                swal(link.data('dialog-success'), {
+                                    icon: "success",
+                                });
+                            }
+                        }
+                    }).catch(err => {
+                        if (err) {
+                            console.log(err);
+                            swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                        } else {
+                            swal.stopLoading();
+                            swal.close();
+                        }
+                    });
+                } else {
+                    swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
+                }
+            })
+            .catch(err => {
+                if (err) {
+                    console.log(err);
+                    swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                } else {
+                    swal.stopLoading();
+                    swal.close();
+                }
+            });
+        });
     },
     card: function () {
         $('[data-toggle="grid-collapse"]').on('click', function () {

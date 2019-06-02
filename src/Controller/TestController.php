@@ -12,6 +12,8 @@ use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,7 +45,9 @@ class TestController extends AbstractFOSRestController
         $view = $this->view()
                      ->setTemplate('test/list.html.twig')
                      ->setTemplateData([
-                         'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json'),
+                         'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json', [
+
+                         ]),
                      ]);
 
         return $this->handleView($view);
@@ -160,21 +164,25 @@ class TestController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-    /**
-     * @param Request                  $request
-     * @param Test                     $test
-     * @param EventDispatcherInterface $eventDispatcher
-     *
-     * @Route("/delete/{id}", name="test_delete", methods={"GET"})
-     *
-     * @return Response
-     */
+	/**
+	 * @param Request $request
+	 * @param Test $test
+	 * @param EventDispatcherInterface $eventDispatcher
+	 *
+	 * @Route("/delete/{id}", name="test_delete", methods={"GET"})
+	 *
+	 * @return JsonResponse|RedirectResponse
+	 */
     public function delete(Request $request, Test $test, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);
 
         $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
         $this->testManager->delete($test);
+
+        if ($request->isXmlHttpRequest()) {
+        	return $this->json(['success' => true]);
+        }
 
         return $this->redirectToRoute('admin_test_list');
     }

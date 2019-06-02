@@ -79,22 +79,24 @@ trait DataTableTransformerTrait
         return $this->actions;
     }
 
-    /**
-     * @required
-     */
+	/**
+	 * @required
+	 */
     public function setActions(): void
     {
         $this->actions = new ArrayCollection();
     }
 
-    public function init(): void
+	/**
+	 * @return mixed
+	 */
+    public function init()
     {
-        $this->initActions();
-    }
+	    $this->setActions();
 
-    public function initActions(): void
-    {
-        $this->actions = new ArrayCollection();
+        if (method_exists($this, '__init')) {
+        	return $this->__init();
+        }
     }
 
     /**
@@ -126,15 +128,26 @@ trait DataTableTransformerTrait
     public function addAction(string $name, string $route, array $routeParams = [], string $label = null, string $icon = null, string $color = null, array $parameters = []): self
     {
         if (!$this->actions->containsKey($name)) {
-            $this->actions->set($name, array_merge($parameters, [
+            $this->actions->set($name, [
                 'label' => $label,
                 'icon' => $icon,
                 'color' => $color,
                 'route' => $route,
                 'routeParams' => $routeParams,
-            ]));
+                'parameters' => $parameters,
+            ]);
         }
 
         return $this;
+    }
+
+	/**
+	 * @return self
+	 */
+    public function addForm(): self
+    {
+    	//@TODO;
+
+	    return $this;
     }
 }
