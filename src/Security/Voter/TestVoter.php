@@ -111,7 +111,7 @@ class TestVoter extends AbstractVoter
      */
     public function canEdit(Test $subject, TokenInterface $token)
     {
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**

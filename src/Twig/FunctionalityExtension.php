@@ -43,6 +43,6 @@ class FunctionalityExtension extends AbstractExtension
      */
     public function getFunctionalities(): array
     {
-        return $this->functionalityManager->findAll();
+        return $this->functionalityManager->findAllByConfigured();
     }
 }

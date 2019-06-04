@@ -90,12 +90,12 @@ trait DataTableTransformerTrait
     /**
      * @return mixed
      */
-    public function init()
+    public function reset()
     {
         $this->setActions();
 
-        if (method_exists($this, '__init')) {
-            return $this->__init();
+        if (method_exists($this, '__reset')) {
+            return $this->__reset();
         }
     }
 
@@ -111,7 +111,11 @@ trait DataTableTransformerTrait
      */
     public function renderActions(ArrayCollection $actions, string $view = 'includes/datatable_actions_list.html.twig'): string
     {
-        return $this->twig->render($view, ['actions' => $actions]);
+        $view = $this->twig->render($view, ['actions' => $actions]);
+
+        $this->reset();
+
+        return $view;
     }
 
     /**

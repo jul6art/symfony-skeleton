@@ -2,8 +2,11 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Functionality;
 use App\Entity\User;
+use App\Manager\FunctionalityManagerTrait;
 use App\Manager\UserManagerTrait;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -16,6 +19,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class LocaleSubscriber implements EventSubscriberInterface
 {
     use UserManagerTrait;
+    use FunctionalityManagerTrait;
 
     /**
      * @var string
@@ -63,9 +67,11 @@ class LocaleSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param GetResponseEvent $event
-     */
+	/**
+	 * @param GetResponseEvent $event
+	 *
+	 * @throws NonUniqueResultException
+	 */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
@@ -97,6 +103,10 @@ class LocaleSubscriber implements EventSubscriberInterface
                 $user->setLocale($newLocale);
                 $this->userManager->save($user);
             }
+        }
+
+        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+        	$newLocale = $this->defaultLocale;
         }
 
         if (!is_null($newLocale)

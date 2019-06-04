@@ -28,6 +28,12 @@ php bin/console server:start
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+### Functionalities
+
+> Every functionality can be disabled from the database or from 
+
+    services.yml -> parameters -> %available_functionalities%
+
 ### Breadcrumb
 
 > You can disabled the breadcrumb for a specific page

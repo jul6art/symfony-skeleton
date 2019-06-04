@@ -24,9 +24,10 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
     use DataTableTransformerTrait;
 
     /**
-     * Automatically called on each iteration.
+     * Automatically called on each iteration
+     * after each call to renderAction().
      */
-    public function __init()
+    public function __reset()
     {
     }
 
@@ -49,8 +50,6 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
         }
 
         $output = parent::normalize($test, $format, $context);
-
-        $this->init();
 
         if ($this->authorizationChecker->isGranted(TestVoter::VIEW, $test)) {
             $this->addAction(

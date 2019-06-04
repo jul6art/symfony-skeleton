@@ -6,6 +6,12 @@
 parameters:
     locale: 'fr'
     available_locales: fr|en|de
+    available_functionalities:
+        - func.switch_theme
+        - func.switch_locale
+        - func.clear_cache
+        - func.confirm_delete
+        - func.form_watcher
     available_colors:
         - red
         - pink
@@ -45,6 +51,7 @@ services:
             $default_theme: '%default_theme%'
             $available_colors: '%available_colors%'
             $audit_limit: '%audit_limit%'
+            $available_functionalities: '%available_functionalities%'
 
     App\:
         resource: '../src/*'
