@@ -32,6 +32,8 @@ parameters:
     skeleton_version: 1.0.1
     default_theme: red
     audit_limit: 200
+    toastr_vertical_position: bottom
+    toastr_horizontal_position: center
 
 services:
     _defaults:

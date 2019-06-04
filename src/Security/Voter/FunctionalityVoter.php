@@ -19,7 +19,7 @@ class FunctionalityVoter extends AbstractVoter
     const SWITCH_THEME = 'app.voters.functionality.switch_theme';
     const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
     const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
-    const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
+    const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
 
     /**
      * @param string $attribute
@@ -33,7 +33,7 @@ class FunctionalityVoter extends AbstractVoter
                 self::SWITCH_THEME,
                 self::SWITCH_LOCALE,
                 self::CACHE_CLEAR,
-                self::MANAGE_SETTINGS,
+                self::MANAGE_FUNCTIONALITIES,
             ])) {
             return false;
         }
@@ -77,7 +77,7 @@ class FunctionalityVoter extends AbstractVoter
             case self::CACHE_CLEAR:
                 return $this->canClearCache($subject, $token);
                 break;
-            case self::MANAGE_SETTINGS:
+            case self::MANAGE_FUNCTIONALITIES:
                 return $this->canManageSettings($subject, $token);
                 break;
         }

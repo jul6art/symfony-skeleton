@@ -51,8 +51,8 @@ class TopbarBuilder
         }
 
         if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)
-            || $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class)) {
-            $menu->addChild('topbar.manage_settings', [
+            || $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_FUNCTIONALITIES, Functionality::class)) {
+            $menu->addChild('topbar.manage_functionalities', [
                 'uri' => 'javascript:void(0);',
                 'label' => false,
             ])->setExtras([

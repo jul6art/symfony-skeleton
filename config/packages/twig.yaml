@@ -8,3 +8,5 @@ twig:
         available_locales: '%available_locales%'
         available_colors: '%available_colors%'
         skeleton_version: '%skeleton_version%'
+        toastr_vertical_position: '%toastr_vertical_position%'
+        toastr_horizontal_position: '%toastr_horizontal_position%'

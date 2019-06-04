@@ -243,14 +243,14 @@ $(document).ready(function () {
             }
 
             FLASH_MESSAGES[level].forEach(function (message) {
-                $.App.notify(colorClass, message, 'bottom', 'center');
+                $.App.notify(colorClass, message, TOASTR_POSITION.vertical, TOASTR_POSITION.horizontal);
             });
         }
     });
 
     $('.flash-message').on('click', function () {
-        var placementFrom = $(this).data('placement-from');
-        var placementAlign = $(this).data('placement-align');
+        var placementFrom = $(this).data('placement-from') ? $(this).data('placement-from') : TOASTR_POSITION.vertical;
+        var placementAlign = $(this).data('placement-align') ? $(this).data('placement-align') : TOASTR_POSITION.horizontal;
         var animateEnter = $(this).data('animate-enter');
         var animateExit = $(this).data('animate-exit');
         var colorName = $(this).data('color-name');

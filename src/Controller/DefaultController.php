@@ -159,7 +159,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_FUNCTIONALITIES, Functionality::class);
 
         $referer = $refererService->getFormReferer($request, 'functionality');
 

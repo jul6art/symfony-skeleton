@@ -6,7 +6,7 @@
             <li role="presentation" class="active"><a href="#skins" data-toggle="tab">{{ 'sidebar.skins.title' | trans({}, 'sidebar') }}</a></li>
         {% endif %}
 
-        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality') %}
             <li role="presentation" class="{{ second_tab_active_class }}">
                 <a href="#settings" data-toggle="tab">{{ 'sidebar.settings.title' | trans({}, 'sidebar') }}</a>
             </li>
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         {% endif %}
-        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality') %}
             <div role="tabpanel" class="tab-pane fade{{ second_tab_active_class == '' ? '' : ' in active' }}" id="settings">
                 <div class="demo-settings">
                     <p>{{ 'sidebar.func.title' | trans({}, 'sidebar') }}</p>
