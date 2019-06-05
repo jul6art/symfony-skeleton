@@ -135,6 +135,12 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canManageSettings(string $subject, TokenInterface $token)
     {
+    	$functionalities = $this->functionalityManager->findAllByConfigured();
+
+    	if (empty($functionalities)) {
+    		return false;
+	    }
+
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 }
