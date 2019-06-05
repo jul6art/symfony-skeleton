@@ -240,46 +240,48 @@ class User extends BaseUser
         return null !== $this->getSetting($name);
     }
 
-    public function __call($name, $arguments)
+	/**
+	 * @return string|null
+	 */
+	public function getLocale()
+	{
+		if ($this->hasSetting(self::SETTING_LOCALE)) {
+			return $this->getSetting(self::SETTING_LOCALE)->getValue();
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param $value
+	 *
+	 * @return User
+	 */
+    public function setLocale($value): self
     {
-        $function = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($name, 3)));
-
-        if (0 === strpos($name, 'get')) {
-            return $this->$function;
-        }
-
-        if (0 === strpos($name, 'set')) {
-            $this->$function = $arguments[0];
-
-            return $this;
-        }
-
-        return false;
+        return $this->setSetting(self::SETTING_LOCALE, $value);
     }
 
-    /**
-     * @param $name
-     *
-     * @return string|null
-     */
-    public function __get($name)
-    {
-        if ($this->hasSetting($name)) {
-            return $this->getSetting($name)->getValue();
-        }
+	/**
+	 * @return string|null
+	 */
+	public function getTheme()
+	{
+		if ($this->hasSetting(self::SETTING_THEME)) {
+			return $this->getSetting(self::SETTING_THEME)->getValue();
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    /**
-     * @param string $name
-     * @param string $value
-     *
-     * @return self
-     */
-    public function __set($name, $value): self
+	/**
+	 * @param $value
+	 *
+	 * @return User
+	 */
+    public function setTheme($value): self
     {
-        return $this->setSetting($name, $value);
+        return $this->setSetting(self::SETTING_THEME, $value);
     }
 
     /**
