@@ -51,21 +51,7 @@
                 </div>
             {% endif %}
             {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
-                <div class="demo-settings">
-                    <p>{{ 'sidebar.settings.title' | trans({}, 'sidebar') }}</p>
-                    <ul class="setting-list">
-                        <li>
-                            {% for item in settings() %}
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="{{ item.name }}" data-id="{{ item.id }}" value="{{ item.value }}">
-                                        <label class="form-label">{{ ('sidebar.' ~ item.name) | trans({}, 'sidebar') }}</label>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </li>
-                    </ul>
-                </div>
+                {% include 'includes/settings.html.twig' %}
             {% endif %}
             </div>
         {% endif %}

@@ -29,8 +29,18 @@ sidebar:
         base_title: 'Titre de base'
         default_theme: 'Thème par défaut'
         audit_limit: 'Limite d''audit'
-        toastr_vertical_position: 'Position verticale des notifications'
-        toastr_horizontal_position: 'Position horizontale des notifications'
+        toastr_vertical_position:
+            title: 'Position verticale des notifis'
+            choices:
+                top: Haut
+                middle: Milieu
+                bottom: Bas
+        toastr_horizontal_position:
+            title: 'Position horizontale des notifs'
+            choices:
+                left: Gauche
+                center: Centre
+                right: Droite
     func:
         title: FONCTIONALITÉS
         switch_theme: 'Choix du thème'

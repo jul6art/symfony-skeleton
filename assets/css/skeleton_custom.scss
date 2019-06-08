@@ -53,6 +53,19 @@ ul.demo-choose-skin a {
   text-decoration: none;
 }
 
+.right-sidebar #settings .setting-list .dropdown-menu > li {
+  padding: 0;
+}
+
+.bootstrap-select button {
+  box-shadow: none !important;
+  border-bottom: 1px solid #ddd !important;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+}
+
 /**
 CARD ACTIONS
  */

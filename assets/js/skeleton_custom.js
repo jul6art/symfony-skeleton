@@ -141,36 +141,38 @@ $.App = {
         }).on('change', '#settings input[type="text"], #settings select', function (e) {
             var input = $(this);
 
-            if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
-                $.ajax({
-                    url: window.routing.generate('admin_setting_set', {
+            if (input.val() != -1) {
+                if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
+                    $.ajax({
+                        url: window.routing.generate('admin_setting_set', {
+                            setting: input.data('id'),
+                            value: input.val().toString()
+                        }),
+                        method: 'GET',
+                        success: function (result) {
+                            if (result.success) {
+                                swal(DIALOG_TRANSLATIONS.refresh_title, {
+                                    icon: "success",
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            }
+                        }
+                    }).catch(err => {
+                        if (err) {
+                            console.log(err);
+                            swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                        } else {
+                            swal.stopLoading();
+                            swal.close();
+                        }
+                    });
+                } else {
+                    window.location = window.routing.generate('admin_setting_set', {
                         setting: input.data('id'),
                         value: input.val()
-                    }),
-                    method: 'GET',
-                    success: function (result) {
-                        if (result.success) {
-                            swal(DIALOG_TRANSLATIONS.refresh_title, {
-                                icon: "success",
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        }
-                    }
-                }).catch(err => {
-                    if (err) {
-                        console.log(err);
-                        swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
-                    } else {
-                        swal.stopLoading();
-                        swal.close();
-                    }
-                });
-            } else {
-                window.location = window.routing.generate('admin_setting_set', {
-                    setting: input.data('id'),
-                    value: input.val()
-                });
+                    });
+                }
             }
         });
     },

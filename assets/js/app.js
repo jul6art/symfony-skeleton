@@ -9,6 +9,7 @@ import 'bootstrap-notify';
 import 'jquery-slimscroll';
 import 'node-waves';
 import 'blockui';
+import 'bootstrap-select';
 
 // routing
 window.routing = require('./routing');
