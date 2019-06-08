@@ -17,6 +17,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class FunctionalityRepository extends ServiceEntityRepository
 {
+	use RepositoryTrait;
+
     /**
      * FunctionalityRepository constructor.
      *
@@ -25,21 +27,6 @@ class FunctionalityRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Functionality::class);
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $name
-     *
-     * @return self
-     */
-    public function filterByName(QueryBuilder $builder, string $name): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('f.name', ':name'))
-            ->setParameter('name', $name, Type::STRING);
-
-        return $this;
     }
 
     /**
@@ -54,7 +41,7 @@ class FunctionalityRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('f');
 
         $this
-            ->filterByName($builder, $name);
+            ->filterLowercase($builder, 'f.name', $name);
 
         return $builder->getQuery()->getOneOrNullResult();
     }
@@ -68,7 +55,7 @@ class FunctionalityRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('f');
 
-        $builder->select('COUNT(f.id)');
+        $builder->select($builder->expr()->count('f'));
 
         return $builder->getQuery()->getSingleScalarResult();
     }

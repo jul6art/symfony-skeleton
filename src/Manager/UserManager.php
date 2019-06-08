@@ -150,4 +150,10 @@ class UserManager extends AbstractManager
     {
         return $this->countAll();
     }
+
+
+    public function deleteTest(int $id) {
+    	$user = $this->userRepository->find($id);
+    	$this->delete($user);
+    }
 }

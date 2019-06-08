@@ -17,6 +17,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
+	use RepositoryTrait;
+
     /**
      * FunctionalityRepository constructor.
      *
@@ -25,36 +27,6 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $username
-     *
-     * @return self
-     */
-    public function filterByUsername(QueryBuilder $builder, string $username): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('u.username', ':username'))
-            ->setParameter('username', $username, Type::STRING);
-
-        return $this;
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $email
-     *
-     * @return self
-     */
-    public function filterByEmail(QueryBuilder $builder, string $email): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('u.email', ':email'))
-            ->setParameter('email', $email, Type::STRING);
-
-        return $this;
     }
 
     /**
@@ -69,7 +41,24 @@ class UserRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('u');
 
         $this
-            ->filterByUsername($builder, $name);
+            ->filterLowercase($builder, 'u.username', $name);
+
+        return $builder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param string $email
+     *
+     * @return User|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneByEmail(string $email): ?User
+    {
+        $builder = $this->createQueryBuilder('u');
+
+        $this
+            ->filterLowercase($builder, 'u.email', $email);
 
         return $builder->getQuery()->getOneOrNullResult();
     }
@@ -83,7 +72,7 @@ class UserRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('u');
 
-        $builder->select('COUNT(u.id)');
+        $builder->select($builder->expr()->count('u'));
 
         return $builder->getQuery()->getSingleScalarResult();
     }

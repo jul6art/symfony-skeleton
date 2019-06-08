@@ -16,7 +16,7 @@ trait BlameableEntity
      *
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $createdBy;
 
@@ -25,7 +25,7 @@ trait BlameableEntity
      *
      * @Gedmo\Blameable(on="update")
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $updatedBy;
 

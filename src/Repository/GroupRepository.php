@@ -18,6 +18,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class GroupRepository extends ServiceEntityRepository
 {
+	use RepositoryTrait;
+
     /**
      * TestRepository constructor.
      *
@@ -26,36 +28,6 @@ class GroupRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Group::class);
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param User         $user
-     *
-     * @return self
-     */
-    public function filterByUser(QueryBuilder $builder, User $user): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('g.user', ':user'))
-            ->setParameter('user', $user);
-
-        return $this;
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $name
-     *
-     * @return self
-     */
-    public function filterByName(QueryBuilder $builder, string $name): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('g.name', ':name'))
-            ->setParameter('name', $name, Type::STRING);
-
-        return $this;
     }
 
     /**
@@ -68,7 +40,7 @@ class GroupRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('g');
 
         $this
-            ->filterByUser($builder, $user);
+            ->filterByUser($builder, 'g.user', $user);
 
         return $builder->getQuery()->getResult();
     }
@@ -85,7 +57,7 @@ class GroupRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('g');
 
         $this
-            ->filterByName($builder, $name);
+            ->filterLowercase($builder, 'g.name', $name);
 
         return $builder->getQuery()->getOneOrNullResult();
     }
@@ -104,7 +76,7 @@ class GroupRepository extends ServiceEntityRepository
 
         $this
             ->filterByUser($builder, $user)
-            ->filterByName($builder, $name);
+            ->filterLowercase($builder, 'g.name', $name);
 
         return $builder->getQuery()->getOneOrNullResult();
     }
@@ -118,7 +90,7 @@ class GroupRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('g');
 
-        $builder->select('COUNT(g.id)');
+        $builder->select($builder->expr()->count('g'));
 
         return $builder->getQuery()->getSingleScalarResult();
     }

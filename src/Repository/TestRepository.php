@@ -14,6 +14,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TestRepository extends ServiceEntityRepository
 {
+	use RepositoryTrait;
+
     /**
      * TestRepository constructor.
      *
@@ -22,21 +24,6 @@ class TestRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Test::class);
-    }
-
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $name
-     *
-     * @return self
-     */
-    public function filterByName(QueryBuilder $builder, string $name): self
-    {
-        $builder
-            ->andWhere($builder->expr()->eq('t.name', ':name'))
-            ->setParameter('name', $name, Type::STRING);
-
-        return $this;
     }
 
     /**
@@ -51,7 +38,7 @@ class TestRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('t');
 
         $this
-            ->filterByName($builder, $name);
+            ->filterLowercase($builder, 't.name', $name);
 
         return $builder->getQuery()->getOneOrNullResult();
     }
@@ -65,7 +52,7 @@ class TestRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('t');
 
-        $builder->select('COUNT(t.id)');
+        $builder->select($builder->expr()->count('t'));
 
         return $builder->getQuery()->getSingleScalarResult();
     }

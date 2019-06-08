@@ -6,7 +6,9 @@ use App\Entity\Test;
 use App\Event\TestEvent;
 use App\Form\Test\AddTestType;
 use App\Form\Test\EditTestType;
+use App\Manager\GroupManagerTrait;
 use App\Manager\TestManagerTrait;
+use App\Manager\UserManagerTrait;
 use App\Security\Voter\TestVoter;
 use App\Service\RefererService;
 use App\Transformer\TestDataTableTransformer;
@@ -27,6 +29,7 @@ use Symfony\Component\Serializer\Serializer;
 class TestController extends AbstractFOSRestController
 {
     use TestManagerTrait;
+    use UserManagerTrait;
 
     /**
      * @param TestDataTableTransformer $testDataTableTransformer
@@ -143,11 +146,7 @@ class TestController extends AbstractFOSRestController
             $this->testManager->save($test);
             $eventDispatcher->dispatch(TestEvent::EDITED, new TestEvent($test));
 
-            if (!is_null($referer)) {
-                return $this->redirect($referer);
-            }
-
-            return $this->redirectToRoute('admin_test_list');
+            return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_test_list');
         }
 
         $serializer = new Serializer([$testTransformer]);
@@ -180,10 +179,6 @@ class TestController extends AbstractFOSRestController
         $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
         $this->testManager->delete($test);
 
-        if ($request->isXmlHttpRequest()) {
-            return $this->json(['success' => true]);
-        }
-
-        return $this->redirectToRoute('admin_test_list');
+        return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('admin_test_list');
     }
 }

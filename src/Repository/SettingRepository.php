@@ -17,6 +17,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class SettingRepository extends ServiceEntityRepository
 {
+	use RepositoryTrait;
+
 	/**
 	 * SettingRepository constructor.
 	 *
@@ -26,21 +28,6 @@ class SettingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Setting::class);
     }
-
-	/**
-	 * @param QueryBuilder $builder
-	 * @param string       $name
-	 *
-	 * @return self
-	 */
-	public function filterByName(QueryBuilder $builder, string $name): self
-	{
-		$builder
-			->andWhere($builder->expr()->eq('s.name', ':name'))
-			->setParameter('name', $name, Type::STRING);
-
-		return $this;
-	}
 
 	/**
 	 * @param string $name
@@ -54,7 +41,7 @@ class SettingRepository extends ServiceEntityRepository
 		$builder = $this->createQueryBuilder('s');
 
 		$this
-			->filterByName($builder, $name);
+			->filterLowercase($builder, 's.name', $name);
 
 		return $builder->getQuery()->getOneOrNullResult();
 	}
@@ -68,7 +55,7 @@ class SettingRepository extends ServiceEntityRepository
 	{
 		$builder = $this->createQueryBuilder('s');
 
-		$builder->select('COUNT(s.id)');
+		$builder->select($builder->expr()->count('s'));
 
 		return $builder->getQuery()->getSingleScalarResult();
 	}

@@ -67,11 +67,7 @@ class DefaultController extends AbstractFOSRestController
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 
-        if (!is_null($referer)) {
-            return $this->redirect($referer);
-        }
-
-        return $this->redirectToRoute('admin_homepage');
+	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
     /**
@@ -94,11 +90,7 @@ class DefaultController extends AbstractFOSRestController
             $this->userManager->updateTheme($this->getUser(), $name);
         }
 
-        if (!is_null($referer)) {
-            return $this->redirect($referer);
-        }
-
-        return $this->redirectToRoute('admin_homepage');
+	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
     /**
@@ -118,11 +110,7 @@ class DefaultController extends AbstractFOSRestController
 
         $this->userManager->updateLocale($this->getUser(), $locale);
 
-        if (!is_null($referer)) {
-            return $this->redirect($referer);
-        }
-
-        return $this->redirectToRoute('admin_homepage');
+	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
     /**
@@ -171,10 +159,6 @@ class DefaultController extends AbstractFOSRestController
             ]);
         }
 
-        if (!is_null($referer)) {
-            return $this->redirect($referer);
-        }
-
-        return $this->redirectToRoute('admin_homepage');
+        return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 }
