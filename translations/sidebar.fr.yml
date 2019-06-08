@@ -24,6 +24,13 @@ sidebar:
             black: Noir
     settings:
         title: PARAMÈTRES
+    setting:
+        project_name: 'Nom du projet'
+        base_title: 'Titre de base'
+        default_theme: 'Thème par défaut'
+        audit_limit: 'Limite d''audit'
+        toastr_vertical_position: 'Position verticale des notifications'
+        toastr_horizontal_position: 'Position horizontale des notifications'
     func:
         title: FONCTIONALITÉS
         switch_theme: 'Choix du thème'
@@ -31,3 +38,4 @@ sidebar:
         clear_cache: 'Rechargement'
         confirm_delete: 'Popup de confirmation'
         form_watcher: 'Surveillance des formulaires'
+        manage_settings: 'Modifier les paramètres'

@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Functionality;
+use App\Entity\Setting;
 use App\Manager\FunctionalityManagerTrait;
+use App\Manager\SettingManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\FunctionalityVoter;
+use App\Security\Voter\SettingVoter;
 use App\Service\FileService;
 use App\Service\RefererService;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
+use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -27,6 +31,7 @@ class DefaultController extends AbstractFOSRestController
 {
     use UserManagerTrait;
     use FunctionalityManagerTrait;
+    use SettingManagerTrait;
 
     /**
      * @Route("/", name="homepage", methods={"GET"})
@@ -113,18 +118,23 @@ class DefaultController extends AbstractFOSRestController
 	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
-    /**
-     * @param $class
-     * @param null        $id
-     * @param AuditReader $auditReader
-     * @param int         $audit_limit
-     *
-     * @return Response
-     */
-    public function audit($class, $id = null, AuditReader $auditReader, int $audit_limit): Response
+	/**
+	 * @param $class
+	 * @param null $id
+	 * @param AuditReader $auditReader
+	 *
+	 * @return Response
+	 * @throws NonUniqueResultException
+	 */
+    public function audit($class, $id = null, AuditReader $auditReader): Response
     {
         $auditEntity = AuditHelper::paramToNamespace($class);
-        $audits = $auditReader->getAudits($auditEntity, $id, 1, $audit_limit);
+        $audits = $auditReader->getAudits(
+        	$auditEntity,
+	        $id,
+	        1,
+	        $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+        );
 
         $view = $this->view()
                      ->setTemplate('includes/audit.html.twig')
@@ -147,11 +157,37 @@ class DefaultController extends AbstractFOSRestController
      */
     public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::MANAGE_FUNCTIONALITIES, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT, $functionality);
 
         $referer = $refererService->getFormReferer($request, 'functionality');
 
         $this->functionalityManager->updateState($functionality, (bool) $state);
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'success' => true,
+            ]);
+        }
+
+        return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+    }
+
+    /**
+     * @param Request        $request
+     * @param string         $locale
+     * @param RefererService $refererService
+     *
+     * @Route("/setting/{setting}/{value}", name="setting_set", methods={"GET"}, options={"expose"=true})
+     *
+     * @return Response
+     */
+    public function setting(Request $request, Setting $setting, string $value = '', RefererService $refererService): Response
+    {
+        $this->denyAccessUnlessGranted(SettingVoter::EDIT, $setting);
+
+        $referer = $refererService->getFormReferer($request, 'setting');
+
+        $this->settingManager->update($setting, $value);
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([

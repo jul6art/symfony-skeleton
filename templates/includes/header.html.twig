@@ -6,9 +6,9 @@
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" href="{{ path('admin_homepage') }}">
                 {% if logo is defined %}
-                    <img src="{{ logo }}" alt="logo {{ project_name }}" class="inline">
+                    <img src="{{ logo }}" alt="logo {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" class="inline">
                 {% endif %}
-                {{ project_name | upper }}
+                {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) | upper }}
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">

@@ -3,8 +3,10 @@
 namespace App\Twig;
 
 use App\Entity\Functionality;
+use App\Entity\Setting;
 use App\Entity\User;
 use App\Manager\FunctionalityManagerTrait;
+use App\Manager\SettingManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
@@ -16,6 +18,7 @@ use Twig\TwigFunction;
 class ThemeExtension extends AbstractExtension
 {
     use FunctionalityManagerTrait;
+    use SettingManagerTrait;
 
     /**
      * @var TokenStorageInterface
@@ -23,19 +26,13 @@ class ThemeExtension extends AbstractExtension
     private $tokenStorage;
 
     /**
-     * @var string
-     */
-    private $default_theme;
-
-    /**
      * ThemeExtension constructor.
      *
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(TokenStorageInterface $tokenStorage, string $default_theme)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->default_theme = $default_theme;
     }
 
     /**
@@ -56,15 +53,16 @@ class ThemeExtension extends AbstractExtension
     public function getThemeName(): string
     {
         $user = $this->tokenStorage->getToken()->getUser();
+	    $default = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
-            return $this->default_theme;
+	    if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
+	    	return $default;
         }
 
         if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
             return $user->getTheme();
         }
 
-        return $this->default_theme;
+	    return $default;
     }
 }

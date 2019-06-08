@@ -23,8 +23,8 @@
         "cancel_button": "{{ 'dialog.ajax.buttons.cancel' | trans({}, 'dialog') }}",
     };
     const TOASTR_POSITION = {
-        "vertical": "{{ toastr_vertical_position }}",
-        "horizontal": "{{ toastr_horizontal_position }}",
+        "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
+        "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
     };
     const ACTIVATED_FUNCTIONS = {};
     {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_CONFIRM_DELETE')) %}

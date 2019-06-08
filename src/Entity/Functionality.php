@@ -19,6 +19,7 @@ class Functionality
     const FUNC_CLEAR_CACHE = 'func.clear_cache';
     const FUNC_CONFIRM_DELETE = 'func.confirm_delete';
     const FUNC_FORM_WATCHER = 'func.form_watcher';
+    const FUNC_MANAGE_SETTINGS = 'func.manage_settings';
 
     use BlameableEntity;
     use TimestampableEntity;

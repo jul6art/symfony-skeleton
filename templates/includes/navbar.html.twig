@@ -43,7 +43,8 @@
     <!-- #END# Left Sidebar -->
     <!-- Right Sidebar -->
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_THEME'), 'App\\Entity\\Functionality')
-        or is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality') %}
+        or is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality')
+        or is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Functionality') %}
         {% include 'includes/sidebar.html.twig' %}
     {% endif %}
     <!-- #END# Right Sidebar -->

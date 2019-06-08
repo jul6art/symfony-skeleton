@@ -2,13 +2,9 @@
 
 namespace App\Twig;
 
-use App\Entity\Functionality;
 use App\Entity\Setting;
-use App\Entity\User;
-use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -26,6 +22,8 @@ class SettingExtension extends AbstractExtension
     {
         return [
             new TwigFunction('setting', [$this, 'getSetting']),
+            new TwigFunction('setting_value', [$this, 'getSettingValue']),
+            new TwigFunction('settings', [$this, 'getSettings']),
         ];
     }
 
@@ -39,4 +37,26 @@ class SettingExtension extends AbstractExtension
     {
         return $this->settingManager->findOneByName($name);
     }
+
+	/**
+	 * @param string $name
+	 * @param string|null $default
+	 *
+	 * @return string
+	 * @throws NonUniqueResultException
+	 */
+    public function getSettingValue(string $name, string $default  = null): string
+    {
+        $setting = $this->settingManager->findOneByName($name);
+
+        return $setting === null ? (string) $default : (string) $setting->getValue();
+    }
+
+	/**
+	 * @return Setting[]
+	 */
+	public function getSettings(): array
+	{
+		return $this->settingManager->findAll();
+	}
 }

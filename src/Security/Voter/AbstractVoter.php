@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 abstract class AbstractVoter extends Voter
 {
-    /**
+	/**
      * @var AccessDecisionManagerInterface
      */
     protected $accessDecisionManager;
@@ -29,21 +29,16 @@ abstract class AbstractVoter extends Voter
      */
     protected $auditReader;
 
-    /**
-     * @var int
-     */
-    protected $audit_limit;
-
-    /**
-     * AbstractVoter constructor.
-     *
-     * @param AccessDecisionManagerInterface $accessDecisionManager
-     */
-    public function __construct(AccessDecisionManagerInterface $accessDecisionManager, AuditReader $auditReader, int $audit_limit)
+	/**
+	 * AbstractVoter constructor.
+	 *
+	 * @param AccessDecisionManagerInterface $accessDecisionManager
+	 * @param AuditReader $auditReader
+	 */
+    public function __construct(AccessDecisionManagerInterface $accessDecisionManager, AuditReader $auditReader)
     {
         $this->accessDecisionManager = $accessDecisionManager;
         $this->auditReader = $auditReader;
-        $this->audit_limit = $audit_limit;
     }
 
     /**

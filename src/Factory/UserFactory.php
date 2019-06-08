@@ -20,36 +20,36 @@ class UserFactory
     /**
      * @param GroupManager $groupManager
      * @param string       $locale
-     * @param string       $default_theme
+     * @param string       $defaultTheme
      *
      * @return User
      *
      * @throws NonUniqueResultException
      */
-    public static function create(GroupManager $groupManager, string $locale, string $default_theme): User
+    public static function create(GroupManager $groupManager, string $locale, string $defaultTheme): User
     {
         return (new User())
             ->setEnabled(true)
             ->addGroup($groupManager->findOneByName('user'))
             ->setLocale($locale)
-            ->setTheme($default_theme);
+            ->setTheme($defaultTheme);
     }
 
     /**
      * @param GroupManager $groupManager
      * @param string       $locale
-     * @param string       $default_theme
+     * @param string       $defaultTheme
      *
      * @return User
      *
      * @throws NonUniqueResultException
      */
-    public static function createAdmin(GroupManager $groupManager, string $locale, string $default_theme): User
+    public static function createAdmin(GroupManager $groupManager, string $locale, string $defaultTheme): User
     {
         return (new User())
             ->setEnabled(true)
             ->addGroup($groupManager->findOneByName('admin'))
             ->setLocale($locale)
-            ->setTheme($default_theme);
+            ->setTheme($defaultTheme);
     }
 }

@@ -16,9 +16,11 @@ class FunctionalityVoter extends AbstractVoter
 {
     use FunctionalityManagerTrait;
 
+    const EDIT = 'app.voters.functionality.edit';
     const SWITCH_THEME = 'app.voters.functionality.switch_theme';
     const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
     const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
+    const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
     const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
 
     /**
@@ -30,9 +32,11 @@ class FunctionalityVoter extends AbstractVoter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
+                self::EDIT,
                 self::SWITCH_THEME,
                 self::SWITCH_LOCALE,
                 self::CACHE_CLEAR,
+                self::MANAGE_SETTINGS,
                 self::MANAGE_FUNCTIONALITIES,
             ])) {
             return false;
@@ -68,6 +72,9 @@ class FunctionalityVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
+	        case self::EDIT:
+                return $this->canEdit($subject, $token);
+                break;
             case self::SWITCH_THEME:
                 return $this->canSwicthTheme($subject, $token);
                 break;
@@ -77,12 +84,32 @@ class FunctionalityVoter extends AbstractVoter
             case self::CACHE_CLEAR:
                 return $this->canClearCache($subject, $token);
                 break;
-            case self::MANAGE_FUNCTIONALITIES:
+            case self::MANAGE_SETTINGS:
                 return $this->canManageSettings($subject, $token);
+                break;
+            case self::MANAGE_FUNCTIONALITIES:
+                return $this->canManageFunctionalities($subject, $token);
                 break;
         }
 
         return false;
+    }
+
+	/**
+	 * @param Functionality $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+    public function canEdit(Functionality $subject, TokenInterface $token)
+    {
+	    $functionalities = $this->functionalityManager->findAllByConfigured();
+
+	    if (empty($functionalities)) {
+		    return false;
+	    }
+
+	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**
@@ -128,12 +155,26 @@ class FunctionalityVoter extends AbstractVoter
     }
 
     /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canManageSettings(string $subject, TokenInterface $token)
+    {
+        return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);
+    }
+
+    /**
      * @param string         $subject
      * @param TokenInterface $token
      *
      * @return bool
      */
-    public function canManageSettings(string $subject, TokenInterface $token)
+    public function canManageFunctionalities(string $subject, TokenInterface $token)
     {
     	$functionalities = $this->functionalityManager->findAllByConfigured();
 

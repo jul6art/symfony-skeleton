@@ -2,8 +2,11 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Setting;
 use App\Entity\User;
+use App\Manager\SettingManagerTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -12,6 +15,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserVoter extends AbstractVoter
 {
+	use SettingManagerTrait;
+
     const PROFILE = 'app.voters.user.profile';
     const CHANGE_PASSWORD = 'app.voters.user.change_password';
     const LOGOUT = 'app.voters.user.logout';
@@ -170,12 +175,13 @@ class UserVoter extends AbstractVoter
         return $this->canList($subject, $token);
     }
 
-    /**
-     * @param $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
+	/**
+	 * @param $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 * @throws NonUniqueResultException
+	 */
     public function canAudit($subject, TokenInterface $token)
     {
         if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
@@ -186,7 +192,12 @@ class UserVoter extends AbstractVoter
 
         $id = $subject instanceof User ? $subject->getId() : null;
 
-        $audits = $this->auditReader->getAudits($auditEntity, $id, 1, $this->audit_limit);
+	    $audits = $this->auditReader->getAudits(
+		    $auditEntity,
+		    $id,
+		    1,
+		    $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+	    );
 
         return !empty($audits);
     }

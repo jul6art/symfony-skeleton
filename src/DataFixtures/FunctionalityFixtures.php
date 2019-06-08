@@ -28,6 +28,7 @@ class FunctionalityFixtures extends Fixture
             Functionality::FUNC_CLEAR_CACHE,
             Functionality::FUNC_CONFIRM_DELETE,
             Functionality::FUNC_FORM_WATCHER,
+            Functionality::FUNC_MANAGE_SETTINGS,
         ];
 
         foreach ($functionalities as $value) {

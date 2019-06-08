@@ -21,14 +21,20 @@ class SettingFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $settings = [
-            Setting::SETTING_PROJECT_NAME,
+            Setting::SETTING_PROJECT_NAME => Setting::SETTING_PROJECT_NAME_VALUE,
+            Setting::SETTING_BASE_TITLE => Setting::SETTING_BASE_TITLE_VALUE,
+            Setting::SETTING_DEFAULT_THEME => Setting::SETTING_DEFAULT_THEME_VALUE,
+            Setting::SETTING_AUDIT_LIMIT => Setting::SETTING_AUDIT_LIMIT_VALUE,
+            Setting::SETTING_TOASTR_VERTICAL_POSITION => Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE,
+            Setting::SETTING_TOASTR_HORIZONTAL_POSITION => Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE,
         ];
 
-        foreach ($settings as $value) {
+        foreach ($settings as $key => $value) {
             $setting = ($this->settingManager->create())
-	            ->setName($value);
+	            ->setName($key)
+	            ->setValue($value);
 
-            $this->addReference('setting_'.$value, $setting);
+            $this->addReference('setting_'.$key, $setting);
             $manager->persist($setting);
         }
 

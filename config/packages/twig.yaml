@@ -3,10 +3,6 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        project_name: '%project_name%'
-        base_title: '%base_title%'
         available_locales: '%available_locales%'
         available_colors: '%available_colors%'
         skeleton_version: '%skeleton_version%'
-        toastr_vertical_position: '%toastr_vertical_position%'
-        toastr_horizontal_position: '%toastr_horizontal_position%'

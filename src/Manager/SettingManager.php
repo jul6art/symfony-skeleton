@@ -43,6 +43,27 @@ class SettingManager extends AbstractManager
 		return SettingFactory::create();
 	}
 
+	/**
+	 * @param Setting $setting
+	 * @param string $value
+	 *
+	 * @return bool
+	 */
+	public function update(Setting $setting, string $value): bool
+	{
+		$setting->setValue($value);
+
+		return $this->save($setting);
+	}
+
+    /**
+     * @return Setting[]
+     */
+    public function findAll(): array
+    {
+        return $this->settingRepository->findAll();
+    }
+
     /**
      * @return Setting[]
      */
@@ -81,5 +102,19 @@ class SettingManager extends AbstractManager
     public function findOneByName(string $name): ?Setting
     {
         return $this->settingRepository->findOneByName($name);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneValueByName(string $name, string $default = null): string
+    {
+	    $setting  = $this->settingRepository->findOneByName($name);
+
+	    return $setting === null ? (string) $default : $setting->getValue();
     }
 }

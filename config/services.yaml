@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    skeleton_version: 1.0.1
     locale: 'fr'
     available_locales: fr|en|de
     available_functionalities:
@@ -12,6 +13,7 @@ parameters:
         - func.clear_cache
         - func.confirm_delete
         - func.form_watcher
+        - func.manage_settings
     available_colors:
         - red
         - pink
@@ -33,13 +35,6 @@ parameters:
         - grey
         - blue-grey
         - black
-    project_name: 'Symfony skeleton'
-    base_title: ' | Symfony Skeleton'
-    skeleton_version: 1.0.1
-    default_theme: red
-    audit_limit: 200
-    toastr_vertical_position: bottom
-    toastr_horizontal_position: center
 
 services:
     _defaults:
@@ -48,9 +43,7 @@ services:
         bind:
             $locale: '%locale%'
             $available_locales: '%available_locales%'
-            $default_theme: '%default_theme%'
             $available_colors: '%available_colors%'
-            $audit_limit: '%audit_limit%'
             $available_functionalities: '%available_functionalities%'
 
     App\:

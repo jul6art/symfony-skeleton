@@ -8,6 +8,7 @@
 
 namespace App\Manager;
 
+use App\Entity\Setting;
 use App\Entity\User;
 use App\Factory\UserFactory;
 use App\Repository\UserRepository;
@@ -21,16 +22,12 @@ use Saacsos\Randomgenerator\Util\RandomGenerator;
 class UserManager extends AbstractManager
 {
     use GroupManagerTrait;
+    use SettingManagerTrait;
 
     /**
      * @var UserRepository
      */
     private $userRepository;
-
-    /**
-     * @var string
-     */
-    private $default_theme;
 
     /**
      * @var string
@@ -41,14 +38,12 @@ class UserManager extends AbstractManager
      * UserManager constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param string                 $default_theme
      * @param string                 $locale
      */
-    public function __construct(EntityManagerInterface $entityManager, string $default_theme, string $locale)
+    public function __construct(EntityManagerInterface $entityManager, string $locale)
     {
         parent::__construct($entityManager);
         $this->userRepository = $entityManager->getRepository(User::class);
-        $this->default_theme = $default_theme;
         $this->locale = $locale;
     }
 
@@ -59,7 +54,8 @@ class UserManager extends AbstractManager
      */
     public function create(): User
     {
-        return UserFactory::create($this->groupManager, $this->locale, $this->default_theme);
+    	$defaultTheme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+        return UserFactory::create($this->groupManager, $this->locale, $defaultTheme);
     }
 
     /**
@@ -69,7 +65,8 @@ class UserManager extends AbstractManager
      */
     public function createAdmin(): User
     {
-        return UserFactory::createAdmin($this->groupManager, $this->locale, $this->default_theme);
+	    $defaultTheme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+	    return UserFactory::createAdmin($this->groupManager, $this->locale, $defaultTheme);
     }
 
     /**
