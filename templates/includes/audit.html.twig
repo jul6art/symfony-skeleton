@@ -49,7 +49,7 @@
 
                                     {% if audit.type == 'update' %}
                                         <div class="audit-updates-container">
-                                            {% for key, value in audit.diffs %}
+                                            {% for key, value in audit.diffs if key not in exclude %}
                                                 <p class="font-underline">
                                                     {{ 'audit.updates.text' | trans({
                                                         '%property%': key,

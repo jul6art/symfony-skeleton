@@ -49,12 +49,20 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Audits
 
-> To acctivate audit for an entity you need  to
+> To activate audit for an entity you need to
 
     - enable in configuration
-    - make the voter retur true
+    - make the voter return true
     
-> Custom audit level (6chars max)
+> Exclude tracked fields on entity edit audit  (in twig  files)
+
+```php
+{{ render(controller('App\\Controller\\DefaultController::audit', {
+    class: 'App\\Entity\\Test',
+    exclude: ['updatedAt', 'updatedBy']
+})) }}
+```    
+> Custom audit level (6chars max for the level name)
 
 ```php
 use AuditManagerTrait;
@@ -72,13 +80,13 @@ in audit translation domain
 
     audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
 
-> This command removes audits older tha a year
+> This command removes audits older than a year
 
     bin/console audit:clean --no-confirm
 
 ### Theme
 
-> Default theme is set in services.yml then, in user profile page, every user can choose the theme he wants
+> Default theme is set in the setting sidebar, every user can choose the theme he wants
 
 You can deactivate this feature in configuration page
 

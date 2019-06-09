@@ -114,18 +114,18 @@ class DefaultController extends AbstractFOSRestController
         return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
-    /**
-     * @param $class
-     * @param null        $id
-     * @param AuditReader $auditReader
-     *
-     * @return Response
-     *
-     * @throws NonUniqueResultException
-     */
-    public function audit($class, $id = null, AuditReader $auditReader): Response
+	/**
+	 * @param $class
+	 * @param null $id
+	 * @param AuditReader $auditReader
+	 * @param array $exclude
+	 *
+	 * @return Response
+	 * @throws NonUniqueResultException
+	 */
+    public function audit($class, $id = null, AuditReader $auditReader, array $exclude = []): Response
     {
-        $view = $this->view()
+    	$view = $this->view()
                      ->setTemplate('includes/audit.html.twig')
                      ->setTemplateData([
                          'audits' => $auditReader->getAudits(
@@ -135,6 +135,7 @@ class DefaultController extends AbstractFOSRestController
                              $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
                          ),
                          'users' => $this->userManager->findAllForAudit(),
+	                     'exclude' => $exclude,
                      ]);
 
         return $this->handleView($view);
