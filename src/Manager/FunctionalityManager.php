@@ -25,17 +25,17 @@ class FunctionalityManager extends AbstractManager
      */
     private $functionalityRepository;
 
-	/**
-	 * @var RequestStack
-	 */
-	private $stack;
+    /**
+     * @var RequestStack
+     */
+    private $stack;
 
     /**
      * @var array
      */
     private $available_functionalities;
 
-	/**
+    /**
      * FunctionalityManager constructor.
      *
      * @param EntityManagerInterface $entityManager
@@ -45,7 +45,7 @@ class FunctionalityManager extends AbstractManager
     {
         parent::__construct($entityManager);
         $this->functionalityRepository = $this->entityManager->getRepository(Functionality::class);
-	    $this->stack = $stack;
+        $this->stack = $stack;
         $this->available_functionalities = $available_functionalities;
     }
 
@@ -79,23 +79,24 @@ class FunctionalityManager extends AbstractManager
      */
     public function isActive(string $name): bool
     {
-    	$request = $this->stack->getMasterRequest();
+        $request = $this->stack->getMasterRequest();
 
-    	if (!$request->request->has($name)) {
-		    $functionality = $this->findOneByName($name);
+        if (!$request->request->has($name)) {
+            $functionality = $this->findOneByName($name);
 
-		    $state = false;
-		    if (!is_null($functionality)) {
-			    if ($this->isConfigured($functionality)) {
-				    $state = $functionality->isActive();
-			    }
-		    }
+            $state = false;
+            if (!is_null($functionality)) {
+                if ($this->isConfigured($functionality)) {
+                    $state = $functionality->isActive();
+                }
+            }
 
-		    $request->request->set($name, $state ? 1 : 0);
-		    return $state;
-	    } else {
-    	    return (bool) $request->request->get($name);
-	    }
+            $request->request->set($name, $state ? 1 : 0);
+
+            return $state;
+        } else {
+            return (bool) $request->request->get($name);
+        }
     }
 
     /**

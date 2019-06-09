@@ -16,41 +16,41 @@ use Twig\TwigFunction;
  */
 class LocaleExtension extends AbstractExtension
 {
-	use FunctionalityManagerTrait;
+    use FunctionalityManagerTrait;
 
     /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
 
-	/**
-	 * @var RequestStack
-	 */
-	private $stack;
+    /**
+     * @var RequestStack
+     */
+    private $stack;
 
     /**
      * @var string
      */
     private $locale;
 
-	/**
-	 * @var array
-	 */
-	private $available_locales;
+    /**
+     * @var array
+     */
+    private $available_locales;
 
-	/**
-	 * LocaleExtension constructor.
-	 *
-	 * @param TokenStorageInterface $tokenStorage
-	 * @param RequestStack $stack
-	 * @param string $locale
-	 */
+    /**
+     * LocaleExtension constructor.
+     *
+     * @param TokenStorageInterface $tokenStorage
+     * @param RequestStack          $stack
+     * @param string                $locale
+     */
     public function __construct(TokenStorageInterface $tokenStorage, RequestStack $stack, string $locale, string $available_locales)
     {
         $this->tokenStorage = $tokenStorage;
-	    $this->stack = $stack;
+        $this->stack = $stack;
         $this->locale = $locale;
-	    $this->available_locales = explode('|', $available_locales);
+        $this->available_locales = explode('|', $available_locales);
     }
 
     /**
@@ -64,37 +64,40 @@ class LocaleExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @return string
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @return string
+     *
+     * @throws NonUniqueResultException
+     */
     public function getLocale(): string
     {
         return $this->getUserLocale();
     }
 
-	/**
-	 * @return null|string
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @return string|null
+     *
+     * @throws NonUniqueResultException
+     */
     public function getUserLocale(): ?string
     {
         $request = $this->stack->getMasterRequest();
 
-	    if (!$request->request->has('user_locale') || !in_array($request->request->get('user_locale'), $this->available_locales)) {
-		    $user = $this->tokenStorage->getToken()->getUser();
-		    $locale = $this->locale;
+        if (!$request->request->has('user_locale') || !in_array($request->request->get('user_locale'), $this->available_locales)) {
+            $user = $this->tokenStorage->getToken()->getUser();
+            $locale = $this->locale;
 
-		    if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
-			    if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
-				    $locale = $user->getLocale();
-			    }
-		    }
+            if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+                if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
+                    $locale = $user->getLocale();
+                }
+            }
 
-		    $request->request->set('user_locale', $locale);
-		    return $locale;
-	    } else {
-		    return $request->request->get('user_locale');
-	    }
+            $request->request->set('user_locale', $locale);
+
+            return $locale;
+        } else {
+            return $request->request->get('user_locale');
+        }
     }
 }
