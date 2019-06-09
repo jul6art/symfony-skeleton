@@ -45,7 +45,8 @@ sidebar:
         title: FONCTIONALITÉS
         switch_theme: 'Choix du thème'
         switch_locale: 'Multilangue'
-        clear_cache: 'Rechargement'
+        clear_cache: 'Cache'
+        audit: 'Audit'
         confirm_delete: 'Popup de confirmation'
         form_watcher: 'Surveillance des formulaires'
-        manage_settings: 'Modifier les paramètres'
+        manage_settings: 'Gestion des paramètres'

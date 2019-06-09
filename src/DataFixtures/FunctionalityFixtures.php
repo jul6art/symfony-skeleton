@@ -26,6 +26,7 @@ class FunctionalityFixtures extends Fixture
             Functionality::FUNC_SWITCH_THEME,
             Functionality::FUNC_SWITCH_LOCALE,
             Functionality::FUNC_CLEAR_CACHE,
+            Functionality::FUNC_AUDIT,
             Functionality::FUNC_CONFIRM_DELETE,
             Functionality::FUNC_FORM_WATCHER,
             Functionality::FUNC_MANAGE_SETTINGS,

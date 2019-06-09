@@ -11,6 +11,7 @@ parameters:
         - func.switch_theme
         - func.switch_locale
         - func.clear_cache
+        - func.audit
         - func.confirm_delete
         - func.form_watcher
         - func.manage_settings

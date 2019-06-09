@@ -191,6 +191,7 @@ $.App = {
                 allow_dismiss: allowDismiss,
                 newest_on_top: true,
                 timer: 1000,
+                progressBar: true,
                 placement: {
                     from: placementFrom,
                     align: placementAlign
@@ -269,12 +270,18 @@ $.App = {
 $(document).ready(function () {
     $.App.init();
 
-    ['success', 'notice', 'error', 'warning'].forEach(function (level) {
+    ['success', 'notice', 'error', 'warning', 'info'].forEach(function (level) {
         if (FLASH_MESSAGES[level]) {
-            var colorClass = 'alert-' + level;
-
-            if (level === 'error') {
-                colorClass = 'alert-danger';
+            if (level === 'notice') {
+                colorClass = 'bg-blue-grey';
+            } else if (level === 'warning') {
+                colorClass = 'bg-orange';
+            } else if (level === 'error') {
+                colorClass = 'bg-red';
+            } else if (level === 'info') {
+                colorClass = 'bg-light-blue';
+            } else if (level === 'success') {
+                colorClass = 'bg-' + THEME_NAME;
             }
 
             FLASH_MESSAGES[level].forEach(function (message) {
