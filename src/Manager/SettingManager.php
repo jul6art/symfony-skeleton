@@ -24,37 +24,37 @@ class SettingManager extends AbstractManager
      */
     private $settingRepository;
 
-	/**
-	 * SettingManager constructor.
-	 *
-	 * @param EntityManagerInterface $entityManager
-	 */
+    /**
+     * SettingManager constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager);
         $this->settingRepository = $this->entityManager->getRepository(Setting::class);
     }
 
-	/**
-	 * @return Setting
-	 */
-	public function create(): Setting
-	{
-		return SettingFactory::create();
-	}
+    /**
+     * @return Setting
+     */
+    public function create(): Setting
+    {
+        return SettingFactory::create();
+    }
 
-	/**
-	 * @param Setting $setting
-	 * @param string $value
-	 *
-	 * @return bool
-	 */
-	public function update(Setting $setting, string $value): bool
-	{
-		$setting->setValue($value);
+    /**
+     * @param Setting $setting
+     * @param string  $value
+     *
+     * @return bool
+     */
+    public function update(Setting $setting, string $value): bool
+    {
+        $setting->setValue($value);
 
-		return $this->save($setting);
-	}
+        return $this->save($setting);
+    }
 
     /**
      * @return Setting[]
@@ -113,8 +113,8 @@ class SettingManager extends AbstractManager
      */
     public function findOneValueByName(string $name, string $default = null): string
     {
-	    $setting  = $this->settingRepository->findOneByName($name);
+        $setting = $this->settingRepository->findOneByName($name);
 
-	    return $setting === null ? (string) $default : $setting->getValue();
+        return null === $setting ? (string) $default : $setting->getValue();
     }
 }

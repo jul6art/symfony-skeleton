@@ -4,9 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Functionality;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -17,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class FunctionalityRepository extends ServiceEntityRepository
 {
-	use RepositoryTrait;
+    use RepositoryTrait;
 
     /**
      * FunctionalityRepository constructor.

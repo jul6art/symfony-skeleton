@@ -4,9 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Setting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -17,46 +15,46 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class SettingRepository extends ServiceEntityRepository
 {
-	use RepositoryTrait;
+    use RepositoryTrait;
 
-	/**
-	 * SettingRepository constructor.
-	 *
-	 * @param RegistryInterface $registry
-	 */
+    /**
+     * SettingRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Setting::class);
     }
 
-	/**
-	 * @param string $name
-	 *
-	 * @return Setting|null
-	 *
-	 * @throws NonUniqueResultException
-	 */
-	public function findOneByName(string $name): ?Setting
-	{
-		$builder = $this->createQueryBuilder('s');
+    /**
+     * @param string $name
+     *
+     * @return Setting|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneByName(string $name): ?Setting
+    {
+        $builder = $this->createQueryBuilder('s');
 
-		$this
-			->filterLowercase($builder, 's.name', $name);
+        $this
+            ->filterLowercase($builder, 's.name', $name);
 
-		return $builder->getQuery()->getOneOrNullResult();
-	}
+        return $builder->getQuery()->getOneOrNullResult();
+    }
 
-	/**
-	 * @return int
-	 *
-	 * @throws NonUniqueResultException
-	 */
-	public function countAll(): int
-	{
-		$builder = $this->createQueryBuilder('s');
+    /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAll(): int
+    {
+        $builder = $this->createQueryBuilder('s');
 
-		$builder->select($builder->expr()->count('s'));
+        $builder->select($builder->expr()->count('s'));
 
-		return $builder->getQuery()->getSingleScalarResult();
-	}
+        return $builder->getQuery()->getSingleScalarResult();
+    }
 }

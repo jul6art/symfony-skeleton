@@ -24,22 +24,22 @@ class FunctionalityManager extends AbstractManager
      */
     private $functionalityRepository;
 
-	/**
-	 * @var array
-	 */
-	private $available_functionalities;
+    /**
+     * @var array
+     */
+    private $available_functionalities;
 
-	/**
-	 * FunctionalityManager constructor.
-	 *
-	 * @param EntityManagerInterface $entityManager
-	 * @param array $available_functionalities
-	 */
+    /**
+     * FunctionalityManager constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param array                  $available_functionalities
+     */
     public function __construct(EntityManagerInterface $entityManager, array $available_functionalities)
     {
         parent::__construct($entityManager);
         $this->functionalityRepository = $this->entityManager->getRepository(Functionality::class);
-	    $this->available_functionalities = $available_functionalities;
+        $this->available_functionalities = $available_functionalities;
     }
 
     /**
@@ -75,9 +75,9 @@ class FunctionalityManager extends AbstractManager
         $functionality = $this->findOneByName($name);
 
         if (!is_null($functionality)) {
-        	if (!$this->isConfigured($functionality)) {
-        		return false;
-	        }
+            if (!$this->isConfigured($functionality)) {
+                return false;
+            }
 
             return $functionality->isActive();
         }
@@ -85,14 +85,14 @@ class FunctionalityManager extends AbstractManager
         return false;
     }
 
-	/**
-	 * @param Functionality $functionality
-	 *
-	 * @return bool
-	 */
+    /**
+     * @param Functionality $functionality
+     *
+     * @return bool
+     */
     public function isConfigured(Functionality $functionality): bool
     {
-	    return in_array($functionality->getName(), $this->available_functionalities);
+        return in_array($functionality->getName(), $this->available_functionalities);
     }
 
     /**
@@ -119,7 +119,7 @@ class FunctionalityManager extends AbstractManager
         $functionalities = $this->functionalityRepository->findAll();
 
         return array_filter($functionalities, function (Functionality $functionality) {
-        	return $this->isConfigured($functionality);
+            return $this->isConfigured($functionality);
         });
     }
 

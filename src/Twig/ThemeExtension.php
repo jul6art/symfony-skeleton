@@ -53,16 +53,16 @@ class ThemeExtension extends AbstractExtension
     public function getThemeName(): string
     {
         $user = $this->tokenStorage->getToken()->getUser();
-	    $default = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+        $default = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-	    if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
-	    	return $default;
+        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
+            return $default;
         }
 
         if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
             return $user->getTheme();
         }
 
-	    return $default;
+        return $default;
     }
 }

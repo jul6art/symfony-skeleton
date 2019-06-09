@@ -67,11 +67,11 @@ class LocaleSubscriber implements EventSubscriberInterface
         ];
     }
 
-	/**
-	 * @param GetResponseEvent $event
-	 *
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param GetResponseEvent $event
+     *
+     * @throws NonUniqueResultException
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
@@ -106,7 +106,7 @@ class LocaleSubscriber implements EventSubscriberInterface
         }
 
         if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
-        	$newLocale = $this->defaultLocale;
+            $newLocale = $this->defaultLocale;
         }
 
         if (!is_null($newLocale)

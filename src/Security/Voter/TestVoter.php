@@ -17,8 +17,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class TestVoter extends AbstractVoter
 {
-	use SettingManagerTrait;
-	use FunctionalityManagerTrait;
+    use SettingManagerTrait;
+    use FunctionalityManagerTrait;
 
     const LIST = 'app.voters.test.list';
     const EDIT = 'app.voters.test.edit';
@@ -119,7 +119,7 @@ class TestVoter extends AbstractVoter
      */
     public function canEdit(Test $subject, TokenInterface $token)
     {
-    	return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**
@@ -133,24 +133,25 @@ class TestVoter extends AbstractVoter
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
-	/**
-	 * @param $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
     public function canAudit($subject, TokenInterface $token)
     {
-    	if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
-    		return false;
-	    }
+        if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
+            return false;
+        }
 
         return !empty($this->auditReader->getAudits(
-	        AuditHelper::paramToNamespace(Test::class),
-	        $subject instanceof Test ? $subject->getId() : null,
-	        1,
-	        $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+            AuditHelper::paramToNamespace(Test::class),
+            $subject instanceof Test ? $subject->getId() : null,
+            1,
+            $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
         ));
     }
 

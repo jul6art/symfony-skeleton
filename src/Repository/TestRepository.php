@@ -4,9 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Test;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TestRepository extends ServiceEntityRepository
 {
-	use RepositoryTrait;
+    use RepositoryTrait;
 
     /**
      * TestRepository constructor.

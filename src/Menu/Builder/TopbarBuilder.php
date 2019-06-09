@@ -3,9 +3,7 @@
 namespace App\Menu\Builder;
 
 use App\Entity\Functionality;
-use App\Entity\Setting;
 use App\Security\Voter\FunctionalityVoter;
-use App\Security\Voter\SettingVoter;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 

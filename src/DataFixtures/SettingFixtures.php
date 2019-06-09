@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Group;
 use App\Entity\Setting;
 use App\Manager\SettingManagerTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,7 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class SettingFixtures extends Fixture
 {
-	use SettingManagerTrait;
+    use SettingManagerTrait;
 
     /**
      * @param ObjectManager $manager
@@ -31,8 +30,8 @@ class SettingFixtures extends Fixture
 
         foreach ($settings as $key => $value) {
             $setting = ($this->settingManager->create())
-	            ->setName($key)
-	            ->setValue($value);
+                ->setName($key)
+                ->setValue($value);
 
             $this->addReference('setting_'.$key, $setting);
             $manager->persist($setting);

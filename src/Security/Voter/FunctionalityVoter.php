@@ -72,7 +72,7 @@ class FunctionalityVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-	        case self::EDIT:
+            case self::EDIT:
                 return $this->canEdit($subject, $token);
                 break;
             case self::SWITCH_THEME:
@@ -95,21 +95,21 @@ class FunctionalityVoter extends AbstractVoter
         return false;
     }
 
-	/**
-	 * @param Functionality $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
+    /**
+     * @param Functionality  $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
     public function canEdit(Functionality $subject, TokenInterface $token)
     {
-	    $functionalities = $this->functionalityManager->findAllByConfigured();
+        $functionalities = $this->functionalityManager->findAllByConfigured();
 
-	    if (empty($functionalities)) {
-		    return false;
-	    }
+        if (empty($functionalities)) {
+            return false;
+        }
 
-	    return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**
@@ -176,11 +176,11 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canManageFunctionalities(string $subject, TokenInterface $token)
     {
-    	$functionalities = $this->functionalityManager->findAllByConfigured();
+        $functionalities = $this->functionalityManager->findAllByConfigured();
 
-    	if (empty($functionalities)) {
-    		return false;
-	    }
+        if (empty($functionalities)) {
+            return false;
+        }
 
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }

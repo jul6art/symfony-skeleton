@@ -240,45 +240,45 @@ class User extends BaseUser
         return null !== $this->getSetting($name);
     }
 
-	/**
-	 * @return string|null
-	 */
-	public function getLocale()
-	{
-		if ($this->hasSetting(self::SETTING_LOCALE)) {
-			return $this->getSetting(self::SETTING_LOCALE)->getValue();
-		}
+    /**
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        if ($this->hasSetting(self::SETTING_LOCALE)) {
+            return $this->getSetting(self::SETTING_LOCALE)->getValue();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @param $value
-	 *
-	 * @return User
-	 */
+    /**
+     * @param $value
+     *
+     * @return User
+     */
     public function setLocale($value): self
     {
         return $this->setSetting(self::SETTING_LOCALE, $value);
     }
 
-	/**
-	 * @return string|null
-	 */
-	public function getTheme()
-	{
-		if ($this->hasSetting(self::SETTING_THEME)) {
-			return $this->getSetting(self::SETTING_THEME)->getValue();
-		}
+    /**
+     * @return string|null
+     */
+    public function getTheme()
+    {
+        if ($this->hasSetting(self::SETTING_THEME)) {
+            return $this->getSetting(self::SETTING_THEME)->getValue();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @param $value
-	 *
-	 * @return User
-	 */
+    /**
+     * @param $value
+     *
+     * @return User
+     */
     public function setTheme($value): self
     {
         return $this->setSetting(self::SETTING_THEME, $value);

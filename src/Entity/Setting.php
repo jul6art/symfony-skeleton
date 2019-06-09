@@ -13,19 +13,19 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Setting
 {
-	const SETTING_PROJECT_NAME = 'setting.project_name';
-	const SETTING_BASE_TITLE = 'setting.base_title';
-	const SETTING_DEFAULT_THEME = 'setting.default_theme';
-	const SETTING_AUDIT_LIMIT = 'setting.audit_limit';
-	const SETTING_TOASTR_VERTICAL_POSITION = 'setting.toastr_vertical_position';
-	const SETTING_TOASTR_HORIZONTAL_POSITION = 'setting.toastr_horizontal_position';
+    const SETTING_PROJECT_NAME = 'setting.project_name';
+    const SETTING_BASE_TITLE = 'setting.base_title';
+    const SETTING_DEFAULT_THEME = 'setting.default_theme';
+    const SETTING_AUDIT_LIMIT = 'setting.audit_limit';
+    const SETTING_TOASTR_VERTICAL_POSITION = 'setting.toastr_vertical_position';
+    const SETTING_TOASTR_HORIZONTAL_POSITION = 'setting.toastr_horizontal_position';
 
-	const SETTING_PROJECT_NAME_VALUE = 'Symfony skeleton';
-	const SETTING_BASE_TITLE_VALUE = ' | Symfony Skeleton';
-	const SETTING_DEFAULT_THEME_VALUE = 'red';
-	const SETTING_AUDIT_LIMIT_VALUE = 200;
-	const SETTING_TOASTR_VERTICAL_POSITION_VALUE = 'bottom';
-	const SETTING_TOASTR_HORIZONTAL_POSITION_VALUE = 'center';
+    const SETTING_PROJECT_NAME_VALUE = 'Symfony skeleton';
+    const SETTING_BASE_TITLE_VALUE = ' | Symfony Skeleton';
+    const SETTING_DEFAULT_THEME_VALUE = 'red';
+    const SETTING_AUDIT_LIMIT_VALUE = 200;
+    const SETTING_TOASTR_VERTICAL_POSITION_VALUE = 'bottom';
+    const SETTING_TOASTR_HORIZONTAL_POSITION_VALUE = 'center';
 
     use TimestampableEntity;
     use BlameableEntity;
@@ -53,13 +53,13 @@ class Setting
      */
     protected $value;
 
-	/**
-	 * @return int
-	 */
-	public function getId(): int
-	{
-		return $this->id;
-	}
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return string

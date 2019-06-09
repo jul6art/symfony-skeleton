@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserVoter extends AbstractVoter
 {
-	use SettingManagerTrait;
+    use SettingManagerTrait;
 
     const PROFILE = 'app.voters.user.profile';
     const CHANGE_PASSWORD = 'app.voters.user.change_password';
@@ -175,13 +175,14 @@ class UserVoter extends AbstractVoter
         return $this->canList($subject, $token);
     }
 
-	/**
-	 * @param $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
     public function canAudit($subject, TokenInterface $token)
     {
         if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
@@ -192,12 +193,12 @@ class UserVoter extends AbstractVoter
 
         $id = $subject instanceof User ? $subject->getId() : null;
 
-	    $audits = $this->auditReader->getAudits(
-		    $auditEntity,
-		    $id,
-		    1,
-		    $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
-	    );
+        $audits = $this->auditReader->getAudits(
+            $auditEntity,
+            $id,
+            1,
+            $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+        );
 
         return !empty($audits);
     }

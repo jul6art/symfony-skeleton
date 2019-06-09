@@ -62,13 +62,13 @@ class DefaultController extends AbstractFOSRestController
         $application = new Application($kernel);
         $application->setAutoExit(false);
         $application->run(new ArrayInput([
-	        'command' => 'cache:clear',
-	        '--env' => $kernel->getEnvironment(),
+            'command' => 'cache:clear',
+            '--env' => $kernel->getEnvironment(),
         ]), new BufferedOutput());
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 
-	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+        return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
     /**
@@ -91,7 +91,7 @@ class DefaultController extends AbstractFOSRestController
             $this->userManager->updateTheme($this->getUser(), $name);
         }
 
-	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+        return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
     /**
@@ -111,27 +111,28 @@ class DefaultController extends AbstractFOSRestController
 
         $this->userManager->updateLocale($this->getUser(), $locale);
 
-	    return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+        return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
     }
 
-	/**
-	 * @param $class
-	 * @param null $id
-	 * @param AuditReader $auditReader
-	 *
-	 * @return Response
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param $class
+     * @param null        $id
+     * @param AuditReader $auditReader
+     *
+     * @return Response
+     *
+     * @throws NonUniqueResultException
+     */
     public function audit($class, $id = null, AuditReader $auditReader): Response
     {
         $view = $this->view()
                      ->setTemplate('includes/audit.html.twig')
                      ->setTemplateData([
                          'audits' => $auditReader->getAudits(
-	                         AuditHelper::paramToNamespace($class),
-	                         $id,
-	                         1,
-	                         $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+                             AuditHelper::paramToNamespace($class),
+                             $id,
+                             1,
+                             $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
                          ),
                          'users' => $this->userManager->findAllForAudit(),
                      ]);
