@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Entity\Setting;
 use App\Manager\SettingManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -15,7 +16,22 @@ class SettingExtension extends AbstractExtension
 {
     use SettingManagerTrait;
 
-    /**
+	/**
+	 * @var RequestStack
+	 */
+	private $stack;
+
+	/**
+	 * SettingExtension constructor.
+	 *
+	 * @param RequestStack $stack
+	 */
+	public function __construct(RequestStack $stack)
+    {
+	    $this->stack = $stack;
+    }
+
+	/**
      * @return array
      */
     public function getFunctions(): array
@@ -49,9 +65,21 @@ class SettingExtension extends AbstractExtension
      */
     public function getSettingValue(string $name, string $default = null): string
     {
-        $setting = $this->settingManager->findOneByName($name);
+	    $request = $this->stack->getMasterRequest();
 
-        return null === $setting ? (string) $default : (string) $setting->getValue();
+	    if (!$request->request->has($name)) {
+		    $setting = $this->settingManager->findOneByName($name);
+
+		    if (!is_null($setting)) {
+		    	$request->request->set($name, $setting->getValue());
+		    	return $setting->getValue();
+		    }
+
+		    $request->request->set($name, $default);
+		    return $default;
+	    } else {
+		    return $request->request->get($name);
+	    }
     }
 
     /**

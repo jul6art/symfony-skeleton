@@ -13,6 +13,7 @@ use App\Factory\FunctionalityFactory;
 use App\Repository\FunctionalityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class FunctionalityManager.
@@ -24,21 +25,27 @@ class FunctionalityManager extends AbstractManager
      */
     private $functionalityRepository;
 
+	/**
+	 * @var RequestStack
+	 */
+	private $stack;
+
     /**
      * @var array
      */
     private $available_functionalities;
 
-    /**
+	/**
      * FunctionalityManager constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param array                  $available_functionalities
      */
-    public function __construct(EntityManagerInterface $entityManager, array $available_functionalities)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $stack, array $available_functionalities)
     {
         parent::__construct($entityManager);
         $this->functionalityRepository = $this->entityManager->getRepository(Functionality::class);
+	    $this->stack = $stack;
         $this->available_functionalities = $available_functionalities;
     }
 
@@ -72,17 +79,23 @@ class FunctionalityManager extends AbstractManager
      */
     public function isActive(string $name): bool
     {
-        $functionality = $this->findOneByName($name);
+    	$request = $this->stack->getMasterRequest();
 
-        if (!is_null($functionality)) {
-            if (!$this->isConfigured($functionality)) {
-                return false;
-            }
+    	if (!$request->request->has($name)) {
+		    $functionality = $this->findOneByName($name);
 
-            return $functionality->isActive();
-        }
+		    $state = false;
+		    if (!is_null($functionality)) {
+			    if ($this->isConfigured($functionality)) {
+				    $state = $functionality->isActive();
+			    }
+		    }
 
-        return false;
+		    $request->request->set($name, $state ? 1 : 0);
+		    return $state;
+	    } else {
+    	    return (bool) $request->request->get($name);
+	    }
     }
 
     /**

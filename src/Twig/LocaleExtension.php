@@ -2,7 +2,11 @@
 
 namespace App\Twig;
 
+use App\Entity\Functionality;
 use App\Entity\User;
+use App\Manager\FunctionalityManagerTrait;
+use Doctrine\ORM\NonUniqueResultException;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -12,25 +16,41 @@ use Twig\TwigFunction;
  */
 class LocaleExtension extends AbstractExtension
 {
+	use FunctionalityManagerTrait;
+
     /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+
+	/**
+	 * @var RequestStack
+	 */
+	private $stack;
 
     /**
      * @var string
      */
     private $locale;
 
-    /**
-     * ThemeExtension constructor.
-     *
-     * @param TokenStorageInterface $tokenStorage
-     */
-    public function __construct(TokenStorageInterface $tokenStorage, string $locale)
+	/**
+	 * @var array
+	 */
+	private $available_locales;
+
+	/**
+	 * LocaleExtension constructor.
+	 *
+	 * @param TokenStorageInterface $tokenStorage
+	 * @param RequestStack $stack
+	 * @param string $locale
+	 */
+    public function __construct(TokenStorageInterface $tokenStorage, RequestStack $stack, string $locale, string $available_locales)
     {
         $this->tokenStorage = $tokenStorage;
+	    $this->stack = $stack;
         $this->locale = $locale;
+	    $this->available_locales = explode('|', $available_locales);
     }
 
     /**
@@ -44,29 +64,37 @@ class LocaleExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @return string
-     */
+	/**
+	 * @return string
+	 * @throws NonUniqueResultException
+	 */
     public function getLocale(): string
     {
-        if (!is_null($locale = $this->getUserLocale())) {
-            return $locale;
-        }
-
-        return $this->locale;
+        return $this->getUserLocale();
     }
 
-    /**
-     * @return string
-     */
+	/**
+	 * @return null|string
+	 * @throws NonUniqueResultException
+	 */
     public function getUserLocale(): ?string
     {
-        $user = $this->tokenStorage->getToken()->getUser();
+        $request = $this->stack->getMasterRequest();
 
-        if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
-            return $user->getLocale();
-        }
+	    if (!$request->request->has('user_locale') || !in_array($request->request->get('user_locale'), $this->available_locales)) {
+		    $user = $this->tokenStorage->getToken()->getUser();
+		    $locale = $this->locale;
 
-        return null;
+		    if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+			    if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
+				    $locale = $user->getLocale();
+			    }
+		    }
+
+		    $request->request->set('user_locale', $locale);
+		    return $locale;
+	    } else {
+		    return $request->request->get('user_locale');
+	    }
     }
 }

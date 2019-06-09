@@ -8,6 +8,8 @@ use App\Entity\User;
 use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -25,14 +27,26 @@ class ThemeExtension extends AbstractExtension
      */
     private $tokenStorage;
 
-    /**
+	/**
+	 * @var RequestStack
+	 */
+	private $stack;
+
+	/**
+	 * @var array
+	 */
+	private $available_colors;
+
+	/**
      * ThemeExtension constructor.
      *
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage, RequestStack $stack, array $available_colors)
     {
         $this->tokenStorage = $tokenStorage;
+	    $this->stack = $stack;
+	    $this->available_colors = $available_colors;
     }
 
     /**
@@ -52,17 +66,22 @@ class ThemeExtension extends AbstractExtension
      */
     public function getThemeName(): string
     {
-        $user = $this->tokenStorage->getToken()->getUser();
-        $default = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+    	$request = $this->stack->getMasterRequest();
 
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
-            return $default;
-        }
+    	if (!$request->request->has('theme_name') || !in_array($request->request->get('theme_name'), $this->available_colors)) {
+		    $user = $this->tokenStorage->getToken()->getUser();
+		    $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-        if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
-            return $user->getTheme();
-        }
+		    if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
+			    if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
+				    $theme = $user->getTheme();
+			    }
+		    }
 
-        return $default;
+		    $request->request->set('theme_name', $theme);
+		    return $theme;
+	    } else {
+    		return $request->request->get('theme_name');
+	    }
     }
 }

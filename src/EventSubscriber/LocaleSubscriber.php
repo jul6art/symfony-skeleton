@@ -27,7 +27,7 @@ class LocaleSubscriber implements EventSubscriberInterface
     private $defaultLocale;
 
     /**
-     * @var string
+     * @var array
      */
     private $available_locales;
 
@@ -52,7 +52,7 @@ class LocaleSubscriber implements EventSubscriberInterface
     public function __construct(string $locale, string $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
     {
         $this->defaultLocale = $locale;
-        $this->available_locales = $available_locales;
+        $this->available_locales = explode('|', $available_locales);
         $this->tokenStorage = $tokenStorage;
         $this->translator = $translator;
     }
@@ -83,7 +83,7 @@ class LocaleSubscriber implements EventSubscriberInterface
 
         $newLocale = $request->query->get('_locale', null);
 
-        if (!in_array($newLocale, explode('|', $this->available_locales))) {
+        if (!in_array($newLocale, $this->available_locales)) {
             $newLocale = null;
         }
 
