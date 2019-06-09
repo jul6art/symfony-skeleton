@@ -61,14 +61,10 @@ class DefaultController extends AbstractFOSRestController
 
         $application = new Application($kernel);
         $application->setAutoExit(false);
-
-        $input = new ArrayInput([
-            'command' => 'cache:clear',
-            '--env' => $kernel->getEnvironment(),
-        ]);
-
-        $output = new BufferedOutput();
-        $application->run($input, $output);
+        $application->run(new ArrayInput([
+	        'command' => 'cache:clear',
+	        '--env' => $kernel->getEnvironment(),
+        ]), new BufferedOutput());
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 
@@ -128,18 +124,15 @@ class DefaultController extends AbstractFOSRestController
 	 */
     public function audit($class, $id = null, AuditReader $auditReader): Response
     {
-        $auditEntity = AuditHelper::paramToNamespace($class);
-        $audits = $auditReader->getAudits(
-        	$auditEntity,
-	        $id,
-	        1,
-	        $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
-        );
-
         $view = $this->view()
                      ->setTemplate('includes/audit.html.twig')
                      ->setTemplateData([
-                         'audits' => $audits,
+                         'audits' => $auditReader->getAudits(
+	                         AuditHelper::paramToNamespace($class),
+	                         $id,
+	                         1,
+	                         $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+                         ),
                          'users' => $this->userManager->findAllForAudit(),
                      ]);
 

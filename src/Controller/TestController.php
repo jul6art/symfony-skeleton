@@ -6,7 +6,6 @@ use App\Entity\Test;
 use App\Event\TestEvent;
 use App\Form\Test\AddTestType;
 use App\Form\Test\EditTestType;
-use App\Manager\GroupManagerTrait;
 use App\Manager\TestManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\TestVoter;
