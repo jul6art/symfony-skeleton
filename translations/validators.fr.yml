@@ -1,0 +1,4 @@
+jquery:
+    validate:
+        messages:
+            regex: 'La valeur entrée ne respecte pas le modèle requis'

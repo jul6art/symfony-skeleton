@@ -43,6 +43,62 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Forms
 
+> Types
+
+    DatepickerType
+    
+> Data-mask and validation
+
+https://github.com/RobinHerbots/Inputmask
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'attr' => [
+            'data-inputmask' => "'mask': '99-9999999'",
+            'pattern' => '\d{2}[\-]\d{7}',
+        ],
+    ])
+;
+```
+    
+> Alert
+
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'attr' => [
+            'data-alert' => 'alert text translated from translation_domain',
+            'data-alert-class' => 'succcess',
+        ],
+    ])
+;
+```
+    
+> Help
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'help' => 'help text translated from translation_domain',
+    ])
+;
+```
+    
+> Tooltips
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'attr' => [
+            'data-toggle' => 'tooltip',
+            'data-original-title' => 'Untranslated tooltip text',
+        ],
+    ])
+;
+```
+
 > You can override the form theme when extending the layout_form.html.twig
 
     {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}

@@ -2,6 +2,10 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
+import Inputmask from 'inputmask';
+const FORM_VALIDATOR = require ('jquery-validation');
+require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
+
 if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
     $.fn.areYouSure = function (options) {
         var settings = $.extend(
@@ -189,9 +193,46 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 
 $.Form = {
     init: function () {
-        this.form();
+        this.configure();
+        this.mask();
+        this.watch();
     },
-    form: function () {
+    configure: function () {
+        FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
+            var pattern = $(element).prop('pattern');
+            if (!pattern || this.optional(element)) {
+                return true;
+            }
+            return new RegExp(pattern).test(value);
+        }, VALIDATOR_TRANSLATIONS.regex);
+
+        $('body').find('form:not(.no-validate)').each(function () {
+            $.Form.validate($(this));
+        });
+    },
+    mask: function () {
+        Inputmask().mask('[data-inputmask]');
+    },
+    validate: function (form) {
+        FORM_VALIDATOR(form).validate({
+            highlight: function (input) {
+                $(input).parents('.form-line').addClass('error').removeClass('focused, success');
+                $(input).trigger('input.validate.invalid', {input,  form});
+            },
+            unhighlight: function (input) {
+                $(input).parents('.form-line').removeClass('error').addClass('focused, success');
+                $(input).trigger('input.validate.valid', {input,  form});
+            },
+            errorPlacement: function (error, element) {
+                $(element).parents('.form-group').append(error);
+            }
+        });
+
+        FORM_VALIDATOR(form).find('[data-inputmask]').rules('add', {
+            regex: true
+        });
+    },
+    watch: function () {
         if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             $('form:not(.no-watch)').areYouSure({
                 change: function() {
@@ -204,7 +245,7 @@ $.Form = {
                 }
             });
         }
-    },
+    }
 };
 
 $(document).ready(function () {
