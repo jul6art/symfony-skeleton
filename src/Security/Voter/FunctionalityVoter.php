@@ -20,6 +20,9 @@ class FunctionalityVoter extends AbstractVoter
     const SWITCH_THEME = 'app.voters.functionality.switch_theme';
     const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
     const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
+    const AUDIT = 'app.voters.functionality.audit';
+    const CONFIRM_DELETE = 'app.voters.functionality.confirm_delete';
+    const WATCH_FORM = 'app.voters.functionality.watch_form';
     const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
     const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
 
@@ -36,6 +39,9 @@ class FunctionalityVoter extends AbstractVoter
                 self::SWITCH_THEME,
                 self::SWITCH_LOCALE,
                 self::CACHE_CLEAR,
+                self::AUDIT,
+                self::CONFIRM_DELETE,
+                self::WATCH_FORM,
                 self::MANAGE_SETTINGS,
                 self::MANAGE_FUNCTIONALITIES,
             ])) {
@@ -83,6 +89,15 @@ class FunctionalityVoter extends AbstractVoter
                 break;
             case self::CACHE_CLEAR:
                 return $this->canClearCache($subject, $token);
+                break;
+            case self::AUDIT:
+                return $this->canAudit($subject, $token);
+                break;
+            case self::CONFIRM_DELETE:
+                return $this->canConfirmDelete($subject, $token);
+                break;
+            case self::WATCH_FORM:
+                return $this->canWatchForm($subject, $token);
                 break;
             case self::MANAGE_SETTINGS:
                 return $this->canManageSettings($subject, $token);
@@ -152,6 +167,48 @@ class FunctionalityVoter extends AbstractVoter
     public function canClearCache(string $subject, TokenInterface $token)
     {
         return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
+    }
+
+    /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canAudit(string $subject, TokenInterface $token)
+    {
+        return $this->functionalityManager->isActive(Functionality::FUNC_AUDIT);
+    }
+
+    /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canConfirmDelete(string $subject, TokenInterface $token)
+    {
+        return $this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE);
+    }
+
+    /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canWatchForm(string $subject, TokenInterface $token)
+    {
+        return $this->functionalityManager->isActive(Functionality::FUNC_FORM_WATCHER);
     }
 
     /**

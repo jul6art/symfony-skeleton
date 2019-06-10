@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 {% elseif item.name == constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT') %}
-                    {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_AUDIT')) %}
+                    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::AUDIT'), 'App\\Entity\\Functionality') %}
                         <div class="row">
                             <div class="form-group bootstrap-select col-xs-12">
                                 <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">

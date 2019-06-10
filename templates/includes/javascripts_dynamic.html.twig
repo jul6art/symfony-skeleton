@@ -31,10 +31,10 @@
         "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
     };
     const ACTIVATED_FUNCTIONS = {};
-    {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_CONFIRM_DELETE')) %}
+    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.confirm_delete = true;
     {% endif %}
-    {% if is_functionality_active(constant('App\\Entity\\Functionality::FUNC_FORM_WATCHER')) %}
+    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.form_watcher = true;
     {% endif %}
 </script>
