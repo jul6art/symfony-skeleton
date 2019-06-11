@@ -3,9 +3,11 @@
 namespace App\Form\Test;
 
 use App\Entity\Test;
+use App\Form\Type\SwitchType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -64,6 +66,14 @@ class AddTestType extends AbstractType
 	            'attr' => [
 	            	'class' => 'radio-block'
 	            ],
+            ])
+            ->add('switch', SwitchType::class, [
+	            'label' => 'Switch',
+	            'mapped' => false,
+            ])
+            ->add('rage', RangeType::class, [
+	            'label' => 'Range',
+	            'mapped' => false,
             ])
         ;
     }
