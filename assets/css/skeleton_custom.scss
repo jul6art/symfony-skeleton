@@ -209,3 +209,11 @@ NAVBAR
   background-position: center !important;
   background-size: 100%!important;
 }
+
+/**
+FORMS
+ */
+.checkbox-block label,
+.radio-block label {
+  display: block!important;
+}

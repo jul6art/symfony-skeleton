@@ -70,7 +70,7 @@ $builder
     ->add('test', TextType::class, [
         'attr' => [
             'data-alert' => 'alert text translated from translation_domain',
-            'data-alert-class' => 'succcess',
+            'data-alert-class' => 'alert-warning', // or bg-orange
         ],
     ])
 ;

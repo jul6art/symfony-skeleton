@@ -55,25 +55,14 @@
 {%- endblock switch_label %}
 
 {% block checkbox_widget -%}
-    {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
-    {% if 'checkbox-inline' in parent_label_class %}
-        {{- form_label(form, null, { widget: parent() }) -}}
-    {% else -%}
-        <div class="checkbox">
-            {{- form_label(form, null, { widget: parent() }) -}}
-        </div>
-    {%- endif -%}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{- form_label(form, null, { widget: parent() }) -}}
 {%- endblock checkbox_widget %}
 
 {% block radio_widget -%}
-    {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
-    {%- if 'radio-inline' in parent_label_class -%}
-        {{- form_label(form, null, { widget: parent() }) -}}
-    {%- else -%}
-        <div class="radio">
-            {{- form_label(form, null, { widget: parent() }) -}}
-        </div>
-    {%- endif -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' with-gap')|trim}) -%}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{- form_label(form, null, { widget: parent() }) -}}
 {%- endblock radio_widget %}
 
 {# Labels #}
@@ -131,17 +120,22 @@
 {% block form_row -%}
     <div class="form-group form-float{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
 
-        <div class="form-line">
-            {{ form_widget(form) }} {# -#}
+        {% if expanded is defined %}
             {{- form_label(form) }} {# -#}
-        </div>
+            {{ form_widget(form) }} {# -#}
+        {% else %}
+            <div class="form-line">
+                {{ form_widget(form) }} {# -#}
+                {{- form_label(form) }} {# -#}
+            </div>
+        {% endif %}
 
         {% if help ?? false %}
             <span class="help-block">{{ help | trans({}, translation_domain) }}</span>
         {% endif %}
 
         {% if attr['data-alert'] is defined %}
-            <div class="alert alert-dismissible alert-{{ attr['data-alert-class'] is defined ? attr['data-alert-class'] : 'info' }}">
+            <div class="alert alert-dismissible {{ attr['data-alert-class'] is defined ? attr['data-alert-class'] : ('bg-' ~ theme_name()) }}">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 {{ attr['data-alert'] | trans({}, translation_domain) }}
             </div>
@@ -158,7 +152,6 @@
 {%- endblock button_row %}
 
 {% block choice_row -%}
-    {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock choice_row %}
 
@@ -185,7 +178,7 @@
 {%- endblock checkbox_row %}
 
 {% block radio_row -%}
-    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
+    <div class="form-group{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
     </div>
@@ -204,26 +197,3 @@
         {% if form is not rootform %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %}
-
-{# Help #}
-
-{% block form_help -%}
-    {%- if help is not empty -%}
-        {%- set help_attr = help_attr|merge({class: (help_attr.class|default('') ~ ' help-block')|trim}) -%}
-        <span id="{{ id }}_help"{% with { attr: help_attr } %}{{ block('attributes') }}{% endwith %}>
-            {%- if translation_domain is same as(false) -%}
-                {%- if help_html is same as(false) -%}
-                    {{- help -}}
-                {%- else -%}
-                    {{- help|raw -}}
-                {%- endif -%}
-            {%- else -%}
-                {%- if help_html is same as(false) -%}
-                    {{- help|trans(help_translation_parameters, translation_domain) -}}
-                {%- else -%}
-                    {{- help|trans(help_translation_parameters, translation_domain)|raw -}}
-                {%- endif -%}
-            {%- endif -%}
-        </span>
-    {%- endif -%}
-{%- endblock form_help %}
