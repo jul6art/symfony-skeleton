@@ -24,22 +24,22 @@ class AddTestType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'form.test.name.label',
+                // test
                 'attr' => [
                     'data-inputmask' => "'mask': '99-9999999'",
                     'pattern' => '\d{2}[\-]\d{7}',
-
                     'data-toggle' => 'tooltip',
                     'data-original-title' => 'Je ne suis pas encore traduit',
-
                     'data-alert' => 'form.test.name.help',
                     //'data-alert-class' => 'bg-blue',
                 ],
-
                 'help' => 'form.test.name.help',
             ])
             ->add('textarea', TextareaType::class, [
                 'label' => 'Textarea',
 	            'mapped' => false,
+                // test
+                'help' => 'form.test.name.help',
             ])
             ->add('checkbox', CheckboxType::class, [
                 'label' => 'Checkbox',
@@ -47,6 +47,8 @@ class AddTestType extends AbstractType
 	            'constraints' => [
 	            	new Checkbox(),
 	            ],
+	            // test
+                'help' => 'form.test.name.help',
             ])
             ->add('radio', ChoiceType::class, [
                 'label' => 'Radio',
@@ -57,6 +59,8 @@ class AddTestType extends AbstractType
 		            'bar' => 1,
 		            'baz' => 2,
 	            ],
+	            // test
+                'help' => 'form.test.name.help',
             ])
             ->add('radio2', ChoiceType::class, [
                 'label' => 'Radio exploded',
@@ -68,16 +72,22 @@ class AddTestType extends AbstractType
 		            'baz' => 2,
 	            ],
 	            'attr' => [
-	            	'class' => 'radio-block'
-	            ],
+	            	'class' => 'radio-block',
+                ],
+	            // test
+                'help' => 'form.test.name.help',
             ])
             ->add('switch', SwitchType::class, [
 	            'label' => 'Switch',
 	            'mapped' => false,
+	            // test
+	            'help' => 'form.test.name.help',
             ])
             ->add('rage', RangeType::class, [
 	            'label' => 'Range',
 	            'mapped' => false,
+	            // test
+	            'help' => 'form.test.name.help',
             ])
         ;
     }

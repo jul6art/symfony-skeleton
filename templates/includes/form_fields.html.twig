@@ -32,27 +32,10 @@
     {% endif %}
 {%- endblock money_widget %}
 
-{% block switch_row -%}
-    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
-        {{- block('switch_label') -}}
-        {{- block('switch_widget') -}}
-        {{ form_errors(form) }}
-    </div>
-{%- endblock switch_row %}
-
 {% block switch_widget -%}
-    <div class="switch">
-        <label>
-            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-            <span class="lever"></span>
-        </label>
-    </div>
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
 {%- endblock switch_widget %}
 
-{% block switch_label -%}
-    {% set element = 'span' %}
-    {{- block('form_label') -}}
-{%- endblock switch_label %}
 
 {% block checkbox_widget -%}
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
@@ -71,6 +54,11 @@
     {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' control-label form-label')|trim}) -%}
     {{- parent() -}}
 {%- endblock form_label %}
+
+{% block switch_label -%}
+    {% set element = 'span' %}
+    {{- block('form_label') -}}
+{%- endblock switch_label %}
 
 {% block choice_label -%}
     {# remove the checkbox-inline and radio-inline class, it's only useful for embed labels #}
@@ -129,18 +117,7 @@
                 {{- form_label(form) }} {# -#}
             </div>
         {% endif %}
-
-        {% if help ?? false %}
-            <span class="help-block">{{ help | trans({}, translation_domain) }}</span>
-        {% endif %}
-
-        {% if attr['data-alert'] is defined %}
-            <div class="alert alert-dismissible {{ attr['data-alert-class'] is defined ? attr['data-alert-class'] : ('bg-' ~ theme_name()) }}">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                {{ attr['data-alert'] | trans({}, translation_domain) }}
-            </div>
-        {% endif %}
-
+        {{- block('help') -}}
         {{ form_errors(form) }} {# -#}
     </div> {# -#}
 {%- endblock form_row %}
@@ -173,6 +150,7 @@
 {% block checkbox_row -%}
     <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
+        {{- block('help') -}}
         {{- form_errors(form) -}}
     </div>
 {%- endblock checkbox_row %}
@@ -183,6 +161,20 @@
         {{- form_errors(form) -}}
     </div>
 {%- endblock radio_row %}
+
+{% block switch_row -%}
+    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
+        {{- block('switch_label') -}}
+        <div class="switch">
+            <label>
+                {{- block('switch_widget') -}}
+                <span class="lever"></span>
+            </label>
+        </div>
+        {{- block('help') -}}
+        {{ form_errors(form) }}
+    </div>
+{%- endblock switch_row %}
 
 {# Errors #}
 
@@ -197,3 +189,18 @@
         {% if form is not rootform %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %}
+
+{# Help #}
+
+{% block help -%}
+    {% if help ?? false %}
+        <span class="help-block">{{ translation_domain is same as(false) ? help : help|trans({}, translation_domain) }}</span>
+    {% endif %}
+
+    {% if attr['data-alert'] is defined %}
+        <div class="alert alert-dismissible {{ attr['data-alert-class'] is defined ? attr['data-alert-class'] : ('bg-' ~ theme_name()) }}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            {{ translation_domain is same as(false) ? attr['data-alert'] : attr['data-alert']|trans({}, translation_domain) }}
+        </div>
+    {% endif %}
+{%- endblock help %}
