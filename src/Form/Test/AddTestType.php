@@ -4,6 +4,7 @@ namespace App\Form\Test;
 
 use App\Entity\Test;
 use App\Form\Type\SwitchType;
+use App\Validator\Constraints\Checkbox;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -43,6 +44,9 @@ class AddTestType extends AbstractType
             ->add('checkbox', CheckboxType::class, [
                 'label' => 'Checkbox',
 	            'mapped' => false,
+	            'constraints' => [
+	            	new Checkbox(),
+	            ],
             ])
             ->add('radio', ChoiceType::class, [
                 'label' => 'Radio',

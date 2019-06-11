@@ -2,3 +2,6 @@ jquery:
     validate:
         messages:
             regex: 'La valeur entrée ne respecte pas le modèle requis'
+form:
+    checkbox:
+        error: 'La valeur entrée n''est pas une valeur possible de case à cocher'
