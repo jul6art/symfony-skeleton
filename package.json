@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "animate.css": "^3.7.0",
+        "autosize": "^4.0.2",
         "blockui": "^1.0.0",
         "bootstrap": "^3.4.1",
         "bootstrap-notify": "^3.1.3",

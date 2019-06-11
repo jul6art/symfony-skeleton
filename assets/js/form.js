@@ -2,6 +2,7 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
+import Autosize from 'autosize';
 import Inputmask from 'inputmask';
 const FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
@@ -193,9 +194,13 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 
 $.Form = {
     init: function () {
+        this.autosize();
         this.configure();
         this.mask();
         this.watch();
+    },
+    autosize: function () {
+        Autosize($('textarea'));
     },
     configure: function () {
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
