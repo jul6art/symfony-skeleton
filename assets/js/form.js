@@ -222,33 +222,32 @@ $.Form = {
         Inputmask().mask('[data-inputmask]');
     },
     range: function () {
-        var ranges = $('.nouislider');
-        ranges.each(function () {
+        var containers = $('.nouislider-container');
+        containers.each(function () {
             var selector = $(this)[0];
+            var input = $(this).find('input.nouislider');
+
             Range.create(selector, {
-                start: [$(this).data('value') > 0 ? $(this).data('value') : 0],
+                start: [input.val() > 0 ? input.val() : 0],
                 connect: 'lower',
-                step: $(this).data('step'),
+                step: parseInt(input.attr('step')),
                 range: {
-                    'min': [$(this).data('min')],
-                    'max': [$(this).data('max')]
+                    'min': [parseInt(input.attr('min'))],
+                    'max': [parseInt(input.attr('max'))]
                 }
             });
-            $.Form.rangeValue(selector, true);
+            $.Form.rangeValue(selector, input);
         });
     },
-    rangeValue: function (range, percentage) {
+    rangeValue: function (range, input) {
         range.noUiSlider.on('update', function () {
-            var val = range.noUiSlider.get();
-            if (percentage) {
-                val = parseInt(val);
-                val += '%';
-            }
-            $(range).parent().find('span.js-nouislider-value').text(val);
+            input.val(range.noUiSlider.get());
+            input.trigger('change');
         });
     },
     validate: function (form) {
         FORM_VALIDATOR(form).validate({
+            ignore: ":not(:visible):not(.hidden)",
             highlight: function (input) {
                 $(input).parents('.form-group').addClass('has-error');
                 $(input).parents('.form-line').addClass('error').removeClass('focused, success');

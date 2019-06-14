@@ -83,12 +83,12 @@ class AddTestType extends AbstractType
 	            // test
 	            'help' => 'form.test.name.help',
             ])
-            ->add('rage', RangeType::class, [
+            ->add('range', RangeType::class, [
 	            'label' => 'Range',
 	            'mapped' => false,
-	            'attr' => [
-	            	'class' => 'nouislider',
-	            ],
+	            'min' => 1,
+	            'max' => 10000,
+	            'step' => 1,
 	            // test
 	            'help' => 'form.test.name.help',
             ])

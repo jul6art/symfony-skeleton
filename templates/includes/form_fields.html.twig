@@ -37,8 +37,21 @@
 {%- endblock switch_widget %}
 
 {% block range_widget -%}
-    {{ dump(form.vars) }}
-    <div class="nouislider" data-min="{{ form.vars.min }}" data-max="{{ form.vars.max }}" data-step="{{ form.vars.step }}" data-value="{{ form.vars.value }}"></div>
+    {%- set attr = attr|merge({
+        'data-min': form.vars.min,
+        'data-max': form.vars.max,
+        'data-step': form.vars.step,
+        min: form.vars.min,
+        max: form.vars.max,
+        step: form.vars.step,
+        class: (label_attr.class|default('') ~ ' nouislider hidden')|trim
+    }) -%}
+    <div class="nouislider-container">
+        <div class="hidden">
+            {%- set type = 'hidden' -%}
+            {{- block('form_widget_simple') -}}
+        </div>
+    </div>
 {%- endblock range_widget %}
 
 
