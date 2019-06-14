@@ -27,7 +27,7 @@ trait RepositoryTrait
     public function filterLowercase(QueryBuilder $builder, string $field, string $value): self
     {
         $builder
-            ->andWhere($builder->expr()->eq('lower('.$field.')', ':field'))
+            ->andWhere($builder->expr()->eq(sprintf('lower(%s)', $field), ':field'))
             ->setParameter('field', strtolower($value), Type::STRING);
 
         return $this;

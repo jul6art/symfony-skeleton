@@ -150,7 +150,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
         }
 
         // opening li tag
-        $html = $this->format('<li'.$this->renderHtmlAttributes($attributes).'>', 'li', $item->getLevel(), $options);
+        $html = $this->format(sprintf('<li%s>', $this->renderHtmlAttributes($attributes)), 'li', $item->getLevel(), $options);
 
         // render the text/link inside the li tag
         //$html .= $this->format($item->getUri() ? $item->renderLink() : $item->renderLabel(), 'link', $item->getLevel());
@@ -158,7 +158,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
 
         // renders the embedded ul
         $childrenClass = (array) $item->getChildrenAttribute('class');
-        $childrenClass[] = 'menu_level_'.$item->getLevel();
+        $childrenClass[] = sprintf('menu_level_%s', $item->getLevel());
 
         $childrenAttributes = $item->getChildrenAttributes();
         $childrenAttributes['class'] = implode(' ', $childrenClass);
@@ -255,6 +255,6 @@ class TopbarRenderer extends Renderer implements RendererInterface
                 break;
         }
 
-        return str_repeat(' ', $spacing).$html."\n";
+        return sprintf("%s%s\n", str_repeat(' ', $spacing), $html);
     }
 }

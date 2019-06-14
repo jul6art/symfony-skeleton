@@ -4,6 +4,8 @@ if (typeof jQuery === "undefined") {
 
 import Autosize from 'autosize';
 import Inputmask from 'inputmask';
+import * as Range from 'nouislider';
+import 'nouislider/distribute/nouislider.min.css';
 const FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
 
@@ -197,6 +199,7 @@ $.Form = {
         this.autosize();
         this.configure();
         this.mask();
+        this.range();
         this.watch();
     },
     autosize: function () {
@@ -218,13 +221,41 @@ $.Form = {
     mask: function () {
         Inputmask().mask('[data-inputmask]');
     },
+    range: function () {
+        var ranges = $('.nouislider');
+        ranges.each(function () {
+            var selector = $(this)[0];
+            Range.create(selector, {
+                start: [$(this).data('value') > 0 ? $(this).data('value') : 0],
+                connect: 'lower',
+                step: $(this).data('step'),
+                range: {
+                    'min': [$(this).data('min')],
+                    'max': [$(this).data('max')]
+                }
+            });
+            $.Form.rangeValue(selector, true);
+        });
+    },
+    rangeValue: function (range, percentage) {
+        range.noUiSlider.on('update', function () {
+            var val = range.noUiSlider.get();
+            if (percentage) {
+                val = parseInt(val);
+                val += '%';
+            }
+            $(range).parent().find('span.js-nouislider-value').text(val);
+        });
+    },
     validate: function (form) {
         FORM_VALIDATOR(form).validate({
             highlight: function (input) {
+                $(input).parents('.form-group').addClass('has-error');
                 $(input).parents('.form-line').addClass('error').removeClass('focused, success');
                 $(input).trigger('input.validate.invalid', {input,  form});
             },
             unhighlight: function (input) {
+                $(input).parents('.form-group').removeClass('has-error');
                 $(input).parents('.form-line').removeClass('error').addClass('focused, success');
                 $(input).trigger('input.validate.valid', {input,  form});
             },

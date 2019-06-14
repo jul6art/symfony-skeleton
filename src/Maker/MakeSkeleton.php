@@ -196,8 +196,8 @@ final class MakeSkeleton extends AbstractMaker
 
         foreach ($templates as $template => $variables) {
             $generator->generateFile(
-                'templates/'.$templatesPath.'/'.$template.'.html.twig',
-                '../../../../../../templates/crud/templates/'.$template.'.tpl.php',
+                sprintf('templates/%s/%s.html.twig', $templatesPath, $template),
+                sprintf('../../../../../../templates/crud/templates/%s.tpl.php', $template),
                 $variables
             );
         }

@@ -22,7 +22,7 @@ class CheckboxValidator extends ConstraintValidator {
 	 */
 	public function validate($value, Constraint $constraint)
 	{
-		if (!is_bool($value)) {
+		if (is_bool($value)) {
 			$this->context->buildViolation($constraint->message)
 			              ->addViolation();
 		}

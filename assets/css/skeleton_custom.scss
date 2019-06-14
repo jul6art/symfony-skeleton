@@ -217,3 +217,41 @@ FORMS
 .radio-block label {
   display: block!important;
 }
+
+form label span.badge {
+  position: relative;
+  top: -8px;
+  left: 5px;
+}
+
+form .has-error label span.badge {
+  background-color: #F44336!important;
+}
+
+.has-error .checkbox,
+.has-error .checkbox-inline,
+.has-error .control-label,
+.has-error .help-block,
+.has-error .radio,
+.has-error .radio-inline,
+.has-error.checkbox label,
+.has-error.checkbox-inline label,
+.has-error.radio label,
+.has-error.radio-inline label {
+  color: #F44336!important;
+}
+
+.has-error .help-block.only-help {
+  color: #737373!important;
+}
+
+.has-error .form-control:focus {
+  border: none!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}
+
+.noUi-base, .noUi-connects {
+  position: relative;
+  top: 0;
+}

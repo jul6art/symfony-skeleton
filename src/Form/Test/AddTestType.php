@@ -3,12 +3,12 @@
 namespace App\Form\Test;
 
 use App\Entity\Test;
+use App\Form\Type\RangeType;
 use App\Form\Type\SwitchType;
 use App\Validator\Constraints\Checkbox;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -86,6 +86,9 @@ class AddTestType extends AbstractType
             ->add('rage', RangeType::class, [
 	            'label' => 'Range',
 	            'mapped' => false,
+	            'attr' => [
+	            	'class' => 'nouislider',
+	            ],
 	            // test
 	            'help' => 'form.test.name.help',
             ])
