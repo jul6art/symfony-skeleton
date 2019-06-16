@@ -251,7 +251,51 @@ form .has-error label span.badge {
   box-shadow: none!important;
 }
 
+/**
+RANGE
+ */
+.nouislider-container {
+  margin-bottom: 45px!important;
+}
+
 .noUi-base, .noUi-connects {
   position: relative;
   top: 0;
+}
+
+.noUi-horizontal {
+  height: 15px!important;
+  border-radius: 15px!important;
+  margin: 0 14px;
+}
+
+.noUi-base {
+  cursor: pointer;
+  background-color: #818181;
+  border-radius: 15px!important;
+}
+
+.noUi-connect {
+  background-color: #84c7c1!important;
+  border-top-left-radius: 15px!important;
+  border-bottom-left-radius: 15px!important;
+}
+
+.noUi-handle {
+  width: 21px!important;
+  height: 21px!important;
+  top: -4px!important;
+  -webkit-transform: translateX(-6px);
+  transform: translateX(-6px);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+
+  &:before,
+  &:after {
+    display: none!important;
+  }
+}
+
+.noUi-value-horizontal {
+  -webkit-transform: translate(-50%,80%)!important;
+  transform: translate(-50%,80%)!important;
 }

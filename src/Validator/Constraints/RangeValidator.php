@@ -13,18 +13,18 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * Class CheckboxValidator
+ * Class RangeValidator
  * @package App\Validator\Constraints
  */
-class CheckboxValidator extends ConstraintValidator {
+class RangeValidator extends ConstraintValidator {
 	/**
 	 * @param mixed $protocol
 	 * @param Constraint $constraint
 	 */
 	public function validate($value, Constraint $constraint)
 	{
-		if (!$constraint instanceof Checkbox) {
-			throw new UnexpectedTypeException($constraint, Checkbox::class);
+		if (!$constraint instanceof Range) {
+			throw new UnexpectedTypeException($constraint, Range::class);
 		}
 
 		// custom constraints should ignore null and empty values to allow
@@ -33,7 +33,11 @@ class CheckboxValidator extends ConstraintValidator {
 			return;
 		}
 
-		if (!is_bool($value)) {
+		$options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
+
+		if ($value < $options['min']
+		    || $value > $options['max']
+		    || (($value != $options['max']) && (($value - $options['min']) %$options['step'] != 0))) {
 			$this->context->buildViolation($constraint->message)
 			              ->addViolation();
 		}

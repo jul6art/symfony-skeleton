@@ -38,12 +38,14 @@ class AddTestType extends AbstractType
             ->add('textarea', TextareaType::class, [
                 'label' => 'Textarea',
 	            'mapped' => false,
+                'required' => true,
                 // test
                 'help' => 'form.test.name.help',
             ])
             ->add('checkbox', CheckboxType::class, [
                 'label' => 'Checkbox',
 	            'mapped' => false,
+                'required' => true,
 	            'constraints' => [
 	            	new Checkbox(),
 	            ],
@@ -65,6 +67,7 @@ class AddTestType extends AbstractType
             ->add('radio2', ChoiceType::class, [
                 'label' => 'Radio exploded',
 	            'mapped' => false,
+                'required' => true,
 	            'expanded' => true,
 	            'choices' => [
 	            	'foo' => 0,
@@ -80,17 +83,20 @@ class AddTestType extends AbstractType
             ->add('switch', SwitchType::class, [
 	            'label' => 'Switch',
 	            'mapped' => false,
+	            'required' => true,
 	            // test
 	            'help' => 'form.test.name.help',
             ])
             ->add('range', RangeType::class, [
 	            'label' => 'Range',
 	            'mapped' => false,
+	            'required' => true,
 	            'min' => 1,
-	            'max' => 10000,
-	            'step' => 1,
+	            'max' => 101,
+	            'step' => 10,
 	            // test
 	            'help' => 'form.test.name.help',
+	            'data'  => 51,
             ])
         ;
     }

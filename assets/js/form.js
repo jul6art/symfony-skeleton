@@ -206,6 +206,13 @@ $.Form = {
         Autosize($('textarea'));
     },
     configure: function () {
+        FORM_VALIDATOR.validator.setDefaults({
+            ignore: ':hidden:not(.validate)',
+            errorPlacement: function (error, element) {
+                $(element).parents('.form-group').append(error);
+            },
+        });
+
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
             var pattern = $(element).prop('pattern');
             if (!pattern || this.optional(element)) {
@@ -230,11 +237,16 @@ $.Form = {
             Range.create(selector, {
                 start: [input.val() > 0 ? input.val() : 0],
                 connect: 'lower',
-                step: parseInt(input.attr('step')),
+                step: parseInt(input.data('step')),
                 range: {
-                    'min': [parseInt(input.attr('min'))],
-                    'max': [parseInt(input.attr('max'))]
-                }
+                    'min': [parseInt(input.data('min'))],
+                    'max': [parseInt(input.data('max'))]
+                },
+                pips: {
+                    mode: 'steps',
+                    stepped: true,
+                    density: 4
+                },
             });
             $.Form.rangeValue(selector, input);
         });
@@ -247,7 +259,6 @@ $.Form = {
     },
     validate: function (form) {
         FORM_VALIDATOR(form).validate({
-            ignore: ":not(:visible):not(.hidden)",
             highlight: function (input) {
                 $(input).parents('.form-group').addClass('has-error');
                 $(input).parents('.form-line').addClass('error').removeClass('focused, success');
@@ -258,9 +269,6 @@ $.Form = {
                 $(input).parents('.form-line').removeClass('error').addClass('focused, success');
                 $(input).trigger('input.validate.valid', {input,  form});
             },
-            errorPlacement: function (error, element) {
-                $(element).parents('.form-group').append(error);
-            }
         });
 
         FORM_VALIDATOR(form).find('[data-inputmask]').rules('add', {

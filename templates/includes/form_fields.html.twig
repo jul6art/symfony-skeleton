@@ -36,23 +36,20 @@
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
 {%- endblock switch_widget %}
 
-{% block range_widget -%}
+{% block custom_range_widget -%}
+    {%- set type = 'hidden' -%}
     {%- set attr = attr|merge({
         'data-min': form.vars.min,
         'data-max': form.vars.max,
         'data-step': form.vars.step,
-        min: form.vars.min,
-        max: form.vars.max,
-        step: form.vars.step,
-        class: (label_attr.class|default('') ~ ' nouislider hidden')|trim
+        class: (attr.class|default('') ~ ' nouislider validate')|trim,
     }) -%}
     <div class="nouislider-container">
         <div class="hidden">
-            {%- set type = 'hidden' -%}
             {{- block('form_widget_simple') -}}
         </div>
     </div>
-{%- endblock range_widget %}
+{%- endblock custom_range_widget %}
 
 
 {% block checkbox_widget -%}
@@ -94,7 +91,7 @@
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {%- if required -%}
-            <span class="badge bg-blue-grey">{{ 'form.common.required' | trans({}, 'form') }}</span>
+            <span class="badge bg-blue-grey">{{ 'form.common.required' | trans({}, translation_domain) }}</span>
         {%- endif -%}
         </{{ element|default('label') }}>
     {%- endif -%}
@@ -221,14 +218,15 @@
     </div>
 {%- endblock switch_row %}
 
-{% block range_row -%}
+{% block custom_range_row -%}
     <div class="form-group {% if not valid %} has-error{% endif %}">
-        {{- block('form_label') -}}
-        {{- block('range_widget') -}}
+        {{- form_label(form) }}
+        {{- block('custom_range_widget') -}}
         {{- block('help') -}}
+        {%- set type = 'text' -%}
         {{ form_errors(form) }}
     </div>
-{%- endblock range_row %}
+{%- endblock custom_range_row %}
 
 {# Errors #}
 

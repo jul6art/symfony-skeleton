@@ -5,3 +5,5 @@ jquery:
 form:
     checkbox:
         error: 'La valeur entrée n''est pas une valeur possible de case à cocher'
+    range:
+        error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
