@@ -175,6 +175,11 @@
     {{- block('form_row') }}
 {%- endblock choice_row %}
 
+{% block boolean_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock boolean_row %}
+
 {% block date_row -%}
     {% set force_error = true %}
     {{- block('form_row') }}

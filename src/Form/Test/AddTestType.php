@@ -3,9 +3,10 @@
 namespace App\Form\Test;
 
 use App\Entity\Test;
+use App\Form\Type\BooleanType;
+use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
 use App\Form\Type\SwitchType;
-use App\Validator\Constraints\Checkbox;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -46,9 +47,13 @@ class AddTestType extends AbstractType
                 'label' => 'Checkbox',
 	            'mapped' => false,
                 'required' => true,
-	            'constraints' => [
-	            	new Checkbox(),
-	            ],
+	            // test
+                'help' => 'form.test.name.help',
+            ])
+            ->add('boolean', BooleanType::class, [
+                'label' => 'Boolean',
+	            'mapped' => false,
+                'required' => true,
 	            // test
                 'help' => 'form.test.name.help',
             ])
@@ -108,12 +113,18 @@ class AddTestType extends AbstractType
 	            'double' => true,
 	            // test
 	            'help' => 'form.test.name.help',
-	            'data'  => json_encode([
-	            	20,
+	            'data' => implode(', ', [
+		            20,
 		            80,
 	            ]),
             ])
-        ;
+            ->add('phone', PhoneType::class, [
+	            'label' => 'Phone',
+	            'mapped' => false,
+	            'required' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

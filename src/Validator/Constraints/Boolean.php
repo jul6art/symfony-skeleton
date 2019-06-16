@@ -10,9 +10,9 @@ namespace App\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class Checkbox
+ * Class Boolean
  * @package App\Validator\Constraints
  */
-class Checkbox extends Constraint {
-	public $message = 'form.checkbox.error';
+class Boolean extends Constraint {
+	public $message = 'form.boolean.error';
 }

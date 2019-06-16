@@ -13,24 +13,28 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * Class CheckboxValidator
+ * Class BooleanValidator
  * @package App\Validator\Constraints
  */
-class CheckboxValidator extends ConstraintValidator {
+class BooleanValidator extends ConstraintValidator {
 	/**
 	 * @param mixed $protocol
 	 * @param Constraint $constraint
 	 */
 	public function validate($value, Constraint $constraint)
 	{
-		if (!$constraint instanceof Checkbox) {
-			throw new UnexpectedTypeException($constraint, Checkbox::class);
+		if (!$constraint instanceof Boolean) {
+			throw new UnexpectedTypeException($constraint, Boolean::class);
 		}
 
 		// custom constraints should ignore null and empty values to allow
 		// other constraints (NotBlank, NotNull, etc.) take care of that
 		if (null === $value || '' === $value) {
 			return;
+		}
+
+		if (in_array($value, [0, 1])) {
+			$value = (bool) $value;
 		}
 
 		if (!is_bool($value)) {

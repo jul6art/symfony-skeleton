@@ -234,9 +234,19 @@ $.Form = {
             var selector = $(this)[0];
             var input = $(this).find('input.nouislider');
 
+            var val = input.val();
+            var data = [val];
+            if (typeof input.data('double') !== 'undefined') {
+                var data = [];
+                var pieces = val.split(',');
+                pieces.forEach(function (item) {
+                    data.push(parseFloat(item));
+                });
+            }
+
             Range.create(selector, {
-                start: input.data('double') === 'data-double' ? JSON.parse(input.val()) : [input.val()],
-                connect: input.data('double') === 'data-double' ? true : 'lower',
+                start: data,
+                connect: typeof input.data('double') !== 'undefined' ? true : 'lower',
                 step: parseInt(input.data('step')),
                 range: {
                     'min': [parseInt(input.data('min'))],

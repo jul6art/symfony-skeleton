@@ -1,6 +1,10 @@
 form:
     common:
         required: Obligatoire
+        boolean:
+            choices:
+                yes: Oui
+                no: Non
     test:
         edit:
             title: 'Modifier le test <strong>%name%</strong>'
