@@ -91,12 +91,27 @@ class AddTestType extends AbstractType
 	            'label' => 'Range',
 	            'mapped' => false,
 	            'required' => true,
-	            'min' => 1,
-	            'max' => 101,
+	            'min' => 0,
+	            'max' => 100,
 	            'step' => 10,
 	            // test
 	            'help' => 'form.test.name.help',
-	            'data'  => 51,
+	            'data'  => 50,
+            ])
+            ->add('range2', RangeType::class, [
+	            'label' => 'Range double',
+	            'mapped' => false,
+	            'required' => true,
+	            'min' => 0,
+	            'max' => 100,
+	            'step' => 10,
+	            'double' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+	            'data'  => json_encode([
+	            	20,
+		            80,
+	            ]),
             ])
         ;
     }

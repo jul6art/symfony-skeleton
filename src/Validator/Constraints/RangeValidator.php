@@ -35,11 +35,30 @@ class RangeValidator extends ConstraintValidator {
 
 		$options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
 
-		if ($value < $options['min']
-		    || $value > $options['max']
-		    || (($value != $options['max']) && (($value - $options['min']) %$options['step'] != 0))) {
-			$this->context->buildViolation($constraint->message)
-			              ->addViolation();
+		if (!key_exists('double', $options) || !$options['double']) {
+			if ($value < $options['min']
+			    || $value > $options['max']
+			    || (($value != $options['max']) && (($value - $options['min']) %$options['step'] != 0))) {
+				$this->context->buildViolation($constraint->message)
+				              ->addViolation();
+			}
+		} else {
+			$values = explode(',', $value);
+
+			if (!count($values) === 2) {
+				$this->context->buildViolation($constraint->message)
+				              ->addViolation();
+			} else {
+				$min = (float) $values[0];
+				$max = (float) $values[1];
+				if ($min < $options['min']
+				    || $max > $options['max']
+				    || (($min != $options['max']) && (($min - $options['min']) %$options['step'] != 0))
+				    || (($max != $options['max']) && (($max - $options['min']) %$options['step'] != 0))) {
+					$this->context->buildViolation($constraint->message)
+					              ->addViolation();
+				}
+			}
 		}
 	}
 }

@@ -42,6 +42,7 @@
         'data-min': form.vars.min,
         'data-max': form.vars.max,
         'data-step': form.vars.step,
+        'data-double': form.vars.double,
         class: (attr.class|default('') ~ ' nouislider validate')|trim,
     }) -%}
     <div class="nouislider-container">
@@ -223,7 +224,6 @@
         {{- form_label(form) }}
         {{- block('custom_range_widget') -}}
         {{- block('help') -}}
-        {%- set type = 'text' -%}
         {{ form_errors(form) }}
     </div>
 {%- endblock custom_range_row %}

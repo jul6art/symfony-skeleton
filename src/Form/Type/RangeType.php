@@ -26,6 +26,7 @@ class RangeType extends AbstractType
 		$view->vars['min'] = $options['min'];
 		$view->vars['max'] = $options['max'];
 		$view->vars['step'] = $options['step'];
+		$view->vars['double'] = $options['double'];
 	}
 
 	/**
@@ -39,10 +40,12 @@ class RangeType extends AbstractType
 		    'min',
 		    'max',
 		    'step',
+		    'double',
 	    ]);
 
 	    $resolver->setDefaults([
 	    	'error_bubbling' => false,
+		    'double' => false,
 		    'constraints' => [
 		    	new Range(),
 		    ],

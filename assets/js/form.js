@@ -235,8 +235,8 @@ $.Form = {
             var input = $(this).find('input.nouislider');
 
             Range.create(selector, {
-                start: [input.val() > 0 ? input.val() : 0],
-                connect: 'lower',
+                start: input.data('double') === 'data-double' ? JSON.parse(input.val()) : [input.val()],
+                connect: input.data('double') === 'data-double' ? true : 'lower',
                 step: parseInt(input.data('step')),
                 range: {
                     'min': [parseInt(input.data('min'))],
