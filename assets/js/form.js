@@ -85,7 +85,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 return;
             }
 
-            $fields = $form.find(settings.fieldSelector);
+            var $fields = $form.find(settings.fieldSelector);
 
             if (settings.addRemoveFieldsMarksDirty) {
                 // Check if field count has changed
@@ -99,7 +99,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             // Brute force - check each field
             var isDirty = false;
             $fields.each(function () {
-                $field = $(this);
+                var $field = $(this);
                 if (isFieldDirty($field)) {
                     isDirty = true;
                     return false; // break
@@ -254,7 +254,9 @@ $.Form = {
     rangeValue: function (range, input) {
         range.noUiSlider.on('update', function () {
             input.val(range.noUiSlider.get());
-            input.trigger('change');
+            if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
+                input.closest('form').trigger('checkform.areYouSure');
+            }
         });
     },
     validate: function (form) {
@@ -278,6 +280,7 @@ $.Form = {
     watch: function () {
         if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             $('form:not(.no-watch)').areYouSure({
+                fieldSelector: ":input:not(input[type=submit]):not(input[type=button])",
                 change: function() {
                     // Enable save button only if the form is dirty. i.e. something to save.
                     if ($(this).hasClass('dirty')) {
