@@ -5,6 +5,8 @@ if (typeof jQuery === "undefined") {
 import Autosize from 'autosize';
 import Inputmask from 'inputmask';
 import * as Range from 'nouislider';
+import IntlTelInput from 'intl-tel-input';
+import 'intl-tel-input/build/css/intlTelInput.min.css';
 import 'nouislider/distribute/nouislider.min.css';
 const FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
@@ -197,13 +199,68 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 $.Form = {
     init: function () {
         this.autosize();
+        this.intl_tel();
         this.configure();
         this.mask();
         this.range();
         this.watch();
+        this.scrollToError();
     },
     autosize: function () {
         Autosize($('textarea'));
+    },
+    intl_tel: function () {
+        var initItlTelInput = function(selector, type) {
+            $(selector).each(function(key, item) {
+                var input = IntlTelInput(item, {
+                    placeholderNumberType: type,
+                    nationalMode: true,
+                    initialCountry: "fr",
+                    preferredCountries: ["fr", "be", "lu", "de", "es", "it", "gb"],
+                    geoIpLookup: function (callback) {
+                        $.get('https://ipinfo.io', function () {
+                        }, "jsonp").always(function (resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    utilsScript: "/js/intl-tel.js"
+                });
+
+                $(item).on('keyup', function () {
+                    if (input.isValidNumber()) {
+                        $(this).data('valid_number', true);
+                    } else {
+                        $(this).data('valid_number', false);
+                    }
+                }).on('change', function () {
+                    if (input.isValidNumber()) {
+                        $(this).data('valid_number', true);
+                        $(this).val(input.getNumber());
+                    } else {
+                        $(this).data('valid_number', false);
+                    }
+                });
+            });
+        };
+
+        initItlTelInput('.input-phone:not(.input-mobile-phone)', 'FIXED_LINE');
+        initItlTelInput('.input-phone.input-mobile-phone', 'MOBILE');
+    },
+    scrollToError: function () {
+        var errors = $(".form-group.has-error");
+        if (errors.length) {
+            var tabs = $(errors[0]).parents('.tab-pane');
+            if (tabs.length) {
+                tabs.each(function () {
+                    $('.nav-tabs a[href^="#' + $(this).attr('id') + '"]').tab('show');
+                });
+            }
+
+            $('html, body').animate({
+                scrollTop: errors.first().offset().top - 90
+            }, 300);
+        }
     },
     configure: function () {
         FORM_VALIDATOR.validator.setDefaults({
@@ -215,11 +272,19 @@ $.Form = {
 
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
             var pattern = $(element).prop('pattern');
-            if (!pattern || this.optional(element)) {
+            if (!pattern || $(element).prop('required') === true) {
                 return true;
             }
             return new RegExp(pattern).test(value);
         }, VALIDATOR_TRANSLATIONS.regex);
+
+        FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
+            if ($(element).prop('required') === true || value !== '') {
+                return $(element).data('valid_number');
+            } else {
+                return true;
+            }
+        }, VALIDATOR_TRANSLATIONS.phone);
 
         $('body').find('form:not(.no-validate)').each(function () {
             $.Form.validate($(this));
@@ -283,8 +348,22 @@ $.Form = {
             },
         });
 
-        FORM_VALIDATOR(form).find('[data-inputmask]').rules('add', {
-            regex: true
+        FORM_VALIDATOR(form).find('[data-inputmask]').each(function () {
+            FORM_VALIDATOR(this).rules('add', {
+                regex: true
+            });
+        });
+
+        FORM_VALIDATOR(form).find('.input-phone').each(function () {
+            FORM_VALIDATOR(this).rules('add', {
+                phone: true
+            });
+        });
+
+        form.on('submit', function () {
+           if (!FORM_VALIDATOR(this).valid()) {
+               $.Form.scrollToError();
+           }
         });
     },
     watch: function () {

@@ -3602,6 +3602,11 @@ interpret@^1.1.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
+intl-tel-input@^15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/intl-tel-input/-/intl-tel-input-15.1.0.tgz#630061deaeaeff4ae1e04547ab19be99b760fb2b"
+  integrity sha512-d0WKMIIQl83/J7qi0QTbNfMUkXrzorm5pEwMguKb81++azIraCe1wTMrM1b6+GGVGkkiZ6VRGW9OYIGGksDAzQ==
+
 invariant@^2.2.2:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"

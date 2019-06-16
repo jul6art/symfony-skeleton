@@ -149,11 +149,16 @@
 {# Rows #}
 
 {% block form_row -%}
-    <div class="form-group form-float{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="form-group{% if form.vars.no_float is not defined %} form-float{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
 
         {% if expanded is defined %}
             {{- form_label(form) }} {# -#}
             {{ form_widget(form) }} {# -#}
+        {% elseif form.vars.no_float is defined %}
+            {{- form_label(form) }} {# -#}
+            <div class="form-line">
+                {{ form_widget(form) }} {# -#}
+            </div>
         {% else %}
             <div class="form-line">
                 {{ form_widget(form) }} {# -#}

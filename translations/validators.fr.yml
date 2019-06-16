@@ -1,6 +1,7 @@
 jquery:
     validate:
         messages:
+            phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
             regex: 'La valeur entrée ne respecte pas le modèle requis'
 form:
     boolean:
