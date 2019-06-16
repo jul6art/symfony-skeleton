@@ -229,16 +229,16 @@ $.Form = {
 
                 $(item).on('keyup', function () {
                     if (input.isValidNumber()) {
-                        $(this).data('valid_number', true);
+                        $(this).data('invalid', false);
                     } else {
-                        $(this).data('valid_number', false);
+                        $(this).data('invalid', true);
                     }
                 }).on('change', function () {
                     if (input.isValidNumber()) {
-                        $(this).data('valid_number', true);
+                        $(this).data('invalid', false);
                         $(this).val(input.getNumber());
                     } else {
-                        $(this).data('valid_number', false);
+                        $(this).data('invalid', true);
                     }
                 });
             });
@@ -280,7 +280,7 @@ $.Form = {
 
         FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
             if ($(element).prop('required') === true || value !== '') {
-                return $(element).data('valid_number');
+                return !$(element).data('invalid');
             } else {
                 return true;
             }

@@ -4,6 +4,8 @@ namespace App\Form\Test;
 
 use App\Entity\Test;
 use App\Form\Type\BooleanType;
+use App\Form\Type\DatePickerType;
+use App\Form\Type\GenderType;
 use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
 use App\Form\Type\SwitchType;
@@ -126,10 +128,24 @@ class AddTestType extends AbstractType
 	            'help' => 'form.test.name.help',
             ])
             ->add('mobile', PhoneType::class, [
-	            'label' => 'mobile phone',
+	            'label' => 'Mobile phone',
 	            'mapped' => false,
 	            'required' => true,
 	            'mobile' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+            ])
+            ->add('gender', GenderType::class, [
+	            'label' => 'Gender',
+	            'mapped' => false,
+	            'required' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+            ])
+            ->add('date', DatePickerType::class, [
+	            'label' => 'Date',
+	            'mapped' => false,
+	            'required' => true,
 	            // test
 	            'help' => 'form.test.name.help',
             ]);

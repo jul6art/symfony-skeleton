@@ -5,10 +5,17 @@ form:
             choices:
                 yes: Oui
                 no: Non
+    user:
+        gender:
+            choices:
+                m: Homme
+                f: Femme
+
     test:
         edit:
             title: 'Modifier le test <strong>%name%</strong>'
         add:
             title: 'Créer un test'
-        name.label: Nom
-        name.help: 'Je suis un texte d''aide'
+        name:
+            label: Nom
+            help: 'Je suis un texte d''aide'

@@ -2,6 +2,7 @@
 
 namespace App\Form\Type;
 
+use App\Validator\Constraints\Phone;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,6 +43,9 @@ class PhoneType extends AbstractType
 	    	'mobile' => false,
 	    	'attr' => [
 	    		'class' => 'input-phone',
+		    ],
+		    'constraints' => [
+		    	new Phone(),
 		    ],
 	    ]);
     }

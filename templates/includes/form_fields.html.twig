@@ -17,6 +17,11 @@
     {{- parent() -}}
 {%- endblock button_widget %}
 
+{% block date_picker_widget %}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' datepicker')|trim}) -%}
+    {{- block('form_widget_simple') -}}
+{%- endblock date_picker_widget %}
+
 {% block money_widget -%}
     {% set prepend = not (money_pattern starts with '{{') %}
     {% set append = not (money_pattern ends with '}}') %}
@@ -153,7 +158,6 @@
 
 {% block form_row -%}
     <div class="form-group{% if form.vars.no_float is not defined %} form-float{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
-
         {% if expanded is defined %}
             {{- form_label(form) }} {# -#}
             {{ form_widget(form) }} {# -#}
@@ -188,10 +192,20 @@
     {{- block('form_row') }}
 {%- endblock boolean_row %}
 
+{% block gender_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock gender_row %}
+
 {% block date_row -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock date_row %}
+
+{% block date_picker_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock date_picker_row %}
 
 {% block time_row -%}
     {% set force_error = true %}
