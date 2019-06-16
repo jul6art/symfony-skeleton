@@ -124,6 +124,14 @@ class AddTestType extends AbstractType
 	            'required' => true,
 	            // test
 	            'help' => 'form.test.name.help',
+            ])
+            ->add('mobile', PhoneType::class, [
+	            'label' => 'mobile phone',
+	            'mapped' => false,
+	            'required' => true,
+	            'mobile' => true,
+	            // test
+	            'help' => 'form.test.name.help',
             ]);
     }
 

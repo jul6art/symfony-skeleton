@@ -24,6 +24,7 @@ class PhoneType extends AbstractType
 		parent::buildView($view, $form, $options);
 
 		$view->vars['no_float'] = $options['no_float'];
+		$view->vars['mobile'] = $options['mobile'];
 	}
 
     /**
@@ -32,8 +33,13 @@ class PhoneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
 	    parent::configureOptions( $resolver );
 
+	    $resolver->setDefined([
+	    	'mobile',
+	    ]);
+
 	    $resolver->setDefaults([
 	    	'no_float' => true,
+	    	'mobile' => false,
 	    	'attr' => [
 	    		'class' => 'input-phone',
 		    ],

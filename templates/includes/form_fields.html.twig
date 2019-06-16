@@ -6,6 +6,9 @@
     {% if type is not defined or type not in ['file', 'hidden'] %}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) -%}
     {% endif %}
+    {% if form.vars.mobile is defined and form.vars.mobile %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' input-mobile-phone')|trim}) -%}
+    {% endif %}
     {{- parent() -}}
 {%- endblock form_widget_simple %}
 
