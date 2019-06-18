@@ -13,7 +13,6 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
@@ -56,19 +55,21 @@ class EntityChoiceSimpleType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $registry = $this->registry;
-        $resolver->setDefaults(array(
-            'empty_value' => false,
-            'empty_data' => null,
-            'em' => null,
-            'query_builder' => null,
-            'field' => 'id',
-        ));
+    	parent::configureOptions($resolver);
 
-        $resolver->setRequired(array(
-            'class',
-            'entity_label',
-        ));
+        $registry = $this->registry;
+        $resolver->setDefaults([
+	        'empty_value' => false,
+	        'empty_data' => null,
+	        'em' => null,
+	        'query_builder' => null,
+	        'field' => 'id',
+        ]);
+
+        $resolver->setRequired([
+	        'class',
+	        'entity_label',
+        ]);
 
         $resolver->setDefault('entity_group_by', null);
 

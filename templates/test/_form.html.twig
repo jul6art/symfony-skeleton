@@ -1,1 +1,14 @@
-{{ form_widget(form) }}
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_row(form.name) }}
+    </div>
+    {% for child in form.test %}
+        <div class="col-sm-6">
+            {{ form_row(child) }}
+        </div>
+        {% if loop.index %2 == 1 %}
+            </div>
+            <div class="row">
+        {% endif %}
+    {% endfor %}
+</div>

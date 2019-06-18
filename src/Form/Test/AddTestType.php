@@ -26,152 +26,24 @@ class AddTestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name', TextType::class, [
-                'label' => 'form.test.name.label',
-                // test
-                'attr' => [
-                    'data-inputmask' => "'mask': '99-9999999'",
-                    'pattern' => '\d{2}[\-]\d{7}',
-                    'data-toggle' => 'tooltip',
-                    'data-original-title' => 'Je ne suis pas encore traduit',
-                    'data-alert' => 'form.test.name.help',
-                    //'data-alert-class' => 'bg-blue',
-                ],
-                'help' => 'form.test.name.help',
-            ])
-            ->add('textarea', TextareaType::class, [
-                'label' => 'Textarea',
-	            'mapped' => false,
-                'required' => true,
-                // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('checkbox', CheckboxType::class, [
-                'label' => 'Checkbox',
-	            'mapped' => false,
-                'required' => true,
-	            // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('boolean', BooleanType::class, [
-                'label' => 'Boolean',
-	            'mapped' => false,
-                'required' => true,
-	            // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('boolean2', BooleanType::class, [
-                'label' => 'Boolean exploded',
-	            'mapped' => false,
-                'required' => true,
-	            'exploded' => true,
-	            // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('radio', ChoiceType::class, [
-                'label' => 'Radio',
-	            'mapped' => false,
-	            'expanded' => true,
-	            'choices' => [ 
-	            	'foo' => 0,
-		            'bar' => 1,
-		            'baz' => 2,
-	            ],
-	            // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('radio2', ChoiceType::class, [
-                'label' => 'Radio exploded',
-	            'mapped' => false,
-                'required' => true,
-	            'expanded' => true,
-	            'exploded' => true,
-	            'choices' => [
-	            	'foo' => 0,
-		            'bar' => 1,
-		            'baz' => 2,
-	            ],
-	            // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('switch', SwitchType::class, [
-	            'label' => 'Switch',
-	            'mapped' => false,
-	            'required' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('range', RangeType::class, [
-	            'label' => 'Range',
-	            'mapped' => false,
-	            'required' => true,
-	            'min' => 0,
-	            'max' => 100,
-	            'step' => 10,
-	            // test
-	            'help' => 'form.test.name.help',
-	            'data'  => 50,
-            ])
-            ->add('range2', RangeType::class, [
-	            'label' => 'Range double',
-	            'mapped' => false,
-	            'required' => true,
-	            'min' => 0,
-	            'max' => 100,
-	            'step' => 10,
-	            'double' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-	            'data' => implode(', ', [
-		            20,
-		            80,
-	            ]),
-            ])
-            ->add('phone', PhoneType::class, [
-	            'label' => 'Phone',
-	            'mapped' => false,
-	            'required' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('mobile', PhoneType::class, [
-	            'label' => 'Mobile phone',
-	            'mapped' => false,
-	            'required' => true,
-	            'mobile' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('gender', GenderType::class, [
-	            'label' => 'Gender',
-	            'mapped' => false,
-	            'required' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('date', DatePickerType::class, [
-	            'label' => 'Date',
-	            'mapped' => false,
-	            'required' => true,
-	            'addon' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('time', TimePickerType::class, [
-	            'label' => 'Time',
-	            'mapped' => false,
-	            'required' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ])
-            ->add('datetime', DatetimePickerType::class, [
-	            'label' => 'Datetime',
-	            'mapped' => false,
-	            'required' => true,
-	            // test
-	            'help' => 'form.test.name.help',
-            ]);
+	    $builder
+		    ->add('name', TextType::class, [
+			    'label' => 'form.test.name.label',
+			    // test
+			    'attr' => [
+				    'data-inputmask' => "'mask': '99-9999999'",
+				    'pattern' => '\d{2}[\-]\d{7}',
+				    'data-toggle' => 'tooltip',
+				    'data-original-title' => 'Je ne suis pas encore traduit',
+				    'data-alert' => 'form.test.name.help',
+				    //'data-alert-class' => 'bg-blue',
+			    ],
+			    'help' => 'form.test.name.help',
+		    ])
+		    // remove this field to remove test fields
+		    ->add('test', TestTestType::class, [
+		    	'mapped' => false,
+		    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

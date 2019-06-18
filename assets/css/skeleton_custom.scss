@@ -1,3 +1,5 @@
+$height_form_range_vertical: 350px;
+
 .block {
   display: block;
 }
@@ -298,6 +300,28 @@ RANGE
 .noUi-value-horizontal {
   -webkit-transform: translate(-50%,80%)!important;
   transform: translate(-50%,80%)!important;
+}
+
+.noUi-vertical {
+  min-height: $height_form_range_vertical;
+  border-radius: 15px!important;
+  margin: 5px 14px 0;
+
+  .noUi-base {
+    height: $height_form_range_vertical;
+    min-height: $height_form_range_vertical;
+  }
+
+  .noUi-connect {
+    background-color: #84c7c1!important;
+    border-radius: 15px!important;
+  }
+
+  .noUi-handle {
+    left: -2px!important;
+    top: -10px !important;
+    width: 30px!important;
+  }
 }
 
 /**

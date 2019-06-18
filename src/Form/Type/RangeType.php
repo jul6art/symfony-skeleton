@@ -3,7 +3,6 @@
 namespace App\Form\Type;
 
 use App\Validator\Constraints\Range;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -27,6 +26,7 @@ class RangeType extends AbstractType
 		$view->vars['max'] = $options['max'];
 		$view->vars['step'] = $options['step'];
 		$view->vars['double'] = $options['double'];
+		$view->vars['vertical'] = $options['vertical'];
 	}
 
 	/**
@@ -41,11 +41,13 @@ class RangeType extends AbstractType
 		    'max',
 		    'step',
 		    'double',
+		    'vertical',
 	    ]);
 
 	    $resolver->setDefaults([
 	    	'error_bubbling' => false,
 		    'double' => false,
+		    'vertical' => false,
 		    'constraints' => [
 		    	new Range(),
 		    ],

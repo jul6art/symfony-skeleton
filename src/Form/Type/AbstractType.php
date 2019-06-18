@@ -19,6 +19,7 @@ abstract class AbstractType extends BaseType
 	 */
 	public function buildView(FormView $view, FormInterface $form, array $options) {
 		$view->vars['exploded'] = $options['exploded'];
+		$view->vars['no_float'] = $options['no_float'];
 	}
 
 	/**
@@ -29,10 +30,12 @@ abstract class AbstractType extends BaseType
 
 		$resolver->setDefined([
 			'exploded',
+			'no_float',
 		]);
 
 		$resolver->setDefaults([
 			'exploded' => false,
+			'no_float' => false,
 		]);
 	}
 }

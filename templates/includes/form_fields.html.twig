@@ -167,8 +167,13 @@
 {# Rows #}
 
 {% block form_row -%}
-    <div class="form-group{% if form.vars.no_float is not defined %} form-float{% endif %}{% if form.vars.addon is defined and form.vars.addon %} input-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
-        {% if expanded is defined %}
+    <div class="form-group{% if form.vars.no_float is not defined or not form.vars.no_float %} form-float{% endif %}{% if form.vars.addon is defined and form.vars.addon %} input-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {% if form.vars.no_float is defined and form.vars.no_float %}
+            {{- form_label(form) }} {# -#}
+            <div class="form-line">
+                {{ form_widget(form) }} {# -#}
+            </div>
+        {% elseif expanded is defined %}
             {% if form.vars.exploded is defined and form.vars.exploded %}
                 <div {{ block('widget_container_attributes') }}>
                     {{- form_label(form) }} {# -#}
@@ -178,11 +183,6 @@
                 {{- form_label(form) }} {# -#}
                 {{ form_widget(form) }} {# -#}
             {% endif %}
-        {% elseif form.vars.no_float is defined %}
-            {{- form_label(form) }} {# -#}
-            <div class="form-line">
-                {{ form_widget(form) }} {# -#}
-            </div>
         {% else %}
             <div class="form-line">
                 {{ form_widget(form) }} {# -#}
@@ -226,6 +226,9 @@
 {%- endblock custom_choice_row %}
 
 {% block gender_row -%}
+    {% if form.vars.exploded is defined and form.vars.exploded %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
+    {% endif %}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock gender_row %}
@@ -290,6 +293,7 @@
 {%- endblock switch_row %}
 
 {% block custom_range_row -%}
+    {%- set attr = attr|merge({'data-orientation': form.vars.vertical is defined and form.vars.vertical ? 'vertical' : 'horizontal'}) -%}
     <div class="form-group {% if not valid %} has-error{% endif %}">
         {{- form_label(form) }}
         {{- block('custom_range_widget') -}}
