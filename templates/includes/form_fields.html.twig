@@ -22,6 +22,16 @@
     {{- block('form_widget_simple') -}}
 {%- endblock date_picker_widget %}
 
+{% block time_picker_widget %}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' timepicker')|trim}) -%}
+    {{- block('form_widget_simple') -}}
+{%- endblock time_picker_widget %}
+
+{% block datetime_picker_widget %}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' datetimepicker')|trim}) -%}
+    {{- block('form_widget_simple') -}}
+{%- endblock datetime_picker_widget %}
+
 {% block money_widget -%}
     {% set prepend = not (money_pattern starts with '{{') %}
     {% set append = not (money_pattern ends with '}}') %}
@@ -157,10 +167,17 @@
 {# Rows #}
 
 {% block form_row -%}
-    <div class="form-group{% if form.vars.no_float is not defined %} form-float{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="form-group{% if form.vars.no_float is not defined %} form-float{% endif %}{% if form.vars.addon is defined and form.vars.addon %} input-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         {% if expanded is defined %}
-            {{- form_label(form) }} {# -#}
-            {{ form_widget(form) }} {# -#}
+            {% if form.vars.exploded is defined and form.vars.exploded %}
+                <div {{ block('widget_container_attributes') }}>
+                    {{- form_label(form) }} {# -#}
+                    {{ form_widget(form) }} {# -#}
+                </div>
+            {% else %}
+                {{- form_label(form) }} {# -#}
+                {{ form_widget(form) }} {# -#}
+            {% endif %}
         {% elseif form.vars.no_float is defined %}
             {{- form_label(form) }} {# -#}
             <div class="form-line">
@@ -171,6 +188,11 @@
                 {{ form_widget(form) }} {# -#}
                 {{- form_label(form) }} {# -#}
             </div>
+        {% endif %}
+        {% if form.vars.addon is defined and form.vars.addon %}
+            <span class="input-group-addon">
+                <i class="material-icons">date_range</i>
+            </span>
         {% endif %}
         {{- block('help') -}}
         {{ form_errors(form) }} {# -#}
@@ -188,9 +210,20 @@
 {%- endblock choice_row %}
 
 {% block boolean_row -%}
+    {% if form.vars.exploded is defined and form.vars.exploded %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
+    {% endif %}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock boolean_row %}
+
+{% block custom_choice_row -%}
+    {% if form.vars.exploded is defined and form.vars.exploded %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
+    {% endif %}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock custom_choice_row %}
 
 {% block gender_row -%}
     {% set force_error = true %}
@@ -206,6 +239,16 @@
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock date_picker_row %}
+
+{% block time_picker_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock time_picker_row %}
+
+{% block datetime_picker_row -%}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{%- endblock datetime_picker_row %}
 
 {% block time_row -%}
     {% set force_error = true %}

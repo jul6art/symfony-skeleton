@@ -4,14 +4,16 @@ namespace App\Form\Test;
 
 use App\Entity\Test;
 use App\Form\Type\BooleanType;
+use App\Form\Type\ChoiceType;
 use App\Form\Type\DatePickerType;
+use App\Form\Type\DatetimePickerType;
 use App\Form\Type\GenderType;
 use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
 use App\Form\Type\SwitchType;
+use App\Form\Type\TimePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,6 +61,14 @@ class AddTestType extends AbstractType
 	            // test
                 'help' => 'form.test.name.help',
             ])
+            ->add('boolean2', BooleanType::class, [
+                'label' => 'Boolean exploded',
+	            'mapped' => false,
+                'required' => true,
+	            'exploded' => true,
+	            // test
+                'help' => 'form.test.name.help',
+            ])
             ->add('radio', ChoiceType::class, [
                 'label' => 'Radio',
 	            'mapped' => false,
@@ -76,14 +86,12 @@ class AddTestType extends AbstractType
 	            'mapped' => false,
                 'required' => true,
 	            'expanded' => true,
+	            'exploded' => true,
 	            'choices' => [
 	            	'foo' => 0,
 		            'bar' => 1,
 		            'baz' => 2,
 	            ],
-	            'attr' => [
-	            	'class' => 'radio-block',
-                ],
 	            // test
                 'help' => 'form.test.name.help',
             ])
@@ -144,6 +152,21 @@ class AddTestType extends AbstractType
             ])
             ->add('date', DatePickerType::class, [
 	            'label' => 'Date',
+	            'mapped' => false,
+	            'required' => true,
+	            'addon' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+            ])
+            ->add('time', TimePickerType::class, [
+	            'label' => 'Time',
+	            'mapped' => false,
+	            'required' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+            ])
+            ->add('datetime', DatetimePickerType::class, [
+	            'label' => 'Datetime',
 	            'mapped' => false,
 	            'required' => true,
 	            // test

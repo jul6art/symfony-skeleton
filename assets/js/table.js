@@ -2,22 +2,15 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
+// css files
 import '../css/table.scss';
+
+// modules
 import 'datatables.net';
 import 'datatables.net-dt';
 
-/*! DataTables Bootstrap 3 integration
- * ©2011-2014 SpryMedia Ltd - datatables.net/license
- */
 
-/**
- * DataTables integration for Bootstrap 3. This requires Bootstrap 3 and
- * DataTables 1.10 or newer.
- *
- * This file sets the defaults and adds options to DataTables to style its
- * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
- * for further information.
- */
+// manually imported datatable-bootstrap  script
 (function(window, document, undefined){
 
     var factory = function( $, DataTable ) {
