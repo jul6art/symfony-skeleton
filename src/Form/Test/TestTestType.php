@@ -160,6 +160,24 @@ class TestTestType extends AbstractType
 	            'help' => 'form.test.name.help',
 	            'data'  => 50,
             ])
+            ->add('range4', RangeType::class, [
+	            'label' => 'Range double vertical',
+	            'mapped' => false,
+	            'required' => true,
+	            'min' => 0,
+	            'max' => 100,
+	            'step' => 10,
+	            'double' => true,
+	            'vertical' => true,
+	            // test
+	            'help' => 'form.test.name.help',
+	            'data' => implode(', ', [
+		            20,
+		            40,
+		            60,
+		            80,
+	            ]),
+            ])
             ->add('date', DatePickerType::class, [
 	            'label' => 'Date',
 	            'mapped' => false,
