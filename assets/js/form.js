@@ -1617,6 +1617,7 @@ $.Form = {
             Range.create(selector, {
                 start: data,
                 orientation: input.data('orientation'),
+                direction: input.data('direction'),
                 connect: typeof input.data('double') !== 'undefined' ? true : 'lower',
                 step: parseInt(input.data('step')),
                 range: {

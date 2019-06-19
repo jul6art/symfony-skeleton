@@ -293,7 +293,10 @@
 {%- endblock switch_row %}
 
 {% block custom_range_row -%}
-    {%- set attr = attr|merge({'data-orientation': form.vars.vertical is defined and form.vars.vertical ? 'vertical' : 'horizontal'}) -%}
+    {%- set attr = attr|merge({
+        'data-orientation': form.vars.vertical is defined and form.vars.vertical ? 'vertical' : 'horizontal',
+        'data-direction': form.vars.vertical is defined and form.vars.vertical ? 'rtl' : 'ltr'
+    }) -%}
     <div class="form-group {% if not valid %} has-error{% endif %}">
         {{- form_label(form) }}
         {{- block('custom_range_widget') -}}
