@@ -25,8 +25,9 @@ class AddTestType extends AbstractType
 			    'help' => 'form.test.name.help',
 			    'alert' => 'form.test.name.help',
 			    'tooltip' => 'form.test.name.help',
-			    'addon_left' => 'pre',
-			    'addon_right' => 'form.test.name.help',
+			    'addon_left' => 'prepend',
+			    'button_right' => '<i class="fa fa-check-square-o"></i>',
+			    'button_right_class' => 'bg-blue test',
 			    //
 			    //  to override theme color
 			      'alert_class' => 'bg-green',

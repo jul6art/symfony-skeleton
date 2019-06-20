@@ -192,10 +192,17 @@
     {% if form.vars.no_float ?? false or form.vars.addon_left ?? false or form.vars.addon_right ?? false %}
         {% set float = false %}
     {% endif %}
-    <div class="form-group{% if float %} form-float'{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
-        {%- if form.vars.addon_left ?? false or form.vars.addon_right ?? false -%}
+    <div class="form-group{% if float %} form-float{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {%- if form.vars.addon_left ?? false or form.vars.addon_right ?? false or form.vars.button_left ?? false or form.vars.button_right ?? false -%}
             {{- form_label(form) }} {# -#}
             <div class="input-group">
+                {%- if form.vars.button_left ?? false -%}
+                    <span class="input-group-btn">
+                        <a class="btn{% if form.vars.button_left_class ?? false %} {{ form.vars.button_left_class }}{% endif %}">
+                            {{ (translation_domain is same as(false) ? form.vars.button_left : form.vars.button_left|trans({}, translation_domain))|raw }}
+                        </a>
+                    </span>
+                {%- endif -%}
                 {%- if form.vars.addon_left ?? false -%}
                     <span class="input-group-addon">
                         {{ (translation_domain is same as(false) ? form.vars.addon_left : form.vars.addon_left|trans({}, translation_domain))|raw }}
@@ -207,6 +214,13 @@
                 {%- if form.vars.addon_right ?? false -%}
                     <span class="input-group-addon">
                         {{ (translation_domain is same as(false) ? form.vars.addon_right : form.vars.addon_right|trans({}, translation_domain))|raw }}
+                    </span>
+                {%- endif -%}
+                {%- if form.vars.button_right ?? false -%}
+                    <span class="input-group-btn">
+                        <a class="btn{% if form.vars.button_right_class ?? false %} {{ form.vars.button_right_class }}{% endif %}">
+                            {{ (translation_domain is same as(false) ? form.vars.button_right : form.vars.button_right|trans({}, translation_domain))|raw }}
+                        </a>
                     </span>
                 {%- endif -%}
             </div>

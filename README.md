@@ -45,7 +45,7 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 > Types
 
-    A lot of basic types are overrided in src/Forms/Type to include new options
+    A lot of basic types are overrided in src/Forms/Type to include new options listed after this
     
 > Addons
 
@@ -55,6 +55,19 @@ $builder
     ->add('test', TextType::class, [
         'addon_left' => '<i class="fa fa-calendar"></i>',
         'addon_right' => 'addon text tranlslated from translation domain',
+    ])
+;
+```
+    
+> Buttons
+
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'button_left' => '<i class="fa fa-check-square"></i>',
+        'button_right' => 'button text translated from translation_domain',
+        'button_right_class' => 'bg-green test',
     ])
 ;
 ```

@@ -22,6 +22,10 @@ abstract class AbstractType extends BaseType
 		$view->vars['addon_right'] = $options['addon_right'];
 		$view->vars['alert'] = $options['alert'];
 		$view->vars['alert_class'] = $options['alert_class'];
+		$view->vars['button_left'] = $options['button_left'];
+		$view->vars['button_left_class'] = $options['button_left_class'];
+		$view->vars['button_right'] = $options['button_right'];
+		$view->vars['button_right_class'] = $options['button_right_class'];
 		$view->vars['exploded'] = $options['exploded'];
 		$view->vars['mask'] = $options['mask'];
 		$view->vars['no_float'] = $options['no_float'];
@@ -40,6 +44,10 @@ abstract class AbstractType extends BaseType
 			'addon_right',
 			'alert',
 			'alert_class',
+			'button_left',
+			'button_left_class',
+			'button_right',
+			'button_right_class',
 			'exploded',
 			'mask',
 			'no_float',
@@ -52,6 +60,10 @@ abstract class AbstractType extends BaseType
 			'addon_right' => false,
 			'alert' => false,
 			'alert_class' => false,
+			'button_left' => false,
+			'button_left_class' => false,
+			'button_right' => false,
+			'button_right_class' => false,
 			'exploded' => false,
 			'mask' => false,
 			'no_float' => false,

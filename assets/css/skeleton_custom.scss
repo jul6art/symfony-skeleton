@@ -260,6 +260,12 @@ form .has-error label span.badge {
   & + .error {
     margin-top: 0;
   }
+
+  .input-group-btn > a,
+  .input-group-btn > button {
+    position: relative;
+    top: -1px;
+  }
 }
 
 .form-float {

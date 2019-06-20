@@ -190,6 +190,7 @@ class TestTestType extends AbstractType
 	            'label' => 'Time',
 	            'mapped' => false,
 	            'required' => true,
+	            'addon_left' => '<input type="checkbox" class="filled-in" id="ig_checkbox"><label for="ig_checkbox"></label>',
 	            // test
 	            'help' => 'form.test.name.help',
             ])
