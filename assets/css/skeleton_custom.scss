@@ -236,10 +236,11 @@ form .has-error label span.badge {
 .has-error .help-block,
 .has-error .radio,
 .has-error .radio-inline,
-.has-error.checkbox label,
-.has-error.checkbox-inline label,
-.has-error.radio label,
-.has-error.radio-inline label {
+.has-error .checkbox label,
+.has-error .checkbox-inline label,
+.has-error .radio label,
+.has-error .radio-inline label,
+.has-error .input-group-addon {
   color: #F44336!important;
 }
 
