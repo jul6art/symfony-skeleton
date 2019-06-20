@@ -1670,12 +1670,14 @@ $.Form = {
         FORM_VALIDATOR(form).validate({
             highlight: function (input) {
                 $(input).parents('.form-group').addClass('has-error');
-                $(input).parents('.form-line').addClass('error').removeClass('focused, success');
+                $(input).parents('.form-line').addClass('error').removeClass('focused');
+                $(input).parents('.form-line').addClass('error').removeClass('success');
                 $(input).trigger('input.validate.invalid', {input,  form});
             },
             unhighlight: function (input) {
                 $(input).parents('.form-group').removeClass('has-error');
-                $(input).parents('.form-line').removeClass('error').addClass('focused, success');
+                $(input).parents('.form-line').removeClass('error').addClass('focused');
+                $(input).parents('.form-line').removeClass('error').addClass('success');
                 $(input).trigger('input.validate.valid', {input,  form});
             },
         });

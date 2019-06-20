@@ -13,21 +13,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DatePickerType extends AbstractType
 {
 	/**
-	 * @param FormView $view
-	 * @param FormInterface $form
-	 * @param array $options
-	 */
-	public function buildView( FormView $view, FormInterface $form, array $options ) {
-		$view->vars['addon'] = $options['addon'];
-	}
-
-	/**
 	 * @param OptionsResolver $resolver
 	 */
 	public function configureOptions(OptionsResolver $resolver) {
 		parent::configureOptions($resolver);
-
-		$resolver->setDefined(['addon']);
 
 		$resolver->setDefaults([
 			'addon' => false,

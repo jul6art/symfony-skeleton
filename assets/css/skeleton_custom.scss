@@ -253,6 +253,19 @@ form .has-error label span.badge {
   box-shadow: none!important;
 }
 
+.form-group > .input-group {
+  margin-bottom: 0;
+
+  & + .help-block,
+  & + .error {
+    margin-top: 0;
+  }
+}
+
+.form-float {
+  margin-top: 30px;
+}
+
 /**
 RANGE
  */
@@ -330,3 +343,4 @@ INTL_TEL
 .intl-tel-input {
   width: 100%;
 }
+

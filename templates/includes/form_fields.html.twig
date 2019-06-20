@@ -6,7 +6,7 @@
     {% if type is not defined or type not in ['file', 'hidden'] %}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) -%}
     {% endif %}
-    {% if form.vars.mobile is defined and form.vars.mobile %}
+    {% if form.vars.mobile ?? false %}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' input-mobile-phone')|trim}) -%}
     {% endif %}
     {{- parent() -}}
@@ -167,33 +167,70 @@
 {# Rows #}
 
 {% block form_row -%}
-    <div class="form-group{% if form.vars.no_float is not defined or not form.vars.no_float %} form-float{% endif %}{% if form.vars.addon is defined and form.vars.addon %} input-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
-        {% if form.vars.no_float is defined and form.vars.no_float %}
+    {%- if form.vars.tooltip ?? false -%}
+        {%- set attr = attr|merge({
+            'data-toggle': 'tooltip'|trim,
+            'data-original-title': (translation_domain is same as(false) ? form.vars.tooltip : form.vars.tooltip|trans({}, translation_domain))|trim
+        }) -%}
+    {%- endif -%}
+    {%- if form.vars.mask ?? false -%}
+        {%- set attr = attr|merge({
+            'data-inputmask': form.vars.mask|trim
+        }) -%}
+    {%- endif -%}
+    {%- if form.vars.pattern ?? false -%}
+        {%- set attr = attr|merge({
+            'pattern': form.vars.pattern|trim
+        }) -%}
+    {%- endif -%}
+    {%- if help is not empty -%}
+        {%- set attr = attr|merge({
+            'aria-describedby': (id ~ '_help')|trim
+        }) -%}
+    {%- endif -%}
+    {% set float = true %}
+    {% if form.vars.no_float ?? false or form.vars.addon_left ?? false or form.vars.addon_right ?? false %}
+        {% set float = false %}
+    {% endif %}
+    <div class="form-group{% if float %} form-float'{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {%- if form.vars.addon_left ?? false or form.vars.addon_right ?? false -%}
+            {{- form_label(form) }} {# -#}
+            <div class="input-group">
+                {%- if form.vars.addon_left ?? false -%}
+                    <span class="input-group-addon">
+                        {{ (translation_domain is same as(false) ? form.vars.addon_left : form.vars.addon_left|trans({}, translation_domain))|raw }}
+                    </span>
+                {%- endif -%}
+                <div class="form-line">
+                    {{ form_widget(form, {attr: attr}) }} {# -#}
+                </div>
+                {%- if form.vars.addon_right ?? false -%}
+                    <span class="input-group-addon">
+                        {{ (translation_domain is same as(false) ? form.vars.addon_right : form.vars.addon_right|trans({}, translation_domain))|raw }}
+                    </span>
+                {%- endif -%}
+            </div>
+        {%- elseif form.vars.no_float ?? false or form.vars.addon ?? false -%}
             {{- form_label(form) }} {# -#}
             <div class="form-line">
-                {{ form_widget(form) }} {# -#}
+                {{ form_widget(form, {attr: attr}) }} {# -#}
             </div>
-        {% elseif expanded is defined %}
-            {% if form.vars.exploded is defined and form.vars.exploded %}
+        {%- elseif expanded is defined -%}
+            {%- if form.vars.exploded ?? false -%}
                 <div {{ block('widget_container_attributes') }}>
                     {{- form_label(form) }} {# -#}
-                    {{ form_widget(form) }} {# -#}
+                    {{ form_widget(form, {attr: attr}) }} {# -#}
                 </div>
-            {% else %}
+            {%- else -%}
                 {{- form_label(form) }} {# -#}
-                {{ form_widget(form) }} {# -#}
-            {% endif %}
-        {% else %}
+                {{ form_widget(form, {attr: attr}) }} {# -#}
+            {%- endif -%}
+        {%- else -%}
             <div class="form-line">
-                {{ form_widget(form) }} {# -#}
+                {{ form_widget(form, {attr: attr}) }} {# -#}
                 {{- form_label(form) }} {# -#}
             </div>
-        {% endif %}
-        {% if form.vars.addon is defined and form.vars.addon %}
-            <span class="input-group-addon">
-                <i class="material-icons">date_range</i>
-            </span>
-        {% endif %}
+        {%- endif -%}
         {{- block('help') -}}
         {{ form_errors(form) }} {# -#}
     </div> {# -#}
@@ -210,25 +247,25 @@
 {%- endblock choice_row %}
 
 {% block boolean_row -%}
-    {% if form.vars.exploded is defined and form.vars.exploded %}
+    {%- if form.vars.exploded ?? false -%}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
-    {% endif %}
+    {%- endif -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock boolean_row %}
 
 {% block custom_choice_row -%}
-    {% if form.vars.exploded is defined and form.vars.exploded %}
+    {%- if form.vars.exploded ?? false -%}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
-    {% endif %}
+    {%- endif -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock custom_choice_row %}
 
 {% block gender_row -%}
-    {% if form.vars.exploded is defined and form.vars.exploded %}
+    {%- if form.vars.exploded ?? false -%}
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' radio-block')|trim}) -%}
-    {% endif %}
+    {%- endif -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock gender_row %}
@@ -294,8 +331,8 @@
 
 {% block custom_range_row -%}
     {%- set attr = attr|merge({
-        'data-orientation': form.vars.vertical is defined and form.vars.vertical ? 'vertical' : 'horizontal',
-        'data-direction': form.vars.vertical is defined and form.vars.vertical ? 'rtl' : 'ltr'
+        'data-orientation': form.vars.vertical ?? false ? 'vertical' : 'horizontal',
+        'data-direction': form.vars.vertical ?? false ? 'rtl' : 'ltr'
     }) -%}
     <div class="form-group {% if not valid %} has-error{% endif %}">
         {{- form_label(form) }}
@@ -323,13 +360,13 @@
 
 {% block help -%}
     {% if help ?? false %}
-        <span class="help-block only-help">{{ translation_domain is same as(false) ? help : help|trans({}, translation_domain) }}</span>
+        <span class="help-block only-help" id="{{ id ~ '_help' }}">{{ translation_domain is same as(false) ? help : help|trans({}, translation_domain) }}</span>
     {% endif %}
 
-    {% if attr['data-alert'] is defined %}
-        <div class="alert alert-dismissible {{ attr['data-alert-class'] is defined ? attr['data-alert-class'] : ('bg-' ~ theme_name()) }}">
+    {% if form.vars.alert ?? false %}
+        <div class="alert alert-dismissible {{ form.vars.alert_class ?? false ? form.vars.alert_class : ('bg-' ~ theme_name()) }}">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            {{ translation_domain is same as(false) ? attr['data-alert'] : attr['data-alert']|trans({}, translation_domain) }}
+            {{ translation_domain is same as(false) ? form.vars.alert : form.vars.alert|trans({}, translation_domain) }}
         </div>
     {% endif %}
 {%- endblock help %}

@@ -45,7 +45,19 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 > Types
 
-    DatepickerType
+    A lot of basic types are overrided in src/Forms/Type to include new options
+    
+> Addons
+
+
+```php
+$builder
+    ->add('test', TextType::class, [
+        'addon_left' => '<i class="fa fa-calendar"></i>',
+        'addon_right' => 'addon text tranlslated from translation domain',
+    ])
+;
+```
     
 > Data-mask and validation
 
@@ -54,10 +66,8 @@ https://github.com/RobinHerbots/Inputmask
 ```php
 $builder
     ->add('test', TextType::class, [
-        'attr' => [
-            'data-inputmask' => "'mask': '99-9999999'",
-            'pattern' => '\d{2}[\-]\d{7}',
-        ],
+        'mask' => "'mask': '99-9999999'",
+        'pattern' => '\d{2}[\-]\d{7}',
     ])
 ;
 ```
@@ -68,10 +78,8 @@ $builder
 ```php
 $builder
     ->add('test', TextType::class, [
-        'attr' => [
-            'data-alert' => 'alert text translated from translation_domain',
-            'data-alert-class' => 'alert-warning', // or bg-orange
-        ],
+        'alert' => 'alert text translated from translation_domain',
+        'alert_class' => 'alert-warning', // optional
     ])
 ;
 ```
@@ -91,10 +99,7 @@ $builder
 ```php
 $builder
     ->add('test', TextType::class, [
-        'attr' => [
-            'data-toggle' => 'tooltip',
-            'data-original-title' => 'Untranslated tooltip text',
-        ],
+        'tooltip' => 'tooltip text translated from translation_domain',
     ])
 ;
 ```

@@ -3,6 +3,7 @@
 namespace App\Form\Test;
 
 use App\Form\Type\BooleanType;
+use App\Form\Type\CheckboxType;
 use App\Form\Type\ChoiceType;
 use App\Form\Type\DatePickerType;
 use App\Form\Type\DatetimePickerType;
@@ -10,10 +11,9 @@ use App\Form\Type\GenderType;
 use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
 use App\Form\Type\SwitchType;
+use App\Form\Type\TextareaType;
 use App\Form\Type\TimePickerType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -182,7 +182,7 @@ class TestTestType extends AbstractType
 	            'label' => 'Date',
 	            'mapped' => false,
 	            'required' => true,
-	            'addon' => true,
+	            'addon_right' => '<i class="fa fa-calendar"></i>',
 	            // test
 	            'help' => 'form.test.name.help',
             ])
