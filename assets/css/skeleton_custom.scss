@@ -351,3 +351,33 @@ INTL_TEL
   width: 100%;
 }
 
+/**
+DATEPICKER
+ */
+$primary: #2196F3;
+$secondary: darken($primary, 10%);
+$white: #FFFFFF;
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+  background: $secondary!important;
+}
+
+.dtp div.dtp-date, .dtp div.dtp-time {
+  background: $primary!important;
+}
+
+.dtp div.dtp-date i.material-icons {
+  color: $white!important;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected {
+  background: $primary!important;
+}
+
+.dtp [fill="#8BC34A"] {
+  fill: $primary!important;
+}
+
+.dtp [stroke="#8BC34A"] {
+  stroke: $primary!important;
+}

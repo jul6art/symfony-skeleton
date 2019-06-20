@@ -1,3 +1,11 @@
+jquery:
+    datepicker:
+        messages:
+            ok: Ok
+            clear: Vider
+            cancel: Annuler
+            now: Maintenant
+
 form:
     common:
         required: Obligatoire

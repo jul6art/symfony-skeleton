@@ -1645,21 +1645,30 @@ $.Form = {
         $('.datetimepicker').bootstrapMaterialDatePicker({
             clearButton: true,
             weekStart: 1,
-            lang: LOCALE
+            lang: LOCALE,
+            okText: DATEPICKER_TRANSLATIONS.ok,
+            clearText: DATEPICKER_TRANSLATIONS.clear,
+            cancelText: DATEPICKER_TRANSLATIONS.cancel
         });
 
         $('.datepicker').bootstrapMaterialDatePicker({
             clearButton: true,
             weekStart: 1,
             time: false,
-            lang: LOCALE
+            lang: LOCALE,
+            okText: DATEPICKER_TRANSLATIONS.ok,
+            clearText: DATEPICKER_TRANSLATIONS.clear,
+            cancelText: DATEPICKER_TRANSLATIONS.cancel
         });
 
         $('.timepicker').bootstrapMaterialDatePicker({
             format: 'HH:mm',
             clearButton: true,
             date: false,
-            lang: LOCALE
+            lang: LOCALE,
+            okText: DATEPICKER_TRANSLATIONS.ok,
+            clearText: DATEPICKER_TRANSLATIONS.clear,
+            cancelText: DATEPICKER_TRANSLATIONS.cancel
         });
 
         $('.datetimepicker, .datepicker, .timepicker').on('change', function () {
