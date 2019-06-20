@@ -191,6 +191,7 @@ class TestTestType extends AbstractType
 	            'mapped' => false,
 	            'required' => true,
 	            'addon_left' => '<input type="checkbox" class="filled-in" id="ig_checkbox"><label for="ig_checkbox"></label>',
+	            'addon_right' => '<i class="fa fa-clock-o"></i>',
 	            // test
 	            'help' => 'form.test.name.help',
             ])
@@ -198,6 +199,7 @@ class TestTestType extends AbstractType
 	            'label' => 'Datetime',
 	            'mapped' => false,
 	            'required' => true,
+	            'addon_right' => '<i class="fa fa-calendar"></i> <i class="fa fa-clock-o"></i>',
 	            // test
 	            'help' => 'form.test.name.help',
             ]);

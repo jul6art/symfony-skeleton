@@ -3,8 +3,6 @@
 namespace App\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -19,7 +17,6 @@ class DatePickerType extends AbstractType
 		parent::configureOptions($resolver);
 
 		$resolver->setDefaults([
-			'addon' => false,
 			'widget' => 'single_text',
 			'format' => 'yyyy-MM-dd',
 		]);
