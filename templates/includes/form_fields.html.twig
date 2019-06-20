@@ -18,17 +18,17 @@
 {%- endblock button_widget %}
 
 {% block date_picker_widget %}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' datepicker')|trim}) -%}
+    {%- set attr = attr|merge({'data-provide': 'datepicker'}) -%}
     {{- block('form_widget_simple') -}}
 {%- endblock date_picker_widget %}
 
 {% block time_picker_widget %}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' timepicker')|trim}) -%}
+    {%- set attr = attr|merge({'data-provide': 'timepicker'}) -%}
     {{- block('form_widget_simple') -}}
 {%- endblock time_picker_widget %}
 
 {% block datetime_picker_widget %}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' datetimepicker')|trim}) -%}
+    {%- set attr = attr|merge({'data-provide': 'datetimepicker'}) -%}
     {{- block('form_widget_simple') -}}
 {%- endblock datetime_picker_widget %}
 

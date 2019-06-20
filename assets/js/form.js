@@ -1512,7 +1512,7 @@ $.Form = {
         this.scrollToError();
     },
     autosize: function () {
-        Autosize($('textarea'));
+        Autosize($('textarea:not(.no_autosize)'));
     },
     intl_tel: function () {
         var initItlTelInput = function(selector, type) {
@@ -1591,7 +1591,7 @@ $.Form = {
             }
         }, VALIDATOR_TRANSLATIONS.phone);
 
-        $('body').find('form:not(.no-validate)').each(function () {
+        $('body').find('form:not(.no_validate)').each(function () {
             $.Form.validate($(this));
         });
     },
@@ -1642,16 +1642,8 @@ $.Form = {
         });
     },
     picker: function () {
-        $('.datetimepicker').bootstrapMaterialDatePicker({
-            clearButton: true,
-            weekStart: 1,
-            lang: LOCALE,
-            okText: DATEPICKER_TRANSLATIONS.ok,
-            clearText: DATEPICKER_TRANSLATIONS.clear,
-            cancelText: DATEPICKER_TRANSLATIONS.cancel
-        });
-
-        $('.datepicker').bootstrapMaterialDatePicker({
+        $('[data-provide="datepicker"]').bootstrapMaterialDatePicker({
+            format: 'DD-MM-YYYY',
             clearButton: true,
             weekStart: 1,
             time: false,
@@ -1661,7 +1653,7 @@ $.Form = {
             cancelText: DATEPICKER_TRANSLATIONS.cancel
         });
 
-        $('.timepicker').bootstrapMaterialDatePicker({
+        $('[data-provide="timepicker"]').bootstrapMaterialDatePicker({
             format: 'HH:mm',
             clearButton: true,
             date: false,
@@ -1671,7 +1663,17 @@ $.Form = {
             cancelText: DATEPICKER_TRANSLATIONS.cancel
         });
 
-        $('.datetimepicker, .datepicker, .timepicker').on('change', function () {
+        $('[data-provide="datetimepicker"]').bootstrapMaterialDatePicker({
+            format: 'DD-MM-YYYY HH:mm',
+            clearButton: true,
+            weekStart: 1,
+            lang: LOCALE,
+            okText: DATEPICKER_TRANSLATIONS.ok,
+            clearText: DATEPICKER_TRANSLATIONS.clear,
+            cancelText: DATEPICKER_TRANSLATIONS.cancel
+        });
+
+        $('body').on('change', '[data-provide="datepicker"], [data-provide="timepicker"], [data-provide="datetimepicker"]', function () {
             $(this).trigger('focus');
         });
     },
@@ -1711,7 +1713,7 @@ $.Form = {
     },
     watch: function () {
         if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
-            $('form:not(.no-watch)').areYouSure({
+            $('form:not(.no_watch)').areYouSure({
                 fieldSelector: ":input:not(input[type=submit]):not(input[type=button])",
                 change: function() {
                     // Enable save button only if the form is dirty. i.e. something to save.

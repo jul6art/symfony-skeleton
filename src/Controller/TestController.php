@@ -75,10 +75,6 @@ class TestController extends AbstractFOSRestController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        	dump($form['test']['date']->getData());
-        	dump($form['test']['time']->getData());
-        	dump($form['test']['datetime']->getData());
-        	exit;
             $this->testManager->save($test);
             $eventDispatcher->dispatch(TestEvent::ADDED, new TestEvent($test));
 

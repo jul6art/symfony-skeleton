@@ -121,6 +121,26 @@ $builder
 
     {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}
 
+### Selectors (classes to add to disable for specific item)
+
+Autosize
+
+    textarea:not(.no_autosize)
+    
+Jquery validate
+
+    form:not(.no_validate)
+    
+Jquery areYouSure
+
+    form:not(.no_watch)
+    
+Date and time Pickers
+
+    [data-provide="datepicker"]
+    [data-provide="timepicker"]
+    [data-provide="datetimepicker"]
+
 ### Audits
 
 > To activate audit for an entity you need to

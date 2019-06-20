@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -15,6 +15,11 @@ class DatetimePickerType extends AbstractType
 	 */
 	public function configureOptions(OptionsResolver $resolver) {
 		parent::configureOptions($resolver);
+
+		$resolver->setDefaults([
+			'widget' => 'single_text',
+			'format' => 'dd-MM-yyyy HH:mm',
+		]);
 	}
 
 	/**
@@ -22,7 +27,7 @@ class DatetimePickerType extends AbstractType
      */
     public function getParent()
     {
-        return TextType::class;
+        return DateTimeType::class;
     }
 
 	/**
