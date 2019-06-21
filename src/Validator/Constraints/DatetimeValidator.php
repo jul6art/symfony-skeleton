@@ -33,11 +33,24 @@ class DatetimeValidator extends ConstraintValidator {
 			return;
 		}
 
-		dump($constraint, $this->context);
-
-		if ($value instanceof \DateTime) {
+		if (!$value instanceof \DateTime) {
 			$this->context->buildViolation($constraint->message)
 			              ->addViolation();
+		} else {
+			$options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
+
+			if (key_exists('minDate', $options) && $value->format('Y-m-d') < (new \DateTime($options['minDate']))->format('Y-m-d')) {
+				$this->context->buildViolation($constraint->message_min_date)
+				              ->setParameter('{{ date }}', $options['minDate'])
+				              ->addViolation();
+			} elseif (key_exists('maxDate', $options) && $value->format('Y-m-d') > (new \DateTime($options['maxDate']))->format('Y-m-d')) {
+				$this->context->buildViolation($constraint->message_max_date)
+				              ->setParameter('{{ date }}', $options['maxDate'])
+				              ->addViolation();
+			} elseif (key_exists('disabledDays', $options) && in_array($value->format('w'), json_decode($options['disabledDays']))) {
+				$this->context->buildViolation($constraint->message_disabled_days)
+				              ->addViolation();
+			}
 		}
 	}
 }

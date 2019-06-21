@@ -1546,6 +1546,15 @@ $.Form = {
                         $(this).data('invalid', true);
                     }
                 });
+
+                $(item).closest('form').on('submit', function (e) {
+                    if (input.isValidNumber()) {
+                        $(item).data('invalid', false);
+                        $(item).val(input.getNumber());
+                    } else {
+                        $(item).data('invalid', true);
+                    }
+                });
             });
         };
 
@@ -1577,10 +1586,11 @@ $.Form = {
 
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
             var pattern = $(element).prop('pattern');
-            if (!pattern || $(element).prop('required') === true) {
+            if (pattern && ($(element).prop('required') === true || value !== '')) {
+                return new RegExp(pattern).test(value);
+            } else {
                 return true;
             }
-            return new RegExp(pattern).test(value);
         }, VALIDATOR_TRANSLATIONS.regex);
 
         FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
