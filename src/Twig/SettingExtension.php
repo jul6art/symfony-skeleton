@@ -70,7 +70,7 @@ class SettingExtension extends AbstractExtension
         if (!$request->request->has($name)) {
             $setting = $this->settingManager->findOneByName($name);
 
-            if (!is_null($setting)) {
+            if (null !== $setting) {
                 $request->request->set($name, $setting->getValue());
 
                 return $setting->getValue();

@@ -28,7 +28,7 @@ class AuditExtension extends AbstractExtension
      */
     public function blameAudit(string $idAsString = null, array $usernameList): ?string
     {
-        if (!is_null($idAsString)) {
+        if (null !== $idAsString) {
             $id = (int) $idAsString;
 
             if (key_exists($id, $usernameList)) {

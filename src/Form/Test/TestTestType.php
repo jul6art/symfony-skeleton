@@ -185,6 +185,9 @@ class TestTestType extends AbstractType
 	            'addon_right' => '<i class="fa fa-calendar"></i>',
 	            // test
 	            'help' => 'form.test.name.help',
+	            'minDate' => '01-08-2019',
+	            'maxDate' => '15-08-2019',
+	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 0 to 7)
             ])
             ->add('time', TimePickerType::class, [
 	            'label' => 'Time',
@@ -202,6 +205,9 @@ class TestTestType extends AbstractType
 	            'addon_right' => '<i class="fa fa-calendar"></i> <i class="fa fa-clock-o"></i>',
 	            // test
 	            'help' => 'form.test.name.help',
+	            'minDate' => '01-08-2019',
+	            'maxDate' => '15-08-2019',
+	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 0 to 7)
             ]);
     }
 

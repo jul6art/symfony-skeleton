@@ -85,7 +85,7 @@ class FunctionalityManager extends AbstractManager
             $functionality = $this->findOneByName($name);
 
             $state = false;
-            if (!is_null($functionality)) {
+            if (null !== $functionality) {
                 if ($this->isConfigured($functionality)) {
                     $state = $functionality->isActive();
                 }

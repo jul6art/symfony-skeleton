@@ -93,12 +93,12 @@ class LocaleSubscriber implements EventSubscriberInterface
             && $user->hasSetting(User::SETTING_LOCALE)) {
             $userLocale = $user->getLocale();
 
-            if (is_null($newLocale)) {
+            if (null === $newLocale) {
                 $newLocale = $userLocale;
             }
         }
 
-        if (!is_null($userLocale)) {
+        if (null !== $userLocale) {
             if ($newLocale !== $userLocale) {
                 $user->setLocale($newLocale);
                 $this->userManager->save($user);
@@ -109,7 +109,7 @@ class LocaleSubscriber implements EventSubscriberInterface
             $newLocale = $this->defaultLocale;
         }
 
-        if (!is_null($newLocale)
+        if (null !== $newLocale
             && $newLocale !== $request->getLocale()) {
             $request->getSession()->set('_locale', $newLocale);
             $request->setLocale($newLocale);

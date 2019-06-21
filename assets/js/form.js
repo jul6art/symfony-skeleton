@@ -1515,7 +1515,7 @@ $.Form = {
         Autosize($('textarea:not(.no_autosize)'));
     },
     intl_tel: function () {
-        var initItlTelInput = function(selector, type) {
+        var initIntlTelInput = function(selector, type) {
             $(selector).each(function(key, item) {
                 var input = IntlTelInput(item, {
                     placeholderNumberType: type,
@@ -1549,8 +1549,8 @@ $.Form = {
             });
         };
 
-        initItlTelInput('.input-phone:not(.input-mobile-phone)', 'FIXED_LINE');
-        initItlTelInput('.input-phone.input-mobile-phone', 'MOBILE');
+        initIntlTelInput('.input-phone:not(.input-mobile-phone)', 'FIXED_LINE');
+        initIntlTelInput('.input-phone.input-mobile-phone', 'MOBILE');
     },
     scrollToError: function () {
         var errors = $(".form-group.has-error");
@@ -1642,35 +1642,69 @@ $.Form = {
         });
     },
     picker: function () {
-        $('[data-provide="datepicker"]').bootstrapMaterialDatePicker({
-            format: 'DD-MM-YYYY',
-            clearButton: true,
-            weekStart: 1,
-            time: false,
-            lang: LOCALE,
-            okText: DATEPICKER_TRANSLATIONS.ok,
-            clearText: DATEPICKER_TRANSLATIONS.clear,
-            cancelText: DATEPICKER_TRANSLATIONS.cancel
+        $('[data-provide="datepicker"]').each(function () {
+            var pickerSettings = {};
+
+            if ($(this).data('disabled-days')) {
+                pickerSettings.disabledDays = $(this).data('disabled-days');
+            }
+
+            if ($(this).data('min-date')) {
+                pickerSettings.minDate = $(this).data('min-date');
+            }
+
+            if ($(this).data('max-date')) {
+                pickerSettings.maxDate = $(this).data('max-date');
+            }
+
+            $(this).bootstrapMaterialDatePicker($.extend(pickerSettings, {
+                format: 'DD-MM-YYYY',
+                clearButton: true,
+                weekStart: 1,
+                time: false,
+                lang: LOCALE,
+                okText: DATEPICKER_TRANSLATIONS.ok,
+                clearText: DATEPICKER_TRANSLATIONS.clear,
+                cancelText: DATEPICKER_TRANSLATIONS.cancel
+            }));
         });
 
-        $('[data-provide="timepicker"]').bootstrapMaterialDatePicker({
-            format: 'HH:mm',
-            clearButton: true,
-            date: false,
-            lang: LOCALE,
-            okText: DATEPICKER_TRANSLATIONS.ok,
-            clearText: DATEPICKER_TRANSLATIONS.clear,
-            cancelText: DATEPICKER_TRANSLATIONS.cancel
+        $('[data-provide="timepicker"]').each(function () {
+            $(this).bootstrapMaterialDatePicker({
+                format: 'HH:mm',
+                clearButton: true,
+                date: false,
+                lang: LOCALE,
+                okText: DATEPICKER_TRANSLATIONS.ok,
+                clearText: DATEPICKER_TRANSLATIONS.clear,
+                cancelText: DATEPICKER_TRANSLATIONS.cancel
+            });
         });
 
-        $('[data-provide="datetimepicker"]').bootstrapMaterialDatePicker({
-            format: 'DD-MM-YYYY HH:mm',
-            clearButton: true,
-            weekStart: 1,
-            lang: LOCALE,
-            okText: DATEPICKER_TRANSLATIONS.ok,
-            clearText: DATEPICKER_TRANSLATIONS.clear,
-            cancelText: DATEPICKER_TRANSLATIONS.cancel
+        $('[data-provide="datetimepicker"]').each(function () {
+            var pickerSettings = {};
+
+            if ($(this).data('disabled-days')) {
+                pickerSettings.disabledDays = $(this).data('disabled-days');
+            }
+
+            if ($(this).data('min-date')) {
+                pickerSettings.minDate = $(this).data('min-date');
+            }
+
+            if ($(this).data('max-date')) {
+                pickerSettings.maxDate = $(this).data('max-date');
+            }
+
+            $(this).bootstrapMaterialDatePicker($.extend(pickerSettings, {
+                format: 'DD-MM-YYYY HH:mm',
+                clearButton: true,
+                weekStart: 1,
+                lang: LOCALE,
+                okText: DATEPICKER_TRANSLATIONS.ok,
+                clearText: DATEPICKER_TRANSLATIONS.clear,
+                cancelText: DATEPICKER_TRANSLATIONS.cancel
+            }));
         });
 
         $('body').on('change', '[data-provide="datepicker"], [data-provide="timepicker"], [data-provide="datetimepicker"]', function () {

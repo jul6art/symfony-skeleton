@@ -145,7 +145,7 @@ class TestController extends AbstractFOSRestController
             $this->testManager->save($test);
             $eventDispatcher->dispatch(TestEvent::EDITED, new TestEvent($test));
 
-            return !is_null($referer) ? $this->redirect($referer) : $this->redirectToRoute('admin_test_list');
+            return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_test_list');
         }
 
         $serializer = new Serializer([$testTransformer]);

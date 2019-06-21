@@ -109,6 +109,9 @@
         {%- else -%}
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
+        {%- if form.vars.tooltip ?? false -%}
+             <i class="fa fa-question-circle tooltip-help" data-toggle="tooltip" data-original-title="{{ translation_domain is same as(false) ? form.vars.tooltip : form.vars.tooltip|trans({}, translation_domain) }}"></i>
+        {%- endif -%}
         {%- if required -%}
             <span class="badge bg-blue-grey">{{ 'form.common.required' | trans({}, translation_domain) }}</span>
         {%- endif -%}
@@ -167,12 +170,6 @@
 {# Rows #}
 
 {% block form_row -%}
-    {%- if form.vars.tooltip ?? false -%}
-        {%- set attr = attr|merge({
-            'data-toggle': 'tooltip'|trim,
-            'data-original-title': (translation_domain is same as(false) ? form.vars.tooltip : form.vars.tooltip|trans({}, translation_domain))|trim
-        }) -%}
-    {%- endif -%}
     {%- if form.vars.mask ?? false -%}
         {%- set attr = attr|merge({
             'data-inputmask': form.vars.mask|trim
@@ -284,12 +281,21 @@
     {{- block('form_row') }}
 {%- endblock gender_row %}
 
-{% block date_row -%}
+{% block date_row -%}x
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock date_row %}
 
 {% block date_picker_row -%}
+    {%- if form.vars.disabledDays ?? false -%}
+        {%- set attr = attr|merge({'data-disabled-days': form.vars.disabledDays}) -%}
+    {%- endif -%}
+    {%- if form.vars.minDate ?? false -%}
+        {%- set attr = attr|merge({'data-min-date': form.vars.minDate}) -%}
+    {%- endif -%}
+    {%- if form.vars.maxDate ?? false -%}
+        {%- set attr = attr|merge({'data-max-date': form.vars.maxDate}) -%}
+    {%- endif -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock date_picker_row %}
@@ -300,6 +306,15 @@
 {%- endblock time_picker_row %}
 
 {% block datetime_picker_row -%}
+    {%- if form.vars.disabledDays ?? false -%}
+        {%- set attr = attr|merge({'data-disabled-days': form.vars.disabledDays}) -%}
+    {%- endif -%}
+    {%- if form.vars.minDate ?? false -%}
+        {%- set attr = attr|merge({'data-min-date': form.vars.minDate}) -%}
+    {%- endif -%}
+    {%- if form.vars.maxDate ?? false -%}
+        {%- set attr = attr|merge({'data-max-date': form.vars.maxDate}) -%}
+    {%- endif -%}
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock datetime_picker_row %}

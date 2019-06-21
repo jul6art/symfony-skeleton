@@ -2,6 +2,7 @@
 
 namespace App\Form\Type;
 
+use App\Validator\Constraints\Datetime;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,6 +19,9 @@ class TimePickerType extends AbstractType
 
 		$resolver->setDefaults([
 			'widget' => 'single_text',
+			'constraints' => [
+				new Datetime(),
+			],
 		]);
 	}
 
