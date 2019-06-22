@@ -10,15 +10,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RecaptchaType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver) {
-	    parent::configureOptions( $resolver );
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
 
-	    $resolver->setDefaults([
-	    	'error_bubbling' => false,
-	    	'no_float' => true,
-		    'constraints' => [
-		    	new Recaptcha(),
-		    ],
-	    ]);
+        $resolver->setDefaults([
+            'error_bubbling' => false,
+            'no_float' => true,
+            'constraints' => [
+                new Recaptcha(),
+            ],
+        ]);
     }
 }

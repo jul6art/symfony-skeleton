@@ -19,29 +19,29 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class RecaptchaValidator extends ConstraintValidator
 {
-	/**
-	 * @var RequestStack
-	 */
-	private $requestStack;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
-	/**
-	 * @var string
-	 */
-	private $recaptcha_secret;
+    /**
+     * @var string
+     */
+    private $recaptcha_secret;
 
-	/**
-	 * RecaptchaValidator constructor.
-	 *
-	 * @param RequestStack $requestStack
-	 * @param string $recaptchaSecret
-	 */
-	public function __construct(RequestStack $requestStack, string $recaptacha_secret)
-	{
-		$this->requestStack = $requestStack;
-		$this->recaptcha_secret = $recaptacha_secret;
-	}
+    /**
+     * RecaptchaValidator constructor.
+     *
+     * @param RequestStack $requestStack
+     * @param string       $recaptchaSecret
+     */
+    public function __construct(RequestStack $requestStack, string $recaptacha_secret)
+    {
+        $this->requestStack = $requestStack;
+        $this->recaptcha_secret = $recaptacha_secret;
+    }
 
-	/**
+    /**
      * @param mixed      $protocol
      * @param Constraint $constraint
      */
@@ -53,18 +53,18 @@ class RecaptchaValidator extends ConstraintValidator
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
-	    if (null === $this->recaptcha_secret || '' === $this->recaptcha_secret) {
-		    return;
-	    }
+        if (null === $this->recaptcha_secret || '' === $this->recaptcha_secret) {
+            return;
+        }
 
-	    $value = $this->requestStack->getMasterRequest()->get('g-recaptcha-response');
-	    $ip = $this->requestStack->getMasterRequest()->getClientIp();
+        $value = $this->requestStack->getMasterRequest()->get('g-recaptcha-response');
+        $ip = $this->requestStack->getMasterRequest()->getClientIp();
 
-	    $recaptcha = new GoogleRecaptcha($this->recaptcha_secret);
+        $recaptcha = new GoogleRecaptcha($this->recaptcha_secret);
 
-	    if (!$recaptcha->verify($value, $ip)->isSuccess()) {
-		    $this->context->buildViolation($constraint->message)
-		                  ->addViolation();
-	    }
+        if (!$recaptcha->verify($value, $ip)->isSuccess()) {
+            $this->context->buildViolation($constraint->message)
+                          ->addViolation();
+        }
     }
 }

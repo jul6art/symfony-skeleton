@@ -45,7 +45,7 @@ class RangeType extends AbstractType
         ]);
 
         $resolver->setDefaults([
-	        'no_float' => true,
+            'no_float' => true,
             'error_bubbling' => false,
             'double' => false,
             'vertical' => false,

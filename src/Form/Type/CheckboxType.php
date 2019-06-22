@@ -18,7 +18,7 @@ class CheckboxType extends AbstractType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-	        'no_float' => true,
+            'no_float' => true,
         ]);
     }
 
