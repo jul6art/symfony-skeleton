@@ -68,9 +68,11 @@
         'data-double': form.vars.double,
         class: (attr.class|default('') ~ ' nouislider validate')|trim,
     }) -%}
-    <div class="nouislider-container">
-        <div class="hidden">
-            {{- block('form_widget_simple') -}}
+    <div class="form-line">
+        <div class="nouislider-container">
+            <div class="hidden">
+                {{- block('form_widget_simple') -}}
+            </div>
         </div>
     </div>
 {%- endblock custom_range_widget %}
