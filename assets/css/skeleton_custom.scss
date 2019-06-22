@@ -300,6 +300,7 @@ RANGE
   height: 15px!important;
   border-radius: 15px!important;
   margin: 0 14px;
+  margin-bottom: 50px!important;
 }
 
 .noUi-base {
@@ -337,6 +338,7 @@ RANGE
   min-height: $height_form_range_vertical;
   border-radius: 15px!important;
   margin: 5px 14px 0;
+  margin-bottom: 15px!important;
 
   .noUi-base {
     height: $height_form_range_vertical;
@@ -360,6 +362,24 @@ INTL_TEL
  */
 .intl-tel-input {
   width: 100%;
+}
+
+/**
+RECAPTCHA
+ */
+.g-recaptcha {
+  margin-bottom: 7px;
+}
+
+/**
+CKEDITOR
+ */
+.ck.ck-editor {
+  margin-bottom: 9px!important;
+
+  .ck-content[role="textbox"] {
+    min-height: 200px;
+  }
 }
 
 /**

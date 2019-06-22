@@ -16,6 +16,7 @@ use App\Form\Type\RecaptchaType;
 use App\Form\Type\SwitchType;
 use App\Form\Type\TextareaType;
 use App\Form\Type\TimePickerType;
+use App\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -227,6 +228,14 @@ class TestTestType extends AbstractType
             ])
             ->add('captcha', RecaptchaType::class, [
                 'label' => 'REcaptcha',
+                'mapped' => false,
+                'required' => true,
+                'no_line' => false,
+                // test
+                'help' => 'form.test.name.help',
+            ])
+            ->add('wysiwyg', WysiwygType::class, [
+                'label' => 'Wysiwyg',
                 'mapped' => false,
                 'required' => true,
                 // test

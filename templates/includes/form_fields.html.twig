@@ -68,7 +68,7 @@
         'data-double': form.vars.double,
         class: (attr.class|default('') ~ ' nouislider validate')|trim,
     }) -%}
-    <div class="form-line">
+    <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
         <div class="nouislider-container">
             <div class="hidden">
                 {{- block('form_widget_simple') -}}
@@ -212,7 +212,7 @@
                         {{ (translation_domain is same as(false) ? form.vars.addon_left : form.vars.addon_left|trans({}, translation_domain))|raw }}
                     </span>
                 {%- endif -%}
-                <div class="form-line">
+                <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
                     {{ form_widget(form, {attr: attr}) }} {# -#}
                 </div>
                 {%- if form.vars.addon_right ?? false -%}
@@ -230,7 +230,7 @@
             </div>
         {%- elseif form.vars.no_float ?? false or form.vars.addon ?? false -%}
             {{- form_label(form) }} {# -#}
-            <div class="form-line">
+            <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
                 {{ form_widget(form, {attr: attr}) }} {# -#}
             </div>
         {%- elseif expanded is defined -%}
@@ -244,7 +244,7 @@
                 {{ form_widget(form, {attr: attr}) }} {# -#}
             {%- endif -%}
         {%- else -%}
-            <div class="form-line">
+            <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
                 {{ form_widget(form, {attr: attr}) }} {# -#}
                 {{- form_label(form) }} {# -#}
             </div>
@@ -263,6 +263,11 @@
 {% block choice_row -%}
     {{- block('form_row') }}
 {%- endblock choice_row %}
+
+{% block wysiwyg_row -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' no_autosize validate')|trim, 'data-provide': 'wysiwyg'}) -%}
+    {{- block('form_row') }}
+{%- endblock wysiwyg_row %}
 
 {% block boolean_row -%}
     {%- if form.vars.exploded ?? false -%}
@@ -375,7 +380,7 @@
         'data-orientation': form.vars.vertical ?? false ? 'vertical' : 'horizontal',
         'data-direction': form.vars.vertical ?? false ? 'rtl' : 'ltr'
     }) -%}
-    <div class="form-group {% if not valid %} has-error{% endif %}">
+    <div class="form-group{% if not valid %} has-error{% endif %}">
         {{- form_label(form) }}
         {{- block('custom_range_widget') -}}
         {{- block('help') -}}

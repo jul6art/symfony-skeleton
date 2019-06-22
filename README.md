@@ -76,6 +76,21 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
     A lot of basic types are overrided in src/Forms/Type to include new options listed after this
     
+    addon_left
+    addon_right
+    alert
+    alert_class
+    button_left
+    button_left_class
+    button_right
+    button_right_class
+    exploded
+    mask
+    no_float
+    no_line
+    pattern
+    tooltip
+    
 > Addons
 
 

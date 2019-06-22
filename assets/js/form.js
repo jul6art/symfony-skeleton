@@ -10,8 +10,9 @@ import 'bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.
 // modules
 import Autosize from 'autosize';
 import Inputmask from 'inputmask';
-import * as Range from 'nouislider';
 import IntlTelInput from 'intl-tel-input';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as Range from 'nouislider';
 import * as moment from 'moment';
 const FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
@@ -1503,6 +1504,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 $.Form = {
     init: function () {
         this.autosize();
+        this.wysiwyg();
         this.intl_tel();
         this.configure();
         this.mask();
@@ -1513,6 +1515,19 @@ $.Form = {
     },
     autosize: function () {
         Autosize($('textarea:not(.no_autosize)'));
+    },
+    wysiwyg: function () {
+        ClassicEditor
+            .create(document.querySelector('[data-provide="wysiwyg"]'))
+            .then(editor => {
+                var hiddenInput = $(editor.sourceElement);
+                editor.model.document.on('change:data', () => {
+                    hiddenInput.val(editor.getData());
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     },
     intl_tel: function () {
         var initIntlTelInput = function(selector, type) {

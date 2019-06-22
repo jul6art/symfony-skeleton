@@ -16,6 +16,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^12.2.0",
+        "@ckeditor/ckeditor5-build-inline": "^12.2.0",
         "animate.css": "^3.7.0",
         "autosize": "^4.0.2",
         "blockui": "^1.0.0",
