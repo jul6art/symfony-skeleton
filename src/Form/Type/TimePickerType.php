@@ -11,21 +11,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TimePickerType extends AbstractType
 {
-	/**
-	 * @param OptionsResolver $resolver
-	 */
-	public function configureOptions(OptionsResolver $resolver) {
-		parent::configureOptions($resolver);
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
 
-		$resolver->setDefaults([
-			'widget' => 'single_text',
-			'constraints' => [
-				new Datetime(),
-			],
-		]);
-	}
+        $resolver->setDefaults([
+            'widget' => 'single_text',
+            'constraints' => [
+                new Datetime(),
+            ],
+        ]);
+    }
 
-	/**
+    /**
      * @return string|null
      */
     public function getParent()
@@ -33,10 +34,11 @@ class TimePickerType extends AbstractType
         return TimeType::class;
     }
 
-	/**
-	 * @return string
-	 */
-    public function getBlockPrefix() {
-	    return 'time_picker';
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'time_picker';
     }
 }

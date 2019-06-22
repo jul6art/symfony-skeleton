@@ -10,14 +10,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CheckboxType extends AbstractType
 {
-	/**
-	 * @param OptionsResolver $resolver
-	 */
-	public function configureOptions(OptionsResolver $resolver) {
-		parent::configureOptions($resolver);
-	}
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+    }
 
-	/**
+    /**
      * @return string|null
      */
     public function getParent()
@@ -25,7 +26,7 @@ class CheckboxType extends AbstractType
         return BaseType::class;
     }
 
-	/**
+    /**
      * @return string
      */
     public function getBlockPrefix()

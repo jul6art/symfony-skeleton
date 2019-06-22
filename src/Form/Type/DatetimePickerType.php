@@ -13,44 +13,46 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DatetimePickerType extends AbstractType
 {
-	/**
-	 * @param FormView $view
-	 * @param FormInterface $form
-	 * @param array $options
-	 */
-	public function buildView(FormView $view, FormInterface $form, array $options) {
-		parent::buildView( $view, $form, $options );
+    /**
+     * @param FormView      $view
+     * @param FormInterface $form
+     * @param array         $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        parent::buildView($view, $form, $options);
 
-		$view->vars['disabledDays'] = $options['disabledDays'];
-		$view->vars['minDate'] = $options['minDate'];
-		$view->vars['maxDate'] = $options['maxDate'];
-	}
+        $view->vars['disabledDays'] = $options['disabledDays'];
+        $view->vars['minDate'] = $options['minDate'];
+        $view->vars['maxDate'] = $options['maxDate'];
+    }
 
-	/**
-	 * @param OptionsResolver $resolver
-	 */
-	public function configureOptions(OptionsResolver $resolver) {
-		parent::configureOptions($resolver);
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
 
-		$resolver->setDefined([
-			'disabledDays',
-			'minDate',
-			'maxDate',
-		]);
+        $resolver->setDefined([
+            'disabledDays',
+            'minDate',
+            'maxDate',
+        ]);
 
-		$resolver->setDefaults([
-			'widget' => 'single_text',
-			'format' => 'dd-MM-yyyy HH:mm',
-			'disabledDays' => false,
-			'minDate' => false,
-			'maxDate' => false,
-			'constraints' => [
-				new Datetime(),
-			],
-		]);
-	}
+        $resolver->setDefaults([
+            'widget' => 'single_text',
+            'format' => 'dd-MM-yyyy HH:mm',
+            'disabledDays' => false,
+            'minDate' => false,
+            'maxDate' => false,
+            'constraints' => [
+                new Datetime(),
+            ],
+        ]);
+    }
 
-	/**
+    /**
      * @return string|null
      */
     public function getParent()
@@ -58,10 +60,11 @@ class DatetimePickerType extends AbstractType
         return DateTimeType::class;
     }
 
-	/**
-	 * @return string
-	 */
-    public function getBlockPrefix() {
-	    return 'datetime_picker';
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'datetime_picker';
     }
 }

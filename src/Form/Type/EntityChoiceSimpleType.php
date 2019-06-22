@@ -19,8 +19,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class EntityChoiceSimpleType
- * @package AdminBundle\Form\Type
+ * Class EntityChoiceSimpleType.
  */
 class EntityChoiceSimpleType extends AbstractType
 {
@@ -55,20 +54,20 @@ class EntityChoiceSimpleType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-    	parent::configureOptions($resolver);
+        parent::configureOptions($resolver);
 
         $registry = $this->registry;
         $resolver->setDefaults([
-	        'empty_value' => false,
-	        'empty_data' => null,
-	        'em' => null,
-	        'query_builder' => null,
-	        'field' => 'id',
+            'empty_value' => false,
+            'empty_data' => null,
+            'em' => null,
+            'query_builder' => null,
+            'field' => 'id',
         ]);
 
         $resolver->setRequired([
-	        'class',
-	        'entity_label',
+            'class',
+            'entity_label',
         ]);
 
         $resolver->setDefault('entity_group_by', null);
