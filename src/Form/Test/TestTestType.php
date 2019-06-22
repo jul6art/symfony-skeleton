@@ -12,6 +12,7 @@ use App\Form\Type\DatetimePickerType;
 use App\Form\Type\GenderType;
 use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
+use App\Form\Type\RecaptchaType;
 use App\Form\Type\SwitchType;
 use App\Form\Type\TextareaType;
 use App\Form\Type\TimePickerType;
@@ -208,7 +209,7 @@ class TestTestType extends AbstractType
                 'label' => 'Time',
                 'mapped' => false,
                 'required' => true,
-                'addon_left' => '<input type="checkbox" class="filled-in" id="ig_checkbox"><label for="ig_checkbox"></label>',
+                'addon_left' => '<input type="checkbox" class="filled-in" id="ig_checkbox" name="NAME_REQUIRED_FOR_ARE_YOU_SURE"><label for="ig_checkbox"></label>',
                 'addon_right' => '<i class="fa fa-clock-o"></i>',
                 // test
                 'help' => 'form.test.name.help',
@@ -221,6 +222,13 @@ class TestTestType extends AbstractType
                 'minDate' => '01-08-2019',
                 'maxDate' => '15-08-2019',
                 'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 1 to 7)
+                // test
+                'help' => 'form.test.name.help',
+            ])
+            ->add('captcha', RecaptchaType::class, [
+                'label' => 'REcaptcha',
+                'mapped' => false,
+                'required' => true,
                 // test
                 'help' => 'form.test.name.help',
             ]);

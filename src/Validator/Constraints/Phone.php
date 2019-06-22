@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Class Phone.
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD"})
  */
 class Phone extends Constraint
 {

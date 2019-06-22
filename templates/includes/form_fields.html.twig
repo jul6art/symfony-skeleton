@@ -32,6 +32,11 @@
     {{- block('form_widget_simple') -}}
 {%- endblock datetime_picker_widget %}
 
+{% block recaptcha_widget %}
+    <div class="g-recaptcha" data-sitekey="{{ recaptcha_apikey }}" data-callback="validationCaptchaCallback" data-expired-callback="validationCaptchaCallback"></div>
+    <input type="hidden" class="input-captcha validate" required name="hiddenRecaptcha">
+{% endblock recaptcha_widget %}
+
 {% block money_widget -%}
     {% set prepend = not (money_pattern starts with '{{') %}
     {% set append = not (money_pattern ends with '}}') %}
@@ -189,7 +194,7 @@
     {% if form.vars.no_float ?? false or form.vars.addon_left ?? false or form.vars.addon_right ?? false %}
         {% set float = false %}
     {% endif %}
-    <div class="form-group{% if float %} form-float{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="form-group {{ float ? 'form-float' : 'form-no-float' }}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         {%- if form.vars.addon_left ?? false or form.vars.addon_right ?? false or form.vars.button_left ?? false or form.vars.button_right ?? false -%}
             {{- form_label(form) }} {# -#}
             <div class="input-group">
@@ -318,6 +323,11 @@
     {% set force_error = true %}
     {{- block('form_row') }}
 {%- endblock datetime_picker_row %}
+
+{% block recaptcha_row %}
+    {% set force_error = true %}
+    {{- block('form_row') }}
+{% endblock recaptcha_row %}
 
 {% block time_row -%}
     {% set force_error = true %}

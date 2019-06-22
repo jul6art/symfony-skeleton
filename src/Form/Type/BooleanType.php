@@ -20,6 +20,7 @@ class BooleanType extends AbstractType
 
         $resolver->setDefaults([
             'expanded' => true,
+            'no_float' => true,
             'choices' => [
                 'form.common.boolean.choices.yes' => 1,
                 'form.common.boolean.choices.no' => 0,

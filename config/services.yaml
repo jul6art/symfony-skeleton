@@ -36,6 +36,7 @@ parameters:
         - grey
         - blue-grey
         - black
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     _defaults:
@@ -43,6 +44,7 @@ services:
         autoconfigure: true
         bind:
             $locale: '%locale%'
+            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
             $available_locales: '%available_locales%'
             $available_colors: '%available_colors%'
             $available_functionalities: '%available_functionalities%'

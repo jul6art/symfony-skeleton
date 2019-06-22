@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Class Range.
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD"})
  */
 class Range extends Constraint
 {

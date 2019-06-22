@@ -163,7 +163,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
         if (!settings.silent && !window.aysUnloadSet) {
             window.aysUnloadSet = true;
             $(window).bind('beforeunload', function () {
-                $dirtyForms = $("form").filter('.' + settings.dirtyClass);
+                var $dirtyForms = $("form").filter('.' + settings.dirtyClass);
                 if ($dirtyForms.length == 0) {
                     return;
                 }
@@ -1749,11 +1749,22 @@ $.Form = {
             });
         });
 
+        FORM_VALIDATOR(form).find('.input-captcha').each(function () {
+            FORM_VALIDATOR(this).rules('add', {
+                required: function() {
+                    return grecaptcha.getResponse() === ''
+                }
+            });
+        });
+
         form.on('submit', function () {
            if (!FORM_VALIDATOR(this).valid()) {
                $.Form.scrollToError();
            }
         });
+    },
+    validationCaptchaCallback: function () {
+        FORM_VALIDATOR('.input-captcha').valid();
     },
     watch: function () {
         if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
@@ -1775,3 +1786,8 @@ $.Form = {
 $(document).ready(function () {
     $.Form.init();
 });
+
+// export functions to other js files
+// export const validationCaptchaCallback = $.Form.validationCaptchaCallback;
+
+window.validationCaptchaCallback = $.Form.validationCaptchaCallback;

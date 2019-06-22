@@ -21,6 +21,7 @@ class GenderType extends AbstractType
 
         $resolver->setDefaults([
             'expanded' => true,
+            'no_float' => true,
             'choices' => [
                 'form.user.gender.choices.m' => User::GENDER_MALE,
                 'form.user.gender.choices.f' => User::GENDER_FEMALE,

@@ -8,6 +8,8 @@ form:
         error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'
     range:
         error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
+    recaptcha:
+        error: 'La valeur entrée n''est pas un captcha valide'
     phone:
         error: 'La valeur entrée n''est pas un numéro de téléphone valide'
     gender:

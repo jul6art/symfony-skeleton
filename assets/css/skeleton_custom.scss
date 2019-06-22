@@ -277,6 +277,13 @@ form .has-error label span.badge {
   margin: 0 0 0 3px;
 }
 
+form .card .body .col-xs-6,
+form .card .body .col-sm-6,
+form .card .body .col-md-6,
+form .card .body .col-lg-6 {
+  margin-bottom: 0;
+}
+
 /**
 RANGE
  */

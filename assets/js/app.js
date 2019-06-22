@@ -12,8 +12,12 @@ import 'blockui';
 import 'bootstrap-select';
 
 // routing
-window.routing = require('./routing');
+window.Routing = require('./routing');
 
 // theme
 import './skeleton_script';
 import './skeleton_custom';
+
+// import functions from other js file
+// import {validationCaptchaCallback} from './form';
+

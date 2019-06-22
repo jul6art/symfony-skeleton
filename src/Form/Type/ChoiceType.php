@@ -16,6 +16,10 @@ class ChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
+
+        $resolver->setDefaults([
+	        'no_float' => true,
+        ]);
     }
 
     /**

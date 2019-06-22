@@ -11,12 +11,12 @@ namespace App\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class Gender.
+ * Class Recaptcha.
  *
  * @Annotation
  * @Target({"PROPERTY", "METHOD"})
  */
-class Gender extends Constraint
+class Recaptcha extends Constraint
 {
-    public $message = 'form.gender.error';
+    public $message = 'form.recaptcha.error';
 }

@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Class Boolean.
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD"})
  */
 class Boolean extends Constraint
 {

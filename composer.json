@@ -11,6 +11,7 @@
         "friendsofsymfony/user-bundle": "^2.1",
         "fzaninotto/faker": "^1.8",
         "gedmo/doctrine-extensions": "^2.4",
+        "google/recaptcha": "^1.2",
         "knplabs/knp-menu-bundle": "^2.0",
         "saacsos/randomgenerator": "^1.1",
         "sensio/framework-extra-bundle": "^5.3",

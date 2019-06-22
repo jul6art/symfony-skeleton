@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Class Datetime.
+ *
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD"})
  */
 class Datetime extends Constraint
 {
