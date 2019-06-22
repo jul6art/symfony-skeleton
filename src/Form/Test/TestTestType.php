@@ -2,6 +2,8 @@
 
 namespace App\Form\Test;
 
+use App\Form\DataTransformer\RangeDoubleTransformer;
+use App\Form\DataTransformer\RangeTransformer;
 use App\Form\Type\BooleanType;
 use App\Form\Type\CheckboxType;
 use App\Form\Type\ChoiceType;
@@ -121,7 +123,9 @@ class TestTestType extends AbstractType
 	            'mobile' => true,
 	            // test
 	            'help' => 'form.test.name.help',
-            ])
+            ]);
+
+        $builder
             ->add('range', RangeType::class, [
 	            'label' => 'Range',
 	            'mapped' => false,
@@ -132,7 +136,10 @@ class TestTestType extends AbstractType
 	            // test
 	            'help' => 'form.test.name.help',
 	            'data'  => 50,
-            ])
+            ]);
+	    $builder->get('range')->addModelTransformer(new RangeTransformer());
+
+        $builder
             ->add('range2', RangeType::class, [
 	            'label' => 'Range double',
 	            'mapped' => false,
@@ -143,11 +150,14 @@ class TestTestType extends AbstractType
 	            'double' => true,
 	            // test
 	            'help' => 'form.test.name.help',
-	            'data' => implode(', ', [
-		            20,
-		            80,
-	            ]),
-            ])
+	            'data' => [
+		            10,
+		            50,
+	            ],
+            ]);
+        $builder->get('range2')->addModelTransformer(new RangeDoubleTransformer());
+
+        $builder
             ->add('range3', RangeType::class, [
 	            'label' => 'Range vertical',
 	            'mapped' => false,
@@ -159,7 +169,10 @@ class TestTestType extends AbstractType
 	            // test
 	            'help' => 'form.test.name.help',
 	            'data'  => 50,
-            ])
+            ]);
+	    $builder->get('range3')->addModelTransformer(new RangeTransformer());
+
+        $builder
             ->add('range4', RangeType::class, [
 	            'label' => 'Range double vertical',
 	            'mapped' => false,
@@ -171,23 +184,26 @@ class TestTestType extends AbstractType
 	            'vertical' => true,
 	            // test
 	            'help' => 'form.test.name.help',
-	            'data' => implode(', ', [
+	            'data' => [
 		            20,
 		            40,
 		            60,
 		            80,
-	            ]),
-            ])
+	            ],
+            ]);
+	    $builder->get('range4')->addModelTransformer(new RangeDoubleTransformer());
+
+        $builder
             ->add('date', DatePickerType::class, [
 	            'label' => 'Date',
 	            'mapped' => false,
 	            'required' => true,
 	            'addon_right' => '<i class="fa fa-calendar"></i>',
-	            // test
-	            'help' => 'form.test.name.help',
 	            'minDate' => '01-08-2019',
 	            'maxDate' => '15-08-2019',
-	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 0 to 7)
+	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 1 to 7)
+	            // test
+	            'help' => 'form.test.name.help',
             ])
             ->add('time', TimePickerType::class, [
 	            'label' => 'Time',
@@ -203,11 +219,11 @@ class TestTestType extends AbstractType
 	            'mapped' => false,
 	            'required' => true,
 	            'addon_right' => '<i class="fa fa-calendar"></i> <i class="fa fa-clock-o"></i>',
-	            // test
-	            'help' => 'form.test.name.help',
 	            'minDate' => '01-08-2019',
 	            'maxDate' => '15-08-2019',
-	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 0 to 7)
+	            'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 1 to 7)
+	            // test
+	            'help' => 'form.test.name.help',
             ]);
     }
 

@@ -43,14 +43,12 @@ class RangeValidator extends ConstraintValidator {
 				              ->addViolation();
 			}
 		} else {
-			$values = explode(',', $value);
-
-			if (!count($values) === 2) {
+			if (!count($value) === 2) {
 				$this->context->buildViolation($constraint->message)
 				              ->addViolation();
 			} else {
-				$min = (float) $values[0];
-				$max = (float) $values[1];
+				$min = $value[0];
+				$max = end($value);
 				if ($min < $options['min']
 				    || $max > $options['max']
 				    || (($min != $options['max']) && (($min - $options['min']) %$options['step'] != 0))
