@@ -141,12 +141,13 @@ class TestTestType extends AbstractType
 
         $builder
             ->add('range2', RangeType::class, [
-                'label' => 'Range double',
+                'label' => 'Range double with limit: 40',
                 'mapped' => false,
                 'required' => true,
                 'min' => 0,
                 'max' => 100,
                 'step' => 10,
+                'limit' => 40,
                 'double' => true,
                 // test
                 'help' => 'form.test.name.help',

@@ -32,6 +32,7 @@ abstract class AbstractType extends BaseType
         $view->vars['no_float'] = $options['no_float'];
         $view->vars['no_line'] = $options['no_line'];
         $view->vars['pattern'] = $options['pattern'];
+        $view->vars['readonly'] = $options['readonly'];
         $view->vars['tooltip'] = $options['tooltip'];
     }
 
@@ -56,6 +57,7 @@ abstract class AbstractType extends BaseType
             'no_float',
             'no_line',
             'pattern',
+            'readonly',
             'tooltip',
         ]);
 
@@ -73,6 +75,7 @@ abstract class AbstractType extends BaseType
             'no_float' => false,
             'no_line' => false,
             'pattern' => false,
+            'readonly' => false,
             'tooltip' => false,
         ]);
     }

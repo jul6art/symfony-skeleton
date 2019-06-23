@@ -177,20 +177,17 @@
 {# Rows #}
 
 {% block form_row -%}
+    {%- if help is not empty -%}
+        {%- set attr = attr|merge({'aria-describedby': (id ~ '_help')|trim}) -%}
+    {%- endif -%}
     {%- if form.vars.mask ?? false -%}
-        {%- set attr = attr|merge({
-            'data-inputmask': form.vars.mask|trim
-        }) -%}
+        {%- set attr = attr|merge({'data-inputmask': form.vars.mask|trim}) -%}
     {%- endif -%}
     {%- if form.vars.pattern ?? false -%}
-        {%- set attr = attr|merge({
-            'pattern': form.vars.pattern|trim
-        }) -%}
+        {%- set attr = attr|merge({'pattern': form.vars.pattern|trim}) -%}
     {%- endif -%}
-    {%- if help is not empty -%}
-        {%- set attr = attr|merge({
-            'aria-describedby': (id ~ '_help')|trim
-        }) -%}
+    {%- if form.vars.readonly ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
     {%- endif -%}
     {% set float = true %}
     {% if form.vars.no_float ?? false or form.vars.addon_left ?? false or form.vars.addon_right ?? false %}
@@ -359,6 +356,9 @@
 {%- endblock datetime_row %}
 
 {% block checkbox_row -%}
+    {%- if form.vars.readonly ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
+    {%- endif -%}
     <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
             {{- form_widget(form) -}}
@@ -369,6 +369,9 @@
 {%- endblock checkbox_row %}
 
 {% block radio_row -%}
+    {%- if form.vars.readonly ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
+    {%- endif -%}
     <div class="form-group{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
@@ -376,6 +379,9 @@
 {%- endblock radio_row %}
 
 {% block switch_row -%}
+    {%- if form.vars.readonly ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
+    {%- endif -%}
     <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         {{- block('switch_label') -}}
         <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
@@ -396,6 +402,12 @@
         'data-orientation': form.vars.vertical ?? false ? 'vertical' : 'horizontal',
         'data-direction': form.vars.vertical ?? false ? 'rtl' : 'ltr'
     }) -%}
+    {%- if form.vars.limit ?? false -%}
+        {%- set attr = attr|merge({'data-limit': form.vars.limit}) -%}
+    {%- endif -%}
+    {%- if form.vars.readonly ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
+    {%- endif -%}
     <div class="form-group{% if not valid %} has-error{% endif %}">
         {{- form_label(form) }}
         {{- block('custom_range_widget') -}}

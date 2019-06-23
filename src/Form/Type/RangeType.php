@@ -22,10 +22,11 @@ class RangeType extends AbstractType
     {
         parent::buildView($view, $form, $options);
 
-        $view->vars['min'] = $options['min'];
-        $view->vars['max'] = $options['max'];
-        $view->vars['step'] = $options['step'];
         $view->vars['double'] = $options['double'];
+        $view->vars['limit'] = $options['limit'];
+        $view->vars['max'] = $options['max'];
+        $view->vars['min'] = $options['min'];
+        $view->vars['step'] = $options['step'];
         $view->vars['vertical'] = $options['vertical'];
     }
 
@@ -37,17 +38,19 @@ class RangeType extends AbstractType
         parent::configureOptions($resolver);
 
         $resolver->setDefined([
-            'min',
-            'max',
-            'step',
             'double',
+            'limit',
+            'max',
+            'min',
+            'step',
             'vertical',
         ]);
 
         $resolver->setDefaults([
-            'no_float' => true,
-            'error_bubbling' => false,
             'double' => false,
+            'error_bubbling' => false,
+            'limit' => false,
+            'no_float' => true,
             'vertical' => false,
             'constraints' => [
                 new Range(),
