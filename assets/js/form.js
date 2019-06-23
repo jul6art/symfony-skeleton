@@ -21,7 +21,7 @@ require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
 // manually imported areYouSure  script
 if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
     $.fn.areYouSure = function (options) {
-        var settings = $.extend(
+        let settings = $.extend(
             {
                 'message': 'You have unsaved changes!',
                 'dirtyClass': 'dirty',
@@ -32,7 +32,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 'fieldSelector': ":input:not(input[type=submit]):not(input[type=button])"
             }, options);
 
-        var getValue = function ($field) {
+        let getValue = function ($field) {
             if ($field.hasClass('ays-ignore')
                 || $field.hasClass('aysIgnore')
                 || $field.attr('data-ays-ignore')
@@ -44,8 +44,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 return 'ays-disabled';
             }
 
-            var val;
-            var type = $field.attr('type');
+            let val;
+            let type = $field.attr('type');
             if ($field.is('select')) {
                 type = 'select';
             }
@@ -58,7 +58,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 case 'select':
                     val = '';
                     $field.find('option').each(function (o) {
-                        var $option = $(this);
+                        let $option = $(this);
                         if ($option.is(':selected')) {
                             val += $option.val();
                         }
@@ -71,21 +71,21 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             return val;
         };
 
-        var storeOrigValue = function ($field) {
+        let storeOrigValue = function ($field) {
             $field.data('ays-orig', getValue($field));
         };
 
-        var checkForm = function (evt) {
+        let checkForm = function (evt) {
 
-            var isFieldDirty = function ($field) {
-                var origValue = $field.data('ays-orig');
+            let isFieldDirty = function ($field) {
+                let origValue = $field.data('ays-orig');
                 if (undefined === origValue) {
                     return false;
                 }
                 return (getValue($field) != origValue);
             };
 
-            var $form = ($(this).is('form'))
+            let $form = ($(this).is('form'))
                 ? $(this)
                 : $(this).parents('form');
 
@@ -95,11 +95,11 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 return;
             }
 
-            var $fields = $form.find(settings.fieldSelector);
+            let $fields = $form.find(settings.fieldSelector);
 
             if (settings.addRemoveFieldsMarksDirty) {
                 // Check if field count has changed
-                var origCount = $form.data("ays-orig-field-count");
+                let origCount = $form.data("ays-orig-field-count");
                 if (origCount != $fields.length) {
                     setDirtyStatus($form, true);
                     return;
@@ -107,9 +107,9 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             }
 
             // Brute force - check each field
-            var isDirty = false;
+            let isDirty = false;
             $fields.each(function () {
-                var $field = $(this);
+                let $field = $(this);
                 if (isFieldDirty($field)) {
                     isDirty = true;
                     return false; // break
@@ -119,8 +119,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             setDirtyStatus($form, isDirty);
         };
 
-        var initForm = function ($form) {
-            var fields = $form.find(settings.fieldSelector);
+        let initForm = function ($form) {
+            let fields = $form.find(settings.fieldSelector);
             $(fields).each(function () {
                 storeOrigValue($(this));
             });
@@ -130,8 +130,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             setDirtyStatus($form, false);
         };
 
-        var setDirtyStatus = function ($form, isDirty) {
-            var changed = isDirty != $form.hasClass(settings.dirtyClass);
+        let setDirtyStatus = function ($form, isDirty) {
+            let changed = isDirty != $form.hasClass(settings.dirtyClass);
             $form.toggleClass(settings.dirtyClass, isDirty);
 
             // Fire change event if required
@@ -144,11 +144,11 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             }
         };
 
-        var rescan = function () {
-            var $form = $(this);
-            var fields = $form.find(settings.fieldSelector);
+        let rescan = function () {
+            let $form = $(this);
+            let fields = $form.find(settings.fieldSelector);
             $(fields).each(function () {
-                var $field = $(this);
+                let $field = $(this);
                 if (!$field.data('ays-orig')) {
                     storeOrigValue($field);
                     $field.bind(settings.fieldEvents, checkForm);
@@ -158,14 +158,14 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             $form.trigger('checkform.areYouSure');
         };
 
-        var reinitialize = function () {
+        let reinitialize = function () {
             initForm($(this));
         }
 
         if (!settings.silent && !window.aysUnloadSet) {
             window.aysUnloadSet = true;
             $(window).bind('beforeunload', function () {
-                var $dirtyForms = $("form").filter('.' + settings.dirtyClass);
+                let $dirtyForms = $("form").filter('.' + settings.dirtyClass);
                 if ($dirtyForms.length == 0) {
                     return;
                 }
@@ -187,7 +187,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             if (!$(this).is('form')) {
                 return;
             }
-            var $form = $(this);
+            let $form = $(this);
 
             $form.submit(function () {
                 $form.removeClass(settings.dirtyClass);
@@ -207,8 +207,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 // manually imported bootstrapMaterialDatePicker  script
 (function ($, moment)
 {
-    var pluginName = "bootstrapMaterialDatePicker";
-    var pluginDataName = "plugin_" + pluginName;
+    let pluginName = "bootstrapMaterialDatePicker";
+    let pluginDataName = "plugin_" + pluginName;
 
     moment.locale('en');
 
@@ -278,7 +278,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             initDays: function ()
             {
                 this.days = [];
-                for (var i = this.params.weekStart; this.days.length < 7; i++)
+                for (let i = this.params.weekStart; this.days.length < 7; i++)
                 {
                     if (i > 6)
                     {
@@ -329,7 +329,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                             {
                                 if (typeof (this.params.currentDate.isValid) === 'undefined' || typeof (this.params.currentDate.isValid) !== 'function')
                                 {
-                                    var x = this.params.currentDate.getTime();
+                                    let x = this.params.currentDate.getTime();
                                     this.currentDate = moment(x, "x").locale(this.params.lang);
                                 } else
                                 {
@@ -357,7 +357,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                     {
                         if (typeof (this.params.minDate.isValid) === 'undefined' || typeof (this.params.minDate.isValid) !== 'function')
                         {
-                            var x = this.params.minDate.getTime();
+                            let x = this.params.minDate.getTime();
                             this.minDate = moment(x, "x").locale(this.params.lang);
                         } else
                         {
@@ -384,7 +384,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                     {
                         if (typeof (this.params.maxDate.isValid) === 'undefined' || typeof (this.params.maxDate.isValid) !== 'function')
                         {
-                            var x = this.params.maxDate.getTime();
+                            let x = this.params.maxDate.getTime();
                             this.maxDate = moment(x, "x").locale(this.params.lang);
                         } else
                         {
@@ -407,13 +407,13 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             initTemplate: function ()
             {
-                var yearPicker = "";
-                var y =this.currentDate.year();
-                for (var i = y-3; i < y + 4; i++) {
+                let yearPicker = "";
+                let y =this.currentDate.year();
+                for (let i = y-3; i < y + 4; i++) {
                     yearPicker += '<div class="year-picker-item" data-year="' + i + '">' + i + '</div>';
                 }
                 this.midYear=y;
-                var yearHtml =
+                let yearHtml =
                     '<div class="dtp-picker-year hidden" >' +
                     '<div><a href="javascript:void(0);" class="btn btn-default dtp-select-year-range before" style="margin: 0;"><i class="material-icons">keyboard_arrow_up</i></a></div>' +
                     yearPicker +
@@ -540,12 +540,12 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 this.$dtpElement.find('.dtp-picker-datetime').addClass('hidden');
                 this.$dtpElement.find('.dtp-picker-year').addClass('hidden');
 
-                var _date = ((typeof (this.currentDate) !== 'undefined' && this.currentDate !== null) ? this.currentDate : null);
-                var _calendar = this.generateCalendar(this.currentDate);
+                let _date = ((typeof (this.currentDate) !== 'undefined' && this.currentDate !== null) ? this.currentDate : null);
+                let _calendar = this.generateCalendar(this.currentDate);
 
                 if (typeof (_calendar.week) !== 'undefined' && typeof (_calendar.days) !== 'undefined')
                 {
-                    var _template = this.constructHTMLCalendar(_date, _calendar);
+                    let _template = this.constructHTMLCalendar(_date, _calendar);
 
                     this.$dtpElement.find('a.dtp-select-day').off('click');
                     this.$dtpElement.find('.dtp-picker-calendar').html(_template);
@@ -573,25 +573,25 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                     this.$dtpElement.find('a.dtp-meridien-pm').click();
                 }
 
-                var hFormat = ((this.params.shortTime) ? 'h' : 'H');
+                let hFormat = ((this.params.shortTime) ? 'h' : 'H');
 
                 this.$dtpElement.find('.dtp-picker-datetime').removeClass('hidden');
                 this.$dtpElement.find('.dtp-picker-calendar').addClass('hidden');
                 this.$dtpElement.find('.dtp-picker-year').addClass('hidden');
 
-                var svgClockElement = this.createSVGClock(true);
+                let svgClockElement = this.createSVGClock(true);
 
-                for (var i = 0; i < 12; i++)
+                for (let i = 0; i < 12; i++)
                 {
-                    var x = -(162 * (Math.sin(-Math.PI * 2 * (i / 12))));
-                    var y = -(162 * (Math.cos(-Math.PI * 2 * (i / 12))));
+                    let x = -(162 * (Math.sin(-Math.PI * 2 * (i / 12))));
+                    let y = -(162 * (Math.cos(-Math.PI * 2 * (i / 12))));
 
-                    var fill = ((this.currentDate.format(hFormat) == i) ? "#8BC34A" : 'transparent');
-                    var color = ((this.currentDate.format(hFormat) == i) ? "#fff" : '#000');
+                    let fill = ((this.currentDate.format(hFormat) == i) ? "#8BC34A" : 'transparent');
+                    let color = ((this.currentDate.format(hFormat) == i) ? "#fff" : '#000');
 
-                    var svgHourCircle = this.createSVGElement("circle", {'id': 'h-' + i, 'class': 'dtp-select-hour', 'style': 'cursor:pointer', r: '30', cx: x, cy: y, fill: fill, 'data-hour': i});
+                    let svgHourCircle = this.createSVGElement("circle", {'id': 'h-' + i, 'class': 'dtp-select-hour', 'style': 'cursor:pointer', r: '30', cx: x, cy: y, fill: fill, 'data-hour': i});
 
-                    var svgHourText = this.createSVGElement("text", {'id': 'th-' + i, 'class': 'dtp-select-hour-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '20', x: x, y: y + 7, fill: color, 'data-hour': i});
+                    let svgHourText = this.createSVGElement("text", {'id': 'th-' + i, 'class': 'dtp-select-hour-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '20', x: x, y: y + 7, fill: color, 'data-hour': i});
                     svgHourText.textContent = ((i === 0) ? ((this.params.shortTime) ? 12 : i) : i);
 
                     if (!this.toggleTime(i, true))
@@ -611,17 +611,17 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 
                 if (!this.params.shortTime)
                 {
-                    for (var i = 0; i < 12; i++)
+                    for (let i = 0; i < 12; i++)
                     {
-                        var x = -(110 * (Math.sin(-Math.PI * 2 * (i / 12))));
-                        var y = -(110 * (Math.cos(-Math.PI * 2 * (i / 12))));
+                        let x = -(110 * (Math.sin(-Math.PI * 2 * (i / 12))));
+                        let y = -(110 * (Math.cos(-Math.PI * 2 * (i / 12))));
 
-                        var fill = ((this.currentDate.format(hFormat) == (i + 12)) ? "#8BC34A" : 'transparent');
-                        var color = ((this.currentDate.format(hFormat) == (i + 12)) ? "#fff" : '#000');
+                        let fill = ((this.currentDate.format(hFormat) == (i + 12)) ? "#8BC34A" : 'transparent');
+                        let color = ((this.currentDate.format(hFormat) == (i + 12)) ? "#fff" : '#000');
 
-                        var svgHourCircle = this.createSVGElement("circle", {'id': 'h-' + (i + 12), 'class': 'dtp-select-hour', 'style': 'cursor:pointer', r: '30', cx: x, cy: y, fill: fill, 'data-hour': (i + 12)});
+                        let svgHourCircle = this.createSVGElement("circle", {'id': 'h-' + (i + 12), 'class': 'dtp-select-hour', 'style': 'cursor:pointer', r: '30', cx: x, cy: y, fill: fill, 'data-hour': (i + 12)});
 
-                        var svgHourText = this.createSVGElement("text", {'id': 'th-' + (i + 12), 'class': 'dtp-select-hour-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '22', x: x, y: y + 7, fill: color, 'data-hour': (i + 12)});
+                        let svgHourText = this.createSVGElement("text", {'id': 'th-' + (i + 12), 'class': 'dtp-select-hour-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '22', x: x, y: y + 7, fill: color, 'data-hour': (i + 12)});
                         svgHourText.textContent = i + 12;
 
                         if (!this.toggleTime(i + 12, true))
@@ -665,19 +665,19 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 this.$dtpElement.find('.dtp-picker-calendar').addClass('hidden');
                 this.$dtpElement.find('.dtp-picker-datetime').removeClass('hidden');
 
-                var svgClockElement = this.createSVGClock(false);
+                let svgClockElement = this.createSVGClock(false);
 
-                for (var i = 0; i < 60; i++)
+                for (let i = 0; i < 60; i++)
                 {
-                    var s = ((i % 5 === 0) ? 162 : 158);
-                    var r = ((i % 5 === 0) ? 30 : 20);
+                    let s = ((i % 5 === 0) ? 162 : 158);
+                    let r = ((i % 5 === 0) ? 30 : 20);
 
-                    var x = -(s * (Math.sin(-Math.PI * 2 * (i / 60))));
-                    var y = -(s * (Math.cos(-Math.PI * 2 * (i / 60))));
+                    let x = -(s * (Math.sin(-Math.PI * 2 * (i / 60))));
+                    let y = -(s * (Math.cos(-Math.PI * 2 * (i / 60))));
 
-                    var color = ((this.currentDate.format("m") == i) ? "#8BC34A" : 'transparent');
+                    let color = ((this.currentDate.format("m") == i) ? "#8BC34A" : 'transparent');
 
-                    var svgMinuteCircle = this.createSVGElement("circle", {'id': 'm-' + i, 'class': 'dtp-select-minute', 'style': 'cursor:pointer', r: r, cx: x, cy: y, fill: color, 'data-minute': i});
+                    let svgMinuteCircle = this.createSVGElement("circle", {'id': 'm-' + i, 'class': 'dtp-select-minute', 'style': 'cursor:pointer', r: r, cx: x, cy: y, fill: color, 'data-minute': i});
 
                     if (!this.toggleTime(i, false))
                     {
@@ -690,16 +690,16 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                     svgClockElement.appendChild(svgMinuteCircle)
                 }
 
-                for (var i = 0; i < 60; i++)
+                for (let i = 0; i < 60; i++)
                 {
                     if ((i % 5) === 0)
                     {
-                        var x = -(162 * (Math.sin(-Math.PI * 2 * (i / 60))));
-                        var y = -(162 * (Math.cos(-Math.PI * 2 * (i / 60))));
+                        let x = -(162 * (Math.sin(-Math.PI * 2 * (i / 60))));
+                        let y = -(162 * (Math.cos(-Math.PI * 2 * (i / 60))));
 
-                        var color = ((this.currentDate.format("m") == i) ? "#fff" : '#000');
+                        let color = ((this.currentDate.format("m") == i) ? "#fff" : '#000');
 
-                        var svgMinuteText = this.createSVGElement("text", {'id': 'tm-' + i, 'class': 'dtp-select-minute-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '20', x: x, y: y + 7, fill: color, 'data-minute': i});
+                        let svgMinuteText = this.createSVGElement("text", {'id': 'tm-' + i, 'class': 'dtp-select-minute-text', 'text-anchor': 'middle', 'style': 'cursor:pointer', 'font-weight': 'bold', 'font-size': '20', x: x, y: y + 7, fill: color, 'data-minute': i});
                         svgMinuteText.textContent = i;
 
                         if (!this.toggleTime(i, false))
@@ -719,37 +719,37 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             animateHands: function ()
             {
-                var H = this.currentDate.hour();
-                var M = this.currentDate.minute();
+                let H = this.currentDate.hour();
+                let M = this.currentDate.minute();
 
-                var hh = this.$dtpElement.find('.hour-hand');
+                let hh = this.$dtpElement.find('.hour-hand');
                 hh[0].setAttribute('transform', "rotate(" + 360 * H / 12 + ")");
 
-                var mh = this.$dtpElement.find('.minute-hand');
+                let mh = this.$dtpElement.find('.minute-hand');
                 mh[0].setAttribute('transform', "rotate(" + 360 * M / 60 + ")");
             },
             createSVGClock: function (isHour)
             {
-                var hl = ((this.params.shortTime) ? -120 : -90);
+                let hl = ((this.params.shortTime) ? -120 : -90);
 
-                var svgElement = this.createSVGElement("svg", {class: 'svg-clock', viewBox: '0,0,400,400'});
-                var svgGElement = this.createSVGElement("g", {transform: 'translate(200,200) '});
-                var svgClockFace = this.createSVGElement("circle", {r: '192', fill: '#eee', stroke: '#bdbdbd', 'stroke-width': 2});
-                var svgClockCenter = this.createSVGElement("circle", {r: '15', fill: '#757575'});
+                let svgElement = this.createSVGElement("svg", {class: 'svg-clock', viewBox: '0,0,400,400'});
+                let svgGElement = this.createSVGElement("g", {transform: 'translate(200,200) '});
+                let svgClockFace = this.createSVGElement("circle", {r: '192', fill: '#eee', stroke: '#bdbdbd', 'stroke-width': 2});
+                let svgClockCenter = this.createSVGElement("circle", {r: '15', fill: '#757575'});
 
                 svgGElement.appendChild(svgClockFace)
 
                 if (isHour)
                 {
-                    var svgMinuteHand = this.createSVGElement("line", {class: 'minute-hand', x1: 0, y1: 0, x2: 0, y2: -150, stroke: '#bdbdbd', 'stroke-width': 2});
-                    var svgHourHand = this.createSVGElement("line", {class: 'hour-hand', x1: 0, y1: 0, x2: 0, y2: hl, stroke: '#8BC34A', 'stroke-width': 8});
+                    let svgMinuteHand = this.createSVGElement("line", {class: 'minute-hand', x1: 0, y1: 0, x2: 0, y2: -150, stroke: '#bdbdbd', 'stroke-width': 2});
+                    let svgHourHand = this.createSVGElement("line", {class: 'hour-hand', x1: 0, y1: 0, x2: 0, y2: hl, stroke: '#8BC34A', 'stroke-width': 8});
 
                     svgGElement.appendChild(svgMinuteHand);
                     svgGElement.appendChild(svgHourHand);
                 } else
                 {
-                    var svgMinuteHand = this.createSVGElement("line", {class: 'minute-hand', x1: 0, y1: 0, x2: 0, y2: -150, stroke: '#8BC34A', 'stroke-width': 2});
-                    var svgHourHand = this.createSVGElement("line", {class: 'hour-hand', x1: 0, y1: 0, x2: 0, y2: hl, stroke: '#bdbdbd', 'stroke-width': 8});
+                    let svgMinuteHand = this.createSVGElement("line", {class: 'minute-hand', x1: 0, y1: 0, x2: 0, y2: -150, stroke: '#8BC34A', 'stroke-width': 2});
+                    let svgHourHand = this.createSVGElement("line", {class: 'hour-hand', x1: 0, y1: 0, x2: 0, y2: hl, stroke: '#bdbdbd', 'stroke-width': 8});
 
                     svgGElement.appendChild(svgHourHand);
                     svgGElement.appendChild(svgMinuteHand);
@@ -768,8 +768,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             createSVGElement: function (tag, attrs)
             {
-                var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-                for (var k in attrs)
+                let el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+                for (let k in attrs)
                 {
                     el.setAttribute(k, attrs[k]);
                 }
@@ -777,12 +777,12 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             isAfterMinDate: function (date, checkHour, checkMinute)
             {
-                var _return = true;
+                let _return = true;
 
                 if (typeof (this.minDate) !== 'undefined' && this.minDate !== null)
                 {
-                    var _minDate = moment(this.minDate);
-                    var _date = moment(date);
+                    let _minDate = moment(this.minDate);
+                    let _date = moment(date);
 
                     if (!checkHour && !checkMinute)
                     {
@@ -814,12 +814,12 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             isBeforeMaxDate: function (date, checkTime, checkMinute)
             {
-                var _return = true;
+                let _return = true;
 
                 if (typeof (this.maxDate) !== 'undefined' && this.maxDate !== null)
                 {
-                    var _maxDate = moment(this.maxDate);
-                    var _date = moment(date);
+                    let _maxDate = moment(this.maxDate);
+                    let _date = moment(date);
 
                     if (!checkTime && !checkMinute)
                     {
@@ -871,8 +871,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             {
                 if (date)
                 {
-                    var minutes = date.minute();
-                    var content = ((this.params.shortTime) ? date.format('hh') : date.format('HH')) + ':' + ((minutes.toString().length == 2) ? minutes : '0' + minutes) + ((this.params.shortTime) ? ' ' + date.format('A') : '');
+                    let minutes = date.minute();
+                    let content = ((this.params.shortTime) ? date.format('hh') : date.format('HH')) + ':' + ((minutes.toString().length == 2) ? minutes : '0' + minutes) + ((this.params.shortTime) ? ' ' + date.format('A') : '');
 
                     if (this.params.date)
                         this.$dtpElement.find('.dtp-actual-time').html(content);
@@ -899,26 +899,26 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             generateCalendar: function (date)
             {
-                var _calendar = {};
+                let _calendar = {};
 
                 if (date !== null)
                 {
-                    var startOfMonth = moment(date).locale(this.params.lang).startOf('month');
-                    var endOfMonth = moment(date).locale(this.params.lang).endOf('month');
+                    let startOfMonth = moment(date).locale(this.params.lang).startOf('month');
+                    let endOfMonth = moment(date).locale(this.params.lang).endOf('month');
 
-                    var iNumDay = startOfMonth.format('d');
+                    let iNumDay = startOfMonth.format('d');
 
                     _calendar.week = this.days;
                     _calendar.days = [];
 
-                    for (var i = startOfMonth.date(); i <= endOfMonth.date(); i++)
+                    for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++)
                     {
                         if (i === startOfMonth.date())
                         {
-                            var iWeek = _calendar.week.indexOf(iNumDay.toString());
+                            let iWeek = _calendar.week.indexOf(iNumDay.toString());
                             if (iWeek > 0)
                             {
-                                for (var x = 0; x < iWeek; x++)
+                                for (let x = 0; x < iWeek; x++)
                                 {
                                     _calendar.days.push(0);
                                 }
@@ -932,11 +932,11 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             constructHTMLCalendar: function (date, calendar)
             {
-                var _template = "";
+                let _template = "";
 
                 _template += '<div class="dtp-picker-month">' + date.locale(this.params.lang).format('MMMM YYYY') + '</div>';
                 _template += '<table class="table dtp-picker-days"><thead>';
-                for (var i = 0; i < calendar.week.length; i++)
+                for (let i = 0; i < calendar.week.length; i++)
                 {
                     _template += '<th>' + moment(parseInt(calendar.week[i]), "d").locale(this.params.lang).format("dd").substring(0, 1) + '</th>';
                 }
@@ -944,7 +944,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 _template += '</thead>';
                 _template += '<tbody><tr>';
 
-                for (var i = 0; i < calendar.days.length; i++)
+                for (let i = 0; i < calendar.days.length; i++)
                 {
                     if (i % 7 == 0)
                         _template += '</tr><tr>';
@@ -976,10 +976,10 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             setName: function ()
             {
-                var text = "";
-                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                let text = "";
+                let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-                for (var i = 0; i < 5; i++)
+                for (let i = 0; i < 5; i++)
                 {
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
                 }
@@ -1004,8 +1004,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             {
                 if (date && date.isValid())
                 {
-                    var startOfMonth = moment(date).locale(this.params.lang).startOf('month');
-                    var endOfMonth = moment(date).locale(this.params.lang).endOf('month');
+                    let startOfMonth = moment(date).locale(this.params.lang).startOf('month');
+                    let endOfMonth = moment(date).locale(this.params.lang).endOf('month');
 
                     if (!this.isAfterMinDate(startOfMonth, false, false))
                     {
@@ -1023,8 +1023,8 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                         this.$dtpElement.find('a.dtp-select-month-after').removeClass('invisible');
                     }
 
-                    var startOfYear = moment(date).locale(this.params.lang).startOf('year');
-                    var endOfYear = moment(date).locale(this.params.lang).endOf('year');
+                    let startOfYear = moment(date).locale(this.params.lang).startOf('year');
+                    let endOfYear = moment(date).locale(this.params.lang).endOf('year');
 
                     if (!this.isAfterMinDate(startOfYear, false, false))
                     {
@@ -1045,17 +1045,17 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             toggleTime: function (value, isHours)
             {
-                var result = false;
+                let result = false;
 
                 if (isHours)
                 {
-                    var _date = moment(this.currentDate);
+                    let _date = moment(this.currentDate);
                     _date.hour(this.convertHours(value)).minute(0).second(0);
 
                     result = !(this.isAfterMinDate(_date, true, false) === false || this.isBeforeMaxDate(_date, true, false) === false);
                 } else
                 {
-                    var _date = moment(this.currentDate);
+                    let _date = moment(this.currentDate);
                     _date.minute(value).second(0);
 
                     result = !(this.isAfterMinDate(_date, true, true) === false || this.isBeforeMaxDate(_date, true, true) === false);
@@ -1070,7 +1070,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             _detachEvents: function ()
             {
-                for (var i = this._attachedEvents.length - 1; i >= 0; i--)
+                for (let i = this._attachedEvents.length - 1; i >= 0; i--)
                 {
                     this._attachedEvents[i][0].off(this._attachedEvents[i][1], this._attachedEvents[i][2]);
                     this._attachedEvents.splice(i, 1);
@@ -1236,20 +1236,20 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 this._closeYearPicker();
             },
             refreshYearItems:function () {
-                var curYear=this.currentDate.year(),midYear=this.midYear;
-                var minYear=1850;
+                let curYear=this.currentDate.year(),midYear=this.midYear;
+                let minYear=1850;
                 if (typeof (this.minDate) !== 'undefined' && this.minDate !== null){
                     minYear=moment(this.minDate).year();
                 }
 
-                var maxYear=2200;
+                let maxYear=2200;
                 if (typeof (this.maxDate) !== 'undefined' && this.maxDate !== null){
                     maxYear=moment(this.maxDate).year();
                 }
 
                 this.$dtpElement.find(".dtp-picker-year .invisible").removeClass("invisible");
                 this.$dtpElement.find(".year-picker-item").each(function (i, el) {
-                    var newYear = midYear - 3 + i;
+                    let newYear = midYear - 3 + i;
                     $(el).attr("data-year", newYear).text(newYear).data("year", newYear);
                     if (curYear == newYear) {
                         $(el).addClass("active");
@@ -1291,9 +1291,9 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
                 this.refreshYearItems();
             },
             _onYearItemClick:function (e) {
-                var newYear = $(e.currentTarget).data('year');
-                var oldYear = this.currentDate.year();
-                var diff = newYear - oldYear;
+                let newYear = $(e.currentTarget).data('year');
+                let oldYear = this.currentDate.year();
+                let diff = newYear - oldYear;
                 this.currentDate.add(diff, 'years');
                 this.initDate(this.currentDate);
 
@@ -1332,16 +1332,16 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             {
                 if (!$(e.target).hasClass('disabled'))
                 {
-                    var value = $(e.target).data('hour');
-                    var parent = $(e.target).parent();
+                    let value = $(e.target).data('hour');
+                    let parent = $(e.target).parent();
 
-                    var h = parent.find('.dtp-select-hour');
-                    for (var i = 0; i < h.length; i++)
+                    let h = parent.find('.dtp-select-hour');
+                    for (let i = 0; i < h.length; i++)
                     {
                         $(h[i]).attr('fill', 'transparent');
                     }
-                    var th = parent.find('.dtp-select-hour-text');
-                    for (var i = 0; i < th.length; i++)
+                    let th = parent.find('.dtp-select-hour-text');
+                    for (let i = 0; i < th.length; i++)
                     {
                         $(th[i]).attr('fill', '#000');
                     }
@@ -1368,16 +1368,16 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             {
                 if (!$(e.target).hasClass('disabled'))
                 {
-                    var value = $(e.target).data('minute');
-                    var parent = $(e.target).parent();
+                    let value = $(e.target).data('minute');
+                    let parent = $(e.target).parent();
 
-                    var m = parent.find('.dtp-select-minute');
-                    for (var i = 0; i < m.length; i++)
+                    let m = parent.find('.dtp-select-minute');
+                    for (let i = 0; i < m.length; i++)
                     {
                         $(m[i]).attr('fill', 'transparent');
                     }
-                    var tm = parent.find('.dtp-select-minute-text');
-                    for (var i = 0; i < tm.length; i++)
+                    let tm = parent.find('.dtp-select-minute-text');
+                    for (let i = 0; i < tm.length; i++)
                     {
                         $(tm[i]).attr('fill', '#000');
                     }
@@ -1427,7 +1427,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             convertHours: function (h)
             {
-                var _return = h;
+                let _return = h;
 
                 if (this.params.shortTime === true)
                 {
@@ -1478,13 +1478,13 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
             },
             _centerBox: function ()
             {
-                var h = (this.$dtpElement.height() - this.$dtpElement.find('.dtp-content').height()) / 2;
+                let h = (this.$dtpElement.height() - this.$dtpElement.find('.dtp-content').height()) / 2;
                 this.$dtpElement.find('.dtp-content').css('marginLeft', -(this.$dtpElement.find('.dtp-content').width() / 2) + 'px');
                 this.$dtpElement.find('.dtp-content').css('top', h + 'px');
             },
             enableDays: function ()
             {
-                var enableDays = this.params.enableDays;
+                let enableDays = this.params.enableDays;
                 if (enableDays) {
                     $(".dtp-picker-days tbody tr td").each(function () {
                         if (!(($.inArray($(this).index(), enableDays)) >= 0)) {
@@ -1526,7 +1526,7 @@ $.Form = {
         });
 
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
-            var pattern = $(element).prop('pattern');
+            let pattern = $(element).prop('pattern');
             if (pattern && ($(element).prop('required') === true || value !== '')) {
                 return new RegExp(pattern).test(value);
             } else {
@@ -1547,9 +1547,9 @@ $.Form = {
         });
     },
     intl_tel: function () {
-        var initIntlTelInput = function(selector, type) {
+        let initIntlTelInput = function(selector, type) {
             $(selector).each(function(key, item) {
-                var input = IntlTelInput(item, {
+                let input = IntlTelInput(item, {
                     placeholderNumberType: type,
                     nationalMode: true,
                     initialCountry: "fr",
@@ -1557,7 +1557,7 @@ $.Form = {
                     geoIpLookup: function (callback) {
                         $.get('https://ipinfo.io', function () {
                         }, "jsonp").always(function (resp) {
-                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            let countryCode = (resp && resp.country) ? resp.country : "";
                             callback(countryCode);
                         });
                     },
@@ -1598,7 +1598,7 @@ $.Form = {
     },
     picker: function () {
         $('[data-provide="datepicker"]').each(function () {
-            var pickerSettings = {};
+            let pickerSettings = {};
 
             if ($(this).data('disabled-days')) {
                 pickerSettings.disabledDays = $(this).data('disabled-days');
@@ -1637,7 +1637,7 @@ $.Form = {
         });
 
         $('[data-provide="datetimepicker"]').each(function () {
-            var pickerSettings = {};
+            let pickerSettings = {};
 
             if ($(this).data('disabled-days')) {
                 pickerSettings.disabledDays = $(this).data('disabled-days');
@@ -1667,26 +1667,26 @@ $.Form = {
         });
     },
     range: function () {
-        var containers = $('.nouislider-container');
+        let containers = $('.nouislider-container');
         containers.each(function () {
-            var selector = $(this)[0];
-            var input = $(this).find('input.nouislider');
+            let selector = $(this)[0];
+            let input = $(this).find('input.nouislider');
 
-            var val = input.val();
-            var data = [val];
+            let val = input.val();
+            let data = [val];
             if (typeof input.data('double') !== 'undefined') {
-                var data = [];
-                var pieces = val.split(',');
+                data = [];
+                let pieces = val.split(',');
                 pieces.forEach(function (item) {
                     data.push(parseFloat(item));
                 });
             }
 
-            Range.create(selector, {
+            let options = {
                 start: data,
                 orientation: input.data('orientation'),
                 direction: input.data('direction'),
-                connect: typeof input.data('double') !== 'undefined' ? true : 'lower',
+                connect: typeof input.data('double') !== 'undefined' && input.data('double') ? true : 'lower',
                 step: parseInt(input.data('step')),
                 range: {
                     'min': [parseInt(input.data('min'))],
@@ -1697,7 +1697,22 @@ $.Form = {
                     stepped: true,
                     density: 4
                 },
-            });
+                tooltips: true,
+            };
+
+
+            if (typeof input.data('limit') !== "undefined" && input.data('limit') !== false) {
+                options.limit  = input.data('limit');
+            }
+
+            Range.create(selector, options);
+
+            if (input.prop('disabled') || input.prop('readonly')) {
+                selector.setAttribute('disabled', true);
+            } else {
+                selector.removeAttribute('disabled');
+            }
+
             $.Form.rangeValue(selector, input);
         });
     },
@@ -1710,9 +1725,9 @@ $.Form = {
         });
     },
     scrollToError: function () {
-        var errors = $(".form-group.has-error");
+        let errors = $(".form-group.has-error");
         if (errors.length) {
-            var tabs = $(errors[0]).parents('.tab-pane');
+            let tabs = $(errors[0]).parents('.tab-pane');
             if (tabs.length) {
                 tabs.each(function () {
                     $('.nav-tabs a[href^="#' + $(this).attr('id') + '"]').tab('show');
@@ -1786,7 +1801,7 @@ $.Form = {
     },
     wysiwyg: function () {
         $('[data-provide="wysiwyg"]').each(function () {
-            var options = [];
+            let options = [];
             if ($(this).data('upload')) {
                 options = {
                     toolbar: {
@@ -1834,13 +1849,13 @@ $.Form = {
                 };
             }
 
-            var attr = $(this).attr('data-inline');
+            let attr = $(this).attr('data-inline');
 
             if (typeof attr === "undefined" || attr === false) {
                 ClassicEditor
                     .create($(this)[0], options)
                     .then(editor => {
-                        var hiddenInput = FORM_VALIDATOR(editor.sourceElement);
+                        let hiddenInput = FORM_VALIDATOR(editor.sourceElement);
                         editor.isReadOnly = hiddenInput.prop('readonly');
 
                         editor.model.document.on('change:data', () => {
@@ -1848,7 +1863,7 @@ $.Form = {
                             hiddenInput.valid();
 
                             if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
-                                var form = hiddenInput.closest('form');
+                                let form = hiddenInput.closest('form');
 
                                 if (!form.hasClass('no_watch')) {
                                     form.addClass('dirty');

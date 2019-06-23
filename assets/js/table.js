@@ -9,11 +9,10 @@ import '../css/table.scss';
 import 'datatables.net';
 import 'datatables.net-dt';
 
-
 // manually imported datatable-bootstrap  script
 (function(window, document, undefined){
 
-    var factory = function( $, DataTable ) {
+    let factory = function( $, DataTable ) {
         "use strict";
 
 
@@ -37,14 +36,14 @@ import 'datatables.net-dt';
 
         /* Bootstrap paging button renderer */
         DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
-            var api     = new DataTable.Api( settings );
-            var classes = settings.oClasses;
-            var lang    = settings.oLanguage.oPaginate;
-            var btnDisplay, btnClass, counter=0;
+            let api     = new DataTable.Api( settings );
+            let classes = settings.oClasses;
+            let lang    = settings.oLanguage.oPaginate;
+            let btnDisplay, btnClass, counter=0;
 
-            var attach = function( container, buttons ) {
-                var i, ien, node, button;
-                var clickHandler = function ( e ) {
+            let attach = function( container, buttons ) {
+                let i, ien, node, button;
+                let clickHandler = function ( e ) {
                     e.preventDefault();
                     if ( !$(e.currentTarget).hasClass('disabled') ) {
                         api.page( e.data.action ).draw( 'page' );
@@ -127,7 +126,7 @@ import 'datatables.net-dt';
 
             // IE9 throws an 'unknown error' if document.activeElement is used
             // inside an iframe or frame.
-            var activeEl;
+            let activeEl;
 
             try {
                 // Because this approach is destroying and recreating the paging
@@ -197,8 +196,8 @@ factory(jQuery, jQuery.fn.dataTable);
 
 $(document).ready(function() {
     $('table.dataTable').each(function () {
-        var table = $(this);
-        var datatableOptions = {
+        let table = $(this);
+        let datatableOptions = {
             dom: 'BflrRtip',
             lengthMenu: [10, 25, 50, 100, 500, 1000],
             language: DATATABLE_TRANSLATIONS,
@@ -229,7 +228,7 @@ $(document).ready(function() {
             datatableOptions.colReorder = true;
         }
 
-        var datatable = table.DataTable(datatableOptions);
+        let datatable = table.DataTable(datatableOptions);
 
         datatable.on('draw.dt', function () {
             console.log('ici');

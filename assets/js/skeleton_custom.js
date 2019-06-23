@@ -2,7 +2,7 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
-var InlineEditor;
+let InlineEditor;
 if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
     InlineEditor = require ('@ckeditor/ckeditor5-build-inline');
     require ('@ckeditor/ckeditor5-build-classic/build/translations/' + LOCALE);
@@ -47,9 +47,9 @@ $.App = {
         $('.pagination li.active a').addClass('bg-' + THEME_NAME);
     },
     console: function () {
-        var vsweb_console_message = function () {
+        let vsweb_console_message = function () {
             if (window.console) {
-                var message = '' +
+                let message = '' +
                     ' __    __    ___            __    __    __   ____\n' +
                     ' \\ \\  / /   / __|           \\ \\  /  \\  / /  |  __\\   __\n' +
                     '  \\ \\/ / _  \\__ \\  _         \\ \\/ /\\ \\/ /   |  __|  |  _\\\n' +
@@ -70,8 +70,8 @@ $.App = {
             }
         };
 
-        var localStorageSupported = function (){
-            var test = 'test';
+        let localStorageSupported = function (){
+            let test = 'test';
             try {
                 localStorage.setItem(test, test);
                 localStorage.removeItem(test);
@@ -104,7 +104,7 @@ $.App = {
             require ('sweetalert');
             $('body').on('click', '[data-confirm="confirm"]', function (e) {
                 e.preventDefault();
-                var link = $(this);
+                let link = $(this);
 
                 swal({
                     title: DIALOG_TRANSLATIONS.confirm_title,
@@ -160,7 +160,7 @@ $.App = {
     editInPlace: function () {
         if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
             $('[data-provide="wysiwyg"]').each(function () {
-                var options = [];
+                let options = [];
                 if ($(this).data('upload')) {
                     options = {
                         toolbar: {
@@ -208,7 +208,7 @@ $.App = {
                     };
                 }
 
-                var attr = $(this).attr('data-inline');
+                let attr = $(this).attr('data-inline');
 
                 if (typeof attr !== "undefined" && attr !== false) {
                     InlineEditor
@@ -227,7 +227,7 @@ $.App = {
         if (text === null || text === '') { text = 'Turning standard Bootstrap alerts'; }
         if (animateEnter === null || animateEnter === '') { animateEnter = 'animated fadeInDown'; }
         if (animateExit === null || animateExit === '') { animateExit = 'animated fadeOutUp'; }
-        var allowDismiss = true;
+        let allowDismiss = true;
 
         $.notify({
                 message: text
@@ -260,7 +260,7 @@ $.App = {
     },
     settings: function () {
         $('body').on('change', '#settings input[type="checkbox"]', function (e) {
-            var input = $(this);
+            let input = $(this);
 
             if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
                 $.ajax({
@@ -294,7 +294,7 @@ $.App = {
                 });
             }
         }).on('change', '#settings input[type="text"], #settings select', function (e) {
-            var input = $(this);
+            let input = $(this);
 
             if (input.val() != -1) {
                 if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
@@ -363,12 +363,12 @@ $(document).ready(function () {
     });
 
     $('.flash-message').on('click', function () {
-        var placementFrom = $(this).data('placement-from') ? $(this).data('placement-from') : TOASTR_POSITION.vertical;
-        var placementAlign = $(this).data('placement-align') ? $(this).data('placement-align') : TOASTR_POSITION.horizontal;
-        var animateEnter = $(this).data('animate-enter');
-        var animateExit = $(this).data('animate-exit');
-        var colorName = $(this).data('color-name');
-        var text = $(this).data('original-text');
+        let placementFrom = $(this).data('placement-from') ? $(this).data('placement-from') : TOASTR_POSITION.vertical;
+        let placementAlign = $(this).data('placement-align') ? $(this).data('placement-align') : TOASTR_POSITION.horizontal;
+        let animateEnter = $(this).data('animate-enter');
+        let animateExit = $(this).data('animate-exit');
+        let colorName = $(this).data('color-name');
+        let text = $(this).data('original-text');
 
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
     });
