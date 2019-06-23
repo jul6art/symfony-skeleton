@@ -16,15 +16,16 @@ class FunctionalityVoter extends AbstractVoter
 {
     use FunctionalityManagerTrait;
 
-    const EDIT = 'app.voters.functionality.edit';
-    const SWITCH_THEME = 'app.voters.functionality.switch_theme';
-    const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
-    const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
     const AUDIT = 'app.voters.functionality.audit';
+    const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
     const CONFIRM_DELETE = 'app.voters.functionality.confirm_delete';
-    const WATCH_FORM = 'app.voters.functionality.watch_form';
-    const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
+    const EDIT = 'app.voters.functionality.edit';
+    const EDIT_IN_PLACE = 'app.voters.functionality.edit_in_place';
     const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
+    const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
+    const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
+    const SWITCH_THEME = 'app.voters.functionality.switch_theme';
+    const WATCH_FORM = 'app.voters.functionality.watch_form';
 
     /**
      * @param string $attribute
@@ -35,15 +36,16 @@ class FunctionalityVoter extends AbstractVoter
     protected function supports($attribute, $subject)
     {
         if (!in_array($attribute, [
-                self::EDIT,
-                self::SWITCH_THEME,
-                self::SWITCH_LOCALE,
-                self::CACHE_CLEAR,
                 self::AUDIT,
+                self::CACHE_CLEAR,
                 self::CONFIRM_DELETE,
-                self::WATCH_FORM,
-                self::MANAGE_SETTINGS,
+                self::EDIT,
+                self::EDIT_IN_PLACE,
                 self::MANAGE_FUNCTIONALITIES,
+                self::MANAGE_SETTINGS,
+                self::SWITCH_LOCALE,
+                self::SWITCH_THEME,
+                self::WATCH_FORM,
             ])) {
             return false;
         }
@@ -78,33 +80,36 @@ class FunctionalityVoter extends AbstractVoter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case self::EDIT:
-                return $this->canEdit($subject, $token);
-                break;
-            case self::SWITCH_THEME:
-                return $this->canSwicthTheme($subject, $token);
-                break;
-            case self::SWITCH_LOCALE:
-                return $this->canSwitchLocale($subject, $token);
-                break;
-            case self::CACHE_CLEAR:
-                return $this->canClearCache($subject, $token);
-                break;
             case self::AUDIT:
                 return $this->canAudit($subject, $token);
                 break;
+	        case self::CACHE_CLEAR:
+		        return $this->canClearCache($subject, $token);
+		        break;
             case self::CONFIRM_DELETE:
                 return $this->canConfirmDelete($subject, $token);
                 break;
-            case self::WATCH_FORM:
-                return $this->canWatchForm($subject, $token);
-                break;
+	        case self::EDIT:
+		        return $this->canEdit($subject, $token);
+		        break;
+	        case self::EDIT_IN_PLACE:
+		        return $this->canEditInPlace($subject, $token);
+		        break;
+	        case self::MANAGE_FUNCTIONALITIES:
+		        return $this->canManageFunctionalities($subject, $token);
+		        break;
             case self::MANAGE_SETTINGS:
                 return $this->canManageSettings($subject, $token);
                 break;
-            case self::MANAGE_FUNCTIONALITIES:
-                return $this->canManageFunctionalities($subject, $token);
-                break;
+	        case self::SWITCH_LOCALE:
+		        return $this->canSwitchLocale($subject, $token);
+		        break;
+	        case self::SWITCH_THEME:
+		        return $this->canSwicthTheme($subject, $token);
+		        break;
+	        case self::WATCH_FORM:
+		        return $this->canWatchForm($subject, $token);
+		        break;
         }
 
         return false;
@@ -167,6 +172,20 @@ class FunctionalityVoter extends AbstractVoter
     public function canClearCache(string $subject, TokenInterface $token)
     {
         return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
+    }
+
+    /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canEditInPlace(string $subject, TokenInterface $token)
+    {
+        return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
     }
 
     /**

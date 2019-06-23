@@ -24,6 +24,8 @@
         "@ckeditor/ckeditor5-build-classic": "^12.2.0",
         "@ckeditor/ckeditor5-build-inline": "^12.2.0",
         "@ckeditor/ckeditor5-easy-image": "^11.0.2",
+        "@ckeditor/ckeditor5-editor-classic": "^12.1.1",
+        "@ckeditor/ckeditor5-editor-inline": "^12.1.1",
         "@ckeditor/ckeditor5-essentials": "^11.0.2",
         "@ckeditor/ckeditor5-heading": "^11.0.2",
         "@ckeditor/ckeditor5-image": "^13.1.0",

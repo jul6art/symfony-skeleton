@@ -1834,29 +1834,33 @@ $.Form = {
                 };
             }
 
-            ClassicEditor
-                .create($(this)[0], options)
-                .then(editor => {
-                    var hiddenInput = FORM_VALIDATOR(editor.sourceElement);
-                    editor.isReadOnly = hiddenInput.prop('readonly');
+            var attr = $(this).attr('data-inline');
 
-                    editor.model.document.on('change:data', () => {
-                        editor.updateSourceElement();
-                        hiddenInput.valid();
+            if (typeof attr === "undefined" || attr === false) {
+                ClassicEditor
+                    .create($(this)[0], options)
+                    .then(editor => {
+                        var hiddenInput = FORM_VALIDATOR(editor.sourceElement);
+                        editor.isReadOnly = hiddenInput.prop('readonly');
 
-                        if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
-                            var form = hiddenInput.closest('form');
+                        editor.model.document.on('change:data', () => {
+                            editor.updateSourceElement();
+                            hiddenInput.valid();
 
-                            if (!form.hasClass('no_watch')) {
-                                form.addClass('dirty');
-                                form.find('[type="submit"]').removeAttr('disabled');
+                            if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
+                                var form = hiddenInput.closest('form');
+
+                                if (!form.hasClass('no_watch')) {
+                                    form.addClass('dirty');
+                                    form.find('[type="submit"]').removeAttr('disabled');
+                                }
                             }
-                        }
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            }
         });
     }
 };

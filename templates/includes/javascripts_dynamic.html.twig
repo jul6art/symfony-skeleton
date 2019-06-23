@@ -41,6 +41,9 @@
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.confirm_delete = true;
     {% endif %}
+    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') %}
+        ACTIVATED_FUNCTIONS.edit_in_place = true;
+    {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.form_watcher = true;
     {% endif %}

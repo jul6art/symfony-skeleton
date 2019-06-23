@@ -43,10 +43,11 @@ sidebar:
                 right: Droite
     func:
         title: FONCTIONALITÉS
-        switch_theme: 'Choix du thème'
-        switch_locale: 'Multilangue'
-        clear_cache: 'Cache'
         audit: 'Audit'
+        clear_cache: 'Cache'
         confirm_delete: 'Popup de confirmation'
+        edit_in_place: 'Modification à la volée'
         form_watcher: 'Surveillance des formulaires'
+        switch_locale: 'Multilangue'
+        switch_theme: 'Choix du thème'
         manage_settings: 'Gestion des paramètres'

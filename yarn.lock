@@ -719,6 +719,28 @@
     "@ckeditor/ckeditor5-image" "^13.1.0"
     "@ckeditor/ckeditor5-upload" "^11.0.2"
 
+"@ckeditor/ckeditor5-editor-classic@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-editor-classic/-/ckeditor5-editor-classic-12.1.1.tgz#5cc6fcee3123349952ada9ccc8af4936dede3d73"
+  integrity sha512-NdvOtHJ2cWu2ihieqop5OZEirXUcaOVK4V62MRu6tgh9MyKwptNtZMFbDeIcPWCnal4rVXs8bC6g+UpbfUxOpg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^12.1.1"
+    "@ckeditor/ckeditor5-engine" "^13.1.1"
+    "@ckeditor/ckeditor5-ui" "^13.0.0"
+    "@ckeditor/ckeditor5-utils" "^12.1.1"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-editor-inline@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-editor-inline/-/ckeditor5-editor-inline-12.1.1.tgz#abe96d69ba9c9e19e940a442a6693b6612bdea67"
+  integrity sha512-ZmhF6t8FZIrsssCJ0wm47/S+OAsL0LgL9f5zOBfQHvcQtTCJDDYe+czSvBmZRQ2IR9oNB2WGYMXiF68KX4R1fA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^12.1.1"
+    "@ckeditor/ckeditor5-engine" "^13.1.1"
+    "@ckeditor/ckeditor5-ui" "^13.0.0"
+    "@ckeditor/ckeditor5-utils" "^12.1.1"
+    lodash-es "^4.17.10"
+
 "@ckeditor/ckeditor5-engine@^13.1.1":
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-13.1.1.tgz#8d194dd6a5c7946f4892be830a52bc26c783fe4b"

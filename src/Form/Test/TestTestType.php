@@ -233,25 +233,6 @@ class TestTestType extends AbstractType
 	            'no_line' => false,
 	            // test
 	            'help' => 'form.test.name.help',
-            ])
-            ->add('wysiwyg', WysiwygType::class, [
-                'label' => 'Wysiwyg',
-                'mapped' => false,
-                'required' => true,
-	            'min_length' => 15,
-	            'max_length' => 100,
-                // test
-                'help' => 'form.test.name.help',
-            ])
-            ->add('wysiwyg2', WysiwygType::class, [
-                'label' => 'Wysiwyg with image upload',
-                'mapped' => false,
-                'required' => true,
-	            'min_length' => 15,
-	            'max_length' => 100,
-                'upload' => true,
-                // test
-                'help' => 'form.test.name.help',
             ]);
 
         // $builder->setDisabled(true);

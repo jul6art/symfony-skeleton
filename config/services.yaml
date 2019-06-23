@@ -8,12 +8,13 @@ parameters:
     locale: 'fr'
     available_locales: fr|en|de
     available_functionalities:
-        - func.switch_theme
-        - func.switch_locale
-        - func.clear_cache
         - func.audit
+        - func.clear_cache
         - func.confirm_delete
+        - func.edit_in_place
         - func.form_watcher
+        - func.switch_locale
+        - func.switch_theme
         - func.manage_settings
     available_colors:
         - red

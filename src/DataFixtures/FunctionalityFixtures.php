@@ -23,13 +23,14 @@ class FunctionalityFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $functionalities = [
-            Functionality::FUNC_SWITCH_THEME,
-            Functionality::FUNC_SWITCH_LOCALE,
-            Functionality::FUNC_CLEAR_CACHE,
             Functionality::FUNC_AUDIT,
+            Functionality::FUNC_CLEAR_CACHE,
+            Functionality::FUNC_EDIT_IN_PLACE,
             Functionality::FUNC_CONFIRM_DELETE,
             Functionality::FUNC_FORM_WATCHER,
             Functionality::FUNC_MANAGE_SETTINGS,
+            Functionality::FUNC_SWITCH_LOCALE,
+            Functionality::FUNC_SWITCH_THEME,
         ];
 
         foreach ($functionalities as $value) {
