@@ -1,5 +1,11 @@
 $height_form_range_vertical: 350px;
 
+body {
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .block {
   display: block;
 }
@@ -282,6 +288,10 @@ form .card .body .col-sm-6,
 form .card .body .col-md-6,
 form .card .body .col-lg-6 {
   margin-bottom: 0;
+}
+
+.form-group .switch {
+  margin-bottom: 5px;
 }
 
 /**

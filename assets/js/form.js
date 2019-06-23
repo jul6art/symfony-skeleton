@@ -12,6 +12,7 @@ import Autosize from 'autosize';
 import Inputmask from 'inputmask';
 import IntlTelInput from 'intl-tel-input';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+require ('@ckeditor/ckeditor5-build-classic/build/translations/' + LOCALE);
 import * as Range from 'nouislider';
 import * as moment from 'moment';
 const FORM_VALIDATOR = require ('jquery-validation');
@@ -1504,30 +1505,46 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 $.Form = {
     init: function () {
         this.autosize();
-        this.wysiwyg();
-        this.intl_tel();
         this.configure();
+        this.intl_tel();
         this.mask();
-        this.range();
         this.picker();
-        this.watch();
+        this.range();
         this.scrollToError();
+        this.wysiwyg();
+        this.watch();
     },
     autosize: function () {
         Autosize($('textarea:not(.no_autosize)'));
     },
-    wysiwyg: function () {
-        ClassicEditor
-            .create(document.querySelector('[data-provide="wysiwyg"]'))
-            .then(editor => {
-                var hiddenInput = $(editor.sourceElement);
-                editor.model.document.on('change:data', () => {
-                    hiddenInput.val(editor.getData());
-                });
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    configure: function () {
+        FORM_VALIDATOR.validator.setDefaults({
+            ignore: ':hidden:not(.validate)',
+            errorPlacement: function (error, element) {
+                $(element).parents('.form-group').append(error);
+            },
+        });
+
+        FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
+            var pattern = $(element).prop('pattern');
+            if (pattern && ($(element).prop('required') === true || value !== '')) {
+                return new RegExp(pattern).test(value);
+            } else {
+                return true;
+            }
+        }, VALIDATOR_TRANSLATIONS.regex);
+
+        FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
+            if ($(element).prop('required') === true || value !== '') {
+                return !$(element).data('invalid');
+            } else {
+                return true;
+            }
+        }, VALIDATOR_TRANSLATIONS.phone);
+
+        $('body').find('form:not(.no_validate)').each(function () {
+            $.Form.validate($(this));
+        });
     },
     intl_tel: function () {
         var initIntlTelInput = function(selector, type) {
@@ -1576,95 +1593,8 @@ $.Form = {
         initIntlTelInput('.input-phone:not(.input-mobile-phone)', 'FIXED_LINE');
         initIntlTelInput('.input-phone.input-mobile-phone', 'MOBILE');
     },
-    scrollToError: function () {
-        var errors = $(".form-group.has-error");
-        if (errors.length) {
-            var tabs = $(errors[0]).parents('.tab-pane');
-            if (tabs.length) {
-                tabs.each(function () {
-                    $('.nav-tabs a[href^="#' + $(this).attr('id') + '"]').tab('show');
-                });
-            }
-
-            $('html, body').animate({
-                scrollTop: errors.first().offset().top - 90
-            }, 300);
-        }
-    },
-    configure: function () {
-        FORM_VALIDATOR.validator.setDefaults({
-            ignore: ':hidden:not(.validate)',
-            errorPlacement: function (error, element) {
-                $(element).parents('.form-group').append(error);
-            },
-        });
-
-        FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
-            var pattern = $(element).prop('pattern');
-            if (pattern && ($(element).prop('required') === true || value !== '')) {
-                return new RegExp(pattern).test(value);
-            } else {
-                return true;
-            }
-        }, VALIDATOR_TRANSLATIONS.regex);
-
-        FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
-            if ($(element).prop('required') === true || value !== '') {
-                return !$(element).data('invalid');
-            } else {
-                return true;
-            }
-        }, VALIDATOR_TRANSLATIONS.phone);
-
-        $('body').find('form:not(.no_validate)').each(function () {
-            $.Form.validate($(this));
-        });
-    },
     mask: function () {
         Inputmask().mask('[data-inputmask]');
-    },
-    range: function () {
-        var containers = $('.nouislider-container');
-        containers.each(function () {
-            var selector = $(this)[0];
-            var input = $(this).find('input.nouislider');
-
-            var val = input.val();
-            var data = [val];
-            if (typeof input.data('double') !== 'undefined') {
-                var data = [];
-                var pieces = val.split(',');
-                pieces.forEach(function (item) {
-                    data.push(parseFloat(item));
-                });
-            }
-
-            Range.create(selector, {
-                start: data,
-                orientation: input.data('orientation'),
-                direction: input.data('direction'),
-                connect: typeof input.data('double') !== 'undefined' ? true : 'lower',
-                step: parseInt(input.data('step')),
-                range: {
-                    'min': [parseInt(input.data('min'))],
-                    'max': [parseInt(input.data('max'))]
-                },
-                pips: {
-                    mode: 'steps',
-                    stepped: true,
-                    density: 4
-                },
-            });
-            $.Form.rangeValue(selector, input);
-        });
-    },
-    rangeValue: function (range, input) {
-        range.noUiSlider.on('update', function () {
-            input.val(range.noUiSlider.get());
-            if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
-                input.closest('form').trigger('checkform.areYouSure');
-            }
-        });
     },
     picker: function () {
         $('[data-provide="datepicker"]').each(function () {
@@ -1736,6 +1666,64 @@ $.Form = {
             $(this).trigger('focus');
         });
     },
+    range: function () {
+        var containers = $('.nouislider-container');
+        containers.each(function () {
+            var selector = $(this)[0];
+            var input = $(this).find('input.nouislider');
+
+            var val = input.val();
+            var data = [val];
+            if (typeof input.data('double') !== 'undefined') {
+                var data = [];
+                var pieces = val.split(',');
+                pieces.forEach(function (item) {
+                    data.push(parseFloat(item));
+                });
+            }
+
+            Range.create(selector, {
+                start: data,
+                orientation: input.data('orientation'),
+                direction: input.data('direction'),
+                connect: typeof input.data('double') !== 'undefined' ? true : 'lower',
+                step: parseInt(input.data('step')),
+                range: {
+                    'min': [parseInt(input.data('min'))],
+                    'max': [parseInt(input.data('max'))]
+                },
+                pips: {
+                    mode: 'steps',
+                    stepped: true,
+                    density: 4
+                },
+            });
+            $.Form.rangeValue(selector, input);
+        });
+    },
+    rangeValue: function (range, input) {
+        range.noUiSlider.on('update', function () {
+            input.val(range.noUiSlider.get());
+            if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
+                input.closest('form').trigger('checkform.areYouSure');
+            }
+        });
+    },
+    scrollToError: function () {
+        var errors = $(".form-group.has-error");
+        if (errors.length) {
+            var tabs = $(errors[0]).parents('.tab-pane');
+            if (tabs.length) {
+                tabs.each(function () {
+                    $('.nav-tabs a[href^="#' + $(this).attr('id') + '"]').tab('show');
+                });
+            }
+
+            $('html, body').animate({
+                scrollTop: errors.first().offset().top - 90
+            }, 300);
+        }
+    },
     validate: function (form) {
         FORM_VALIDATOR(form).validate({
             highlight: function (input) {
@@ -1795,6 +1783,81 @@ $.Form = {
                 }
             });
         }
+    },
+    wysiwyg: function () {
+        $('[data-provide="wysiwyg"]').each(function () {
+            var options = [];
+            if ($(this).data('upload')) {
+                options = {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'imageUpload',
+                            'blockQuote',
+                            'undo',
+                            'redo'
+                        ]
+                    },
+                    image: {
+                        toolbar: [
+                            'imageStyle:full',
+                            'imageStyle:side',
+                            '|',
+                            'imageTextAlternative'
+                        ]
+                    },
+                    language: LOCALE
+                };
+            } else {
+                options = {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'blockQuote',
+                            'undo',
+                            'redo'
+                        ]
+                    },
+                    language: LOCALE
+                };
+            }
+
+            ClassicEditor
+                .create($(this)[0], options)
+                .then(editor => {
+                    var hiddenInput = FORM_VALIDATOR(editor.sourceElement);
+                    editor.isReadOnly = hiddenInput.prop('readonly');
+
+                    editor.model.document.on('change:data', () => {
+                        editor.updateSourceElement();
+                        hiddenInput.valid();
+
+                        if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
+                            var form = hiddenInput.closest('form');
+
+                            if (!form.hasClass('no_watch')) {
+                                form.addClass('dirty');
+                                form.find('[type="submit"]').removeAttr('disabled');
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
     }
 };
 

@@ -265,6 +265,18 @@
 {%- endblock choice_row %}
 
 {% block wysiwyg_row -%}
+    {%- if disabled ?? false -%}
+        {%- set attr = attr|merge({'readonly': true}) -%}
+    {%- endif -%}
+    {%- if form.vars.max_length ?? false -%}
+        {%- set attr = attr|merge({'maxlength': form.vars.max_length|number_format}) -%}
+    {%- endif -%}
+    {%- if form.vars.min_length ?? false -%}
+        {%- set attr = attr|merge({'minlength': form.vars.min_length|number_format}) -%}
+    {%- endif -%}
+    {%- if form.vars.upload ?? false -%}
+        {%- set attr = attr|merge({'data-upload': true}) -%}
+    {%- endif -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' no_autosize validate')|trim, 'data-provide': 'wysiwyg'}) -%}
     {{- block('form_row') }}
 {%- endblock wysiwyg_row %}
@@ -348,7 +360,9 @@
 
 {% block checkbox_row -%}
     <div class="form-group form-float{% if not valid %} has-error{% endif %}">
-        {{- form_widget(form) -}}
+        <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
+            {{- form_widget(form) -}}
+        </div>
         {{- block('help') -}}
         {{- form_errors(form) -}}
     </div>
@@ -364,11 +378,13 @@
 {% block switch_row -%}
     <div class="form-group form-float{% if not valid %} has-error{% endif %}">
         {{- block('switch_label') -}}
-        <div class="switch">
-            <label>
-                {{- block('switch_widget') -}}
-                <span class="lever"></span>
-            </label>
+        <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
+            <div class="switch">
+                <label>
+                    {{- block('switch_widget') -}}
+                    <span class="lever"></span>
+                </label>
+            </div>
         </div>
         {{- block('help') -}}
         {{ form_errors(form) }}
