@@ -64,7 +64,7 @@ $.App = {
                     'This love pushed him to constantly exceed his limits to build his experience\n' +
                     '\n' +
                     'Follow him on https://vsweb.be\n' +
-                    'NB : To stop seeing this message, window.vsweb_console_stop();';
+                    'NB : To stop seeing this message, vsweb_console_stop();';
 
                 console.log(message);
             }
