@@ -83,33 +83,33 @@ class FunctionalityVoter extends AbstractVoter
             case self::AUDIT:
                 return $this->canAudit($subject, $token);
                 break;
-	        case self::CACHE_CLEAR:
-		        return $this->canClearCache($subject, $token);
-		        break;
+            case self::CACHE_CLEAR:
+                return $this->canClearCache($subject, $token);
+                break;
             case self::CONFIRM_DELETE:
                 return $this->canConfirmDelete($subject, $token);
                 break;
-	        case self::EDIT:
-		        return $this->canEdit($subject, $token);
-		        break;
-	        case self::EDIT_IN_PLACE:
-		        return $this->canEditInPlace($subject, $token);
-		        break;
-	        case self::MANAGE_FUNCTIONALITIES:
-		        return $this->canManageFunctionalities($subject, $token);
-		        break;
+            case self::EDIT:
+                return $this->canEdit($subject, $token);
+                break;
+            case self::EDIT_IN_PLACE:
+                return $this->canEditInPlace($subject, $token);
+                break;
+            case self::MANAGE_FUNCTIONALITIES:
+                return $this->canManageFunctionalities($subject, $token);
+                break;
             case self::MANAGE_SETTINGS:
                 return $this->canManageSettings($subject, $token);
                 break;
-	        case self::SWITCH_LOCALE:
-		        return $this->canSwitchLocale($subject, $token);
-		        break;
-	        case self::SWITCH_THEME:
-		        return $this->canSwicthTheme($subject, $token);
-		        break;
-	        case self::WATCH_FORM:
-		        return $this->canWatchForm($subject, $token);
-		        break;
+            case self::SWITCH_LOCALE:
+                return $this->canSwitchLocale($subject, $token);
+                break;
+            case self::SWITCH_THEME:
+                return $this->canSwicthTheme($subject, $token);
+                break;
+            case self::WATCH_FORM:
+                return $this->canWatchForm($subject, $token);
+                break;
         }
 
         return false;

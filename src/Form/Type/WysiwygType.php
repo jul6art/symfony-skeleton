@@ -11,20 +11,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class WysiwygType extends AbstractType
 {
-	/**
-	 * @param FormView $view
-	 * @param FormInterface $form
-	 * @param array $options
-	 */
-	public function buildView(FormView $view, FormInterface $form, array $options) {
-		parent::buildView($view, $form, $options);
+    /**
+     * @param FormView      $view
+     * @param FormInterface $form
+     * @param array         $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        parent::buildView($view, $form, $options);
 
-		$view->vars['max_length'] = $options['max_length'];
-		$view->vars['min_length'] = $options['min_length'];
-		$view->vars['upload'] = $options['upload'];
-	}
+        $view->vars['max_length'] = $options['max_length'];
+        $view->vars['min_length'] = $options['min_length'];
+        $view->vars['upload'] = $options['upload'];
+    }
 
-	/**
+    /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -32,16 +33,16 @@ class WysiwygType extends AbstractType
         parent::configureOptions($resolver);
 
         $resolver->setDefined([
-        	'max_length',
-        	'min_length',
-        	'upload',
+            'max_length',
+            'min_length',
+            'upload',
         ]);
 
         $resolver->setDefaults([
-        	'max_length' => false,
-        	'min_length' => false,
-        	'no_float' => true,
-        	'upload' => false,
+            'max_length' => false,
+            'min_length' => false,
+            'no_float' => true,
+            'upload' => false,
         ]);
     }
 
