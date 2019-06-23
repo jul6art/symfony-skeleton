@@ -214,7 +214,6 @@ $.App = {
                     InlineEditor
                         .create($(this)[0], options)
                         .then(editor => {
-                            console.log(editor);
                         })
                         .catch(error => {
                             console.error(error);
