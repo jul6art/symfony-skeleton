@@ -159,14 +159,28 @@ $.App = {
     editInPlace: function () {
         if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
             tinymce.init({
-                selector: '[data-provide="wysiwyg"][data-inline]',
+                selector: '[data-provide="wysiwyg"][data-inline][data-edit]',
                 plugins: [
                     "autoresize",
-                    "advlist autolink lists link charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code",
                     "insertdatetime table paste code help"
                 ],
-                inline: true
+                inline: true,
+                powerpaste_word_import: 'clean',
+                powerpaste_html_import: 'clean',
+            });
+
+            tinymce.init({
+                selector: '[data-provide="wysiwyg"][data-inline][data-translate]',
+                plugins: [
+                    "autoresize",
+                    "print preview",
+                    "searchreplace",
+                    "help"
+                ],
+                inline: true,
+                toolbar: 'undo redo',
             });
         }
     },
@@ -292,6 +306,7 @@ $(document).ready(function () {
 
     ['success', 'notice', 'error', 'warning', 'info'].forEach(function (level) {
         if (FLASH_MESSAGES[level]) {
+            let colorClass;
             if (level === 'notice') {
                 colorClass = 'bg-blue-grey';
             } else if (level === 'warning') {

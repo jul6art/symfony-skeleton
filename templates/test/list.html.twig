@@ -37,7 +37,7 @@
 {% endblock page_actions %}
 
 {% block table_title %}
-    {{ 'list.test.title' | trans({}, 'list') }}
+    <span{{ translate_in_place() }}>{{ 'list.test.title' | trans({}, 'list') }}</span>
 {% endblock table_title %}
 
 {% block table_content %}

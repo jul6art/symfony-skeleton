@@ -5,9 +5,11 @@ namespace App\Twig;
 use App\Entity\Functionality;
 use App\Entity\User;
 use App\Manager\FunctionalityManagerTrait;
+use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -16,12 +18,15 @@ use Twig\TwigFunction;
  */
 class LocaleExtension extends AbstractExtension
 {
-    use FunctionalityManagerTrait;
-
     /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+
+	/**
+	 * @var AuthorizationCheckerInterface
+	 */
+	private $authorizationChecker;
 
     /**
      * @var RequestStack
@@ -38,16 +43,19 @@ class LocaleExtension extends AbstractExtension
      */
     private $available_locales;
 
-    /**
-     * LocaleExtension constructor.
-     *
-     * @param TokenStorageInterface $tokenStorage
-     * @param RequestStack          $stack
-     * @param string                $locale
-     */
-    public function __construct(TokenStorageInterface $tokenStorage, RequestStack $stack, string $locale, string $available_locales)
+	/**
+	 * LocaleExtension constructor.
+	 *
+	 * @param TokenStorageInterface $tokenStorage
+	 * @param AuthorizationCheckerInterface $authorizationChecker
+	 * @param RequestStack $stack
+	 * @param string $locale
+	 * @param string $available_locales
+	 */
+    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, string $locale, string $available_locales)
     {
         $this->tokenStorage = $tokenStorage;
+	    $this->authorizationChecker = $authorizationChecker;
         $this->stack = $stack;
         $this->locale = $locale;
         $this->available_locales = explode('|', $available_locales);
@@ -87,7 +95,7 @@ class LocaleExtension extends AbstractExtension
             $user = $this->tokenStorage->getToken()->getUser();
             $locale = $this->locale;
 
-            if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
                 if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
                     $locale = $user->getLocale();
                 }

@@ -6,8 +6,8 @@ if (typeof jQuery === "undefined") {
 import '../css/table.scss';
 
 // modules
-import 'datatables.net';
-import 'datatables.net-dt';
+require('datatables.net');
+require('datatables.net-dt');
 
 // manually imported datatable-bootstrap  script
 (function(window, document, undefined){

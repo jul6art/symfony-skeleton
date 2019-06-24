@@ -26,7 +26,7 @@
 {% endblock page_actions %}
 
 {% block form_sidebar %}
-    <div{% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %} data-provide="wysiwyg" data-inline{% endif %}>
+    <div{{ edit_in_place() }}>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque facilis fugit libero, natus omnis
             suscipit! Ad autem beatae cum doloribus eveniet facere ipsa iusto, laborum saepe voluptatibus. Perspiciatis,
             quia?</p><p>Earum facere illo ipsa porro suscipit voluptatibus. A, aliquam aut culpa eos error fugiat harum illo

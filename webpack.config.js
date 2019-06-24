@@ -71,5 +71,8 @@ module.exports = Encore.getWebpackConfig();
 module.exports.plugins.push(new CopyPlugin([
     { from: 'node_modules/tinymce/skins', to: 'skins' },
     { from: 'node_modules/tinymce/plugins', to: 'plugins' },
+    { from: 'node_modules/intl-tel-input/build/js/utils.js', to: 'intl-tel.js' },
+    { from: 'assets/images', to: 'images' },
+    { from: 'assets/css/themes', to: 'css/themes' },
 ]));
 

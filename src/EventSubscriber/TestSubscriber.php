@@ -52,7 +52,7 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
     public function onTestDeleted(TestEvent $event)
     {
         //
-        // notifications for deletion are currently made by sweetalert dialog if fucc is actived
+        // notifications for deletion are currently made by sweetalert dialog if func is actived
         //
         if (!$this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE)) {
             $this->flashBag->add('success', $this->translator->trans('notification.test.deleted', [], 'notification'));

@@ -1563,7 +1563,7 @@ $.Form = {
                             callback(countryCode);
                         });
                     },
-                    utilsScript: "/js/intl-tel.js"
+                    utilsScript: "/build/intl-tel.js"
                 });
 
                 $(item).on('keyup', function () {
@@ -1772,7 +1772,7 @@ $.Form = {
         FORM_VALIDATOR(form).find('.input-captcha').each(function () {
             FORM_VALIDATOR(this).rules('add', {
                 required: function() {
-                    return grecaptcha.getResponse() === ''
+                    return typeof grecaptcha.getResponse() !== "undefined" && grecaptcha.getResponse() === ''
                 }
             });
         });

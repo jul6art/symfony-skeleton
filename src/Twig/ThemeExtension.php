@@ -7,9 +7,11 @@ use App\Entity\Setting;
 use App\Entity\User;
 use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
+use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -18,13 +20,17 @@ use Twig\TwigFunction;
  */
 class ThemeExtension extends AbstractExtension
 {
-    use FunctionalityManagerTrait;
     use SettingManagerTrait;
 
     /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+
+	/**
+	 * @var AuthorizationCheckerInterface
+	 */
+	private $authorizationChecker;
 
     /**
      * @var RequestStack
@@ -36,14 +42,18 @@ class ThemeExtension extends AbstractExtension
      */
     private $available_colors;
 
-    /**
-     * ThemeExtension constructor.
-     *
-     * @param TokenStorageInterface $tokenStorage
-     */
-    public function __construct(TokenStorageInterface $tokenStorage, RequestStack $stack, array $available_colors)
+	/**
+	 * ThemeExtension constructor.
+	 *
+	 * @param TokenStorageInterface $tokenStorage
+	 * @param AuthorizationCheckerInterface $authorizationChecker
+	 * @param RequestStack $stack
+	 * @param array $available_colors
+	 */
+    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, array $available_colors)
     {
         $this->tokenStorage = $tokenStorage;
+	    $this->authorizationChecker = $authorizationChecker;
         $this->stack = $stack;
         $this->available_colors = $available_colors;
     }
@@ -71,7 +81,7 @@ class ThemeExtension extends AbstractExtension
             $user = $this->tokenStorage->getToken()->getUser();
             $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-            if ($this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME)) {
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)) {
                 if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
                     $theme = $user->getTheme();
                 }
