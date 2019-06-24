@@ -226,7 +226,7 @@ $.App = {
 
             if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
                 $.ajax({
-                    url: window.Routing.generate('admin_functionality_switch', {
+                    url: Routing.generate('admin_functionality_switch', {
                         functionality: input.data('id'),
                         state: input.prop('checked') ? 1 : 0
                     }),
@@ -250,7 +250,7 @@ $.App = {
                     }
                 });
             } else {
-                window.location = window.routing.generate('admin_functionality_switch', {
+                window.location = Routing.generate('admin_functionality_switch', {
                     functionality: input.data('id'),
                     state: input.prop('checked') ? 1 : 0
                 });
@@ -261,7 +261,7 @@ $.App = {
             if (input.val() != -1) {
                 if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
                     $.ajax({
-                        url: window.routing.generate('admin_setting_set', {
+                        url: Routing.generate('admin_setting_set', {
                             setting: input.data('id'),
                             value: input.val().toString()
                         }),
@@ -285,7 +285,7 @@ $.App = {
                         }
                     });
                 } else {
-                    window.location = window.routing.generate('admin_setting_set', {
+                    window.location = Routing.generate('admin_setting_set', {
                         setting: input.data('id'),
                         value: input.val()
                     });
