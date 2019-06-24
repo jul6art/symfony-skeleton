@@ -11,8 +11,10 @@ import 'bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.
 import Autosize from 'autosize';
 import Inputmask from 'inputmask';
 import IntlTelInput from 'intl-tel-input';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-require ('@ckeditor/ckeditor5-build-classic/build/translations/' + LOCALE);
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/silver';
+import 'tinymce/plugins/paste';
+import 'tinymce/plugins/link';
 import * as Range from 'nouislider';
 import * as moment from 'moment';
 const FORM_VALIDATOR = require ('jquery-validation');
@@ -1776,9 +1778,9 @@ $.Form = {
         });
 
         form.on('submit', function () {
-           if (!FORM_VALIDATOR(this).valid()) {
-               $.Form.scrollToError();
-           }
+            if (!FORM_VALIDATOR(this).valid()) {
+                $.Form.scrollToError();
+            }
         });
     },
     validationCaptchaCallback: function () {
@@ -1800,82 +1802,14 @@ $.Form = {
         }
     },
     wysiwyg: function () {
-        $('[data-provide="wysiwyg"]').each(function () {
-            let options = [];
-            if ($(this).data('upload')) {
-                options = {
-                    toolbar: {
-                        items: [
-                            'heading',
-                            '|',
-                            'bold',
-                            'italic',
-                            'link',
-                            'bulletedList',
-                            'numberedList',
-                            'imageUpload',
-                            'blockQuote',
-                            'undo',
-                            'redo'
-                        ]
-                    },
-                    image: {
-                        toolbar: [
-                            'imageStyle:full',
-                            'imageStyle:side',
-                            '|',
-                            'imageTextAlternative'
-                        ]
-                    },
-                    language: LOCALE
-                };
-            } else {
-                options = {
-                    toolbar: {
-                        items: [
-                            'heading',
-                            '|',
-                            'bold',
-                            'italic',
-                            'link',
-                            'bulletedList',
-                            'numberedList',
-                            'blockQuote',
-                            'undo',
-                            'redo'
-                        ]
-                    },
-                    language: LOCALE
-                };
-            }
-
-            let attr = $(this).attr('data-inline');
-
-            if (typeof attr === "undefined" || attr === false) {
-                ClassicEditor
-                    .create($(this)[0], options)
-                    .then(editor => {
-                        let hiddenInput = FORM_VALIDATOR(editor.sourceElement);
-                        editor.isReadOnly = hiddenInput.prop('readonly');
-
-                        editor.model.document.on('change:data', () => {
-                            editor.updateSourceElement();
-                            hiddenInput.valid();
-
-                            if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
-                                let form = hiddenInput.closest('form');
-
-                                if (!form.hasClass('no_watch')) {
-                                    form.addClass('dirty');
-                                    form.find('[type="submit"]').removeAttr('disabled');
-                                }
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }
+        tinymce.init({
+            selector: '[data-provide="wysiwyg"]:not([data-inline])',
+            plugins: [
+                "autoresize",
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help"
+            ],
         });
     }
 };

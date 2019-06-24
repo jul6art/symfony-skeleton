@@ -2,11 +2,10 @@ if (typeof jQuery === "undefined") {
     throw new Error("jQuery plugins need to be before this file");
 }
 
-let InlineEditor;
-if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
-    InlineEditor = require ('@ckeditor/ckeditor5-build-inline');
-    require ('@ckeditor/ckeditor5-build-classic/build/translations/' + LOCALE);
-}
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/silver';
+import 'tinymce/plugins/paste';
+import 'tinymce/plugins/link';
 
 $.App = {
     init: function () {
@@ -159,66 +158,15 @@ $.App = {
     },
     editInPlace: function () {
         if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
-            $('[data-provide="wysiwyg"]').each(function () {
-                let options = [];
-                if ($(this).data('upload')) {
-                    options = {
-                        toolbar: {
-                            items: [
-                                'heading',
-                                '|',
-                                'bold',
-                                'italic',
-                                'link',
-                                'bulletedList',
-                                'numberedList',
-                                'imageUpload',
-                                'blockQuote',
-                                'undo',
-                                'redo'
-                            ]
-                        },
-                        image: {
-                            toolbar: [
-                                'imageStyle:full',
-                                'imageStyle:side',
-                                '|',
-                                'imageTextAlternative'
-                            ]
-                        },
-                        language: LOCALE
-                    };
-                } else {
-                    options = {
-                        toolbar: {
-                            items: [
-                                'heading',
-                                '|',
-                                'bold',
-                                'italic',
-                                'link',
-                                'bulletedList',
-                                'numberedList',
-                                'blockQuote',
-                                'undo',
-                                'redo'
-                            ]
-                        },
-                        language: LOCALE
-                    };
-                }
-
-                let attr = $(this).attr('data-inline');
-
-                if (typeof attr !== "undefined" && attr !== false) {
-                    InlineEditor
-                        .create($(this)[0], options)
-                        .then(editor => {
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
-                }
+            tinymce.init({
+                selector: '[data-provide="wysiwyg"][data-inline]',
+                plugins: [
+                    "autoresize",
+                    "advlist autolink lists link charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime table paste code help"
+                ],
+                inline: true
             });
         }
     },
