@@ -8,15 +8,15 @@ import 'nouislider/distribute/nouislider.min.css';
 import 'bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css';
 
 // modules
-import Autosize from 'autosize';
-import Inputmask from 'inputmask';
-import IntlTelInput from 'intl-tel-input';
-import tinymce from 'tinymce/tinymce';
+import * as Autosize from 'autosize';
+import * as Inputmask from 'inputmask';
+import * as IntlTelInput from 'intl-tel-input';
+import * as moment from 'moment';
+import * as Range from 'nouislider';
+import * as tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
-import * as Range from 'nouislider';
-import * as moment from 'moment';
 const FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
 
@@ -206,10 +206,10 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
     };
 }
 
-// manually imported bootstrapMaterialDatePicker  script
+// manually imported datetimepicker  script
 (function ($, moment)
 {
-    let pluginName = "bootstrapMaterialDatePicker";
+    let pluginName = "datetimepicker";
     let pluginDataName = "plugin_" + pluginName;
 
     moment.locale('en');
@@ -1614,7 +1614,7 @@ $.Form = {
                 pickerSettings.maxDate = $(this).data('max-date');
             }
 
-            $(this).bootstrapMaterialDatePicker($.extend(pickerSettings, {
+            $(this).datetimepicker($.extend(pickerSettings, {
                 format: 'DD-MM-YYYY',
                 clearButton: true,
                 weekStart: 1,
@@ -1627,7 +1627,7 @@ $.Form = {
         });
 
         $('[data-provide="timepicker"]').each(function () {
-            $(this).bootstrapMaterialDatePicker({
+            $(this).datetimepicker({
                 format: 'HH:mm',
                 clearButton: true,
                 date: false,
@@ -1653,7 +1653,7 @@ $.Form = {
                 pickerSettings.maxDate = $(this).data('max-date');
             }
 
-            $(this).bootstrapMaterialDatePicker($.extend(pickerSettings, {
+            $(this).datetimepicker($.extend(pickerSettings, {
                 format: 'DD-MM-YYYY HH:mm',
                 clearButton: true,
                 weekStart: 1,

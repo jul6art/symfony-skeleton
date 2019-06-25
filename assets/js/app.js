@@ -18,9 +18,6 @@ window.Routing = require('./routing');
 import './skeleton_script';
 import './skeleton_custom';
 
-// create global $ and jQuery variables
-global.$ = global.jQuery = $;
-
 // import functions from other js file
 // import {validationCaptchaCallback} from './form';
 

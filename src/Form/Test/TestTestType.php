@@ -254,7 +254,7 @@ class TestTestType extends AbstractType
                 'help' => 'form.test.name.help',
             ]);
 
-        $builder->setDisabled(true);
+        // $builder->setDisabled(true);
     }
 
     /**
