@@ -106,7 +106,7 @@ class FunctionalityManager extends AbstractManager
      */
     public function isConfigured(Functionality $functionality): bool
     {
-        return in_array($functionality->getName(), $this->available_functionalities);
+        return \in_array($functionality->getName(), $this->available_functionalities);
     }
 
     /**

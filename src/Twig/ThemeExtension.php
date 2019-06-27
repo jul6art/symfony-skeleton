@@ -77,7 +77,7 @@ class ThemeExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has('theme_name') || !in_array($request->request->get('theme_name'), $this->available_colors)) {
+        if (!$request->request->has('theme_name') || !\in_array($request->request->get('theme_name'), $this->available_colors)) {
             $user = $this->tokenStorage->getToken()->getUser();
             $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 

@@ -35,7 +35,7 @@ class FunctionalityVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [
+        if (!\in_array($attribute, [
                 self::AUDIT,
                 self::CACHE_CLEAR,
                 self::CONFIRM_DELETE,
@@ -79,113 +79,29 @@ class FunctionalityVoter extends AbstractVoter
         }
 
         // ... (check conditions and return true to grant permission) ...
-        switch ($attribute) {
-            case self::AUDIT:
-                return $this->canAudit($subject, $token);
-                break;
-            case self::CACHE_CLEAR:
-                return $this->canClearCache($subject, $token);
-                break;
-            case self::CONFIRM_DELETE:
-                return $this->canConfirmDelete($subject, $token);
-                break;
-            case self::EDIT:
-                return $this->canEdit($subject, $token);
-                break;
-            case self::EDIT_IN_PLACE:
-                return $this->canEditInPlace($subject, $token);
-                break;
-            case self::MANAGE_FUNCTIONALITIES:
-                return $this->canManageFunctionalities($subject, $token);
-                break;
-            case self::MANAGE_SETTINGS:
-                return $this->canManageSettings($subject, $token);
-                break;
-            case self::SWITCH_LOCALE:
-                return $this->canSwitchLocale($subject, $token);
-                break;
-            case self::SWITCH_THEME:
-                return $this->canSwicthTheme($subject, $token);
-                break;
-            case self::WATCH_FORM:
-                return $this->canWatchForm($subject, $token);
-                break;
-        }
+	    if ($attribute === self::AUDIT) {
+		    return $this->canAudit($subject, $token);
+	    } elseif ($attribute === self::CACHE_CLEAR) {
+		    return $this->canClearCache($subject, $token);
+	    } elseif ($attribute === self::CONFIRM_DELETE) {
+		    return $this->canConfirmDelete($subject, $token);
+	    } elseif ($attribute === self::EDIT) {
+		    return $this->canEdit($subject, $token);
+	    } elseif ($attribute === self::EDIT_IN_PLACE) {
+		    return $this->canEditInPlace($subject, $token);
+	    } elseif ($attribute === self::MANAGE_FUNCTIONALITIES) {
+		    return $this->canManageFunctionalities($subject, $token);
+	    } elseif ($attribute === self::MANAGE_SETTINGS) {
+		    return $this->canManageSettings($subject, $token);
+	    } elseif ($attribute === self::SWITCH_LOCALE) {
+		    return $this->canSwitchLocale($subject, $token);
+	    } elseif ($attribute === self::SWITCH_THEME) {
+		    return $this->canSwitchTheme($subject, $token);
+	    } elseif ($attribute === self::WATCH_FORM) {
+		    return $this->canWatchForm($subject, $token);
+	    }
 
         return false;
-    }
-
-    /**
-     * @param Functionality  $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canEdit(Functionality $subject, TokenInterface $token)
-    {
-        $functionalities = $this->functionalityManager->findAllByConfigured();
-
-        if (empty($functionalities)) {
-            return false;
-        }
-
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-    }
-
-    /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function canSwicthTheme(string $subject, TokenInterface $token)
-    {
-        return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME);
-    }
-
-    /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function canSwitchLocale(string $subject, TokenInterface $token)
-    {
-        return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE);
-    }
-
-    /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function canClearCache(string $subject, TokenInterface $token)
-    {
-        return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
-    }
-
-    /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function canEditInPlace(string $subject, TokenInterface $token)
-    {
-        return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
     }
 
     /**
@@ -202,6 +118,20 @@ class FunctionalityVoter extends AbstractVoter
         return $this->functionalityManager->isActive(Functionality::FUNC_AUDIT);
     }
 
+	/**
+	 * @param string               $subject
+	 * @param TokenInterface       $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function canClearCache(string $subject, TokenInterface $token)
+	{
+		return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
+	}
+
     /**
      * @param string               $subject
      * @param TokenInterface       $token
@@ -216,19 +146,53 @@ class FunctionalityVoter extends AbstractVoter
         return $this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE);
     }
 
-    /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function canWatchForm(string $subject, TokenInterface $token)
-    {
-        return $this->functionalityManager->isActive(Functionality::FUNC_FORM_WATCHER);
-    }
+	/**
+	 * @param Functionality  $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canEdit(Functionality $subject, TokenInterface $token)
+	{
+		$functionalities = $this->functionalityManager->findAllByConfigured();
+
+		if (empty($functionalities)) {
+			return false;
+		}
+
+		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+	}
+
+	/**
+	 * @param string               $subject
+	 * @param TokenInterface       $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function canEditInPlace(string $subject, TokenInterface $token)
+	{
+		return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
+	}
+
+	/**
+	 * @param string         $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canManageFunctionalities(string $subject, TokenInterface $token)
+	{
+		$functionalities = $this->functionalityManager->findAllByConfigured();
+
+		if (empty($functionalities)) {
+			return false;
+		}
+
+		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+	}
 
     /**
      * @param string               $subject
@@ -244,20 +208,45 @@ class FunctionalityVoter extends AbstractVoter
         return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);
     }
 
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canManageFunctionalities(string $subject, TokenInterface $token)
-    {
-        $functionalities = $this->functionalityManager->findAllByConfigured();
+	/**
+	 * @param string               $subject
+	 * @param TokenInterface       $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function canSwitchLocale(string $subject, TokenInterface $token)
+	{
+		return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE);
+	}
 
-        if (empty($functionalities)) {
-            return false;
-        }
+	/**
+	 * @param string               $subject
+	 * @param TokenInterface       $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function canSwitchTheme(string $subject, TokenInterface $token)
+	{
+		return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME);
+	}
 
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-    }
+	/**
+	 * @param string               $subject
+	 * @param TokenInterface       $token
+	 * @param FunctionalityManager $functionalityManager
+	 *
+	 * @return bool
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function canWatchForm(string $subject, TokenInterface $token)
+	{
+		return $this->functionalityManager->isActive(Functionality::FUNC_FORM_WATCHER);
+	}
 }

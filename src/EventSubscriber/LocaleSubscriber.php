@@ -83,7 +83,7 @@ class LocaleSubscriber implements EventSubscriberInterface
 
         $newLocale = $request->query->get('_locale', null);
 
-        if (!in_array($newLocale, $this->available_locales)) {
+        if (!\in_array($newLocale, $this->available_locales)) {
             $newLocale = null;
         }
 

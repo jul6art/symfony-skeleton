@@ -91,7 +91,7 @@ class LocaleExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has('user_locale') || !in_array($request->request->get('user_locale'), $this->available_locales)) {
+        if (!$request->request->has('user_locale') || !\in_array($request->request->get('user_locale'), $this->available_locales)) {
             $user = $this->tokenStorage->getToken()->getUser();
             $locale = $this->locale;
 

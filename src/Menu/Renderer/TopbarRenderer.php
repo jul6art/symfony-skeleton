@@ -243,17 +243,11 @@ class TopbarRenderer extends Renderer implements RendererInterface
             return $html;
         }
 
-        switch ($type) {
-            case 'ul':
-            case 'link':
-            case 'icon':
-                $spacing = $level * 4;
-                break;
-
-            case 'li':
-                $spacing = $level * 4 - 2;
-                break;
-        }
+	    $spacing = \in_array($type, [
+        	'ul',
+        	'link',
+        	'icon',
+        ]) ? $level * 4 : $level * 4 - 2;
 
         return sprintf("%s%s\n", str_repeat(' ', $spacing), $html);
     }

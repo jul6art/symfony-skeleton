@@ -33,11 +33,11 @@ class BooleanValidator extends ConstraintValidator
             return;
         }
 
-        if (in_array($value, [0, 1])) {
+        if (\in_array($value, [0, 1])) {
             $value = (bool) $value;
         }
 
-        if (!is_bool($value)) {
+        if (!\is_bool($value)) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

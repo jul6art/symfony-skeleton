@@ -19,7 +19,7 @@ class DefaultVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [
+        if (!\in_array($attribute, [
                 self::ACCESS_PAGE_HOME,
             ])) {
             return false;
@@ -37,10 +37,8 @@ class DefaultVoter extends AbstractVoter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        switch ($attribute) {
-            case self::ACCESS_PAGE_HOME:
-                return $this->canAccessPageHome($subject, $token);
-                break;
+        if ($attribute === self::ACCESS_PAGE_HOME) {
+	        return $this->canAccessPageHome($subject, $token);
         }
 
         return false;

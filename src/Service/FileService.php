@@ -22,7 +22,7 @@ class FileService
     {
         $size = 0;
         foreach (glob(rtrim($directory, '/').'/*', GLOB_NOSORT) as $item) {
-            $size += is_file($item) ? filesize($item) : $this->getSize($item);
+            $size += \is_file($item) ? filesize($item) : $this->getSize($item);
         }
 
         return $size;

@@ -107,7 +107,7 @@ class EntityChoiceSimpleType extends AbstractType
         });
 
         $queryBuilderNormalizer = function (Options $options, $queryBuilder) {
-            if (is_callable($queryBuilder)) {
+            if (\is_callable($queryBuilder)) {
                 $queryBuilder = call_user_func($queryBuilder, $options['em']->getRepository($options['class']));
             }
 

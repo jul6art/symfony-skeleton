@@ -87,7 +87,7 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $refererService->getFormReferer($request, 'theme');
 
-        if (in_array($name, $available_colors)) {
+        if (\in_array($name, $available_colors)) {
             $this->userManager->updateTheme($this->getUser(), $name);
         }
 

@@ -47,7 +47,7 @@ class DatetimeValidator extends ConstraintValidator
                 $this->context->buildViolation($constraint->message_max_date)
                               ->setParameter('{{ date }}', $options['maxDate'])
                               ->addViolation();
-            } elseif (key_exists('disabledDays', $options) && in_array($value->format('w'), json_decode($options['disabledDays']))) {
+            } elseif (key_exists('disabledDays', $options) && \in_array($value->format('w'), json_decode($options['disabledDays']))) {
                 $this->context->buildViolation($constraint->message_disabled_days)
                               ->addViolation();
             }

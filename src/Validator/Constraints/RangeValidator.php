@@ -43,7 +43,7 @@ class RangeValidator extends ConstraintValidator
                               ->addViolation();
             }
         } else {
-            if (2 === !count($value)) {
+            if (2 !== \count($value)) {
                 $this->context->buildViolation($constraint->message)
                               ->addViolation();
             } else {

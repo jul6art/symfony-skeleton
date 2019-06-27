@@ -17,16 +17,16 @@ class UserVoter extends AbstractVoter
 {
     use SettingManagerTrait;
 
-    const PROFILE = 'app.voters.user.profile';
-    const CHANGE_PASSWORD = 'app.voters.user.change_password';
-    const LOGOUT = 'app.voters.user.logout';
-    const LIST = 'app.voters.user.list';
-    const EDIT = 'app.voters.user.edit';
     const ADD = 'app.voters.user.add';
-    const VIEW = 'app.voters.user.view';
     const AUDIT = 'app.voters.user.audit';
+    const CHANGE_PASSWORD = 'app.voters.user.change_password';
     const DELETE = 'app.voters.user.delete';
     const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
+    const EDIT = 'app.voters.user.edit';
+    const LIST = 'app.voters.user.list';
+    const PROFILE = 'app.voters.user.profile';
+    const LOGOUT = 'app.voters.user.logout';
+    const VIEW = 'app.voters.user.view';
 
     /**
      * @param string $attribute
@@ -36,17 +36,17 @@ class UserVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [
-                self::PROFILE,
-                self::CHANGE_PASSWORD,
-                self::LOGOUT,
-                self::LIST,
-                self::EDIT,
+        if (!\in_array($attribute, [
                 self::ADD,
-                self::VIEW,
                 self::AUDIT,
+                self::CHANGE_PASSWORD,
                 self::DELETE,
                 self::DELETE_MULTIPLE,
+                self::EDIT,
+                self::LIST,
+                self::LOGOUT,
+                self::PROFILE,
+                self::VIEW,
             ])) {
             return false;
         }
@@ -71,75 +71,29 @@ class UserVoter extends AbstractVoter
         }
 
         // ... (check conditions and return true to grant permission) ...
-        switch ($attribute) {
-            case self::PROFILE:
-                return $this->canProfile($subject, $token);
-            case self::CHANGE_PASSWORD:
-                return $this->canChangePassword($subject, $token);
-            case self::LOGOUT:
-                return $this->canLogout($subject, $token);
-            case self::LIST:
-                return $this->canList($subject, $token);
-            case self::EDIT:
-                return $this->canEdit($subject, $token);
-            case self::ADD:
-                return $this->canAdd($subject, $token);
-            case self::VIEW:
-                return $this->canView($subject, $token);
-            case self::AUDIT:
-                return $this->canAudit($subject, $token);
-            case self::DELETE:
-                return $this->canDelete($subject, $token);
-            case self::DELETE_MULTIPLE:
-                return $this->canDeleteMultiple($subject, $token);
-                break;
+        if ($attribute === self::ADD) {
+        	return $this->canAdd($subject, $token);
+        } elseif ($attribute === self::AUDIT) {
+        	return $this->canAudit($subject, $token);
+        } elseif ($attribute === self::CHANGE_PASSWORD) {
+        	return $this->canChangePassword($subject, $token);
+        } elseif ($attribute === self::DELETE) {
+        	return $this->canDelete($subject, $token);
+        } elseif ($attribute === self::DELETE_MULTIPLE) {
+        	return $this->canDeleteMultiple($subject, $token);
+        } elseif ($attribute === self::EDIT) {
+        	return $this->canEdit($subject, $token);
+        } elseif ($attribute === self::LIST) {
+        	return $this->canList($subject, $token);
+        } elseif ($attribute === self::LOGOUT) {
+        	return $this->canLogout($subject, $token);
+        } elseif ($attribute === self::PROFILE) {
+        	return $this->canProfile($subject, $token);
+        } elseif ($attribute === self::VIEW) {
+        	return $this->canView($subject, $token);
         }
 
         return false;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canProfile(string $subject, TokenInterface $token)
-    {
-        return true;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canChangePassword(string $subject, TokenInterface $token)
-    {
-        return true;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canLogout(string $subject, TokenInterface $token)
-    {
-        return true;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canList(string $subject, TokenInterface $token)
-    {
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**
@@ -151,28 +105,6 @@ class UserVoter extends AbstractVoter
     public function canAdd(string $subject, TokenInterface $token)
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-    }
-
-    /**
-     * @param User           $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canEdit(User $subject, TokenInterface $token)
-    {
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-    }
-
-    /**
-     * @param User           $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canView(User $subject, TokenInterface $token)
-    {
-        return $this->canList($subject, $token);
     }
 
     /**
@@ -203,6 +135,17 @@ class UserVoter extends AbstractVoter
         return !empty($audits);
     }
 
+	/**
+	 * @param string         $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canChangePassword(string $subject, TokenInterface $token)
+	{
+		return true;
+	}
+
     /**
      * @param User           $subject
      * @param TokenInterface $token
@@ -224,4 +167,59 @@ class UserVoter extends AbstractVoter
     {
         return $this->canAdd($subject, $token);
     }
+
+	/**
+	 * @param User           $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canEdit(User $subject, TokenInterface $token)
+	{
+		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+	}
+
+	/**
+	 * @param string         $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canList(string $subject, TokenInterface $token)
+	{
+		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+	}
+
+	/**
+	 * @param string         $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canLogout(string $subject, TokenInterface $token)
+	{
+		return true;
+	}
+
+	/**
+	 * @param string         $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canProfile(string $subject, TokenInterface $token)
+	{
+		return true;
+	}
+
+	/**
+	 * @param User           $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canView(User $subject, TokenInterface $token)
+	{
+		return $this->canList($subject, $token);
+	}
 }

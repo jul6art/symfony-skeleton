@@ -34,7 +34,7 @@ class GenderValidator extends ConstraintValidator
             return;
         }
 
-        if (!in_array($value, [User::GENDER_MALE, User::GENDER_FEMALE])) {
+        if (!\in_array($value, [User::GENDER_MALE, User::GENDER_FEMALE])) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

@@ -40,7 +40,7 @@ class EntityToIdTransformer implements DataTransformerInterface
     {
         if (null === $entity) {
             return null;
-        } elseif (is_iterable($entity)) {
+        } elseif (\is_iterable($entity)) {
             $idList = array();
 
             foreach ($entity as $item) {
@@ -48,11 +48,11 @@ class EntityToIdTransformer implements DataTransformerInterface
             }
 
             return $idList;
-        } elseif (is_object($entity)) {
+        } elseif (\is_object($entity)) {
             return $entity->getId();
         }
 
-        throw new TransformationFailedException((is_object($entity) ? get_class($entity) : '').'('.gettype($entity).') is not a valid class for EntityToIdTransformer');
+        throw new TransformationFailedException((\is_object($entity) ? get_class($entity) : '').'('.gettype($entity).') is not a valid class for EntityToIdTransformer');
     }
 
     /**
@@ -66,7 +66,7 @@ class EntityToIdTransformer implements DataTransformerInterface
     {
         if (null === $id) {
             return null;
-        } elseif (is_numeric($id)) {
+        } elseif (\is_numeric($id)) {
             $entity = $this->entityRepository->findOneBy(array('id' => $id));
 
             if (null === $entity) {
@@ -74,14 +74,14 @@ class EntityToIdTransformer implements DataTransformerInterface
             }
 
             return $entity;
-        } elseif (is_array($id)) {
+        } elseif (\is_array($id)) {
             if (empty($id)) {
                 return array();
             }
 
             $entities = $this->entityRepository->findBy(array('id' => $id)); // its array('id' => array(...)), resulting in many entities!!
 
-            if (count($id) != count($entities)) {
+            if (\count($id) != \count($entities)) {
                 throw new TransformationFailedException('Some '.$this->entityRepository->getClassName().' with id #'.implode(', ', $id).' do not exist!');
             }
 
