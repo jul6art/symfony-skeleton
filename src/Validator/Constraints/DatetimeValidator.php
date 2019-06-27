@@ -8,6 +8,7 @@
 
 namespace App\Validator\Constraints;
 
+use \DateTime as BaseDateTime;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -33,17 +34,17 @@ class DatetimeValidator extends ConstraintValidator
             return;
         }
 
-        if (!$value instanceof \DateTime) {
+        if (!$value instanceof BaseDateTime) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         } else {
             $options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
 
-            if (key_exists('minDate', $options) && $value->format('Y-m-d') < (new \DateTime($options['minDate']))->format('Y-m-d')) {
+            if (key_exists('minDate', $options) && $value->format('Y-m-d') < (new BaseDateTime($options['minDate']))->format('Y-m-d')) {
                 $this->context->buildViolation($constraint->message_min_date)
                               ->setParameter('{{ date }}', $options['minDate'])
                               ->addViolation();
-            } elseif (key_exists('maxDate', $options) && $value->format('Y-m-d') > (new \DateTime($options['maxDate']))->format('Y-m-d')) {
+            } elseif (key_exists('maxDate', $options) && $value->format('Y-m-d') > (new BaseDateTime($options['maxDate']))->format('Y-m-d')) {
                 $this->context->buildViolation($constraint->message_max_date)
                               ->setParameter('{{ date }}', $options['maxDate'])
                               ->addViolation();

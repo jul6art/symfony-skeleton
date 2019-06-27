@@ -8,6 +8,7 @@
 
 namespace App\Manager;
 
+use \DateTime;
 use DH\DoctrineAuditBundle\AuditConfiguration;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\DBAL\DBALException;
@@ -95,7 +96,7 @@ class AuditManager extends AbstractManager
         $statement->bindValue('blame_user_fqdn', $blame['user_fqdn']);
         $statement->bindValue('blame_user_firewall', $blame['user_firewall']);
         $statement->bindValue('ip', $blame['client_ip']);
-        $statement->bindValue('created_at', (new \DateTime())->format('Y-m-d H:i:s'));
+        $statement->bindValue('created_at', (new DateTime())->format('Y-m-d H:i:s'));
         $statement->execute();
     }
 }
