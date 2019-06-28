@@ -31,13 +31,13 @@
                 </div>
             </section>
 
-            <main role="main">
+            <section role="main">
                 {% include 'layout/layout_card.html.twig' with {
                     card_title: block('form_title'),
                     card_content: block('form_content'),
                     card_footer: block('form_footer') is defined ? block('form_footer') : ''
                 } %}
-            </main>
+            </section>
 
             {% block form_after %}{% endblock form_after %}
 

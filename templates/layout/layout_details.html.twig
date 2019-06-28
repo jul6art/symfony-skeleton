@@ -10,7 +10,7 @@
             </aside>
         {% endif %}
 
-        <div class="{{ length_main_section(block('details_sidebar_left') is defined, block('details_sidebar_right') is defined) }}">
+        <section class="{{ length_main_section(block('details_sidebar_left') is defined, block('details_sidebar_right') is defined) }}">
 
             {% block details_before %}{% endblock details_before %}
 
@@ -22,7 +22,7 @@
 
             {% block details_after %}{% endblock details_after %}
 
-        </div>
+        </section>
 
         {% if block('details_sidebar_right') is defined %}
             <aside role="complementary" class="col-sm-3">

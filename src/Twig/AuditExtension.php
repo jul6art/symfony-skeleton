@@ -31,7 +31,7 @@ class AuditExtension extends AbstractExtension
         if (null !== $idAsString) {
             $id = (int) $idAsString;
 
-            if (key_exists($id, $usernameList)) {
+            if (array_key_exists($id, $usernameList)) {
                 return $usernameList[$id];
             }
         }

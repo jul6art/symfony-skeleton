@@ -19,9 +19,9 @@
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
                             <i class="fa fa-globe fa-2x"></i>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-locale">
                             <li>
-                                <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale()|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ locale())|trans({}, 'topbar') }}</a>
+                                <span class="flag-icon flag-icon-{{ locale()|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ locale())|trans({}, 'topbar') }}
                             </li>
                             <li class="divider" role="separator"></li>
                             {% for item in available_locales|split('|') if item != locale() %}

@@ -35,7 +35,7 @@ class RangeValidator extends ConstraintValidator
 
         $options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
 
-        if (!key_exists('double', $options) || !$options['double']) {
+        if (!array_key_exists('double', $options) || !$options['double']) {
             if ($value < $options['min']
                 || $value > $options['max']
                 || (($value != $options['max']) && (0 != ($value - $options['min']) % $options['step']))) {
