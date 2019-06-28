@@ -1,5 +1,7 @@
 {% extends 'layout/layout_base.html.twig' %}
 
+{% from 'includes/macros.html.twig' import length_main_section %}
+
 {% if custom_form_theme is defined %}
     {% form_theme form custom_form_theme %}
 {% else %}
@@ -9,38 +11,45 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('form') }}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock stylesheets %}
 
 {% block content %}
     <div class="row clearfix">
-        {% if block('form_sidebar') is defined %}
-            <div class="col-xs-12 col-sm-3">
-                {{ block('form_sidebar') }}
-            </div>
+        {% if block('form_sidebar_left') is defined %}
+            <aside role="complementary" class="col-sm-3">
+                {{ block('form_sidebar_left') }}
+            </aside>
         {% endif %}
 
-        <div class="{{ block('form_sidebar') is defined ? 'col-lg-9 col-md-9 col-sm-9' : 'col-lg-12 col-md-12 col-sm-12' }} col-xs-12">
+        <div class="{{ length_main_section(block('form_sidebar_left') is defined, block('form_sidebar_right') is defined) }}">
 
             {{ form_start(form) }}
 
-            <div class="row table-actions-before">
+            <section class="row table-actions-before">
                 <div class="col-xs-12">
                     {% block form_before %}{% endblock form_before %}
                 </div>
-            </div>
+            </section>
 
-            {% include 'layout/layout_card.html.twig' with {
-                card_title: block('form_title'),
-                card_content: block('form_content'),
-                card_footer: not block('form_footer') is defined ? '' : block('form_footer')
-            } %}
+            <main role="main">
+                {% include 'layout/layout_card.html.twig' with {
+                    card_title: block('form_title'),
+                    card_content: block('form_content'),
+                    card_footer: block('form_footer') is defined ? block('form_footer') : ''
+                } %}
+            </main>
 
             {% block form_after %}{% endblock form_after %}
 
             {{ form_end(form) }}
 
         </div>
+
+        {% if block('form_sidebar_right') is defined %}
+            <aside role="complementary" class="col-sm-3">
+                {{ block('form_sidebar_right') }}
+            </aside>
+        {% endif %}
     </div>
 {% endblock content %}
 

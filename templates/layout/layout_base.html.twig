@@ -17,15 +17,16 @@
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
 
-    {% include 'includes/search.html.twig' %}
-
-    {% include 'includes/header.html.twig' with {logo: asset('build/images/logo.png')} %}
+    <header role="banner">
+        {% include 'includes/search.html.twig' %}
+        {% include 'includes/header.html.twig' with {logo: asset('build/images/logo.png')} %}
+    </header>
 
     {% include 'includes/navbar.html.twig' %}
 
     <section class="content">
         <div class="container-fluid">
-            {% if not breadcrumb is defined %}
+            {% if breadcrumb ?? true %}
                 <!-- Breadcrumb -->
                 <div class="card">
                     <div class="body">
@@ -34,7 +35,7 @@
                         <ol class="breadcrumb breadcrumb-col-{{ theme_name() }}">
                             <li>
                                 <a href="{{ path('admin_homepage') }}">
-                                    <i class="material-icons">home</i> <span class="hidden-xs">{{ 'breadcrumb.home' | trans({}, 'breadcrumb') }}</span>
+                                    <i class="material-icons">home</i> <span class="hidden-xs">{{ 'breadcrumb.home'|trans({}, 'breadcrumb') }}</span>
                                 </a>
                             </li>
                             {% block breadcrumb %}{% endblock breadcrumb %}

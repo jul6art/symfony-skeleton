@@ -1,6 +1,6 @@
 {% extends 'layout/layout_card.html.twig' %}
 
-{% set card_title = 'audit.title' | trans({}, 'audit') %}
+{% set card_title = 'audit.title'|trans({}, 'audit') %}
 
 {% block card_content %}
     <div class="row clearfix">
@@ -10,18 +10,18 @@
                     <div class="panel panel-col-audit {{ audit.type != 'remove' ? '' : 'dark' }}">
                         <div class="panel-heading" role="tab" id="headingOne_{{ loop.index }}">
                             <h4 class="panel-title">
-                                <time class="pull-right" datetime="{{ audit.createdAt | date('Y-m-dTH:i:s') }}"><small><em>{{ audit.createdAt | localizeddate }}</em></small></time>
+                                <time class="pull-right" datetime="{{ audit.createdAt|date('Y-m-dTH:i:s') }}"><small><em>{{ audit.createdAt|localizeddate }}</em></small></time>
 
                                 <a role="button" data-toggle="collapse" href="#collapseOne_{{ loop.index }}" aria-expanded="false" aria-controls="collapseOne_{{ loop.index }}" class="collapsed">
                                     {% if audit.type == 'insert' %}
                                         <i class="material-icons">add_circle_outline</i>
-                                        {{ 'audit.actions.insert' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
+                                        {{ 'audit.actions.insert'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% elseif audit.type == 'update' %}
                                         <i class="material-icons">edit</i>
-                                        {{ 'audit.actions.update' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
+                                        {{ 'audit.actions.update'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% elseif audit.type == 'remove' %}
                                         <i class="material-icons">remove_circle_outline</i>
-                                        {{ 'audit.actions.delete' | trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
+                                        {{ 'audit.actions.delete'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% else %}
                                         <i class="material-icons">info_outline</i>
 
@@ -31,37 +31,37 @@
                                         } %}
 
                                         {% for key, value in audit.diffs if value is not iterable %}
-                                            {% set diffs = {('%' ~ key ~ '%'): value} | merge(diffs) %}
+                                            {% set diffs = {('%' ~ key ~ '%'): value}|merge(diffs) %}
                                         {% endfor %}
 
-                                        {{ ('audit.actions.' ~ audit.type) | trans(diffs,  'audit') }}
+                                        {{ ('audit.actions.' ~ audit.type)|trans(diffs,  'audit') }}
                                     {% endif %}
                                 </a>
                             </h4>
                         </div>
-                        {% set username = audit.userId | blame_audit(users) %}
+                        {% set username = audit.userId|blame_audit(users) %}
                         {% if username is not null or audit.type == 'update' %}
                             <div id="collapseOne_{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{ loop.index }}" aria-expanded="false" style="height: 0px;">
                                 <div class="panel-body">
                                     {% if username is not null %}
-                                        <em class="col-{{ theme_name() }}">{{ 'audit.actions.made_by' | trans({'%username%': username}, 'audit') }}</em>
+                                        <em class="col-{{ theme_name() }}">{{ 'audit.actions.made_by'|trans({'%username%': username}, 'audit') }}</em>
                                     {% endif %}
 
                                     {% if audit.type == 'update' %}
                                         <div class="audit-updates-container">
                                             {% for key, value in audit.diffs if key not in exclude %}
                                                 <p class="font-underline">
-                                                    {{ 'audit.updates.text' | trans({
+                                                    {{ 'audit.updates.text'|trans({
                                                         '%property%': key,
-                                                        '%old%': value.old | json_encode,
-                                                        '%new%': value.new | json_encode,
-                                                    }, 'audit') | raw }}
+                                                        '%old%': value.old|json_encode,
+                                                        '%new%': value.new|json_encode,
+                                                    }, 'audit')|raw }}
                                                 </p>
                                             {% endfor %}
                                         </div>
                                     {% endif %}
 
-                                    {# @TODO Put your logic here to display diffs with your custom levels #}
+                                    {# @TODO Override this layout and put your logic here to display diffs with your custom levels #}
                                 </div>
                             </div>
                         {% endif %}

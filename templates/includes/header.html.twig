@@ -8,7 +8,7 @@
                 {% if logo is defined %}
                     <img src="{{ logo }}" alt="logo {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" class="inline">
                 {% endif %}
-                {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) | upper }}
+                {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))|upper }}
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -21,12 +21,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale() == 'en' ? 'gb' : locale() }}"></span> {{ ('topbar.locales.' ~ locale()) | trans({}, 'topbar') }}</a>
+                                <a href="#!" disabled=""><span class="flag-icon flag-icon-{{ locale()|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ locale())|trans({}, 'topbar') }}</a>
                             </li>
                             <li class="divider" role="separator"></li>
-                            {% for item in available_locales | split('|') if item != locale() %}
+                            {% for item in available_locales|split('|') if item != locale() %}
                                 <li>
-                                    <a href="{{ path('admin_locale_switch', {locale: item}) }}"><span class="flag-icon flag-icon-{{ item == 'en' ? 'gb' : item }}"></span> {{ ('topbar.locales.' ~ item) | trans({}, 'topbar') }}</a>
+                                    <a href="{{ path('admin_locale_switch', {locale: item}) }}"><span class="flag-icon flag-icon-{{ item|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ item)|trans({}, 'topbar') }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

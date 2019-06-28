@@ -1,17 +1,22 @@
 {% extends 'layout/layout_form.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock stylesheets %}
+
 {% block page_title %}
-    {{ 'title.test.add' | trans({}, 'title') }}
+    {{ 'title.test.add'|trans({}, 'title') }}
 {% endblock page_title %}
 
 {% block breadcrumb %}
     <li class="active">
         <a href="{{ path('admin_test_list') }}">
-            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</span>
+            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'breadcrumb.test.add' | trans({}, 'breadcrumb') | raw }}</span>
+        <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'breadcrumb.test.add'|trans({}, 'breadcrumb')|raw }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -19,13 +24,13 @@
     {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
         <div class="pull-right btn-group">
             <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_test_list') }}">
-                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back' | trans({}, 'button') }}</span>
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
             </a>
         </div>
     {% endif %}
 {% endblock page_actions %}
 
-{% block form_sidebar %}
+{% block form_sidebar_left %}
     <div{{ edit_in_place() }}>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque facilis fugit libero, natus omnis
             suscipit! Ad autem beatae cum doloribus eveniet facere ipsa iusto, laborum saepe voluptatibus. Perspiciatis,
@@ -49,10 +54,10 @@
             doloremque incidunt iste magnam magni maiores modi numquam odio pariatur perspiciatis possimus praesentium quae
             quasi repellat reprehenderit sed soluta tenetur? Adipisci maiores, quibusdam?</p>
     </div>
-{% endblock form_sidebar %}
+{% endblock form_sidebar_left %}
 
 {% block form_title %}
-    {{ 'form.test.add.title' | trans({}, 'form') | raw }}
+    {{ 'form.test.add.title'|trans({}, 'form')|raw }}
 {% endblock form_title %}
 
 {% block form_content %}
@@ -66,14 +71,14 @@
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">
                         <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_test_list') }}">
-                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel' | trans({}, 'button') }}</span>
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
                         </a>
                     </div>
                 {% endif %}
                 <div class="btn">
                     <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
-                            {{ not is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? '' : 'disabled' }}>
-                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save' | trans({}, 'button') }}</span>
+                            {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' : '' }}>
+                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save'|trans({}, 'button') }}</span>
                     </button>
                 </div>
             </div>

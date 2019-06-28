@@ -1,23 +1,23 @@
 <div class="card">
     <div class="header">
-        <h2>{{ card_title | raw }}</h2>
+        <h2>{{ card_title|raw }}</h2>
         <ul class="header-dropdown m-r--5">
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
                 </a>
                 <ul class="dropdown-menu pull-right" id="datatableButtons">
-                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-collapse"><i class="material-icons">remove</i> {{ 'card.actions.collapse' | trans({}, 'card') }}</a></li>
-                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-expand"><i class="material-icons">open_with</i> {{ 'card.actions.fullscreen' | trans({}, 'card') }}</a></li>
-                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-close"><i class="material-icons">close</i> {{ 'card.actions.close' | trans({}, 'card') }}</a></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-collapse"><i class="material-icons">remove</i> {{ 'card.actions.collapse'|trans({}, 'card') }}</a></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-expand"><i class="material-icons">open_with</i> {{ 'card.actions.fullscreen'|trans({}, 'card') }}</a></li>
+                    <li><a href="javascript:void(0);" class=" waves-effect waves-block" data-toggle="grid-close"><i class="material-icons">close</i> {{ 'card.actions.close'|trans({}, 'card') }}</a></li>
                 </ul>
             </li>
         </ul>
     </div>
     <div class="body">
         {% block card_content %}
-            {{ not card_content is defined ? '' : card_content | raw }}
+            {{ card_content is defined ? card_content|raw : '' }}
         {% endblock card_content %}
     </div>
-    <div class="footer">{{ not card_footer is defined ? '' : card_footer | raw }}</div>
+    <div class="footer">{{ card_footer is defined ? card_footer|raw : '' }}</div>
 </div>

@@ -1,13 +1,13 @@
 {% extends 'layout/layout_table.html.twig' %}
 
-{% block page_title %}{{ 'title.test.list' | trans({}, 'title') }}{% endblock page_title %}
+{% block page_title %}{{ 'title.test.list'|trans({}, 'title') }}{% endblock page_title %}
 
 {% block breadcrumb %}
     <li class="active">
-        <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
     </li>
     <li class="active">
-        <i class="material-icons">list</i> <span class="hidden-xs">{{ 'breadcrumb.test.list' | trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">list</i> <span class="hidden-xs">{{ 'breadcrumb.test.list'|trans({}, 'breadcrumb') }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -16,7 +16,7 @@
         {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE_MULTIPLE'), 'App\\Entity\\Test') %}
             <div class="dropdown btn-group">
                 <button type="button" class="btn bg-blue-grey waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <small><i class="material-icons">settings</i></small> <span class="hidden-xs">{{ 'button.multiple_actions.title' | trans({}, 'button') }} <span class="caret"></span></span>
+                    <small><i class="material-icons">settings</i></small> <span class="hidden-xs">{{ 'button.multiple_actions.title'|trans({}, 'button') }} <span class="caret"></span></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
@@ -30,14 +30,14 @@
 
         {% if is_granted(constant('App\\Security\\Voter\\TestVoter::ADD'), 'App\\Entity\\Test') %}
             <a class="btn bg-{{ theme_name() }} white waves-effect" href="{{ path('admin_test_add') }}">
-                <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'button.add' | trans({}, 'button') }}</span>
+                <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'button.add'|trans({}, 'button') }}</span>
             </a>
         {% endif %}
     </div>
 {% endblock page_actions %}
 
 {% block table_title %}
-    <span{{ translate_in_place() }}>{{ 'list.test.title' | trans({}, 'list') }}</span>
+    <span{{ translate_in_place() }}>{{ 'list.test.title'|trans({}, 'list') }}</span>
 {% endblock table_title %}
 
 {% block table_content %}

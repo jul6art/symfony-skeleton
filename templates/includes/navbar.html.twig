@@ -21,21 +21,21 @@
         </div>
         <!-- #User Info -->
         <!-- Menu -->
-        <div class="menu">
+        <nav role="navigation" class="menu">
             {{ knp_menu_render('navbar', {
                 currentClass: 'active',
                 ancestorClass: 'active',
                 template: 'includes/navbar_renderer.html.twig'
             }) }}
-        </div>
+        </nav>
         <!-- #Menu -->
         <!-- Footer -->
         <div class="legal">
             <div class="copyright">
-                &copy; {{ 'now' | date('Y') }} <a href="https://vsweb.be" target="_blank">VsWeb</a>.
+                &copy; {{ 'now'|date('Y') }} <a href="https://vsweb.be" target="_blank">VsWeb</a>.
             </div>
             <div class="version">
-                <b>{{ 'layout.version' | trans({}, 'layout') }}: </b>{{ skeleton_version }}
+                <b>{{ 'layout.version'|trans({}, 'layout') }}: </b>{{ skeleton_version }}
             </div>
         </div>
         <!-- #Footer -->

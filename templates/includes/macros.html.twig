@@ -1,0 +1,9 @@
+{%- macro length_main_section(a, b) -%}
+    {%- if a and b -%}
+        col-sm-6
+    {%- elseif a or b -%}
+        col-sm-9
+    {%- else -%}
+        col-sm-12
+    {%- endif -%}
+{%- endmacro -%}

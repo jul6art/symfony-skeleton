@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 {% for item in header %}
-                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label) | trans({}, 'table') }}</th>
+                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label)|trans({}, 'table') }}</th>
                 {% endfor %}
             </tr>
         </thead>
@@ -15,7 +15,7 @@
             {% for row in rows %}
                 <tr>
                     {% for key, value in row %}
-                        <td>{{ row[key] | raw }}</td>
+                        <td>{{ row[key]|raw }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
@@ -23,7 +23,7 @@
         <tfoot>
             <tr>
                 {% for item in header %}
-                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label) | trans({}, 'table') }}</th>
+                    <th class="{{ item.class }}">{{ ('table.head.' ~ item.label)|trans({}, 'table') }}</th>
                 {% endfor %}
             </tr>
         </tfoot>

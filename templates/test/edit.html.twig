@@ -1,17 +1,22 @@
 {% extends 'layout/layout_form.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock stylesheets %}
+
 {% block page_title %}
-    {{ 'title.test.edit' | trans({'%name%': test.name}, 'title') }}
+    {{ 'title.test.edit'|trans({'%name%': test.name}, 'title') }}
 {% endblock page_title %}
 
 {% block breadcrumb %}
     <li class="active">
         <a href="{{ path('admin_test_list') }}">
-            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</span>
+            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'breadcrumb.test.edit' | trans({'%name%': test.name}, 'breadcrumb') | raw }}</span>
+        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'breadcrumb.test.edit'|trans({'%name%': test.name}, 'breadcrumb')|raw }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -19,14 +24,14 @@
     {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
         <div class="pull-right btn-group">
             <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_test_list') }}">
-                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back' | trans({}, 'button') }}</span>
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
             </a>
         </div>
     {% endif %}
 {% endblock page_actions %}
 
 {% block form_title %}
-    {{ 'form.test.edit.title' | trans({'%name%': test.name}, 'form') | raw }}
+    {{ 'form.test.edit.title'|trans({'%name%': test.name}, 'form')|raw }}
 {% endblock form_title %}
 
 {% block form_content %}
@@ -39,15 +44,15 @@
             <div class="btn-group btn-group-justified">
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
                     <div class="btn">
-                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer is not null ? referer : path('admin_test_list') }}">
-                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel' | trans({}, 'button') }}</span>
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('admin_test_list')) }}">
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
                         </a>
                     </div>
                 {% endif %}
                 <div class="btn">
                     <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
-                            {{ not is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? '' : 'disabled' }}>
-                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save' | trans({}, 'button') }}</span>
+                            {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' : '' }}>
+                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save'|trans({}, 'button') }}</span>
                     </button>
                 </div>
             </div>
@@ -68,10 +73,6 @@
     {% endif %}
 
     {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
-        <a class="col-{{ theme_name() }}" href="{{ path('admin_test_delete', {id: test.id}) }}" data-confirm="confirm"
-           data-redirect="{{ path('admin_test_list') }}" data-dialog-confirm="{{ 'dialog.ajax.test.confirm' | trans({}, 'dialog') }}"
-           data-dialog-cancel="{{ 'dialog.ajax.test.cancel' | trans({}, 'dialog') }}" data-dialog-success="{{ 'dialog.ajax.test.success' | trans({}, 'dialog') }}">
-            {{ 'button.test.delete' | trans({'%name%': test.name}, 'button') | raw }}
-        </a>
+        {% include 'test/_delete.html.twig' %}
     {% endif %}
 {% endblock form_after %}

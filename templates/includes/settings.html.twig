@@ -1,5 +1,5 @@
 <div class="demo-settings">
-    <p>{{ 'sidebar.settings.title' | trans({}, 'sidebar') }}</p>
+    <p>{{ 'sidebar.settings.title'|trans({}, 'sidebar') }}</p>
     <ul class="setting-list">
         <li>
             {% for item in settings() %}
@@ -7,14 +7,14 @@
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
-                                <option value="-1">{{ ('sidebar.' ~ item.name) | trans({}, 'sidebar') }}</option>
+                                <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME'),
                                     constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE')) %}
 
                                 {% for value in available_colors %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
-                                        {{ ('sidebar.skins.colors.' ~ value) | trans({}, 'sidebar') }}
+                                        {{ ('sidebar.skins.colors.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="form-group bootstrap-select col-xs-12">
                                 <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
-                                    <option value="-1">{{ ('sidebar.' ~ item.name) | trans({}, 'sidebar') }}</option>
+                                    <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                     {% set currentValue = setting_value(
                                         constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT'),
                                         constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT_VALUE')) %}
@@ -41,14 +41,14 @@
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
-                                <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title') | trans({}, 'sidebar') }}</option>
+                                <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'),
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) %}
 
                                 {% for value in ['top', 'bottom'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
-                                        {{ ('sidebar.setting.toastr_vertical_position.choices.' ~ value) | trans({}, 'sidebar') }}
+                                        {{ ('sidebar.setting.toastr_vertical_position.choices.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -58,14 +58,14 @@
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
-                                <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title') | trans({}, 'sidebar') }}</option>
+                                <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'),
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) %}
 
                                 {% for value in ['left', 'center', 'right'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
-                                        {{ ('sidebar.setting.toastr_horizontal_position.choices.' ~ value) | trans({}, 'sidebar') }}
+                                        {{ ('sidebar.setting.toastr_horizontal_position.choices.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -75,7 +75,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" name="{{ item.name }}" data-id="{{ item.id }}" value="{{ item.value }}">
-                            <label class="form-label">{{ ('sidebar.' ~ item.name) | trans({}, 'sidebar') }}</label>
+                            <label class="form-label">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</label>
                         </div>
                     </div>
                 {% endif %}
