@@ -20,7 +20,7 @@
             <div role="tabpanel" class="tab-pane fade in active" id="skins">
                 <ul class="demo-choose-skin">
                     {% for color in available_colors %}
-                        <li data-theme="{{ color }}"{{ color == theme_name() ? ' class="active"' : '' }}>
+                        <li data-theme="{{ color }}"{{ color == theme_name() ? ' class="active"' }}>
                             <a href="{{ path('admin_theme_switch', {name: color}) }}" class="block">
                                 <div class="{{ color }}"></div>
                                 <span>{{ ('sidebar.skins.colors.' ~ color)|trans({}, 'sidebar') }}</span>
@@ -43,7 +43,7 @@
                                 <div class="switch">
                                     <label>
                                         <input type="checkbox" data-id="{{ item.id }}"
-                                                {{ item.isActive ? 'checked' : '' }}
+                                                {{ item.isActive ? 'checked' }}
                                         ><span class="lever"></span>
                                     </label>
                                 </div>

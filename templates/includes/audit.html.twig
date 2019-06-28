@@ -9,7 +9,7 @@
                 {% for audit in audits %}
                     {% set username = audit.userId|blame_audit(users) %}
                     {% set collapsed = username is not null or audit.type == 'update' %}
-                    <div class="panel panel-col-audit {{ audit.type == 'remove' ? 'dark' : '' }}">
+                    <div class="panel panel-col-audit {{ audit.type == 'remove' ? 'dark' }}">
                         <div class="panel-heading" role="tab" id="headingOne_{{ loop.index }}">
                             <h4 class="panel-title">
                                 <time class="pull-right" datetime="{{ audit.createdAt|date('Y-m-d') ~ 'T' ~ audit.createdAt|date('H:i:s') }}"><small><em>{{ audit.createdAt|localizeddate }}</em></small></time>

@@ -13,7 +13,7 @@
                                     constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE')) %}
 
                                 {% for value in available_colors %}
-                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
+                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
                                         {{ ('sidebar.skins.colors.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}
@@ -31,7 +31,7 @@
                                         constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT_VALUE')) %}
 
                                     {% for value in [25, 100, 200, 500, 1000, 2000, 5000] %}
-                                        <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>{{ value }}</option>
+                                        <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -47,7 +47,7 @@
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) %}
 
                                 {% for value in ['top', 'bottom'] %}
-                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
+                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
                                         {{ ('sidebar.setting.toastr_vertical_position.choices.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}
@@ -64,7 +64,7 @@
                                     constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) %}
 
                                 {% for value in ['left', 'center', 'right'] %}
-                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' : '' }}>
+                                    <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
                                         {{ ('sidebar.setting.toastr_horizontal_position.choices.' ~ value)|trans({}, 'sidebar') }}
                                     </option>
                                 {% endfor %}

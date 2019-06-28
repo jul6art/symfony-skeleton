@@ -16,8 +16,8 @@
     </header>
     <section class="body">
         {% block card_content %}
-            {{ card_content is defined ? card_content|raw : '' }}
+            {{ card_content is defined ? card_content|raw }}
         {% endblock card_content %}
     </section>
-    <footer class="footer">{{ card_footer is defined ? card_footer|raw : '' }}</footer>
+    <footer class="footer">{{ card_footer is defined ? card_footer|raw }}</footer>
 </article>
