@@ -1513,8 +1513,8 @@ $.Form = {
         this.picker();
         this.range();
         this.scrollToError();
-        this.wysiwyg();
         this.watch();
+        this.wysiwyg();
     },
     autosize: function () {
         Autosize($('textarea:not(.no_autosize)'));
@@ -1810,6 +1810,15 @@ $.Form = {
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table paste code help"
             ],
+            init_instance_callback: function (editor) {
+                editor.on('Change', function (e) {
+                    $(editor.targetElm).val(editor.getContent());
+                    FORM_VALIDATOR(editor.targetElm).valid();
+                }).on('KeyUp', function (e) {
+                    $(editor.targetElm).val(editor.getContent());
+                    FORM_VALIDATOR(editor.targetElm).valid();
+                });
+            }
         });
     }
 };

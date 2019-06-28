@@ -384,12 +384,9 @@ RECAPTCHA
 /**
 CKEDITOR
  */
-.ck.ck-editor {
+.tox-tinymce[role="application"] {
   margin-bottom: 9px!important;
-
-  .ck-content[role="textbox"] {
-    min-height: 200px;
-  }
+  min-height: 340px;
 }
 
 /**
