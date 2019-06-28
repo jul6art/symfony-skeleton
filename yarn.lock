@@ -6859,6 +6859,11 @@ thunky@^1.0.2:
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.0.3.tgz#f5df732453407b09191dae73e2a8cc73f381a826"
   integrity sha512-YwT8pjmNcAXBZqrubu22P4FYsh2D4dxRmnWBOL8Jk8bUcRUtc5326kx32tuTmFDAZtLOGEVNl8POAR8j896Iow==
 
+time-input-polyfill@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/time-input-polyfill/-/time-input-polyfill-1.0.5.tgz#88cdadd7f5d19df2f9c29b85217350097d3d552c"
+  integrity sha512-uGLIPDaKX86hLDtkuGcUxXtsfoybA4BK3cFChgj4Yx1VqIkz5xKBkqEeRq3yzA2SVpyN6MDy3HZNe5a0Fvbefw==
+
 timers-browserify@^2.0.4:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.10.tgz#1d28e3d2aadf1d5a5996c4e9f95601cd053480ae"

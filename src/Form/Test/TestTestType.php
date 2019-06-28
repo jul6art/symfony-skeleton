@@ -189,8 +189,8 @@ class TestTestType extends AbstractType
                 'data' => [
                     20,
                     40,
-                    60,
-                    80,
+//                    60,
+//                    80,
                 ],
             ]);
         $builder->get('range4')->addModelTransformer(new RangeDoubleTransformer());

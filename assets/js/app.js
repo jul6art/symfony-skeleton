@@ -18,6 +18,9 @@ window.Routing = require('./routing');
 import './skeleton_script';
 import './skeleton_custom';
 
+// polyfill
+import 'time-input-polyfill/auto';
+
 // import functions from other js file
 // import {validationCaptchaCallback} from './form';
 
