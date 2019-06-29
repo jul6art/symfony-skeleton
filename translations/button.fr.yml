@@ -1,10 +1,10 @@
 button:
     add: Ajouter
-    edit: Modifier
-    save: Enregistrer
-    delete: Supprimer
     back: Retour
     cancel: Annuler
+    delete: Supprimer
+    edit: Modifier
+    save: Enregistrer
     multiple_actions:
         title: 'Actions groupées'
         select: 'Tout sélectionner'
@@ -12,3 +12,5 @@ button:
         delete: 'Supprimer la sélection'
     test:
         delete: 'Supprimer le test <strong>%name%</strong>'
+    user:
+        delete: 'Supprimer l''utilisateur <strong>%name%</strong>'

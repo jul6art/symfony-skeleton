@@ -1,8 +1,14 @@
 breadcrumb:
     home: Accueil
     test:
-        title: 'Tests'
-        list: 'Liste des tests'
         add: 'Créer un test'
         edit: 'Modifier le test <strong>%name%</strong>'
+        list: 'Liste des tests'
+        title: 'Tests'
         view: 'Voir le test <strong>%name%</strong>'
+    user:
+        add: 'Créer un utilisateur'
+        edit: 'Modifier l''utilisateur <strong>%name%</strong>'
+        list: 'Liste des utilisateurs'
+        title: 'Utilisateurs'
+        view: 'Voir l''utilisateur <strong>%name%</strong>'

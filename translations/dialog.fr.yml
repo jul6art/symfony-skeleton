@@ -3,16 +3,20 @@ dialog:
         buttons:
             success: 'OK'
             cancel: 'annuler'
+        cancel:
+            title: 'Annulé!'
         confirm:
             title: 'Êtes-vous sure ?'
         error:
             title: 'Annulé!'
             text: 'La requête a échoué, désolé!'
-        cancel:
-            title: 'Annulé!'
         refresh:
             title: 'Vous devez recharger la page!'
         test:
             confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test!'
             cancel: 'Le test est toujours là!'
             success: 'Le test a bien été supprimé!'
+        user:
+            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur!'
+            cancel: 'L''utilisateur est toujours là!'
+            success: 'L''utilisateur a bien été supprimé!'

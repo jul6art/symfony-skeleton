@@ -3,3 +3,7 @@ details:
         title: 'Aperçu du test <strong>%name%</strong>'
         id: ID
         name: Nom
+    user:
+        title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
+        id: ID
+        name: Nom

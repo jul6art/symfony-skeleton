@@ -13,8 +13,15 @@ table:
         test:
             id: ID
             name: Nom
+        user:
+            id: ID
+            name: Nom
     actions:
         test:
             view:  'Voir le test'
             edit:  'Modifier le test'
             delete:  'Supprimer le test'
+        user:
+            view:  'Voir l''utilisateur'
+            edit:  'Modifier l''utilisateur'
+            delete:  'Supprimer l''utilisateur'

@@ -4,18 +4,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    skeleton_version: 1.0.1
-    locale: 'fr'
-    available_locales: fr|en|de
-    available_functionalities:
-        - func.audit
-        - func.clear_cache
-        - func.confirm_delete
-        - func.edit_in_place
-        - func.form_watcher
-        - func.switch_locale
-        - func.switch_theme
-        - func.manage_settings
     available_colors:
         - red
         - pink
@@ -37,7 +25,21 @@ parameters:
         - grey
         - blue-grey
         - black
+    available_functionalities:
+        - func.audit
+        - func.clear_cache
+        - func.confirm_delete
+        - func.edit_in_place
+        - func.form_watcher
+        - func.switch_locale
+        - func.switch_theme
+        - func.manage_settings
+    available_locales: fr|en|de
+    group_class: App\Entity\Group
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    locale: 'fr'
+    skeleton_version: 1.0.1
+    user_class: App\Entity\User
 
 services:
     _defaults:

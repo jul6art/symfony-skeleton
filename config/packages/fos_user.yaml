@@ -1,15 +1,24 @@
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: App\Entity\User
+    user_class: '%user_class%'
     group:
-        group_class: App\Entity\Group
+        group_class: '%group_class%'
     from_email:
         address: '%env(MAILER_FROM_ADDRESS)%'
         sender_name: '%env(MAILER_FROM_NAME)%'
+    service:
+        mailer: fos_user.mailer.twig_swift
     registration:
         confirmation:
+            enabled: true
+            template: '@User/Email/Registration/registration.html.twig'
             from_email:
                 address: '%env(MAILER_FROM_ADDRESS)%'
                 sender_name: '%env(MAILER_FROM_NAME)%'
-            enabled: true
+        form:
+            type: App\Form\User\RegisterUserType
+            validation_groups:  [Registration, Default]
+    resetting:
+        email:
+            template: '@User/Email/Resetting/password_resetting.html.twig'

@@ -1,3 +1,5 @@
 list:
     test:
         title: 'Liste des tests'
+    user:
+        title: 'Liste des utilisateurs'
