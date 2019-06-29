@@ -23,20 +23,20 @@ class TopbarRenderer extends Renderer implements RendererInterface
     public function __construct(MatcherInterface $matcher, array $defaultOptions = array(), $charset = null)
     {
         $this->matcher = $matcher;
-        $this->defaultOptions = array_merge(array(
-            'depth' => null,
-            'matchingDepth' => null,
-            'currentAsLink' => true,
-            'currentClass' => 'current',
-            'ancestorClass' => 'current_ancestor',
-            'firstClass' => 'first',
-            'lastClass' => 'last',
-            'compressed' => false,
-            'allow_safe_labels' => false,
-            'clear_matcher' => true,
-            'leaf_class' => null,
-            'branch_class' => null,
-        ), $defaultOptions);
+        $this->defaultOptions = array_merge([
+	        'depth' => null,
+	        'matchingDepth' => null,
+	        'currentAsLink' => true,
+	        'currentClass' => 'current',
+	        'ancestorClass' => 'current_ancestor',
+	        'firstClass' => 'first',
+	        'lastClass' => 'last',
+	        'compressed' => false,
+	        'allow_safe_labels' => false,
+	        'clear_matcher' => true,
+	        'leaf_class' => null,
+	        'branch_class' => null,
+        ], $defaultOptions);
 
         parent::__construct($charset);
     }

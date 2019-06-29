@@ -17,10 +17,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class PhoneValidator extends ConstraintValidator
 {
-    /**
-     * @param mixed      $protocol
-     * @param Constraint $constraint
-     */
+	/**
+	 * @param mixed $value
+	 * @param Constraint $constraint
+	 */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Phone) {
@@ -33,7 +33,7 @@ class PhoneValidator extends ConstraintValidator
             return;
         }
 
-        if ('+' !== substr($value, 0, 1)) {
+        if (strpos( $value, '+' ) !== 0 ) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

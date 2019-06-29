@@ -25,9 +25,9 @@ class RefererService
     {
         $referer = $request->headers->get('referer');
         if ($request->getUri() !== $referer && false !== strpos($referer, $request->getHost())) {
-            $request->getSession()->set('referer_'.$domain, $referer);
+            $request->getSession()->set("referer_{$domain}", $referer);
         }
 
-        return $request->getSession()->get('referer_'.$domain, null);
+        return $request->getSession()->get("referer_{$domain}");
     }
 }

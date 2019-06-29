@@ -41,10 +41,10 @@ class RecaptchaValidator extends ConstraintValidator
         $this->recaptcha_secret = $recaptacha_secret;
     }
 
-    /**
-     * @param mixed      $protocol
-     * @param Constraint $constraint
-     */
+	/**
+	 * @param mixed $value
+	 * @param Constraint $constraint
+	 */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Recaptcha) {
@@ -57,12 +57,12 @@ class RecaptchaValidator extends ConstraintValidator
             return;
         }
 
-        $value = $this->requestStack->getMasterRequest()->get('g-recaptcha-response');
+        $captcha = $this->requestStack->getMasterRequest()->get('g-recaptcha-response');
         $ip = $this->requestStack->getMasterRequest()->getClientIp();
 
         $recaptcha = new GoogleRecaptcha($this->recaptcha_secret);
 
-        if (!$recaptcha->verify($value, $ip)->isSuccess()) {
+        if (!$recaptcha->verify($captcha, $ip)->isSuccess()) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

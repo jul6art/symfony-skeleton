@@ -81,7 +81,7 @@ class LocaleSubscriber implements EventSubscriberInterface
 
         $user = $this->tokenStorage->getToken()->getUser();
 
-        $newLocale = $request->query->get('_locale', null);
+        $newLocale = $request->query->get('_locale');
 
         if (!\in_array($newLocale, $this->available_locales)) {
             $newLocale = null;

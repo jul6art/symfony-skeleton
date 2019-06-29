@@ -28,7 +28,7 @@ class GroupFixtures extends Fixture
                     sprintf('ROLE_%s', strtoupper($value)),
                 ]);
 
-            $this->addReference('group_'.$value, $group);
+            $this->addReference("group_{$value}", $group);
             $manager->persist($group);
         }
 

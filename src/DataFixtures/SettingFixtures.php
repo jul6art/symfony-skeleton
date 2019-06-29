@@ -33,7 +33,7 @@ class SettingFixtures extends Fixture
                 ->setName($key)
                 ->setValue($value);
 
-            $this->addReference('setting_'.$key, $setting);
+            $this->addReference("setting_{$key}", $setting);
             $manager->persist($setting);
         }
 

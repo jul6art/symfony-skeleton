@@ -68,7 +68,7 @@ class DefaultController extends AbstractFOSRestController
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 
-        return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+        return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 
     /**
@@ -91,7 +91,7 @@ class DefaultController extends AbstractFOSRestController
             $this->userManager->updateTheme($this->getUser(), $name);
         }
 
-        return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 
     /**
@@ -111,7 +111,7 @@ class DefaultController extends AbstractFOSRestController
 
         $this->userManager->updateLocale($this->getUser(), $locale);
 
-        return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 
     /**
@@ -142,15 +142,16 @@ class DefaultController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-    /**
-     * @param Request        $request
-     * @param string         $locale
-     * @param RefererService $refererService
-     *
-     * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
-     *
-     * @return Response
-     */
+	/**
+	 * @param Request $request
+	 * @param Functionality $functionality
+	 * @param int $state
+	 * @param RefererService $refererService
+	 *
+	 * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
+	 *
+	 * @return Response
+	 */
     public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT, $functionality);
@@ -165,18 +166,19 @@ class DefaultController extends AbstractFOSRestController
             ]);
         }
 
-        return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 
-    /**
-     * @param Request        $request
-     * @param string         $locale
-     * @param RefererService $refererService
-     *
-     * @Route("/setting/{setting}/{value}", name="setting_set", methods={"GET"}, options={"expose"=true})
-     *
-     * @return Response
-     */
+	/**
+	 * @param Request $request
+	 * @param Setting $setting
+	 * @param string $value
+	 * @param RefererService $refererService
+	 *
+	 * @Route("/setting/{setting}/{value}", name="setting_set", methods={"GET"}, options={"expose"=true})
+	 *
+	 * @return Response
+	 */
     public function setting(Request $request, Setting $setting, string $value = '', RefererService $refererService): Response
     {
         $this->denyAccessUnlessGranted(SettingVoter::EDIT, $setting);
@@ -191,6 +193,6 @@ class DefaultController extends AbstractFOSRestController
             ]);
         }
 
-        return null !== $referer ? $this->redirect($referer) : $this->redirectToRoute('admin_homepage');
+	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 }

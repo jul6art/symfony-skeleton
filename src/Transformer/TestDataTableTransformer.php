@@ -19,7 +19,7 @@ use Twig\Error\SyntaxError;
 /**
  * Class TestDataTableTransformer.
  */
-class TestDataTableTransformer extends TestTransformer implements NormalizerInterface
+class TestDataTableTransformer extends TestTransformer
 {
     use DataTableTransformerTrait;
 
@@ -27,7 +27,7 @@ class TestDataTableTransformer extends TestTransformer implements NormalizerInte
      * Automatically called on each iteration
      * after each call to renderAction().
      */
-    public function __reset()
+    public function reset()
     {
     }
 

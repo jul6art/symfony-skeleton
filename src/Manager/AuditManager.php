@@ -66,7 +66,12 @@ class AuditManager extends AbstractManager
         $blame = $this->helper->blame();
 
         $schema = $meta->getSchemaName() ? sprintf('%s.', $meta->getSchemaName()) : '';
-        $auditTable = $schema.$this->configuration->getTablePrefix().$meta->getTableName().$this->configuration->getTableSuffix();
+        $auditTable = sprintf(
+        	'%s%s%s%s',
+	        $schema,
+	        $this->configuration->getTablePrefix(),
+	        $meta->getTableName(),
+	        $this->configuration->getTableSuffix());
         $fields = [
             'type' => ':type',
             'object_id' => ':object_id',

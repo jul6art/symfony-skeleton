@@ -38,13 +38,13 @@ class FileService
         $size = $this->getSize($directory);
 
         if ($size < 1024) {
-            $size = $size.' Octets';
+            $size = "$size Octets";
         } elseif ($size < 1048576 && $size > 1023) {
-            $size = round($size / 1024, 1).' Ko';
+            $size = sprintf('%s Ko', round($size / 1024, 1));
         } elseif ($size < 1073741824 && $size > 1048575) {
-            $size = round($size / 1048576, 1).' Mo';
+	        $size = sprintf('%s Mo', round($size / 1048576, 1));
         } else {
-            $size = round($size / 1073741824, 1).' Go';
+	        $size = sprintf('%s Go', round($size / 1073741824, 1));
         }
 
         return $size;

@@ -31,7 +31,7 @@ class TestFixtures extends Fixture
                 ->create()
                 ->setName($faker->name);
 
-            $this->setReference('test_'.$i, $test);
+            $this->setReference("test_{$i}", $test);
             $manager->persist($test);
         }
 
