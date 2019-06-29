@@ -46,8 +46,26 @@ $(document).ready(function() {
 
         let datatable = table.DataTable(datatableOptions);
 
+        datatable.on('init.dt.dth', function () {
+            console.log('init');
+        });
+
         datatable.on('draw.dt', function () {
-            console.log('ici');
+            console.log('draw');
+        });
+
+        datatable.on('processing.dt', function (e, settings, processing) {
+            console.log('processing');
+            console.log(e);
+            console.log(settings);
+            console.log(processing);
+            if (processing) {
+                console.log('on');
+                $.App.blockUI(table);
+            } else {
+                console.log('off');
+                $.App.unblockUI(table);
+            }
         });
     });
 } );

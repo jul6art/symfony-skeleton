@@ -297,7 +297,11 @@ $.App = {
         $('[data-toggle="tooltip"]').tooltip();
     },
     unblockUI: function (elem) {
-        $.unblockUI();
+        if (elem) {
+            $.unblockUI(elem);
+        } else {
+            $.unblockUI();
+        }
     }
 };
 
