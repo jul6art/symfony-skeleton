@@ -16,8 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User extends BaseUser
 {
     const ROLE_ADMIN = 'ROLE_ADMIN';
-    const GENDER_MALE = 'user.gender.male';
-    const GENDER_FEMALE = 'user.gender.female';
+    const GENDER_MALE = 'm';
+    const GENDER_FEMALE = 'f';
     const SETTING_LOCALE = 'locale';
     const SETTING_THEME = 'theme';
     const LENGTH_GENERATED_PASSWORD = 8;

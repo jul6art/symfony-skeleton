@@ -41,6 +41,9 @@ class AddTestType extends AbstractType
             ]);
     }
 
+	/**
+	 * @param OptionsResolver $resolver
+	 */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

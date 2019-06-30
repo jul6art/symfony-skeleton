@@ -298,6 +298,10 @@ form .card .body .col-lg-6 {
   margin-bottom: 5px;
 }
 
+.form-group input[type="radio"] ~ label {
+  margin-top: 9px;
+}
+
 /**
 RANGE
  */

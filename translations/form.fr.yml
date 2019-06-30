@@ -15,15 +15,22 @@ form:
                 no: Non
     user:
         add:
-            title: 'Créer un test'
+            title: 'Créer un utilisateur'
         edit:
-            title: 'Modifier le test <strong>%name%</strong>'
+            title: 'Modifier le utilisateur <strong>%name%</strong>'
         gender:
+            label: Sexe
             choices:
                 m: Homme
                 f: Femme
-        name:
+        email:
+            label: Email
+        firstname:
+            label: Prénom
+        lastname:
             label: Nom
+        username:
+            label: Pseudo
     test:
         add:
             title: 'Créer un test'
