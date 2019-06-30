@@ -18,6 +18,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     use UserManagerTrait;
 
     const LIMIT = 30;
+    const GENDER_CHOICES = ['m', 'f'];
 
     /**
      * @param ObjectManager $manager
@@ -30,6 +31,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $user = $this->userManager
             ->create()
+            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('user')
             ->setFirstname($faker->firstName)
             ->setLastname($faker->lastName)
@@ -41,6 +43,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $admin = $this->userManager
             ->createAdmin()
+            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('admin')
             ->setFirstname($faker->firstName)
             ->setLastname($faker->lastName)
@@ -52,6 +55,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $superAdmin = $this->userManager
             ->createAdmin()
+            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('superadmin')
             ->setFirstname($faker->firstName)
             ->setLastname($faker->lastName)
@@ -65,6 +69,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::LIMIT; ++$i ) {
             $user = $this->userManager
                 ->create()
+                ->setGender($faker->randomElement(self::GENDER_CHOICES))
                 ->setUsername($faker->userName)
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
