@@ -27,6 +27,7 @@ class RangeType extends AbstractType
         $view->vars['max'] = $options['max'];
         $view->vars['min'] = $options['min'];
         $view->vars['step'] = $options['step'];
+        $view->vars['tooltips'] = $options['tooltips'];
         $view->vars['vertical'] = $options['vertical'];
     }
 
@@ -43,6 +44,7 @@ class RangeType extends AbstractType
             'max',
             'min',
             'step',
+            'tooltips',
             'vertical',
         ]);
 
@@ -51,6 +53,7 @@ class RangeType extends AbstractType
             'error_bubbling' => false,
             'limit' => false,
             'no_float' => true,
+            'tooltips' => true,
             'vertical' => false,
             'constraints' => [
                 new Range(),

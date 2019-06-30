@@ -1699,7 +1699,7 @@ $.Form = {
                     stepped: true,
                     density: 4
                 },
-                tooltips: true,
+                tooltips: !!input.data('tooltips'),
             };
 
 

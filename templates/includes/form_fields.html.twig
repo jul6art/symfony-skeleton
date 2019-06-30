@@ -66,6 +66,7 @@
         'data-max': form.vars.max,
         'data-step': form.vars.step,
         'data-double': form.vars.double,
+        'data-tooltips': form.vars.tooltips,
         class: (attr.class|default('') ~ ' nouislider validate')|trim,
     }) -%}
     <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">

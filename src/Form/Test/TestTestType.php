@@ -134,6 +134,7 @@ class TestTestType extends AbstractType
                 'min' => 0,
                 'max' => 100,
                 'step' => 10,
+                'tooltips' => false,
                 // test
                 'help' => 'form.test.name.help',
                 'data' => 50,
@@ -150,6 +151,7 @@ class TestTestType extends AbstractType
                 'step' => 10,
                 'limit' => 40,
                 'double' => true,
+                'tooltips' => false,
                 // test
                 'help' => 'form.test.name.help',
                 'data' => [
