@@ -151,6 +151,10 @@ class UserVoter extends AbstractVoter
      */
     public function canDelete(User $subject, TokenInterface $token)
     {
+    	if ($subject === $token->getUser()) {
+    		return  false;
+	    }
+
         return $this->canEdit($subject, $token);
     }
 

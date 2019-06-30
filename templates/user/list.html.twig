@@ -13,7 +13,7 @@
 
 {% block page_actions %}
     <div class="pull-right btn-group">
-        {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE_MULTIPLE'), 'App\\Entity\\Test') %}
+        {% if is_granted(constant('App\\Security\\Voter\\UserVoter::DELETE_MULTIPLE'), 'App\\Entity\\User') %}
             <div class="dropdown btn-group">
                 <button type="button" class="btn bg-blue-grey waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <small><i class="material-icons">settings</i></small> <span class="hidden-xs">{{ 'button.multiple_actions.title'|trans({}, 'button') }} <span class="caret"></span></span>
@@ -28,7 +28,7 @@
             </div>
         {% endif %}
 
-        {% if is_granted(constant('App\\Security\\Voter\\TestVoter::ADD'), 'App\\Entity\\Test') %}
+        {% if is_granted(constant('App\\Security\\Voter\\UserVoter::ADD'), 'App\\Entity\\User') %}
             <a class="btn bg-{{ theme_name() }} white waves-effect" href="{{ path('admin_user_add') }}">
                 <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'button.add'|trans({}, 'button') }}</span>
             </a>

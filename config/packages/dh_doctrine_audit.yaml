@@ -4,6 +4,8 @@ dh_doctrine_audit:
     entities:
         App\Entity\User:
             ignored_columns:
+                - emailCanonical
                 - lastLogin
                 - updatedAt
+                - usernameCanonical
         App\Entity\Test: ~ # all properties are audited

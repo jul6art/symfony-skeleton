@@ -16,7 +16,7 @@
 {% endblock breadcrumb %}
 
 {% block page_actions %}
-    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
         <div class="pull-right btn-group">
             <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_user_list') }}">
                 <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
             <div class="btn-group btn-group-justified">
-                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+                {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
                     <div class="btn">
                         <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_user_list') }}">
                             <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
@@ -66,18 +66,18 @@
 {% endblock details_footer %}
 
 {% block details_after %}
-    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::AUDIT'), entity) %}
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::AUDIT'), entity) %}
         <div class="row clearfix">
             <div class="col-xs-12">
                 {{ render(controller('App\\Controller\\DefaultController::audit', {
-                    class: 'App\\Entity\\Test',
+                    class: 'App\\Entity\\User',
                     id: entity.id,
                 })) }}
             </div>
         </div>
     {% endif %}
 
-    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::DELETE'), entity) %}
         {% include 'user/_delete.html.twig' %}
     {% endif %}
 {% endblock details_after %}
