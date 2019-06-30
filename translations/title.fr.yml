@@ -4,7 +4,7 @@ title:
         add: 'Tests | Nouveau test'
         edit: 'Tests | Modification du test "%name%"'
         view: 'Tests | Aperçu du test "%name%"'
-    test:
+    user:
         list: 'Utilisateurs | La liste'
         add: 'Utilisateurs | Nouvel utilisateur'
         edit: 'Utilisateurs | Modification de l''utilisateur "%name%"'

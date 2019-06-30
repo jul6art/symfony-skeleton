@@ -2,8 +2,10 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
+use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
@@ -15,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserVoter extends AbstractVoter
 {
+	use FunctionalityManagerTrait;
     use SettingManagerTrait;
 
     const ADD = 'app.voters.user.add';
@@ -117,22 +120,16 @@ class UserVoter extends AbstractVoter
      */
     public function canAudit($subject, TokenInterface $token)
     {
-        if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
-            return false;
-        }
+	    if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
+		    return false;
+	    }
 
-        $auditEntity = AuditHelper::paramToNamespace(User::class);
-
-        $id = $subject instanceof User ? $subject->getId() : null;
-
-        $audits = $this->auditReader->getAudits(
-            $auditEntity,
-            $id,
-            1,
-            $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
-        );
-
-        return !empty($audits);
+	    return !empty($this->auditReader->getAudits(
+		    AuditHelper::paramToNamespace(User::class),
+		    $subject instanceof User ? $subject->getId() : null,
+		    1,
+		    $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+	    ));
     }
 
 	/**

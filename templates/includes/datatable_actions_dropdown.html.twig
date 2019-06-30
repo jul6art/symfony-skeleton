@@ -19,7 +19,9 @@
                         {% endif %}
                     {% endfor %}
                     >
-                        <i class="material-icons">{{ action.icon }}</i> {{ action.label|trans({}, 'table') }}
+                        <span class="block">
+                            <i class="material-icons">{{ action.icon }}</i> {{ action.label|trans({}, 'table') }}
+                        </span>
                     </a>
                 </li>
             {% endfor %}

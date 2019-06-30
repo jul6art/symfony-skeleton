@@ -1,0 +1,86 @@
+{% extends 'layout/layout_form.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block page_title %}
+    {{ 'title.user.add'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <a href="{{ path('admin_user_list') }}">
+            <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
+        </a>
+    </li>
+    <li class="active">
+        <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'breadcrumb.user.add'|trans({}, 'breadcrumb')|raw }}</span>
+    </li>
+{% endblock breadcrumb %}
+
+{% block page_actions %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+        <div class="pull-right btn-group">
+            <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_user_list') }}">
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock page_actions %}
+
+{% block form_sidebar_left %}
+    <div{{ edit_in_place() }}>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque facilis fugit libero, natus omnis
+            suscipit! Ad autem beatae cum doloribus eveniet facere ipsa iusto, laborum saepe voluptatibus. Perspiciatis,
+            quia?</p><p>Earum facere illo ipsa porro suscipit voluptatibus. A, aliquam aut culpa eos error fugiat harum illo
+            iusto laborum laudantium magni natus nihil officiis perspiciatis provident quas quibusdam soluta temporibus
+            vitae!</p><p>Amet animi architecto consequuntur deleniti distinctio, eaque eum ipsa maxime minima optio repellat
+            saepe, sequi soluta suscipit ullam! Architecto dolorum eius esse est fuga ipsum mollitia nulla optio quis vero?</p>
+        <p>Atque autem culpa enim est eveniet ex excepturi iste maiores maxime minima minus mollitia necessitatibus non
+            optio perspiciatis, placeat porro possimus praesentium quam quibusdam, quod tempore tenetur totam unde
+            voluptatum!</p><p>Accusamus alias at dolorem placeat rerum? Deleniti et, ex? Aperiam, commodi corporis dolor
+            enim esse, facilis laudantium nam praesentium, quas quod recusandae velit! Alias architecto cupiditate delectus ex
+            maiores quae.</p><p>Adipisci culpa, dolorem ipsa mollitia quia tempore! Commodi dignissimos ea, laborum omnis quia
+            rem repellat unde. Delectus est expedita inventore laborum laudantium libero magnam molestiae, nulla, quaerat rerum
+            tempora tempore.</p><p>Cupiditate enim et exercitationem maiores nam perferendis repellendus. Atque distinctio
+            dolorem ex excepturi incidunt, molestiae non, quidem quo recusandae ut vel velit. Asperiores dignissimos eveniet
+            iste molestias perferendis quos rem.</p><p>Illum labore libero rem saepe sapiente. Commodi dolorem ducimus, maiores
+            nesciunt, non provident quam sapiente similique suscipit tenetur velit vero? Alias aspernatur consectetur
+            consequuntur doloribus eaque minima, veritatis? Ad, natus.</p><p>Adipisci alias atque aut beatae culpa deleniti
+            error labore nam odit porro quae quasi qui quod sequi, velit? Accusamus aperiam, atque consequatur consequuntur
+            dolores impedit laboriosam nulla officiis quaerat quod!</p><p>Ab accusantium amet animi at beatae distinctio,
+            doloremque incidunt iste magnam magni maiores modi numquam odio pariatur perspiciatis possimus praesentium quae
+            quasi repellat reprehenderit sed soluta tenetur? Adipisci maiores, quibusdam?</p>
+    </div>
+{% endblock form_sidebar_left %}
+
+{% block form_title %}
+    {{ 'form.user.add.title'|trans({}, 'form')|raw }}
+{% endblock form_title %}
+
+{% block form_content %}
+    {{ include('user/_form.html.twig') }}
+{% endblock form_content %}
+
+{% block form_footer %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+            <div class="btn-group btn-group-justified">
+                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+                    <div class="btn">
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_user_list') }}">
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="btn">
+                    <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
+                            {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' }}>
+                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save'|trans({}, 'button') }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock form_footer %}

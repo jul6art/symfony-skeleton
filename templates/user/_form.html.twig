@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_row(form.name) }}
+    </div>
+    {% for child in form.user %}
+        <div class="col-sm-6">
+            {{ form_row(child) }}
+        </div>
+        {% if loop.index is odd %}
+            </div>
+            <div class="row">
+        {% endif %}
+    {% endfor %}
+</div>

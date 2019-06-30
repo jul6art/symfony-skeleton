@@ -1,0 +1,83 @@
+{% extends 'layout/layout_details.html.twig' %}
+
+{% block page_title %}
+    {{ 'title.user.view'|trans({'%name%': user.name}, 'title') }}
+{% endblock page_title %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <a href="{{ path('admin_user_list') }}">
+            <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
+        </a>
+    </li>
+    <li class="active">
+        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.user.view'|trans({'%name%': user.name}, 'breadcrumb')|raw }}</span>
+    </li>
+{% endblock breadcrumb %}
+
+{% block page_actions %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+        <div class="pull-right btn-group">
+            <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_user_list') }}">
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock page_actions %}
+
+{% block details_title %}
+    {{ 'details.user.title'|trans({'%name%': user.name}, 'details')|raw }}
+{% endblock details_title %}
+
+{% block details_content %}
+    <div class="table-responsive">
+        <table class="table table table-bordered table-striped table-hover">
+            <tbody>
+            {% for key, value in user %}
+                <tr>
+                    <th>{{ ('details.user.' ~ key)|trans({}, 'details') }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock details_content %}
+
+{% block details_footer %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+            <div class="btn-group btn-group-justified">
+                {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+                    <div class="btn">
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_user_list') }}">
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="btn">
+                    <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('admin_user_edit', {id: user.id}) }}">
+                        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'button.edit'|trans({}, 'button') }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock details_footer %}
+
+{% block details_after %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::AUDIT'), entity) %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\Test',
+                    id: entity.id,
+                })) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::DELETE'), entity) %}
+        {% include 'user/_delete.html.twig' %}
+    {% endif %}
+{% endblock details_after %}

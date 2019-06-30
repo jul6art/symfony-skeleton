@@ -3,9 +3,12 @@
 namespace App\Menu\Builder;
 
 use App\Entity\Test;
+use App\Entity\User;
 use App\Manager\TestManagerTrait;
+use App\Manager\UserManagerTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\TestVoter;
+use App\Security\Voter\UserVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
@@ -17,6 +20,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class NavbarBuilder
 {
     use TestManagerTrait;
+    use UserManagerTrait;
 
     /**
      * @var FactoryInterface
@@ -54,6 +58,7 @@ class NavbarBuilder
 
         $this
             ->menuHome($menu)
+            ->menuUsers($menu)
             ->menuTests($menu);
 
         return $menu;
@@ -91,7 +96,7 @@ class NavbarBuilder
 
         if ($this->authorizationChecker->isGranted(TestVoter::LIST, Test::class)) {
             $count = $this->testManager->countAll();
-            if ($count > 0) {
+            if ($count) {
                 $badge = $count;
             }
         }
@@ -121,6 +126,57 @@ class NavbarBuilder
         if ($this->authorizationChecker->isGranted(TestVoter::ADD, Test::class)) {
             $menu['navbar.test.title']->addChild('navbar.test.add', [
                 'route' => 'admin_test_add',
+            ])->setExtras([
+                'translation_domain' => 'navbar',
+            ])->setLinkAttribute('class', 'waves-effect waves-block');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return NavbarBuilder
+     *
+     * @throws NonUniqueResultException
+     */
+    private function menuUsers(ItemInterface $menu): self
+    {
+        $badge = false;
+
+        if ($this->authorizationChecker->isGranted(UserVoter::LIST, User::class)) {
+            $count = $this->userManager->countAll();
+            if ($count) {
+                $badge = $count;
+            }
+        }
+
+        if ($this->authorizationChecker->isGranted(UserVoter::LIST, User::class)
+            || $this->authorizationChecker->isGranted(UserVoter::ADD, User::class)) {
+            $menu->addChild('navbar.user.title', [
+                'uri' => 'javascript:void(0);',
+            ])->setExtras([
+                'icon' => 'supervisor_account',
+                'translation_domain' => 'navbar',
+                'activated_routes' => ['admin_user_list', 'admin_user_edit', 'admin_user_view', 'admin_user_add'],
+                'badge' => $badge,
+            ])->setLinkAttribute('class', 'waves-effect waves-block menu-toggle');
+        }
+
+        if ($this->authorizationChecker->isGranted(UserVoter::LIST, User::class)) {
+            $menu['navbar.user.title']->addChild('navbar.user.list', [
+                'route' => 'admin_user_list',
+            ])->setExtras([
+                'translation_domain' => 'navbar',
+                'activated_routes' => ['admin_user_index', 'admin_user_edit', 'admin_user_view'],
+                'badge' => $badge,
+            ])->setLinkAttribute('class', 'waves-effect waves-block');
+        }
+
+        if ($this->authorizationChecker->isGranted(UserVoter::ADD, User::class)) {
+            $menu['navbar.user.title']->addChild('navbar.user.add', [
+                'route' => 'admin_user_add',
             ])->setExtras([
                 'translation_domain' => 'navbar',
             ])->setLinkAttribute('class', 'waves-effect waves-block');

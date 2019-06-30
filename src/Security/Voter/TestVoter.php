@@ -17,8 +17,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class TestVoter extends AbstractVoter
 {
-    use SettingManagerTrait;
     use FunctionalityManagerTrait;
+    use SettingManagerTrait;
 
     const ADD = 'app.voters.test.add';
     const AUDIT = 'app.voters.test.audit';

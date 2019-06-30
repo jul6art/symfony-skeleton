@@ -13,8 +13,6 @@ use App\Transformer\UserDataTableTransformer;
 use App\Transformer\UserTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,16 +51,17 @@ class UserController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-    /**
-     * @param Request         $request
-     * @param UserTransformer $userTransformer
-     *
-     * @Route("/add", name="user_add", methods={"GET","POST"})
-     *
-     * @return Response
-     *
-     * @throws ExceptionInterface
-     */
+	/**
+	 * @param Request $request
+	 * @param UserTransformer $userTransformer
+	 * @param EventDispatcherInterface $eventDispatcher
+	 *
+	 * @Route("/add", name="user_add", methods={"GET","POST"})
+	 *
+	 * @return Response
+	 * @throws ExceptionInterface
+	 * @throws \Doctrine\ORM\NonUniqueResultException
+	 */
     public function add(Request $request, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(UserVoter::ADD, User::class);

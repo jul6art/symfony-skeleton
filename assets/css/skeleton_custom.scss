@@ -423,3 +423,10 @@ $white: #FFFFFF;
 .dtp [stroke="#8BC34A"] {
   stroke: $primary!important;
 }
+
+/**
+FIXES
+ */
+.dropdown-menu span.block {
+  margin-right: 23px;
+}

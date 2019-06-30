@@ -1,11 +1,9 @@
 dh_doctrine_audit:
     # Configuration reference available at:
     # https://github.com/DamienHarper/DoctrineAuditBundle#configuration
-
     entities:
-        App\Entity\Test: ~   # all Test properties are audited
-        App\Entity\User: ~   # all User properties are audited
-#        App\Entity\MyAuditedEntity2:
-#            ignored_columns:                  # MyAuditedEntity2 properties to be ignored by the audit process
-#                - createdAt
-#                - updatedAt
+        App\Entity\User:
+            ignored_columns:
+                - lastLogin
+                - updatedAt
+        App\Entity\Test: ~ # all properties are audited
