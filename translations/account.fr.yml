@@ -1,6 +1,10 @@
 account:
     login:
         links:
-            register: 'S''enregistrer'
+            register: 'Créer un compte'
             reset_password: 'Mot de passe oublié'
         title: 'Connectez-vous pour démarrer votre session'
+    register:
+        links:
+            login: 'Connection'
+        title: 'Eregistrez-vous pour devenir membre'

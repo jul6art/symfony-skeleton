@@ -6,7 +6,7 @@
     {% if error %}
         <div class="form-group">
             <label class="error">
-                <i class="fa fa-warning"></i> {{ error.messageKey|trans(error.messageData, 'security') }}
+                <i class="glyphicon glyphicon-exclamation-sign"></i> {{ error.messageKey|trans(error.messageData, 'security') }}
             </label>
         </div>
     {% endif %}

@@ -13,7 +13,7 @@ class MailSubscriber implements EventSubscriberInterface
     /**
      * @return array
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             UserEvent::ADDED => 'onUserAdded',
@@ -23,7 +23,7 @@ class MailSubscriber implements EventSubscriberInterface
     /**
      * @param UserEvent $event
      */
-    public function onUserAdded(UserEvent $event)
+    public function onUserAdded(UserEvent $event): void
     {
     	$password = $event->find('password');
         // send mail to user with password

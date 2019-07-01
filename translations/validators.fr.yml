@@ -6,16 +6,18 @@ jquery:
 form:
     boolean:
         error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'
-    range:
-        error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
-    recaptcha:
-        error: 'La valeur entrée n''est pas un captcha valide'
-    phone:
-        error: 'La valeur entrée n''est pas un numéro de téléphone valide'
-    gender:
-        error: 'La valeur entrée n''est pas un genre valide'
     datetime:
         error: 'La valeur entrée n''est pas une date valide'
         error_min_date: 'La valeur entrée doit être supérieure ou égale à la date minimum qui est le {{ date }}'
         error_max_date: 'La valeur entrée doit être inférieure ou égale à la date maximum qui est le {{ date }}'
         error_disabled_days: 'La valeur entrée ne doit pas tomber un jour de la semaine qui est désactivé'
+    gender:
+        error: 'La valeur entrée n''est pas un genre valide'
+    phone:
+        error: 'La valeur entrée n''est pas un numéro de téléphone valide'
+    password_verification:
+        error: 'Les mots de passe ne correspondent pas'
+    range:
+        error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
+    recaptcha:
+        error: 'La valeur entrée n''est pas un captcha valide'

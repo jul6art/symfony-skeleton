@@ -1,8 +1,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% form_theme form 'includes/form_fields.html.twig' %}
+
+<div class="msg">{{ 'account.register.title'|trans({}, 'account') }}</div>
+
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    {{ form_row(form.gender) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    {{ form_row(form.captcha) }}
+    <button type="submit" class="btn btn-block btn-lg bg-blue-grey waves-effect">{{ 'registration.submit'|trans }}</button>
+    <div class="m-t-25 m-b--5 align-center">
+        <a href="{{ path('fos_user_security_login') }}">{{ 'account.register.links.login'|trans({}, 'account') }}</a>
     </div>
 {{ form_end(form) }}

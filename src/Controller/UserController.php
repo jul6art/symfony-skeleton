@@ -76,6 +76,7 @@ class UserController extends AbstractFOSRestController
         	$user->setPlainPassword($password);
         	$event = (new UserEvent($user))->addData('password', $password);
 
+            $this->userManager->updateSettings($user);
             $this->userManager->save($user);
             $eventDispatcher->dispatch(UserEvent::ADDED, $event);
 

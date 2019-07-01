@@ -97,6 +97,19 @@ class UserManager extends AbstractManager
         return $this->save($user);
     }
 
+	/**
+	 * @param User $user
+	 *
+	 * @return User
+	 * @throws NonUniqueResultException
+	 */
+	public function updateSettings(User $user): User
+	{
+		return $user
+			->setLocale($this->locale)
+			->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
+	}
+
     /**
      * @return string
      */

@@ -19,7 +19,7 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
     /**
      * @return array
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             TestEvent::ADDED => 'onTestAdded',
@@ -31,7 +31,7 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
     /**
      * @param TestEvent $event
      */
-    public function onTestAdded(TestEvent $event)
+    public function onTestAdded(TestEvent $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.test.added', [], 'notification'));
     }
@@ -39,7 +39,7 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
     /**
      * @param Event $event
      */
-    public function onTestEdited(TestEvent $event)
+    public function onTestEdited(TestEvent $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.test.edited', [], 'notification'));
     }
@@ -49,10 +49,10 @@ class TestSubscriber extends AbstractSubscriber implements EventSubscriberInterf
      *
      * @throws NonUniqueResultException
      */
-    public function onTestDeleted(TestEvent $event)
+    public function onTestDeleted(TestEvent $event): void
     {
         //
-        // notifications for deletion are currently made by sweetalert dialog if func is actived
+        // notifications for deletion are currently made by sweetalert dialog if func is active
         //
         if (!$this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE)) {
             $this->flashBag->add('success', $this->translator->trans('notification.test.deleted', [], 'notification'));

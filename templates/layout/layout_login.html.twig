@@ -6,6 +6,7 @@
 
 {% block stylesheets %}
     {% include 'includes/stylesheets.html.twig' %}
+    {{ encore_entry_link_tags('form') }}
 {% endblock stylesheets %}
 
 {% block body_class %}login-page bg-{{ theme_name() }}{% endblock body_class %}
@@ -33,4 +34,5 @@
 {% block javascripts %}
     {% include 'includes/javascripts_dynamic.html.twig' %}
     {% include 'includes/javascripts.html.twig' %}
+    {{ encore_entry_script_tags('form') }}
 {% endblock javascripts %}

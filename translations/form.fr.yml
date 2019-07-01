@@ -29,6 +29,11 @@ form:
             label: Prénom
         lastname:
             label: Nom
+        password:
+            label: 'Mot de passe'
+            missmatch: 'Les mots de passe ne correspondent pas'
+        password_confirmation:
+            label: 'Confirmation du mot de passe'
         username:
             label: Pseudo
     test:

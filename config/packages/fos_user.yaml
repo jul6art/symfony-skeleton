@@ -11,8 +11,8 @@ fos_user:
         mailer: fos_user.mailer.twig_swift
     registration:
         confirmation:
-            enabled: true
-            template: '@User/Email/Registration/registration.html.twig'
+            enabled: false
+            # template: '@User/Email/Registration/registration.html.twig'
             from_email:
                 address: '%env(MAILER_FROM_ADDRESS)%'
                 sender_name: '%env(MAILER_FROM_NAME)%'

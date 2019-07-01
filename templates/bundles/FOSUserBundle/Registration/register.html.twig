@@ -1,5 +1,14 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'layout/layout_login.html.twig' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock stylesheets %}
+
+{% block page_title %}
+    {{ 'title.account.register'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block content %}
+    {% include '@FOSUser/Registration/register_content.html.twig' %}
+{% endblock content %}
