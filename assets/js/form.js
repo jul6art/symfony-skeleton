@@ -17,7 +17,7 @@ import * as tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
-const FORM_VALIDATOR = require ('jquery-validation');
+let FORM_VALIDATOR = require ('jquery-validation');
 require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
 
 // manually imported areYouSure  script

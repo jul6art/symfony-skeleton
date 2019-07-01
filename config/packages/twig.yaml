@@ -3,7 +3,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        recaptcha_apikey: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
-        available_locales: '%available_locales%'
         available_colors: '%available_colors%'
+        available_locales: '%available_locales%'
+        logo: '%logo%'
+        recaptcha_apikey: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
         skeleton_version: '%skeleton_version%'
