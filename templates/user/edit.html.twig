@@ -1,10 +1,5 @@
 {% extends 'layout/layout_form.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-{% endblock stylesheets %}
-
 {% block page_title %}
     {{ 'title.user.edit'|trans({'%name%': user.name}, 'title') }}
 {% endblock page_title %}

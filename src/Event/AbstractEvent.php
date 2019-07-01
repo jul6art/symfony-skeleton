@@ -30,7 +30,7 @@ abstract class AbstractEvent extends Event
      */
     public function hasData(string $key)
     {
-        return null !== $this->getOne($key);
+        return null !== $this->find($key);
     }
 
     /**
@@ -38,7 +38,7 @@ abstract class AbstractEvent extends Event
      *
      * @return mixed|null
      */
-    public function getOne(string $key)
+    public function find(string $key)
     {
         if ($this->data->containsKey($key)) {
             return $this->data->get($key);

@@ -1,0 +1,6 @@
+account:
+    login:
+        links:
+            register: 'S''enregistrer'
+            reset_password: 'Mot de passe oublié'
+        title: 'Connectez-vous pour démarrer votre session'

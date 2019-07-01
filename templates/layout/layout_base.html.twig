@@ -19,7 +19,11 @@
 
     <header role="banner">
         {% include 'includes/search.html.twig' %}
-        {% include 'includes/header.html.twig' with {logo: asset('build/images/logo.png')} %}
+        {% if logo is defined %}
+            {% include 'includes/header.html.twig' with {logo: logo} %}
+        {% else %}
+            {% include 'includes/header.html.twig' %}
+        {% edif %}
     </header>
 
     {% include 'includes/navbar.html.twig' %}

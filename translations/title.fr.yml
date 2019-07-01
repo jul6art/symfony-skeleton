@@ -1,4 +1,7 @@
 title:
+    account:
+        login: 'Se connecter'
+        register: 'S''enregistrer'
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'

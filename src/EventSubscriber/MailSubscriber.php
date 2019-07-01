@@ -25,6 +25,7 @@ class MailSubscriber implements EventSubscriberInterface
      */
     public function onUserAdded(UserEvent $event)
     {
+    	$password = $event->find('password');
         // send mail to user with password
     }
 }
