@@ -1,0 +1,19 @@
+<ul class="dropdown-menu dropdown-menu-locale">
+    {% if hide_locale is not defined %}
+        <li>
+            <span class="block">
+                <span class="flag-icon flag-icon-{{ locale()|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ locale())|trans({}, 'topbar') }}
+            </span>
+        </li>
+        <li class="divider" role="separator"></li>
+    {% endif %}
+    {% for item in available_locales|split('|') if item != locale() %}
+        <li>
+            <a href="{{ path('locale_switch', {locale: item}) }}">
+                <span class="block">
+                    <span class="flag-icon flag-icon-{{ item|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ item)|trans({}, 'topbar') }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

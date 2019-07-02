@@ -19,26 +19,9 @@
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
                             <i class="fa fa-globe fa-2x"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-locale">
-                            <li>
-                                <span class="block">
-                                    <span class="flag-icon flag-icon-{{ locale()|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ locale())|trans({}, 'topbar') }}
-                                </span>
-                            </li>
-                            <li class="divider" role="separator"></li>
-                            {% for item in available_locales|split('|') if item != locale() %}
-                                <li>
-                                    <a href="{{ path('admin_locale_switch', {locale: item}) }}">
-                                        <span class="block">
-                                            <span class="flag-icon flag-icon-{{ item|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ item)|trans({}, 'topbar') }}
-                                        </span>
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        {% include 'includes/locales_dropdown.html.twig' %}
                     </li>
                 {% endif %}
-
                 <!-- Topbar -->
                 {{ knp_menu_render('topbar', {
                     currentClass: 'active',

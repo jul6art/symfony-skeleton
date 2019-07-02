@@ -14,6 +14,18 @@
 {% block body_content %}
     {% include 'includes/loader.html.twig' %}
 
+    <div class="pull-right col-black login-locales-container">
+        {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_LOCALE'), 'App\\Entity\\Functionality') %}
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="flag-icon flag-icon-{{ app.request.locale|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ app.request.locale)|trans({}, 'topbar') }}
+                    <span class="caret"></span>
+                </button>
+                {% include 'includes/locales_dropdown.html.twig' with {hide_locale: true} %}
+            </div>
+        {% endif %}
+    </div>
+
     <div class="login-box">
         <div class="logo">
             <a href="{{ path('admin_homepage') }}">

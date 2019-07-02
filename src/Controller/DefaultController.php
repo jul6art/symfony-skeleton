@@ -25,16 +25,41 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/admin", name="admin_")
+ * Class DefaultController
+ * @package App\Controller
  */
 class DefaultController extends AbstractFOSRestController
 {
-    use UserManagerTrait;
     use FunctionalityManagerTrait;
     use SettingManagerTrait;
+    use UserManagerTrait;
+
+	/**
+	 * @param Request $request
+	 * @param string $locale
+	 * @param RefererService $refererService
+	 * @param TranslatorInterface $translator
+	 *
+	 * @Route("/locale/{locale}", name="locale_switch", methods={"GET"}, requirements={"locale": "%available_locales%"})
+	 *
+	 * @return Response
+	 */
+	public function locale(Request $request, string $locale, RefererService $refererService, TranslatorInterface $translator): Response
+	{
+		$this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
+
+		$referer = $refererService->getFormReferer($request, 'locale');
+
+		if (null !== $this->getUser()) {
+			$this->userManager->updateLocale($this->getUser(), $locale);
+			return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
+		}
+
+		return $this->redirect(($referer ?? $this->generateUrl('admin_homepage')) . '?_locale=' . $locale);
+	}
 
     /**
-     * @Route("/", name="homepage", methods={"GET"})
+     * @Route("/admin/", name="admin_homepage", methods={"GET"})
      */
     public function index(): Response
     {
@@ -45,7 +70,7 @@ class DefaultController extends AbstractFOSRestController
      * @param Request        $request
      * @param RefererService $refererService
      *
-     * @Route("/cache", name="cache", methods={"GET"})
+     * @Route("/admin/cache", name="admin_cache", methods={"GET"})
      *
      * @return Response
      *
@@ -77,7 +102,7 @@ class DefaultController extends AbstractFOSRestController
      * @param array          $available_colors
      * @param RefererService $refererService
      *
-     * @Route("/theme/{name}", name="theme_switch", methods={"GET"})
+     * @Route("/admin/theme/{name}", name="admin_theme_switch", methods={"GET"})
      *
      * @return Response
      */
@@ -94,61 +119,13 @@ class DefaultController extends AbstractFOSRestController
 	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
 
-    /**
-     * @param Request        $request
-     * @param string         $locale
-     * @param RefererService $refererService
-     *
-     * @Route("/locale/{locale}", name="locale_switch", methods={"GET"}, requirements={"locale": "%available_locales%"})
-     *
-     * @return Response
-     */
-    public function locale(Request $request, string $locale, RefererService $refererService): Response
-    {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
-
-        $referer = $refererService->getFormReferer($request, 'locale');
-
-        $this->userManager->updateLocale($this->getUser(), $locale);
-
-	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
-    }
-
-    /**
-     * @param $class
-     * @param null        $id
-     * @param AuditReader $auditReader
-     * @param array       $exclude
-     *
-     * @return Response
-     *
-     * @throws NonUniqueResultException
-     */
-    public function audit($class, $id = null, AuditReader $auditReader, array $exclude = []): Response
-    {
-        $view = $this->view()
-                     ->setTemplate('includes/audit.html.twig')
-                     ->setTemplateData([
-                         'audits' => $auditReader->getAudits(
-                             AuditHelper::paramToNamespace($class),
-                             $id,
-                             1,
-                             $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
-                         ),
-                         'users' => $this->userManager->findAllForAudit(),
-                         'exclude' => $exclude,
-                     ]);
-
-        return $this->handleView($view);
-    }
-
 	/**
 	 * @param Request $request
 	 * @param Functionality $functionality
 	 * @param int $state
 	 * @param RefererService $refererService
 	 *
-	 * @Route("/functionality/{functionality}/{state}", name="functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
+	 * @Route("/admin/functionality/{functionality}/{state}", name="admin_functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
@@ -175,7 +152,7 @@ class DefaultController extends AbstractFOSRestController
 	 * @param string $value
 	 * @param RefererService $refererService
 	 *
-	 * @Route("/setting/{setting}/{value}", name="setting_set", methods={"GET"}, options={"expose"=true})
+	 * @Route("/admin/setting/{setting}/{value}", name="admin_setting_set", methods={"GET"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
@@ -195,4 +172,32 @@ class DefaultController extends AbstractFOSRestController
 
 	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }
+
+	/**
+	 * @param $class
+	 * @param null        $id
+	 * @param AuditReader $auditReader
+	 * @param array       $exclude
+	 *
+	 * @return Response
+	 *
+	 * @throws NonUniqueResultException
+	 */
+	public function audit($class, $id = null, AuditReader $auditReader, array $exclude = []): Response
+	{
+		$view = $this->view()
+		             ->setTemplate('includes/audit.html.twig')
+		             ->setTemplateData([
+			             'audits' => $auditReader->getAudits(
+				             AuditHelper::paramToNamespace($class),
+				             $id,
+				             1,
+				             $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+			             ),
+			             'users' => $this->userManager->findAllForAudit(),
+			             'exclude' => $exclude,
+		             ]);
+
+		return $this->handleView($view);
+	}
 }

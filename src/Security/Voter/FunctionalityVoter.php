@@ -72,12 +72,6 @@ class FunctionalityVoter extends AbstractVoter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $user = $token->getUser();
-        // if the user is anonymous, do not grant access
-        if (!$user instanceof UserInterface) {
-            return false;
-        }
-
         // ... (check conditions and return true to grant permission) ...
 	    if ($attribute === self::AUDIT) {
 		    return $this->canAudit($subject, $token);
@@ -115,6 +109,10 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canAudit(string $subject, TokenInterface $token)
     {
+    	if (!$this->isConnected($token)) {
+    		return false;
+	    }
+
         return $this->functionalityManager->isActive(Functionality::FUNC_AUDIT);
     }
 
@@ -129,6 +127,10 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canClearCache(string $subject, TokenInterface $token)
 	{
+		if (!$this->isConnected($token)) {
+			return false;
+		}
+
 		return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
 	}
 
@@ -143,7 +145,11 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canConfirmDelete(string $subject, TokenInterface $token)
     {
-        return $this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE);
+	    if (!$this->isConnected($token)) {
+		    return false;
+	    }
+
+	    return $this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE);
     }
 
 	/**
@@ -154,6 +160,10 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canEdit(Functionality $subject, TokenInterface $token)
 	{
+		if (!$this->isConnected($token)) {
+			return false;
+		}
+
 		$functionalities = $this->functionalityManager->findAllByConfigured();
 
 		if (empty($functionalities)) {
@@ -174,6 +184,10 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canEditInPlace(string $subject, TokenInterface $token)
 	{
+		if (!$this->isConnected($token)) {
+			return false;
+		}
+
 		return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
 	}
 
@@ -185,6 +199,10 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canManageFunctionalities(string $subject, TokenInterface $token)
 	{
+		if (!$this->isConnected($token)) {
+			return false;
+		}
+
 		$functionalities = $this->functionalityManager->findAllByConfigured();
 
 		if (empty($functionalities)) {
@@ -205,7 +223,11 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canManageSettings(string $subject, TokenInterface $token)
     {
-        return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);
+	    if (!$this->isConnected($token)) {
+		    return false;
+	    }
+
+	    return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);
     }
 
 	/**
@@ -233,6 +255,10 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canSwitchTheme(string $subject, TokenInterface $token)
 	{
+		if (!$this->isConnected($token)) {
+			return false;
+		}
+
 		return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME);
 	}
 

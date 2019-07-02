@@ -223,6 +223,23 @@ NAVBAR
 }
 
 /**
+LOGIN
+ */
+.login-locales-container {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+
+  button {
+    padding: 8px 12px;
+
+    span {
+      top: 0!important;
+    }
+  }
+}
+
+/**
 FORMS
  */
 .checkbox-block label,
