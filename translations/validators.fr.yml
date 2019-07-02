@@ -3,6 +3,7 @@ jquery:
         messages:
             phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
             regex: 'La valeur entrée ne respecte pas le modèle requis'
+            samePassword: 'Les mots de passe ne sont pas identiques'
 form:
     boolean:
         error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'

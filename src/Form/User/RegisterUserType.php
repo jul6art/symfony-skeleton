@@ -69,6 +69,7 @@ class RegisterUserType extends AbstractType {
 				'label' => false,
 				'attr' => [
 					'autocomplete' => false,
+					'class' => 'password',
 					'placeholder' => 'form.user.password.label',
 				],
 			],
@@ -77,6 +78,7 @@ class RegisterUserType extends AbstractType {
 				'label' => false,
 				'attr' => [
 					'autocomplete' => false,
+					'class' => 'password_verification',
 					'placeholder' => 'form.user.password_confirmation.label',
 				],
 			],

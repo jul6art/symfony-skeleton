@@ -160,13 +160,7 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canEdit(Functionality $subject, TokenInterface $token)
 	{
-		if (!$this->isConnected($token)) {
-			return false;
-		}
-
-		$functionalities = $this->functionalityManager->findAllByConfigured();
-
-		if (empty($functionalities)) {
+		if (empty($this->functionalityManager->findAllByConfigured())) {
 			return false;
 		}
 
@@ -184,7 +178,7 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canEditInPlace(string $subject, TokenInterface $token)
 	{
-		if (!$this->isConnected($token)) {
+		if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
 			return false;
 		}
 
@@ -199,13 +193,7 @@ class FunctionalityVoter extends AbstractVoter
 	 */
 	public function canManageFunctionalities(string $subject, TokenInterface $token)
 	{
-		if (!$this->isConnected($token)) {
-			return false;
-		}
-
-		$functionalities = $this->functionalityManager->findAllByConfigured();
-
-		if (empty($functionalities)) {
+		if (empty($this->functionalityManager->findAllByConfigured())) {
 			return false;
 		}
 
@@ -223,8 +211,8 @@ class FunctionalityVoter extends AbstractVoter
      */
     public function canManageSettings(string $subject, TokenInterface $token)
     {
-	    if (!$this->isConnected($token)) {
-		    return false;
+	    if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
+	    	return false;
 	    }
 
 	    return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);

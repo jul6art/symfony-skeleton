@@ -11,31 +11,32 @@
         "search": "{{ 'table.default.search'|trans({}, 'table') }}",
         "paginate": {
             "previous": "{{ 'table.default.previous'|trans({}, 'table') }}",
-            "next": "{{ 'table.default.next'|trans({}, 'table') }}"
+            "next": "{{ 'table.default.next'|trans({}, 'table') }}",
         }
     };
     const DIALOG_TRANSLATIONS = {
         "ajax_error_title": "{{ 'dialog.ajax.error.title'|trans({}, 'dialog') }}",
         "ajax_error_text": "{{ 'dialog.ajax.error.text'|trans({}, 'dialog') }}",
-        "confirm_title": "{{ 'dialog.ajax.confirm.title'|trans({}, 'dialog') }}",
-        "refresh_title": "{{ 'dialog.ajax.refresh.title'|trans({}, 'dialog') }}",
+        "cancel_button": "{{ 'dialog.ajax.buttons.cancel'|trans({}, 'dialog') }}",
         "cancel_title": "{{ 'dialog.ajax.cancel.title'|trans({}, 'dialog') }}",
         "confirm_button": "{{ 'dialog.ajax.buttons.success'|trans({}, 'dialog') }}",
-        "cancel_button": "{{ 'dialog.ajax.buttons.cancel'|trans({}, 'dialog') }}",
+        "confirm_title": "{{ 'dialog.ajax.confirm.title'|trans({}, 'dialog') }}",
+        "refresh_title": "{{ 'dialog.ajax.refresh.title'|trans({}, 'dialog') }}",
     };
     const DATEPICKER_TRANSLATIONS = {
-        "ok": "{{ 'jquery.datepicker.messages.ok'|trans({}, 'form') }}",
-        "clear": "{{ 'jquery.datepicker.messages.clear'|trans({}, 'form') }}",
         "cancel": "{{ 'jquery.datepicker.messages.cancel'|trans({}, 'form') }}",
+        "clear": "{{ 'jquery.datepicker.messages.clear'|trans({}, 'form') }}",
         "now": "{{ 'jquery.datepicker.messages.now'|trans({}, 'form') }}",
+        "ok": "{{ 'jquery.datepicker.messages.ok'|trans({}, 'form') }}",
     };
     const VALIDATOR_TRANSLATIONS = {
+        "phone": "{{ 'jquery.validate.messages.phone'|trans({}, 'validators') }}",
         "regex": "{{ 'jquery.validate.messages.regex'|trans({}, 'validators') }}",
-        "phone": "{{ 'jquery.validate.messages.phone'|trans({}, 'validators') }}"
+        "samePassword": "{{ 'jquery.validate.messages.samePassword'|trans({}, 'validators') }}",
     };
     const TOASTR_POSITION = {
-        "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
         "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
+        "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
     };
     const ACTIVATED_FUNCTIONS = {};
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %}

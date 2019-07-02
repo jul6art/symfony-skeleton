@@ -1527,6 +1527,14 @@ $.Form = {
             },
         });
 
+        FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
+            if ($(element).prop('required') === true || value !== '') {
+                return !$(element).data('invalid');
+            } else {
+                return true;
+            }
+        }, VALIDATOR_TRANSLATIONS.phone);
+
         FORM_VALIDATOR.validator.addMethod('regex', function (value, element) {
             let pattern = $(element).prop('pattern');
             if (pattern && ($(element).prop('required') === true || value !== '')) {
@@ -1536,13 +1544,17 @@ $.Form = {
             }
         }, VALIDATOR_TRANSLATIONS.regex);
 
-        FORM_VALIDATOR.validator.addMethod('phone', function (value, element, param) {
-            if ($(element).prop('required') === true || value !== '') {
-                return !$(element).data('invalid');
-            } else {
-                return true;
+        FORM_VALIDATOR.validator.addMethod('samePassword', function (value, element, param) {
+            if ($(element).prop('required') === true) {
+                return $(element).val() === $(param).val();
             }
-        }, VALIDATOR_TRANSLATIONS.phone);
+
+            return true;
+        }, VALIDATOR_TRANSLATIONS.samePassword);
+
+        FORM_VALIDATOR.validator.addClassRules('password_verification', {
+            samePassword: '.password'
+        });
 
         $('body').find('form:not(.no_validate)').each(function () {
             $.Form.validate($(this));
