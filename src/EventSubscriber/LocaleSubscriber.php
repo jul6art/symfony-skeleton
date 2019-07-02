@@ -121,7 +121,5 @@ class LocaleSubscriber implements EventSubscriberInterface
             && $request->getLocale() !== $sessionLocale) {
         	$request->setLocale($request->getSession()->get('_locale'));
         }
-
-        dump($request);
     }
 }
