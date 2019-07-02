@@ -6,6 +6,7 @@ use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Event\UserEvent;
 use App\Manager\FunctionalityManagerTrait;
+use App\Manager\GroupManagerTrait;
 use App\Manager\SettingManagerTrait;
 use App\Manager\UserManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
@@ -20,6 +21,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class UserSubscriber extends AbstractSubscriber implements EventSubscriberInterface
 {
     use FunctionalityManagerTrait;
+    use GroupManagerTrait;
     use SettingManagerTrait;
     use UserManagerTrait;
 
@@ -44,8 +46,9 @@ class UserSubscriber extends AbstractSubscriber implements EventSubscriberInterf
     public function onRegistrationSuccess(FormEvent $event): void
     {
         $user = $event->getForm()->getData();
-        $user->setLocale($event->getRequest()->getSession()->get('_locale'));
+        $user->setLocale($event->getRequest()->getLocale());
         $user->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
+        $this->userManager->updateGroups($user);
         $this->userManager->save($user);
     }
 

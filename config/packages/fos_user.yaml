@@ -11,7 +11,7 @@ fos_user:
         mailer: fos_user.mailer.twig_swift
     registration:
         confirmation:
-            enabled: false
+            enabled: true
             # template: '@User/Email/Registration/registration.html.twig'
             from_email:
                 address: '%env(MAILER_FROM_ADDRESS)%'
@@ -21,4 +21,4 @@ fos_user:
             validation_groups:  [Registration, Default]
     resetting:
         email:
-            template: '@User/Email/Resetting/password_resetting.html.twig'
+            # template: '@User/Email/Resetting/password_resetting.html.twig'

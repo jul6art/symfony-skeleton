@@ -1,10 +1,15 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'layout/layout_login.html.twig' %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+{% block page_title %}
+    {{ 'title.account.register'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block content %}
+    <div class="msg">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</div>
     {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        <a class="btn btn-block btn-lg bg-blue-grey waves-effect" href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a>
     {% endif %}
-{% endblock fos_user_content %}
+{% endblock content %}
+

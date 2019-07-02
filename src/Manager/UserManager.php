@@ -8,6 +8,7 @@
 
 namespace App\Manager;
 
+use App\Entity\Group;
 use App\Entity\Setting;
 use App\Entity\User;
 use App\Factory\UserFactory;
@@ -108,6 +109,19 @@ class UserManager extends AbstractManager
 		return $user
 			->setLocale($this->locale)
 			->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
+	}
+
+	/**
+	 * @param User $user
+	 *
+	 * @return User
+	 * @throws NonUniqueResultException
+	 */
+	public function updateGroups(User $user): User
+	{
+		$user->addGroup($this->groupManager->findOneByName(User::ROLE_DEFAULT));
+		$user->addGroup($this->groupManager->findOneByName(User::ROLE_ADMIN));
+		return $user;
 	}
 
     /**
