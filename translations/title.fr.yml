@@ -2,6 +2,7 @@ title:
     account:
         login: 'Se connecter'
         register: 'S''enregistrer'
+        resetting: 'Mot de passe oublié'
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'

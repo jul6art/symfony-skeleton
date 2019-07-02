@@ -22,3 +22,6 @@ fos_user:
     resetting:
         email:
             # template: '@User/Email/Resetting/password_resetting.html.twig'
+        form:
+            type: App\Form\User\ResettingPasswordType
+            validation_groups:  [ResetPassword, Default]
