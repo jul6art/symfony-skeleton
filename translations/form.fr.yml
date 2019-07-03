@@ -20,7 +20,7 @@ form:
         add:
             title: 'Créer un utilisateur'
         edit:
-            title: 'Modifier le utilisateur <strong>%name%</strong>'
+            title: 'Modifier l''utilisateur <strong>%name%</strong>'
         gender:
             label: Sexe
             choices:

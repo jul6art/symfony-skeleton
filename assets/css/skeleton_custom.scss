@@ -242,6 +242,10 @@ LOGIN
 /**
 FORMS
  */
+.form-group .form-line:after {
+  border-bottom-width: 1px!important;
+}
+
 .checkbox-block label,
 .radio-block label {
   display: block!important;
