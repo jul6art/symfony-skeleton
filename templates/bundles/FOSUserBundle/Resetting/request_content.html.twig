@@ -1,9 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<div class="msg">{{ 'account.resetting.title'|trans({}, 'account') }}</div>
+
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div class="msg">
-        {{ 'form.account.resetting.title'|trans({}, 'form') }}
-    </div>
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">email</i>
@@ -14,6 +13,6 @@
     </div>
     <button type="submit" class="btn btn-block btn-lg bg-blue-grey waves-effect">{{ 'resetting.request.submit'|trans }}</button>
     <div class="m-t-25 m-b--5 align-center">
-        <a href="{{ path('fos_user_security_login') }}">{{ 'account.register.links.login'|trans({}, 'account') }}</a>
+        <a href="{{ path('fos_user_security_login') }}">{{ 'account.resetting.links.login'|trans({}, 'account') }}</a>
     </div>
 </form>

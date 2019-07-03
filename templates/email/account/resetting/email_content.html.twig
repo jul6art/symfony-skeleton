@@ -1,0 +1,24 @@
+{% extends 'layout/layout_email.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'resetting.email.subject'|trans({'%username%': user.username}) }}
+{%- endautoescape -%}
+{% endblock subject %}
+
+{% block body_html %}
+    {{ 'registration.email.message'|trans({
+        '%username%': user.username,
+        '%confirmationUrl%': confirmationUrl,
+        '%project_name%': setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))
+    }, 'email')|raw }}
+{% endblock body_html %}
+
+{% set links = [
+    {
+        text: 'account.resetting.email.link.text'|trans({}, 'account'),
+        url: confirmationUrl,
+    },
+] %}

@@ -13,9 +13,6 @@ form:
             choices:
                 yes: Oui
                 no: Non
-    account:
-        resetting:
-            title:  'Entrez l''adresse email ou le pseudo que vous avez utilisé pour vous inscrire. Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe.'
     user:
         add:
             title: 'Créer un utilisateur'
