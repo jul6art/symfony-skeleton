@@ -7,11 +7,14 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\BlameableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields="email", repositoryMethod="findByUniqueEmail")
+ * @UniqueEntity(fields="username", repositoryMethod="findByUniqueUsername")
  */
 class User extends BaseUser
 {
