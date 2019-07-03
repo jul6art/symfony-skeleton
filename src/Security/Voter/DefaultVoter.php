@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class DefaultVoter extends AbstractVoter
 {
-    const ACCESS_PAGE_HOME = 'app.voters.pages.home';
+	public const ACCESS_PAGE_HOME = 'app.voters.pages.home';
 
     /**
      * @param string $attribute

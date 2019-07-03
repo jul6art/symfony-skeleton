@@ -12,7 +12,7 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-            # template: '@User/Email/Registration/registration.html.twig'
+            template: 'email/account/register/email.html.twig'
             from_email:
                 address: '%env(MAILER_FROM_ADDRESS)%'
                 sender_name: '%env(MAILER_FROM_NAME)%'

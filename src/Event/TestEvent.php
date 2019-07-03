@@ -9,9 +9,9 @@ use App\Entity\Test;
  */
 class TestEvent extends AbstractEvent
 {
-    const ADDED = 'event.test.added';
-    const EDITED = 'event.test.edited';
-    const DELETED = 'event.test.deleted';
+    public const ADDED = 'event.test.added';
+    public const EDITED = 'event.test.edited';
+    public const DELETED = 'event.test.deleted';
     /**
      * @var Test
      */

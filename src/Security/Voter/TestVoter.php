@@ -20,13 +20,13 @@ class TestVoter extends AbstractVoter
     use FunctionalityManagerTrait;
     use SettingManagerTrait;
 
-    const ADD = 'app.voters.test.add';
-    const AUDIT = 'app.voters.test.audit';
-    const DELETE = 'app.voters.test.delete';
-    const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
-    const EDIT = 'app.voters.test.edit';
-    const LIST = 'app.voters.test.list';
-    const VIEW = 'app.voters.test.view';
+    public const ADD = 'app.voters.test.add';
+    public const AUDIT = 'app.voters.test.audit';
+    public const DELETE = 'app.voters.test.delete';
+    public const DELETE_MULTIPLE = 'app.voters.test.delete_mutiple';
+    public const EDIT = 'app.voters.test.edit';
+    public const LIST = 'app.voters.test.list';
+    public const VIEW = 'app.voters.test.view';
 
     /**
      * @param string $attribute

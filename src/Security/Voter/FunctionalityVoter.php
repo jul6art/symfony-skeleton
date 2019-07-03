@@ -16,16 +16,16 @@ class FunctionalityVoter extends AbstractVoter
 {
     use FunctionalityManagerTrait;
 
-    const AUDIT = 'app.voters.functionality.audit';
-    const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
-    const CONFIRM_DELETE = 'app.voters.functionality.confirm_delete';
-    const EDIT = 'app.voters.functionality.edit';
-    const EDIT_IN_PLACE = 'app.voters.functionality.edit_in_place';
-    const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
-    const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
-    const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
-    const SWITCH_THEME = 'app.voters.functionality.switch_theme';
-    const WATCH_FORM = 'app.voters.functionality.watch_form';
+    public const AUDIT = 'app.voters.functionality.audit';
+    public const CACHE_CLEAR = 'app.voters.functionality.cache_clear';
+    public const CONFIRM_DELETE = 'app.voters.functionality.confirm_delete';
+    public const EDIT = 'app.voters.functionality.edit';
+    public const EDIT_IN_PLACE = 'app.voters.functionality.edit_in_place';
+    public const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
+    public const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
+    public const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
+    public const SWITCH_THEME = 'app.voters.functionality.switch_theme';
+    public const WATCH_FORM = 'app.voters.functionality.watch_form';
 
     /**
      * @param string $attribute

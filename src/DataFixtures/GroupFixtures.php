@@ -17,9 +17,9 @@ class GroupFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $groups = [
-            'user',
-            'admin',
-            'super_admin',
+            Group::GROUP_NAME_USER,
+            Group::GROUP_NAME_ADMIN,
+            Group::GROUP_NAME_SUPER_ADMIN,
         ];
 
         foreach ($groups as $value) {

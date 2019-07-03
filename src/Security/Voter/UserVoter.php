@@ -20,16 +20,16 @@ class UserVoter extends AbstractVoter
 	use FunctionalityManagerTrait;
     use SettingManagerTrait;
 
-    const ADD = 'app.voters.user.add';
-    const AUDIT = 'app.voters.user.audit';
-    const CHANGE_PASSWORD = 'app.voters.user.change_password';
-    const DELETE = 'app.voters.user.delete';
-    const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
-    const EDIT = 'app.voters.user.edit';
-    const LIST = 'app.voters.user.list';
-    const PROFILE = 'app.voters.user.profile';
-    const LOGOUT = 'app.voters.user.logout';
-    const VIEW = 'app.voters.user.view';
+    public const ADD = 'app.voters.user.add';
+    public const AUDIT = 'app.voters.user.audit';
+    public const CHANGE_PASSWORD = 'app.voters.user.change_password';
+    public const DELETE = 'app.voters.user.delete';
+    public const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
+    public const EDIT = 'app.voters.user.edit';
+    public const LIST = 'app.voters.user.list';
+    public const PROFILE = 'app.voters.user.profile';
+    public const LOGOUT = 'app.voters.user.logout';
+    public const VIEW = 'app.voters.user.view';
 
     /**
      * @param string $attribute

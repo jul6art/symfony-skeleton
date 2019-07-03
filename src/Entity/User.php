@@ -15,13 +15,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
-    const ROLE_ADMIN = 'ROLE_ADMIN';
-    const GENDER_MALE = 'm';
-    const GENDER_FEMALE = 'f';
-    const SETTING_LOCALE = 'locale';
-    const SETTING_THEME = 'theme';
-    const LENGTH_GENERATED_PASSWORD = 8;
-    const DEFAULT_PASSWORD = 'vsweb';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const GENDER_MALE = 'm';
+    public const GENDER_FEMALE = 'f';
+    public const SETTING_LOCALE = 'locale';
+    public const SETTING_THEME = 'theme';
+    public const LENGTH_GENERATED_PASSWORD = 8;
+    public const DEFAULT_PASSWORD = 'vsweb';
 
     use TimestampableEntity;
     use BlameableEntity;

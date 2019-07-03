@@ -119,8 +119,8 @@ class UserManager extends AbstractManager
 	 */
 	public function updateGroups(User $user): User
 	{
-		$user->addGroup($this->groupManager->findOneByName(User::ROLE_DEFAULT));
-		$user->addGroup($this->groupManager->findOneByName(User::ROLE_ADMIN));
+		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
+		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
 		return $user;
 	}
 

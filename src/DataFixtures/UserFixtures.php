@@ -17,8 +17,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     use UserManagerTrait;
 
-    const LIMIT = 30;
-    const GENDER_CHOICES = ['m', 'f'];
+    private const LIMIT = 30;
+	private const GENDER_CHOICES = ['m', 'f'];
 
     /**
      * @param ObjectManager $manager

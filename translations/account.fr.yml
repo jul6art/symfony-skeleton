@@ -5,6 +5,9 @@ account:
             reset_password: 'Mot de passe oublié'
         title: 'Connectez-vous pour démarrer votre session'
     register:
+        email:
+            link:
+                text: 'Valider mon compte'
         links:
             login: 'Connection'
         title: 'Eregistrez-vous pour devenir membre'

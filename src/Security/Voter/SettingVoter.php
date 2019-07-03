@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class SettingVoter extends AbstractVoter
 {
-    const EDIT = 'app.voters.setting.edit';
+	public const EDIT = 'app.voters.setting.edit';
 
     /**
      * @param string $attribute

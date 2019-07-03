@@ -15,7 +15,7 @@ class TestFixtures extends Fixture
 {
     use TestManagerTrait;
 
-    const LIMIT = 100;
+	private const LIMIT = 100;
 
     /**
      * @param ObjectManager $manager

@@ -11,7 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Group extends BaseGroup
 {
-    /**
+	public const GROUP_NAME_USER = 'user';
+	public const GROUP_NAME_ADMIN = 'admin';
+	public const GROUP_NAME_SUPER_ADMIN = 'super_admin';
+
+	/**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")

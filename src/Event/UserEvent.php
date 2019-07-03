@@ -9,9 +9,9 @@ use App\Entity\User;
  */
 class UserEvent extends AbstractEvent
 {
-    const ADDED = 'event.user.added';
-    const EDITED = 'event.user.edited';
-    const DELETED = 'event.user.deleted';
+    public const ADDED = 'event.user.added';
+    public const EDITED = 'event.user.edited';
+    public const DELETED = 'event.user.deleted';
     /**
      * @var User
      */
