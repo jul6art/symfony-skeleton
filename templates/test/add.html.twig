@@ -10,11 +10,13 @@
 {% endblock page_title %}
 
 {% block breadcrumb %}
-    <li class="active">
-        <a href="{{ path('admin_test_list') }}">
-            <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
-        </a>
-    </li>
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
+        <li class="active">
+            <a href="{{ path('admin_test_list') }}">
+                <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
+            </a>
+        </li>
+    {% endif %}
     <li class="active">
         <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'breadcrumb.test.add'|trans({}, 'breadcrumb')|raw }}</span>
     </li>

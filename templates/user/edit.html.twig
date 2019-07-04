@@ -5,11 +5,13 @@
 {% endblock page_title %}
 
 {% block breadcrumb %}
-    <li class="active">
-        <a href="{{ path('admin_user_list') }}">
-            <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
-        </a>
-    </li>
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
+        <li class="active">
+            <a href="{{ path('admin_user_list') }}">
+                <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
+            </a>
+        </li>
+    {% endif %}
     <li class="active">
         <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'breadcrumb.user.edit'|trans({'%name%': user.name}, 'breadcrumb')|raw }}</span>
     </li>
