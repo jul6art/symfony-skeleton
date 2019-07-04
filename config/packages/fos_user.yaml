@@ -25,3 +25,7 @@ fos_user:
         form:
             type: App\Form\User\ResettingPasswordType
             validation_groups:  [ResetPassword, Default]
+    profile:
+        form:
+            type:               App\Form\User\EditUserType
+            validation_groups:  [Profile, Default]

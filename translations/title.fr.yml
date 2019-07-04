@@ -4,6 +4,7 @@ title:
         register: 'S''enregistrer'
         resetting: 'Mot de passe oublié'
         profile: 'Mon profil'
+        edit: 'Mon profil | Modification'
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'

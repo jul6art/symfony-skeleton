@@ -13,6 +13,9 @@ form:
             choices:
                 yes: Oui
                 no: Non
+    account:
+        profile:
+            title: 'Modifier mon profil'
     user:
         add:
             title: 'Créer un utilisateur'

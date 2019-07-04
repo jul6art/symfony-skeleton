@@ -45,7 +45,7 @@
                     </div>
                 {% endif %}
                 <div class="btn">
-                    <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('admin_user_edit', {id: user.id}) }}">
+                    <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('fos_user_profile_edit') }}">
                         <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'button.edit'|trans({}, 'button') }}</span>
                     </a>
                 </div>

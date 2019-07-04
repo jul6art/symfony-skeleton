@@ -2,6 +2,7 @@ breadcrumb:
     home: Accueil
     account:
         profile: 'Mon profil'
+        edit: 'Modifier mon profil'
     test:
         add: 'Créer un test'
         edit: 'Modifier le test <strong>%name%</strong>'
