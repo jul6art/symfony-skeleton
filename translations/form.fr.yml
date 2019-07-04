@@ -16,6 +16,8 @@ form:
     account:
         profile:
             title: 'Modifier mon profil'
+        change_password:
+            title: 'Modifier mon mot de passe'
     user:
         add:
             title: 'Créer un utilisateur'
@@ -32,6 +34,12 @@ form:
             label: Prénom
         lastname:
             label: Nom
+        current_password:
+            label: 'Mot de passe actuel'
+        new_password:
+            label: 'Nouveau mot de passe'
+        new_password_confirmation:
+            label: 'Confirmation du nouveau mot de passe'
         password:
             label: 'Mot de passe'
             missmatch: 'Les mots de passe ne correspondent pas'

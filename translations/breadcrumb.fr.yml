@@ -3,6 +3,7 @@ breadcrumb:
     account:
         profile: 'Mon profil'
         edit: 'Modifier mon profil'
+        change_password: 'Modifier mon mot de passe'
     test:
         add: 'Créer un test'
         edit: 'Modifier le test <strong>%name%</strong>'

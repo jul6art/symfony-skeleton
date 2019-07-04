@@ -9,6 +9,14 @@ fos_user:
         sender_name: '%env(MAILER_FROM_NAME)%'
     service:
         mailer: fos_user.mailer.twig_swift
+    change_password:
+        form:
+            type:               App\Form\User\ChangePasswordType
+            validation_groups:  [ChangePassword, Default]
+    profile:
+        form:
+            type:               App\Form\User\EditUserType
+            validation_groups:  [Profile, Default]
     registration:
         confirmation:
             enabled: true
@@ -25,7 +33,3 @@ fos_user:
         form:
             type: App\Form\User\ResettingPasswordType
             validation_groups:  [ResetPassword, Default]
-    profile:
-        form:
-            type:               App\Form\User\EditUserType
-            validation_groups:  [Profile, Default]

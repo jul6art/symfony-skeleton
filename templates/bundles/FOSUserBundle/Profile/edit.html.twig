@@ -18,13 +18,11 @@
 {% endblock breadcrumb %}
 
 {% block page_actions %}
-    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
-        <div class="pull-right btn-group">
-            <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_user_list') }}">
-                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
-            </a>
-        </div>
-    {% endif %}
+    <div class="pull-right btn-group">
+        <a class="btn bg-blue-grey white waves-effect" href="{{ path('fos_user_profile_show') }}">
+            <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
+        </a>
+    </div>
 {% endblock page_actions %}
 
 {% block form_title %}
@@ -39,13 +37,11 @@
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
             <div class="btn-group btn-group-justified">
-                {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
-                    <div class="btn">
-                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('admin_user_list')) }}">
-                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
-                        </a>
-                    </div>
-                {% endif %}
+                <div class="btn">
+                    <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('fos_user_profile_show')) }}">
+                        <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
+                    </a>
+                </div>
                 <div class="btn">
                     <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
                             {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' }}>

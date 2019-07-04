@@ -5,6 +5,7 @@ title:
         resetting: 'Mot de passe oublié'
         profile: 'Mon profil'
         edit: 'Mon profil | Modification'
+        change_password: 'Mon profil | Modifier mon mot de passe'
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'
