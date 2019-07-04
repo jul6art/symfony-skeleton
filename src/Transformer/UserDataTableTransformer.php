@@ -20,6 +20,7 @@ use Twig\Error\SyntaxError;
  */
 class UserDataTableTransformer extends UserTransformer
 {
+	use CellFormatTransformerTrait;
     use DataTableTransformerTrait;
 
     /**
@@ -95,7 +96,7 @@ class UserDataTableTransformer extends UserTransformer
             );
         }
 
-        $output['actions'] = $this->renderActions($this->actions, 'includes/datatable_actions_dropdown.html.twig');
+        $output['actions'] = $this->renderActions($this->actions, 'includes/datatable/actions/dropdown.html.twig');
 
         return $output;
     }

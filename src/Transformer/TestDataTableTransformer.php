@@ -11,7 +11,6 @@ namespace App\Transformer;
 use App\Entity\Test;
 use App\Security\Voter\TestVoter;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -21,6 +20,7 @@ use Twig\Error\SyntaxError;
  */
 class TestDataTableTransformer extends TestTransformer
 {
+	use CellFormatTransformerTrait;
     use DataTableTransformerTrait;
 
     /**
@@ -96,7 +96,7 @@ class TestDataTableTransformer extends TestTransformer
             );
         }
 
-        $output['actions'] = $this->renderActions($this->actions, 'includes/datatable_actions_dropdown.html.twig');
+        $output['actions'] = $this->renderActions($this->actions, 'includes/datatable/actions/dropdown.html.twig');
 
         return $output;
     }

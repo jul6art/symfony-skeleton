@@ -35,8 +35,8 @@
             <tbody>
             {% for key, value in test %}
                 <tr>
-                    <th>{{ ('details.test.' ~ key)|trans({}, 'details') }}</th>
-                    <td>{{ value }}</td>
+                    <th>{{ ('table.head.test.' ~ key)|trans({}, 'table') }}</th>
+                    <td>{{ value|raw }}</td>
                 </tr>
             {% endfor %}
             </tbody>

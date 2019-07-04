@@ -14,8 +14,11 @@ table:
             id: ID
             name: Nom
         user:
+            email: Email
+            gender: Sexe
             id: ID
             name: Nom
+            username: Pseudo
     actions:
         test:
             view:  'Voir le test'
@@ -25,3 +28,7 @@ table:
             view:  'Voir l''utilisateur'
             edit:  'Modifier l''utilisateur'
             delete:  'Supprimer l''utilisateur'
+    user:
+        gender:
+            f: Femme
+            m: Homme

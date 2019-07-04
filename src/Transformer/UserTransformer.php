@@ -10,15 +10,27 @@ namespace App\Transformer;
 
 use App\Entity\User;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class UserTransformer.
  */
 class UserTransformer implements NormalizerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+	use CellFormatTransformerTrait;
+
+	/**
+	 * @param mixed $user
+	 * @param null $format
+	 * @param array $context
+	 *
+	 * @return array|bool|float|int|string
+	 * @throws LoaderError
+	 * @throws RuntimeError
+	 * @throws SyntaxError
+	 */
     public function normalize($user, $format = null, array $context = [])
     {
         if (!$user instanceof User) {
@@ -27,7 +39,10 @@ class UserTransformer implements NormalizerInterface
 
         return [
             'id' => $user->getId(),
+            'gender' => $this->renderCellLabel('table.user.gender.' . $user->getGender()),
             'name' => $user->getFullname(),
+            'username' => $user->getUsername(),
+            'email' => $this->renderCellEmail($user->getEmail()),
         ];
     }
 

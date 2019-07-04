@@ -60,7 +60,7 @@ class UserDropdownBuilder
     {
         if ($this->authorizationChecker->isGranted(UserVoter::PROFILE, User::class)) {
             $menu->addChild('navbar.profile', [
-                'route' => 'fos_user_profile_edit',
+                'route' => 'fos_user_profile_show',
             ])->setExtras([
                 'icon' => 'person',
                 'translation_domain' => 'navbar',

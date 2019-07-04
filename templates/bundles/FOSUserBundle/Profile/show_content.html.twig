@@ -1,6 +1,14 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{{ dump(user) }}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<div class="table-responsive">
+    <table class="table table table-bordered table-striped table-hover">
+        <tbody>
+        {% for key, value in user %}
+            <tr>
+                <th>{{ ('details.user.' ~ key)|trans({}, 'details') }}</th>
+                <td>{{ value|raw }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>

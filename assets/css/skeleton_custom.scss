@@ -455,3 +455,8 @@ FIXES
 .dropdown-menu span.block {
   margin-right: 23px;
 }
+
+table [data-toggle="dropdown"] small {
+  position: relative;
+  top: -3px;
+}

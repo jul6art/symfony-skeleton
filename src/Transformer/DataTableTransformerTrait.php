@@ -109,7 +109,7 @@ trait DataTableTransformerTrait
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function renderActions(ArrayCollection $actions, string $view = 'includes/datatable_actions_list.html.twig'): string
+    public function renderActions(ArrayCollection $actions, string $view = 'includes/datatable/actions/list.html.twig'): string
     {
         $view = $this->twig->render($view, ['actions' => $actions]);
 
