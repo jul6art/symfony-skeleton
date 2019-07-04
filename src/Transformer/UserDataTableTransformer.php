@@ -20,7 +20,7 @@ use Twig\Error\SyntaxError;
  */
 class UserDataTableTransformer extends UserTransformer
 {
-	use CellFormatTransformerTrait;
+	use CellFormatterTrait;
     use DataTableTransformerTrait;
 
     /**

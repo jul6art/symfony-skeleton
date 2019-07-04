@@ -1,7 +1,7 @@
 {% extends 'layout/layout_details.html.twig' %}
 
 {% block page_title %}
-    {{ 'title.user.view'|trans({'%name%': user.fullName}, 'title') }}
+    {{ 'title.account.profile'|trans({}, 'title') }}
 {% endblock page_title %}
 
 {% block breadcrumb %}
@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.user.view'|trans({'%name%': user.fullName}, 'breadcrumb')|raw }}</span>
+        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.account.profile'|trans({}, 'breadcrumb') }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -26,7 +26,7 @@
 {% endblock page_actions %}
 
 {% block details_title %}
-    {{ 'details.user.title'|trans({'%name%': user.fullName}, 'details')|raw }}
+    {{ 'details.profile.title'|trans({}, 'details')|raw }}
 {% endblock details_title %}
 
 {% block details_content %}

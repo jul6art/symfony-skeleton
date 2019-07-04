@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 class TestTransformer implements NormalizerInterface
 {
-	use CellFormatTransformerTrait;
+	use CellFormatterTrait;
 
     /**
      * {@inheritdoc}

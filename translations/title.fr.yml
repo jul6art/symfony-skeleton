@@ -3,6 +3,7 @@ title:
         login: 'Se connecter'
         register: 'S''enregistrer'
         resetting: 'Mot de passe oublié'
+        profile: 'Mon profil'
     test:
         list: 'Tests | La liste'
         add: 'Tests | Nouveau test'

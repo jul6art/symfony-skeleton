@@ -19,7 +19,7 @@ use Twig\Error\SyntaxError;
  */
 class UserTransformer implements NormalizerInterface
 {
-	use CellFormatTransformerTrait;
+	use CellFormatterTrait;
 
 	/**
 	 * @param mixed $user

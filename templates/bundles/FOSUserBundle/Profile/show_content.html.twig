@@ -1,14 +1,26 @@
-{{ dump(user) }}
-
 <div class="table-responsive">
     <table class="table table table-bordered table-striped table-hover">
         <tbody>
-        {% for key, value in user %}
             <tr>
-                <th>{{ ('details.user.' ~ key)|trans({}, 'details') }}</th>
-                <td>{{ value|raw }}</td>
+                <th>{{ 'table.head.user.id'|trans({}, 'table') }}</th>
+                <td>{{ user.id }}</td>
             </tr>
-        {% endfor %}
+            <tr>
+                <th>{{ 'table.head.user.gender'|trans({}, 'table') }}</th>
+                <td><span class="label bg-blue-grey">{{ ('table.user.gender.' ~ user.gender)|trans({}, 'table') }}</span></td>
+            </tr>
+            <tr>
+                <th>{{ 'table.head.user.name'|trans({}, 'table') }}</th>
+                <td>{{ user.fullname }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'table.head.user.username'|trans({}, 'table') }}</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'table.head.user.email'|trans({}, 'table') }}</th>
+                <td><a class="white-space-nowrap" href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            </tr>
         </tbody>
     </table>
 </div>

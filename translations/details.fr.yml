@@ -3,3 +3,5 @@ details:
         title: 'Aperçu du test <strong>%name%</strong>'
     user:
         title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
+    profile:
+        title: 'Aperçu de mon pofil'
