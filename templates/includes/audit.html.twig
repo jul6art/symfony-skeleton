@@ -32,8 +32,10 @@
                                             '%auditId%': audit.id
                                         } %}
 
-                                        {% for key, value in audit.diffs if value is not iterable %}
-                                            {% set diffs = {('%' ~ key ~ '%'): value}|merge(diffs) %}
+                                        {% for key, value in audit.diffs %}
+                                            {% if value is not iterable %}
+                                                {% set diffs = {('%' ~ key ~ '%'): value}|merge(diffs) %}
+                                            {% endif %}
                                         {% endfor %}
 
                                         {{ ('audit.actions.' ~ audit.type)|trans(diffs,  'audit') }}
@@ -50,14 +52,16 @@
 
                                     {% if audit.type == 'update' %}
                                         <div class="audit-updates-container">
-                                            {% for key, value in audit.diffs if key not in exclude %}
-                                                <p class="font-underline">
-                                                    {{ 'audit.updates.text'|trans({
-                                                        '%property%': key,
-                                                        '%old%': value.old|json_encode,
-                                                        '%new%': value.new|json_encode,
-                                                    }, 'audit')|raw }}
-                                                </p>
+                                            {% for key, value in audit.diffs %}
+                                                {% if key not in exclude %}
+                                                    <p class="font-underline">
+                                                        {{ 'audit.updates.text'|trans({
+                                                            '%property%': key,
+                                                            '%old%': value.old|json_encode,
+                                                            '%new%': value.new|json_encode,
+                                                        }, 'audit')|raw }}
+                                                    </p>
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
                                     {% endif %}

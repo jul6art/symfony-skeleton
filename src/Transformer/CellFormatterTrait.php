@@ -34,7 +34,7 @@ trait CellFormatterTrait
     }
 
 	/**
-	 * @param string $text
+	 * @param string|null $text
 	 * @param string $color
 	 *
 	 * @return string
@@ -42,7 +42,7 @@ trait CellFormatterTrait
 	 * @throws RuntimeError
 	 * @throws SyntaxError
 	 */
-    public function renderCellLabel(string $text, string $color = 'bg-blue-grey'): string
+    public function renderCellLabel(string $text = null, string $color = 'bg-blue-grey'): string
     {
 		return $this->renderCell('includes/datatable/cell/label.html.twig', [
 			'text' => $text,
@@ -51,14 +51,14 @@ trait CellFormatterTrait
     }
 
 	/**
-	 * @param string $email
+	 * @param string|null $email
 	 *
 	 * @return string
 	 * @throws LoaderError
 	 * @throws RuntimeError
 	 * @throws SyntaxError
 	 */
-    public function renderCellEmail(string $email): string
+    public function renderCellEmail(string $email = null): string
     {
 		return $this->renderCell('includes/datatable/cell/email.html.twig', [
 			'email' => $email,

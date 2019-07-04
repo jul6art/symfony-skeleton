@@ -143,16 +143,18 @@
                                                         <tbody>
 
                                                         <!-- START LINKS -->
-                                                        {% for link in links if links is defined %}
-                                                            <tr style="padding-bottom: 15px; height: 60px;">
-                                                                <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 10px; border-radius: 5px; text-align: center;">
+                                                        {% if links is defined %}
+                                                            {% for link in links %}
+                                                                <tr style="padding-bottom: 15px; height: 60px;">
+                                                                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 10px; border-radius: 5px; text-align: center;">
 
-                                                                    <a href="{{ link.url }}" target="_blank" style="display: inline-block; color: #ffffff; background-color: #607D8B; border: solid 1px #607D8B; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize;">
-                                                                        {{ link.text }}
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
+                                                                        <a href="{{ link.url }}" target="_blank" style="display: inline-block; color: #ffffff; background-color: #607D8B; border: solid 1px #607D8B; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize;">
+                                                                            {{ link.text }}
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
                                                         <!-- END LINKS -->
 
                                                         </tbody>

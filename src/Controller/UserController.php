@@ -79,7 +79,7 @@ class UserController extends AbstractFOSRestController
             $this->userManager->updateSettings($user);
             $this->userManager->updateGroups($user);
             $this->userManager->save($user);
-            $eventDispatcher->dispatch(UserEvent::ADDED, $event);
+            $eventDispatcher->dispatch($event, UserEvent::ADDED);
 
             return $this->redirectToRoute('admin_user_list');
         }
@@ -146,7 +146,7 @@ class UserController extends AbstractFOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userManager->save($user);
-            $eventDispatcher->dispatch(UserEvent::EDITED, new UserEvent($user));
+            $eventDispatcher->dispatch(new UserEvent($user), UserEvent::EDITED);
 
 	        return $this->redirect($referer ?? $this->generateUrl('admin_user_list'));
         }
@@ -178,7 +178,7 @@ class UserController extends AbstractFOSRestController
     {
         $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);
 
-        $eventDispatcher->dispatch(UserEvent::DELETED, new UserEvent($user));
+        $eventDispatcher->dispatch(new UserEvent($user), UserEvent::DELETED);
         $this->userManager->delete($user);
 
         return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('admin_user_list');

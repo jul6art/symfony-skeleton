@@ -74,7 +74,7 @@ class TestController extends AbstractFOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->testManager->save($test);
-            $eventDispatcher->dispatch(TestEvent::ADDED, new TestEvent($test));
+            $eventDispatcher->dispatch(new TestEvent($test), TestEvent::ADDED);
 
             return $this->redirectToRoute('admin_test_list');
         }
@@ -141,7 +141,7 @@ class TestController extends AbstractFOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->testManager->save($test);
-            $eventDispatcher->dispatch(TestEvent::EDITED, new TestEvent($test));
+            $eventDispatcher->dispatch(new TestEvent($test), TestEvent::EDITED);
 
 	        return $this->redirect($referer ?? $this->generateUrl('admin_test_list'));
         }
@@ -173,7 +173,7 @@ class TestController extends AbstractFOSRestController
     {
         $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);
 
-        $eventDispatcher->dispatch(TestEvent::DELETED, new TestEvent($test));
+        $eventDispatcher->dispatch(new TestEvent($test), TestEvent::DELETED);
         $this->testManager->delete($test);
 
         return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('admin_test_list');
