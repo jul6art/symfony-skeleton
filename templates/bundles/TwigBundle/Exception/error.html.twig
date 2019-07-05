@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ status_code }}
+    {{ parent() }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}" />
+    {{ encore_entry_link_tags('error') }}
+{% endblock stylesheets %}
+
+{% block body_content %}
+    <section class="page_error col-{{ theme_name() }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="col-sm-10 col-sm-offset-1  text-center">
+                        <div class="four_zero_four_bg">
+                            <h1 class="text-center ">{{ status_code }}</h1>
+
+
+                        </div>
+
+                        <div class="content_box_error">
+                            <h3 class="h2">
+                                {% if status_code == 404 %}
+                                    {{ 'error.404.title'|trans({}, 'error') }}
+                                {% elseif status_code == 403 %}
+                                    {{ 'error.403.title'|trans({}, 'error') }}
+                                {% else %}
+                                    {{ 'error.500.title'|trans({}, 'error') }}
+                                {% endif %}
+                            </h3>
+
+                            <p>
+                                {% if status_code == 404 %}
+                                    {{ 'error.404.content'|trans({}, 'error') }}
+                                {% elseif status_code == 403 %}
+                                    {{ 'error.403.content'|trans({}, 'error') }}
+                                {% else %}
+                                    {{ 'error.500.content'|trans({}, 'error')|raw }}
+                                {% endif %}
+                            </p>
+
+                            <a href="{{ path('admin_homepage') }}" class="btn bg-{{ theme_name() }}">{{ 'error.common.links.homepage'|trans({}, 'error') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body_content %}

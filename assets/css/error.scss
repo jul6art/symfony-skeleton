@@ -1,0 +1,41 @@
+// bootstrap
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+// theme
+@import "materialize";
+@import "skeleton_theme";
+
+
+.page_error {
+  padding: 40px 0;
+  background: #fff;
+  min-height: 100vh;
+
+  img {
+    width: 100%;
+  }
+}
+
+.four_zero_four_bg {
+  background-image: url("../images/error.gif");
+  height: 400px;
+  background-position: center;
+
+  h1 {
+    font-size: 80px;
+  }
+
+  h3 {
+    font-size: 80px;
+  }
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.content_box_error{
+  margin-top: -50px;
+}

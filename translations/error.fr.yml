@@ -1,0 +1,13 @@
+error:
+    common:
+        links:
+            homepage: 'Retourner à l''accueil'
+    403:
+        title: 'Accès refusé!'
+        content: 'Vous n''avez pas le droit d''accéder à cette ressource'
+    404:
+        title: 'On dirait que vous êtes perdu!'
+        content: 'La page que vous cherchez n''est pas disponible'
+    500:
+        title: 'Oups! Une erreur s''est produite!'
+        content: 'Quelque chose est cassé. S''il vous plaît signalez-nous ce que vous faisiez lorsque cette erreur s''est produite.<br>Nous allons corriger dès que possible. Désolé pour l''inconvénient.'
