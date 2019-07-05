@@ -62,7 +62,7 @@ class UserDropdownBuilder
             $menu->addChild('navbar.profile', [
                 'route' => 'fos_user_profile_show',
             ])->setExtras([
-                'icon' => 'person',
+                'icon' => 'face',
                 'translation_domain' => 'navbar',
             ]);
         }
