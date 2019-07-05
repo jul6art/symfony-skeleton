@@ -5,3 +5,7 @@ details:
         title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
     profile:
         title: 'Aperçu de mon pofil'
+        links:
+            avatar:
+                mine: 'Modifier mon avatar'
+                not_mine: 'Modifier l''avatar'

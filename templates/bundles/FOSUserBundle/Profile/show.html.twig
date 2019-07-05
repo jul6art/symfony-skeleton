@@ -1,21 +1,10 @@
 {% extends 'layout/layout_details.html.twig' %}
 
+{% set breadcrumb = false %}
+
 {% block page_title %}
     {{ 'title.account.profile'|trans({}, 'title') }}
 {% endblock page_title %}
-
-{% block breadcrumb %}
-    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
-        <li class="active">
-            <a href="{{ path('admin_user_list') }}">
-                <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
-            </a>
-        </li>
-    {% endif %}
-    <li class="active">
-        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.account.profile'|trans({}, 'breadcrumb') }}</span>
-    </li>
-{% endblock breadcrumb %}
 
 {% block page_actions %}
     {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
@@ -30,6 +19,27 @@
 {% block details_title %}
     {{ 'details.profile.title'|trans({}, 'details')|raw }}
 {% endblock details_title %}
+
+{% block details_sidebar_left %}
+    <div class="card profile-card">
+        <div class="profile-header bg-{{ theme_name() }}">&nbsp;</div>
+        <div class="profile-body">
+            <div class="image-area">
+                <img src="{{ asset('build/images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">
+            </div>
+            <div class="content-area">
+                <h3>{{ user.fullname }}</h3>
+                <p>{{ user.username }}</p>
+                <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+            </div>
+        </div>
+        {% if is_granted(constant('App\\Security\\Voter\\UserVoter::CHANGE_AVATAR'), user) %}
+            <div class="profile-footer">
+                <button class="btn bg-blue-grey btn-lg waves-effect btn-block">{{ 'details.profile.links.avatar.mine'|trans({}, 'details') }}</button>
+            </div>
+        {% endif %}
+    </div>
+{% endblock details_sidebar_left %}
 
 {% block details_content %}
     {% include '@FOSUser/Profile/show_content.html.twig' %}

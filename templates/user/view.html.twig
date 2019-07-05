@@ -29,6 +29,27 @@
     {{ 'details.user.title'|trans({'%name%': user.name}, 'details')|raw }}
 {% endblock details_title %}
 
+{% block details_sidebar_left %}
+    <div class="card profile-card">
+        <div class="profile-header bg-{{ theme_name() }}">&nbsp;</div>
+        <div class="profile-body">
+            <div class="image-area">
+                <img src="{{ asset('build/images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">
+            </div>
+            <div class="content-area">
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.username }}</p>
+                <p>{{ user.email|raw }}</p>
+            </div>
+        </div>
+        {% if is_granted(constant('App\\Security\\Voter\\UserVoter::CHANGE_AVATAR'), entity) %}
+            <div class="profile-footer">
+                <button class="btn bg-blue-grey btn-lg waves-effect btn-block">{{ 'details.profile.links.avatar.not_mine'|trans({}, 'details') }}</button>
+            </div>
+        {% endif %}
+    </div>
+{% endblock details_sidebar_left %}
+
 {% block details_content %}
     <div class="table-responsive">
         <table class="table table table-bordered table-striped table-hover">

@@ -23,6 +23,7 @@ class UserVoter extends AbstractVoter
     public const ADD = 'app.voters.user.add';
     public const AUDIT = 'app.voters.user.audit';
     public const CHANGE_PASSWORD = 'app.voters.user.change_password';
+    public const CHANGE_AVATAR = 'app.voters.user.change_avatar';
     public const DELETE = 'app.voters.user.delete';
     public const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
     public const EDIT = 'app.voters.user.edit';
@@ -42,6 +43,7 @@ class UserVoter extends AbstractVoter
         if (!\in_array($attribute, [
                 self::ADD,
                 self::AUDIT,
+                self::CHANGE_AVATAR,
                 self::CHANGE_PASSWORD,
                 self::DELETE,
                 self::DELETE_MULTIPLE,
@@ -78,6 +80,8 @@ class UserVoter extends AbstractVoter
         	return $this->canAdd($subject, $token);
         } elseif ($attribute === self::AUDIT) {
         	return $this->canAudit($subject, $token);
+        } elseif ($attribute === self::CHANGE_AVATAR) {
+        	return $this->canChangeAvatar($subject, $token);
         } elseif ($attribute === self::CHANGE_PASSWORD) {
         	return $this->canChangePassword($subject, $token);
         } elseif ($attribute === self::DELETE) {
@@ -131,6 +135,21 @@ class UserVoter extends AbstractVoter
 		    $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
 	    ));
     }
+
+	/**
+	 * @param User $subject
+	 * @param TokenInterface $token
+	 *
+	 * @return bool
+	 */
+	public function canChangeAvatar(User $subject, TokenInterface $token)
+	{
+		if ($subject === $token->getUser()) {
+			return true;
+		}
+
+		return $this->canEdit($subject, $token);
+	}
 
 	/**
 	 * @param string         $subject
