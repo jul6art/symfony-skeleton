@@ -6,7 +6,9 @@ use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
+use App\Manager\TestManagerTrait;
 use App\Manager\UserManagerTrait;
+use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
 use App\Service\FileService;
@@ -32,7 +34,29 @@ class DefaultController extends AbstractFOSRestController
 {
     use FunctionalityManagerTrait;
     use SettingManagerTrait;
+    use TestManagerTrait;
     use UserManagerTrait;
+
+	/**
+	 * @Route("/admin/", name="admin_homepage", methods={"GET"})
+	 *
+	 * @return Response
+	 * @throws NonUniqueResultException
+	 */
+	public function index(): Response
+	{
+		$this->denyAccessUnlessGranted(DefaultVoter::ACCESS_PAGE_HOME);
+
+		$view = $this->view()
+		             ->setTemplate('default/dashboard.html.twig')
+		             ->setTemplateData([
+		             	'count_functionalities' => $this->functionalityManager->countAllByConfigured(),
+		             	'count_users' => $this->userManager->countAll(),
+		             	'count_tests' => $this->testManager->countAll(),
+		             ]);
+
+		return $this->handleView($view);
+	}
 
 	/**
 	 * @param Request $request
@@ -57,14 +81,6 @@ class DefaultController extends AbstractFOSRestController
 
 		return $this->redirect(($referer ?? $this->generateUrl('admin_homepage')) . '?_locale=' . $locale);
 	}
-
-    /**
-     * @Route("/admin/", name="admin_homepage", methods={"GET"})
-     */
-    public function index(): Response
-    {
-        die('hello world');
-    }
 
     /**
      * @param Request        $request

@@ -158,6 +158,16 @@ class FunctionalityManager extends AbstractManager
     }
 
     /**
+     * @return int
+     *
+     * @throws NonUniqueResultException
+     */
+    public function countAllByConfigured(): int
+    {
+        return \count($this->findAllByConfigured());
+    }
+
+    /**
      * @param string $name
      *
      * @return Functionality|null
