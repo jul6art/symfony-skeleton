@@ -11,17 +11,15 @@
     <div class="row clearfix">
         {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality') %}
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="javascript:void(0);" class="js-right-sidebar btn-link">
-                    <div class="info-box bg-{{ theme_name() }} hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">FONCTIONALITÉS</div>
-                            <div class="number count-to" data-from="0" data-to="{{ count_functionalities }}" data-speed="1000" data-fresh-interval="20">{{ count_functionalities }}</div>
-                        </div>
+                <div class="info-box bg-{{ theme_name() }} hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">playlist_add_check</i>
                     </div>
-                </a>
+                    <div class="content">
+                        <div class="text">FONCTIONALITÉS</div>
+                        <div class="number count-to" data-from="0" data-to="{{ count_functionalities }}" data-speed="1000" data-fresh-interval="20">{{ count_functionalities }}</div>
+                    </div>
+                </div>
             </div>
         {% endif %}
         {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
