@@ -11,6 +11,7 @@ php bin/console cache:clear
 php bin/console cache:warmup
 
 echo '--- DATABASE LOADING ---'
+php bin/console doctrine:schema:drop --force
 php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console doctrine:fixtures:load --no-interaction --env=dev
 php bin/console audit:clean --no-confirm
