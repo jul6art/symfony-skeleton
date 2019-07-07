@@ -16,6 +16,6 @@ php bin/console doctrine:fixtures:load --no-interaction --env=dev
 php bin/console audit:clean --no-confirm
 
 echo '--- FILES PERMISSIONS ---'
-sudo chmod -R 777 /home/symfony-skeleton/public_html/var/log
+sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 
 echo '--- SUCCESSFULL DEPLOY ---'
