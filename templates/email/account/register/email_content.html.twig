@@ -9,7 +9,7 @@
 {% endblock subject %}
 
 {% block body_html %}
-    {{ 'registration.email.message'|trans({
+    {{ 'email.account.registration.message'|trans({
         '%username%': user.username,
         '%confirmationUrl%': confirmationUrl,
         '%project_name%': setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))
@@ -18,7 +18,7 @@
 
 {% set links = [
     {
-        text: 'account.register.email.link.text'|trans({}, 'account'),
+        text: 'email.account.registration.link.text'|trans({}, 'email'),
         url: confirmationUrl,
     },
 ] %}

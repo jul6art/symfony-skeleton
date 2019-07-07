@@ -5,16 +5,10 @@ account:
             reset_password: 'Mot de passe oublié'
         title: 'Connectez-vous pour démarrer votre session'
     register:
-        email:
-            link:
-                text: 'Valider mon compte'
         links:
             login: 'Connection'
         title: 'Enregistrez-vous pour devenir membre'
     resetting:
-        email:
-            link:
-                text: 'Réinitialiser mon mot de passe'
         links:
             login: 'Connection'
         title:  'Entrez l''adresse email ou le pseudo que vous avez utilisé pour vous inscrire. Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe.'

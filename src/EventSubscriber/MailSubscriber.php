@@ -3,13 +3,20 @@
 namespace App\EventSubscriber;
 
 use App\Event\UserEvent;
+use App\Service\MailerServiceTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Throwable;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class MailSubscriber.
  */
 class MailSubscriber implements EventSubscriberInterface
 {
+	use MailerServiceTrait;
+
     /**
      * @return array
      */
@@ -20,12 +27,22 @@ class MailSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param UserEvent $event
-     */
+	/**
+	 * @param UserEvent $event
+	 *
+	 * @throws Throwable
+	 * @throws LoaderError
+	 * @throws RuntimeError
+	 * @throws SyntaxError
+	 */
     public function onUserAdded(UserEvent $event): void
     {
+    	$user = $event->getUser();
     	$password = $event->find('password');
-        // send mail to user with password
+
+        $this->mailerService->send($user->getEmail(), 'email/user/add/email.html.twig', [
+        	'password' => $password,
+        	'user' => $user,
+        ]);
     }
 }

@@ -35,6 +35,8 @@ parameters:
         - func.switch_theme
         - func.manage_settings
     available_locales: fr|en|de
+    mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
+    mailer_from_name: '%env(MAILER_FROM_NAME)%'
     group_class: App\Entity\Group
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
     locale: 'fr'
@@ -47,11 +49,13 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            $locale: '%locale%'
-            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
-            $available_locales: '%available_locales%'
             $available_colors: '%available_colors%'
             $available_functionalities: '%available_functionalities%'
+            $available_locales: '%available_locales%'
+            $locale: '%locale%'
+            $mailer_from_address: '%mailer_from_address%'
+            $mailer_from_name: '%mailer_from_name%'
+            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
 
     App\:
         resource: '../src/*'

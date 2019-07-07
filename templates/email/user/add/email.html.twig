@@ -1,24 +1,24 @@
 {% extends 'layout/layout_email.html.twig' %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
 {% block subject %}
-{%- autoescape false -%}
-{{ 'resetting.email.subject'|trans({'%username%': user.username}) }}
-{%- endautoescape -%}
+    {%- autoescape false -%}
+        {{ 'email.user.add.subject'|trans({'%name%': user.fullName}, 'email') }}
+    {%- endautoescape -%}
 {% endblock subject %}
 
 {% block body_html %}
-    {{ 'email.account.resetting.message'|trans({
+    {{ 'email.user.add.message'|trans({
+        '%name%': user.fullName,
         '%username%': user.username,
-        '%confirmationUrl%': confirmationUrl,
+        '%password%': password,
+        '%url%': url('admin_homepage'),
         '%project_name%': setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))
     }, 'email')|raw }}
 {% endblock body_html %}
 
 {% set links = [
     {
-        text: 'email.account.resetting.link.text'|trans({}, 'email'),
-        url: confirmationUrl,
+        text: 'email.user.add.link.text'|trans({}, 'email'),
+        url: url('admin_homepage'),
     },
 ] %}
