@@ -39,7 +39,7 @@ class UserTransformer implements NormalizerInterface
 
         return [
             'id' => $user->getId(),
-            'gender' => $this->renderCellLabel('table.user.gender.' . $user->getGender()),
+            'gender' => $this->renderCell('user/cell/gender.html.twig', ['gender' => $user->getGender()]),
             'name' => $user->getFullname(),
             'username' => $user->getUsername(),
             'email' => $this->renderCellEmail($user->getEmail()),
