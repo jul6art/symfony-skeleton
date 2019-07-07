@@ -17,7 +17,7 @@ table:
             email: Email
             gender: Sexe
             id: ID
-            name: Nom
+            name: Prénom nom
             username: Pseudo
     actions:
         test:

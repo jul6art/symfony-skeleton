@@ -67,15 +67,8 @@
 
 {% block details_footer %}
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9">
             <div class="btn-group btn-group-justified">
-                {% if is_granted(constant('App\\Security\\Voter\\UserVoter::LIST'), 'App\\Entity\\User') %}
-                    <div class="btn">
-                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ path('admin_user_list') }}">
-                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
-                        </a>
-                    </div>
-                {% endif %}
                 <div class="btn">
                     <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('admin_user_edit', {id: user.id}) }}">
                         <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'button.edit'|trans({}, 'button') }}</span>
