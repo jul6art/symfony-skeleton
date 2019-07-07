@@ -7,13 +7,13 @@ composer install --no-suggest
 php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 yarn install
 yarn encore production
-php bin/console cache:clear
-php bin/console cache:warmup
+php bin/console cache:clear --env=prod
+php bin/console cache:warmup --env=prod
 
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:schema:drop --force
-php bin/console doctrine:migrations:migrate --no-interaction
-php bin/console doctrine:fixtures:load --no-interaction --env=dev
+php bin/console doctrine:schema:update --force
+php bin/console doctrine:fixtures:load --no-interaction --env=prod
 php bin/console audit:clean --no-confirm
 
 echo '--- FILES PERMISSIONS ---'
