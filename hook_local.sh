@@ -7,8 +7,8 @@ composer install --no-suggest
 php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 yarn install
 yarn encore dev
-php bin/console cache:clear
-php bin/console cache:warmup
+php bin/console cache:clear --env=dev
+php bin/console cache:warmup --env=dev
 
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:schema:drop --force

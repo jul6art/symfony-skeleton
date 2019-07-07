@@ -12,7 +12,7 @@ php bin/console cache:warmup --env=prod
 
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:migrations:migrate --no-interaction
-php bin/console doctrine:fixtures:load --no-interaction --env=prod
+php bin/console doctrine:fixtures:load --no-interaction --env=dev
 php bin/console audit:clean --no-confirm
 
 echo '--- FILES PERMISSIONS ---'
