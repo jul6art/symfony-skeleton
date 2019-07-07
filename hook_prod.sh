@@ -11,7 +11,9 @@ php bin/console cache:clear --env=prod
 php bin/console cache:warmup --env=prod
 
 echo '--- DATABASE LOADING ---'
+php bin/console doctrine:schema:drop --force
 php bin/console doctrine:migrations:migrate --no-interaction
+## si cette ligne crash, vider la db à la main
 php bin/console doctrine:fixtures:load --no-interaction --env=dev
 php bin/console audit:clean --no-confirm
 
