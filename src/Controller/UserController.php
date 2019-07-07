@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("/admin/user", name="admin_")
+ * @Route("%admin_route_prefix%/user", name="admin_")
  */
 class UserController extends AbstractFOSRestController
 {

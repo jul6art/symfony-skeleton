@@ -35,7 +35,7 @@ class DefaultController extends AbstractFOSRestController
 	use FileServiceTrait, FunctionalityManagerTrait, RefererServiceTrait, SettingManagerTrait, TestManagerTrait, UserManagerTrait;
 
 	/**
-	 * @Route("/admin/", name="admin_homepage", methods={"GET"})
+	 * @Route("%admin_route_prefix%/", name="admin_homepage", methods={"GET"})
 	 *
 	 * @return Response
 	 * @throws NonUniqueResultException
@@ -83,7 +83,7 @@ class DefaultController extends AbstractFOSRestController
 	 * @param KernelInterface $kernel
 	 * @param TranslatorInterface $translator
 	 *
-	 * @Route("/admin/cache", name="admin_cache", methods={"GET"})
+	 * @Route("%admin_route_prefix%/cache", name="admin_cache", methods={"GET"})
 	 *
 	 * @return Response
 	 * @throws \Exception
@@ -114,7 +114,7 @@ class DefaultController extends AbstractFOSRestController
      * @param array          $available_colors
      * @param RefererService $this->refererService
      *
-     * @Route("/admin/theme/{name}", name="admin_theme_switch", methods={"GET"})
+     * @Route("%admin_route_prefix%/theme/{name}", name="admin_theme_switch", methods={"GET"})
      *
      * @return Response
      */
@@ -136,7 +136,7 @@ class DefaultController extends AbstractFOSRestController
 	 * @param Functionality $functionality
 	 * @param int $state
 	 *
-	 * @Route("/admin/functionality/{functionality}/{state}", name="admin_functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
+	 * @Route("%admin_route_prefix%/functionality/{functionality}/{state}", name="admin_functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
@@ -162,7 +162,7 @@ class DefaultController extends AbstractFOSRestController
 	 * @param Setting $setting
 	 * @param string $value
 	 *
-	 * @Route("/admin/setting/{setting}/{value}", name="admin_setting_set", methods={"GET"}, options={"expose"=true})
+	 * @Route("%admin_route_prefix%/setting/{setting}/{value}", name="admin_setting_set", methods={"GET"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
