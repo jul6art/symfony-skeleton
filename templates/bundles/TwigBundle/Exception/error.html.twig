@@ -12,7 +12,7 @@
 {% endblock stylesheets %}
 
 {% block body_content %}
-    <section class="page_error col-{{ theme_name() }}">
+    <section class="page_error col-{{ constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE') }}">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 ">
@@ -44,7 +44,7 @@
                                 {% endif %}
                             </p>
 
-                            <a href="/admin" class="btn bg-{{ theme_name() }}">{{ 'error.common.links.homepage'|trans({}, 'error') }}</a>
+                            <a href="{{ path('admin_homepage') }}" class="btn bg-{{ constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE') }}">{{ 'error.common.links.homepage'|trans({}, 'error') }}</a>
                         </div>
                     </div>
                 </div>
