@@ -30,8 +30,6 @@ trait UserManagerTrait
      * @param UserManager $userManager
      *
      * @required
-     *
-     * @return UserManagerTrait
      */
     public function setUserManager(UserManager $userManager): void
     {

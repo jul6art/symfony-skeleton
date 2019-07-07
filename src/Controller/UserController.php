@@ -8,7 +8,7 @@ use App\Form\User\AddUserType;
 use App\Form\User\EditUserType;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\UserVoter;
-use App\Service\RefererService;
+use App\Service\RefererServiceTrait;
 use App\Transformer\UserDataTableTransformer;
 use App\Transformer\UserTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Serializer;
  */
 class UserController extends AbstractFOSRestController
 {
-    use UserManagerTrait;
+    use RefererServiceTrait, UserManagerTrait;
 
     /**
      * @param UserDataTableTransformer $userDataTableTransformer
@@ -127,7 +127,6 @@ class UserController extends AbstractFOSRestController
      * @param User                     $user
      * @param UserTransformer          $userTransformer
      * @param EventDispatcherInterface $eventDispatcher
-     * @param RefererService           $refererService
      *
      * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
      *
@@ -135,11 +134,11 @@ class UserController extends AbstractFOSRestController
      *
      * @throws ExceptionInterface
      */
-    public function edit(Request $request, User $user, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher, RefererService $refererService): Response
+    public function edit(Request $request, User $user, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(UserVoter::EDIT, $user);
 
-        $referer = $refererService->getFormReferer($request, 'user');
+        $referer = $this->refererService->getFormReferer($request, 'user');
 
         $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest($request);

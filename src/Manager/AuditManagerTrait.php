@@ -30,8 +30,6 @@ trait AuditManagerTrait
      * @param AuditManager $auditManager
      *
      * @required
-     *
-     * @return AuditManagerTrait
      */
     public function setAuditManager(AuditManager $auditManager): void
     {

@@ -9,7 +9,7 @@ use App\Form\Test\EditTestType;
 use App\Manager\TestManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\TestVoter;
-use App\Service\RefererService;
+use App\Service\RefererServiceTrait;
 use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -25,8 +25,7 @@ use Symfony\Component\Serializer\Serializer;
  */
 class TestController extends AbstractFOSRestController
 {
-    use TestManagerTrait;
-    use UserManagerTrait;
+    use RefererServiceTrait, TestManagerTrait, UserManagerTrait;
 
     /**
      * @param TestDataTableTransformer $testDataTableTransformer
@@ -122,7 +121,6 @@ class TestController extends AbstractFOSRestController
      * @param Test                     $test
      * @param TestTransformer          $testTransformer
      * @param EventDispatcherInterface $eventDispatcher
-     * @param RefererService           $refererService
      *
      * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
      *
@@ -130,11 +128,11 @@ class TestController extends AbstractFOSRestController
      *
      * @throws ExceptionInterface
      */
-    public function edit(Request $request, Test $test, TestTransformer $testTransformer, EventDispatcherInterface $eventDispatcher, RefererService $refererService): Response
+    public function edit(Request $request, Test $test, TestTransformer $testTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::EDIT, $test);
 
-        $referer = $refererService->getFormReferer($request, 'test');
+        $referer = $this->refererService->getFormReferer($request, 'test');
 
         $form = $this->createForm(EditTestType::class, $test);
         $form->handleRequest($request);

@@ -11,8 +11,8 @@ use App\Manager\UserManagerTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
-use App\Service\FileService;
-use App\Service\RefererService;
+use App\Service\FileServiceTrait;
+use App\Service\RefererServiceTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
 use Doctrine\ORM\NonUniqueResultException;
@@ -32,10 +32,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class DefaultController extends AbstractFOSRestController
 {
-    use FunctionalityManagerTrait;
-    use SettingManagerTrait;
-    use TestManagerTrait;
-    use UserManagerTrait;
+	use FileServiceTrait, FunctionalityManagerTrait, RefererServiceTrait, SettingManagerTrait, TestManagerTrait, UserManagerTrait;
 
 	/**
 	 * @Route("/admin/", name="admin_homepage", methods={"GET"})
@@ -61,18 +58,17 @@ class DefaultController extends AbstractFOSRestController
 	/**
 	 * @param Request $request
 	 * @param string $locale
-	 * @param RefererService $refererService
 	 * @param TranslatorInterface $translator
 	 *
 	 * @Route("/locale/{locale}", name="locale_switch", methods={"GET"}, requirements={"locale": "%available_locales%"})
 	 *
 	 * @return Response
 	 */
-	public function locale(Request $request, string $locale, RefererService $refererService, TranslatorInterface $translator): Response
+	public function locale(Request $request, string $locale, TranslatorInterface $translator): Response
 	{
 		$this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
 
-		$referer = $refererService->getFormReferer($request, 'locale');
+		$referer = $this->refererService->getFormReferer($request, 'locale');
 
 		if (null !== $this->getUser()) {
 			$this->userManager->updateLocale($this->getUser(), $locale);
@@ -82,23 +78,23 @@ class DefaultController extends AbstractFOSRestController
 		return $this->redirect(($referer ?? $this->generateUrl('admin_homepage')) . '?_locale=' . $locale);
 	}
 
-    /**
-     * @param Request        $request
-     * @param RefererService $refererService
-     *
-     * @Route("/admin/cache", name="admin_cache", methods={"GET"})
-     *
-     * @return Response
-     *
-     * @throws \Exception
-     */
-    public function cache(Request $request, RefererService $refererService, FileService $fileService, KernelInterface $kernel, TranslatorInterface $translator): Response
+	/**
+	 * @param Request $request
+	 * @param KernelInterface $kernel
+	 * @param TranslatorInterface $translator
+	 *
+	 * @Route("/admin/cache", name="admin_cache", methods={"GET"})
+	 *
+	 * @return Response
+	 * @throws \Exception
+	 */
+    public function cache(Request $request, KernelInterface $kernel, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class);
 
-        $size = $fileService->getSizeAndUnit($this->getParameter('kernel.cache_dir'));
+        $size = $this->fileService->getSizeAndUnit($this->getParameter('kernel.cache_dir'));
 
-        $referer = $refererService->getFormReferer($request, 'cache');
+        $referer = $this->refererService->getFormReferer($request, 'cache');
 
         $application = new Application($kernel);
         $application->setAutoExit(false);
@@ -116,17 +112,17 @@ class DefaultController extends AbstractFOSRestController
      * @param Request        $request
      * @param string         $name
      * @param array          $available_colors
-     * @param RefererService $refererService
+     * @param RefererService $this->refererService
      *
      * @Route("/admin/theme/{name}", name="admin_theme_switch", methods={"GET"})
      *
      * @return Response
      */
-    public function theme(Request $request, string $name, array $available_colors, RefererService $refererService): Response
+    public function theme(Request $request, string $name, array $available_colors): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class);
 
-        $referer = $refererService->getFormReferer($request, 'theme');
+        $referer = $this->refererService->getFormReferer($request, 'theme');
 
         if (\in_array($name, $available_colors)) {
             $this->userManager->updateTheme($this->getUser(), $name);
@@ -139,17 +135,16 @@ class DefaultController extends AbstractFOSRestController
 	 * @param Request $request
 	 * @param Functionality $functionality
 	 * @param int $state
-	 * @param RefererService $refererService
 	 *
 	 * @Route("/admin/functionality/{functionality}/{state}", name="admin_functionality_switch", methods={"GET"}, requirements={"state": "0|1"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
-    public function functionality(Request $request, Functionality $functionality, int $state = 0, RefererService $refererService): Response
+    public function functionality(Request $request, Functionality $functionality, int $state = 0): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT, $functionality);
 
-        $referer = $refererService->getFormReferer($request, 'functionality');
+        $referer = $this->refererService->getFormReferer($request, 'functionality');
 
         $this->functionalityManager->updateState($functionality, (bool) $state);
 
@@ -166,17 +161,16 @@ class DefaultController extends AbstractFOSRestController
 	 * @param Request $request
 	 * @param Setting $setting
 	 * @param string $value
-	 * @param RefererService $refererService
 	 *
 	 * @Route("/admin/setting/{setting}/{value}", name="admin_setting_set", methods={"GET"}, options={"expose"=true})
 	 *
 	 * @return Response
 	 */
-    public function setting(Request $request, Setting $setting, string $value = '', RefererService $refererService): Response
+    public function setting(Request $request, Setting $setting, string $value = ''): Response
     {
         $this->denyAccessUnlessGranted(SettingVoter::EDIT, $setting);
 
-        $referer = $refererService->getFormReferer($request, 'setting');
+        $referer = $this->refererService->getFormReferer($request, 'setting');
 
         $this->settingManager->update($setting, $value);
 
