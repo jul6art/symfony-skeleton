@@ -30,7 +30,7 @@ sidebar:
         default_theme: 'Thème par défaut'
         audit_limit: 'Limite d''audit'
         toastr_vertical_position:
-            title: 'Position verticale des notifis'
+            title: 'Position verticale des notifs'
             choices:
                 top: Haut
                 middle: Milieu
