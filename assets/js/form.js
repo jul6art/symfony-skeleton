@@ -1823,6 +1823,10 @@ $.Form = {
                 "insertdatetime media table paste code help"
             ],
             init_instance_callback: function (editor) {
+                if ($(editor.targetElm).prop('readonly')) {
+                    editor.setMode('readonly');
+                }
+
                 editor.on('Change', function (e) {
                     $(editor.targetElm).val(editor.getContent());
                     FORM_VALIDATOR(editor.targetElm).valid();
