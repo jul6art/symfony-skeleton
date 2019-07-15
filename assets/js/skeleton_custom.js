@@ -160,6 +160,7 @@ $.App = {
         if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
             tinymce.init({
                 selector: '[data-provide="wysiwyg"][data-inline][data-edit]',
+                language: WYSIWYG_LOCALE,
                 plugins: [
                     "autoresize",
                     "advlist autolink lists link image charmap print preview anchor",
@@ -173,6 +174,7 @@ $.App = {
 
             tinymce.init({
                 selector: '[data-provide="wysiwyg"][data-inline][data-translate]',
+                language: WYSIWYG_LOCALE,
                 plugins: [
                     "autoresize",
                     "print preview",

@@ -1816,6 +1816,7 @@ $.Form = {
     wysiwyg: function () {
         tinymce.init({
             selector: '[data-provide="wysiwyg"]:not([data-inline])',
+            language: WYSIWYG_LOCALE,
             plugins: [
                 "autoresize",
                 "advlist autolink lists link image charmap print preview anchor",

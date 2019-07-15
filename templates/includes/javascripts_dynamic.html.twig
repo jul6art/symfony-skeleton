@@ -1,5 +1,6 @@
 <script>
     const LOCALE = '{{ user_locale() }}';
+    const WYSIWYG_LOCALE = '{{ wysiwyg_locale() }}';
     const THEME_NAME  = '{{ theme_name() }}';
     const FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }};
     const DATATABLE_TRANSLATIONS = {

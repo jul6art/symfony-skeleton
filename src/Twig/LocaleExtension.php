@@ -69,6 +69,7 @@ class LocaleExtension extends AbstractExtension
         return [
             new TwigFunction('locale', [$this, 'getLocale']),
             new TwigFunction('user_locale', [$this, 'getUserLocale']),
+            new TwigFunction('wysiwyg_locale', [$this, 'getWysiwygLocale']),
         ];
     }
 
@@ -80,6 +81,26 @@ class LocaleExtension extends AbstractExtension
     public function getLocale(): string
     {
         return $this->getUserLocale();
+    }
+
+    /**
+     * @return string
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getWysiwygLocale(): string
+    {
+        $locale = $this->getUserLocale();
+
+        if ($locale === 'fr') {
+        	return 'fr_FR';
+        } elseif ($locale === 'en') {
+        	return 'en_GB';
+        } elseif ($locale === 'pt') {
+        	return 'pt_PT';
+        }
+
+        return $locale;
     }
 
     /**
