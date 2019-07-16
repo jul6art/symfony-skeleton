@@ -13,6 +13,7 @@ $.App = {
         this.colorize();
         this.console();
         this.dialog();
+        this.dropdown();
         this.editInPlace();
         this.settings();
         this.tooltip();
@@ -155,6 +156,13 @@ $.App = {
                     });
             });
         }
+    },
+    dropdown: function() {
+        $(document).keyup(function(e) {
+            if (e.keyCode === 27) {
+                $('[data-toggle="dropdown"]').parent().removeClass('open');
+            }
+        });
     },
     editInPlace: function () {
         if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== 'undefined') {
