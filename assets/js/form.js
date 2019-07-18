@@ -1784,7 +1784,7 @@ $.Form = {
         FORM_VALIDATOR(form).find('.input-captcha').each(function () {
             FORM_VALIDATOR(this).rules('add', {
                 required: function() {
-                    return typeof grecaptcha.getResponse() !== "undefined" && grecaptcha.getResponse() === ''
+                    return typeof grecaptcha !== "undefined" && typeof grecaptcha.getResponse() !== "undefined" && grecaptcha.getResponse() === ''
                 }
             });
         });
@@ -1828,12 +1828,16 @@ $.Form = {
                     editor.setMode('readonly');
                 }
 
+                let populate = (richtextarea, event) => {
+                    $(richtextarea.targetElm).html(richtextarea.getContent());
+                    $(richtextarea.targetElm).closest('form').trigger('checkform.areYouSure');
+                    FORM_VALIDATOR(richtextarea.targetElm).valid();
+                };
+
                 editor.on('Change', function (e) {
-                    $(editor.targetElm).val(editor.getContent());
-                    FORM_VALIDATOR(editor.targetElm).valid();
+                    populate(editor, e);
                 }).on('KeyUp', function (e) {
-                    $(editor.targetElm).val(editor.getContent());
-                    FORM_VALIDATOR(editor.targetElm).valid();
+                    populate(editor, e);
                 });
             }
         });
