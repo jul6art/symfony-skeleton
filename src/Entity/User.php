@@ -15,6 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields="email", repositoryMethod="findByUniqueEmail")
  * @UniqueEntity(fields="username", repositoryMethod="findByUniqueUsername")
+ * @method string|null getLocale()
+ * @method setLocale(string $locale)
+ * @method string|null getTheme()
+ * @method setTheme(string $theme)
  */
 class User extends BaseUser
 {
@@ -243,49 +247,52 @@ class User extends BaseUser
         return null !== $this->getSetting($name);
     }
 
-    /**
-     * @return string|null
-     */
-    public function getLocale()
-    {
-        if ($this->hasSetting(self::SETTING_LOCALE)) {
-            return $this->getSetting(self::SETTING_LOCALE)->getValue();
-        }
+	/**
+	 * @param $name
+	 * @param $arguments
+	 *
+	 * @return null|string
+	 */
+	public function __call($name, $arguments)
+	{
+		$property = $this->camelToSnake(substr($name, 3));
 
-        return null;
-    }
+		if (0 === strpos($name, 'get')) {
+			return $this->$property;
+		} elseif (0 === strpos($name, 'set')) {
+			$this->$property = $arguments[0];
 
-    /**
-     * @param $value
-     *
-     * @return User
-     */
-    public function setLocale($value): self
-    {
-        return $this->setSetting(self::SETTING_LOCALE, $value);
-    }
+			return $this;
+		}
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getTheme()
-    {
-        if ($this->hasSetting(self::SETTING_THEME)) {
-            return $this->getSetting(self::SETTING_THEME)->getValue();
-        }
+	private function camelToSnake($input)
+	{
+		return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
+	}
 
-        return null;
-    }
+	/**
+	 * @param $name
+	 * @return string|null
+	 */
+	public function __get($name)
+	{
+		if ($this->hasSetting($name)) {
+			return $this->getSetting($name)->getValue();
+		}
 
-    /**
-     * @param $value
-     *
-     * @return User
-     */
-    public function setTheme($value): self
-    {
-        return $this->setSetting(self::SETTING_THEME, $value);
-    }
+		return null;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return UserSetting|null
+	 */
+	public function __set($name, $value)
+	{
+		return $this->setSetting($name, $value);
+	}
 
     /**
      * @return bool
