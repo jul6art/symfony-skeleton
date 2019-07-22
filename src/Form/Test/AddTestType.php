@@ -4,6 +4,7 @@ namespace App\Form\Test;
 
 use App\Entity\Test;
 use App\Form\Type\TextType;
+use App\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,6 +35,13 @@ class AddTestType extends AbstractType
                 //
                 //  to deactivate label floating effect
                   'no_float' => true,
+            ])
+            ->add('content', WysiwygType::class, [
+	            'label' => 'form.test.content.label',
+	            'required' => true,
+	            'min_length' => Test::TEXT_LENGTH,
+	            // test
+	            'help' => 'form.test.name.help',
             ])
             // remove this field to remove test fields
             ->add('test', TestTestType::class, [

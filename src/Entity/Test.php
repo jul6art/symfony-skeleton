@@ -15,6 +15,8 @@ class Test
     use BlameableEntity;
     use TimestampableEntity;
 
+    public const TEXT_LENGTH = 15;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -35,6 +37,7 @@ class Test
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(min=Test::TEXT_LENGTH)
      *
      * @ORM\Column(type="text")
      */
@@ -49,9 +52,9 @@ class Test
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -69,9 +72,9 @@ class Test
     }
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getContent(): string
+	public function getContent(): ?string
 	{
 		return $this->content;
 	}

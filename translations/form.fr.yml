@@ -55,3 +55,5 @@ form:
         name:
             label: Nom
             help: 'Je suis un texte d''aide'
+        content:
+            label: Contenu
