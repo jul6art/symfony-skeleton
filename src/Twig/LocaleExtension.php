@@ -69,6 +69,7 @@ class LocaleExtension extends AbstractExtension
         return [
             new TwigFunction('locale', [$this, 'getLocale']),
             new TwigFunction('user_locale', [$this, 'getUserLocale']),
+            new TwigFunction('validate_locale', [$this, 'getValidateLocale']),
             new TwigFunction('wysiwyg_locale', [$this, 'getWysiwygLocale']),
         ];
     }
@@ -81,6 +82,22 @@ class LocaleExtension extends AbstractExtension
     public function getLocale(): string
     {
         return $this->getUserLocale();
+    }
+
+    /**
+     * @return string
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getValidateLocale(): string
+    {
+        $locale = $this->getUserLocale();
+
+        if ($locale === 'pt') {
+        	return 'pt_PT';
+        }
+
+        return $locale;
     }
 
     /**

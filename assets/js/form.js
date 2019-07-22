@@ -18,7 +18,9 @@ import 'tinymce/themes/silver';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
 let FORM_VALIDATOR = require ('jquery-validation');
-require ('jquery-validation/dist/localization/messages_' + LOCALE + '.min');
+if (VALIDATE_LOCALE !== 'en') {
+    require ('jquery-validation/dist/localization/messages_' + VALIDATE_LOCALE + '.min');
+}
 
 // manually imported areYouSure  script
 if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
