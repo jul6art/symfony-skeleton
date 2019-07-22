@@ -13,6 +13,7 @@ table:
         test:
             id: ID
             name: Nom
+            content: Contenu
         user:
             email: Email
             gender: Sexe

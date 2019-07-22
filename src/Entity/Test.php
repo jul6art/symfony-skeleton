@@ -32,6 +32,15 @@ class Test
     private $name;
 
     /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     *
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -40,9 +49,9 @@ class Test
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -58,4 +67,24 @@ class Test
 
         return $this;
     }
+
+	/**
+	 * @return string
+	 */
+	public function getContent(): string
+	{
+		return $this->content;
+	}
+
+	/**
+	 * @param string $content
+	 *
+	 * @return Test
+	 */
+	public function setContent( string $content ): self
+	{
+		$this->content = $content;
+
+		return $this;
+	}
 }

@@ -29,7 +29,8 @@ class TestFixtures extends Fixture
         for ($i = 0; $i < self::LIMIT; ++$i ) {
             $test = $this->testManager
                 ->create()
-                ->setName($faker->name);
+                ->setName($faker->name)
+                ->setContent($faker->text);
 
             $this->setReference("test_{$i}", $test);
             $manager->persist($test);

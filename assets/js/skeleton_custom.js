@@ -170,10 +170,10 @@ $.App = {
                 selector: '[data-provide="wysiwyg"][data-inline][data-edit]',
                 language: WYSIWYG_LOCALE,
                 plugins: [
-                    "autoresize",
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code",
-                    "insertdatetime table paste code help"
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save',
+                    'emoticons template paste textpattern imagetools'
                 ],
                 inline: true,
                 powerpaste_word_import: 'clean',
@@ -184,10 +184,10 @@ $.App = {
                 selector: '[data-provide="wysiwyg"][data-inline][data-translate]',
                 language: WYSIWYG_LOCALE,
                 plugins: [
-                    "autoresize",
-                    "print preview",
-                    "searchreplace",
-                    "help"
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save',
+                    'emoticons template paste textpattern imagetools'
                 ],
                 inline: true,
                 toolbar: 'undo redo',

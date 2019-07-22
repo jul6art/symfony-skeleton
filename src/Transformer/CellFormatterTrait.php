@@ -66,6 +66,21 @@ trait CellFormatterTrait
     }
 
 	/**
+	 * @param string|null $text
+	 *
+	 * @return string
+	 * @throws LoaderError
+	 * @throws RuntimeError
+	 * @throws SyntaxError
+	 */
+    public function renderCellTruncate(string $text = null): string
+    {
+		return $this->renderCell('includes/datatable/cell/truncate.html.twig', [
+			'text' => $text,
+		]);
+    }
+
+	/**
 	 * @param string $template
 	 * @param array $parameters
 	 *
