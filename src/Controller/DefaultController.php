@@ -75,7 +75,19 @@ class DefaultController extends AbstractFOSRestController
 			return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
 		}
 
-		return $this->redirect(($referer ?? $this->generateUrl('admin_homepage')) . '?_locale=' . $locale);
+		$url = $referer ?? $this->generateUrl('admin_homepage');
+
+		if (strpos($url, '?_locale')) {
+			$url = substr($url, 0, strpos($url, '?_locale'));
+		}
+
+		if (strpos($url, '_locale')) {
+			$url = substr($url, 0, strpos($url, '_locale'));
+		}
+
+		$separator = strpos($url, '?') ? '&' : '?';
+
+		return $this->redirect(sprintf('%s%s_locale=%s', $url, $separator, $locale));
 	}
 
 	/**
@@ -112,7 +124,6 @@ class DefaultController extends AbstractFOSRestController
      * @param Request        $request
      * @param string         $name
      * @param array          $available_colors
-     * @param RefererService $this->refererService
      *
      * @Route("%admin_route_prefix%/theme/{name}", name="admin_theme_switch", methods={"GET"})
      *

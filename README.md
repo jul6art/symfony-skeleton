@@ -3,6 +3,8 @@ jul6art/symfony-skeleton
 Base sf4 admin project
 -
 
+[![Build Status](https://travis-ci.org/jul6art/symfony-skeleton.png?branch=master)](https://travis-ci.org/jul6art/symfony-skeleton)
+
 > This project is still in development so please keep calm
 
 [&#9758; DEMO](https://symfony-skeleton.vsweb.be/)
