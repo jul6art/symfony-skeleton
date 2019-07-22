@@ -72,22 +72,15 @@ class DefaultController extends AbstractFOSRestController
 
 		if (null !== $this->getUser()) {
 			$this->userManager->updateLocale($this->getUser(), $locale);
-			return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
 		}
 
-		$url = $referer ?? $this->generateUrl('admin_homepage');
+		$session = $request->getSession();
+		$session->set('_locale', $locale);
+		$session->save();
+		$request->setLocale($locale);
+		$translator->setLocale($locale);
 
-		if (strpos($url, '?_locale')) {
-			$url = substr($url, 0, strpos($url, '?_locale'));
-		}
-
-		if (strpos($url, '_locale')) {
-			$url = substr($url, 0, strpos($url, '_locale'));
-		}
-
-		$separator = strpos($url, '?') ? '&' : '?';
-
-		return $this->redirect(sprintf('%s%s_locale=%s', $url, $separator, $locale));
+		return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
 	}
 
 	/**

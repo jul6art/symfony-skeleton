@@ -21,7 +21,7 @@
                     <span class="flag-icon flag-icon-{{ app.request.locale|replace({'en': "gb"}) }}"></span> {{ ('topbar.locales.' ~ app.request.locale)|trans({}, 'topbar') }}
                     <span class="caret"></span>
                 </button>
-                {% include 'includes/locales_dropdown.html.twig' with {hide_locale: true} %}
+                {% include 'includes/locales_dropdown.html.twig' with {hide_locale: true, locale: app.request.locale} %}
             </div>
         {% endif %}
     </div>
