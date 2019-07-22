@@ -15,7 +15,9 @@ Base sf4 admin project
 
 > You can disabled the breadcrumb for a specific page
 
-    {% set breadcrumb = false %}
+```twig
+{% set breadcrumb = false %}
+```
 
 ### [Forms](/data/docs/FORMS.md)
 

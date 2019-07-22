@@ -5,7 +5,7 @@ Base sf4 admin project
 
 [![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
 
-### Audits
+### Audit
 
 > To activate audit for an entity you need to
 
@@ -36,10 +36,14 @@ public function onTestAdded(TestEvent $event)
 
 in audit translation domain
 
-    audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
+```yml
+audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
+```
 
 > This command removes audits older than a year
 
-    bin/console audit:clean --no-confirm
+```bash
+bin/console audit:clean --no-confirm
+```
 
 &copy; 2019 [VsWeb](https://vsweb.be)

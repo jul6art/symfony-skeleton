@@ -98,6 +98,8 @@ $builder
 
 > You can override the form theme when extending the layout_form.html.twig
 
-    {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}
+```twig
+{% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}
+```
 
 &copy; 2019 [VsWeb](https://vsweb.be)
