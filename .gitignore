@@ -43,6 +43,8 @@
 /app/bootstrap.php.cache
 /var/bootstrap.php.cache
 /bin/*
+!bin/.phpunit
+!bin/phpunit
 !bin/console
 !bin/symfony_requirements
 /vendor/
