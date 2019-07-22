@@ -16,7 +16,7 @@ trait GroupManagerTrait
     /**
      * @var GroupManager
      */
-    private $groupManager;
+    protected $groupManager;
 
     /**
      * @return GroupManager

@@ -16,7 +16,7 @@ trait TestManagerTrait
     /**
      * @var TestManager
      */
-    private $testManager;
+    protected $testManager;
 
     /**
      * @return TestManager

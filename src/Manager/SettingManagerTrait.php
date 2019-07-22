@@ -16,7 +16,7 @@ trait SettingManagerTrait
     /**
      * @var SettingManager
      */
-    private $settingManager;
+    protected $settingManager;
 
     /**
      * @return SettingManager

@@ -16,7 +16,7 @@ trait UserManagerTrait
     /**
      * @var UserManager
      */
-    private $userManager;
+    protected $userManager;
 
     /**
      * @return UserManager

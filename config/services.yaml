@@ -102,3 +102,8 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
+
+    App\EntityListener\:
+        resource: '../src/EntityListener'
+        tags:
+            - { name: doctrine.orm.entity_listener }

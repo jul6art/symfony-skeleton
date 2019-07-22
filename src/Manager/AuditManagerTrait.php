@@ -16,7 +16,7 @@ trait AuditManagerTrait
     /**
      * @var AuditManager
      */
-    private $auditManager;
+    protected $auditManager;
 
     /**
      * @return AuditManager

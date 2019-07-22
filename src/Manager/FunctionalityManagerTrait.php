@@ -16,7 +16,7 @@ trait FunctionalityManagerTrait
     /**
      * @var FunctionalityManager
      */
-    private $functionalityManager;
+    protected $functionalityManager;
 
     /**
      * @return FunctionalityManager
