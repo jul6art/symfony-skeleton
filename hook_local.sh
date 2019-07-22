@@ -21,7 +21,7 @@ echo '--- TESTS LAUNCHING ---'
 # ./vendor/bin/simple-phpunit > tests_output.txt
 # echo 'tests output saved in tests_output.txt file'
 # cat tests_output.txt
-./bin/phpunit --coverage-clover data/build/clover.xml
+./vendor/bin/simple-phpunit --coverage-clover data/build/clover.xml
 vendor/bin/php-coverage-badger data/build/clover.xml data/report/coverage.svg
 
 echo '--- SUCCESSFULL DEPLOY ---'
