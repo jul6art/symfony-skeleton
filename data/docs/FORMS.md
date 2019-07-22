@@ -4,6 +4,7 @@ Base sf4 admin project
 -
 
 [![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
+![https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg](https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg)
 
 ### Forms
 
