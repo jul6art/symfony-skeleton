@@ -4,7 +4,7 @@ Base sf4 admin project
 -
 
 [![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
-[![Coverage Status](https://coveralls.io/repos/github/jul6art/symfony-skeleton/badge.svg?branch=master)](https://coveralls.io/github/jul6art/symfony-skeleton?branch=master)
+[https://github.com/jul6art/symfony-skeleton/tree/master/data/report/coverage.svg](https://github.com/jul6art/symfony-skeleton/tree/master/data/report/coverage.svg)
 
 > This project is still in development so please keep calm
 

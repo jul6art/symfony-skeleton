@@ -171,6 +171,9 @@
             "config/packages/google_recaptcha.yaml"
         ]
     },
+    "jaschilz/php-coverage-badger": {
+        "version": "2.0.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
