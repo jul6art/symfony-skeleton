@@ -134,6 +134,14 @@ class UserManager extends AbstractManager
         return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
     }
 
+	/**
+	 * @return User[]
+	 */
+	public function findAll(): array
+	{
+		return $this->userRepository->findAll();
+	}
+
     /**
      * @return array
      */
