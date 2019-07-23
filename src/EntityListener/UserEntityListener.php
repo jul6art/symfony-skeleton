@@ -22,14 +22,6 @@ class UserEntityListener extends AbstractEntityListener
 
 	/**
 	 * @param LifecycleEventArgs $args
-	 */
-	public function postUpdate(User $user, LifecycleEventArgs $event)
-	{
-		$this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
-	}
-
-	/**
-	 * @param LifecycleEventArgs $args
 	 *
 	 * @throws NonUniqueResultException
 	 */

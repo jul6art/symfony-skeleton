@@ -1834,6 +1834,7 @@ $.Form = {
                 }
 
                 let populate = (richtextarea, event) => {
+                    $(richtextarea.targetElm).val(richtextarea.getContent());
                     $(richtextarea.targetElm).html(richtextarea.getContent());
                     $(richtextarea.targetElm).closest('form').trigger('checkform.areYouSure');
                     FORM_VALIDATOR(richtextarea.targetElm).valid();

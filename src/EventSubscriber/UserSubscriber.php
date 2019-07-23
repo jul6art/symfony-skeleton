@@ -3,8 +3,11 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Setting;
+use App\Event\UserEvent;
 use App\Manager\SettingManagerTrait;
 use App\Manager\UserManagerTrait;
+use App\Traits\FlashBagTrait;
+use App\Traits\TranslatorTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
@@ -15,8 +18,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class UserSubscriber implements EventSubscriberInterface
 {
-    use SettingManagerTrait;
-    use UserManagerTrait;
+	use FlashBagTrait, SettingManagerTrait, TranslatorTrait, UserManagerTrait;
 
     /**
      * @return array
@@ -25,6 +27,7 @@ class UserSubscriber implements EventSubscriberInterface
     {
         return [
 	        FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
+	        UserEvent::EDITED => 'onUserEdited',
         ];
     }
 
@@ -41,4 +44,12 @@ class UserSubscriber implements EventSubscriberInterface
         $this->userManager->updateGroups($user);
         $this->userManager->save($user);
     }
+
+	/**
+	 * @param UserEvent $event
+	 */
+	public function onUserEdited(UserEvent $event)
+	{
+		$this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
+	}
 }
