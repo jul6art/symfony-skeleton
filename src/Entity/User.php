@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\EntityListeners({"App\EntityListener\UserEntityListener"})
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields="email", repositoryMethod="findByUniqueEmail")
  * @UniqueEntity(fields="username", repositoryMethod="findByUniqueUsername")

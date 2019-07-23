@@ -21,5 +21,7 @@ monolog:
             type: swift_mailer
             from_email: '%env(MAILER_FROM_ADDRESS)%'
             to_email: '%env(MAILER_DEBUG_ADDRESS)%'
-            subject: 'Critical error on your project "%env(MAILER_FROM_NAME)%"'
-            level: critical
+            subject: 'Error on your project "%env(MAILER_FROM_NAME)%"'
+            level: error
+            formatter:  monolog.formatter.html
+            content_type: text/html
