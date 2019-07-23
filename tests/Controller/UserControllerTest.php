@@ -26,7 +26,7 @@ class UserControllerTest extends WebTestCase
 	private $faker;
 
 	/**
-	 * UserControllerTest constructor.
+	 * TestControllerTest constructor.
 	 *
 	 * @param null|string $name
 	 * @param array $data
@@ -88,7 +88,7 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\UserController index Action
+	 * Test App\\Controller\\UserController add Action
 	 *
 	 * Test must be logged
 	 */
@@ -102,9 +102,9 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\UserController index Action
+	 * Test App\\Controller\\UserController add Action
 	 *
-	 * Test must be logged
+	 * Test user has bad Roles
 	 */
 	public function testAdd02()
 	{
@@ -119,7 +119,7 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\UserController index Action
+	 * Test App\\Controller\\UserController add Action
 	 *
 	 * Successfull
 	 */
@@ -146,6 +146,63 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
 			$form->getPhpFiles());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController show Action
+	 *
+	 * Test must be logged
+	 */
+	public function testShow()
+	{
+		$client = static::createClient();
+
+		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($users)->getId();
+
+		$client->request('GET', "/admin/user/view/$id");
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController show Action
+	 *
+	 * Test user has bad Roles
+	 */
+	public function testShow02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($users)->getId();
+
+		$client->request('GET', "/admin/user/view/$id");
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController show Action
+	 *
+	 * Successfull
+	 */
+	public function testShow03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($users)->getId();
+
+		$client->request('GET', "/admin/user/view/$id");
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
