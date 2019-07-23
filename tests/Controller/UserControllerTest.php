@@ -9,6 +9,8 @@
 namespace App\Tests\Controller;
 
 use App\Entity\User;
+use Faker\Factory;
+use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,6 +20,25 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class UserControllerTest extends WebTestCase
 {
+	/**
+	 * @var Generator
+	 */
+	private $faker;
+
+	/**
+	 * UserControllerTest constructor.
+	 *
+	 * @param null|string $name
+	 * @param array $data
+	 * @param string $dataName
+	 */
+	public function __construct( ?string $name = null, array $data = [], string $dataName = '' )
+	{
+		parent::__construct( $name, $data, $dataName );
+
+		$this->faker = Factory::create();
+	}
+
 	/**
 	 * Test App\\Controller\\UserController index Action
 	 *
@@ -67,6 +88,69 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
+	 * Test App\\Controller\\UserController index Action
+	 *
+	 * Test must be logged
+	 */
+	public function testAdd()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/admin/user/add');
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController index Action
+	 *
+	 * Test must be logged
+	 */
+	public function testAdd02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/user/add');
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController index Action
+	 *
+	 * Successfull
+	 */
+	public function testAdd03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$crawler = $client->request('GET', '/admin/user/add');
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$form = $crawler->filter('button[type="submit"]')->form();
+
+		$values = [
+			'add_user[gender]'    => 'm',
+			'add_user[username]'    => $this->faker->userName,
+			'add_user[firstname]'    => $this->faker->firstName,
+			'add_user[lastname]'    => $this->faker->lastName,
+			'add_user[email]'    => $this->faker->email,
+		];
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+			$form->getPhpFiles());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
 	 * Test App\\Controller\\UserController delete Action
 	 *
 	 * Test must be logged
@@ -76,7 +160,7 @@ class UserControllerTest extends WebTestCase
 		$client = static::createClient();
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
-		$id = $users[array_rand($users)]->getId();
+		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/delete/$id");
 
@@ -96,7 +180,7 @@ class UserControllerTest extends WebTestCase
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
-		$id = $users[array_rand($users)]->getId();
+		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/delete/$id");
 
@@ -116,7 +200,7 @@ class UserControllerTest extends WebTestCase
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
-		$id = $users[array_rand($users)]->getId();
+		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/delete/$id");
 

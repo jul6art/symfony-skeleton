@@ -46,6 +46,7 @@
                         </a>
                     </div>
                 {% endif %}
+
                 <div class="btn">
                     <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
                             {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' }}>

@@ -76,7 +76,7 @@ class TestControllerTest extends WebTestCase
 		$client = static::createClient();
 
 		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
-		$id = $tests[array_rand($tests)]->getId();
+		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/delete/$id");
 
@@ -96,7 +96,7 @@ class TestControllerTest extends WebTestCase
 		]);
 
 		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
-		$id = $tests[array_rand($tests)]->getId();
+		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/delete/$id");
 
@@ -116,7 +116,7 @@ class TestControllerTest extends WebTestCase
 		]);
 
 		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
-		$id = $tests[array_rand($tests)]->getId();
+		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/delete/$id");
 
