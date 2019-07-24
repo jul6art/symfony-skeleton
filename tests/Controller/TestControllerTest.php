@@ -205,6 +205,75 @@ class TestControllerTest extends WebTestCase
 	}
 
 	/**
+	 * Test App\\Controller\\TestController edit Action
+	 *
+	 * Test must be logged
+	 */
+	public function testEdit()
+	{
+		$client = static::createClient();
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
+		$id = end($tests)->getId();
+
+		$client->request('GET', "/admin/test/edit/$id");
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\TestController edit Action
+	 *
+	 * Test user has bad Roles
+	 */
+	public function testEdit02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
+		$id = end($tests)->getId();
+
+		$client->request('GET', "/admin/test/edit/$id");
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\TestController edit Action
+	 *
+	 * Successfull
+	 */
+	public function testEdit03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
+		$id = end($tests)->getId();
+
+		$crawler = $client->request('GET', "/admin/test/edit/$id");
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$form = $crawler->filter('button[type="submit"]')->form();
+
+		$values = [
+			'add_test[name]'    => $this->faker->name,
+			'add_test[content]'    => $this->faker->text,
+		];
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+			$form->getPhpFiles());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
 	 * Test App\\Controller\\TestController delete Action
 	 *
 	 * Test must be logged

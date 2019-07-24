@@ -13,7 +13,7 @@ use App\Entity\User;
 use App\Manager\FunctionalityManagerTrait;
 use App\Manager\UserManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -62,11 +62,11 @@ class LocaleListener {
 	}
 
 	/**
-	 * @param GetResponseEvent $event
+	 * @param KernelEvent $event
 	 *
 	 * @throws NonUniqueResultException
 	 */
-	public function onKernelRequest(GetResponseEvent $event): void
+	public function onKernelRequest(KernelEvent $event): void
 	{
 		$request = $event->getRequest();
 		if (!$event->isMasterRequest()) {
