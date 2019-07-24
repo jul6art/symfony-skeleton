@@ -26,7 +26,7 @@ class UserControllerTest extends WebTestCase
 	private $faker;
 
 	/**
-	 * TestControllerTest constructor.
+	 * UserControllerTest constructor.
 	 *
 	 * @param null|string $name
 	 * @param array $data
@@ -203,6 +203,78 @@ class UserControllerTest extends WebTestCase
 		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/view/$id");
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController edit Action
+	 *
+	 * Test must be logged
+	 */
+	public function testEdit()
+	{
+		$client = static::createClient();
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($tests)->getId();
+
+		$client->request('GET', "/admin/user/edit/$id");
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController edit Action
+	 *
+	 * Test user has bad Roles
+	 */
+	public function testEdit02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($tests)->getId();
+
+		$client->request('GET', "/admin/user/edit/$id");
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController edit Action
+	 *
+	 * Successfull
+	 */
+	public function testEdit03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($tests)->getId();
+
+		$crawler = $client->request('GET', "/admin/user/edit/$id");
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$form = $crawler->filter('button[type="submit"]')->form();
+
+		$values = [
+			'add_user[gender]'    => 'm',
+			'add_user[username]'    => $this->faker->userName,
+			'add_user[firstname]'    => $this->faker->firstName,
+			'add_user[lastname]'    => $this->faker->lastName,
+			'add_user[email]'    => $this->faker->email,
+		];
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+			$form->getPhpFiles());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
