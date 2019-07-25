@@ -4,6 +4,7 @@ set -e
 
 echo '--- FILES LOADING ---'
 composer install --no-suggest
+composer dump-autoload --optimize --no-dev --classmap-authoritative
 php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 yarn install
 yarn encore production
