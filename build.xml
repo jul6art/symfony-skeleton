@@ -29,7 +29,7 @@
     <target name="parameters" description="Copy parameters from test server">
         <exec executable="cp" failonerror="true">
             <arg path="${parameters}"/>
-            <arg path="app/config/parameters.yml"/>
+            <arg path=".env"/>
         </exec>
     </target>
 
@@ -86,7 +86,7 @@
     </target>
 
     <target name="build" description="Build"
-        depends="info, database, fixtures, unit_tests"
+        depends="info, parameters, database, fixtures, unit_tests"
     />
 
     <target name="info" description="Log infos">
