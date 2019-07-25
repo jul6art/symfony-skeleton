@@ -4,7 +4,6 @@ set -e
 
 echo '--- FILES LOADING ---'
 composer install --no-suggest
-composer dump-autoload --optimize --no-dev --classmap-authoritative
 php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 yarn install
 yarn encore production
@@ -23,5 +22,7 @@ sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 echo '--- TESTS LAUNCHING ---'
 ./vendor/bin/simple-phpunit --coverage-clover data/build/clover.xml
 vendor/bin/php-coverage-badger data/build/clover.xml data/report/coverage.svg
+
+composer dump-autoload --optimize --no-dev --classmap-authoritative
 
 echo '--- SUCCESSFULL DEPLOY ---'
