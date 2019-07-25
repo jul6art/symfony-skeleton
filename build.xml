@@ -86,7 +86,7 @@
             <arg value="bin/console" />
             <arg value="doctrine:fixtures:load" />
             <arg value="--no-interaction" />
-            <env key="SYMFONY_ENV" value="dev"/>
+            <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
