@@ -49,7 +49,7 @@
         <exec executable="php" failonerror="true">
             <arg value="bin/console"/>
             <arg value="assetic:dump"/>
-            <env key="SYMFONY_ENV" value="${symfony_env}"/>
+            <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
@@ -59,7 +59,7 @@
             <arg value="doctrine:schema:update" />
             <arg value="--no-interaction" />
             <arg value="--force" />
-            <env key="SYMFONY_ENV" value="dev"/>
+            <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
@@ -69,7 +69,7 @@
             <arg value="doctrine:schema:update" />
             <arg value="--no-interaction" />
             <arg value="--force" />
-            <env key="SYMFONY_ENV" value="dev"/>
+            <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
@@ -86,7 +86,7 @@
             <arg value="bin/console" />
             <arg value="doctrine:fixtures:load" />
             <arg value="--no-interaction" />
-            <arg value="--env=${symfony_env}" />
+            <arg value="--env=dev" />
         </exec>
     </target>
 
