@@ -20,8 +20,7 @@ echo '--- FILES PERMISSIONS ---'
 sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 
 echo '--- TESTS LAUNCHING ---'
-./vendor/bin/simple-phpunit --coverage-clover data/build/clover.xml
-vendor/bin/php-coverage-badger data/build/clover.xml data/report/coverage.svg
+./vendor/bin/simple-phpunit
 
 composer dump-autoload --optimize --no-dev --classmap-authoritative
 
