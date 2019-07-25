@@ -55,7 +55,6 @@
 
     <target name="unit_tests" description="Launch Unit Tests">
         <exec executable="php" failonerror="true">
-            <arg value="${php}"/>
             <arg value="${phpunit}"/>
         </exec>
     </target>
