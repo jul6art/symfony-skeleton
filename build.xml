@@ -37,6 +37,10 @@
         <exec executable="yarn" failonerror="true">
             <arg value="install"/>
         </exec>
+        <exec executable="yarn" failonerror="true">
+            <arg value="encore"/>
+            <arg value="dev"/>
+        </exec>
     </target>
 
     <target name="composer" description="Installing composer dependencies">
