@@ -17,6 +17,18 @@
             <!--depends="php_version, parameters, yarn, composer, assets, unit_tests"-->
     <!--/>-->
 
+    <target name="build" description="Build"
+            depends="info, parameters, composer, fosjs, yarn, database_migrate, fixtures, unit_tests"
+    />
+
+    <target name="deploy" description="Deploy and deployment process"
+            depends="deploy_files, deploy_script"
+    />
+
+    <target name="info" description="Log infos">
+        <echo>Start build</echo>
+    </target>
+
     <target name="php_version" description="Switch PHP Version">
         <exec executable="sudo" failonerror="true">
             <arg value="update-alternatives"/>
@@ -47,6 +59,15 @@
         <condition property="composer.dev" value="no-dev" else="dev">
             <equals arg1="${symfony_env}" arg2="prod" />
         </condition>
+    </target>
+
+    <target name="fosjs" description="FOSJS routing">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="fos:js-routing:dump"/>
+            <arg value="--format=json"/>
+            <arg value="--target=public/js/fos_js_routes.json"/>
+        </exec>
     </target>
 
     <target name="assets" description="Assetic dump">
@@ -99,18 +120,6 @@
             <arg value="${phpunit}"/>
         </exec>
     </target>
-
-    <target name="build" description="Build"
-        depends="info, parameters, composer, yarn, database_migrate, fixtures, unit_tests"
-    />
-
-    <target name="info" description="Log infos">
-        <echo>Start build</echo>
-    </target>
-
-    <target name="deploy" description="Deploy and deployment process"
-            depends="deploy_files, deploy_script"
-    />
 
     <target name="deploy_files" description="Deploy files">
         <exec executable="rsync" dir="${env.WORKSPACE}" failonerror="true">
