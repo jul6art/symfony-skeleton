@@ -60,7 +60,7 @@
     </target>
 
     <target name="build" description="Build"
-        depends="info, unit_tests"
+        depends="info, unit_tests" failonerror="true"
     />
 
     <target name="info" description="Log infos">
