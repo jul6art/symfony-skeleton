@@ -53,20 +53,31 @@
         </exec>
     </target>
 
-    <target name="database" description="Database update">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console" />
-            <arg value="doctrine:schema:drop" />
-            <arg value="--no-interaction" />
-            <arg value="--force" />
-            <env key="SYMFONY_ENV" value="dev"/>
-        </exec>
+    <target name="database_drop" description="Database drop">
         <exec executable="php" failonerror="true">
             <arg value="bin/console" />
             <arg value="doctrine:schema:update" />
             <arg value="--no-interaction" />
             <arg value="--force" />
             <env key="SYMFONY_ENV" value="dev"/>
+        </exec>
+    </target>
+
+    <target name="database_update" description="Database update">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console" />
+            <arg value="doctrine:schema:update" />
+            <arg value="--no-interaction" />
+            <arg value="--force" />
+            <env key="SYMFONY_ENV" value="dev"/>
+        </exec>
+    </target>
+
+    <target name="database_migrate" description="Database migrations">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console" />
+            <arg value="doctrine:migrations:migrate" />
+            <arg value="--no-interaction" />
         </exec>
     </target>
 
@@ -86,7 +97,7 @@
     </target>
 
     <target name="build" description="Build"
-        depends="info, parameters, database, fixtures, unit_tests"
+        depends="info, parameters, database_migrate, fixtures, unit_tests"
     />
 
     <target name="info" description="Log infos">
