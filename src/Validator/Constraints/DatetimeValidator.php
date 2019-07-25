@@ -30,7 +30,7 @@ class DatetimeValidator extends ConstraintValidator
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
-        if (null === $value || '' === $value) {
+        if (null === $value or '' === $value) {
             return;
         }
 
@@ -40,15 +40,15 @@ class DatetimeValidator extends ConstraintValidator
         } else {
             $options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
 
-            if (array_key_exists('minDate', $options) && $value->format('Y-m-d') < (new BaseDateTime($options['minDate']))->format('Y-m-d')) {
+            if (array_key_exists('minDate', $options) and $value->format('Y-m-d') < (new BaseDateTime($options['minDate']))->format('Y-m-d')) {
                 $this->context->buildViolation($constraint->message_min_date)
                               ->setParameter('{{ date }}', $options['minDate'])
                               ->addViolation();
-            } elseif (array_key_exists('maxDate', $options) && $value->format('Y-m-d') > (new BaseDateTime($options['maxDate']))->format('Y-m-d')) {
+            } elseif (array_key_exists('maxDate', $options) and $value->format('Y-m-d') > (new BaseDateTime($options['maxDate']))->format('Y-m-d')) {
                 $this->context->buildViolation($constraint->message_max_date)
                               ->setParameter('{{ date }}', $options['maxDate'])
                               ->addViolation();
-            } elseif (array_key_exists('disabledDays', $options) && \in_array($value->format('w'), json_decode($options['disabledDays']))) {
+            } elseif (array_key_exists('disabledDays', $options) and \in_array($value->format('w'), json_decode($options['disabledDays']))) {
                 $this->context->buildViolation($constraint->message_disabled_days)
                               ->addViolation();
             }

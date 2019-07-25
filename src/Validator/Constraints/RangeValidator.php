@@ -29,16 +29,16 @@ class RangeValidator extends ConstraintValidator
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
-        if (null === $value || '' === $value) {
+        if (null === $value or '' === $value) {
             return;
         }
 
         $options = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options'];
 
-        if (!array_key_exists('double', $options) || !$options['double']) {
+        if (!array_key_exists('double', $options) or !$options['double']) {
             if ($value < $options['min']
-                || $value > $options['max']
-                || (($value != $options['max']) && (0 !== ($value - $options['min']) % $options['step']))) {
+                or $value > $options['max']
+                or (($value != $options['max']) and (0 !== ($value - $options['min']) % $options['step']))) {
                 $this->context->buildViolation($constraint->message)
                               ->addViolation();
             }
@@ -50,9 +50,9 @@ class RangeValidator extends ConstraintValidator
                 $min = $value[0];
                 $max = end($value);
                 if ($min < $options['min']
-                    || $max > $options['max']
-                    || (($min != $options['max']) && (0 !== ($min - $options['min']) % $options['step']))
-                    || (($max != $options['max']) && (0 !== ($max - $options['min']) % $options['step']))) {
+                    or $max > $options['max']
+                    or (($min != $options['max']) and (0 !== ($min - $options['min']) % $options['step']))
+                    or (($max != $options['max']) and (0 !== ($max - $options['min']) % $options['step']))) {
                     $this->context->buildViolation($constraint->message)
                                   ->addViolation();
                 }

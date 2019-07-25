@@ -80,7 +80,7 @@ class EditInPlaceExtension extends AbstractExtension
             $attributes = '';
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)
-                && $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
+                and $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
 	            $attributes = ' data-provide=wysiwyg data-inline data-translate';
             }
 

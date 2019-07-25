@@ -29,7 +29,7 @@ class PhoneValidator extends ConstraintValidator
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
-        if (null === $value || '' === $value) {
+        if (null === $value or '' === $value) {
             return;
         }
 

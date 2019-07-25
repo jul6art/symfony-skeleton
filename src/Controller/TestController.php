@@ -71,7 +71,7 @@ class TestController extends AbstractFOSRestController
         $form = $this->createForm(AddTestType::class, $test);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $this->testManager->save($test);
             $eventDispatcher->dispatch(new TestEvent($test), TestEvent::ADDED);
 
@@ -137,7 +137,7 @@ class TestController extends AbstractFOSRestController
         $form = $this->createForm(EditTestType::class, $test);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $this->testManager->save($test);
             $eventDispatcher->dispatch(new TestEvent($test), TestEvent::EDITED);
 

@@ -77,12 +77,12 @@ class ThemeExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has('theme_name') || !\in_array($request->request->get('theme_name'), $this->available_colors)) {
+        if (!$request->request->has('theme_name') or !\in_array($request->request->get('theme_name'), $this->available_colors)) {
             $user = $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
             $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)) {
-                if ($user instanceof User && $user->hasSetting(User::SETTING_THEME)) {
+                if ($user instanceof User and $user->hasSetting(User::SETTING_THEME)) {
                     $theme = $user->getTheme();
                 }
             }

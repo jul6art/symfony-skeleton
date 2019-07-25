@@ -102,7 +102,7 @@ class NavbarBuilder
         }
 
         if ($this->authorizationChecker->isGranted(TestVoter::LIST, Test::class)
-            || $this->authorizationChecker->isGranted(TestVoter::ADD, Test::class)) {
+            or $this->authorizationChecker->isGranted(TestVoter::ADD, Test::class)) {
             $menu->addChild('navbar.test.title', [
                 'uri' => 'javascript:void(0);',
             ])->setExtras([
@@ -153,7 +153,7 @@ class NavbarBuilder
         }
 
         if ($this->authorizationChecker->isGranted(UserVoter::LIST, User::class)
-            || $this->authorizationChecker->isGranted(UserVoter::ADD, User::class)) {
+            or $this->authorizationChecker->isGranted(UserVoter::ADD, User::class)) {
             $menu->addChild('navbar.user.title', [
                 'uri' => 'javascript:void(0);',
             ])->setExtras([

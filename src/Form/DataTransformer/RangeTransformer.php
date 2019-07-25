@@ -22,7 +22,7 @@ class RangeTransformer implements DataTransformerInterface
      */
     public function transform($data): string
     {
-        if (null === $data || !\is_numeric($data)) {
+        if (null === $data or !\is_numeric($data)) {
             return '';
         }
 
@@ -36,6 +36,6 @@ class RangeTransformer implements DataTransformerInterface
      */
     public function reverseTransform($string): ?float
     {
-        return '' === $string || null === $string ? null : (float) $string;
+        return '' === $string or null === $string ? null : (float) $string;
     }
 }

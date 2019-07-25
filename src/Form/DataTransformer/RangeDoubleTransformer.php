@@ -22,7 +22,7 @@ class RangeDoubleTransformer implements DataTransformerInterface
      */
     public function transform($data): string
     {
-        if (null === $data || !\is_iterable($data) || empty($data)) {
+        if (null === $data or !\is_iterable($data) or empty($data)) {
             return '';
         }
 
@@ -36,7 +36,7 @@ class RangeDoubleTransformer implements DataTransformerInterface
      */
     public function reverseTransform($string): ?array
     {
-        if ('' === $string || null === $string) {
+        if ('' === $string or null === $string) {
             return null;
         }
 

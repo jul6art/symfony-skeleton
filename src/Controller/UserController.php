@@ -71,7 +71,7 @@ class UserController extends AbstractFOSRestController
         $form = $this->createForm(AddUserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) {
         	$password = $this->userManager->generatePassword();
         	$user->setPlainPassword($password);
         	$event = (new UserEvent($user))->addData('password', $password);
@@ -143,7 +143,7 @@ class UserController extends AbstractFOSRestController
         $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $this->userManager->save($user);
             $eventDispatcher->dispatch(new UserEvent($user), UserEvent::EDITED);
 

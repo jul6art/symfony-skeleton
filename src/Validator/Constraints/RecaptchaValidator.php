@@ -53,7 +53,7 @@ class RecaptchaValidator extends ConstraintValidator
 
         // custom constraints should ignore null and empty values to allow
         // other constraints (NotBlank, NotNull, etc.) take care of that
-        if (null === $this->recaptcha_secret || '' === $this->recaptcha_secret) {
+        if (null === $this->recaptcha_secret or '' === $this->recaptcha_secret) {
             return;
         }
 

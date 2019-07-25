@@ -62,7 +62,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
          *   b) The depth is 0
          *   c) This menu item has been explicitly set to hide its children
          */
-        if (!$item->hasChildren() || 0 === $options['depth'] || !$item->getDisplayChildren()) {
+        if (!$item->hasChildren() or 0 === $options['depth'] or !$item->getDisplayChildren()) {
             return '';
         }
 
@@ -89,7 +89,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
             $options['depth'] = $options['depth'] - 1;
         }
 
-        if (null !== $options['matchingDepth'] && $options['matchingDepth'] > 0) {
+        if (null !== $options['matchingDepth'] and $options['matchingDepth'] > 0) {
             $options['matchingDepth'] = $options['matchingDepth'] - 1;
         }
 
@@ -135,8 +135,8 @@ class TopbarRenderer extends Renderer implements RendererInterface
             $class[] = $options['lastClass'];
         }
 
-        if ($item->hasChildren() && 0 !== $options['depth']) {
-            if (null !== $options['branch_class'] && $item->getDisplayChildren()) {
+        if ($item->hasChildren() and 0 !== $options['depth']) {
+            if (null !== $options['branch_class'] and $item->getDisplayChildren()) {
                 $class[] = $options['branch_class'];
             }
         } elseif (null !== $options['leaf_class']) {
@@ -186,7 +186,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
      */
     protected function renderLink(ItemInterface $item, array $options = array())
     {
-        if ($item->getUri() && (!$item->isCurrent() || $options['currentAsLink'])) {
+        if ($item->getUri() and (!$item->isCurrent() or $options['currentAsLink'])) {
             $text = $this->renderLinkElement($item, $options);
         } else {
             $text = $this->renderSpanElement($item, $options);
@@ -218,7 +218,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
 
     protected function renderLabel(ItemInterface $item, array $options)
     {
-        if ($options['allow_safe_labels'] && $item->getExtra('safe_label', false)) {
+        if ($options['allow_safe_labels'] and $item->getExtra('safe_label', false)) {
             return $item->getLabel();
         }
 

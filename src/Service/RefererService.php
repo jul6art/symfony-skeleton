@@ -24,7 +24,7 @@ class RefererService
     public function getFormReferer(Request $request, string $domain): ?string
     {
         $referer = $request->headers->get('referer');
-        if ($request->getUri() !== $referer && false !== strpos($referer, $request->getHost())) {
+        if ($request->getUri() !== $referer and false !== strpos($referer, $request->getHost())) {
             $request->getSession()->set("referer_{$domain}", $referer);
         }
 

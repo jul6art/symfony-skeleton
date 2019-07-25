@@ -129,12 +129,12 @@ class LocaleExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has('user_locale') || !\in_array($request->request->get('user_locale'), $this->available_locales)) {
+        if (!$request->request->has('user_locale') or !\in_array($request->request->get('user_locale'), $this->available_locales)) {
             $user = $this->tokenStorage->getToken()->getUser();
             $locale = $this->locale;
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
-                if ($user instanceof User && $user->hasSetting(User::SETTING_LOCALE)) {
+                if ($user instanceof User and $user->hasSetting(User::SETTING_LOCALE)) {
                     $locale = $user->getLocale();
                 }
             }

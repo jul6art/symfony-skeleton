@@ -39,9 +39,9 @@ class FileService
 
         if ($size < 1024) {
             $size = "$size Octets";
-        } elseif ($size < 1048576 && $size > 1023) {
+        } elseif ($size < 1048576 and $size > 1023) {
             $size = sprintf('%s Ko', round($size / 1024, 1));
-        } elseif ($size < 1073741824 && $size > 1048575) {
+        } elseif ($size < 1073741824 and $size > 1048575) {
 	        $size = sprintf('%s Mo', round($size / 1048576, 1));
         } else {
 	        $size = sprintf('%s Go', round($size / 1073741824, 1));

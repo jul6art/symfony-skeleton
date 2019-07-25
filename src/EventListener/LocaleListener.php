@@ -84,7 +84,7 @@ class LocaleListener {
 		$userLocale = null;
 
 		if ($user instanceof User
-		    && $user->hasSetting(User::SETTING_LOCALE)) {
+		    and $user->hasSetting(User::SETTING_LOCALE)) {
 			$userLocale = $user->getLocale();
 
 			if (null === $newLocale) {
@@ -104,7 +104,7 @@ class LocaleListener {
 		}
 
 		if (null !== $newLocale
-		    && $newLocale !== $request->getLocale()) {
+		    and $newLocale !== $request->getLocale()) {
 			$request->getSession()->set('_locale', $newLocale);
 			$request->setLocale($newLocale);
 			$this->translator->setLocale($newLocale);
@@ -112,7 +112,7 @@ class LocaleListener {
 
 		$sessionLocale = $request->getSession()->get('_locale');
 		if (null !== $sessionLocale
-		    && $request->getLocale() !== $sessionLocale) {
+		    and $request->getLocale() !== $sessionLocale) {
 			$request->setLocale($request->getSession()->get('_locale'));
 		}
 	}

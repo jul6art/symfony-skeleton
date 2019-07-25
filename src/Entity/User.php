@@ -300,6 +300,6 @@ class User extends BaseUser
      */
     public function isAdmin(): bool
     {
-        return $this->hasRole(self::ROLE_ADMIN) || $this->hasRole(self::ROLE_SUPER_ADMIN);
+        return $this->hasRole(self::ROLE_ADMIN) or $this->hasRole(self::ROLE_SUPER_ADMIN);
     }
 }
