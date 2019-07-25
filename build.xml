@@ -10,7 +10,7 @@
     <property name="symfony_env" value="dev"/>
     <property name="composer" value="composer"/>
     <property name="php" value="php"/>
-    <property name="phpunit" value="phpunit"/>
+    <property name="phpunit" value="./vendor/bin/simple-phpunit"/>
     <property name="parameters" value="/PATH/TO/PARAMETERS"/>
 
     <!--<target name="build" description="Build"-->
@@ -54,13 +54,13 @@
     </target>
 
     <target name="unit_tests" description="Launch Unit Tests">
-        <exec executable="php" failonerror="false">
+        <exec executable="php" failonerror="true">
             <arg value="${phpunit}"/>
         </exec>
     </target>
 
     <target name="build" description="Build"
-        depends="info"
+        depends="info, unit_tests"
     />
 
     <target name="info" description="Log infos">
