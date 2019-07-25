@@ -14,7 +14,7 @@ Base sf4 admin project
 
 ### Breadcrumb
 
-> You can disabled the breadcrumb for a specific page
+> You can disable the breadcrumb for a specific page
 
 ```twig
 {% set breadcrumb = false %}
