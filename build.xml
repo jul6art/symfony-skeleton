@@ -18,7 +18,7 @@
     <!--/>-->
 
     <target name="build" description="Build"
-            depends="info, parameters, composer, fosjs, yarn, database_migrate, fixtures, unit_tests"
+            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, fixtures, audit, unit_tests"
     />
 
     <target name="deploy" description="Deploy and deployment process"
@@ -67,6 +67,22 @@
             <arg value="fos:js-routing:dump"/>
             <arg value="--format=json"/>
             <arg value="--target=public/js/fos_js_routes.json"/>
+        </exec>
+    </target>
+
+    <target name="audit" description="Audit cleaning">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="audit:clean"/>
+            <arg value="--no-confirm"/>
+        </exec>
+    </target>
+
+    <target name="cache" description="Cache cleaning">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="cache:clear"/>
+            <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
