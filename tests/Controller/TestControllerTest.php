@@ -9,6 +9,7 @@
 namespace App\Tests\Controller;
 
 use App\Entity\Test;
+use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -20,6 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TestControllerTest extends WebTestCase
 {
+	use TestTrait;
+
 	/**
 	 * @var Generator
 	 */
@@ -50,6 +53,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/test/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -66,6 +71,8 @@ class TestControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/test/');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
@@ -84,6 +91,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/test/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
@@ -97,6 +106,8 @@ class TestControllerTest extends WebTestCase
 		$client = static::createClient();
 
 		$client->request('GET', '/admin/test/add');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -115,6 +126,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/test/add');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -132,6 +145,8 @@ class TestControllerTest extends WebTestCase
 
 		$crawler = $client->request('GET', '/admin/test/add');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
 		$form = $crawler->filter('button[type="submit"]')->form();
@@ -143,6 +158,8 @@ class TestControllerTest extends WebTestCase
 
 		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
 			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -160,6 +177,8 @@ class TestControllerTest extends WebTestCase
 		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/view/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -181,6 +200,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/test/view/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -201,6 +222,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/test/view/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
@@ -217,6 +240,8 @@ class TestControllerTest extends WebTestCase
 		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/edit/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -238,6 +263,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/test/edit/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -258,6 +285,8 @@ class TestControllerTest extends WebTestCase
 
 		$crawler = $client->request('GET', "/admin/test/edit/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
 		$form = $crawler->filter('button[type="submit"]')->form();
@@ -269,6 +298,8 @@ class TestControllerTest extends WebTestCase
 
 		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
 			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -286,6 +317,8 @@ class TestControllerTest extends WebTestCase
 		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/test/delete/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -307,6 +340,8 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/test/delete/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -327,7 +362,11 @@ class TestControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/test/delete/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}

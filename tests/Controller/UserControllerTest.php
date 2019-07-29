@@ -9,6 +9,7 @@
 namespace App\Tests\Controller;
 
 use App\Entity\User;
+use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -20,6 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class UserControllerTest extends WebTestCase
 {
+	use TestTrait;
+
 	/**
 	 * @var Generator
 	 */
@@ -50,6 +53,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/user/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -66,6 +71,8 @@ class UserControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/user/');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
@@ -84,6 +91,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/user/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
@@ -97,6 +106,8 @@ class UserControllerTest extends WebTestCase
 		$client = static::createClient();
 
 		$client->request('GET', '/admin/user/add');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -115,6 +126,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/user/add');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -132,6 +145,8 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request('GET', '/admin/user/add');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
 		$form = $crawler->filter('button[type="submit"]')->form();
@@ -146,6 +161,8 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
 			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -163,6 +180,8 @@ class UserControllerTest extends WebTestCase
 		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/view/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -184,6 +203,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/user/view/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -204,6 +225,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/user/view/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
@@ -221,6 +244,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/user/view/-1');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -237,6 +262,8 @@ class UserControllerTest extends WebTestCase
 		$id = end($tests)->getId();
 
 		$client->request('GET', "/admin/user/edit/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -258,6 +285,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/user/edit/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -278,6 +307,8 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request('GET', "/admin/user/edit/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
 		$form = $crawler->filter('button[type="submit"]')->form();
@@ -292,6 +323,8 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
 			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -310,6 +343,8 @@ class UserControllerTest extends WebTestCase
 
 		$crawler = $client->request('GET', '/admin/user/edit/-1');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -326,6 +361,8 @@ class UserControllerTest extends WebTestCase
 		$id = end($users)->getId();
 
 		$client->request('GET', "/admin/user/delete/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
@@ -347,6 +384,8 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/user/delete/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
 
@@ -367,7 +406,11 @@ class UserControllerTest extends WebTestCase
 
 		$client->request('GET', "/admin/user/delete/$id");
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -385,6 +428,8 @@ class UserControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/user/delete/-1');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
