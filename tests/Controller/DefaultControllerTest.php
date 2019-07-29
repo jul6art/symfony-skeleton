@@ -133,4 +133,97 @@ class DefaultControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
+
+	/**
+	 * Test App\\Controller\\DefaultController cache Action
+	 *
+	 * User must be logged
+	 */
+	public function testCache()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/admin/cache');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController cache Action
+	 *
+	 * User has bad Roles
+	 */
+	public function testCache02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/cache');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController theme Action
+	 *
+	 * User must be logged
+	 */
+	public function testTheme()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/admin/theme/blue');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController theme Action
+	 *
+	 * User has bad Roles
+	 */
+	public function testTheme02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/theme/-1');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController theme Action
+	 *
+	 * Successfull
+	 */
+	public function testTheme03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/theme/blue');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
 }
