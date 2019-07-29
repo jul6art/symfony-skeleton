@@ -9,6 +9,7 @@
 namespace App\Tests\Controller;
 
 use App\Entity\Test;
+use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -20,6 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DefaultControllerTest extends WebTestCase
 {
+	use TestTrait;
+
 	/**
 	 * @var Generator
 	 */
@@ -42,7 +45,7 @@ class DefaultControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\DefaultController index Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testIndex()
 	{
@@ -56,7 +59,7 @@ class DefaultControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\DefaultController index Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testIndex02()
 	{
@@ -83,6 +86,40 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/');
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController locale Action
+	 *
+	 * Invalid locale
+	 */
+	public function testLocale()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/locale/es');
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController locale Action
+	 *
+	 * Successfull
+	 */
+	public function testLocale02()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/locale/de');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
