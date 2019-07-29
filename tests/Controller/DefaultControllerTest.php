@@ -8,7 +8,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Test;
 use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
@@ -53,6 +52,8 @@ class DefaultControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -69,6 +70,8 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/');
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
 	}
@@ -87,6 +90,8 @@ class DefaultControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
@@ -101,6 +106,8 @@ class DefaultControllerTest extends WebTestCase
 
 		$client->request('GET', '/locale/es');
 
+		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
 
@@ -111,7 +118,10 @@ class DefaultControllerTest extends WebTestCase
 	 */
 	public function testLocale02()
 	{
-		$client = static::createClient();
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
 
 		$client->request('GET', '/locale/de');
 
