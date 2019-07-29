@@ -80,3 +80,5 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 /.php_cs.cache
 /public/js/
+/tests/result/html/
+!/tests/result/html/.gitkeep

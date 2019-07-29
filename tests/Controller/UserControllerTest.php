@@ -42,7 +42,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController index Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testIndex()
 	{
@@ -56,7 +56,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController index Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testIndex02()
 	{
@@ -90,7 +90,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController add Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testAdd()
 	{
@@ -104,7 +104,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController add Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testAdd02()
 	{
@@ -153,7 +153,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController show Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testShow()
 	{
@@ -170,7 +170,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController show Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testShow02()
 	{
@@ -208,9 +208,26 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
+	 * Test App\\Controller\\UserController show Action
+	 *
+	 * Not found
+	 */
+	public function testShow04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/user/view/-1');
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
 	 * Test App\\Controller\\UserController edit Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testEdit()
 	{
@@ -227,7 +244,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController edit Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testEdit02()
 	{
@@ -280,9 +297,26 @@ class UserControllerTest extends WebTestCase
 	}
 
 	/**
+	 * Test App\\Controller\\UserController edit Action
+	 *
+	 * Not found
+	 */
+	public function testEdit04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$crawler = $client->request('GET', '/admin/user/edit/-1');
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
 	 * Test App\\Controller\\UserController delete Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testDelete()
 	{
@@ -299,7 +333,7 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController delete Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testDelete02()
 	{
@@ -336,5 +370,22 @@ class UserControllerTest extends WebTestCase
 		$client->followRedirect();
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController delete Action
+	 *
+	 * Not found
+	 */
+	public function testDelete04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/user/delete/-1');
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
 }

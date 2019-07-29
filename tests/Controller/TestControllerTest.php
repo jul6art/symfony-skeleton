@@ -42,7 +42,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController index Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testIndex()
 	{
@@ -56,7 +56,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController index Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testIndex02()
 	{
@@ -90,7 +90,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController add Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testAdd()
 	{
@@ -104,7 +104,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController add Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testAdd02()
 	{
@@ -150,7 +150,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController show Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testShow()
 	{
@@ -167,7 +167,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController show Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testShow02()
 	{
@@ -207,7 +207,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController edit Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testEdit()
 	{
@@ -224,7 +224,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController edit Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testEdit02()
 	{
@@ -276,7 +276,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController delete Action
 	 *
-	 * Test must be logged
+	 * User must be logged
 	 */
 	public function testDelete()
 	{
@@ -293,7 +293,7 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController delete Action
 	 *
-	 * Test user has bad Roles
+	 * User has bad Roles
 	 */
 	public function testDelete02()
 	{
