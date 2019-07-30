@@ -286,7 +286,7 @@ class DefaultControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\DefaultController functionality Action
 	 *
-	 * Successfull
+	 * Successfull with func audit
 	 */
 	public function testFunctionality04()
 	{
@@ -295,9 +295,175 @@ class DefaultControllerTest extends WebTestCase
 			'PHP_AUTH_PW'   => 'vsweb',
 		]);
 
-		$functionality = Functionality::FUNC_MANAGE_SETTINGS;
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_AUDIT)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func cache
+	 */
+	public function testFunctionality05()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CLEAR_CACHE)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func edit in place
+	 */
+	public function testFunctionality06()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_EDIT_IN_PLACE)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func confirm delete
+	 */
+	public function testFunctionality07()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CONFIRM_DELETE)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func form watch
+	 */
+	public function testFunctionality08()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_FORM_WATCHER)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func manage settings
+	 */
+	public function testFunctionality09()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func swicth locale
+	 */
+	public function testFunctionality10()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_LOCALE)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with func swicth theme
+	 */
+	public function testFunctionality11()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
 		$client->request('GET', "/admin/functionality/$id/0");
 
 		$this->save('result.html', $client->getResponse()->getContent());
