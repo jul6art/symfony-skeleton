@@ -8,6 +8,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Functionality;
 use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
@@ -188,7 +189,7 @@ class DefaultControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\DefaultController theme Action
 	 *
-	 * User has bad Roles
+	 * Invalid theme
 	 */
 	public function testTheme02()
 	{
@@ -217,6 +218,87 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$client->request('GET', '/admin/theme/blue');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * User must be logged
+	 */
+	public function testFunctionality()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/admin/functionality/blue');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Invalid functionality
+	 */
+	public function testFunctionality02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/functionality/-1');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull
+	 */
+	public function testFunctionality03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull
+	 */
+	public function testFunctionality04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$functionality = Functionality::FUNC_MANAGE_SETTINGS;
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 

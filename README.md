@@ -72,6 +72,6 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
     Gedmo
     Stof
     FriendsOfSymfony
-    Basic theme: https://gurayyarar.github.io/AdminBSBMaterialDesign/
+    Gurayyarar
 
 &copy; 2019 [VsWeb](https://vsweb.be)
