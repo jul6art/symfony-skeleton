@@ -10,6 +10,8 @@ namespace App\Tests\Controller;
 
 use App\Entity\Functionality;
 use App\Tests\TestTrait;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -296,7 +298,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_AUDIT)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -320,7 +322,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CLEAR_CACHE)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -344,7 +346,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_EDIT_IN_PLACE)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -368,7 +370,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CONFIRM_DELETE)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -392,7 +394,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_FORM_WATCHER)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -416,7 +418,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -440,7 +442,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_LOCALE)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
@@ -464,7 +466,7 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
-		$client->request('GET', "/admin/functionality/$id/0");
+		$client->request('GET', "/admin/functionality/$id/1");
 
 		$this->save('result.html', $client->getResponse()->getContent());
 
