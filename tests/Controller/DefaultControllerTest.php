@@ -9,8 +9,8 @@
 namespace App\Tests\Controller;
 
 use App\Entity\Functionality;
+use App\Entity\Setting;
 use App\Tests\TestTrait;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Faker\Factory;
 use Faker\Generator;
@@ -249,28 +249,9 @@ class DefaultControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\DefaultController functionality Action
 	 *
-	 * Invalid functionality
+	 * User has bad Roles
 	 */
 	public function testFunctionality02()
-	{
-		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
-		]);
-
-		$client->request('GET', '/admin/functionality/-1');
-
-		$this->save('result.html', $client->getResponse()->getContent());
-
-		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
-	}
-
-	/**
-	 * Test App\\Controller\\DefaultController functionality Action
-	 *
-	 * Successfull
-	 */
-	public function testFunctionality03()
 	{
 		$client = static::createClient([], [
 			'PHP_AUTH_USER' => 'user',
@@ -283,6 +264,25 @@ class DefaultControllerTest extends WebTestCase
 		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Invalid functionality
+	 */
+	public function testFunctionality03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/functionality/-1');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
 	}
 
 	/**
@@ -473,6 +473,268 @@ class DefaultControllerTest extends WebTestCase
 		$client->followRedirect();
 
 		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController functionality Action
+	 *
+	 * Successfull with ajax call
+	 */
+	public function testFunctionality12()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
+		$client->xmlHttpRequest('GET', "/admin/functionality/$id/1");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * User must be logged
+	 */
+	public function testSetting()
+	{
+		$client = static::createClient();
+
+		$client->request('GET', '/admin/setting/blue');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * User has bad roles
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting02()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'user',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_PROJECT_NAME)->getId();
+		$client->request('GET', "/admin/setting/$id/test");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Invalid setting
+	 */
+	public function testSetting03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$client->request('GET', '/admin/setting/-1');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with setting project name
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_PROJECT_NAME)->getId();
+		$value = Setting::SETTING_PROJECT_NAME_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with setting base title
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting05()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_BASE_TITLE)->getId();
+		$value = Setting::SETTING_BASE_TITLE_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with setting default theme
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting06()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_DEFAULT_THEME)->getId();
+		$value = Setting::SETTING_DEFAULT_THEME_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with setting audit limit
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting07()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_AUDIT_LIMIT)->getId();
+		$value = Setting::SETTING_AUDIT_LIMIT_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with setting toastr vertical position
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting08()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_VERTICAL_POSITION)->getId();
+		$value = Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with toastr horizontal position
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting09()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_HORIZONTAL_POSITION)->getId();
+		$value = Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE;
+		$client->request('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$client->followRedirect();
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController setting Action
+	 *
+	 * Successfull with ajax call
+	 *
+	 * @throws ORMException
+	 */
+	public function testSetting10()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_HORIZONTAL_POSITION)->getId();
+		$value = Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE;
+		$client->xmlHttpRequest('GET', "/admin/setting/$id/$value");
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
