@@ -12,6 +12,13 @@ Base sf4 admin project
 
 [COMPLETE DOCUMENTATION](/data/docs/INSTALL.md)
 
+### Requirements
+
+   - php between 7.1 and 7.3
+   - mysql (for postgresql, sqlite or something else, you will need to update doctrine configuration)
+   - composer
+   - yarn
+
 ### Install
 
 ```bash
@@ -53,11 +60,18 @@ nano .env
     GOOGLE_RECAPTCHA_SECRET=
     ###< google/recaptcha ###
 
-### Launch
+### Start server
 
 ```bash
 sh hook_local.sh
 php bin/console server:start
+```
+
+### Testing
+
+```bash
+sh hook_local.sh
+./vendor/bin/simple-phpunit
 ```
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
