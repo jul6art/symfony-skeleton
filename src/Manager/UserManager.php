@@ -72,56 +72,58 @@ class UserManager extends AbstractManager
         return UserFactory::createAdmin($this->groupManager, $this->locale, $defaultTheme);
     }
 
-    /**
-     * @param User   $user
-     * @param string $locale
-     *
-     * @return bool
-     */
-    public function updateLocale(user $user, string $locale): bool
+	/**
+	 * @param User $user
+	 * @param string $locale
+	 *
+	 * @return UserManager
+	 */
+    public function updateLocale(user $user, string $locale): self
     {
         $user->setLocale($locale);
 
-        return $this->save($user);
+        return $this;
     }
 
-    /**
-     * @param User   $user
-     * @param string $locale
-     *
-     * @return bool
-     */
-    public function updateTheme(user $user, string $theme): bool
+	/**
+	 * @param User $user
+	 * @param string $theme
+	 *
+	 * @return UserManager
+	 */
+    public function updateTheme(user $user, string $theme): self
     {
         $user->setTheme($theme);
 
-        return $this->save($user);
+        return $this;
     }
 
 	/**
 	 * @param User $user
 	 *
-	 * @return User
+	 * @return UserManager
 	 * @throws NonUniqueResultException
 	 */
-	public function updateSettings(User $user): User
+	public function updateSettings(User $user): self
 	{
-		return $user
+		$user
 			->setLocale($this->locale)
 			->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
+
+		return $this;
 	}
 
 	/**
 	 * @param User $user
 	 *
-	 * @return User
+	 * @return UserManager
 	 * @throws NonUniqueResultException
 	 */
-	public function updateGroups(User $user): User
+	public function updateGroups(User $user): self
 	{
 		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
 		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
-		return $user;
+		return $this;
 	}
 
     /**
@@ -132,6 +134,30 @@ class UserManager extends AbstractManager
         $generator = new RandomGenerator();
 
         return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
+    }
+
+	/**
+	 * @param User $user
+	 *
+	 * @return UserManager
+	 */
+    public function activate(User $user): self
+    {
+    	$user->setEnabled(true);
+
+    	return $this;
+    }
+
+	/**
+	 * @param User $user
+	 *
+	 * @return UserManager
+	 */
+    public function deactivate(User $user): self
+    {
+    	$user->setEnabled(false);
+
+    	return $this;
     }
 
 	/**

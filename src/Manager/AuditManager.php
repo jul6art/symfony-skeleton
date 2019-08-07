@@ -51,15 +51,16 @@ class AuditManager extends AbstractManager
         $this->configuration = $configuration;
     }
 
-    /**
-     * @param string $level
-     * @param $entity
-     * @param array $diffs
-     *
-     * @throws DBALException
-     * @throws MappingException
-     */
-    public function audit(string $level, $entity, array $diffs): void
+	/**
+	 * @param string $level
+	 * @param $entity
+	 * @param array $diffs
+	 *
+	 * @return AuditManager
+	 * @throws DBALException
+	 * @throws MappingException
+	 */
+    public function audit(string $level, $entity, array $diffs): self
     {
         $meta = $this->entityManager->getClassMetadata(get_class($entity));
 
@@ -103,5 +104,7 @@ class AuditManager extends AbstractManager
         $statement->bindValue('ip', $blame['client_ip']);
         $statement->bindValue('created_at', (new DateTime())->format('Y-m-d H:i:s'));
         $statement->execute();
+
+        return $this;
     }
 }

@@ -41,8 +41,9 @@ class UserSubscriber implements EventSubscriberInterface
         $user = $event->getForm()->getData();
         $user->setLocale($event->getRequest()->getLocale());
         $user->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
-        $this->userManager->updateGroups($user);
-        $this->userManager->save($user);
+        $this->userManager
+	        ->updateGroups($user)
+	        ->save($user);
     }
 
 	/**

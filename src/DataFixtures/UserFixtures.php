@@ -31,6 +31,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $user = $this->userManager
             ->create()
+            ->setEnabled(true)
             ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('user')
             ->setFirstname($faker->firstName)
@@ -43,6 +44,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $admin = $this->userManager
             ->createAdmin()
+            ->setEnabled(true)
             ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('admin')
             ->setFirstname($faker->firstName)
@@ -55,6 +57,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $superAdmin = $this->userManager
             ->createAdmin()
+	        ->setEnabled(true)
             ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('superadmin')
             ->setFirstname($faker->firstName)
@@ -69,6 +72,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::LIMIT; ++$i ) {
             $user = $this->userManager
                 ->create()
+                ->setEnabled(true)
                 ->setGender($faker->randomElement(self::GENDER_CHOICES))
                 ->setUsername($faker->userName)
                 ->setFirstname($faker->firstName)

@@ -71,7 +71,9 @@ class DefaultController extends AbstractFOSRestController
 		$referer = $this->refererService->getFormReferer($request, 'locale');
 
 		if (null !== $this->getUser()) {
-			$this->userManager->updateLocale($this->getUser(), $locale);
+			$this->userManager
+				->updateLocale($this->getUser(), $locale)
+				->save($this->getUser());
 		}
 
 		$session = $request->getSession();
@@ -129,7 +131,9 @@ class DefaultController extends AbstractFOSRestController
         $referer = $this->refererService->getFormReferer($request, 'theme');
 
         if (\in_array($name, $available_colors) and null !== $this->getUser()) {
-            $this->userManager->updateTheme($this->getUser(), $name);
+            $this->userManager
+	            ->updateTheme($this->getUser(), $name)
+	            ->save($this->getUser());
         }
 
 	    return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
@@ -150,7 +154,9 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $this->refererService->getFormReferer($request, 'functionality');
 
-        $this->functionalityManager->updateState($functionality, (bool) $state);
+        $this->functionalityManager
+	        ->update($functionality, (bool) $state)
+	        ->save($functionality);
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([
@@ -176,7 +182,9 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $this->refererService->getFormReferer($request, 'setting');
 
-        $this->settingManager->update($setting, $value);
+        $this->settingManager
+	        ->update($setting, $value)
+	        ->save($setting);
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([

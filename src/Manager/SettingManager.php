@@ -43,17 +43,17 @@ class SettingManager extends AbstractManager
         return SettingFactory::create();
     }
 
-    /**
-     * @param Setting $setting
-     * @param string  $value
-     *
-     * @return bool
-     */
-    public function update(Setting $setting, string $value): bool
+	/**
+	 * @param Setting $setting
+	 * @param string $value
+	 *
+	 * @return SettingManager
+	 */
+    public function update(Setting $setting, string $value): self
     {
         $setting->setValue($value);
 
-        return $this->save($setting);
+        return $this;
     }
 
     /**

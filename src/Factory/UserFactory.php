@@ -30,7 +30,6 @@ class UserFactory
 	public static function create(GroupManager $groupManager, string $locale, string $defaultTheme): User
 	{
 		$user = (new User())
-			->setEnabled(true)
 			->addGroup($groupManager->findOneByName(Group::GROUP_NAME_USER))
 			->setLocale($locale)
 			->setTheme($defaultTheme);
@@ -50,7 +49,6 @@ class UserFactory
 	public static function createAdmin(GroupManager $groupManager, string $locale, string $defaultTheme): User
 	{
 		return (new User())
-			->setEnabled(true)
 			->addGroup($groupManager->findOneByName(Group::GROUP_NAME_ADMIN))
 			->setLocale($locale)
 			->setTheme($defaultTheme);
