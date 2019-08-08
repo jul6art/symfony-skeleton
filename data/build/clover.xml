@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1565201638">
-  <project timestamp="1565201638">
+<coverage generated="1565254122">
+  <project timestamp="1565254122">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller" fullPackage="App" package="App">

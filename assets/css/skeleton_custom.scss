@@ -239,6 +239,12 @@ LOGIN
   }
 }
 
+.login-box {
+  > .card {
+    margin-bottom: 10px;
+  }
+}
+
 /**
 FORMS
  */
