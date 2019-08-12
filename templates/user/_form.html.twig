@@ -1,3 +1,9 @@
+{% if form_errors(form)|length %}
+    <div class="alert has-error">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
 <div class="row">
     <div class="col-sm-6">
         {{ form_row(form.gender) }}

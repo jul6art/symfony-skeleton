@@ -4015,6 +4015,11 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
+jquery-cookie-bubble@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jquery-cookie-bubble/-/jquery-cookie-bubble-1.0.0.tgz#b0d9ee38231c6bd618ac5b7c4b21573890d4e140"
+  integrity sha512-7nVFXjuznvEdJ7xF+TlrqmyrTCBPTqgk2ekESM/Nv9Vgw7DOoTRrXU44awQd0ngxxbyUY7DLxQO8OGt2TgVIIw==
+
 jquery-slimscroll@^1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/jquery-slimscroll/-/jquery-slimscroll-1.3.8.tgz#8481c44e7a47687653908a28f7f70aed64c84e36"

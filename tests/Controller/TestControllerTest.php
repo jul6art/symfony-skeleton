@@ -134,9 +134,42 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController add Action
 	 *
-	 * Successfull
+	 * Invalid form
 	 */
 	public function testAdd03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$crawler = $client->request('GET', '/admin/test/add');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$form = $crawler->filter('button[type="submit"]')->form();
+
+		$values = [
+			'add_test[name]'    => $this->faker->name,
+			'add_test[content]'    => null,
+		];
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
+	}
+
+	/**
+	 * Test App\\Controller\\TestController add Action
+	 *
+	 * Successfull
+	 */
+	public function testAdd04()
 	{
 		$client = static::createClient([], [
 			'PHP_AUTH_USER' => 'admin',
@@ -161,7 +194,7 @@ class TestControllerTest extends WebTestCase
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
-		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+		$this->assertEquals(0, $crawler->filter('.has-error')->count());
 	}
 
 	/**
@@ -271,9 +304,45 @@ class TestControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\TestController edit Action
 	 *
-	 * Successfull
+	 * Invalid form
 	 */
 	public function testEdit03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
+		$id = end($tests)->getId();
+
+		$crawler = $client->request('GET', "/admin/test/edit/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$form = $crawler->filter('button[type="submit"]')->form();
+
+		$values = [
+			'add_test[name]'    => $this->faker->name,
+			'add_test[content]'    => null,
+		];
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+			$form->getPhpFiles());
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
+	}
+
+	/**
+	 * Test App\\Controller\\TestController edit Action
+	 *
+	 * Successfull
+	 */
+	public function testEdit04()
 	{
 		$client = static::createClient([], [
 			'PHP_AUTH_USER' => 'admin',
@@ -301,7 +370,7 @@ class TestControllerTest extends WebTestCase
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
-		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+		$this->assertEquals(0, $crawler->filter('.has-error')->count());
 	}
 
 	/**
@@ -369,5 +438,31 @@ class TestControllerTest extends WebTestCase
 		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\TestController delete Action
+	 *
+	 * Successfull with xmlhttprequest
+	 */
+	public function testDelete04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => 'admin',
+			'PHP_AUTH_PW'   => 'vsweb',
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Test::class)->findAll();
+		$id = end($tests)->getId();
+
+		$client->xmlHttpRequest('GET', "/admin/test/delete/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$content = json_decode($client->getResponse()->getContent(), true);
+
+		$this->assertEquals(true, $content['success']);
 	}
 }
