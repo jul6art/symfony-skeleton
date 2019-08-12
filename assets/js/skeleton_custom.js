@@ -12,6 +12,7 @@ $.App = {
         this.card();
         this.colorize();
         this.console();
+        this.cookie();
         this.dialog();
         this.dropdown();
         this.editInPlace();
@@ -98,6 +99,16 @@ $.App = {
         if (localStorageSupported() && localStorage["vsweb-console-message"]!=='0') {
             vsweb_console_message();
         }
+    },
+    cookie: function () {
+        $.cookieBubble({
+            messageText : COOKIE_TRANSLATIONS.message,
+            iconColor: $.App.getThemeColor(THEME_NAME),
+            buttonColor: $.App.getThemeColor(THEME_NAME),
+            buttonText : COOKIE_TRANSLATIONS.confirm_button,
+            cookiePolicyButtonText : COOKIE_TRANSLATIONS.cookie_policy_button,
+            cookiePolicyButtonUrl : COOKIE_TRANSLATIONS.cookie_policy_url,
+        });
     },
     dialog: function () {
         if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== 'undefined') {
@@ -192,6 +203,53 @@ $.App = {
                 inline: true,
                 toolbar: 'undo redo',
             });
+        }
+    },
+    getThemeColor: function (color) {
+        switch (color) {
+            case 'white':
+            default:
+                return '#FFFFFF';
+            case 'black':
+                return '#000000';
+            case 'red':
+                return '#F44336';
+            case 'pink':
+                return '#E91E63';
+            case 'purple':
+                return '#9C27B0';
+            case 'deep-purple':
+                return '#673AB7';
+            case 'indigo':
+                return '#3F51B5';
+            case 'blue':
+                return '#2196F3';
+            case 'light-blue':
+                return '#03A9F4';
+            case 'cyan':
+                return '#00BCD4';
+            case 'teal':
+                return '#009688';
+            case 'green':
+                return '#4CAF50';
+            case 'light-green':
+                return '#8BC34A';
+            case 'lime':
+                return '#CDDC39';
+            case 'yellow':
+                return '#ffe821';
+            case 'amber':
+                return '#FFC107';
+            case 'orange':
+                return '#FF9800';
+            case 'deep-orange':
+                return '#FF5722';
+            case 'brown':
+                return '#795548';
+            case 'grey':
+                return '#9E9E9E';
+            case 'blue-grey':
+                return '#607D8B';
         }
     },
     notify: function(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
@@ -350,3 +408,5 @@ $(document).ready(function () {
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
     });
 });
+
+export const getThemeColor = $.App.getThemeColor;

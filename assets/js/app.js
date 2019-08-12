@@ -10,6 +10,7 @@ import 'jquery-slimscroll';
 import 'node-waves';
 import 'blockui';
 import 'bootstrap-select';
+import 'jquery-cookie-bubble/js/cookieBubble';
 
 // routing
 window.Routing = require('./routing');

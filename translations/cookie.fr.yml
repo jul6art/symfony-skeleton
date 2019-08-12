@@ -1,0 +1,5 @@
+cookie:
+    message: 'Nous utilisons des cookies pour personaliser votre experience. En continuant sur le site, vous acceptez l''usage des cookies.'
+    buttons:
+        confirm: 'accepter'
+        cookie_policy: 'politique de cookies'
