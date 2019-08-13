@@ -32,7 +32,7 @@ class TestFixtures extends Fixture
                 ->setName($faker->name)
                 ->setContent($faker->text);
 
-            $this->setReference("test_{$i}", $test);
+            $this->setReference("test_$i", $test);
             $manager->persist($test);
         }
 

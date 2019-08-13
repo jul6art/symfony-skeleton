@@ -80,7 +80,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setPlainPassword(User::DEFAULT_PASSWORD)
                 ->setEmail($faker->email);
 
-            $this->setReference("user_user_{$i}", $user);
+            $this->setReference("user_user_$i", $user);
             $manager->persist($user);
         }
 

@@ -37,7 +37,7 @@ class FunctionalityFixtures extends Fixture
             $functionality = ($this->functionalityManager->create())
                 ->setName($value);
 
-            $this->setReference("func_{$value}", $functionality);
+            $this->setReference("func_$value", $functionality);
             $manager->persist($functionality);
         }
 
