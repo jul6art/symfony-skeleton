@@ -25,6 +25,9 @@ monolog:
             handler: deprecation
             max_level: info
             channels: ["php"]
+        deduplicated:
+            type:    deduplication
+            handler: swift
         swift:
             type: swift_mailer
             from_email: '%env(MAILER_FROM_ADDRESS)%'
