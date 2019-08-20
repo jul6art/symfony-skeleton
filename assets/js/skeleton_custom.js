@@ -6,6 +6,7 @@ import tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
+import {ajaxForm} from './form';
 
 $.App = {
     init: function () {
@@ -362,7 +363,9 @@ $.App = {
         });
     },
     tooltip: function () {
-        $('[data-toggle="tooltip"]').tooltip();
+        $(document).on('dom.element.new', function (e, container) {
+            $(container).find('[data-toggle="tooltip"]').tooltip();
+        });
     },
     unblockUI: function (elem) {
         if (elem) {
@@ -407,6 +410,10 @@ $(document).ready(function () {
 
         $.App.notify(colorName, text, placementFrom, placementAlign, animateEnter, animateExit);
     });
+
+    ajaxForm();
 });
 
+export const blockUI = $.App.blockUI;
 export const getThemeColor = $.App.getThemeColor;
+export const unblockUI = $.App.unblockUI;

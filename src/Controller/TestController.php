@@ -81,10 +81,11 @@ class TestController extends AbstractFOSRestController
         $serializer = new Serializer([$testTransformer]);
 
         $view = $this->view()
-                     ->setTemplate('test/add.html.twig')
+                     ->setTemplate($request->isXmlHttpRequest() ? 'layout/layout_ajax_form.html.twig' : 'test/add.html.twig')
                      ->setTemplateData([
                          'test' => $serializer->normalize($test, 'json'),
                          'form' => $form->createView(),
+                         'form_html' => 'test/_form.html.twig',
                      ]);
 
         return $this->handleView($view);

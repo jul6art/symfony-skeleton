@@ -46,7 +46,7 @@ class AddTestType extends AbstractType
             // remove this field to remove test fields
             ->add('test', TestTestType::class, [
                 'mapped' => false,
-                'disabled' => true,
+                'disabled' => false,
             ]);
     }
 

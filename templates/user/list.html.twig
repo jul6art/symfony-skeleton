@@ -29,7 +29,7 @@
         {% endif %}
 
         {% if is_granted(constant('App\\Security\\Voter\\UserVoter::ADD'), 'App\\Entity\\User') %}
-            <a class="btn bg-{{ theme_name() }} white waves-effect" href="{{ path('admin_user_add') }}">
+            <a href="{{ path('admin_user_add') }}" class="btn bg-{{ theme_name() }} white waves-effect">
                 <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'button.add'|trans({}, 'button') }}</span>
             </a>
         {% endif %}

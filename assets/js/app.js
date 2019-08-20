@@ -22,6 +22,10 @@ import './skeleton_custom';
 // polyfill
 import 'time-input-polyfill/auto';
 
+$(document).ready(function () {
+    $(document).trigger('dom.element.new', ['body']);
+});
+
 // import functions from other js file
 // import {validationCaptchaCallback} from './form';
 

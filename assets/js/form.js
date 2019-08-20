@@ -17,6 +17,7 @@ import * as tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
+import {blockUI, unblockUI}  from './skeleton_custom'
 let FORM_VALIDATOR = require ('jquery-validation');
 if (VALIDATE_LOCALE !== 'en') {
     require ('jquery-validation/dist/localization/messages_' + VALIDATE_LOCALE + '.min');
@@ -1509,6 +1510,7 @@ if (typeof ACTIVATED_FUNCTIONS.form_watcher !== 'undefined') {
 $.Form = {
     init: function () {
         this.autosize();
+        this.ajaxForm();
         this.configure();
         this.intl_tel();
         this.mask();
@@ -1520,6 +1522,67 @@ $.Form = {
     },
     autosize: function () {
         Autosize($('textarea:not(.no_autosize)'));
+    },
+    ajaxForm: function () {
+        if (typeof ACTIVATED_FUNCTIONS.confirm_delete === 'undefined') {
+            require ('sweetalert');
+        }
+
+        $('body').on('click', '[data-trigger="ajax-form"]', function(e) {
+            e.preventDefault();
+            let link = $(this);
+
+            $.get(link.data('url'), function(data) {
+                swal({
+                    title: DIALOG_TRANSLATIONS.confirm_title,
+                    content: $(data)[0],
+                    buttons: [
+                        DIALOG_TRANSLATIONS.cancel_button,
+                        DIALOG_TRANSLATIONS.confirm_button,
+                    ],
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            console.log(swal.getContainer());
+                            // $.ajax({
+                            //     url: link.data('url'),
+                            //     method: 'get',
+                            //     success: function (response) {
+                            //         if (response.success) {
+                            //             swal(link.data('dialog-success'), {
+                            //                 icon: "success",
+                            //             }).then(() => {
+                            //                 if (link.data('redirect')) {
+                            //                     window.location = link.data('redirect');
+                            //                 }
+                            //             });
+                            //         }
+                            //     }
+                            // }).catch(err => {
+                            //     if (err) {
+                            //         console.log(err);
+                            //         swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                            //     } else {
+                            //         swal.stopLoading();
+                            //         swal.close();
+                            //     }
+                            // });
+                        } else {
+                            swal(DIALOG_TRANSLATIONS.cancel_title, link.data('dialog-cancel'), "error");
+                        }
+                    })
+                    .catch(err => {
+                        unblockUI();
+                        if (err) {
+                            console.log(err);
+                            swal(DIALOG_TRANSLATIONS.ajax_error_title, DIALOG_TRANSLATIONS.ajax_error_text, "error");
+                        } else {
+                            swal.stopLoading();
+                            swal.close();
+                        }
+                    });
+            });
+        });
     },
     configure: function () {
         FORM_VALIDATOR.validator.setDefaults({
@@ -1816,37 +1879,39 @@ $.Form = {
         }
     },
     wysiwyg: function () {
-        tinymce.init({
-            selector: '[data-provide="wysiwyg"]:not([data-inline])',
-            language: WYSIWYG_LOCALE,
-            plugins: [
-                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars code fullscreen',
-                'insertdatetime media nonbreaking save table directionality',
-                'emoticons template paste textpattern imagetools'
-            ],
-            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            toolbar2: 'print preview media | forecolor backcolor emoticons',
-            image_advtab: true,
-            init_instance_callback: function (editor) {
-                if ($(editor.targetElm).prop('readonly')) {
-                    editor.setMode('readonly');
+        $(document).on('dom.element.new', function (e, container) {
+            tinymce.init({
+                selector: container + ' [data-provide="wysiwyg"]:not([data-inline])',
+                language: WYSIWYG_LOCALE,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table directionality',
+                    'emoticons template paste textpattern imagetools'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons',
+                image_advtab: true,
+                init_instance_callback: function (editor) {
+                    if ($(editor.targetElm).prop('readonly')) {
+                        editor.setMode('readonly');
+                    }
+
+                    let populate = (richtextarea, event) => {
+                        $(richtextarea.targetElm).val(richtextarea.getContent());
+                        $(richtextarea.targetElm).html(richtextarea.getContent());
+                        $(richtextarea.targetElm).closest('form').trigger('checkform.areYouSure');
+                        FORM_VALIDATOR(richtextarea.targetElm).valid();
+                    };
+
+                    editor.on('Change', function (e) {
+                        populate(editor, e);
+                    }).on('KeyUp', function (e) {
+                        populate(editor, e);
+                    });
                 }
-
-                let populate = (richtextarea, event) => {
-                    $(richtextarea.targetElm).val(richtextarea.getContent());
-                    $(richtextarea.targetElm).html(richtextarea.getContent());
-                    $(richtextarea.targetElm).closest('form').trigger('checkform.areYouSure');
-                    FORM_VALIDATOR(richtextarea.targetElm).valid();
-                };
-
-                editor.on('Change', function (e) {
-                    populate(editor, e);
-                }).on('KeyUp', function (e) {
-                    populate(editor, e);
-                });
-            }
-        });
+            });
+        })
     }
 };
 
@@ -1855,6 +1920,6 @@ $(document).ready(function () {
 });
 
 // export functions to other js files
-// export const validationCaptchaCallback = $.Form.validationCaptchaCallback;
+export const ajaxForm = $.Form.ajaxForm;
 
 window.validationCaptchaCallback = $.Form.validationCaptchaCallback;
