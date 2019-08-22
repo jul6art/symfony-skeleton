@@ -149,15 +149,14 @@ class TestControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="add_test[name]"]')->count());
 
-		$values = [
-			'add_test[name]'    => $this->faker->name,
-			'add_test[content]'    => null,
-		];
+		$this->assertEquals(1, $crawler->filter('[name="add_test[content]"]')->count());
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		$form = $crawler->filter('form[name="add_test"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
+			'add_test[name]' => $this->faker->name,
+		]);
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
@@ -182,15 +181,17 @@ class TestControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="add_test[name]"]')->count());
 
-		$values = [
-			'add_test[name]'    => $this->faker->name,
-			'add_test[content]'    => $this->faker->text,
-		];
+		$this->assertEquals(1, $crawler->filter('[name="add_test[content]"]')->count());
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		$form = $crawler->filter('form[name="add_test"] [type="submit"]')->form();
+		$client->submit($form, [
+			'add_test[name]' => $this->faker->name,
+			'add_test[content]' => $this->faker->text,
+		]);
+
+		$crawler = $client->followRedirect();
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
@@ -322,15 +323,15 @@ class TestControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="edit_test[name]"]')->count());
 
-		$values = [
-			'add_test[name]'    => $this->faker->name,
-			'add_test[content]'    => null,
-		];
+		$this->assertEquals(1, $crawler->filter('[name="edit_test[content]"]')->count());
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		$form = $crawler->filter('form[name="edit_test"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
+			'edit_test[name]' => $this->faker->name,
+			'edit_test[content]' => '0',
+		]);
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
@@ -358,15 +359,17 @@ class TestControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="edit_test[name]"]')->count());
 
-		$values = [
-			'add_test[name]'    => $this->faker->name,
-			'add_test[content]'    => $this->faker->text,
-		];
+		$this->assertEquals(1, $crawler->filter('[name="edit_test[content]"]')->count());
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		$form = $crawler->filter('form[name="edit_test"] [type="submit"]')->form();
+		$client->submit($form, [
+			'edit_test[name]' => $this->faker->name,
+			'edit_test[content]' => $this->faker->text,
+		]);
+
+		$crawler = $client->followRedirect();
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
