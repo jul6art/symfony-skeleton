@@ -46,7 +46,7 @@ SKINS
   vertical-align: top;
   height: 50px;
   margin-top: -15px;
-  display: inline !important
+  display: inline !important;
 }
 
 .dropdown-menu ul.menu {
@@ -78,7 +78,7 @@ ul.demo-choose-skin a {
 CARD ACTIONS
  */
 .card {
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 
   div.btn {
     cursor: default;
@@ -98,7 +98,7 @@ CARD ACTIONS
 
 .card.expanded:not(.collapsed) .body {
   height: calc(100% - 40px);
-  overflow-y: auto!important;
+  overflow-y: auto !important;
 }
 
 .card.expanded {
@@ -134,24 +134,24 @@ CARD ACTIONS
 
 .panel-col-audit .panel-title,
 .panel-col-audit .panel-body {
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 .panel-col-audit.dark .panel-title,
 .panel-col-audit.dark .panel-body {
-  background-color: #DDD;
+  background-color: #ddd;
 }
 
 .panel-col-audit {
-  border-color: #EEE;
+  border-color: #eee;
 }
 
 .panel-col-audit.dark {
-  border-color: #DDD;
+  border-color: #ddd;
 }
 
 .panel-col-audit .panel-body {
-  border-top-color: #FFF!important;
+  border-top-color: #fff !important;
 }
 
 .card.expanded .collapsible-audits {
@@ -193,29 +193,29 @@ BUTTONNS BEFORE LISTS
 BLOCKUI
  */
 .blockUI.blockMsg {
-  border: none!important;
-  background: none!important;
+  border: none !important;
+  background: none !important;
 }
 
 .blockUI.blockMsg,
 #loader {
   position: absolute;
-  top: 50%!important;
-  left: 50%!important;
+  top: 50% !important;
+  left: 50% !important;
   transform: translate(-50%, -50%);
 }
 
 .blockOverlay {
-  opacity: 0.3!important;
+  opacity: 0.3 !important;
 }
 
 /**
 NAVBAR
  */
 .user-info {
-  background-image: url('../img/bg.jpg')!important;
+  background-image: url("../img/bg.jpg") !important;
   background-position: center !important;
-  background-size: 100%!important;
+  background-size: 100% !important;
 }
 
 .dropdown-menu-locale > li > span {
@@ -234,7 +234,7 @@ LOGIN
     padding: 8px 12px;
 
     span {
-      top: 0!important;
+      top: 0 !important;
     }
   }
 }
@@ -249,12 +249,12 @@ LOGIN
 FORMS
  */
 .form-group .form-line:after {
-  border-bottom-width: 1px!important;
+  border-bottom-width: 1px !important;
 }
 
 .checkbox-block label,
 .radio-block label {
-  display: block!important;
+  display: block !important;
 }
 
 form label span.badge {
@@ -264,7 +264,7 @@ form label span.badge {
 }
 
 form .has-error label span.badge {
-  background-color: #F44336!important;
+  background-color: #f44336 !important;
 }
 
 .has-error .checkbox,
@@ -278,17 +278,17 @@ form .has-error label span.badge {
 .has-error .radio label,
 .has-error .radio-inline label,
 .has-error .input-group-addon {
-  color: #F44336!important;
+  color: #f44336 !important;
 }
 
 .has-error .help-block.only-help {
-  color: #737373!important;
+  color: #737373 !important;
 }
 
 .has-error .form-control:focus {
-  border: none!important;
-  -webkit-box-shadow: none!important;
-  box-shadow: none!important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .form-group > .input-group {
@@ -333,57 +333,58 @@ form .card .body .col-lg-6 {
 RANGE
  */
 .nouislider-container {
-  margin-bottom: 45px!important;
+  margin-bottom: 45px !important;
 }
 
-.noUi-base, .noUi-connects {
+.noUi-base,
+.noUi-connects {
   position: relative;
   top: 0;
 }
 
 .noUi-horizontal {
-  height: 15px!important;
-  border-radius: 15px!important;
+  height: 15px !important;
+  border-radius: 15px !important;
   margin: 0 14px;
-  margin-bottom: 50px!important;
+  margin-bottom: 50px !important;
 }
 
 .noUi-base {
   cursor: pointer;
   background-color: #818181;
-  border-radius: 15px!important;
+  border-radius: 15px !important;
 }
 
 .noUi-connect {
-  background-color: #84c7c1!important;
-  border-top-left-radius: 15px!important;
-  border-bottom-left-radius: 15px!important;
+  background-color: #84c7c1 !important;
+  border-top-left-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
 }
 
 .noUi-handle {
-  width: 21px!important;
-  height: 21px!important;
-  top: -4px!important;
+  width: 21px !important;
+  height: 21px !important;
+  top: -4px !important;
   -webkit-transform: translateX(-6px);
   transform: translateX(-6px);
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
 
   &:before,
   &:after {
-    display: none!important;
+    display: none !important;
   }
 }
 
 .noUi-value-horizontal {
-  -webkit-transform: translate(-50%,80%)!important;
-  transform: translate(-50%,80%)!important;
+  -webkit-transform: translate(-50%, 80%) !important;
+  transform: translate(-50%, 80%) !important;
 }
 
 .noUi-vertical {
   min-height: $height_form_range_vertical;
-  border-radius: 15px!important;
+  border-radius: 15px !important;
   margin: 5px 14px 0;
-  margin-bottom: 15px!important;
+  margin-bottom: 15px !important;
 
   .noUi-base {
     height: $height_form_range_vertical;
@@ -391,14 +392,14 @@ RANGE
   }
 
   .noUi-connect {
-    background-color: #84c7c1!important;
-    border-radius: 15px!important;
+    background-color: #84c7c1 !important;
+    border-radius: 15px !important;
   }
 
   .noUi-handle {
-    left: -2px!important;
+    left: -2px !important;
     top: -10px !important;
-    width: 30px!important;
+    width: 30px !important;
   }
 }
 
@@ -420,39 +421,40 @@ RECAPTCHA
 CKEDITOR
  */
 form .tox-tinymce[role="application"] {
-  margin-bottom: 9px!important;
+  margin-bottom: 9px !important;
   min-height: 340px;
 }
 
 /**
 DATEPICKER
  */
-$primary: #2196F3;
+$primary: #2196f3;
 $secondary: darken($primary, 10%);
-$white: #FFFFFF;
+$white: #ffffff;
 
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
-  background: $secondary!important;
+  background: $secondary !important;
 }
 
-.dtp div.dtp-date, .dtp div.dtp-time {
-  background: $primary!important;
+.dtp div.dtp-date,
+.dtp div.dtp-time {
+  background: $primary !important;
 }
 
 .dtp div.dtp-date i.material-icons {
-  color: $white!important;
+  color: $white !important;
 }
 
 .dtp table.dtp-picker-days tr > td > a.selected {
-  background: $primary!important;
+  background: $primary !important;
 }
 
 .dtp [fill="#8BC34A"] {
-  fill: $primary!important;
+  fill: $primary !important;
 }
 
 .dtp [stroke="#8BC34A"] {
-  stroke: $primary!important;
+  stroke: $primary !important;
 }
 
 /**
@@ -468,7 +470,7 @@ table [data-toggle="dropdown"] small {
 }
 
 .profile-card .profile-body .image-area img {
-  border-color: #607D8B !important;
+  border-color: #607d8b !important;
 }
 
 a .info-box {

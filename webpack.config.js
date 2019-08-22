@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const CopyPlugin = require('copy-webpack-plugin');
+const PrettierPlugin = require('prettier-webpack-plugin');
 
 Encore
     // directory where compiled assets will be stored
@@ -74,6 +75,7 @@ Encore
 
 module.exports = Encore.getWebpackConfig();
 
+module.exports.plugins.push(new PrettierPlugin());
 module.exports.plugins.push(new CopyPlugin([
     { from: 'node_modules/tinymce/skins', to: 'skins' },
     { from: 'node_modules/tinymce/plugins', to: 'plugins' },

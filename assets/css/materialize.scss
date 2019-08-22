@@ -22,17 +22,17 @@
   height: 25px;
   line-height: 25px;
   font-size: 1rem;
-  transition: .28s ease;
+  transition: 0.28s ease;
   /* webkit (konqueror) browsers */
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 [type="radio"] + label:before,
 [type="radio"] + label:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -40,7 +40,7 @@
   width: 16px;
   height: 16px;
   z-index: 0;
-  transition: .28s ease;
+  transition: 0.28s ease;
 }
 
 /* Unchecked styles */
@@ -61,7 +61,7 @@
 [type="radio"]:not(:checked) + label:after {
   z-index: -1;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
 }
 
 /* Checked styles */
@@ -83,13 +83,13 @@
 
 [type="radio"]:checked + label:after {
   -webkit-transform: scale(1.02);
-          transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 /* Radio With gap */
 [type="radio"].with-gap:checked + label:after {
   -webkit-transform: scale(0.5);
-          transform: scale(0.5);
+  transform: scale(0.5);
 }
 
 /* Focused styles */
@@ -124,7 +124,7 @@
 
 [type="radio"]:disabled:checked + label:after {
   background-color: rgba(0, 0, 0, 0.26);
-  border-color: #BDBDBD;
+  border-color: #bdbdbd;
 }
 
 /* Checkboxes
@@ -171,7 +171,7 @@ form p:last-child {
 
 [type="checkbox"] + label:before,
 [type="checkbox"]:not(.filled-in) + label:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -181,13 +181,13 @@ form p:last-child {
   border: 2px solid #5a5a5a;
   border-radius: 1px;
   margin-top: 2px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 [type="checkbox"]:not(.filled-in) + label:after {
   border: 0;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
 }
 
 [type="checkbox"]:not(:checked):disabled + label:before {
@@ -197,7 +197,7 @@ form p:last-child {
 
 [type="checkbox"].tabbed:focus + label:after {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   border: 0;
   border-radius: 50%;
   box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
@@ -214,11 +214,11 @@ form p:last-child {
   border-right: 2px solid #26a69a;
   border-bottom: 2px solid #26a69a;
   -webkit-transform: rotate(40deg);
-          transform: rotate(40deg);
+  transform: rotate(40deg);
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
 }
 
 [type="checkbox"]:checked:disabled + label:before {
@@ -237,11 +237,11 @@ form p:last-child {
   border-right: 2px solid #26a69a;
   border-bottom: none;
   -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
 }
 
 [type="checkbox"]:indeterminate:disabled + label:before {
@@ -255,11 +255,12 @@ form p:last-child {
 
 [type="checkbox"].filled-in + label:before,
 [type="checkbox"].filled-in + label:after {
-  content: '';
+  content: "";
   left: 0;
   position: absolute;
   /* .1s delay is for check animation */
-  transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+  transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s,
+    height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
   z-index: 1;
 }
 
@@ -327,7 +328,7 @@ form p:last-child {
 
 [type="checkbox"].filled-in:disabled:not(:checked) + label:after {
   border-color: transparent;
-  background-color: #BDBDBD;
+  background-color: #bdbdbd;
 }
 
 [type="checkbox"].filled-in:disabled:checked + label:before {
@@ -335,8 +336,8 @@ form p:last-child {
 }
 
 [type="checkbox"].filled-in:disabled:checked + label:after {
-  background-color: #BDBDBD;
-  border-color: #BDBDBD;
+  background-color: #bdbdbd;
+  border-color: #bdbdbd;
 }
 
 /* Switch
@@ -353,17 +354,17 @@ form p:last-child {
   cursor: pointer;
 }
 
-.switch label input[type=checkbox] {
+.switch label input[type="checkbox"] {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.switch label input[type=checkbox]:checked + .lever {
+.switch label input[type="checkbox"]:checked + .lever {
   background-color: #84c7c1;
 }
 
-.switch label input[type=checkbox]:checked + .lever:after {
+.switch label input[type="checkbox"]:checked + .lever:after {
   background-color: #26a69a;
   left: 24px;
 }
@@ -388,29 +389,30 @@ form p:last-child {
   display: inline-block;
   width: 21px;
   height: 21px;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border-radius: 21px;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
   left: -5px;
   top: -3px;
-  transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+  transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease;
 }
 
-input[type=checkbox]:checked:not(:disabled) ~ .lever:active::after,
-input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::after {
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(38, 166, 154, 0.1);
+input[type="checkbox"]:checked:not(:disabled) ~ .lever:active::after,
+input[type="checkbox"]:checked:not(:disabled).tabbed:focus ~ .lever::after {
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4),
+    0 0 0 15px rgba(38, 166, 154, 0.1);
 }
 
-input[type=checkbox]:not(:disabled) ~ .lever:active:after,
-input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
+input[type="checkbox"]:not(:disabled) ~ .lever:active:after,
+input[type="checkbox"]:not(:disabled).tabbed:focus ~ .lever::after {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 0, 0, 0.08);
 }
 
-.switch input[type=checkbox][disabled] + .lever {
+.switch input[type="checkbox"][disabled] + .lever {
   cursor: default;
 }
 
-.switch label input[type=checkbox][disabled] + .lever:after,
-.switch label input[type=checkbox][disabled]:checked + .lever:after {
-  background-color: #BDBDBD;
+.switch label input[type="checkbox"][disabled] + .lever:after,
+.switch label input[type="checkbox"][disabled]:checked + .lever:after {
+  background-color: #bdbdbd;
 }

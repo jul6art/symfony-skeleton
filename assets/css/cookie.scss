@@ -1,30 +1,30 @@
-$cb_scheme_color:#00a4ff;
-$cb_msg_color:#000000;
+$cb_scheme_color: #00a4ff;
+$cb_msg_color: #000000;
 
 .cookie-bubble {
   position: fixed;
   width: 100%;
-  max-width:400px;
+  max-width: 400px;
   min-height: 100px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
-  z-index:9999;
-  font-family:sans-serif;
+  z-index: 9999;
+  font-family: sans-serif;
   //From top
   &.top-left {
-    top:10px;
+    top: 10px;
     left: 10px;
   }
 
   &.top-right {
-    top:10px;
+    top: 10px;
     right: 0px;
   }
 
   &.top-center {
-    top:10px;
-    left: calc(100vw - 100vw/2 - 400px/2);
+    top: 10px;
+    left: calc(100vw - 100vw / 2 - 400px / 2);
   }
 
   //from bottom
@@ -38,7 +38,7 @@ $cb_msg_color:#000000;
   }
   &.bottom-center {
     bottom: 10px;
-    left: calc(100vw - 100vw/2 - 400px/2);
+    left: calc(100vw - 100vw / 2 - 400px / 2);
   }
 
   &.show {
@@ -47,7 +47,7 @@ $cb_msg_color:#000000;
     &.top-right {
       animation-name: popInTop;
       animation-duration: 2s;
-      animation-timing-function:cubic-bezier(0.19, 1, 0.22, 1);
+      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
       animation-fill-mode: forwards;
     }
   }
@@ -58,7 +58,7 @@ $cb_msg_color:#000000;
     &.bottom-right {
       animation-name: popInBottom;
       animation-duration: 2s;
-      animation-timing-function:cubic-bezier(0.19, 1, 0.22, 1);
+      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
       animation-fill-mode: forwards;
     }
   }
@@ -75,121 +75,116 @@ $cb_msg_color:#000000;
     .cb-row {
       position: relative;
       display: flex;
-      text-align:left;
+      text-align: left;
       .cb-row-content {
         .message {
-          position:relative;
-          width:100%;
-          display:inline-block;
-          color:$cb_msg_color; //default color
+          position: relative;
+          width: 100%;
+          display: inline-block;
+          color: $cb_msg_color; //default color
           font-size: 18px;
-          margin-top:0px;
+          margin-top: 0px;
         }
         .cb-controls {
-          position:relative;
-          width:100%;
-          float:left;
-          margin-top:10px;
+          position: relative;
+          width: 100%;
+          float: left;
+          margin-top: 10px;
         }
       }
       .cb-image {
         padding-right: 23px;
         .cookie-inner-color {
-          fill:$cb_scheme_color;
+          fill: $cb_scheme_color;
         }
         svg {
-          width:75px;
+          width: 75px;
         }
       }
 
       .agreement-btn {
-        margin:0px;
-        padding:0px;
-        text-decoration:none;
-        color:#fff;
-        background:$cb_scheme_color; //Default Color
-        padding:10px 20px;
-        border-radius:100px;
+        margin: 0px;
+        padding: 0px;
+        text-decoration: none;
+        color: #fff;
+        background: $cb_scheme_color; //Default Color
+        padding: 10px 20px;
+        border-radius: 100px;
         font-size: 14px;
-        opacity:1;
-        border:none;
-        cursor:pointer;
-        text-transform:uppercase;
-        font-weight:600;
-        float:left;
+        opacity: 1;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 600;
+        float: left;
         margin-right: 10px;
         &:hover {
-          background-color:darken($cb_scheme_color, 10%);
+          background-color: darken($cb_scheme_color, 10%);
         }
       }
 
       .cookie-policy-btn {
-        margin:0px;
-        color:#000;
-        padding:10px 0px;
-        border-radius:100px;
+        margin: 0px;
+        color: #000;
+        padding: 10px 0px;
+        border-radius: 100px;
         font-size: 14px;
-        opacity:.95;
-        border:none;
-        cursor:pointer;
-        font-weight:400;
-        float:left;
+        opacity: 0.95;
+        border: none;
+        cursor: pointer;
+        font-weight: 400;
+        float: left;
         &:hover {
-          opacity:1;
+          opacity: 1;
           text-decoration: underline;
-
         }
       }
     }
   }
-
 }
 
 .cookieBubble {
   .copyright-wrapper {
-    margin-top:20px;
+    margin-top: 20px;
     a.copyright {
-      position:absolute;
+      position: absolute;
       width: 80px;
       height: 16px;
       bottom: 8px;
       right: 7px;
-      margin-top:30px;
-      background-size:cover;
+      margin-top: 30px;
+      background-size: cover;
     }
   }
-
 }
 
 @keyframes popInBottom {
   0% {
-    transform:translateY(120%);
+    transform: translateY(120%);
   }
   100% {
-    transform:translateY(0px);
+    transform: translateY(0px);
   }
 }
 
 @keyframes popInTop {
   0% {
-    transform:translateY(-120%);
+    transform: translateY(-120%);
   }
   100% {
-    transform:translateY(0px);
+    transform: translateY(0px);
   }
-
 }
 
-
 .cookieBubble {
-  @media (max-width:420px) {
-    border-radius:0px;
-    max-width:inherit;
-    left:0px !important;
-    bottom:0px !important;
+  @media (max-width: 420px) {
+    border-radius: 0px;
+    max-width: inherit;
+    left: 0px !important;
+    bottom: 0px !important;
   }
   .cb-image {
-    @media (max-width:420px) {
+    @media (max-width: 420px) {
       display: none;
     }
   }
