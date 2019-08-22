@@ -1540,6 +1540,10 @@ $.Form = {
                         DIALOG_TRANSLATIONS.cancel_button,
                         DIALOG_TRANSLATIONS.confirm_button,
                     ],
+                    preConfirm: (data) => {
+                        console.log(swal.getContainer());
+                        console.log(swal.getContent());
+                    },
                 })
                     .then((willDelete) => {
                         if (willDelete) {
