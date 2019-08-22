@@ -20,9 +20,13 @@ php bin/console audit:clean --no-confirm
 echo '--- FILES PERMISSIONS ---'
 sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 
+echo '--- CHECK VULNERABILITIES ---'
+php bin/console security:check
+
 echo '--- TESTS LAUNCHING ---'
 ./vendor/bin/simple-phpunit
 
+echo '--- OPTIMISATIONS ---'
 composer dump-autoload --optimize --no-dev --classmap-authoritative
 
 echo '--- SUCCESSFULL DEPLOY ---'

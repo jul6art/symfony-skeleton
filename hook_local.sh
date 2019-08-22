@@ -17,6 +17,9 @@ php bin/console doctrine:schema:update --force
 php bin/console doctrine:fixtures:load --no-interaction
 php bin/console audit:clean --no-confirm
 
+echo '--- CHECK VULNERABILITIES ---'
+php bin/console security:check
+
 echo '--- TESTS LAUNCHING ---'
 # OLD SYNTAX (to merge)
 # ./vendor/bin/simple-phpunit > tests_output.txt
