@@ -30,6 +30,8 @@ class User extends BaseUser
     public const SETTING_THEME = 'theme';
     public const LENGTH_GENERATED_PASSWORD = 8;
     public const DEFAULT_PASSWORD = 'vsweb';
+    public const DEFAULT_ADMIN_USERNAME = 'admin';
+    public const DEFAULT_USER_USERNAME = 'user';
 
     use TimestampableEntity;
     use BlameableEntity;

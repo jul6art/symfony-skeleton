@@ -66,8 +66,8 @@ class UserControllerTest extends WebTestCase
 	public function testIndex02()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$client->request('GET', '/admin/user/');
@@ -85,8 +85,8 @@ class UserControllerTest extends WebTestCase
 	public function testIndex03()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$client->request('GET', '/admin/user/');
@@ -120,8 +120,8 @@ class UserControllerTest extends WebTestCase
 	public function testAdd02()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$client->request('GET', '/admin/user/add');
@@ -134,13 +134,13 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController add Action
 	 *
-	 * Successfull
+	 * Invalid form
 	 */
 	public function testAdd03()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$crawler = $client->request('GET', '/admin/user/add');
@@ -149,22 +149,54 @@ class UserControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="add_user[username]"]')->count());
 
-		$values = [
+		$this->assertEquals(1, $crawler->filter('[name="add_user[email]"]')->count());
+
+		$form = $crawler->filter('form[name="add_user"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
+			'add_user[username]'    => $this->faker->userName,
+		]);
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController add Action
+	 *
+	 * Successfull
+	 */
+	public function testAdd04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$crawler = $client->request('GET', '/admin/user/add');
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$this->assertEquals(1, $crawler->filter('[name="add_user[username]"]')->count());
+
+		$this->assertEquals(1, $crawler->filter('[name="add_user[email]"]')->count());
+
+		$form = $crawler->filter('form[name="add_user"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
 			'add_user[gender]'    => 'm',
 			'add_user[username]'    => $this->faker->userName,
 			'add_user[firstname]'    => $this->faker->firstName,
 			'add_user[lastname]'    => $this->faker->lastName,
 			'add_user[email]'    => $this->faker->email,
-		];
-
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		]);
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
-		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+		$this->assertEquals(0, $crawler->filter('.has-error')->count());
 	}
 
 	/**
@@ -194,8 +226,8 @@ class UserControllerTest extends WebTestCase
 	public function testShow02()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -216,8 +248,8 @@ class UserControllerTest extends WebTestCase
 	public function testShow03()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -238,8 +270,8 @@ class UserControllerTest extends WebTestCase
 	public function testShow04()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$client->request('GET', '/admin/user/view/-1');
@@ -276,8 +308,8 @@ class UserControllerTest extends WebTestCase
 	public function testEdit02()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -293,13 +325,13 @@ class UserControllerTest extends WebTestCase
 	/**
 	 * Test App\\Controller\\UserController edit Action
 	 *
-	 * Successfull
+	 * Invalid form
 	 */
 	public function testEdit03()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -311,22 +343,18 @@ class UserControllerTest extends WebTestCase
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-		$form = $crawler->filter('button[type="submit"]')->form();
+		$this->assertEquals(1, $crawler->filter('[name="edit_user[username]"]')->count());
 
-		$values = [
-			'add_user[gender]'    => 'm',
-			'add_user[username]'    => $this->faker->userName,
-			'add_user[firstname]'    => $this->faker->firstName,
-			'add_user[lastname]'    => $this->faker->lastName,
-			'add_user[email]'    => $this->faker->email,
-		];
+		$this->assertEquals(1, $crawler->filter('[name="edit_user[email]"]')->count());
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-			$form->getPhpFiles());
+		$form = $crawler->filter('form[name="edit_user"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
+			'edit_user[firstname]'    => 'INVALID_INVALID_INVALID_INVALID_INVALID_INVALID_INVALID_INVALID',
+		]);
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 
-		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
 	}
 
 	/**
@@ -337,8 +365,8 @@ class UserControllerTest extends WebTestCase
 	public function testEdit04()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$crawler = $client->request('GET', '/admin/user/edit/-1');
@@ -346,6 +374,45 @@ class UserControllerTest extends WebTestCase
 		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_NOT_FOUND, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\UserController edit Action
+	 *
+	 * Successfull
+	 */
+	public function testEdit05()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
+		$id = end($tests)->getId();
+
+		$crawler = $client->request('GET', "/admin/user/edit/$id");
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$this->assertEquals(1, $crawler->filter('[name="edit_user[username]"]')->count());
+
+		$this->assertEquals(1, $crawler->filter('[name="edit_user[email]"]')->count());
+
+		$form = $crawler->filter('form[name="edit_user"] [type="submit"]')->form();
+		$crawler = $client->submit($form, [
+			'edit_user[gender]'    => 'm',
+			'edit_user[username]'    => $this->faker->userName,
+			'edit_user[firstname]'    => $this->faker->firstName,
+			'edit_user[lastname]'    => $this->faker->lastName,
+			'edit_user[email]'    => $this->faker->email,
+		]);
+
+		$this->save('result02.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(0, $crawler->filter('.has-error')->count());
 	}
 
 	/**
@@ -375,8 +442,8 @@ class UserControllerTest extends WebTestCase
 	public function testDelete02()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'user',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -397,8 +464,8 @@ class UserControllerTest extends WebTestCase
 	public function testDelete03()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -423,8 +490,8 @@ class UserControllerTest extends WebTestCase
 	public function testDelete04()
 	{
 		$client = static::createClient([], [
-			'PHP_AUTH_USER' => 'admin',
-			'PHP_AUTH_PW'   => 'vsweb',
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
 		]);
 
 		$client->request('GET', '/admin/user/delete/-1');
