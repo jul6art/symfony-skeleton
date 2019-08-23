@@ -68,6 +68,12 @@
             <arg value="--format=json"/>
             <arg value="--target=public/js/fos_js_routes.json"/>
         </exec>
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="fos:js-routing:dump"/>
+            <arg value="--format=js"/>
+            <arg value="--target=public/js/fos_js_routes.js"/>
+        </exec>
     </target>
 
     <target name="audit" description="Audit cleaning">
