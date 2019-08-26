@@ -9,7 +9,7 @@
         {% endif %}
 
         {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_FUNCTIONALITIES'), 'App\\Entity\\Functionality')
-            or is_granted(constant('App\\Security\\Voter\\SettingVoter::MANAGE_SETTINGS'), 'App\\Entity\\Setting') %}
+            or is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::MANAGE_SETTINGS'), 'App\\Entity\\Setting') %}
             <li role="presentation" class="{{ second_tab_class }}">
                 <a href="#settings" data-toggle="tab">{{ 'sidebar.settings.title'|trans({}, 'sidebar') }}</a>
             </li>
