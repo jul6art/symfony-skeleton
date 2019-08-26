@@ -45,16 +45,24 @@ class RegistrationControllerTest extends WebTestCase
 	public function testRegister()
 	{
 		$client = static::createClient();
+
 		$crawler = $client->request('GET', '/register/');
+
 		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
 		$this->assertEquals(1, $crawler->filter('[name="fos_user_registration_form[username]"]')->count());
+
 		$this->assertEquals(1, $crawler->filter('[name="fos_user_registration_form[plainPassword][first]"]')->count());
+
 		$form = $crawler->filter('form[action="/register/"] [type="submit"]')->form();
 		$crawler = $client->submit($form, [
 			'fos_user_registration_form[username]'    => $this->faker->userName,
 		]);
+
 		$this->save('result02.html', $client->getResponse()->getContent());
+
 		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
 	}
 	/**
@@ -65,11 +73,17 @@ class RegistrationControllerTest extends WebTestCase
 	public function testRegister02()
 	{
 		$client = static::createClient();
+		
 		$crawler = $client->request('GET', '/register/');
+
 		$this->save('result.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
 		$this->assertEquals(1, $crawler->filter('[name="fos_user_registration_form[username]"]')->count());
+
 		$this->assertEquals(1, $crawler->filter('[name="fos_user_registration_form[plainPassword][first]"]')->count());
+
 		$form = $crawler->filter('form[action="/register/"] [type="submit"]')->form();
 		$client->submit($form, [
 			'fos_user_registration_form[gender]'    => $this->faker->randomElement(['m', 'f']),
@@ -80,8 +94,11 @@ class RegistrationControllerTest extends WebTestCase
 			'fos_user_registration_form[plainPassword][first]'  => User::DEFAULT_PASSWORD,
 			'fos_user_registration_form[plainPassword][second]' => User::DEFAULT_PASSWORD,
 		]);
+
 		$crawler = $client->followRedirect();
+
 		$this->save('result02.html', $client->getResponse()->getContent());
+
 		$this->assertEquals(0, $crawler->filter('.has-error')->count());
 	}
 }
