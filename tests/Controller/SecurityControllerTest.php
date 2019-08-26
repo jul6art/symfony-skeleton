@@ -98,7 +98,9 @@ class SecurityControllerTest extends WebTestCase
 			'_password'    => User::DEFAULT_PASSWORD,
 		]);
 
-		$crawler = $client->followRedirect();
+		$client->followRedirect();
+
+		$crawler = $client->request('GET', '/profile/');
 
 		$this->save('result02.html', $client->getResponse()->getContent());
 

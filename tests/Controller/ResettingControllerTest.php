@@ -140,8 +140,8 @@ class ResettingControllerTest extends WebTestCase
 
 		$form = $crawler->filter('form[name="fos_user_resetting_form"] [type="submit"]')->form();
 		$client->submit($form, [
-			'fos_user_resetting_form[plainPassword][first]'  => User::DEFAULT_USER_USERNAME,
-			'fos_user_resetting_form[plainPassword][second]'  => User::DEFAULT_USER_USERNAME,
+			'fos_user_resetting_form[plainPassword][first]'  => User::DEFAULT_PASSWORD,
+			'fos_user_resetting_form[plainPassword][second]' => User::DEFAULT_PASSWORD,
 		]);
 
 		$crawler = $client->followRedirect();
