@@ -193,27 +193,6 @@ class DefaultControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\DefaultController cache Action
-	 *
-	 * Successful
-	 */
-	public function testCache03()
-	{
-		$client = static::createClient([], [
-			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
-		]);
-
-		$client->request('GET', '/admin/cache');
-
-		$client->followRedirect();
-
-		$this->save('result.html', $client->getResponse()->getContent());
-
-		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-	}
-
-	/**
 	 * Test App\\Controller\\DefaultController theme Action
 	 *
 	 * User must be logged
