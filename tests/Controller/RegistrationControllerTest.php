@@ -23,8 +23,9 @@ class RegistrationControllerTest extends WebTestCase
 	 * @var Generator
 	 */
 	private $faker;
+
 	/**
-	 * DefaultControllerTest constructor.
+	 * RegistrationControllerTest constructor.
 	 *
 	 * @param null|string $name
 	 * @param array $data
@@ -35,8 +36,9 @@ class RegistrationControllerTest extends WebTestCase
 		parent::__construct( $name, $data, $dataName );
 		$this->faker = Factory::create();
 	}
+
 	/**
-	 * Test App\\Controller\\DefaultController index Action
+	 * Test FOSuserBundle\\Controller\\RegisterController register Action
 	 *
 	 * Invalid form
 	 */
@@ -56,7 +58,7 @@ class RegistrationControllerTest extends WebTestCase
 		$this->assertGreaterThan(0, $crawler->filter('.has-error')->count());
 	}
 	/**
-	 * Test App\\Controller\\DefaultController index Action
+	 * Test FOSuserBundle\\Controller\\RegisterController register Action
 	 *
 	 * Successfull
 	 */

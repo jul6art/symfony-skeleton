@@ -29,7 +29,7 @@ class SecurityControllerTest extends WebTestCase
 	private $faker;
 
 	/**
-	 * DefaultControllerTest constructor.
+	 * SecurityControllerTest constructor.
 	 *
 	 * @param null|string $name
 	 * @param array $data
@@ -43,7 +43,7 @@ class SecurityControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\DefaultController index Action
+	 * Test FOSuserBundle\\Controller\\SecurityController login Action
 	 *
 	 * Invalid form
 	 */
@@ -74,7 +74,7 @@ class SecurityControllerTest extends WebTestCase
 	}
 
 	/**
-	 * Test App\\Controller\\DefaultController index Action
+	 * Test FOSuserBundle\\Controller\\SecurityController login Action
 	 *
 	 * Successfull
 	 */

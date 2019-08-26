@@ -29,7 +29,7 @@ class ChangePasswordControllerTest extends WebTestCase
 	private $faker;
 
 	/**
-	 * DefaultControllerTest constructor.
+	 * ChangePasswordControllerTest constructor.
 	 *
 	 * @param null|string $name
 	 * @param array $data
