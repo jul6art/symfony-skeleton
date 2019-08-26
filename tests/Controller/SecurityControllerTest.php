@@ -103,5 +103,7 @@ class SecurityControllerTest extends WebTestCase
 		$this->save('result02.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(0, $crawler->filter('.error')->count());
+
+		$this->assertGreaterThan(0, $crawler->filter('a[href="/logout"]')->count());
 	}
 }
