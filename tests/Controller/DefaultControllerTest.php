@@ -129,11 +129,30 @@ class DefaultControllerTest extends WebTestCase
 
 		$client->request('GET', '/locale/de');
 
+		$client->followRedirect();
+
 		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController locale Action
+	 *
+	 * Successfull
+	 */
+	public function testLocale03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$client->request('GET', '/locale/fr');
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -171,6 +190,27 @@ class DefaultControllerTest extends WebTestCase
 		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController cache Action
+	 *
+	 * Successful
+	 */
+	public function testCache03()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$client->request('GET', '/admin/cache');
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
 
 	/**
@@ -299,13 +339,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_AUDIT)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -323,13 +369,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CLEAR_CACHE)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -347,13 +399,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_EDIT_IN_PLACE)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -371,13 +429,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CONFIRM_DELETE)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -395,13 +459,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_FORM_WATCHER)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -419,13 +489,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -443,13 +519,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_LOCALE)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
@@ -467,13 +549,19 @@ class DefaultControllerTest extends WebTestCase
 		]);
 
 		$id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
-		$client->request('GET', "/admin/functionality/$id/1");
-
-		$this->save('result.html', $client->getResponse()->getContent());
+		$client->request('GET', "/admin/functionality/$id/0");
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+		$client->request('GET', "/admin/functionality/$id/1");
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}
