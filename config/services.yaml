@@ -58,6 +58,7 @@ services:
             $mailer_from_address: '%mailer_from_address%'
             $mailer_from_name: '%mailer_from_name%'
             $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+            $environment: '%kernel.environment%'
 
     App\:
         resource: '../src/*'

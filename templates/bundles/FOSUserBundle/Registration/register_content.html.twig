@@ -12,7 +12,9 @@
     {{ form_row(form.email) }}
     {{ form_row(form.plainPassword.first) }}
     {{ form_row(form.plainPassword.second) }}
-    {{ form_row(form.captcha) }}
+    {% if form.captcha is defined %}
+        {{ form_row(form.captcha) }}
+    {% endif %}
     <button type="submit" class="btn btn-block btn-lg bg-blue-grey waves-effect">{{ 'registration.submit'|trans }}</button>
     <div class="m-t-25 m-b--5 align-center">
         <a href="{{ path('fos_user_security_login') }}">{{ 'account.register.links.login'|trans({}, 'account') }}</a>

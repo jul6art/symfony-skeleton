@@ -25,6 +25,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RegisterUserType extends AbstractType {
 	/**
+	 * @var string
+	 */
+	private $environment;
+
+	/**
+	 * RegisterUserType constructor.
+	 *
+	 * @param string $environment
+	 */
+	public function __construct(string $environment) {
+		$this->environment = $environment;
+	}
+
+	/**
 	 * @param FormBuilderInterface $builder
 	 * @param array $options
 	 */
@@ -83,11 +97,15 @@ class RegisterUserType extends AbstractType {
 				],
 			],
 			'invalid_message' => 'form.password_verification.error',
-		])->add('captcha', RecaptchaType::class, [
-			'label' => false,
-			'mapped' => false,
-			'required' => true,
 		]);
+
+		if ($this->environment !== 'test') {
+			$builder->add('captcha', RecaptchaType::class, [
+				'label' => false,
+				'mapped' => false,
+				'required' => true,
+			]);
+		}
 	}
 
 	/**
