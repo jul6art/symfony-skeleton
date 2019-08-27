@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566867307">
-  <project timestamp="1566867307">
+<coverage generated="1566873552">
+  <project timestamp="1566873552">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller" fullPackage="App" package="App">
@@ -219,11 +219,9 @@
     <package name="App\DataFixtures">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/DataFixtures/FunctionalityFixtures.php">
         <class name="App\DataFixtures\FunctionalityFixtures" namespace="App\DataFixtures">
-          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="20" coveredelements="0"/>
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="16" coveredelements="0"/>
         </class>
         <line num="23" type="method" name="load" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="24" type="stmt" count="0"/>
-        <line num="25" type="stmt" count="0"/>
         <line num="26" type="stmt" count="0"/>
         <line num="27" type="stmt" count="0"/>
         <line num="28" type="stmt" count="0"/>
@@ -232,71 +230,59 @@
         <line num="31" type="stmt" count="0"/>
         <line num="32" type="stmt" count="0"/>
         <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
         <line num="37" type="stmt" count="0"/>
         <line num="38" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
         <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
         <line num="44" type="stmt" count="0"/>
         <line num="45" type="stmt" count="0"/>
-        <metrics loc="46" ncloc="38" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="20" coveredelements="0"/>
+        <metrics loc="46" ncloc="38" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="16" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/DataFixtures/GroupFixtures.php">
         <class name="App\DataFixtures\GroupFixtures" namespace="App\DataFixtures">
-          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="17" coveredelements="0"/>
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="12" coveredelements="0"/>
         </class>
         <line num="17" type="method" name="load" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="18" type="stmt" count="0"/>
-        <line num="19" type="stmt" count="0"/>
         <line num="20" type="stmt" count="0"/>
         <line num="21" type="stmt" count="0"/>
         <line num="22" type="stmt" count="0"/>
-        <line num="23" type="stmt" count="0"/>
         <line num="25" type="stmt" count="0"/>
         <line num="26" type="stmt" count="0"/>
         <line num="27" type="stmt" count="0"/>
         <line num="28" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="0"/>
         <line num="31" type="stmt" count="0"/>
         <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
         <line num="35" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
-        <metrics loc="37" ncloc="31" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="17" coveredelements="0"/>
+        <metrics loc="37" ncloc="31" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="12" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/DataFixtures/SettingFixtures.php">
         <class name="App\DataFixtures\SettingFixtures" namespace="App\DataFixtures">
-          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="19" coveredelements="0"/>
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="15" coveredelements="0"/>
         </class>
         <line num="20" type="method" name="load" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="21" type="stmt" count="0"/>
-        <line num="22" type="stmt" count="0"/>
         <line num="23" type="stmt" count="0"/>
         <line num="24" type="stmt" count="0"/>
         <line num="25" type="stmt" count="0"/>
         <line num="26" type="stmt" count="0"/>
         <line num="27" type="stmt" count="0"/>
         <line num="28" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="0"/>
         <line num="31" type="stmt" count="0"/>
         <line num="32" type="stmt" count="0"/>
         <line num="33" type="stmt" count="0"/>
         <line num="34" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
         <line num="37" type="stmt" count="0"/>
-        <line num="38" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
         <line num="41" type="stmt" count="0"/>
-        <metrics loc="42" ncloc="36" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="19" coveredelements="0"/>
+        <metrics loc="42" ncloc="36" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="15" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/DataFixtures/TestFixtures.php">
         <class name="App\DataFixtures\TestFixtures" namespace="App\DataFixtures">
-          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="11" coveredelements="0"/>
         </class>
         <line num="25" type="method" name="load" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="26" type="stmt" count="0"/>
         <line num="27" type="stmt" count="0"/>
         <line num="29" type="stmt" count="0"/>
         <line num="30" type="stmt" count="0"/>
@@ -305,17 +291,15 @@
         <line num="33" type="stmt" count="0"/>
         <line num="35" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
-        <line num="37" type="stmt" count="0"/>
         <line num="39" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
-        <metrics loc="41" ncloc="33" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+        <metrics loc="41" ncloc="33" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="11" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/DataFixtures/UserFixtures.php">
         <class name="App\DataFixtures\UserFixtures" namespace="App\DataFixtures">
-          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="56" coveredstatements="0" elements="58" coveredelements="0"/>
+          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="0" elements="52" coveredelements="0"/>
         </class>
         <line num="28" type="method" name="load" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="29" type="stmt" count="0"/>
         <line num="30" type="stmt" count="0"/>
         <line num="32" type="stmt" count="0"/>
         <line num="33" type="stmt" count="0"/>
@@ -363,16 +347,11 @@
         <line num="81" type="stmt" count="0"/>
         <line num="83" type="stmt" count="0"/>
         <line num="84" type="stmt" count="0"/>
-        <line num="85" type="stmt" count="0"/>
         <line num="87" type="stmt" count="0"/>
         <line num="88" type="stmt" count="0"/>
         <line num="93" type="method" name="getDependencies" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="94" type="stmt" count="0"/>
-        <line num="95" type="stmt" count="0"/>
         <line num="96" type="stmt" count="0"/>
-        <line num="97" type="stmt" count="0"/>
-        <line num="98" type="stmt" count="0"/>
-        <metrics loc="99" ncloc="88" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="56" coveredstatements="0" elements="58" coveredelements="0"/>
+        <metrics loc="99" ncloc="88" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="0" elements="52" coveredelements="0"/>
       </file>
     </package>
     <package name="App\Entity">
@@ -695,10 +674,10 @@
     <package name="App\EventSubscriber">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/EventSubscriber/MailSubscriber.php">
         <class name="App\EventSubscriber\MailSubscriber" namespace="App\EventSubscriber">
-          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
         </class>
-        <line num="23" type="method" name="getSubscribedEvents" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="26" type="stmt" count="0"/>
+        <line num="23" type="method" name="getSubscribedEvents" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="26" type="stmt" count="1"/>
         <line num="38" type="method" name="onUserAdded" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="40" type="stmt" count="1"/>
         <line num="41" type="stmt" count="1"/>
@@ -706,15 +685,15 @@
         <line num="44" type="stmt" count="1"/>
         <line num="45" type="stmt" count="1"/>
         <line num="47" type="stmt" count="1"/>
-        <metrics loc="48" ncloc="34" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
+        <metrics loc="48" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/EventSubscriber/UserSubscriber.php">
         <class name="App\EventSubscriber\UserSubscriber" namespace="App\EventSubscriber">
-          <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="14" coveredelements="11"/>
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="14" coveredelements="14"/>
         </class>
-        <line num="26" type="method" name="getSubscribedEvents" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="29" type="stmt" count="0"/>
-        <line num="30" type="stmt" count="0"/>
+        <line num="26" type="method" name="getSubscribedEvents" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
         <line num="39" type="method" name="onRegistrationSuccess" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="41" type="stmt" count="1"/>
         <line num="42" type="stmt" count="1"/>
@@ -726,7 +705,7 @@
         <line num="52" type="method" name="onUserEdited" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="54" type="stmt" count="1"/>
         <line num="55" type="stmt" count="1"/>
-        <metrics loc="56" ncloc="42" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="14" coveredelements="11"/>
+        <metrics loc="56" ncloc="42" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="14" coveredelements="14"/>
       </file>
     </package>
     <package name="App\Factory">
@@ -775,7 +754,7 @@
     <package name="App\Form\DataTransformer">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/DataTransformer/EntityToIdTransformer.php">
         <class name="App\Form\DataTransformer\EntityToIdTransformer" namespace="App\Form\DataTransformer">
-          <metrics complexity="14" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="4" elements="30" coveredelements="5"/>
+          <metrics complexity="14" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="9" elements="30" coveredelements="10"/>
         </class>
         <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
         <line num="29" type="stmt" count="4"/>
@@ -791,51 +770,53 @@
         <line num="55" type="stmt" count="0"/>
         <line num="56" type="stmt" count="0"/>
         <line num="59" type="stmt" count="0"/>
-        <line num="69" type="method" name="reverseTransform" visibility="public" complexity="7" crap="56.00" count="0"/>
-        <line num="71" type="stmt" count="0"/>
+        <line num="69" type="method" name="reverseTransform" visibility="public" complexity="7" crap="21.52" count="4"/>
+        <line num="71" type="stmt" count="4"/>
         <line num="72" type="stmt" count="0"/>
-        <line num="75" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="4"/>
         <line num="76" type="stmt" count="0"/>
         <line num="78" type="stmt" count="0"/>
         <line num="79" type="stmt" count="0"/>
         <line num="82" type="stmt" count="0"/>
-        <line num="85" type="stmt" count="0"/>
-        <line num="86" type="stmt" count="0"/>
-        <line num="87" type="stmt" count="0"/>
+        <line num="85" type="stmt" count="4"/>
+        <line num="86" type="stmt" count="4"/>
+        <line num="87" type="stmt" count="4"/>
         <line num="90" type="stmt" count="0"/>
         <line num="92" type="stmt" count="0"/>
         <line num="93" type="stmt" count="0"/>
         <line num="96" type="stmt" count="0"/>
         <line num="99" type="stmt" count="0"/>
-        <metrics loc="101" ncloc="73" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="4" elements="30" coveredelements="5"/>
+        <metrics loc="101" ncloc="73" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="9" elements="30" coveredelements="10"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/DataTransformer/RangeDoubleTransformer.php">
         <class name="App\Form\DataTransformer\RangeDoubleTransformer" namespace="App\Form\DataTransformer">
-          <metrics complexity="8" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="2" elements="10" coveredelements="2"/>
+          <metrics complexity="8" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="10" coveredelements="6"/>
         </class>
         <line num="23" type="method" name="transform" visibility="public" complexity="4" crap="4.59" count="4"/>
         <line num="25" type="stmt" count="4"/>
         <line num="26" type="stmt" count="0"/>
         <line num="29" type="stmt" count="4"/>
-        <line num="37" type="method" name="reverseTransform" visibility="public" complexity="4" crap="20.00" count="0"/>
-        <line num="39" type="stmt" count="0"/>
+        <line num="37" type="method" name="reverseTransform" visibility="public" complexity="4" crap="4.13" count="4"/>
+        <line num="39" type="stmt" count="4"/>
         <line num="40" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="46" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
-        <metrics loc="49" ncloc="30" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="2" elements="10" coveredelements="2"/>
+        <line num="43" type="stmt" count="4"/>
+        <line num="46" type="stmt" count="4"/>
+        <line num="47" type="stmt" count="4"/>
+        <metrics loc="49" ncloc="30" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="10" coveredelements="6"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/DataTransformer/RangeTransformer.php">
         <class name="App\Form\DataTransformer\RangeTransformer" namespace="App\Form\DataTransformer">
-          <metrics complexity="7" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="2" elements="6" coveredelements="2"/>
+          <metrics complexity="7" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="4" elements="8" coveredelements="4"/>
         </class>
         <line num="23" type="method" name="transform" visibility="public" complexity="3" crap="3.33" count="4"/>
         <line num="25" type="stmt" count="4"/>
         <line num="26" type="stmt" count="0"/>
         <line num="29" type="stmt" count="4"/>
-        <line num="37" type="method" name="reverseTransform" visibility="public" complexity="4" crap="20.00" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <metrics loc="41" ncloc="22" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="2" elements="6" coveredelements="2"/>
+        <line num="37" type="method" name="reverseTransform" visibility="public" complexity="4" crap="4.59" count="4"/>
+        <line num="39" type="stmt" count="4"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="4"/>
+        <metrics loc="45" ncloc="26" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="4" elements="8" coveredelements="4"/>
       </file>
     </package>
     <package name="App\Form\Test">
@@ -869,81 +850,85 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/Test/TestTestType.php">
         <class name="App\Form\Test\TestTestType" namespace="App\Form\Test">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="70" coveredstatements="70" elements="72" coveredelements="72"/>
+          <metrics complexity="4" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="73" coveredstatements="71" elements="76" coveredelements="73"/>
         </class>
-        <line num="36" type="method" name="buildForm" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="39" type="stmt" count="4"/>
-        <line num="40" type="stmt" count="4"/>
-        <line num="46" type="stmt" count="4"/>
-        <line num="47" type="stmt" count="4"/>
-        <line num="53" type="stmt" count="4"/>
+        <line num="42" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="44" type="stmt" count="4"/>
+        <line num="45" type="stmt" count="4"/>
+        <line num="51" type="method" name="buildForm" visibility="public" complexity="2" crap="2" count="4"/>
         <line num="54" type="stmt" count="4"/>
-        <line num="60" type="stmt" count="4"/>
+        <line num="55" type="stmt" count="4"/>
         <line num="61" type="stmt" count="4"/>
-        <line num="67" type="stmt" count="4"/>
+        <line num="62" type="stmt" count="4"/>
         <line num="68" type="stmt" count="4"/>
+        <line num="69" type="stmt" count="4"/>
         <line num="75" type="stmt" count="4"/>
         <line num="76" type="stmt" count="4"/>
-        <line num="87" type="stmt" count="4"/>
-        <line num="88" type="stmt" count="4"/>
-        <line num="101" type="stmt" count="4"/>
+        <line num="82" type="stmt" count="4"/>
+        <line num="83" type="stmt" count="4"/>
+        <line num="90" type="stmt" count="4"/>
+        <line num="91" type="stmt" count="4"/>
         <line num="102" type="stmt" count="4"/>
-        <line num="108" type="stmt" count="4"/>
-        <line num="109" type="stmt" count="4"/>
+        <line num="103" type="stmt" count="4"/>
         <line num="116" type="stmt" count="4"/>
         <line num="117" type="stmt" count="4"/>
         <line num="123" type="stmt" count="4"/>
         <line num="124" type="stmt" count="4"/>
-        <line num="133" type="stmt" count="4"/>
-        <line num="134" type="stmt" count="4"/>
-        <line num="145" type="stmt" count="4"/>
+        <line num="131" type="stmt" count="4"/>
+        <line num="132" type="stmt" count="4"/>
+        <line num="138" type="stmt" count="4"/>
+        <line num="139" type="stmt" count="4"/>
         <line num="148" type="stmt" count="4"/>
         <line num="149" type="stmt" count="4"/>
-        <line num="165" type="stmt" count="4"/>
-        <line num="168" type="stmt" count="4"/>
-        <line num="169" type="stmt" count="4"/>
+        <line num="160" type="stmt" count="4"/>
+        <line num="163" type="stmt" count="4"/>
+        <line num="164" type="stmt" count="4"/>
         <line num="180" type="stmt" count="4"/>
         <line num="183" type="stmt" count="4"/>
         <line num="184" type="stmt" count="4"/>
-        <line num="201" type="stmt" count="4"/>
-        <line num="204" type="stmt" count="4"/>
-        <line num="205" type="stmt" count="4"/>
-        <line num="208" type="stmt" count="4"/>
-        <line num="209" type="stmt" count="4"/>
-        <line num="210" type="stmt" count="4"/>
-        <line num="211" type="stmt" count="4"/>
-        <line num="213" type="stmt" count="4"/>
-        <line num="215" type="stmt" count="4"/>
+        <line num="195" type="stmt" count="4"/>
+        <line num="198" type="stmt" count="4"/>
+        <line num="199" type="stmt" count="4"/>
         <line num="216" type="stmt" count="4"/>
+        <line num="219" type="stmt" count="4"/>
+        <line num="220" type="stmt" count="4"/>
+        <line num="223" type="stmt" count="4"/>
         <line num="224" type="stmt" count="4"/>
         <line num="225" type="stmt" count="4"/>
+        <line num="226" type="stmt" count="4"/>
         <line num="228" type="stmt" count="4"/>
-        <line num="229" type="stmt" count="4"/>
         <line num="230" type="stmt" count="4"/>
         <line num="231" type="stmt" count="4"/>
-        <line num="233" type="stmt" count="4"/>
-        <line num="235" type="stmt" count="4"/>
-        <line num="236" type="stmt" count="4"/>
-        <line num="242" type="stmt" count="4"/>
+        <line num="239" type="stmt" count="4"/>
+        <line num="240" type="stmt" count="4"/>
         <line num="243" type="stmt" count="4"/>
+        <line num="244" type="stmt" count="4"/>
+        <line num="245" type="stmt" count="4"/>
+        <line num="246" type="stmt" count="4"/>
+        <line num="248" type="stmt" count="4"/>
         <line num="251" type="stmt" count="4"/>
-        <line num="252" type="stmt" count="4"/>
-        <line num="261" type="stmt" count="4"/>
-        <line num="262" type="stmt" count="4"/>
-        <line num="267" type="stmt" count="4"/>
-        <line num="269" type="stmt" count="4"/>
-        <line num="270" type="stmt" count="4"/>
+        <line num="253" type="stmt" count="0"/>
+        <line num="254" type="stmt" count="0"/>
+        <line num="263" type="stmt" count="4"/>
+        <line num="264" type="stmt" count="4"/>
+        <line num="272" type="stmt" count="4"/>
         <line num="273" type="stmt" count="4"/>
-        <line num="274" type="stmt" count="4"/>
-        <line num="275" type="stmt" count="4"/>
-        <line num="276" type="stmt" count="4"/>
-        <line num="278" type="stmt" count="4"/>
         <line num="282" type="stmt" count="4"/>
-        <line num="287" type="method" name="configureOptions" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="289" type="stmt" count="4"/>
+        <line num="283" type="stmt" count="4"/>
+        <line num="288" type="stmt" count="4"/>
         <line num="290" type="stmt" count="4"/>
-        <line num="292" type="stmt" count="4"/>
-        <metrics loc="293" ncloc="229" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="70" coveredstatements="70" elements="72" coveredelements="72"/>
+        <line num="291" type="stmt" count="4"/>
+        <line num="294" type="stmt" count="4"/>
+        <line num="295" type="stmt" count="4"/>
+        <line num="296" type="stmt" count="4"/>
+        <line num="297" type="stmt" count="4"/>
+        <line num="299" type="stmt" count="4"/>
+        <line num="303" type="stmt" count="4"/>
+        <line num="308" type="method" name="configureOptions" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="310" type="stmt" count="4"/>
+        <line num="311" type="stmt" count="4"/>
+        <line num="313" type="stmt" count="4"/>
+        <metrics loc="314" ncloc="242" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="73" coveredstatements="71" elements="76" coveredelements="73"/>
       </file>
     </package>
     <package name="App\Form\Type">
@@ -1147,18 +1132,20 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/Type/GenderType.php">
         <class name="App\Form\Type\GenderType" namespace="App\Form\Type">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
         </class>
         <line num="18" type="method" name="configureOptions" visibility="public" complexity="1" crap="1" count="10"/>
         <line num="20" type="stmt" count="10"/>
         <line num="22" type="stmt" count="10"/>
         <line num="23" type="stmt" count="10"/>
+        <line num="26" type="stmt" count="10"/>
+        <line num="27" type="stmt" count="10"/>
         <line num="29" type="stmt" count="10"/>
         <line num="31" type="stmt" count="10"/>
         <line num="34" type="stmt" count="10"/>
         <line num="39" type="method" name="getParent" visibility="public" complexity="1" crap="1" count="10"/>
         <line num="41" type="stmt" count="10"/>
-        <metrics loc="43" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
+        <metrics loc="43" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/Type/PasswordType.php">
         <class name="App\Form\Type\PasswordType" namespace="App\Form\Type">
@@ -1223,15 +1210,15 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/Type/RecaptchaType.php">
         <class name="App\Form\Type\RecaptchaType" namespace="App\Form\Type">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="6" coveredelements="6"/>
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
         </class>
-        <line num="13" type="method" name="configureOptions" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="15" type="stmt" count="4"/>
-        <line num="17" type="stmt" count="4"/>
-        <line num="18" type="stmt" count="4"/>
-        <line num="21" type="stmt" count="4"/>
-        <line num="24" type="stmt" count="4"/>
-        <metrics loc="25" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="6" coveredelements="6"/>
+        <line num="13" type="method" name="configureOptions" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <metrics loc="25" ncloc="22" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Form/Type/SwitchType.php">
         <class name="App\Form\Type\SwitchType" namespace="App\Form\Type">
@@ -1407,7 +1394,7 @@
     <package name="App">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Kernel.php">
         <class name="App\Kernel" namespace="App">
-          <metrics complexity="6" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="6" elements="23" coveredelements="8"/>
+          <metrics complexity="6" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="14" elements="23" coveredelements="17"/>
         </class>
         <line num="18" type="method" name="registerBundles" visibility="public" complexity="3" crap="3" count="87"/>
         <line num="20" type="stmt" count="87"/>
@@ -1417,49 +1404,42 @@
         <line num="26" type="stmt" count="87"/>
         <line num="28" type="method" name="getProjectDir" visibility="public" complexity="1" crap="1" count="87"/>
         <line num="30" type="stmt" count="87"/>
-        <line num="33" type="method" name="configureContainer" visibility="protected" complexity="1" crap="2.00" count="0"/>
-        <line num="35" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="37" type="stmt" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
+        <line num="33" type="method" name="configureContainer" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
         <line num="45" type="method" name="configureRoutes" visibility="protected" complexity="1" crap="2.00" count="0"/>
         <line num="47" type="stmt" count="0"/>
         <line num="49" type="stmt" count="0"/>
         <line num="50" type="stmt" count="0"/>
         <line num="51" type="stmt" count="0"/>
         <line num="52" type="stmt" count="0"/>
-        <metrics loc="53" ncloc="53" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="6" elements="23" coveredelements="8"/>
+        <metrics loc="53" ncloc="53" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="14" elements="23" coveredelements="17"/>
       </file>
     </package>
     <package name="App\Maker">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Maker/MakeSkeleton.php">
         <class name="App\Maker\MakeSkeleton" namespace="App\Maker">
-          <metrics complexity="11" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="163" coveredstatements="0" elements="169" coveredelements="0"/>
+          <metrics complexity="11" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="120" coveredstatements="0" elements="126" coveredelements="0"/>
         </class>
         <line num="45" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="46" type="stmt" count="0"/>
         <line num="47" type="stmt" count="0"/>
         <line num="48" type="stmt" count="0"/>
         <line num="49" type="stmt" count="0"/>
         <line num="51" type="method" name="getCommandName" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="52" type="stmt" count="0"/>
         <line num="53" type="stmt" count="0"/>
-        <line num="54" type="stmt" count="0"/>
         <line num="59" type="method" name="configureCommand" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
         <line num="62" type="stmt" count="0"/>
         <line num="63" type="stmt" count="0"/>
         <line num="64" type="stmt" count="0"/>
-        <line num="65" type="stmt" count="0"/>
         <line num="67" type="stmt" count="0"/>
         <line num="68" type="stmt" count="0"/>
         <line num="70" type="method" name="interact" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="71" type="stmt" count="0"/>
         <line num="72" type="stmt" count="0"/>
         <line num="73" type="stmt" count="0"/>
         <line num="75" type="stmt" count="0"/>
@@ -1467,14 +1447,11 @@
         <line num="78" type="stmt" count="0"/>
         <line num="80" type="stmt" count="0"/>
         <line num="82" type="stmt" count="0"/>
-        <line num="83" type="stmt" count="0"/>
         <line num="84" type="stmt" count="0"/>
         <line num="86" type="method" name="generate" visibility="public" complexity="5" crap="30.00" count="0"/>
-        <line num="87" type="stmt" count="0"/>
         <line num="88" type="stmt" count="0"/>
         <line num="89" type="stmt" count="0"/>
         <line num="90" type="stmt" count="0"/>
-        <line num="91" type="stmt" count="0"/>
         <line num="93" type="stmt" count="0"/>
         <line num="95" type="stmt" count="0"/>
         <line num="97" type="stmt" count="0"/>
@@ -1482,25 +1459,18 @@
         <line num="99" type="stmt" count="0"/>
         <line num="100" type="stmt" count="0"/>
         <line num="101" type="stmt" count="0"/>
-        <line num="102" type="stmt" count="0"/>
-        <line num="104" type="stmt" count="0"/>
         <line num="105" type="stmt" count="0"/>
         <line num="106" type="stmt" count="0"/>
         <line num="107" type="stmt" count="0"/>
-        <line num="108" type="stmt" count="0"/>
-        <line num="109" type="stmt" count="0"/>
         <line num="111" type="stmt" count="0"/>
         <line num="112" type="stmt" count="0"/>
         <line num="113" type="stmt" count="0"/>
         <line num="114" type="stmt" count="0"/>
-        <line num="115" type="stmt" count="0"/>
         <line num="117" type="stmt" count="0"/>
-        <line num="118" type="stmt" count="0"/>
         <line num="119" type="stmt" count="0"/>
         <line num="120" type="stmt" count="0"/>
         <line num="121" type="stmt" count="0"/>
         <line num="122" type="stmt" count="0"/>
-        <line num="123" type="stmt" count="0"/>
         <line num="124" type="stmt" count="0"/>
         <line num="125" type="stmt" count="0"/>
         <line num="127" type="stmt" count="0"/>
@@ -1525,91 +1495,65 @@
         <line num="149" type="stmt" count="0"/>
         <line num="150" type="stmt" count="0"/>
         <line num="151" type="stmt" count="0"/>
-        <line num="152" type="stmt" count="0"/>
         <line num="153" type="stmt" count="0"/>
-        <line num="154" type="stmt" count="0"/>
-        <line num="155" type="stmt" count="0"/>
         <line num="157" type="stmt" count="0"/>
         <line num="158" type="stmt" count="0"/>
         <line num="159" type="stmt" count="0"/>
         <line num="160" type="stmt" count="0"/>
-        <line num="161" type="stmt" count="0"/>
-        <line num="163" type="stmt" count="0"/>
         <line num="164" type="stmt" count="0"/>
         <line num="165" type="stmt" count="0"/>
         <line num="166" type="stmt" count="0"/>
         <line num="167" type="stmt" count="0"/>
-        <line num="168" type="stmt" count="0"/>
-        <line num="169" type="stmt" count="0"/>
-        <line num="170" type="stmt" count="0"/>
         <line num="171" type="stmt" count="0"/>
         <line num="172" type="stmt" count="0"/>
         <line num="173" type="stmt" count="0"/>
         <line num="174" type="stmt" count="0"/>
-        <line num="175" type="stmt" count="0"/>
-        <line num="176" type="stmt" count="0"/>
         <line num="177" type="stmt" count="0"/>
         <line num="178" type="stmt" count="0"/>
         <line num="179" type="stmt" count="0"/>
         <line num="180" type="stmt" count="0"/>
         <line num="181" type="stmt" count="0"/>
         <line num="182" type="stmt" count="0"/>
-        <line num="183" type="stmt" count="0"/>
-        <line num="184" type="stmt" count="0"/>
         <line num="185" type="stmt" count="0"/>
         <line num="186" type="stmt" count="0"/>
-        <line num="187" type="stmt" count="0"/>
-        <line num="188" type="stmt" count="0"/>
         <line num="189" type="stmt" count="0"/>
         <line num="190" type="stmt" count="0"/>
         <line num="191" type="stmt" count="0"/>
         <line num="192" type="stmt" count="0"/>
         <line num="193" type="stmt" count="0"/>
-        <line num="194" type="stmt" count="0"/>
-        <line num="195" type="stmt" count="0"/>
         <line num="197" type="stmt" count="0"/>
         <line num="198" type="stmt" count="0"/>
         <line num="199" type="stmt" count="0"/>
         <line num="200" type="stmt" count="0"/>
         <line num="201" type="stmt" count="0"/>
-        <line num="202" type="stmt" count="0"/>
-        <line num="203" type="stmt" count="0"/>
         <line num="205" type="stmt" count="0"/>
         <line num="207" type="stmt" count="0"/>
         <line num="209" type="stmt" count="0"/>
         <line num="210" type="stmt" count="0"/>
         <line num="215" type="method" name="configureDependencies" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="216" type="stmt" count="0"/>
         <line num="217" type="stmt" count="0"/>
         <line num="218" type="stmt" count="0"/>
         <line num="219" type="stmt" count="0"/>
-        <line num="220" type="stmt" count="0"/>
         <line num="222" type="stmt" count="0"/>
         <line num="223" type="stmt" count="0"/>
         <line num="224" type="stmt" count="0"/>
-        <line num="225" type="stmt" count="0"/>
         <line num="227" type="stmt" count="0"/>
         <line num="228" type="stmt" count="0"/>
         <line num="229" type="stmt" count="0"/>
-        <line num="230" type="stmt" count="0"/>
         <line num="232" type="stmt" count="0"/>
         <line num="233" type="stmt" count="0"/>
         <line num="234" type="stmt" count="0"/>
-        <line num="235" type="stmt" count="0"/>
         <line num="237" type="stmt" count="0"/>
         <line num="238" type="stmt" count="0"/>
         <line num="239" type="stmt" count="0"/>
-        <line num="240" type="stmt" count="0"/>
         <line num="242" type="stmt" count="0"/>
         <line num="243" type="stmt" count="0"/>
         <line num="244" type="stmt" count="0"/>
-        <line num="245" type="stmt" count="0"/>
         <line num="247" type="stmt" count="0"/>
         <line num="248" type="stmt" count="0"/>
         <line num="249" type="stmt" count="0"/>
-        <line num="250" type="stmt" count="0"/>
         <line num="251" type="stmt" count="0"/>
-        <metrics loc="252" ncloc="235" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="163" coveredstatements="0" elements="169" coveredelements="0"/>
+        <metrics loc="252" ncloc="235" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="120" coveredstatements="0" elements="126" coveredelements="0"/>
       </file>
     </package>
     <package name="App\Manager">
@@ -1637,17 +1581,15 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Manager/AuditManager.php">
         <class name="App\Manager\AuditManager" namespace="App\Manager">
-          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="46" coveredstatements="0" elements="48" coveredelements="0"/>
+          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="34" coveredelements="0"/>
         </class>
         <line num="46" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="47" type="stmt" count="0"/>
         <line num="48" type="stmt" count="0"/>
         <line num="49" type="stmt" count="0"/>
         <line num="50" type="stmt" count="0"/>
         <line num="51" type="stmt" count="0"/>
         <line num="52" type="stmt" count="0"/>
         <line num="63" type="method" name="audit" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="64" type="stmt" count="0"/>
         <line num="65" type="stmt" count="0"/>
         <line num="67" type="stmt" count="0"/>
         <line num="69" type="stmt" count="0"/>
@@ -1657,23 +1599,12 @@
         <line num="73" type="stmt" count="0"/>
         <line num="74" type="stmt" count="0"/>
         <line num="75" type="stmt" count="0"/>
-        <line num="76" type="stmt" count="0"/>
         <line num="77" type="stmt" count="0"/>
-        <line num="78" type="stmt" count="0"/>
-        <line num="79" type="stmt" count="0"/>
-        <line num="80" type="stmt" count="0"/>
-        <line num="81" type="stmt" count="0"/>
-        <line num="82" type="stmt" count="0"/>
-        <line num="83" type="stmt" count="0"/>
-        <line num="84" type="stmt" count="0"/>
-        <line num="85" type="stmt" count="0"/>
-        <line num="86" type="stmt" count="0"/>
         <line num="88" type="stmt" count="0"/>
         <line num="89" type="stmt" count="0"/>
         <line num="90" type="stmt" count="0"/>
         <line num="91" type="stmt" count="0"/>
         <line num="92" type="stmt" count="0"/>
-        <line num="93" type="stmt" count="0"/>
         <line num="95" type="stmt" count="0"/>
         <line num="97" type="stmt" count="0"/>
         <line num="98" type="stmt" count="0"/>
@@ -1686,22 +1617,18 @@
         <line num="105" type="stmt" count="0"/>
         <line num="106" type="stmt" count="0"/>
         <line num="108" type="stmt" count="0"/>
-        <line num="109" type="stmt" count="0"/>
-        <metrics loc="110" ncloc="76" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="46" coveredstatements="0" elements="48" coveredelements="0"/>
+        <metrics loc="110" ncloc="76" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="34" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Manager/AuditManagerTrait.php">
         <class name="AuditManagerTrait" namespace="App\Manager">
-          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
         </class>
         <line num="24" type="method" name="getAuditManager" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="25" type="stmt" count="0"/>
         <line num="26" type="stmt" count="0"/>
-        <line num="27" type="stmt" count="0"/>
         <line num="34" type="method" name="setAuditManager" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="35" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
         <line num="37" type="stmt" count="0"/>
-        <metrics loc="38" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+        <metrics loc="38" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Manager/FunctionalityManager.php">
         <class name="App\Manager\FunctionalityManager" namespace="App\Manager">
@@ -2290,41 +2217,29 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Repository/GroupRepository.php">
         <class name="App\Repository\GroupRepository" namespace="App\Repository">
-          <metrics complexity="7" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="32" coveredelements="0"/>
+          <metrics complexity="7" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="0"/>
         </class>
         <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="27" type="stmt" count="0"/>
         <line num="28" type="stmt" count="0"/>
         <line num="29" type="stmt" count="0"/>
         <line num="36" type="method" name="findByUser" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="37" type="stmt" count="0"/>
         <line num="38" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
         <line num="41" type="stmt" count="0"/>
         <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
         <line num="53" type="method" name="findOneByName" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="54" type="stmt" count="0"/>
         <line num="55" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="0"/>
         <line num="58" type="stmt" count="0"/>
         <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
         <line num="71" type="method" name="findOneByUserAndName" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="72" type="stmt" count="0"/>
         <line num="73" type="stmt" count="0"/>
-        <line num="75" type="stmt" count="0"/>
         <line num="76" type="stmt" count="0"/>
         <line num="77" type="stmt" count="0"/>
         <line num="79" type="stmt" count="0"/>
-        <line num="80" type="stmt" count="0"/>
         <line num="87" type="method" name="countAll" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="88" type="stmt" count="0"/>
         <line num="89" type="stmt" count="0"/>
         <line num="91" type="stmt" count="0"/>
         <line num="93" type="stmt" count="0"/>
-        <line num="94" type="stmt" count="0"/>
-        <metrics loc="95" ncloc="59" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="32" coveredelements="0"/>
+        <metrics loc="95" ncloc="59" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Repository/RepositoryTrait.php">
         <class name="RepositoryTrait" namespace="App\Repository">
@@ -2401,13 +2316,12 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Repository/UserSettingRepository.php">
         <class name="App\Repository\UserSettingRepository" namespace="App\Repository">
-          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
         </class>
         <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="23" type="stmt" count="0"/>
         <line num="24" type="stmt" count="0"/>
         <line num="25" type="stmt" count="0"/>
-        <metrics loc="26" ncloc="15" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        <metrics loc="26" ncloc="15" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
       </file>
     </package>
     <package name="App\Security\Voter">
@@ -2802,17 +2716,14 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Traits/RouterTrait.php">
         <class name="RouterTrait" namespace="App\Traits">
-          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
         </class>
         <line num="26" type="method" name="getRouter" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="27" type="stmt" count="0"/>
         <line num="28" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="0"/>
         <line num="36" type="method" name="setRouter" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="37" type="stmt" count="0"/>
         <line num="38" type="stmt" count="0"/>
         <line num="39" type="stmt" count="0"/>
-        <metrics loc="40" ncloc="20" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+        <metrics loc="40" ncloc="20" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Traits/TranslatorTrait.php">
         <class name="TranslatorTrait" namespace="App\Traits">
@@ -3013,9 +2924,9 @@
         <line num="19" type="stmt" count="0"/>
         <line num="29" type="method" name="blameAudit" visibility="public" complexity="4" crap="4" count="11"/>
         <line num="31" type="stmt" count="11"/>
-        <line num="32" type="stmt" count="11"/>
-        <line num="34" type="stmt" count="11"/>
-        <line num="35" type="stmt" count="11"/>
+        <line num="32" type="stmt" count="10"/>
+        <line num="34" type="stmt" count="10"/>
+        <line num="35" type="stmt" count="10"/>
         <line num="39" type="stmt" count="6"/>
         <metrics loc="41" ncloc="29" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="5" elements="8" coveredelements="6"/>
       </file>
@@ -3181,25 +3092,20 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/BooleanValidator.php">
         <class name="App\Validator\Constraints\BooleanValidator" namespace="App\Validator\Constraints">
-          <metrics complexity="6" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="16" coveredelements="0"/>
+          <metrics complexity="6" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="7" elements="11" coveredelements="7"/>
         </class>
-        <line num="24" type="method" name="validate" visibility="public" complexity="6" crap="42.00" count="0"/>
-        <line num="25" type="stmt" count="0"/>
-        <line num="26" type="stmt" count="0"/>
+        <line num="24" type="method" name="validate" visibility="public" complexity="6" crap="6.97" count="4"/>
+        <line num="26" type="stmt" count="4"/>
         <line num="27" type="stmt" count="0"/>
-        <line num="28" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="37" type="stmt" count="0"/>
-        <line num="38" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="4"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="40" type="stmt" count="2"/>
         <line num="41" type="stmt" count="0"/>
         <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
-        <metrics loc="45" ncloc="28" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="16" coveredelements="0"/>
+        <line num="44" type="stmt" count="2"/>
+        <metrics loc="45" ncloc="28" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="7" elements="11" coveredelements="7"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/Datetime.php">
         <class name="App\Validator\Constraints\Datetime" namespace="App\Validator\Constraints">
@@ -3209,36 +3115,30 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/DatetimeValidator.php">
         <class name="App\Validator\Constraints\DatetimeValidator" namespace="App\Validator\Constraints">
-          <metrics complexity="11" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="27" coveredelements="0"/>
+          <metrics complexity="11" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="9" elements="21" coveredelements="9"/>
         </class>
-        <line num="25" type="method" name="validate" visibility="public" complexity="11" crap="132.00" count="0"/>
-        <line num="26" type="stmt" count="0"/>
-        <line num="27" type="stmt" count="0"/>
+        <line num="25" type="method" name="validate" visibility="public" complexity="11" crap="31.13" count="4"/>
+        <line num="27" type="stmt" count="4"/>
         <line num="28" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="35" type="stmt" count="0"/>
-        <line num="37" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="4"/>
+        <line num="34" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
         <line num="38" type="stmt" count="0"/>
         <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="2"/>
         <line num="44" type="stmt" count="0"/>
         <line num="45" type="stmt" count="0"/>
         <line num="46" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="2"/>
         <line num="48" type="stmt" count="0"/>
         <line num="49" type="stmt" count="0"/>
         <line num="50" type="stmt" count="0"/>
-        <line num="51" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="2"/>
         <line num="52" type="stmt" count="0"/>
         <line num="53" type="stmt" count="0"/>
-        <line num="54" type="stmt" count="0"/>
-        <line num="55" type="stmt" count="0"/>
-        <line num="56" type="stmt" count="0"/>
-        <metrics loc="57" ncloc="40" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="0" elements="27" coveredelements="0"/>
+        <line num="56" type="stmt" count="2"/>
+        <metrics loc="57" ncloc="40" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="9" elements="21" coveredelements="9"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/Gender.php">
         <class name="App\Validator\Constraints\Gender" namespace="App\Validator\Constraints">
@@ -3250,15 +3150,15 @@
         <class name="App\Validator\Constraints\GenderValidator" namespace="App\Validator\Constraints">
           <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="5" elements="9" coveredelements="5"/>
         </class>
-        <line num="25" type="method" name="validate" visibility="public" complexity="5" crap="6.32" count="6"/>
-        <line num="27" type="stmt" count="6"/>
+        <line num="25" type="method" name="validate" visibility="public" complexity="5" crap="6.32" count="10"/>
+        <line num="27" type="stmt" count="10"/>
         <line num="28" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="6"/>
-        <line num="34" type="stmt" count="2"/>
-        <line num="37" type="stmt" count="4"/>
+        <line num="33" type="stmt" count="10"/>
+        <line num="34" type="stmt" count="4"/>
+        <line num="37" type="stmt" count="6"/>
         <line num="38" type="stmt" count="0"/>
         <line num="39" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="4"/>
+        <line num="41" type="stmt" count="6"/>
         <metrics loc="42" ncloc="25" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="5" elements="9" coveredelements="5"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/Phone.php">
@@ -3269,22 +3169,18 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/PhoneValidator.php">
         <class name="App\Validator\Constraints\PhoneValidator" namespace="App\Validator\Constraints">
-          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="5" elements="9" coveredelements="5"/>
         </class>
-        <line num="24" type="method" name="validate" visibility="public" complexity="5" crap="30.00" count="0"/>
-        <line num="25" type="stmt" count="0"/>
-        <line num="26" type="stmt" count="0"/>
+        <line num="24" type="method" name="validate" visibility="public" complexity="5" crap="6.32" count="4"/>
+        <line num="26" type="stmt" count="4"/>
         <line num="27" type="stmt" count="0"/>
-        <line num="28" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="4"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
         <line num="37" type="stmt" count="0"/>
         <line num="38" type="stmt" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <metrics loc="41" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+        <line num="40" type="stmt" count="2"/>
+        <metrics loc="41" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="5" elements="9" coveredelements="5"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/Range.php">
         <class name="App\Validator\Constraints\Range" namespace="App\Validator\Constraints">
@@ -3294,42 +3190,33 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/RangeValidator.php">
         <class name="App\Validator\Constraints\RangeValidator" namespace="App\Validator\Constraints">
-          <metrics complexity="17" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="33" coveredelements="0"/>
+          <metrics complexity="17" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="16" elements="24" coveredelements="16"/>
         </class>
-        <line num="24" type="method" name="validate" visibility="public" complexity="17" crap="306.00" count="0"/>
-        <line num="25" type="stmt" count="0"/>
-        <line num="26" type="stmt" count="0"/>
+        <line num="24" type="method" name="validate" visibility="public" complexity="17" crap="25.15" count="4"/>
+        <line num="26" type="stmt" count="4"/>
         <line num="27" type="stmt" count="0"/>
-        <line num="28" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="4"/>
         <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="38" type="stmt" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="4"/>
+        <line num="38" type="stmt" count="4"/>
+        <line num="39" type="stmt" count="4"/>
+        <line num="40" type="stmt" count="4"/>
+        <line num="41" type="stmt" count="4"/>
         <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
-        <line num="45" type="stmt" count="0"/>
-        <line num="46" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="4"/>
+        <line num="46" type="stmt" count="4"/>
         <line num="47" type="stmt" count="0"/>
         <line num="48" type="stmt" count="0"/>
-        <line num="49" type="stmt" count="0"/>
-        <line num="50" type="stmt" count="0"/>
-        <line num="51" type="stmt" count="0"/>
-        <line num="52" type="stmt" count="0"/>
-        <line num="53" type="stmt" count="0"/>
-        <line num="54" type="stmt" count="0"/>
-        <line num="55" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="4"/>
+        <line num="51" type="stmt" count="4"/>
+        <line num="52" type="stmt" count="4"/>
+        <line num="53" type="stmt" count="4"/>
+        <line num="54" type="stmt" count="4"/>
+        <line num="55" type="stmt" count="4"/>
         <line num="56" type="stmt" count="0"/>
         <line num="57" type="stmt" count="0"/>
-        <line num="58" type="stmt" count="0"/>
-        <line num="59" type="stmt" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
-        <metrics loc="62" ncloc="45" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="33" coveredelements="0"/>
+        <line num="61" type="stmt" count="4"/>
+        <metrics loc="62" ncloc="45" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="16" elements="24" coveredelements="16"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/Recaptcha.php">
         <class name="App\Validator\Constraints\Recaptcha" namespace="App\Validator\Constraints">
@@ -3339,32 +3226,27 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Validator/Constraints/RecaptchaValidator.php">
         <class name="App\Validator\Constraints\RecaptchaValidator" namespace="App\Validator\Constraints">
-          <metrics complexity="6" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
+          <metrics complexity="6" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="16" coveredelements="0"/>
         </class>
         <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="39" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
         <line num="41" type="stmt" count="0"/>
         <line num="42" type="stmt" count="0"/>
         <line num="48" type="method" name="validate" visibility="public" complexity="5" crap="30.00" count="0"/>
-        <line num="49" type="stmt" count="0"/>
         <line num="50" type="stmt" count="0"/>
         <line num="51" type="stmt" count="0"/>
-        <line num="52" type="stmt" count="0"/>
         <line num="56" type="stmt" count="0"/>
         <line num="57" type="stmt" count="0"/>
-        <line num="58" type="stmt" count="0"/>
         <line num="60" type="stmt" count="0"/>
         <line num="61" type="stmt" count="0"/>
         <line num="63" type="stmt" count="0"/>
         <line num="65" type="stmt" count="0"/>
         <line num="66" type="stmt" count="0"/>
         <line num="67" type="stmt" count="0"/>
-        <line num="68" type="stmt" count="0"/>
         <line num="69" type="stmt" count="0"/>
-        <metrics loc="70" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
+        <metrics loc="70" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="16" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="125" loc="9668" ncloc="6452" classes="117" methods="414" coveredmethods="262" conditionals="0" coveredconditionals="0" statements="2148" coveredstatements="1353" elements="2562" coveredelements="1615"/>
+    <metrics files="125" loc="9693" ncloc="6469" classes="117" methods="415" coveredmethods="264" conditionals="0" coveredconditionals="0" statements="2029" coveredstatements="1410" elements="2444" coveredelements="1674"/>
   </project>
 </coverage>
