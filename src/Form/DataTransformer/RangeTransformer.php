@@ -36,6 +36,10 @@ class RangeTransformer implements DataTransformerInterface
      */
     public function reverseTransform($string): ?float
     {
-        return '' === $string or null === $string ? null : (float) $string;
+        if('' === $string or null === $string) {
+        	return null;
+        }
+
+        return (float) $string;
     }
 }

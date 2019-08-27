@@ -11,6 +11,7 @@ namespace App\Tests\Controller;
 use App\Entity\Test;
 use App\Entity\User;
 use App\Tests\TestTrait;
+use DateTime;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -190,6 +191,25 @@ class TestControllerTest extends WebTestCase
 		$client->submit($form, [
 			'add_test[name]' => $this->faker->name,
 			'add_test[content]' => $this->faker->text,
+			'add_test[test][checkbox]' => '1',
+			'add_test[test][switch]' => '1',
+			'add_test[test][boolean]' => $this->faker->numberBetween(0, 1),
+			'add_test[test][boolean2]' => $this->faker->numberBetween(0, 1),
+			'add_test[test][radio]' => $this->faker->numberBetween(0, 2),
+			'add_test[test][radio2]' => $this->faker->numberBetween(0, 2),
+			'add_test[test][gender]' => $this->faker->randomElement(['m', 'f']),
+			'add_test[test][gender2]' => $this->faker->randomElement(['m', 'f']),
+			'add_test[test][phone]' => '+32499999999',
+			'add_test[test][mobile]' => '+32499999999',
+			'add_test[test][range]' => '50.00',
+			'add_test[test][range2]' => '50.00, 80.00',
+			'add_test[test][range3]' => '50.00',
+			'add_test[test][range4]' => '50.00, 80.00',
+			'add_test[test][date]' => (new DateTime('2019-08-01'))->format('d-m-Y'),
+			'add_test[test][time]' => $this->faker->dateTime()->format('H:i'),
+			'add_test[test][datetime]' => (new DateTime('2019-08-01'))->format('d-m-Y H:i'),
+			'add_test[test][wysiwyg]' => $this->faker->text,
+			'add_test[test][wysiwyg2]' => $this->faker->text,
 		]);
 
 		$crawler = $client->followRedirect();
@@ -387,6 +407,25 @@ class TestControllerTest extends WebTestCase
 		$client->submit($form, [
 			'edit_test[name]' => $this->faker->name,
 			'edit_test[content]' => $this->faker->text,
+			'edit_test[test][checkbox]' => '1',
+			'edit_test[test][switch]' => '1',
+			'edit_test[test][boolean]' => $this->faker->numberBetween(0, 1),
+			'edit_test[test][boolean2]' => $this->faker->numberBetween(0, 1),
+			'edit_test[test][radio]' => $this->faker->numberBetween(0, 2),
+			'edit_test[test][radio2]' => $this->faker->numberBetween(0, 2),
+			'edit_test[test][gender]' => $this->faker->randomElement(['m', 'f']),
+			'edit_test[test][gender2]' => $this->faker->randomElement(['m', 'f']),
+			'edit_test[test][phone]' => '+32499999999',
+			'edit_test[test][mobile]' => '+32499999999',
+			'edit_test[test][range]' => '50.00',
+			'edit_test[test][range2]' => '50.00, 80.00',
+			'edit_test[test][range3]' => '50.00',
+			'edit_test[test][range4]' => '50.00, 80.00',
+			'edit_test[test][date]' => (new DateTime('2019-08-01'))->format('d-m-Y'),
+			'edit_test[test][time]' => $this->faker->dateTime()->format('H:i'),
+			'edit_test[test][datetime]' => (new DateTime('2019-08-01'))->format('d-m-Y H:i'),
+			'edit_test[test][wysiwyg]' => $this->faker->text,
+			'edit_test[test][wysiwyg2]' => $this->faker->text,
 		]);
 
 		$crawler = $client->followRedirect();

@@ -29,7 +29,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TestTestType extends AbstractType
 {
-    /**
+	/**
+	 * @var string
+	 */
+	private $environment;
+
+	/**
+	 * TestTestType constructor.
+	 *
+	 * @param string $environment
+	 */
+	public function __construct(string $environment)
+	{
+		$this->environment = $environment;
+	}
+
+	/**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -231,14 +246,20 @@ class TestTestType extends AbstractType
                 'disabledDays' => json_encode([1, 2, 7]), // monday, tuesday, sunday (from 1 to 7)
                 // test
                 'help' => 'form.test.name.help',
-            ])
-            ->add('captcha', RecaptchaType::class, [
-                'label' => 'REcaptcha',
-                'mapped' => false,
-                'required' => true,
-                // test
-                'help' => 'form.test.name.help',
-            ])
+            ]);
+
+        if ($this->environment !== 'test') {
+        	$builder
+		        ->add('captcha', RecaptchaType::class, [
+			        'label' => 'REcaptcha',
+			        'mapped' => false,
+			        'required' => true,
+			        // test
+			        'help' => 'form.test.name.help',
+		        ]);
+        }
+
+        $builder
             ->add('wysiwyg', WysiwygType::class, [
                 'label' => 'Wysiwyg',
                 'mapped' => false,
@@ -261,7 +282,7 @@ class TestTestType extends AbstractType
             ->add('user', EntityChoiceSimpleType::class, [
                 'label' => 'Users',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'multiple' => true,
                 'class' => User::class,
                 'field' => 'label',
