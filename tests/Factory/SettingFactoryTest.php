@@ -12,6 +12,7 @@ use App\Entity\Setting;
 use App\Entity\Test;
 use App\Factory\SettingFactory;
 use App\Factory\TestFactory;
+use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -37,7 +38,11 @@ class SettingFactoryTest extends WebTestCase
 	 */
 	public function testCreate()
 	{
-		$setting = SettingFactory::create();
+		$faker = Factory::create();
+
+		$setting = (SettingFactory::create())
+			->setName($faker->name)
+			->setValue($faker->title);
 
 		$this->assertInstanceOf(Setting::class, $setting);
 	}

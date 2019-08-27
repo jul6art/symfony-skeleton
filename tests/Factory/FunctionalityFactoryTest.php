@@ -13,6 +13,7 @@ use App\Entity\Setting;
 use App\Entity\Test;
 use App\Factory\FunctionalityFactory;
 use App\Factory\TestFactory;
+use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -38,7 +39,11 @@ class FunctionalityFactoryTest extends WebTestCase
 	 */
 	public function testCreate()
 	{
-		$functionality = FunctionalityFactory::create();
+		$faker = Factory::create();
+
+		$functionality = (FunctionalityFactory::create())
+			->setName($faker->name)
+			->setActive(true);
 
 		$this->assertInstanceOf(Functionality::class, $functionality);
 	}

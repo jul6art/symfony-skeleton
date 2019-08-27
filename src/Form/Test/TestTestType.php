@@ -2,6 +2,7 @@
 
 namespace App\Form\Test;
 
+use App\Entity\User;
 use App\Form\DataTransformer\RangeDoubleTransformer;
 use App\Form\DataTransformer\RangeTransformer;
 use App\Form\Type\BooleanType;
@@ -9,6 +10,7 @@ use App\Form\Type\CheckboxType;
 use App\Form\Type\ChoiceType;
 use App\Form\Type\DatePickerType;
 use App\Form\Type\DatetimePickerType;
+use App\Form\Type\EntityChoiceSimpleType;
 use App\Form\Type\GenderType;
 use App\Form\Type\PhoneType;
 use App\Form\Type\RangeType;
@@ -17,6 +19,7 @@ use App\Form\Type\SwitchType;
 use App\Form\Type\TextareaType;
 use App\Form\Type\TimePickerType;
 use App\Form\Type\WysiwygType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -252,6 +255,25 @@ class TestTestType extends AbstractType
                 'min_length' => 15,
                 'max_length' => 100,
                 'upload' => true,
+                // test
+                'help' => 'form.test.name.help',
+            ])
+            ->add('user', EntityChoiceSimpleType::class, [
+                'label' => 'Users',
+                'mapped' => false,
+                'required' => true,
+                'multiple' => true,
+                'class' => User::class,
+                'field' => 'label',
+                'entity_label' => function($user) {
+            	    return $user['label'];
+                },
+	            'query_builder' => function(EntityRepository $repository) {
+            	    return $repository
+		                ->createQueryBuilder('u')
+		                ->select('u.id, concat(u.firstname, \' \', u.lastname) as label')
+		                ->orderBy('label', 'DESC');
+	            },
                 // test
                 'help' => 'form.test.name.help',
             ]);

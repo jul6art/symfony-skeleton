@@ -10,6 +10,7 @@ namespace App\Tests\Factory;
 
 use App\Entity\Test;
 use App\Factory\TestFactory;
+use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -35,7 +36,11 @@ class TestFactoryTest extends WebTestCase
 	 */
 	public function testCreate()
 	{
-		$test = TestFactory::create();
+		$faker = Factory::create();
+
+		$test = (TestFactory::create())
+			->setName($faker->name)
+			->setContent($faker->text);
 
 		$this->assertInstanceOf(Test::class, $test);
 	}

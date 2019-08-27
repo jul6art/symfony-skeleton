@@ -241,11 +241,51 @@ class DefaultControllerTest extends WebTestCase
 
 		$client->request('GET', '/admin/theme/blue');
 
+		$client->followRedirect();
+
 		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController theme Action
+	 *
+	 * Successfull
+	 */
+	public function testTheme04()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$client->request('GET', '/admin/theme/green');
 
 		$client->followRedirect();
 
-		$this->save('result02.html', $client->getResponse()->getContent());
+		$this->save('result.html', $client->getResponse()->getContent());
+
+		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+	}
+
+	/**
+	 * Test App\\Controller\\DefaultController theme Action
+	 *
+	 * Successfull
+	 */
+	public function testTheme05()
+	{
+		$client = static::createClient([], [
+			'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+			'PHP_AUTH_PW'   => User::DEFAULT_PASSWORD,
+		]);
+
+		$client->request('GET', '/admin/theme/' . Setting::SETTING_DEFAULT_THEME_VALUE);
+
+		$client->followRedirect();
+
+		$this->save('result.html', $client->getResponse()->getContent());
 
 		$this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 	}

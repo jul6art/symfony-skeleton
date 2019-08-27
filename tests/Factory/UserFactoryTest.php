@@ -12,6 +12,8 @@ use App\Entity\Setting;
 use App\Entity\User;
 use App\Factory\UserFactory;
 use Doctrine\ORM\NonUniqueResultException;
+use Faker\Factory;
+use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,6 +22,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class UserFactoryTest extends WebTestCase
 {
+	/**
+	 * @var Generator
+	 */
+	private $faker;
+
 	/**
 	 * UserFactoryTest constructor.
 	 *
@@ -30,6 +37,8 @@ class UserFactoryTest extends WebTestCase
 	public function __construct( ?string $name = null, array $data = [], string $dataName = '' )
 	{
 		parent::__construct( $name, $data, $dataName );
+
+		$this->faker = Factory::create();
 	}
 
 	/**
@@ -47,7 +56,13 @@ class UserFactoryTest extends WebTestCase
 
 		$theme = Setting::SETTING_DEFAULT_THEME_VALUE;
 
-		$user = UserFactory::create($groupManager, $locale, $theme);
+		$user = (UserFactory::create($groupManager, $locale, $theme))
+			->setFirstname($this->faker->firstName)
+			->setLastname($this->faker->lastName)
+			->setUsername($this->faker->userName)
+			->setEmail($this->faker->email)
+			->setGender($this->faker->randomElement(['m', 'f']))
+			->setPlainPassword(User::DEFAULT_PASSWORD);
 
 		$this->assertInstanceOf(User::class, $user);
 
@@ -69,7 +84,13 @@ class UserFactoryTest extends WebTestCase
 
 		$theme = Setting::SETTING_DEFAULT_THEME_VALUE;
 
-		$user = UserFactory::createAdmin($groupManager, $locale, $theme);
+		$user = (UserFactory::createAdmin($groupManager, $locale, $theme))
+			->setFirstname($this->faker->firstName)
+			->setLastname($this->faker->lastName)
+			->setUsername($this->faker->userName)
+			->setEmail($this->faker->email)
+			->setGender($this->faker->randomElement(['m', 'f']))
+			->setPlainPassword(User::DEFAULT_PASSWORD);
 
 		$this->assertInstanceOf(User::class, $user);
 
