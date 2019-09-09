@@ -56,9 +56,12 @@
     </target>
 
     <target name="composer" description="Installing composer dependencies">
-        <condition property="composer.dev" value="no-dev" else="dev">
-            <equals arg1="${symfony_env}" arg2="prod" />
-        </condition>
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+            <arg value="--no-progress" />
+            <arg value="--no-suggest" />
+            <arg value="${symfony_env}"/>
+        </exec>
     </target>
 
     <target name="fosjs" description="FOSJS routing">
