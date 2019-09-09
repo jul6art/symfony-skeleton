@@ -183,6 +183,9 @@
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
     },
+    "lexik/translation-bundle": {
+        "version": "v4.0.14"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },

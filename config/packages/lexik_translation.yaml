@@ -1,0 +1,4 @@
+lexik_translation:
+  fallback_locale: ['%locale%']
+  managed_locales: '%available_locales%'
+  base_layout: 'LexikTranslationBundle::layout.html.twig'

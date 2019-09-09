@@ -7,7 +7,7 @@
         </li>
         <li class="divider" role="separator"></li>
     {% endif %}
-    {% for item in available_locales|split('|') %}
+    {% for item in available_locales %}
         {% if item != locale %}
             <li>
                 <a href="{{ path('locale_switch', {locale: item}) }}">

@@ -49,14 +49,14 @@ class LocaleListener {
 	 * LocaleSubscriber constructor.
 	 *
 	 * @param string                $locale
-	 * @param string                $available_locales
+	 * @param array                 $available_locales
 	 * @param TokenStorageInterface $tokenStorage
 	 * @param TranslatorInterface   $translator
 	 */
-	public function __construct(string $locale, string $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
+	public function __construct(string $locale, array $available_locales, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
 	{
 		$this->defaultLocale = $locale;
-		$this->available_locales = explode('|', $available_locales);
+		$this->available_locales = $available_locales;
 		$this->tokenStorage = $tokenStorage;
 		$this->translator = $translator;
 	}

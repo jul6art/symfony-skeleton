@@ -35,7 +35,10 @@ parameters:
         - func.switch_locale
         - func.switch_theme
         - func.manage_settings
-    available_locales: fr|en|de
+    available_locales:
+        - fr
+        - en
+        - de
     cookie_policy_url: 'http://allaboutcookies.org/'
     mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
     mailer_from_name: '%env(MAILER_FROM_NAME)%'

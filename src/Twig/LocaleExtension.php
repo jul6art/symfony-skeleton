@@ -50,15 +50,15 @@ class LocaleExtension extends AbstractExtension
 	 * @param AuthorizationCheckerInterface $authorizationChecker
 	 * @param RequestStack $stack
 	 * @param string $locale
-	 * @param string $available_locales
+	 * @param array $available_locales
 	 */
-    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, string $locale, string $available_locales)
+    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, string $locale, array $available_locales)
     {
         $this->tokenStorage = $tokenStorage;
 	    $this->authorizationChecker = $authorizationChecker;
         $this->stack = $stack;
         $this->locale = $locale;
-        $this->available_locales = explode('|', $available_locales);
+        $this->available_locales = $available_locales;
     }
 
     /**

@@ -22,6 +22,8 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -60,12 +62,16 @@ class DefaultController extends AbstractFOSRestController
 	 * @param string $locale
 	 * @param TranslatorInterface $translator
 	 *
-	 * @Route("/locale/{locale}", name="locale_switch", methods={"GET"}, requirements={"locale": "%available_locales%"})
+	 * @Route("/locale/{locale}", name="locale_switch", methods={"GET"})
 	 *
 	 * @return Response
 	 */
-	public function locale(Request $request, string $locale, TranslatorInterface $translator): Response
+	public function locale(Request $request, string $locale, TranslatorInterface $translator, array $available_locales): Response
 	{
+		if (!\in_array($locale, $available_locales)) {
+			throw new NotFoundHttpException();
+		}
+
 		$this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
 
 		$referer = $this->refererService->getFormReferer($request, 'locale');
