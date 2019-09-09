@@ -14,8 +14,8 @@ php bin/console cache:warmup --env=dev
 echo '--- DATABASE LOADING ---'
 php bin/console doctrine:schema:drop --force
 php bin/console doctrine:schema:update --force
-php bin/console lexik:translations:import -f -c
 php bin/console doctrine:fixtures:load --no-interaction
+php bin/console lexik:translations:import -f -c
 php bin/console audit:clean --no-confirm
 
 echo '--- CHECK VULNERABILITIES ---'
