@@ -18,7 +18,7 @@
     <!--/>-->
 
     <target name="build" description="Build"
-            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, fixtures, audit, unit_tests"
+            depends="info, parameters, composer, fosjs, yarn, cache, lexik, database_migrate, fixtures, audit, unit_tests"
     />
 
     <target name="deploy" description="Deploy and deployment process"
@@ -83,6 +83,15 @@
             <arg value="bin/console"/>
             <arg value="audit:clean"/>
             <arg value="--no-confirm"/>
+        </exec>
+    </target>
+
+    <target name="lexik" description="Force lexik translation update">
+        <exec executable="php" failonerror="true">
+            <arg value="bin/console"/>
+            <arg value="lexik:translations:import"/>
+            <arg value="--cache-clear"/>
+            <arg value="--force"/>
         </exec>
     </target>
 
