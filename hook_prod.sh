@@ -16,6 +16,7 @@ php bin/console doctrine:migrations:migrate --no-interaction
 ## si cette ligne crash, vider la db à la main
 php bin/console doctrine:fixtures:load --no-interaction --env=dev
 php bin/console audit:clean --no-confirm
+php bin/console lexik:translations:import -f -c
 
 echo '--- FILES PERMISSIONS ---'
 sudo chmod -R 777 /home/symfony-skeleton/public_html/var

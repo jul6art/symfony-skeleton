@@ -16,6 +16,7 @@ php bin/console doctrine:schema:drop --force
 php bin/console doctrine:schema:update --force
 php bin/console doctrine:fixtures:load --no-interaction
 php bin/console audit:clean --no-confirm
+php bin/console lexik:translations:import -f -c
 
 echo '--- CHECK VULNERABILITIES ---'
 php bin/console security:check
