@@ -1,5 +1,6 @@
 title:
     dashboard: 'Tableau de bord'
+    translate: 'Traductions'
     account:
         login: 'Se connecter'
         register: 'S''enregistrer'

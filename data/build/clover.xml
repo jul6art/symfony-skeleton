@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1568037495">
-  <project timestamp="1568037495">
+<coverage generated="1568049981">
+  <project timestamp="1568049981">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller" fullPackage="App" package="App">
@@ -2198,6 +2198,34 @@
         <line num="46" type="stmt" count="0"/>
         <metrics loc="47" ncloc="40" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="26" coveredelements="0"/>
       </file>
+      <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Migrations/Version20190909165510.php">
+        <class name="DoctrineMigrations\Version20190909165510" namespace="DoctrineMigrations">
+          <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="22" coveredelements="0"/>
+        </class>
+        <line num="15" type="method" name="getDescription" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="16" type="stmt" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="20" type="method" name="up" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="26" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="32" type="method" name="down" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <metrics loc="43" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="22" coveredelements="0"/>
+      </file>
     </package>
     <package name="App\Repository">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Repository/FunctionalityRepository.php">
@@ -3249,6 +3277,6 @@
         <metrics loc="70" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="16" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="125" loc="9699" ncloc="6475" classes="117" methods="415" coveredmethods="265" conditionals="0" coveredconditionals="0" statements="2031" coveredstatements="1417" elements="2446" coveredelements="1682"/>
+    <metrics files="126" loc="9742" ncloc="6511" classes="118" methods="418" coveredmethods="265" conditionals="0" coveredconditionals="0" statements="2050" coveredstatements="1417" elements="2468" coveredelements="1682"/>
   </project>
 </coverage>

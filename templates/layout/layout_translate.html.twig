@@ -1,0 +1,33 @@
+{% extends 'layout/layout_base.html.twig' %}
+
+{% block page_title %}
+    {{ 'title.translate'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('table') }}
+
+    {% block lexik_stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/lexiktranslation/ng-table/ng-table.min.css') }}">
+    {% endblock %}
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row clearfix">
+        <div class="table-responsive">
+            {% block lexik_content %}{% endblock lexik_content %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('table') }}
+
+    {% block lexik_javascript_footer %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+        <script src="{{ asset('bundles/lexiktranslation/ng-table/ng-table.min.js') }}"></script>
+    {% endblock %}
+{% endblock javascripts %}
