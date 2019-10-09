@@ -52,6 +52,6 @@
         "pdfmake": "^0.1.56",
         "sweetalert": "^2.1.2",
         "time-input-polyfill": "^1.0.5",
-        "tinymce": "^5.0.8"
+        "tinymce": "^5.0.16"
     }
 }
