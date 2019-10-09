@@ -6,3 +6,7 @@
 {{ encore_entry_link_tags('app') }}
 <!-- User theme -->
 <link rel="stylesheet" href="{{ asset('build/css/themes/theme-' ~ theme_name() ~ '.css') }}">
+<!-- Progressive Web App -->
+<link rel="manifest" href="{{ asset('manifest.json') }}">
+<script src="{{ asset('offline.js') }}"></script>
+<script src="{{ asset('service-worker.js') }}"></script>

@@ -14,10 +14,16 @@ Base sf4 admin project
 
 ### Requirements
 
-   - php between 7.1 and 7.3
+   - php >= 7.1
    - mysql (for postgresql, sqlite or something else, you will need to update doctrine configuration)
    - composer
    - yarn
+
+### Includes
+
+   - phpcs
+   - grumphp
+   - symfony security checker
 
 ### Install
 
