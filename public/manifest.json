@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "https://symfony-skeleton.vsweb.be/",
+  "scope": "https://symfony-skeleton.vsweb.be/",
   "background_color": "#2096F3",
   "display": "standalone",
   "theme_color": "#2096F3"
