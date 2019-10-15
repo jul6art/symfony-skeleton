@@ -83,5 +83,6 @@ module.exports.plugins.push(new CopyPlugin([
     { from: 'assets/tinymce/langs', to: 'langs' },
     { from: 'assets/img', to: 'images' },
     { from: 'assets/css/themes', to: 'css/themes' },
+    { from: 'node_modules/tinymce/themes', to: 'themes' },
 ]));
 
