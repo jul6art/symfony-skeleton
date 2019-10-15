@@ -16,7 +16,7 @@
             <i class="material-icons">person</i>
         </span>
         <div class="form-line">
-            <input type="text" class="form-control" name="_username" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required autofocus autocomplete="username">
+            <input type="text" class="form-control" name="_username" placeholder="{{ 'security.login.username'|trans }}" value="{{ last_username }}" required autofocus autocomplete="off">
         </div>
     </div>
     <div class="input-group">
@@ -24,7 +24,7 @@
             <i class="material-icons">lock</i>
         </span>
         <div class="form-line">
-            <input type="password" class="form-control" name="_password" placeholder="{{ 'security.login.password'|trans }}" required autocomplete="current-password">
+            <input type="password" class="form-control" name="_password" placeholder="{{ 'security.login.password'|trans }}" required autocomplete="off">
         </div>
     </div>
     {% if csrf_token %}

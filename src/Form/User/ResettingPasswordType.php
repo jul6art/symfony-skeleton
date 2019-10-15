@@ -29,14 +29,14 @@ class ResettingPasswordType extends AbstractType {
 			'type' => PasswordType::class,
 			'options' => [
 				'attr' => [
-					'autocomplete' => 'new-password',
+					'autocomplete' => 'off',
 				],
 			],
 			'first_options' => [
 				'addon_left' => '<i class="material-icons">lock</i>',
 				'label' => false,
 				'attr' => [
-					'autocomplete' => false,
+					'autocomplete' => 'off',
 					'class' => 'password',
 					'placeholder' => 'form.user.password.label',
 				],
@@ -45,7 +45,7 @@ class ResettingPasswordType extends AbstractType {
 				'addon_left' => '<i class="material-icons">lock</i>',
 				'label' => false,
 				'attr' => [
-					'autocomplete' => false,
+					'autocomplete' => 'off',
 					'class' => 'password_verification',
 					'placeholder' => 'form.user.password_confirmation.label',
 				],

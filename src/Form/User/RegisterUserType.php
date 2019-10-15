@@ -60,6 +60,7 @@ class RegisterUserType extends AbstractType {
 			'no_float' => true,
 			'label' => false,
 			'attr' => [
+                'autocomplete' => 'off',
 				'placeholder' => 'form.user.email.label',
 			],
 		])->add('gender', GenderType::class, [
@@ -68,21 +69,16 @@ class RegisterUserType extends AbstractType {
 			'no_float' => true,
 			'label' => false,
 			'attr' => [
-				'autocomplete' => false,
+				'autocomplete' => 'off',
 				'placeholder' => 'form.user.username.label',
 			],
 		])->add('plainPassword', RepeatedType::class, [
 			'type' => PasswordType::class,
-			'options' => [
-				'attr' => [
-					'autocomplete' => 'new-password',
-				],
-			],
 			'first_options' => [
 				'addon_left' => '<i class="material-icons">lock</i>',
 				'label' => false,
 				'attr' => [
-					'autocomplete' => false,
+					'autocomplete' => 'off',
 					'class' => 'password',
 					'placeholder' => 'form.user.password.label',
 				],
@@ -91,7 +87,7 @@ class RegisterUserType extends AbstractType {
 				'addon_left' => '<i class="material-icons">lock</i>',
 				'label' => false,
 				'attr' => [
-					'autocomplete' => false,
+					'autocomplete' => 'off',
 					'class' => 'password_verification',
 					'placeholder' => 'form.user.password_confirmation.label',
 				],
