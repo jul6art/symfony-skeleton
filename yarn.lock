@@ -7024,10 +7024,10 @@ tiny-inflate@^1.0.0, tiny-inflate@^1.0.2:
   resolved "https://registry.yarnpkg.com/tiny-inflate/-/tiny-inflate-1.0.2.tgz#93d9decffc8805bd57eae4310f0b745e9b6fb3a7"
   integrity sha1-k9nez/yIBb1X6uQxDwt0Xptvs6c=
 
-tinymce@^5.0.8:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.0.8.tgz#a5a15c9f29e2542a8d2bf1a0174903f25775ddbe"
-  integrity sha512-SoITwGkNUN2p8xKak9rwXp5REen2YwMuXqqzXCa2uMilRLNveKp2zAneX5dZ35Ezulo42Rw0tAzSMC6cd9JGoQ==
+tinymce@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.1.0.tgz#34eff28ada9b93305a0d08860cf82d2edff269ca"
+  integrity sha512-zprr8gLHNCxxT4ebgwwIg1erhxQs1GUb3YHgNlRAuGRButDsrn35e1HW9YtMli/AnuY+ECcqyqhEI/wUNMYEFw==
 
 tmp@^0.0.33:
   version "0.0.33"
