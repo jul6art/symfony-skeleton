@@ -51,6 +51,7 @@
         "nouislider": "^13.1.5",
         "pdfmake": "^0.1.60",
         "popper.js": "^1.16.0",
+        "set-value": "2.0.1",
         "sweetalert": "^2.1.2",
         "time-input-polyfill": "^1.0.5",
         "tinymce": "^5.1.0"
