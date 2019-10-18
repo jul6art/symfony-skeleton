@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -57,12 +58,12 @@ class FunctionalityManager extends AbstractManager
         return FunctionalityFactory::create();
     }
 
-	/**
-	 * @param Functionality $functionality
-	 * @param bool $state
-	 *
-	 * @return FunctionalityManager
-	 */
+    /**
+     * @param Functionality $functionality
+     * @param bool          $state
+     *
+     * @return FunctionalityManager
+     */
     public function update(Functionality $functionality, bool $state): self
     {
         $functionality->setActive($state);

@@ -4,7 +4,6 @@ namespace App\Twig;
 
 use App\Entity\Functionality;
 use App\Entity\User;
-use App\Manager\FunctionalityManagerTrait;
 use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -23,10 +22,10 @@ class LocaleExtension extends AbstractExtension
      */
     private $tokenStorage;
 
-	/**
-	 * @var AuthorizationCheckerInterface
-	 */
-	private $authorizationChecker;
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
 
     /**
      * @var RequestStack
@@ -43,19 +42,19 @@ class LocaleExtension extends AbstractExtension
      */
     private $available_locales;
 
-	/**
-	 * LocaleExtension constructor.
-	 *
-	 * @param TokenStorageInterface $tokenStorage
-	 * @param AuthorizationCheckerInterface $authorizationChecker
-	 * @param RequestStack $stack
-	 * @param string $locale
-	 * @param array $available_locales
-	 */
+    /**
+     * LocaleExtension constructor.
+     *
+     * @param TokenStorageInterface         $tokenStorage
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param RequestStack                  $stack
+     * @param string                        $locale
+     * @param array                         $available_locales
+     */
     public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, string $locale, array $available_locales)
     {
         $this->tokenStorage = $tokenStorage;
-	    $this->authorizationChecker = $authorizationChecker;
+        $this->authorizationChecker = $authorizationChecker;
         $this->stack = $stack;
         $this->locale = $locale;
         $this->available_locales = $available_locales;
@@ -93,8 +92,8 @@ class LocaleExtension extends AbstractExtension
     {
         $locale = $this->getUserLocale();
 
-        if ($locale === 'pt') {
-        	return 'pt_PT';
+        if ('pt' === $locale) {
+            return 'pt_PT';
         }
 
         return $locale;
@@ -109,12 +108,12 @@ class LocaleExtension extends AbstractExtension
     {
         $locale = $this->getUserLocale();
 
-        if ($locale === 'fr') {
-        	return 'fr_FR';
-        } elseif ($locale === 'en') {
-        	return 'en_GB';
-        } elseif ($locale === 'pt') {
-        	return 'pt_PT';
+        if ('fr' === $locale) {
+            return 'fr_FR';
+        } elseif ('en' === $locale) {
+            return 'en_GB';
+        } elseif ('pt' === $locale) {
+            return 'pt_PT';
         }
 
         return $locale;

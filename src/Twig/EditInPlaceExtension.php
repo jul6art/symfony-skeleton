@@ -14,26 +14,26 @@ use Twig\TwigFunction;
  */
 class EditInPlaceExtension extends AbstractExtension
 {
-	/**
-	 * @var AuthorizationCheckerInterface
-	 */
-	private $authorizationChecker;
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
 
-	/**
-	 * @var RequestStack
-	 */
-	private $stack;
+    /**
+     * @var RequestStack
+     */
+    private $stack;
 
-	/**
-	 * EditInPlaceExtension constructor.
-	 *
-	 * @param AuthorizationCheckerInterface $authorizationChecker
-	 * @param RequestStack $stack
-	 */
+    /**
+     * EditInPlaceExtension constructor.
+     *
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param RequestStack                  $stack
+     */
     public function __construct(AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack)
     {
-	    $this->authorizationChecker = $authorizationChecker;
-	    $this->stack = $stack;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->stack = $stack;
     }
 
     /**
@@ -47,9 +47,9 @@ class EditInPlaceExtension extends AbstractExtension
         ];
     }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
     public function edit(): string
     {
         $request = $this->stack->getMasterRequest();
@@ -58,7 +58,7 @@ class EditInPlaceExtension extends AbstractExtension
             $attributes = '';
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)) {
-	            $attributes = ' data-provide=wysiwyg data-inline data-edit';
+                $attributes = ' data-provide=wysiwyg data-inline data-edit';
             }
 
             $request->request->set('edit_in_place', $attributes);
@@ -69,9 +69,9 @@ class EditInPlaceExtension extends AbstractExtension
         }
     }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
     public function translate(): string
     {
         $request = $this->stack->getMasterRequest();
@@ -79,9 +79,11 @@ class EditInPlaceExtension extends AbstractExtension
         if (!$request->request->has('translate_in_place')) {
             $attributes = '';
 
-            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)
-                and $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
-	            $attributes = ' data-provide=wysiwyg data-inline data-translate';
+            if (
+                $this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)
+                and $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)
+            ) {
+                $attributes = ' data-provide=wysiwyg data-inline data-translate';
             }
 
             $request->request->set('translate_in_place', $attributes);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * Audit: gkratz
@@ -9,7 +10,7 @@
 namespace App\Service;
 
 /**
- * Trait RefererServiceTrait
+ * Trait RefererServiceTrait.
  */
 trait RefererServiceTrait
 {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -43,12 +44,12 @@ class SettingManager extends AbstractManager
         return SettingFactory::create();
     }
 
-	/**
-	 * @param Setting $setting
-	 * @param string $value
-	 *
-	 * @return SettingManager
-	 */
+    /**
+     * @param Setting $setting
+     * @param string  $value
+     *
+     * @return SettingManager
+     */
     public function update(Setting $setting, string $value): self
     {
         $setting->setValue($value);

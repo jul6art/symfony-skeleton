@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -19,29 +20,30 @@ class UserFactory implements FactoryInterface
 {
     /**
      * @param GroupManager $groupManager
-     * @param string $group
-     * @param string $locale
-     * @param string $defaultTheme
+     * @param string       $group
+     * @param string       $locale
+     * @param string       $defaultTheme
      *
      * @return User
+     *
      * @throws NonUniqueResultException
      */
-	public static function build(GroupManager $groupManager, string $group, string $locale, string $defaultTheme): User
-	{
-		$user = self::create();
+    public static function build(GroupManager $groupManager, string $group, string $locale, string $defaultTheme): User
+    {
+        $user = self::create();
 
-		$user
-			->addGroup($groupManager->findOneByName($group))
-			->setLocale($locale)
-			->setTheme($defaultTheme);
+        $user
+            ->addGroup($groupManager->findOneByName($group))
+            ->setLocale($locale)
+            ->setTheme($defaultTheme);
 
-		return $user;
-	}
+        return $user;
+    }
 
     /**
      * @return User|mixed
      */
-	public static function create()
+    public static function create()
     {
         return new User();
     }

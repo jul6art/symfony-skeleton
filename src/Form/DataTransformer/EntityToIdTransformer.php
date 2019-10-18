@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -56,7 +57,7 @@ class EntityToIdTransformer implements DataTransformerInterface
             return $entity->getId();
         }
 
-        throw new TransformationFailedException((\is_object($entity) ? get_class($entity) : '').'('.gettype($entity).') is not a valid class for EntityToIdTransformer');
+        throw new TransformationFailedException((\is_object($entity) ? get_class($entity) : '') . '(' . gettype($entity) . ') is not a valid class for EntityToIdTransformer');
     }
 
     /**
@@ -76,7 +77,7 @@ class EntityToIdTransformer implements DataTransformerInterface
             $entity = $this->entityRepository->findOneBy(array('id' => $id));
 
             if (null === $entity) {
-                throw new TransformationFailedException('A '.$this->entityRepository->getClassName().' with id #'.$id.' does not exist!');
+                throw new TransformationFailedException('A ' . $this->entityRepository->getClassName() . ' with id #' . $id . ' does not exist!');
             }
 
             return $entity;
@@ -90,12 +91,12 @@ class EntityToIdTransformer implements DataTransformerInterface
             $entities = $this->entityRepository->findBy(array('id' => $id));
 
             if (\count($id) !== \count($entities)) {
-                throw new TransformationFailedException('Some '.$this->entityRepository->getClassName().' with id #'.implode(', ', $id).' do not exist!');
+                throw new TransformationFailedException('Some ' . $this->entityRepository->getClassName() . ' with id #' . implode(', ', $id) . ' do not exist!');
             }
 
             return $entities;
         }
 
-        throw new TransformationFailedException(gettype($id).' is not a valid type for EntityToIdTransformer');
+        throw new TransformationFailedException(gettype($id) . ' is not a valid type for EntityToIdTransformer');
     }
 }

@@ -1,0 +1,78 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        composer:
+            file: ./composer.json
+            strict: false
+            with_dependencies: false
+            no_check_all: false
+            no_check_lock: true
+            no_check_publish: false
+            no_local_repository: false
+        git_blacklist:
+            triggered_by: ['php']
+            keywords:
+                - "die("
+                - "die;"
+                - "exit("
+                - "exit;"
+                - "var_dump("
+                - "dump("
+            whitelist_patterns: []
+            regexp_type: G
+        phpcpd:
+            triggered_by: ['php']
+            directory: '.'
+            exclude:
+                - vendor
+                - var
+                - src/Entity/
+                - src/Repository/
+            names_exclude: []
+            regexps_exclude: []
+            fuzzy: true
+            min_lines: 40
+            min_tokens: 20
+        phpcsfixer2:
+            triggered_by: ['php']
+            rules: []
+            allow_risky: ~
+            cache_file: .php_cs.cache
+            config: .php_cs
+            using_cache: ~
+            config_contains_finder: true
+            verbose: true
+            diff: false
+        phpcs:
+            triggered_by: ['php']
+            standard: ["PSR12"]
+            severity: ~
+            error_severity: ~
+            warning_severity: 6
+            tab_width: ~
+            report: full
+            report_width: ~
+            encoding: "UTF-8"
+            whitelist_patterns:
+                - /^src\/(.*)/
+            ignore_patterns: []
+            sniffs: []
+            exclude: []
+        phplint:
+            triggered_by: ['php', 'phtml', 'php3', 'php4', 'php5']
+            exclude: ['vendor', 'var']
+            jobs: ~
+            short_open_tag: false
+            ignore_patterns: []
+        securitychecker:
+            lockfile: ./composer.lock
+            format: ~
+            end_point: ~
+            timeout: ~
+            run_always: false
+        twigcs:
+            triggered_by: ['twig']
+            path: 'src'
+            severity: 'warning'
+            ruleset: 'Allocine\Twigcs\Ruleset\Official'

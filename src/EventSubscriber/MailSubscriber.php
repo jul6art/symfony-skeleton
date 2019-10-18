@@ -15,7 +15,7 @@ use Twig\Error\SyntaxError;
  */
 class MailSubscriber implements EventSubscriberInterface
 {
-	use MailerServiceTrait;
+    use MailerServiceTrait;
 
     /**
      * @return array
@@ -27,22 +27,22 @@ class MailSubscriber implements EventSubscriberInterface
         ];
     }
 
-	/**
-	 * @param UserEvent $event
-	 *
-	 * @throws Throwable
-	 * @throws LoaderError
-	 * @throws RuntimeError
-	 * @throws SyntaxError
-	 */
+    /**
+     * @param UserEvent $event
+     *
+     * @throws Throwable
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function onUserAdded(UserEvent $event): void
     {
-    	$user = $event->getUser();
-    	$password = $event->find('password');
+        $user = $event->getUser();
+        $password = $event->find('password');
 
         $this->mailerService->send($user->getEmail(), 'email/user/add/email.html.twig', [
-        	'password' => $password,
-        	'user' => $user,
+            'password' => $password,
+            'user' => $user,
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -18,10 +19,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class GenderValidator extends ConstraintValidator
 {
-	/**
-	 * @param mixed $value
-	 * @param Constraint $constraint
-	 */
+    /**
+     * @param mixed      $value
+     * @param Constraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Gender) {

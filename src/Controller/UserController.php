@@ -24,7 +24,8 @@ use Symfony\Component\Serializer\Serializer;
  */
 class UserController extends AbstractFOSRestController
 {
-    use RefererServiceTrait, UserManagerTrait;
+    use RefererServiceTrait;
+    use UserManagerTrait;
 
     /**
      * @param UserDataTableTransformer $userDataTableTransformer
@@ -51,17 +52,18 @@ class UserController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request $request
-	 * @param UserTransformer $userTransformer
-	 * @param EventDispatcherInterface $eventDispatcher
-	 *
-	 * @Route("/add", name="user_add", methods={"GET","POST"})
-	 *
-	 * @return Response
-	 * @throws ExceptionInterface
-	 * @throws \Doctrine\ORM\NonUniqueResultException
-	 */
+    /**
+     * @param Request                  $request
+     * @param UserTransformer          $userTransformer
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @Route("/add", name="user_add", methods={"GET","POST"})
+     *
+     * @return Response
+     *
+     * @throws ExceptionInterface
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function add(Request $request, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(UserVoter::ADD, User::class);
@@ -72,15 +74,15 @@ class UserController extends AbstractFOSRestController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() and $form->isValid()) {
-        	$password = $this->userManager->generatePassword();
-        	$user->setPlainPassword($password);
-        	$event = (new UserEvent($user))->addData('password', $password);
+            $password = $this->userManager->generatePassword();
+            $user->setPlainPassword($password);
+            $event = (new UserEvent($user))->addData('password', $password);
 
             $this->userManager
-	            ->updateSettings($user)
-	            ->updateGroups($user)
-	            ->activate($user)
-	            ->save($user);
+                ->updateSettings($user)
+                ->updateGroups($user)
+                ->activate($user)
+                ->save($user);
 
             $eventDispatcher->dispatch($event, UserEvent::ADDED);
 
@@ -150,7 +152,7 @@ class UserController extends AbstractFOSRestController
             $this->userManager->save($user);
             $eventDispatcher->dispatch(new UserEvent($user), UserEvent::EDITED);
 
-	        return $this->redirect($referer ?? $this->generateUrl('admin_user_list'));
+            return $this->redirect($referer ?? $this->generateUrl('admin_user_list'));
         }
 
         $serializer = new Serializer([$userTransformer]);
@@ -167,15 +169,15 @@ class UserController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request $request
-	 * @param User $user
-	 * @param EventDispatcherInterface $eventDispatcher
-	 *
-	 * @Route("/delete/{id}", name="user_delete", methods={"GET"})
-	 *
-	 * @return Response
-	 */
+    /**
+     * @param Request                  $request
+     * @param User                     $user
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @Route("/delete/{id}", name="user_delete", methods={"GET"})
+     *
+     * @return Response
+     */
     public function delete(Request $request, User $user, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(UserVoter::DELETE, $user);

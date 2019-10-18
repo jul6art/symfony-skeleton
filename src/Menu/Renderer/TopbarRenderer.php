@@ -24,18 +24,18 @@ class TopbarRenderer extends Renderer implements RendererInterface
     {
         $this->matcher = $matcher;
         $this->defaultOptions = array_merge([
-	        'depth' => null,
-	        'matchingDepth' => null,
-	        'currentAsLink' => true,
-	        'currentClass' => 'current',
-	        'ancestorClass' => 'current_ancestor',
-	        'firstClass' => 'first',
-	        'lastClass' => 'last',
-	        'compressed' => false,
-	        'allow_safe_labels' => false,
-	        'clear_matcher' => true,
-	        'leaf_class' => null,
-	        'branch_class' => null,
+            'depth' => null,
+            'matchingDepth' => null,
+            'currentAsLink' => true,
+            'currentClass' => 'current',
+            'ancestorClass' => 'current_ancestor',
+            'firstClass' => 'first',
+            'lastClass' => 'last',
+            'compressed' => false,
+            'allow_safe_labels' => false,
+            'clear_matcher' => true,
+            'leaf_class' => null,
+            'branch_class' => null,
         ], $defaultOptions);
 
         parent::__construct($charset);
@@ -243,10 +243,10 @@ class TopbarRenderer extends Renderer implements RendererInterface
             return $html;
         }
 
-	    $spacing = \in_array($type, [
-        	'ul',
-        	'link',
-        	'icon',
+        $spacing = \in_array($type, [
+            'ul',
+            'link',
+            'icon',
         ]) ? $level * 4 : $level * 4 - 2;
 
         return sprintf("%s%s\n", str_repeat(' ', $spacing), $html);

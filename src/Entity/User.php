@@ -16,13 +16,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields="email", repositoryMethod="findByUniqueEmail")
  * @UniqueEntity(fields="username", repositoryMethod="findByUniqueUsername")
+ *
  * @method string|null getLocale()
- * @method setLocale(string $locale)
+ * @method             setLocale(string $locale)
  * @method string|null getTheme()
- * @method setTheme(string $theme)
+ * @method             setTheme(string $theme)
  */
 class User extends BaseUser
 {
+    use TimestampableEntity;
+    use BlameableEntity;
+
     public const ROLE_ADMIN = 'ROLE_ADMIN';
     public const GENDER_MALE = 'm';
     public const GENDER_FEMALE = 'f';
@@ -32,9 +36,6 @@ class User extends BaseUser
     public const DEFAULT_PASSWORD = 'vsweb';
     public const DEFAULT_ADMIN_USERNAME = 'admin';
     public const DEFAULT_USER_USERNAME = 'user';
-
-    use TimestampableEntity;
-    use BlameableEntity;
 
     /**
      * @ORM\Id
@@ -207,7 +208,7 @@ class User extends BaseUser
      *
      * @return UserSetting|null
      */
-    public function getSetting(string $name): ? UserSetting
+    public function getSetting(string $name): ?UserSetting
     {
         foreach ($this->settings as $setting) {
             if ($setting->getName() === $name) {
@@ -245,57 +246,59 @@ class User extends BaseUser
      *
      * @return bool
      */
-    public function hasSetting(string $name): ? bool
+    public function hasSetting(string $name): ?bool
     {
         return null !== $this->getSetting($name);
     }
 
-	/**
-	 * @param $name
-	 * @param $arguments
-	 *
-	 * @return null|string
-	 */
-	public function __call($name, $arguments)
-	{
-		$property = $this->camelToSnake(substr($name, 3));
+    /**
+     * @param $name
+     * @param $arguments
+     *
+     * @return string|null
+     */
+    public function __call($name, $arguments)
+    {
+        $property = $this->camelToSnake(substr($name, 3));
 
-		if (0 === strpos($name, 'get')) {
-			return $this->$property;
-		} elseif (0 === strpos($name, 'set')) {
-			$this->$property = $arguments[0];
+        if (0 === strpos($name, 'get')) {
+            return $this->$property;
+        } elseif (0 === strpos($name, 'set')) {
+            $this->$property = $arguments[0];
 
-			return $this;
-		}
-	}
+            return $this;
+        }
+    }
 
-	private function camelToSnake($input)
-	{
-		return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
-	}
+    private function camelToSnake($input)
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
+    }
 
-	/**
-	 * @param $name
-	 * @return string|null
-	 */
-	public function __get($name)
-	{
-		if ($this->hasSetting($name)) {
-			return $this->getSetting($name)->getValue();
-		}
+    /**
+     * @param $name
+     *
+     * @return string|null
+     */
+    public function __get($name)
+    {
+        if ($this->hasSetting($name)) {
+            return $this->getSetting($name)->getValue();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @param string $name
-	 * @param string $value
-	 * @return UserSetting|null
-	 */
-	public function __set($name, $value)
-	{
-		return $this->setSetting($name, $value);
-	}
+    /**
+     * @param string $name
+     * @param string $value
+     *
+     * @return UserSetting|null
+     */
+    public function __set($name, $value)
+    {
+        return $this->setSetting($name, $value);
+    }
 
     /**
      * @return bool

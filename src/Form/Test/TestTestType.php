@@ -29,22 +29,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TestTestType extends AbstractType
 {
-	/**
-	 * @var string
-	 */
-	private $environment;
+    /**
+     * @var string
+     */
+    private $environment;
 
-	/**
-	 * TestTestType constructor.
-	 *
-	 * @param string $environment
-	 */
-	public function __construct(string $environment)
-	{
-		$this->environment = $environment;
-	}
+    /**
+     * TestTestType constructor.
+     *
+     * @param string $environment
+     */
+    public function __construct(string $environment)
+    {
+        $this->environment = $environment;
+    }
 
-	/**
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -248,15 +248,15 @@ class TestTestType extends AbstractType
                 'help' => 'form.test.name.help',
             ]);
 
-        if ($this->environment !== 'test') {
-        	$builder
-		        ->add('captcha', RecaptchaType::class, [
-			        'label' => 'REcaptcha',
-			        'mapped' => false,
-			        'required' => true,
-			        // test
-			        'help' => 'form.test.name.help',
-		        ]);
+        if ('test' !== $this->environment) {
+            $builder
+                ->add('captcha', RecaptchaType::class, [
+                    'label' => 'REcaptcha',
+                    'mapped' => false,
+                    'required' => true,
+                    // test
+                    'help' => 'form.test.name.help',
+                ]);
         }
 
         $builder
@@ -286,15 +286,15 @@ class TestTestType extends AbstractType
                 'multiple' => true,
                 'class' => User::class,
                 'field' => 'label',
-                'entity_label' => function($user) {
-            	    return $user['label'];
+                'entity_label' => function ($user) {
+                    return $user['label'];
                 },
-	            'query_builder' => function(EntityRepository $repository) {
-            	    return $repository
-		                ->createQueryBuilder('u')
-		                ->select('u.id, concat(u.firstname, \' \', u.lastname) as label')
-		                ->orderBy('label', 'DESC');
-	            },
+                'query_builder' => function (EntityRepository $repository) {
+                    return $repository
+                        ->createQueryBuilder('u')
+                        ->select('u.id, concat(u.firstname, \' \', u.lastname) as label')
+                        ->orderBy('label', 'DESC');
+                },
                 // test
                 'help' => 'form.test.name.help',
             ]);

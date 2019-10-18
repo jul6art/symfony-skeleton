@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -21,7 +22,7 @@ class FileService
     public function getSize($directory = ''): int
     {
         $size = 0;
-        foreach (glob(rtrim($directory, '/').'/*', GLOB_NOSORT) as $item) {
+        foreach (glob(rtrim($directory, '/') . '/*', GLOB_NOSORT) as $item) {
             $size += \is_file($item) ? filesize($item) : $this->getSize($item);
         }
 
@@ -42,9 +43,9 @@ class FileService
         } elseif ($size < 1048576 and $size > 1023) {
             $size = sprintf('%s Ko', round($size / 1024, 1));
         } elseif ($size < 1073741824 and $size > 1048575) {
-	        $size = sprintf('%s Mo', round($size / 1048576, 1));
+            $size = sprintf('%s Mo', round($size / 1048576, 1));
         } else {
-	        $size = sprintf('%s Go', round($size / 1073741824, 1));
+            $size = sprintf('%s Go', round($size / 1073741824, 1));
         }
 
         return $size;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -33,7 +34,7 @@ trait RouterTrait
      *
      * @required
      */
-    public function setRouter( RouterInterface $router): void
+    public function setRouter(RouterInterface $router): void
     {
         $this->router = $router;
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -8,7 +9,7 @@
 
 namespace App\Manager;
 
-use \DateTime;
+use DateTime;
 use DH\DoctrineAuditBundle\AuditConfiguration;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\DBAL\DBALException;
@@ -51,15 +52,16 @@ class AuditManager extends AbstractManager
         $this->configuration = $configuration;
     }
 
-	/**
-	 * @param string $level
-	 * @param $entity
-	 * @param array $diffs
-	 *
-	 * @return AuditManager
-	 * @throws DBALException
-	 * @throws MappingException
-	 */
+    /**
+     * @param string $level
+     * @param $entity
+     * @param array $diffs
+     *
+     * @return AuditManager
+     *
+     * @throws DBALException
+     * @throws MappingException
+     */
     public function audit(string $level, $entity, array $diffs): self
     {
         $meta = $this->entityManager->getClassMetadata(get_class($entity));
@@ -68,11 +70,12 @@ class AuditManager extends AbstractManager
 
         $schema = $meta->getSchemaName() ? sprintf('%s.', $meta->getSchemaName()) : '';
         $auditTable = sprintf(
-        	'%s%s%s%s',
-	        $schema,
-	        $this->configuration->getTablePrefix(),
-	        $meta->getTableName(),
-	        $this->configuration->getTableSuffix());
+            '%s%s%s%s',
+            $schema,
+            $this->configuration->getTablePrefix(),
+            $meta->getTableName(),
+            $this->configuration->getTableSuffix()
+        );
         $fields = [
             'type' => ':type',
             'object_id' => ':object_id',

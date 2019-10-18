@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
  * Date: 22/07/2019
- * Time: 20:28
+ * Time: 20:28.
  */
 
 namespace App\EntityListener;
@@ -13,10 +14,11 @@ use App\Traits\FlashBagTrait;
 use App\Traits\TranslatorTrait;
 
 /**
- * Class AbstractEntityListener
- * @package App\EventListener
+ * Class AbstractEntityListener.
  */
 abstract class AbstractEntityListener
 {
-	use FlashBagTrait, FunctionalityManagerTrait, TranslatorTrait;
+    use FlashBagTrait;
+    use FunctionalityManagerTrait;
+    use TranslatorTrait;
 }

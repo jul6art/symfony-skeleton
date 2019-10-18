@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -41,10 +42,10 @@ class RecaptchaValidator extends ConstraintValidator
         $this->recaptcha_secret = $recaptacha_secret;
     }
 
-	/**
-	 * @param mixed $value
-	 * @param Constraint $constraint
-	 */
+    /**
+     * @param mixed      $value
+     * @param Constraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Recaptcha) {

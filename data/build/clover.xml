@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1568049981">
-  <project timestamp="1568049981">
+<coverage generated="1570619993">
+  <project timestamp="1570619993">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller" fullPackage="App" package="App">
@@ -1396,7 +1396,7 @@
     <package name="App">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Kernel.php">
         <class name="App\Kernel" namespace="App">
-          <metrics complexity="6" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="23" coveredelements="23"/>
+          <metrics complexity="6" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="14" elements="23" coveredelements="17"/>
         </class>
         <line num="18" type="method" name="registerBundles" visibility="public" complexity="3" crap="3" count="87"/>
         <line num="20" type="stmt" count="87"/>
@@ -1415,13 +1415,13 @@
         <line num="41" type="stmt" count="1"/>
         <line num="42" type="stmt" count="1"/>
         <line num="43" type="stmt" count="1"/>
-        <line num="45" type="method" name="configureRoutes" visibility="protected" complexity="1" crap="1" count="2"/>
-        <line num="47" type="stmt" count="2"/>
-        <line num="49" type="stmt" count="2"/>
-        <line num="50" type="stmt" count="2"/>
-        <line num="51" type="stmt" count="2"/>
-        <line num="52" type="stmt" count="2"/>
-        <metrics loc="53" ncloc="53" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="23" coveredelements="23"/>
+        <line num="45" type="method" name="configureRoutes" visibility="protected" complexity="1" crap="2.00" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <metrics loc="53" ncloc="53" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="14" elements="23" coveredelements="17"/>
       </file>
     </package>
     <package name="App\Maker">
@@ -3277,6 +3277,6 @@
         <metrics loc="70" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="16" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="126" loc="9742" ncloc="6511" classes="118" methods="418" coveredmethods="265" conditionals="0" coveredconditionals="0" statements="2050" coveredstatements="1417" elements="2468" coveredelements="1682"/>
+    <metrics files="126" loc="9742" ncloc="6511" classes="118" methods="418" coveredmethods="264" conditionals="0" coveredconditionals="0" statements="2050" coveredstatements="1412" elements="2468" coveredelements="1676"/>
   </project>
 </coverage>

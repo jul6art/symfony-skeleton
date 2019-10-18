@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -19,18 +20,19 @@ use Twig\Error\SyntaxError;
  */
 class UserTransformer implements NormalizerInterface
 {
-	use CellFormatterTrait;
+    use CellFormatterTrait;
 
-	/**
-	 * @param mixed $user
-	 * @param null $format
-	 * @param array $context
-	 *
-	 * @return array|bool|float|int|string
-	 * @throws LoaderError
-	 * @throws RuntimeError
-	 * @throws SyntaxError
-	 */
+    /**
+     * @param mixed $user
+     * @param null  $format
+     * @param array $context
+     *
+     * @return array|bool|float|int|string
+     *
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function normalize($user, $format = null, array $context = [])
     {
         if (!$user instanceof User) {

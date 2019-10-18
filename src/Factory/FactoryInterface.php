@@ -3,8 +3,7 @@
 namespace App\Factory;
 
 /**
- * Interface FactoryInterface
- * @package App\Factory
+ * Interface FactoryInterface.
  */
 interface FactoryInterface
 {

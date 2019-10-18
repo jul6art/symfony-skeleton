@@ -18,7 +18,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class UserSubscriber implements EventSubscriberInterface
 {
-	use FlashBagTrait, SettingManagerTrait, TranslatorTrait, UserManagerTrait;
+    use FlashBagTrait;
+    use SettingManagerTrait;
+    use TranslatorTrait;
+    use UserManagerTrait;
 
     /**
      * @return array
@@ -26,31 +29,31 @@ class UserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-	        FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
-	        UserEvent::EDITED => 'onUserEdited',
+            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
+            UserEvent::EDITED => 'onUserEdited',
         ];
     }
 
-	/**
-	 * @param FormEvent $event
-	 *
-	 * @throws NonUniqueResultException
-	 */
+    /**
+     * @param FormEvent $event
+     *
+     * @throws NonUniqueResultException
+     */
     public function onRegistrationSuccess(FormEvent $event): void
     {
         $user = $event->getForm()->getData();
         $user->setLocale($event->getRequest()->getLocale());
         $user->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
         $this->userManager
-	        ->updateGroups($user)
-	        ->save($user);
+            ->updateGroups($user)
+            ->save($user);
     }
 
-	/**
-	 * @param UserEvent $event
-	 */
-	public function onUserEdited(UserEvent $event)
-	{
-		$this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
-	}
+    /**
+     * @param UserEvent $event
+     */
+    public function onUserEdited(UserEvent $event)
+    {
+        $this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
+    }
 }

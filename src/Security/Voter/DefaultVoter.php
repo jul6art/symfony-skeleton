@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class DefaultVoter extends AbstractVoter
 {
-	public const ACCESS_PAGE_HOME = 'app.voters.pages.home';
+    public const ACCESS_PAGE_HOME = 'app.voters.pages.home';
 
     /**
      * @param string $attribute
@@ -19,9 +19,11 @@ class DefaultVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!\in_array($attribute, [
+        if (
+            !\in_array($attribute, [
                 self::ACCESS_PAGE_HOME,
-            ])) {
+            ])
+        ) {
             return false;
         }
 
@@ -37,8 +39,8 @@ class DefaultVoter extends AbstractVoter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        if ($attribute === self::ACCESS_PAGE_HOME) {
-	        return $this->canAccessPageHome($subject, $token);
+        if (self::ACCESS_PAGE_HOME === $attribute) {
+            return $this->canAccessPageHome($subject, $token);
         }
 
         return false;

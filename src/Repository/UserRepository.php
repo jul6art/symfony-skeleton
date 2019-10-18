@@ -61,25 +61,25 @@ class UserRepository extends ServiceEntityRepository
         return $builder->getQuery()->getOneOrNullResult();
     }
 
-	/**
-	 * @param array $criteria
-	 *
-	 * @return array
-	 */
-	public function findByUniqueUsername(array $criteria): array
-	{
-		return $this->findBy($criteria);
-	}
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findByUniqueUsername(array $criteria): array
+    {
+        return $this->findBy($criteria);
+    }
 
-	/**
-	 * @param array $criteria
-	 *
-	 * @return array
-	 */
-	public function findByUniqueEmail(array $criteria): array
-	{
-		return $this->findBy($criteria);
-	}
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findByUniqueEmail(array $criteria): array
+    {
+        return $this->findBy($criteria);
+    }
 
     /**
      * @return int

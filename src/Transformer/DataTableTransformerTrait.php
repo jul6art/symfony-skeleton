@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -90,12 +91,12 @@ trait DataTableTransformerTrait
     /**
      * @return mixed
      */
-    public function _reset()
+    public function callbackItem()
     {
         $this->setActions();
 
-        if (method_exists($this, 'reset')) {
-            return $this->reset();
+        if (method_exists($this, 'callback')) {
+            return $this->callback();
         }
     }
 
@@ -113,7 +114,7 @@ trait DataTableTransformerTrait
     {
         $view = $this->twig->render($view, ['actions' => $actions]);
 
-        $this->_reset();
+        $this->callbackItem();
 
         return $view;
     }

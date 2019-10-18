@@ -72,23 +72,23 @@ class Test
         return $this;
     }
 
-	/**
-	 * @return string|null
-	 */
-	public function getContent(): ?string
-	{
-		return $this->content;
-	}
+    /**
+     * @return string|null
+     */
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
 
-	/**
-	 * @param string $content
-	 *
-	 * @return Test
-	 */
-	public function setContent( string $content ): self
-	{
-		$this->content = $content;
+    /**
+     * @param string $content
+     *
+     * @return Test
+     */
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
-		return $this;
-	}
+        return $this;
+    }
 }

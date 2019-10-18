@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -36,8 +37,8 @@ class RangeTransformer implements DataTransformerInterface
      */
     public function reverseTransform($string): ?float
     {
-        if('' === $string or null === $string) {
-        	return null;
+        if ('' === $string or null === $string) {
+            return null;
         }
 
         return (float) $string;

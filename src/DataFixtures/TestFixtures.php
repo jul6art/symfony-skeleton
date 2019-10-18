@@ -15,7 +15,7 @@ class TestFixtures extends Fixture
 {
     use TestManagerTrait;
 
-	private const LIMIT = 100;
+    private const LIMIT = 100;
 
     /**
      * @param ObjectManager $manager
@@ -26,7 +26,7 @@ class TestFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < self::LIMIT; ++$i ) {
+        for ($i = 0; $i < self::LIMIT; ++$i) {
             $test = $this->testManager
                 ->create()
                 ->setName($faker->name)

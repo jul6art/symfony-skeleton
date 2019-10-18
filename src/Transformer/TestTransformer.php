@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -19,18 +20,19 @@ use Twig\Error\SyntaxError;
  */
 class TestTransformer implements NormalizerInterface
 {
-	use CellFormatterTrait;
+    use CellFormatterTrait;
 
-	/**
-	 * @param mixed $test
-	 * @param null $format
-	 * @param array $contexts
-	 *
-	 * @return array|bool|float|int|string
-	 * @throws LoaderError
-	 * @throws RuntimeError
-	 * @throws SyntaxError
-	 */
+    /**
+     * @param mixed $test
+     * @param null  $format
+     * @param array $contexts
+     *
+     * @return array|bool|float|int|string
+     *
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function normalize($test, $format = null, array $context = [])
     {
         if (!$test instanceof Test) {

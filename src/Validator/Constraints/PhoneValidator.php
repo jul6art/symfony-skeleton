@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -17,10 +18,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class PhoneValidator extends ConstraintValidator
 {
-	/**
-	 * @param mixed $value
-	 * @param Constraint $constraint
-	 */
+    /**
+     * @param mixed      $value
+     * @param Constraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Phone) {
@@ -33,7 +34,7 @@ class PhoneValidator extends ConstraintValidator
             return;
         }
 
-        if (strpos( $value, '+' ) !== 0 ) {
+        if (0 !== strpos($value, '+')) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

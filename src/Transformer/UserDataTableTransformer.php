@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -20,14 +21,14 @@ use Twig\Error\SyntaxError;
  */
 class UserDataTableTransformer extends UserTransformer
 {
-	use CellFormatterTrait;
+    use CellFormatterTrait;
     use DataTableTransformerTrait;
 
     /**
      * Automatically called on each iteration
      * after each call to renderAction().
      */
-    public function reset()
+    public function callback()
     {
     }
 

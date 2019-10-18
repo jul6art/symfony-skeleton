@@ -14,6 +14,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Functionality
 {
+    use BlameableEntity;
+    use TimestampableEntity;
+
     public const FUNC_AUDIT = 'func.audit';
     public const FUNC_CLEAR_CACHE = 'func.clear_cache';
     public const FUNC_EDIT_IN_PLACE = 'func.edit_in_place';
@@ -22,9 +25,6 @@ class Functionality
     public const FUNC_MANAGE_SETTINGS = 'func.manage_settings';
     public const FUNC_SWITCH_LOCALE = 'func.switch_locale';
     public const FUNC_SWITCH_THEME = 'func.switch_theme';
-
-    use BlameableEntity;
-    use TimestampableEntity;
 
     /**
      * @ORM\Id()

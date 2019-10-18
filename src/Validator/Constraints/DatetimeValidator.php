@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -8,7 +9,7 @@
 
 namespace App\Validator\Constraints;
 
-use \DateTime as BaseDateTime;
+use DateTime as BaseDateTime;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -18,10 +19,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class DatetimeValidator extends ConstraintValidator
 {
-	/**
-	 * @param mixed $value
-	 * @param Constraint $constraint
-	 */
+    /**
+     * @param mixed      $value
+     * @param Constraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$constraint instanceof Datetime) {

@@ -25,7 +25,9 @@ use Symfony\Component\Serializer\Serializer;
  */
 class TestController extends AbstractFOSRestController
 {
-    use RefererServiceTrait, TestManagerTrait, UserManagerTrait;
+    use RefererServiceTrait;
+    use TestManagerTrait;
+    use UserManagerTrait;
 
     /**
      * @param TestDataTableTransformer $testDataTableTransformer
@@ -141,7 +143,7 @@ class TestController extends AbstractFOSRestController
             $this->testManager->save($test);
             $eventDispatcher->dispatch(new TestEvent($test), TestEvent::EDITED);
 
-	        return $this->redirect($referer ?? $this->generateUrl('admin_test_list'));
+            return $this->redirect($referer ?? $this->generateUrl('admin_test_list'));
         }
 
         $serializer = new Serializer([$testTransformer]);
@@ -158,15 +160,15 @@ class TestController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
-	/**
-	 * @param Request $request
-	 * @param Test $test
-	 * @param EventDispatcherInterface $eventDispatcher
-	 *
-	 * @Route("/delete/{id}", name="test_delete", methods={"GET"})
-	 *
-	 * @return Response
-	 */
+    /**
+     * @param Request                  $request
+     * @param Test                     $test
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @Route("/delete/{id}", name="test_delete", methods={"GET"})
+     *
+     * @return Response
+     */
     public function delete(Request $request, Test $test, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(TestVoter::DELETE, $test);

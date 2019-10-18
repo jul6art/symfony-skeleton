@@ -36,7 +36,8 @@ class TestVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!\in_array($attribute, [
+        if (
+            !\in_array($attribute, [
                 self::ADD,
                 self::AUDIT,
                 self::DELETE,
@@ -44,7 +45,8 @@ class TestVoter extends AbstractVoter
                 self::EDIT,
                 self::LIST,
                 self::VIEW,
-            ])) {
+            ])
+        ) {
             return false;
         }
 
@@ -68,21 +70,21 @@ class TestVoter extends AbstractVoter
         }
 
         // ... (check conditions and return true to grant permission) ...
-        if ($attribute === self::ADD) {
-        	return $this->canAdd($subject, $token);
-	    } elseif ($attribute === self::AUDIT) {
-        	return $this->canAudit($subject, $token);
-	    } elseif ($attribute === self::DELETE) {
-        	return $this->canDelete($subject, $token);
-	    } elseif ($attribute === self::DELETE_MULTIPLE) {
-        	return $this->canDeleteMultiple($subject, $token);
-	    } elseif ($attribute === self::EDIT) {
-        	return $this->canEdit($subject, $token);
-	    } elseif ($attribute === self::LIST) {
-        	return $this->canList($subject, $token);
-	    } elseif ($attribute === self::VIEW) {
-        	return $this->canView($subject, $token);
-	    }
+        if (self::ADD === $attribute) {
+            return $this->canAdd($subject, $token);
+        } elseif (self::AUDIT === $attribute) {
+            return $this->canAudit($subject, $token);
+        } elseif (self::DELETE === $attribute) {
+            return $this->canDelete($subject, $token);
+        } elseif (self::DELETE_MULTIPLE === $attribute) {
+            return $this->canDeleteMultiple($subject, $token);
+        } elseif (self::EDIT === $attribute) {
+            return $this->canEdit($subject, $token);
+        } elseif (self::LIST === $attribute) {
+            return $this->canList($subject, $token);
+        } elseif (self::VIEW === $attribute) {
+            return $this->canView($subject, $token);
+        }
 
         return false;
     }
@@ -142,36 +144,36 @@ class TestVoter extends AbstractVoter
         return $this->canAdd($subject, $token);
     }
 
-	/**
-	 * @param Test           $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canEdit(Test $subject, TokenInterface $token)
-	{
-		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-	}
+    /**
+     * @param Test           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canEdit(Test $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    }
 
-	/**
-	 * @param string         $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canList(string $subject, TokenInterface $token)
-	{
-		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-	}
+    /**
+     * @param string         $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canList(string $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    }
 
-	/**
-	 * @param Test           $subject
-	 * @param TokenInterface $token
-	 *
-	 * @return bool
-	 */
-	public function canView(Test $subject, TokenInterface $token)
-	{
-		return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-	}
+    /**
+     * @param Test           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canView(Test $subject, TokenInterface $token)
+    {
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+    }
 }

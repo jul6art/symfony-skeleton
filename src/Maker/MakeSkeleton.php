@@ -61,7 +61,7 @@ final class MakeSkeleton extends AbstractMaker
         $command
             ->setDescription('Creates SKELETON for Doctrine entity class')
             ->addArgument('entity-class', InputArgument::OPTIONAL, sprintf('The class name of the entity to create CRUD (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())))
-            ->setHelp(file_get_contents(__DIR__.'/../../vendor/symfony/maker-bundle/src/Resources/help/MakeCrud.txt'))
+            ->setHelp(file_get_contents(__DIR__ . '/../../vendor/symfony/maker-bundle/src/Resources/help/MakeCrud.txt'))
         ;
 
         $inputConfig->setArgumentAsNonInteractive('entity-class');
@@ -96,7 +96,7 @@ final class MakeSkeleton extends AbstractMaker
 
         if (null !== $entityDoctrineDetails->getRepositoryClass()) {
             $repositoryClassDetails = $generator->createClassNameDetails(
-                '\\'.$entityDoctrineDetails->getRepositoryClass(),
+                '\\' . $entityDoctrineDetails->getRepositoryClass(),
                 'Repository\\',
                 'Repository'
             );
@@ -109,7 +109,7 @@ final class MakeSkeleton extends AbstractMaker
         }
 
         $controllerClassDetails = $generator->createClassNameDetails(
-            $entityClassDetails->getRelativeNameWithoutSuffix().'Controller',
+            $entityClassDetails->getRelativeNameWithoutSuffix() . 'Controller',
             'Controller\\',
             'Controller'
         );
@@ -117,7 +117,7 @@ final class MakeSkeleton extends AbstractMaker
         $iter = 0;
         do {
             $formClassDetails = $generator->createClassNameDetails(
-                $entityClassDetails->getRelativeNameWithoutSuffix().($iter ?: '').'Type',
+                $entityClassDetails->getRelativeNameWithoutSuffix() . ($iter ?: '') . 'Type',
                 'Form\\',
                 'Type'
             );
@@ -136,7 +136,8 @@ final class MakeSkeleton extends AbstractMaker
         $generator->generateController(
             $controllerClassDetails->getFullName(),
             '../../../../../../templates/crud/controller/Controller.tpl.php',
-            array_merge([
+            array_merge(
+                [
                     'entity_full_class_name' => $entityClassDetails->getFullName(),
                     'entity_class_name' => $entityClassDetails->getShortName(),
                     'form_full_class_name' => $formClassDetails->getFullName(),

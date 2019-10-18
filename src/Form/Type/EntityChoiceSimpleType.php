@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -76,9 +77,9 @@ class EntityChoiceSimpleType extends AbstractType
             if (null === $options['query_builder']) {
                 $results = $options['em']
                     ->createQueryBuilder()
-                    ->select('e.id', 'e.'.$options['field'])
+                    ->select('e.id', 'e.' . $options['field'])
                     ->from($options['class'], 'e', 'e.id')
-                    ->orderBy('e.'.$options['field'], 'ASC')
+                    ->orderBy('e.' . $options['field'], 'ASC')
                     ->getQuery()
                     ->getArrayResult()
                 ;
@@ -94,13 +95,11 @@ class EntityChoiceSimpleType extends AbstractType
             if (null === $options['entity_group_by']) {
                 array_map(function ($item) use (&$return, $options) {
                     $return[call_user_func($options['entity_label'], $item)] = $item['id'];
-                }, $results
-                );
+                }, $results);
             } else {
                 array_map(function ($item) use (&$return, $options) {
                     $return[$item['type']][call_user_func($options['entity_label'], $item)] = $item['id'];
-                }, $results
-                );
+                }, $results);
             }
 
             return $return;
@@ -126,7 +125,7 @@ class EntityChoiceSimpleType extends AbstractType
             $em = $registry->getManagerForClass($options['class']);
             if (null === $em) {
                 throw new \Exception(sprintf(
-                    'Class "%s" seems not to be a managed Doctrine entity. '.
+                    'Class "%s" seems not to be a managed Doctrine entity. ' .
                     'Did you forget to map it?',
                     $options['class']
                 ));

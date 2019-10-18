@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class SettingVoter extends AbstractVoter
 {
-	public const EDIT = 'app.voters.setting.edit';
+    public const EDIT = 'app.voters.setting.edit';
 
     /**
      * @param string $attribute
@@ -22,9 +22,11 @@ class SettingVoter extends AbstractVoter
      */
     protected function supports($attribute, $subject)
     {
-        if (!\in_array($attribute, [
-            self::EDIT,
-        ])) {
+        if (
+            !\in_array($attribute, [
+                self::EDIT,
+            ])
+        ) {
             return false;
         }
 
@@ -57,9 +59,9 @@ class SettingVoter extends AbstractVoter
         }
 
         // ... (check conditions and return true to grant permission) ...
-        if ($attribute === self::EDIT) {
-		    return $this->canEdit($subject, $token);
-	    }
+        if (self::EDIT === $attribute) {
+            return $this->canEdit($subject, $token);
+        }
 
         return false;
     }

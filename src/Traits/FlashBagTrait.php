@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -33,7 +34,7 @@ trait FlashBagTrait
      *
      * @required
      */
-    public function setFlashBag( FlashBagInterface $flashBag): void
+    public function setFlashBag(FlashBagInterface $flashBag): void
     {
         $this->flashBag = $flashBag;
     }

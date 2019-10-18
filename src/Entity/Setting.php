@@ -13,6 +13,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Setting
 {
+    use TimestampableEntity;
+    use BlameableEntity;
+
     public const SETTING_PROJECT_NAME = 'setting.project_name';
     public const SETTING_BASE_TITLE = 'setting.base_title';
     public const SETTING_DEFAULT_THEME = 'setting.default_theme';
@@ -26,9 +29,6 @@ class Setting
     public const SETTING_AUDIT_LIMIT_VALUE = 200;
     public const SETTING_TOASTR_VERTICAL_POSITION_VALUE = 'bottom';
     public const SETTING_TOASTR_HORIZONTAL_POSITION_VALUE = 'center';
-
-    use TimestampableEntity;
-    use BlameableEntity;
 
     /**
      * @var int

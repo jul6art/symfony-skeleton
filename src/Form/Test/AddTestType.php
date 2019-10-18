@@ -37,11 +37,11 @@ class AddTestType extends AbstractType
                   'no_float' => true,
             ])
             ->add('content', WysiwygType::class, [
-	            'label' => 'form.test.content.label',
-	            'required' => true,
-	            'min_length' => Test::TEXT_LENGTH,
-	            // test
-	            'help' => 'form.test.name.help',
+                'label' => 'form.test.content.label',
+                'required' => true,
+                'min_length' => Test::TEXT_LENGTH,
+                // test
+                'help' => 'form.test.name.help',
             ])
             // remove this field to remove test fields
             ->add('test', TestTestType::class, [
@@ -50,9 +50,9 @@ class AddTestType extends AbstractType
             ]);
     }
 
-	/**
-	 * @param OptionsResolver $resolver
-	 */
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

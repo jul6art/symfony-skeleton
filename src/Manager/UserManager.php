@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gkratz
@@ -72,12 +73,12 @@ class UserManager extends AbstractManager
         return UserFactory::build($this->groupManager, Group::GROUP_NAME_ADMIN, $this->locale, $defaultTheme);
     }
 
-	/**
-	 * @param User $user
-	 * @param string $locale
-	 *
-	 * @return UserManager
-	 */
+    /**
+     * @param User   $user
+     * @param string $locale
+     *
+     * @return UserManager
+     */
     public function updateLocale(user $user, string $locale): self
     {
         $user->setLocale($locale);
@@ -85,12 +86,12 @@ class UserManager extends AbstractManager
         return $this;
     }
 
-	/**
-	 * @param User $user
-	 * @param string $theme
-	 *
-	 * @return UserManager
-	 */
+    /**
+     * @param User   $user
+     * @param string $theme
+     *
+     * @return UserManager
+     */
     public function updateTheme(user $user, string $theme): self
     {
         $user->setTheme($theme);
@@ -98,33 +99,36 @@ class UserManager extends AbstractManager
         return $this;
     }
 
-	/**
-	 * @param User $user
-	 *
-	 * @return UserManager
-	 * @throws NonUniqueResultException
-	 */
-	public function updateSettings(User $user): self
-	{
-		$user
-			->setLocale($this->locale)
-			->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
+    /**
+     * @param User $user
+     *
+     * @return UserManager
+     *
+     * @throws NonUniqueResultException
+     */
+    public function updateSettings(User $user): self
+    {
+        $user
+            ->setLocale($this->locale)
+            ->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param User $user
-	 *
-	 * @return UserManager
-	 * @throws NonUniqueResultException
-	 */
-	public function updateGroups(User $user): self
-	{
-		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
-		$user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
-		return $this;
-	}
+    /**
+     * @param User $user
+     *
+     * @return UserManager
+     *
+     * @throws NonUniqueResultException
+     */
+    public function updateGroups(User $user): self
+    {
+        $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
+        $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
+
+        return $this;
+    }
 
     /**
      * @return string
@@ -136,37 +140,37 @@ class UserManager extends AbstractManager
         return $generator->level(5)->length(User::LENGTH_GENERATED_PASSWORD)->password()->get();
     }
 
-	/**
-	 * @param User $user
-	 *
-	 * @return UserManager
-	 */
+    /**
+     * @param User $user
+     *
+     * @return UserManager
+     */
     public function activate(User $user): self
     {
-    	$user->setEnabled(true);
+        $user->setEnabled(true);
 
-    	return $this;
+        return $this;
     }
 
-	/**
-	 * @param User $user
-	 *
-	 * @return UserManager
-	 */
+    /**
+     * @param User $user
+     *
+     * @return UserManager
+     */
     public function deactivate(User $user): self
     {
-    	$user->setEnabled(false);
+        $user->setEnabled(false);
 
-    	return $this;
+        return $this;
     }
 
-	/**
-	 * @return User[]
-	 */
-	public function findAll(): array
-	{
-		return $this->userRepository->findAll();
-	}
+    /**
+     * @return User[]
+     */
+    public function findAll(): array
+    {
+        return $this->userRepository->findAll();
+    }
 
     /**
      * @return array
