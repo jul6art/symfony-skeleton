@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "angular": "1.5.9",
-        "animate.css": "^3.7.0",
+        "animate.css": "^3.7.2",
         "autosize": "^4.0.2",
         "blockui": "^1.0.0",
         "bootstrap": "^4.1.2",
