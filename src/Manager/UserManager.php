@@ -57,7 +57,7 @@ class UserManager extends AbstractManager
     {
         $defaultTheme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-        return UserFactory::create($this->groupManager, $this->locale, $defaultTheme);
+        return UserFactory::build($this->groupManager, Group::GROUP_NAME_USER, $this->locale, $defaultTheme);
     }
 
     /**
@@ -69,7 +69,7 @@ class UserManager extends AbstractManager
     {
         $defaultTheme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-        return UserFactory::createAdmin($this->groupManager, $this->locale, $defaultTheme);
+        return UserFactory::build($this->groupManager, Group::GROUP_NAME_ADMIN, $this->locale, $defaultTheme);
     }
 
 	/**

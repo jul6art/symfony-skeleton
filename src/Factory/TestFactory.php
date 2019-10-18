@@ -13,12 +13,12 @@ use App\Entity\Test;
 /**
  * Class TestFactory.
  */
-class TestFactory
+class TestFactory implements FactoryInterface
 {
     /**
-     * @return Test
+     * @return Test|mixed
      */
-    public static function create(): Test
+    public static function create()
     {
         return new Test();
     }

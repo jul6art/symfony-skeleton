@@ -8,7 +8,6 @@
 
 namespace App\Factory;
 
-use App\Entity\Group;
 use App\Entity\User;
 use App\Manager\GroupManager;
 use Doctrine\ORM\NonUniqueResultException;
@@ -16,41 +15,34 @@ use Doctrine\ORM\NonUniqueResultException;
 /**
  * Class UserFactory.
  */
-class UserFactory
+class UserFactory implements FactoryInterface
 {
-	/**
-	 * @param GroupManager $groupManager
-	 * @param string       $locale
-	 * @param string       $defaultTheme
-	 *
-	 * @return User
-	 *
-	 * @throws NonUniqueResultException
-	 */
-	public static function create(GroupManager $groupManager, string $locale, string $defaultTheme): User
+    /**
+     * @param GroupManager $groupManager
+     * @param string $group
+     * @param string $locale
+     * @param string $defaultTheme
+     *
+     * @return User
+     * @throws NonUniqueResultException
+     */
+	public static function build(GroupManager $groupManager, string $group, string $locale, string $defaultTheme): User
 	{
-		$user = (new User())
-			->addGroup($groupManager->findOneByName(Group::GROUP_NAME_USER))
+		$user = self::create();
+
+		$user
+			->addGroup($groupManager->findOneByName($group))
 			->setLocale($locale)
 			->setTheme($defaultTheme);
 
 		return $user;
 	}
 
-	/**
-	 * @param GroupManager $groupManager
-	 * @param string       $locale
-	 * @param string       $defaultTheme
-	 *
-	 * @return User
-	 *
-	 * @throws NonUniqueResultException
-	 */
-	public static function createAdmin(GroupManager $groupManager, string $locale, string $defaultTheme): User
-	{
-		return (new User())
-			->addGroup($groupManager->findOneByName(Group::GROUP_NAME_ADMIN))
-			->setLocale($locale)
-			->setTheme($defaultTheme);
-	}
+    /**
+     * @return User|mixed
+     */
+	public static function create()
+    {
+        return new User();
+    }
 }

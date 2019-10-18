@@ -13,12 +13,12 @@ use App\Entity\Functionality;
 /**
  * Class FunctionalityFactory.
  */
-class FunctionalityFactory
+class FunctionalityFactory implements FactoryInterface
 {
     /**
-     * @return Functionality
+     * @return Functionality|mixed
      */
-    public static function create(): Functionality
+    public static function create()
     {
         return new Functionality();
     }

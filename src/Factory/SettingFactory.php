@@ -13,12 +13,12 @@ use App\Entity\Setting;
 /**
  * Class SettingFactory.
  */
-class SettingFactory
+class SettingFactory implements FactoryInterface
 {
     /**
-     * @return Setting
+     * @return Setting|mixed
      */
-    public static function create(): Setting
+    public static function create()
     {
         return new Setting();
     }

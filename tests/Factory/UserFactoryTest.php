@@ -8,6 +8,7 @@
 
 namespace App\Tests\Factory;
 
+use App\Entity\Group;
 use App\Entity\Setting;
 use App\Entity\User;
 use App\Factory\UserFactory;
@@ -56,7 +57,7 @@ class UserFactoryTest extends WebTestCase
 
 		$theme = Setting::SETTING_DEFAULT_THEME_VALUE;
 
-		$user = (UserFactory::create($groupManager, $locale, $theme))
+		$user = (UserFactory::build($groupManager, Group::GROUP_NAME_USER, $locale, $theme))
 			->setFirstname($this->faker->firstName)
 			->setLastname($this->faker->lastName)
 			->setUsername($this->faker->userName)
@@ -84,7 +85,7 @@ class UserFactoryTest extends WebTestCase
 
 		$theme = Setting::SETTING_DEFAULT_THEME_VALUE;
 
-		$user = (UserFactory::createAdmin($groupManager, $locale, $theme))
+		$user = (UserFactory::build($groupManager, Group::GROUP_NAME_ADMIN, $locale, $theme))
 			->setFirstname($this->faker->firstName)
 			->setLastname($this->faker->lastName)
 			->setUsername($this->faker->userName)
