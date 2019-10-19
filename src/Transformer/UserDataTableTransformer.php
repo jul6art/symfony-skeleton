@@ -88,9 +88,12 @@ class UserDataTableTransformer extends UserTransformer
                 'black',
                 [
                     'data-confirm' => 'confirm',
-                    'data-dialog-confirm' => 'dialog.ajax.user.confirm',
                     'data-dialog-cancel' => 'dialog.ajax.user.cancel',
                     'data-dialog-success' => 'dialog.ajax.user.success',
+                    'data-dialog-confirm' => 'dialog.ajax.user.confirm',
+                    'dialog-confirm-parameters' => [
+                        '%name%' => $user->getFullname(),
+                    ],
                 ]
             );
         }

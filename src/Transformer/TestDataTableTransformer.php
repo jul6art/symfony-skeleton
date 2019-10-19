@@ -88,9 +88,12 @@ class TestDataTableTransformer extends TestTransformer
                 'black',
                 [
                     'data-confirm' => 'confirm',
-                    'data-dialog-confirm' => 'dialog.ajax.test.confirm',
                     'data-dialog-cancel' => 'dialog.ajax.test.cancel',
                     'data-dialog-success' => 'dialog.ajax.test.success',
+                    'data-dialog-confirm' => 'dialog.ajax.test.confirm',
+                    'dialog-confirm-parameters' => [
+                        '%name%' => $test->getName(),
+                    ],
                 ]
             );
         }

@@ -11,17 +11,19 @@
                 <li>
                     <a href="{{ path(action.route, action.routeParams) }}" class="waves-effect waves-block"
                     {% for key, value in action.parameters %}
-                        {{ key }}=
-                        {% if key in ['data-dialog-confirm', 'data-dialog-cancel', 'data-dialog-success'] %}
-                            "{{ value|trans({}, 'dialog') }}"
-                        {% else %}
-                            "{{ value }}"
+                        {% if key != 'dialog-confirm-parameters' %}
+                            {{ key }}=
+                            {% if key in ['data-dialog-confirm', 'data-dialog-cancel', 'data-dialog-success'] %}
+                                "{{ value|trans(action.parameters['dialog-confirm-parameters']|default({}), 'dialog') }}"
+                            {% else %}
+                                "{{ value }}"
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                     >
-                        <span class="block">
-                            <i class="material-icons">{{ action.icon }}</i> {{ action.label|trans({}, 'table') }}
-                        </span>
+                    <span class="block">
+                        <i class="material-icons">{{ action.icon }}</i> {{ action.label|trans({}, 'table') }}
+                    </span>
                     </a>
                 </li>
             {% endfor %}

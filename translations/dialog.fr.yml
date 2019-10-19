@@ -13,10 +13,10 @@ dialog:
         refresh:
             title: 'Vous devez recharger la page!'
         test:
-            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test!'
-            cancel: 'Le test est toujours là!'
-            success: 'Le test a bien été supprimé!'
+            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test <strong>%name%</strong>!'
+            cancel: 'Le test <strong>%name%</strong> est toujours là!'
+            success: 'Le test <strong>%name%</strong> a bien été supprimé!'
         user:
-            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur!'
-            cancel: 'L''utilisateur est toujours là!'
-            success: 'L''utilisateur a bien été supprimé!'
+            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur <strong>%name%</strong>!'
+            cancel: 'L''utilisateur <strong>%name%</strong> est toujours là!'
+            success: 'L''utilisateur <strong>%name%</strong> a bien été supprimé!'

@@ -131,7 +131,9 @@ $.App = {
 
         swal({
           title: DIALOG_TRANSLATIONS.confirm_title,
-          text: link.data("dialog-confirm"),
+          type: "info",
+          content:
+            '<div class="swal-text">' + link.data("dialog-confirm") + "</div >",
           icon: "warning",
           buttons: [
             DIALOG_TRANSLATIONS.cancel_button,
