@@ -5,6 +5,8 @@ dialog:
             cancel: 'annuler'
         cancel:
             title: 'Annulé!'
+        success:
+            title: 'Succès!'
         confirm:
             title: 'Êtes-vous sure ?'
         error:

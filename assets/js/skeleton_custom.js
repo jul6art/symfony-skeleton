@@ -149,7 +149,10 @@ $.App = {
                 method: "get",
                 success: function(response) {
                   if (response.success) {
-                    swal(link.data("dialog-success"), {
+                    wrapper.innerHTML = link.data("dialog-success");
+                    swal({
+                      title: DIALOG_TRANSLATIONS.success_title,
+                      content: wrapper,
                       icon: "success"
                     }).then(() => {
                       if (link.data("redirect")) {
@@ -174,11 +177,12 @@ $.App = {
                 }
               });
             } else {
-              swal(
-                DIALOG_TRANSLATIONS.cancel_title,
-                link.data("dialog-cancel"),
-                "error"
-              );
+              wrapper.innerHTML = link.data("dialog-cancel");
+              swal({
+                title: DIALOG_TRANSLATIONS.cancel_title,
+                content: wrapper,
+                icon: "error"
+              });
             }
           })
           .catch(err => {
