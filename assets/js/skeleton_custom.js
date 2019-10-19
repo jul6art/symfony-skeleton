@@ -151,6 +151,8 @@ $.App = {
                     }).then(() => {
                       if (link.data("redirect")) {
                         window.location = link.data("redirect");
+                      } else {
+                        $("body").trigger("datatable.refresh.force");
                       }
                     });
                   }

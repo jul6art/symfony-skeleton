@@ -52,6 +52,10 @@ $(document).ready(function() {
       console.log("draw");
     });
 
+    $("body").on("datatable.refresh.force", function() {
+      datatable.draw();
+    });
+
     datatable.on("processing.dt", function(e, settings, processing) {
       console.log("processing");
       console.log(e);
