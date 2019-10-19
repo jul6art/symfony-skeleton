@@ -11,7 +11,6 @@ namespace App\Transformer;
 
 use App\Entity\User;
 use App\Security\Voter\UserVoter;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -35,22 +34,21 @@ class UserDataTableTransformer extends UserTransformer
     /**
      * @param mixed $user
      * @param null  $format
-     * @param array $context
+     * @param array $contexts
      *
      * @return array|bool|float|int|string
      *
-     * @throws ExceptionInterface
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function normalize($user, $format = null, array $context = [])
+    public function normalize($user, $format = null, array $contexts = [])
     {
         if (!$user instanceof User) {
             return [];
         }
 
-        $output = parent::normalize($user, $format, $context);
+        $output = parent::normalize($user, $format, $contexts);
 
         if ($this->authorizationChecker->isGranted(UserVoter::VIEW, $user)) {
             $this->addAction(

@@ -11,7 +11,6 @@ namespace App\Transformer;
 
 use App\Entity\Test;
 use App\Security\Voter\TestVoter;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -35,22 +34,21 @@ class TestDataTableTransformer extends TestTransformer
     /**
      * @param mixed $test
      * @param null  $format
-     * @param array $context
+     * @param array $contexts
      *
      * @return array|bool|float|int|string
      *
-     * @throws ExceptionInterface
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function normalize($test, $format = null, array $context = [])
+    public function normalize($test, $format = null, array $contexts = [])
     {
         if (!$test instanceof Test) {
             return [];
         }
 
-        $output = parent::normalize($test, $format, $context);
+        $output = parent::normalize($test, $format, $contexts);
 
         if ($this->authorizationChecker->isGranted(TestVoter::VIEW, $test)) {
             $this->addAction(

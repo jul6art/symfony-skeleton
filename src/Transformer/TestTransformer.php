@@ -33,7 +33,7 @@ class TestTransformer implements NormalizerInterface
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function normalize($test, $format = null, array $context = [])
+    public function normalize($test, $format = null, array $contexts = [])
     {
         if (!$test instanceof Test) {
             return [];

@@ -25,7 +25,7 @@ class UserTransformer implements NormalizerInterface
     /**
      * @param mixed $user
      * @param null  $format
-     * @param array $context
+     * @param array $contexts
      *
      * @return array|bool|float|int|string
      *
@@ -33,7 +33,7 @@ class UserTransformer implements NormalizerInterface
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function normalize($user, $format = null, array $context = [])
+    public function normalize($user, $format = null, array $contexts = [])
     {
         if (!$user instanceof User) {
             return [];
