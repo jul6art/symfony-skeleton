@@ -17,7 +17,7 @@ class DefaultVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (
             !\in_array($attribute, [
@@ -37,7 +37,7 @@ class DefaultVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         if (self::ACCESS_PAGE_HOME === $attribute) {
             return $this->canAccessPageHome($subject, $token);
@@ -52,7 +52,7 @@ class DefaultVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canAccessPageHome($subject, TokenInterface $token)
+    public function canAccessPageHome($subject, TokenInterface $token): bool
     {
         return $this->isConnected($token);
     }

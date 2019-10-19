@@ -20,7 +20,7 @@ class SettingVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (
             !\in_array($attribute, [
@@ -50,7 +50,7 @@ class SettingVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
@@ -72,7 +72,7 @@ class SettingVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canEdit(Setting $subject, TokenInterface $token)
+    public function canEdit(Setting $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }

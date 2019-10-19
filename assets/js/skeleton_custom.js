@@ -16,6 +16,7 @@ $.App = {
     this.dialog();
     this.dropdown();
     this.editInPlace();
+    this.progressiveWebApp();
     this.settings();
     this.tooltip();
   },
@@ -342,6 +343,30 @@ $.App = {
           "</div>"
       }
     );
+  },
+  progressiveWebApp: function() {
+    if (typeof ACTIVATED_FUNCTIONS.progressive_web_app !== "undefined") {
+      let manifestLink = $("#progressiveWebAppManifest");
+
+      if (manifestLink.length) {
+        let manifest = {
+          short_name: manifestLink.data("name"),
+          name: manifestLink.data("name"),
+          icons: manifestLink.data("icons"),
+          start_url: window.location.origin + "/",
+          scope: window.location.origin + "/",
+          background_color: getThemeColor(manifestLink.data("color")),
+          display: "standalone",
+          theme_color: getThemeColor(manifestLink.data("color"))
+        };
+
+        let stringManifest = JSON.stringify(manifest),
+          blob = new Blob([stringManifest], { type: "application/json" }),
+          url = URL.createObjectURL(blob);
+
+        manifestLink.attr("href", url);
+      }
+    }
   },
   settings: function() {
     $("body")

@@ -22,6 +22,7 @@ class FunctionalityVoter extends AbstractVoter
     public const EDIT_IN_PLACE = 'app.voters.functionality.edit_in_place';
     public const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
     public const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
+    public const PROGRESSIVE_WEB_APP = 'app.voters.functionality.progressive_web_app';
     public const SWITCH_LOCALE = 'app.voters.functionality.switch_locale';
     public const SWITCH_THEME = 'app.voters.functionality.switch_theme';
     public const WATCH_FORM = 'app.voters.functionality.watch_form';
@@ -32,7 +33,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (
             !\in_array($attribute, [
@@ -43,6 +44,7 @@ class FunctionalityVoter extends AbstractVoter
                 self::EDIT_IN_PLACE,
                 self::MANAGE_FUNCTIONALITIES,
                 self::MANAGE_SETTINGS,
+                self::PROGRESSIVE_WEB_APP,
                 self::SWITCH_LOCALE,
                 self::SWITCH_THEME,
                 self::WATCH_FORM,
@@ -71,7 +73,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         // ... (check conditions and return true to grant permission) ...
         if (self::AUDIT === $attribute) {
@@ -88,6 +90,8 @@ class FunctionalityVoter extends AbstractVoter
             return $this->canManageFunctionalities($subject, $token);
         } elseif (self::MANAGE_SETTINGS === $attribute) {
             return $this->canManageSettings($subject, $token);
+        } elseif (self::PROGRESSIVE_WEB_APP === $attribute) {
+            return $this->canProgressiveWebApp($subject, $token);
         } elseif (self::SWITCH_LOCALE === $attribute) {
             return $this->canSwitchLocale($subject, $token);
         } elseif (self::SWITCH_THEME === $attribute) {
@@ -108,7 +112,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canAudit(string $subject, TokenInterface $token)
+    public function canAudit(string $subject, TokenInterface $token): bool
     {
         if (!$this->isConnected($token)) {
             return false;
@@ -126,9 +130,9 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canClearCache(string $subject, TokenInterface $token)
+    public function canClearCache(string $subject, TokenInterface $token): bool
     {
-        if (!$this->isConnected($token)) {
+        if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
             return false;
         }
 
@@ -144,7 +148,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canConfirmDelete(string $subject, TokenInterface $token)
+    public function canConfirmDelete(string $subject, TokenInterface $token): bool
     {
         if (!$this->isConnected($token)) {
             return false;
@@ -159,7 +163,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canEdit(Functionality $subject, TokenInterface $token)
+    public function canEdit(Functionality $subject, TokenInterface $token): bool
     {
         if (empty($this->functionalityManager->findAllByConfigured())) {
             return false;
@@ -177,7 +181,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canEditInPlace(string $subject, TokenInterface $token)
+    public function canEditInPlace(string $subject, TokenInterface $token): bool
     {
         if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
             return false;
@@ -192,7 +196,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canManageFunctionalities(string $subject, TokenInterface $token)
+    public function canManageFunctionalities(string $subject, TokenInterface $token): bool
     {
         if (empty($this->functionalityManager->findAllByConfigured())) {
             return false;
@@ -210,7 +214,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canManageSettings(string $subject, TokenInterface $token)
+    public function canManageSettings(string $subject, TokenInterface $token): bool
     {
         if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
             return false;
@@ -228,7 +232,25 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canSwitchLocale(string $subject, TokenInterface $token)
+    public function canProgressiveWebApp(string $subject, TokenInterface $token): bool
+    {
+        if (!$this->isConnected($token)) {
+            return false;
+        }
+
+        return $this->functionalityManager->isActive(Functionality::FUNC_PROGRESSIVE_WEB_APP);
+    }
+
+    /**
+     * @param string               $subject
+     * @param TokenInterface       $token
+     * @param FunctionalityManager $functionalityManager
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canSwitchLocale(string $subject, TokenInterface $token): bool
     {
         return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE);
     }
@@ -242,7 +264,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canSwitchTheme(string $subject, TokenInterface $token)
+    public function canSwitchTheme(string $subject, TokenInterface $token): bool
     {
         if (!$this->isConnected($token)) {
             return false;
@@ -260,7 +282,7 @@ class FunctionalityVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canWatchForm(string $subject, TokenInterface $token)
+    public function canWatchForm(string $subject, TokenInterface $token): bool
     {
         return $this->functionalityManager->isActive(Functionality::FUNC_FORM_WATCHER);
     }

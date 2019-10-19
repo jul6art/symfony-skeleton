@@ -34,7 +34,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (
             !\in_array($attribute, [
@@ -61,7 +61,7 @@ class TestVoter extends AbstractVoter
         return false;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
@@ -95,7 +95,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canAdd(string $subject, TokenInterface $token)
+    public function canAdd(string $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -108,7 +108,7 @@ class TestVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canAudit($subject, TokenInterface $token)
+    public function canAudit($subject, TokenInterface $token): bool
     {
         if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
             return false;
@@ -128,7 +128,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canDelete(Test $subject, TokenInterface $token)
+    public function canDelete(Test $subject, TokenInterface $token): bool
     {
         return $this->canEdit($subject, $token);
     }
@@ -139,7 +139,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canDeleteMultiple(string $subject, TokenInterface $token)
+    public function canDeleteMultiple(string $subject, TokenInterface $token): bool
     {
         return $this->canAdd($subject, $token);
     }
@@ -150,7 +150,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canEdit(Test $subject, TokenInterface $token)
+    public function canEdit(Test $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -161,7 +161,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canList(string $subject, TokenInterface $token)
+    public function canList(string $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -172,7 +172,7 @@ class TestVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canView(Test $subject, TokenInterface $token)
+    public function canView(Test $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }

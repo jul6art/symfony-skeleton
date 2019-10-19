@@ -54,6 +54,9 @@
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.edit_in_place = true;
     {% endif %}
+    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') %}
+        ACTIVATED_FUNCTIONS.progressive_web_app = true;
+    {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') %}
         ACTIVATED_FUNCTIONS.form_watcher = true;
     {% endif %}

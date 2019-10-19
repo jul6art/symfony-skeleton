@@ -29,6 +29,7 @@ class FunctionalityFixtures extends Fixture
             Functionality::FUNC_CONFIRM_DELETE,
             Functionality::FUNC_FORM_WATCHER,
             Functionality::FUNC_MANAGE_SETTINGS,
+            Functionality::FUNC_PROGRESSIVE_WEB_APP,
             Functionality::FUNC_SWITCH_LOCALE,
             Functionality::FUNC_SWITCH_THEME,
         ];

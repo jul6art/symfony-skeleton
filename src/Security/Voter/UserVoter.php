@@ -38,7 +38,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (
             !\in_array($attribute, [
@@ -69,7 +69,7 @@ class UserVoter extends AbstractVoter
         return false;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
@@ -111,7 +111,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canAdd(string $subject, TokenInterface $token)
+    public function canAdd(string $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -124,7 +124,7 @@ class UserVoter extends AbstractVoter
      *
      * @throws NonUniqueResultException
      */
-    public function canAudit($subject, TokenInterface $token)
+    public function canAudit($subject, TokenInterface $token): bool
     {
         if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
             return false;
@@ -144,7 +144,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canChangeAvatar(User $subject, TokenInterface $token)
+    public function canChangeAvatar(User $subject, TokenInterface $token): bool
     {
         if ($subject === $token->getUser()) {
             return true;
@@ -159,7 +159,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canChangePassword(string $subject, TokenInterface $token)
+    public function canChangePassword(string $subject, TokenInterface $token): bool
     {
         return true;
     }
@@ -170,7 +170,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canDelete(User $subject, TokenInterface $token)
+    public function canDelete(User $subject, TokenInterface $token): bool
     {
         if ($subject === $token->getUser()) {
             return  false;
@@ -185,7 +185,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canDeleteMultiple(string $subject, TokenInterface $token)
+    public function canDeleteMultiple(string $subject, TokenInterface $token): bool
     {
         return $this->canAdd($subject, $token);
     }
@@ -196,7 +196,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canEdit(User $subject, TokenInterface $token)
+    public function canEdit(User $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -207,7 +207,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canList(string $subject, TokenInterface $token)
+    public function canList(string $subject, TokenInterface $token): bool
     {
         return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
@@ -218,7 +218,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canLogout(string $subject, TokenInterface $token)
+    public function canLogout(string $subject, TokenInterface $token): bool
     {
         return true;
     }
@@ -229,7 +229,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canProfile(string $subject, TokenInterface $token)
+    public function canProfile(string $subject, TokenInterface $token): bool
     {
         return true;
     }
@@ -240,7 +240,7 @@ class UserVoter extends AbstractVoter
      *
      * @return bool
      */
-    public function canView(User $subject, TokenInterface $token)
+    public function canView(User $subject, TokenInterface $token): bool
     {
         return $this->canList($subject, $token);
     }

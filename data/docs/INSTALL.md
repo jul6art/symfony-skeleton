@@ -8,6 +8,17 @@ Base sf4 admin project
 
 ### Functionalities
 
+* Audit
+* Cache clearing
+* Edit in place
+* Confirmation animated modal
+* Form watching
+* Progressive web app
+* Settings management
+* Multilingual
+* Theme choice
+    
+
 > Every functionality can be disabled from the database or from 
 
     services.yml -> parameters -> %available_functionalities%
