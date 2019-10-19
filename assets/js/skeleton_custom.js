@@ -129,11 +129,12 @@ $.App = {
         e.preventDefault();
         let link = $(this);
 
+        let wrapper = document.createElement("div");
+        wrapper.innerHTML = link.data("dialog-confirm");
+
         swal({
           title: DIALOG_TRANSLATIONS.confirm_title,
-          type: "info",
-          content:
-            '<div class="swal-text">' + link.data("dialog-confirm") + "</div >",
+          content: wrapper,
           icon: "warning",
           buttons: [
             DIALOG_TRANSLATIONS.cancel_button,
