@@ -19,10 +19,12 @@ Base sf4 admin project
    - composer
    - yarn
 
-### Includes
+### Code Quality
 
    - phpcs
-   - grumphp
+   - phpcpd
+   - phplint
+   - twigcs
    - symfony security checker
 
 ### Install
@@ -83,15 +85,5 @@ sh hook_local.sh
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 [COMPLETE DOCUMENTATION](/data/docs/INSTALL.md)
-
-### Credits
-
-    Bootstrap
-    Materialize
-    Datatables.net
-    Gedmo
-    Stof
-    FriendsOfSymfony
-    Gurayyarar
 
 &copy; 2019 [VsWeb](https://vsweb.be)
