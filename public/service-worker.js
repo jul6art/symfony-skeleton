@@ -12,17 +12,21 @@ if ('serviceWorker' in navigator) {
 
 // Detects if device is on iOS
 var isIos = function () {
-    console.log(window.navigator.userAgent.toLowerCase());
     return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 };
 
 // Detects if device is in standalone mode
 var isInStandaloneMode = function () {
+    /** THIS TEST DOES NOT WORK! YOU CAN TRUST WINDOW.NAVIGATOR FOR EVERY USECASES */
     return ('standalone' in window.navigator) && window.navigator.standalone;
 };
 
 // Checks if should display install popup notification:
 if (isIos() && !isInStandaloneMode()) {
-    console.log('YOU CAN ADD THE APP TO YOUR HOME SCREEN');
-    // var setState = { showInstallMessage: true };
+    // setTimeout(function () {
+    //     var body = document.getElementsByTagName('body')[0];
+    //     var script = body.appendChild(document.createElement('script'));
+    //
+    //     script.textContent = 'alert("you may install the app on you home screen!");';
+    // }, 1000);
 }
