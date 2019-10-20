@@ -12,7 +12,8 @@ if ('serviceWorker' in navigator) {
 
 // Detects if device is on iOS
 var isIos = function () {
-    return /macintosh|iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    console.log(window.navigator.userAgent.toLowerCase());
+    return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 };
 
 // Detects if device is in standalone mode
@@ -22,6 +23,6 @@ var isInStandaloneMode = function () {
 
 // Checks if should display install popup notification:
 if (isIos() && !isInStandaloneMode()) {
-    console.log('INSTALLE L APPLI SUR TON MAC');
+    console.log('YOU CAN ADD THE APP TO YOUR HOME SCREEN');
     // var setState = { showInstallMessage: true };
 }
