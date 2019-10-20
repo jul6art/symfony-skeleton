@@ -2091,7 +2091,7 @@ $.Form = {
           required: function() {
             return (
               typeof grecaptcha !== "undefined" &&
-              typeof grecaptcha.getResponse() !== "undefined" &&
+              typeof grecaptcha.getResponse !== "undefined" &&
               grecaptcha.getResponse() === ""
             );
           }
