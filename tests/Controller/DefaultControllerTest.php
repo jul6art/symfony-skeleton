@@ -527,9 +527,43 @@ class DefaultControllerTest extends WebTestCase
     /**
      * Test App\\Controller\\DefaultController functionality Action.
      *
-     * Successfull with func swicth locale
+     * Successfull with func progressive web app
      */
     public function testFunctionality10()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
+            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+        ]);
+
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_PROGRESSIVE_WEB_APP)->getId();
+        $client->request('GET', "/admin/functionality/$id/0");
+
+        $crawler = $client->followRedirect();
+
+        $this->save('result.html', $client->getResponse()->getContent());
+
+        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+        $this->assertEquals(0, $crawler->filter('link[rel="manifest"]')->count());
+
+        $client->request('GET', "/admin/functionality/$id/1");
+
+        $crawler = $client->followRedirect();
+
+        $this->save('result.html', $client->getResponse()->getContent());
+
+        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+
+        $this->assertEquals(1, $crawler->filter('link[rel="manifest"]')->count());
+    }
+
+    /**
+     * Test App\\Controller\\DefaultController functionality Action.
+     *
+     * Successfull with func swicth locale
+     */
+    public function testFunctionality11()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -559,7 +593,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func swicth theme
      */
-    public function testFunctionality11()
+    public function testFunctionality12()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -589,7 +623,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with ajax call
      */
-    public function testFunctionality12()
+    public function testFunctionality13()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,

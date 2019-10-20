@@ -10,17 +10,18 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// // Detects if device is on iOS
-// var isIos = function () {
-//     const userAgent = window.navigator.userAgent.toLowerCase();
-//     return /iphone|ipad|ipod/.test( userAgent );
-// };
-// // Detects if device is in standalone mode
-// var isInStandaloneMode = function () {
-//     return ('standalone' in window.navigator) && (window.navigator.standalone);
-// };
-//
-// // Checks if should display install popup notification:
-// if (isIos() && !isInStandaloneMode()) {
-//     var setState = { showInstallMessage: true };
-// }
+// Detects if device is on iOS
+var isIos = function () {
+    return /macintosh|iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+};
+
+// Detects if device is in standalone mode
+var isInStandaloneMode = function () {
+    return ('standalone' in window.navigator) && window.navigator.standalone;
+};
+
+// Checks if should display install popup notification:
+if (isIos() && !isInStandaloneMode()) {
+    console.log('INSTALLE L APPLI SUR TON MAC');
+    // var setState = { showInstallMessage: true };
+}
