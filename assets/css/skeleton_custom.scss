@@ -476,3 +476,9 @@ table [data-toggle="dropdown"] small {
 a .info-box {
   cursor: pointer;
 }
+
+#rightsidebar {
+  @media (max-width: 767px) {
+    padding-top: 47px;
+  }
+}
