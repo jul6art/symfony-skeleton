@@ -1,10 +1,11 @@
 {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') %}
     <!-- Progressive Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="{{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" />
     <link rel="apple-touch-icon" href="{{ asset('build/images/logo.png') }}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('build/images/logo.png') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('build/images/logo.png') }}" />
     <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('build/images/logo.png') }}" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link href="{{ asset('build/images/logo.png') }}" sizes="2048x2732" rel="apple-touch-startup-image" />
     <link href="{{ asset('build/images/logo.png') }}" sizes="1668x2224" rel="apple-touch-startup-image" />
     <link href="{{ asset('build/images/logo.png') }}" sizes="1536x2048" rel="apple-touch-startup-image" />
