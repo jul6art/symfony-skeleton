@@ -1,4 +1,4 @@
-var CACHE_NAME = 'skeleton-cache-v1';
+var CACHE_NAME = 'skeleton-cache-v1.0.1';
 var urlsToCache = [];
 
 self.addEventListener('install', function(event) {
