@@ -14,7 +14,8 @@
     <link href="{{ asset('build/images/logo.png') }}" sizes="1242x2208" rel="apple-touch-startup-image" />
     <link href="{{ asset('build/images/logo.png') }}" sizes="750x1334" rel="apple-touch-startup-image" />
     <link href="{{ asset('build/images/logo.png') }}" sizes="640x1136" rel="apple-touch-startup-image" />
-    <link rel="manifest" id="progressiveWebAppManifest"
+    <link rel="manifest" href="{{ asset('manifest.json') }}" />
+    {# <link rel="manifest" id="progressiveWebAppManifest"
           data-name="{{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}"
           data-color="{{ theme_name() }}"
           data-icons="{{ [
@@ -33,6 +34,6 @@
                   "type": "image/png",
                   "sizes": "512x512"
               }
-          ]|json_encode }}">
+          ]|json_encode }}"> #}
     <script src="{{ asset('service-worker.js') }}"></script>
 {% endif %}
