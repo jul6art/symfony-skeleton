@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@angular/common@^2.4.1":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.4.10.tgz#a3a682d2228fa30ec23dd0eb57c8e887fba26997"
+  integrity sha1-o6aC0iKPow7CPdDrV8joh/uiaZc=
+
+"@angular/compiler@^2.4.1":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.10.tgz#f51fd34820b2a02c7cb61fbcf49873c58056fb0c"
+  integrity sha1-9R/TSCCyoCx8th+89JhzxYBW+ww=
+
+"@angular/core@^2.4.1":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.10.tgz#0b8320a65065965d998645b1f5cd3cf769b441ea"
+  integrity sha1-C4MgplBlll2ZhkWx9c0892m0Qeo=
+
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
@@ -1242,15 +1257,18 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-material-datetimepicker@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-material-datetimepicker/-/bootstrap-material-datetimepicker-2.7.1.tgz#f8c28e3c299a00f7071165b481153aab3e71f955"
-  integrity sha1-+MKOPCmaAPcHEWW0gRU6qz5x+VU=
+bootstrap-material-datetimepicker@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/bootstrap-material-datetimepicker/-/bootstrap-material-datetimepicker-2.7.3.tgz#797e17cddb7fbb476809198a405e84a0577d0469"
+  integrity sha1-eX4Xzdt/u0doCRmKQF6EoFd9BGk=
   dependencies:
-    bootstrap "~3.3.4"
-    bootstrap-material-design "~0.3.0"
-    jquery "1.12.3"
-    moment "~2.10.2"
+    "@angular/common" "^2.4.1"
+    "@angular/compiler" "^2.4.1"
+    "@angular/core" "^2.4.1"
+    html-element-stringify "^0.2.0"
+    jquery "^3.1.1"
+    moment "^2.17.1"
+    zone.js "^0.8.5"
 
 bootstrap-material-design@~0.3.0:
   version "0.3.0"
@@ -1279,11 +1297,6 @@ bootstrap@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
-
-bootstrap@~3.3.4:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
-  integrity sha1-WjiTlFSfIzMIdaOxUGVldPip63E=
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -3477,6 +3490,11 @@ html-comment-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.2.tgz#97d4688aeb5c81886a364faa0cad1dda14d433a7"
   integrity sha512-P+M65QY2JQ5Y0G9KKdlDpo0zK+/OHptU5AaBwUfAIDJZk1MYf32Frm84EcOytfJE0t5JvkAnKlmjsXDnWzCJmQ==
 
+html-element-stringify@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/html-element-stringify/-/html-element-stringify-0.2.0.tgz#b21d7b288e4e394568454ba02b6498d187750eb7"
+  integrity sha1-sh17KI5OOUVoRUugK2SY0Yd1Drc=
+
 html-entities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
@@ -4018,17 +4036,12 @@ jquery.are-you-sure@^1.9.0:
   dependencies:
     jquery ">=1.4.2"
 
-jquery@1.12.3:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.3.tgz#1298b88b908e7c7f7501eb8c1a61f1ac8337b531"
-  integrity sha1-Epi4i5COfH91AeuMGmHxrIM3tTE=
-
-jquery@3.4.0, "jquery@>= 1.7", jquery@>=1.7:
+jquery@3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.0.tgz#8de513fa0fa4b2c7d2e48a530e26f0596936efdf"
   integrity sha512-ggRCXln9zEqv6OqAGXFEcshF5dSBvCkzj6Gm2gzuR5fWawaX8t7cxKVkkygKODrDAzKdoYw3l/e3pm3vlT4IbQ==
 
-jquery@>=1.4.2, jquery@>=1.9.1, "jquery@^1.7 || ^2.0 || ^3.1":
+"jquery@>= 1.7", jquery@>=1.4.2, jquery@>=1.7, jquery@>=1.9.1, "jquery@^1.7 || ^2.0 || ^3.1", jquery@^3.1.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -4569,10 +4582,10 @@ moment@2.19.3:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
   integrity sha1-vbmdJw1tf9p4zA+6zoVeJ/59pp8=
 
-moment@~2.10.2:
-  version "2.10.6"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.6.tgz#6cb21967c79cba7b0ca5e66644f173662b3efa77"
-  integrity sha1-bLIZZ8ecunsMpeZmRPFzZis++nc=
+moment@^2.17.1:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -7498,3 +7511,8 @@ yargs@^7.0.0:
     which-module "^1.0.0"
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
+
+zone.js@^0.8.5:
+  version "0.8.29"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.29.tgz#8dce92aa0dd553b50bc5bfbb90af9986ad845a12"
+  integrity sha512-mla2acNCMkWXBD+c+yeUrBUrzOxYMNFdQ6FGfigGGtEVBPJx07BQeJekjt9DmH1FtZek4E9rE1eRR9qQpxACOQ==
