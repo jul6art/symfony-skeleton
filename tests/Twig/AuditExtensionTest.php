@@ -12,13 +12,30 @@ use Twig\TwigFilter;
 class AuditExtensionTest extends TestCase
 {
     /**
+     * @var AuditExtension
+     */
+    private $auditExtension;
+
+    /**
+     * AuditExtensionTest constructor.
+     *
+     * @param null   $name
+     * @param array  $data
+     * @param string $dataName
+     */
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+
+        $this->auditExtension = new AuditExtension();
+    }
+
+    /**
      * Test App\\Twig\\AuditExtension getFilters Method.
      */
     public function testGetFilters()
     {
-        $auditExtension = new AuditExtension();
-
-        $filters = $auditExtension->getFilters();
+        $filters = $this->auditExtension->getFilters();
 
         $this->assertEquals(1, \count($filters));
 
@@ -34,9 +51,7 @@ class AuditExtensionTest extends TestCase
      */
     public function testBlameAudit()
     {
-        $auditExtension = new AuditExtension();
-
-        $result = $auditExtension->blameAudit(null, []);
+        $result = $this->auditExtension->blameAudit(null, []);
 
         $this->assertNull($result);
     }
@@ -48,9 +63,7 @@ class AuditExtensionTest extends TestCase
      */
     public function testBlameAudit02()
     {
-        $auditExtension = new AuditExtension();
-
-        $result = $auditExtension->blameAudit('1', []);
+        $result = $this->auditExtension->blameAudit('1', []);
 
         $this->assertNull($result);
     }
@@ -62,9 +75,7 @@ class AuditExtensionTest extends TestCase
      */
     public function testBlameAudit03()
     {
-        $auditExtension = new AuditExtension();
-
-        $result = $auditExtension->blameAudit('1', []);
+        $result = $this->auditExtension->blameAudit('1', []);
 
         $this->assertNull($result);
     }
@@ -76,9 +87,7 @@ class AuditExtensionTest extends TestCase
      */
     public function testBlameAudit04()
     {
-        $auditExtension = new AuditExtension();
-
-        $result = $auditExtension->blameAudit('1', [1 => 'foo']);
+        $result = $this->auditExtension->blameAudit('1', [1 => 'foo']);
 
         $this->assertEquals('foo', $result);
     }

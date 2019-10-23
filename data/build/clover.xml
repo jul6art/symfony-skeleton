@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1571822959">
-  <project timestamp="1571822959">
+<coverage generated="1571869810">
+  <project timestamp="1571869810">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller">
@@ -1420,14 +1420,14 @@
         <class name="App\Kernel" namespace="App">
           <metrics complexity="6" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="6" elements="23" coveredelements="8"/>
         </class>
-        <line num="18" type="method" name="registerBundles" visibility="public" complexity="3" crap="3" count="88"/>
-        <line num="20" type="stmt" count="88"/>
-        <line num="21" type="stmt" count="88"/>
-        <line num="22" type="stmt" count="88"/>
-        <line num="23" type="stmt" count="88"/>
-        <line num="26" type="stmt" count="88"/>
-        <line num="28" type="method" name="getProjectDir" visibility="public" complexity="1" crap="1" count="88"/>
-        <line num="30" type="stmt" count="88"/>
+        <line num="18" type="method" name="registerBundles" visibility="public" complexity="3" crap="3" count="86"/>
+        <line num="20" type="stmt" count="86"/>
+        <line num="21" type="stmt" count="86"/>
+        <line num="22" type="stmt" count="86"/>
+        <line num="23" type="stmt" count="86"/>
+        <line num="26" type="stmt" count="86"/>
+        <line num="28" type="method" name="getProjectDir" visibility="public" complexity="1" crap="1" count="86"/>
+        <line num="30" type="stmt" count="86"/>
         <line num="33" type="method" name="configureContainer" visibility="protected" complexity="1" crap="2.00" count="0"/>
         <line num="35" type="stmt" count="0"/>
         <line num="36" type="stmt" count="0"/>
@@ -1629,9 +1629,9 @@
         <class name="App\Manager\AbstractManager" namespace="App\Manager">
           <metrics complexity="6" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="10" elements="16" coveredelements="13"/>
         </class>
-        <line num="29" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="88"/>
-        <line num="31" type="stmt" count="88"/>
-        <line num="32" type="stmt" count="88"/>
+        <line num="29" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="86"/>
+        <line num="31" type="stmt" count="86"/>
+        <line num="32" type="stmt" count="86"/>
         <line num="40" type="method" name="save" visibility="public" complexity="2" crap="2" count="27"/>
         <line num="42" type="stmt" count="27"/>
         <line num="44" type="stmt" count="27"/>
@@ -1777,10 +1777,10 @@
         <class name="App\Manager\GroupManager" namespace="App\Manager">
           <metrics complexity="6" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="4" elements="12" coveredelements="6"/>
         </class>
-        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="88"/>
-        <line num="34" type="stmt" count="88"/>
-        <line num="35" type="stmt" count="88"/>
-        <line num="36" type="stmt" count="88"/>
+        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="86"/>
+        <line num="34" type="stmt" count="86"/>
+        <line num="35" type="stmt" count="86"/>
+        <line num="36" type="stmt" count="86"/>
         <line num="41" type="method" name="findAllForTable" visibility="public" complexity="1" crap="2.00" count="0"/>
         <line num="43" type="stmt" count="0"/>
         <line num="51" type="method" name="countAll" visibility="public" complexity="1" crap="2.00" count="0"/>
@@ -3077,10 +3077,10 @@
         <class name="App\Twig\EditInPlaceExtension" namespace="App\Twig">
           <metrics complexity="11" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="24" elements="30" coveredelements="26"/>
         </class>
-        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="89"/>
-        <line num="35" type="stmt" count="89"/>
-        <line num="36" type="stmt" count="89"/>
-        <line num="37" type="stmt" count="89"/>
+        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="86"/>
+        <line num="35" type="stmt" count="86"/>
+        <line num="36" type="stmt" count="86"/>
+        <line num="37" type="stmt" count="86"/>
         <line num="42" type="method" name="getFunctions" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="45" type="stmt" count="1"/>
         <line num="46" type="stmt" count="1"/>
@@ -3111,26 +3111,26 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Twig/FunctionalityExtension.php">
         <class name="App\Twig\FunctionalityExtension" namespace="App\Twig">
-          <metrics complexity="3" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="1" elements="7" coveredelements="2"/>
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
         </class>
-        <line num="21" type="method" name="getFunctions" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="24" type="stmt" count="0"/>
-        <line num="25" type="stmt" count="0"/>
-        <line num="36" type="method" name="isFunctionalityActive" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="38" type="stmt" count="0"/>
+        <line num="21" type="method" name="getFunctions" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="36" type="method" name="isFunctionalityActive" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="38" type="stmt" count="1"/>
         <line num="44" type="method" name="getFunctionalities" visibility="public" complexity="1" crap="1" count="36"/>
         <line num="46" type="stmt" count="36"/>
-        <metrics loc="48" ncloc="32" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="1" elements="7" coveredelements="2"/>
+        <metrics loc="48" ncloc="32" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Twig/JsonEncodeWithQuotesExtension.php">
         <class name="App\Twig\JsonEncodeWithQuotesExtension" namespace="App\Twig">
-          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
         </class>
-        <line num="16" type="method" name="getFilters" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="19" type="stmt" count="0"/>
-        <line num="28" type="method" name="jsonEncodeWithQuotes" visibility="public" complexity="1" crap="1" count="44"/>
-        <line num="30" type="stmt" count="44"/>
-        <metrics loc="32" ncloc="21" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+        <line num="16" type="method" name="getFilters" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <line num="28" type="method" name="jsonEncodeWithQuotes" visibility="public" complexity="1" crap="1" count="46"/>
+        <line num="30" type="stmt" count="46"/>
+        <metrics loc="32" ncloc="21" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Twig/LocaleExtension.php">
         <class name="App\Twig\LocaleExtension" namespace="App\Twig">
@@ -3399,6 +3399,6 @@
         <metrics loc="71" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="127" loc="9905" ncloc="6660" classes="118" methods="419" coveredmethods="265" conditionals="0" coveredconditionals="0" statements="2168" coveredstatements="1413" elements="2587" coveredelements="1678"/>
+    <metrics files="127" loc="9905" ncloc="6660" classes="118" methods="419" coveredmethods="268" conditionals="0" coveredconditionals="0" statements="2168" coveredstatements="1417" elements="2587" coveredelements="1685"/>
   </project>
 </coverage>

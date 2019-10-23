@@ -12,6 +12,7 @@ use App\Entity\Group;
 use App\Entity\Setting;
 use App\Entity\User;
 use App\Factory\UserFactory;
+use App\Manager\GroupManager;
 use Doctrine\ORM\NonUniqueResultException;
 use Faker\Factory;
 use Faker\Generator;
@@ -22,6 +23,21 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class UserFactoryTest extends WebTestCase
 {
+    /**
+     * @var GroupManager
+     */
+    private $groupManager;
+
+    /**
+     * @var string
+     */
+    private $settingLocale;
+
+    /**
+     * @var string
+     */
+    private $settingTheme;
+
     /**
      * @var Generator
      */
@@ -39,24 +55,24 @@ class UserFactoryTest extends WebTestCase
         parent::__construct($name, $data, $dataName);
 
         $this->faker = Factory::create();
+        $client = static::createClient();
+        $this->groupManager = $client->getContainer()->get('App\Manager\GroupManager');
+        $this->settingLocale = $client->getContainer()->getParameter('locale');
+        $this->settingTheme = Setting::SETTING_DEFAULT_THEME_VALUE;
     }
 
     /**
-     * Test App\\Factory\\UserFactory create Method.
+     * Test App\\Factory\\UserFactory build Method.
+     *
+     * User is not admin
      *
      * @throws NonUniqueResultException
      */
-    public function testCreate()
+    public function testBuild()
     {
-        $client = static::createClient();
+        $group = Group::GROUP_NAME_USER;
 
-        $groupManager = $client->getContainer()->get('App\Manager\GroupManager');
-
-        $locale = $client->getContainer()->getParameter('locale');
-
-        $theme = Setting::SETTING_DEFAULT_THEME_VALUE;
-
-        $user = (UserFactory::build($groupManager, Group::GROUP_NAME_USER, $locale, $theme))
+        $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
             ->setFirstname($this->faker->firstName)
             ->setLastname($this->faker->lastName)
             ->setUsername($this->faker->userName)
@@ -70,21 +86,17 @@ class UserFactoryTest extends WebTestCase
     }
 
     /**
-     * Test App\\Factory\\UserFactory createAdmin Action.
+     * Test App\\Factory\\UserFactory build Action.
+     *
+     * User is admin
      *
      * @throws NonUniqueResultException
      */
-    public function testCreateAdmin()
+    public function testBuild02()
     {
-        $client = static::createClient();
+        $group = Group::GROUP_NAME_ADMIN;
 
-        $groupManager = $client->getContainer()->get('App\Manager\GroupManager');
-
-        $locale = $client->getContainer()->getParameter('locale');
-
-        $theme = Setting::SETTING_DEFAULT_THEME_VALUE;
-
-        $user = (UserFactory::build($groupManager, Group::GROUP_NAME_ADMIN, $locale, $theme))
+        $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
             ->setFirstname($this->faker->firstName)
             ->setLastname($this->faker->lastName)
             ->setUsername($this->faker->userName)
