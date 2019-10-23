@@ -42,7 +42,7 @@ class UserFactoryTest extends WebTestCase
     }
 
     /**
-     * Test App\\Factory\\UserFactory create Action.
+     * Test App\\Factory\\UserFactory create Method.
      *
      * @throws NonUniqueResultException
      */

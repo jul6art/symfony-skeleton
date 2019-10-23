@@ -9,30 +9,17 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Functionality;
-use App\Entity\Test;
 use App\Factory\FunctionalityFactory;
 use Faker\Factory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class FunctionalityFactoryTest.
  */
-class FunctionalityFactoryTest extends WebTestCase
+class FunctionalityFactoryTest extends TestCase
 {
     /**
-     * FunctionalityFactoryTest constructor.
-     *
-     * @param string|null $name
-     * @param array       $data
-     * @param string      $dataName
-     */
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-    }
-
-    /**
-     * Test App\\Factory\\FunctionalityFactory create Action.
+     * Test App\\Factory\\FunctionalityFactory create Method.
      */
     public function testCreate()
     {

@@ -54,6 +54,10 @@ class EditInPlaceExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
+        if (null === $request) {
+            return '';
+        }
+
         if (!$request->request->has('edit_in_place')) {
             $attributes = '';
 
@@ -64,9 +68,9 @@ class EditInPlaceExtension extends AbstractExtension
             $request->request->set('edit_in_place', $attributes);
 
             return $attributes;
-        } else {
-            return $request->request->get('edit_in_place');
         }
+
+        return $request->request->get('edit_in_place');
     }
 
     /**
@@ -75,6 +79,10 @@ class EditInPlaceExtension extends AbstractExtension
     public function translate(): string
     {
         $request = $this->stack->getMasterRequest();
+
+        if (null === $request) {
+            return '';
+        }
 
         if (!$request->request->has('translate_in_place')) {
             $attributes = '';
@@ -89,8 +97,8 @@ class EditInPlaceExtension extends AbstractExtension
             $request->request->set('translate_in_place', $attributes);
 
             return $attributes;
-        } else {
-            return $request->request->get('translate_in_place');
         }
+
+        return $request->request->get('translate_in_place');
     }
 }

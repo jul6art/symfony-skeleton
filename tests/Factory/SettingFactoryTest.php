@@ -9,30 +9,17 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Setting;
-use App\Entity\Test;
 use App\Factory\SettingFactory;
 use Faker\Factory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SettingFactoryTest.
  */
-class SettingFactoryTest extends WebTestCase
+class SettingFactoryTest extends TestCase
 {
     /**
-     * SettingFactoryTest constructor.
-     *
-     * @param string|null $name
-     * @param array       $data
-     * @param string      $dataName
-     */
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-    }
-
-    /**
-     * Test App\\Factory\\SettingFactory create Action.
+     * Test App\\Factory\\SettingFactory create Method.
      */
     public function testCreate()
     {
