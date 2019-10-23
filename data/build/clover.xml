@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1571869810">
-  <project timestamp="1571869810">
+<coverage generated="1571874470">
+  <project timestamp="1571874470">
     <package name="App\Controller">
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller">
@@ -3134,7 +3134,7 @@
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Twig/LocaleExtension.php">
         <class name="App\Twig\LocaleExtension" namespace="App\Twig">
-          <metrics complexity="16" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="26" elements="39" coveredelements="29"/>
+          <metrics complexity="17" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="32" elements="41" coveredelements="36"/>
         </class>
         <line num="54" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="86"/>
         <line num="56" type="stmt" count="86"/>
@@ -3143,39 +3143,41 @@
         <line num="59" type="stmt" count="86"/>
         <line num="60" type="stmt" count="86"/>
         <line num="61" type="stmt" count="86"/>
-        <line num="66" type="method" name="getFunctions" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="69" type="stmt" count="0"/>
-        <line num="70" type="stmt" count="0"/>
-        <line num="71" type="stmt" count="0"/>
-        <line num="72" type="stmt" count="0"/>
-        <line num="81" type="method" name="getLocale" visibility="public" complexity="1" crap="1" count="39"/>
-        <line num="83" type="stmt" count="39"/>
-        <line num="91" type="method" name="getValidateLocale" visibility="public" complexity="2" crap="2.06" count="44"/>
-        <line num="93" type="stmt" count="44"/>
-        <line num="95" type="stmt" count="44"/>
+        <line num="66" type="method" name="getFunctions" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="1"/>
+        <line num="81" type="method" name="getLocale" visibility="public" complexity="1" crap="1" count="40"/>
+        <line num="83" type="stmt" count="40"/>
+        <line num="91" type="method" name="getValidateLocale" visibility="public" complexity="2" crap="2.06" count="45"/>
+        <line num="93" type="stmt" count="45"/>
+        <line num="95" type="stmt" count="45"/>
         <line num="96" type="stmt" count="0"/>
-        <line num="99" type="stmt" count="44"/>
-        <line num="107" type="method" name="getWysiwygLocale" visibility="public" complexity="4" crap="4.25" count="44"/>
-        <line num="109" type="stmt" count="44"/>
-        <line num="111" type="stmt" count="44"/>
-        <line num="112" type="stmt" count="43"/>
-        <line num="113" type="stmt" count="1"/>
-        <line num="114" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="45"/>
+        <line num="107" type="method" name="getWysiwygLocale" visibility="public" complexity="4" crap="4.25" count="45"/>
+        <line num="109" type="stmt" count="45"/>
+        <line num="111" type="stmt" count="45"/>
+        <line num="112" type="stmt" count="44"/>
         <line num="115" type="stmt" count="1"/>
         <line num="116" type="stmt" count="0"/>
         <line num="119" type="stmt" count="1"/>
-        <line num="127" type="method" name="getUserLocale" visibility="public" complexity="7" crap="7" count="44"/>
-        <line num="129" type="stmt" count="44"/>
-        <line num="131" type="stmt" count="44"/>
-        <line num="132" type="stmt" count="44"/>
-        <line num="133" type="stmt" count="44"/>
-        <line num="135" type="stmt" count="44"/>
-        <line num="136" type="stmt" count="44"/>
-        <line num="137" type="stmt" count="39"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="123" type="stmt" count="1"/>
+        <line num="131" type="method" name="getUserLocale" visibility="public" complexity="8" crap="8" count="48"/>
+        <line num="133" type="stmt" count="48"/>
+        <line num="135" type="stmt" count="48"/>
+        <line num="136" type="stmt" count="4"/>
+        <line num="139" type="stmt" count="44"/>
+        <line num="140" type="stmt" count="44"/>
         <line num="141" type="stmt" count="44"/>
         <line num="143" type="stmt" count="44"/>
-        <line num="145" type="stmt" count="44"/>
-        <metrics loc="148" ncloc="98" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="26" elements="39" coveredelements="29"/>
+        <line num="144" type="stmt" count="44"/>
+        <line num="145" type="stmt" count="39"/>
+        <line num="149" type="stmt" count="44"/>
+        <line num="151" type="stmt" count="44"/>
+        <line num="154" type="stmt" count="44"/>
+        <metrics loc="156" ncloc="106" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="32" elements="41" coveredelements="36"/>
       </file>
       <file name="/Applications/XAMPP/htdocs/private/symfony-skeleton/src/Twig/SettingExtension.php">
         <class name="App\Twig\SettingExtension" namespace="App\Twig">
@@ -3399,6 +3401,6 @@
         <metrics loc="71" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="127" loc="9905" ncloc="6660" classes="118" methods="419" coveredmethods="268" conditionals="0" coveredconditionals="0" statements="2168" coveredstatements="1417" elements="2587" coveredelements="1685"/>
+    <metrics files="127" loc="9913" ncloc="6668" classes="118" methods="419" coveredmethods="269" conditionals="0" coveredconditionals="0" statements="2170" coveredstatements="1423" elements="2589" coveredelements="1692"/>
   </project>
 </coverage>

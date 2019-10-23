@@ -43,19 +43,15 @@ class EditInPlaceExtensionTest extends TestCase
     /**
      * Test App\\Twig\\EditInPlaceExtension getFunctions Method.
      */
-    public function testGetFilters()
+    public function testGetFunctions()
     {
         $functions = $this->editInPlaceExtension->getFunctions();
 
         $this->assertEquals(2, \count($functions));
 
-        $function = $functions[0];
+        $this->assertInstanceOf(TwigFunction::class, $functions[0]);
 
-        $this->assertInstanceOf(TwigFunction::class, $function);
-
-        $function = $functions[1];
-
-        $this->assertInstanceOf(TwigFunction::class, $function);
+        $this->assertInstanceOf(TwigFunction::class, $functions[1]);
     }
 
     /**
@@ -67,8 +63,9 @@ class EditInPlaceExtensionTest extends TestCase
     {
         $result = $this->editInPlaceExtension->edit();
 
-        $this->assertEmpty($result);
         $this->assertEquals(0, \strlen($result));
+
+        $this->assertEmpty($result);
     }
 
     /**
@@ -80,7 +77,8 @@ class EditInPlaceExtensionTest extends TestCase
     {
         $result = $this->editInPlaceExtension->translate();
 
-        $this->assertEmpty($result);
         $this->assertEquals(0, \strlen($result));
+
+        $this->assertEmpty($result);
     }
 }

@@ -40,13 +40,9 @@ class FunctionalityExtensionTest extends TestCase
 
         $this->assertEquals(2, \count($functions));
 
-        $function = $functions[0];
+        $this->assertInstanceOf(TwigFunction::class, $functions[0]);
 
-        $this->assertInstanceOf(TwigFunction::class, $function);
-
-        $function = $functions[1];
-
-        $this->assertInstanceOf(TwigFunction::class, $function);
+        $this->assertInstanceOf(TwigFunction::class, $functions[1]);
     }
 
     /**

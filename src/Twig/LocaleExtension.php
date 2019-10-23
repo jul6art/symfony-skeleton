@@ -110,9 +110,13 @@ class LocaleExtension extends AbstractExtension
 
         if ('fr' === $locale) {
             return 'fr_FR';
-        } elseif ('en' === $locale) {
+        }
+
+        if ('en' === $locale) {
             return 'en_GB';
-        } elseif ('pt' === $locale) {
+        }
+
+        if ('pt' === $locale) {
             return 'pt_PT';
         }
 
@@ -128,6 +132,10 @@ class LocaleExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
+        if (null === $request) {
+            return $this->locale;
+        }
+
         if (!$request->request->has('user_locale') or !\in_array($request->request->get('user_locale'), $this->available_locales)) {
             $user = $this->tokenStorage->getToken()->getUser();
             $locale = $this->locale;
@@ -141,8 +149,8 @@ class LocaleExtension extends AbstractExtension
             $request->request->set('user_locale', $locale);
 
             return $locale;
-        } else {
-            return $request->request->get('user_locale');
         }
+
+        return $request->request->get('user_locale');
     }
 }

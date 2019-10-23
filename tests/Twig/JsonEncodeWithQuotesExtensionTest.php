@@ -17,7 +17,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
     private $jsonEncodeWithQuotesExtension;
 
     /**
-     * AuditExtensionTest constructor.
+     * JsonEncodeWithQuotesExtensionTest constructor.
      *
      * @param null   $name
      * @param array  $data
@@ -39,9 +39,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
 
         $this->assertEquals(1, \count($filters));
 
-        $filter = $filters[0];
-
-        $this->assertInstanceOf(TwigFilter::class, $filter);
+        $this->assertInstanceOf(TwigFilter::class, $filters[0]);
     }
 
     /**
@@ -56,6 +54,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
         $result = $this->jsonEncodeWithQuotesExtension->jsonEncodeWithQuotes($array);
 
         $this->assertEquals(2, \strlen($result));
+
         $this->assertEquals($array, json_decode($result));
     }
 
@@ -71,6 +70,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
         $result = $this->jsonEncodeWithQuotesExtension->jsonEncodeWithQuotes($array);
 
         $this->assertEquals(7, \strlen($result));
+
         $this->assertEquals($array, json_decode($result));
     }
 }

@@ -39,9 +39,7 @@ class AuditExtensionTest extends TestCase
 
         $this->assertEquals(1, \count($filters));
 
-        $filter = $filters[0];
-
-        $this->assertInstanceOf(TwigFilter::class, $filter);
+        $this->assertInstanceOf(TwigFilter::class, $filters[0]);
     }
 
     /**
