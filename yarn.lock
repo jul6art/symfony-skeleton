@@ -2997,10 +2997,12 @@ findup-sync@^2.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
-flag-icon-css@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.3.0.tgz#7772461e4480d3d86da5962f02120a2825688433"
-  integrity sha512-u5lCGVExrJJRykNGd//ZrBU5Bkt0LTZJFSuG+Az/pwcHgzDeFwomwFbsgVtI1aJd6ysyHsx+5UGrA+nhSGd4yw==
+flag-icon-css@3.4.5:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.4.5.tgz#584d618563034e69cb9a5b7a7c8477ec8c029a49"
+  integrity sha512-COo/PuJY/JddBLkdi7jL3gWF0z/hcvBRA4kfMXUjLeLglFf5IsyAzKZuXaXfCubVrkraVizmEp7Bn05upTXofA==
+  dependencies:
+    opencollective-postinstall "2.0.2"
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -4249,10 +4251,10 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4.17.13, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5, lodash@~4.17.10:
-  version "4.17.13"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
-  integrity sha512-vm3/XWXfWtRua0FkUyEHBZy8kCPjErNBT9fJx8Zvs+U6zjqPbTUOpkaoum3O5uiA8sm+yNMHXfYkTUHFoMxFNA==
+lodash@4.17.15, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5, lodash@~4.17.10:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 loglevel@^1.6.1:
   version "1.6.1"
@@ -4926,6 +4928,11 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   integrity sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
   dependencies:
     wrappy "1"
+
+opencollective-postinstall@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
 
 opn@^5.5.0:
   version "5.5.0"
