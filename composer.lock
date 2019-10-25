@@ -8998,8 +8998,7 @@
         "ext-curl": "*",
         "ext-gd": "*",
         "ext-iconv": "*",
-        "ext-json": "*",
-        "ext-xdebug": "*"
+        "ext-json": "*"
     },
     "platform-dev": []
 }
