@@ -45,7 +45,7 @@
         "jquery-validation": "^1.19.0",
         "jquery.are-you-sure": "^1.9.0",
         "jszip": "^3.2.1",
-        "lodash": "4.17.13",
+        "lodash": "4.17.15",
         "moment": "2.19.3",
         "node-waves": "^0.7.6",
         "nouislider": "^13.1.5",
