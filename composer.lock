@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9ed039330da7bda8f217505f02f0b7e",
+    "content-hash": "276dbea79f8d98354a131b5b95bf192d",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1487,33 +1487,32 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3"
+                "reference": "54758949bff9fc520997415341323eebf3f54892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3",
-                "reference": "a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/54758949bff9fc520997415341323eebf3f54892",
+                "reference": "54758949bff9fc520997415341323eebf3f54892",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.0",
-                "php": "^5.5.9|~7.0",
+                "php": "^7.1",
                 "psr/log": "^1.0",
-                "symfony/config": "^3.4|^4.0",
-                "symfony/debug": "^3.4|^4.0",
-                "symfony/dependency-injection": "^3.4|^4.0",
-                "symfony/event-dispatcher": "^3.4|^4.0",
-                "symfony/finder": "^3.4|^4.0",
-                "symfony/framework-bundle": "^3.4|^4.0",
-                "symfony/http-foundation": "^3.4|^4.0",
-                "symfony/http-kernel": "^3.4|^4.0",
-                "symfony/routing": "^3.4|^4.0",
-                "symfony/security-core": "^3.4|^4.0",
-                "symfony/templating": "^3.4|^4.0",
+                "symfony/config": "^3.4|^4.3",
+                "symfony/debug": "^3.4|^4.3",
+                "symfony/dependency-injection": "^3.4|^4.3",
+                "symfony/event-dispatcher": "^3.4|^4.3",
+                "symfony/finder": "^3.4|^4.3",
+                "symfony/framework-bundle": "^3.4|^4.3",
+                "symfony/http-foundation": "^3.4|^4.3",
+                "symfony/http-kernel": "^3.4|^4.3",
+                "symfony/routing": "^3.4|^4.3",
+                "symfony/security-core": "^3.4|^4.3",
                 "willdurand/jsonp-callback-validator": "^1.0",
                 "willdurand/negotiation": "^2.0"
             },
@@ -1528,19 +1527,19 @@
                 "phpoption/phpoption": "^1.1",
                 "psr/http-message": "^1.0",
                 "sensio/framework-extra-bundle": "^3.0.13|^4.0|^5.0",
-                "symfony/asset": "^3.4|^4.0",
-                "symfony/browser-kit": "^3.4|^4.0",
-                "symfony/css-selector": "^3.4|^4.0",
-                "symfony/dependency-injection": "^2.7.20|^3.0|^4.0",
-                "symfony/expression-language": "~2.7|^3.0|^4.0",
-                "symfony/form": "^3.4|^4.0",
+                "symfony/asset": "^3.4|^4.3",
+                "symfony/browser-kit": "^3.4|^4.3",
+                "symfony/css-selector": "^3.4|^4.3",
+                "symfony/expression-language": "^3.4|^4.3",
+                "symfony/form": "^3.4|^4.3",
                 "symfony/phpunit-bridge": "^4.1.8",
-                "symfony/security-bundle": "^3.4|^4.0",
-                "symfony/serializer": "^2.7.11|^3.0.4|^4.0",
-                "symfony/twig-bundle": "^3.4|^4.0",
-                "symfony/validator": "^3.4|^4.0",
-                "symfony/web-profiler-bundle": "^3.4|^4.0",
-                "symfony/yaml": "^3.4|^4.0"
+                "symfony/security-bundle": "^3.4|^4.3",
+                "symfony/serializer": "^3.4|^4.3",
+                "symfony/templating": "^3.4|^4.3",
+                "symfony/twig-bundle": "^3.4|^4.3",
+                "symfony/validator": "^3.4|^4.3",
+                "symfony/web-profiler-bundle": "^3.4|^4.3",
+                "symfony/yaml": "^3.4|^4.3"
             },
             "suggest": {
                 "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires ^2.0|^3.0",
@@ -1552,7 +1551,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1573,12 +1572,12 @@
                     "email": "smith@pooteeweet.org"
                 },
                 {
-                    "name": "FriendsOfSymfony Community",
-                    "homepage": "https://github.com/friendsofsymfony/FOSRestBundle/contributors"
-                },
-                {
                     "name": "Konstantin Kudryashov",
                     "email": "ever.zet@gmail.com"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSRestBundle/contributors"
                 }
             ],
             "description": "This Bundle provides various tools to rapidly develop RESTful API's with Symfony",
@@ -1586,7 +1585,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2019-01-03T13:05:12+00:00"
+            "time": "2019-10-21T08:22:30+00:00"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1666,24 +1665,24 @@
         },
         {
             "name": "friendsoftwig/twigcs",
-            "version": "v3.1.3",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/friendsoftwig/twigcs.git",
-                "reference": "9894a01a34b22d49e8898f8584c72961c9ca0592"
+                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/friendsoftwig/twigcs/zipball/9894a01a34b22d49e8898f8584c72961c9ca0592",
-                "reference": "9894a01a34b22d49e8898f8584c72961c9ca0592",
+                "url": "https://api.github.com/repos/friendsoftwig/twigcs/zipball/2cf00ca7a859ac04d5d750c14e15af507c5dd568",
+                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
                 "pimple/pimple": "^3.0",
-                "symfony/console": "^2.7 || ^3.0 || ^4.0",
-                "symfony/finder": "^2.7 || ^3.0 || ^4.0",
-                "twig/twig": "^1.0 || ^2.0"
+                "symfony/console": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "symfony/finder": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "twig/twig": "^1.41 || ^2.10 || ^3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.2 || ^6.5"
@@ -1709,7 +1708,7 @@
                 }
             ],
             "description": "Checkstyle automation for Twig",
-            "time": "2018-09-10T07:42:53+00:00"
+            "time": "2019-10-20T16:35:53+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -8996,9 +8995,9 @@
     "platform": {
         "php": "^7.1.3",
         "ext-ctype": "*",
-        "ext-iconv": "*",
         "ext-curl": "*",
         "ext-gd": "*",
+        "ext-iconv": "*",
         "ext-json": "*",
         "ext-xdebug": "*"
     },
