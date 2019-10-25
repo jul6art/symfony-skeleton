@@ -22,7 +22,7 @@
         "animate.css": "^3.7.2",
         "autosize": "^4.0.2",
         "blockui": "^1.0.0",
-        "bootstrap": "^3.4.1",
+        "bootstrap": "^4.1.2",
         "bootstrap-material-datetimepicker": "2.7.1",
         "bootstrap-material-design": "~0.3.0",
         "bootstrap-notify": "^3.1.3",
