@@ -162,7 +162,8 @@
             <arg value="--delete"/>
             <!-- EXCLUDE SERVER HOME FILES -->
             <arg value="--exclude=.awstats-htpasswd"/>
-            <arg value="--exclude=.git/"/>
+            <!-- KEEP .GIT FOLDER TO PRINT COMMIT VERSION IN BACKOFFICE -->
+            <!-- <arg value="--exclude=.git/"/> -->
             <arg value="--exclude=.backup/"/>
             <arg value="--exclude=.backup.lock"/>
             <arg value="--exclude=.bash_logout"/>

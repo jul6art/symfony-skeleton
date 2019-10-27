@@ -47,7 +47,6 @@ parameters:
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
     locale: 'fr'
     logo: '/build/images/logo.png'
-    skeleton_version: 1.0.1
     user_class: App\Entity\User
 
 services:
@@ -63,6 +62,7 @@ services:
             $mailer_from_name: '%mailer_from_name%'
             $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
             $environment: '%kernel.environment%'
+            $project_dir: '%kernel.project_dir%'
 
     App\:
         resource: '../src/*'
