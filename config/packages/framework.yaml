@@ -15,6 +15,11 @@ framework:
         name: SFSESSID
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
 
+    trusted_hosts:
+        - '%env(CURRENT_DOMAIN)%$'
+        - '^(.+\.)?%env(CURRENT_DOMAIN)%$'
+        - 'localhost'
+
     #esi: true
     #fragments: true
     php_errors:

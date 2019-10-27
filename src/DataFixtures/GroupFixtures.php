@@ -28,6 +28,10 @@ class GroupFixtures extends Fixture
                     sprintf('ROLE_%s', strtoupper($value)),
                 ]);
 
+            if (Group::GROUP_NAME_USER !== $value) {
+                $group->addRole('ROLE_ALLOWED_TO_SWITCH');
+            }
+
             $this->addReference("group_$value", $group);
             $manager->persist($group);
         }

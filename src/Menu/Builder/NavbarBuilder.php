@@ -12,6 +12,7 @@ use App\Security\Voter\UserVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -28,6 +29,11 @@ class NavbarBuilder
     private $factory;
 
     /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
      * @var AuthorizationCheckerInterface
      */
     private $authorizationChecker;
@@ -36,11 +42,13 @@ class NavbarBuilder
      * NavbarBuilder constructor.
      *
      * @param FactoryInterface              $factory
+     * @param RouterInterface               $router
      * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(FactoryInterface $factory, RouterInterface $router, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->factory = $factory;
+        $this->router = $router;
         $this->authorizationChecker = $authorizationChecker;
     }
 
@@ -57,11 +65,31 @@ class NavbarBuilder
              ->setExtra('translation_domain', 'navbar');
 
         $this
+            ->menuImpersonate($menu)
             ->menuHome($menu)
             ->menuUsers($menu)
             ->menuTests($menu);
 
         return $menu;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return self
+     */
+    private function menuImpersonate(ItemInterface $menu): self
+    {
+        if ($this->authorizationChecker->isGranted('ROLE_PREVIOUS_ADMIN')) {
+            $menu->addChild('navbar.impersonate', [
+                'uri' => $this->router->generate('admin_user_list') . '?_switch_user=_exit',
+            ])->setExtras([
+                'icon' => 'undo',
+                'translation_domain' => 'navbar',
+            ])->setLinkAttribute('class', 'waves-effect waves-block visible-sm visible-xs');
+        }
+
+        return $this;
     }
 
     /**

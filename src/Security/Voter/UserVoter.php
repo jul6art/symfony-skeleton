@@ -10,6 +10,7 @@ use App\Manager\SettingManagerTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -31,6 +32,7 @@ class UserVoter extends AbstractVoter
     public const PROFILE = 'app.voters.user.profile';
     public const LOGOUT = 'app.voters.user.logout';
     public const VIEW = 'app.voters.user.view';
+    public const IMPERSONATE = 'app.voters.user.impersonate';
 
     /**
      * @param string $attribute
@@ -53,6 +55,7 @@ class UserVoter extends AbstractVoter
                 self::LOGOUT,
                 self::PROFILE,
                 self::VIEW,
+                self::IMPERSONATE,
             ])
         ) {
             return false;
@@ -100,6 +103,8 @@ class UserVoter extends AbstractVoter
             return $this->canProfile($subject, $token);
         } elseif (self::VIEW === $attribute) {
             return $this->canView($subject, $token);
+        } elseif (self::IMPERSONATE === $attribute) {
+            return $this->canImpersonate($subject, $token);
         }
 
         return false;
@@ -243,5 +248,38 @@ class UserVoter extends AbstractVoter
     public function canView(User $subject, TokenInterface $token): bool
     {
         return $this->canList($subject, $token);
+    }
+
+    /**
+     * @param User           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canImpersonate(User $subject, TokenInterface $token): bool
+    {
+        if ($subject === $token->getUser()) {
+            return false;
+        }
+
+        if (!$subject->isEnabled()) {
+            return false;
+        }
+
+        if (!$this->accessDecisionManager->decide($token, ['ROLE_ALLOWED_TO_SWITCH'])) {
+            return false;
+        }
+
+        if ($this->accessDecisionManager->decide($token, ['ROLE_PREVIOUS_ADMIN'])) {
+            return false;
+        }
+
+        $userToken = new UsernamePasswordToken($subject, null, 'main', $subject->getRoles());
+
+        if ($this->accessDecisionManager->decide($userToken, ['ROLE_ALLOWED_TO_SWITCH'])) {
+            return false;
+        }
+
+        return true;
     }
 }

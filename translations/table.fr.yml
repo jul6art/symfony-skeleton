@@ -28,6 +28,7 @@ table:
         user:
             view:  'Voir l''utilisateur'
             edit:  'Modifier l''utilisateur'
+            impersonate:  'Se connecter en tant que'
             delete:  'Supprimer l''utilisateur'
     user:
         gender:

@@ -76,6 +76,19 @@ class UserDataTableTransformer extends UserTransformer
             );
         }
 
+        if ($this->authorizationChecker->isGranted(UserVoter::IMPERSONATE, $user)) {
+            $this->addAction(
+                'impersonate',
+                'admin_user_impersonate',
+                [
+                    'id' => $user->getId(),
+                ],
+                'table.actions.user.impersonate',
+                'sync_alt',
+                'red'
+            );
+        }
+
         if ($this->authorizationChecker->isGranted(UserVoter::DELETE, $user)) {
             $this->addAction(
                 'delete',

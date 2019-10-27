@@ -1,6 +1,7 @@
 navbar:
     title: 'NAVIGATION PRINCIPALE'
     home: 'Accueil'
+    impersonate: 'Revenir à mon compte'
     profile: 'Mon profil'
     change_password: 'Sécurité'
     logout: 'Déconnecter'

@@ -187,4 +187,23 @@ class UserController extends AbstractFOSRestController
 
         return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('admin_user_list');
     }
+
+    /**
+     * @param Request $request
+     * @param User    $user
+     *
+     * @Route("/impersonate/{id}", name="user_impersonate", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function impersonate(Request $request, User $user): Response
+    {
+        $this->denyAccessUnlessGranted(UserVoter::IMPERSONATE, $user);
+
+        return $this->redirect(sprintf(
+            '%s?_switch_user=%s',
+            $this->generateUrl('admin_homepage'),
+            $user->getUsername()
+        ));
+    }
 }

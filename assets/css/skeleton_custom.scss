@@ -458,6 +458,23 @@ $white: #ffffff;
 }
 
 /**
+IMPERSONATE
+ */
+.info-impersonate {
+  position: fixed;
+  bottom: 43px;
+  left: -225px;
+  width: 300px;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s linear;
+
+  &:hover {
+    left: 0;
+  }
+}
+
+/**
 FIXES
  */
 .dropdown-menu span.block {

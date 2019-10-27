@@ -16,6 +16,7 @@ $.App = {
     this.dialog();
     this.dropdown();
     this.editInPlace();
+    this.impersonate();
     this.progressiveWebApp();
     this.settings();
     this.tooltip();
@@ -273,6 +274,11 @@ $.App = {
         toolbar: "undo redo"
       });
     }
+  },
+  impersonate: function() {
+    $(".info-impersonate").on("click", function() {
+      window.location = $(this).data("url");
+    });
   },
   getThemeColor: function(color) {
     switch (color) {
