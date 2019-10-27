@@ -32,19 +32,52 @@ $.App = {
     }
   },
   card: function() {
+    let collapseButtonToggle = function(button) {
+      button.closest(".card").toggleClass("collapsed");
+
+      setTimeout(function() {
+        button
+          .find(".label-toggle")
+          .text(
+            button.closest(".card").hasClass("collapsed")
+              ? button.data("state-off-label")
+              : button.data("state-on-label")
+          );
+      }, 300);
+    };
+
     $('[data-toggle="grid-collapse"]').on("click", function() {
-      $(this)
-        .closest(".card")
-        .toggleClass("collapsed");
+      collapseButtonToggle($(this));
     });
 
     $('[data-toggle="grid-expand"]').on("click", function() {
-      $(this)
-        .closest(".card")
-        .removeClass("collapsed");
+      if (
+        $(this)
+          .closest(".card")
+          .hasClass("collapsed")
+      ) {
+        collapseButtonToggle(
+          $(this)
+            .closest(".card")
+            .find('[data-toggle="grid-collapse"]')
+        );
+      }
+
       $(this)
         .closest(".card")
         .toggleClass("expanded");
+
+      setTimeout(function() {
+        $(this)
+          .find(".label-toggle")
+          .text(
+            $(this)
+              .closest(".card")
+              .hasClass("expanded")
+              ? $(this).data("state-off-label")
+              : $(this).data("state-on-label")
+          );
+      }, 300);
     });
 
     $('[data-toggle="grid-close"]').on("click", function() {
