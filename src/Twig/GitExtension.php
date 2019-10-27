@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -40,6 +41,15 @@ class GitExtension extends AbstractExtension
      */
     public function getGitVersion(): string
     {
-        return substr(file_get_contents("$this->project_dir/.git/refs/heads/master"), 0, 7);
+        $path = "$this->project_dir/.git/refs/heads/master";
+        $defaultVersion = 'NaN';
+
+        $fileSystem = new Filesystem();
+
+        if (!$fileSystem->exists($path)) {
+            return $defaultVersion;
+        }
+
+        return substr(file_get_contents($path), 0, 7);
     }
 }
