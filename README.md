@@ -51,6 +51,11 @@ nano .env
     # For an SQLite database, use: "sqlite:///%kernel.project_dir%/var/data.db"
     # Configure your db driver and server_version in config/packages/doctrine.yaml
     DATABASE_URL=mysql://root:@127.0.0.1:3306/symfony_skeleton
+    DATABASE_HOST=127.0.0.1
+    DATABASE_PORT=3306
+    DATABASE_NAME=symfony_skeleton
+    DATABASE_USER=root
+    DATABASE_PASSWORD=
     ###< doctrine/doctrine-bundle ###
     
     ###> symfony/swiftmailer-bundle ###
@@ -67,6 +72,12 @@ nano .env
     GOOGLE_RECAPTCHA_SITE_KEY=
     GOOGLE_RECAPTCHA_SECRET=
     ###< google/recaptcha ###
+    
+    ###> domain ###
+    # Add your subdomains here. ex: admin.symfony-skeleton.localhost
+    # So you can select routes or controllers depending on the host
+    CURRENT_DOMAIN=symfony-skeleton.localhost
+    ###< domain ###
 
 ### Start server
 

@@ -40,6 +40,7 @@ parameters:
         - fr
         - en
         - de
+    current_cookie_domain: '.%env(CURRENT_DOMAIN)%'
     cookie_policy_url: 'http://allaboutcookies.org/'
     mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
     mailer_from_name: '%env(MAILER_FROM_NAME)%'
@@ -122,3 +123,8 @@ services:
     App\EventListener\LocaleListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
+            - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }

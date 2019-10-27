@@ -7,10 +7,13 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
-        handler_id: ~
+        cookie_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
+        gc_maxlifetime: 604800 # 30 * 24 * 3600 -> 30 jours
         cookie_secure: auto
         cookie_samesite: lax
-        cookie_lifetime: 604800 # 1 week in seconds
+        cookie_domain: '%current_cookie_domain%'
+        name: SFSESSID
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
 
     #esi: true
     #fragments: true
