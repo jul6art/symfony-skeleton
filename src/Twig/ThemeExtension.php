@@ -21,6 +21,8 @@ class ThemeExtension extends AbstractExtension
 {
     use SettingManagerTrait;
 
+    const REQUEST_KEY = 'theme_name';
+
     /**
      * @var TokenStorageInterface
      */
@@ -76,7 +78,7 @@ class ThemeExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has('theme_name') or !\in_array($request->request->get('theme_name'), $this->available_colors)) {
+        if (!$request->request->has(self::REQUEST_KEY) or !\in_array($request->request->get(self::REQUEST_KEY), $this->available_colors)) {
             $user = $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
             $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
@@ -86,11 +88,11 @@ class ThemeExtension extends AbstractExtension
                 }
             }
 
-            $request->request->set('theme_name', $theme);
+            $request->request->set(self::REQUEST_KEY, $theme);
 
             return $theme;
         } else {
-            return $request->request->get('theme_name');
+            return $request->request->get(self::REQUEST_KEY);
         }
     }
 }
