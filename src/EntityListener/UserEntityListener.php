@@ -15,7 +15,7 @@ class UserEntityListener extends AbstractEntityListener
     /**
      * @param LifecycleEventArgs $args
      */
-    public function postPersist(User $user, LifecycleEventArgs $event)
+    public function postPersist(User $user, LifecycleEventArgs $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.user.added', [], 'notification'));
     }
@@ -25,7 +25,7 @@ class UserEntityListener extends AbstractEntityListener
      *
      * @throws NonUniqueResultException
      */
-    public function preRemove(User $user, LifecycleEventArgs $event)
+    public function preRemove(User $user, LifecycleEventArgs $event): void
     {
         //
         // notifications for deletion are currently made by sweetalert dialog if func is active

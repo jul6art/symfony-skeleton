@@ -15,7 +15,7 @@ class TestEntityListener extends AbstractEntityListener
     /**
      * @param LifecycleEventArgs $args
      */
-    public function postPersist(Test $test, LifecycleEventArgs $event)
+    public function postPersist(Test $test, LifecycleEventArgs $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.test.added', [], 'notification'));
     }
@@ -23,7 +23,7 @@ class TestEntityListener extends AbstractEntityListener
     /**
      * @param LifecycleEventArgs $args
      */
-    public function postUpdate(Test $test, LifecycleEventArgs $event)
+    public function postUpdate(Test $test, LifecycleEventArgs $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.test.edited', [], 'notification'));
     }
@@ -33,7 +33,7 @@ class TestEntityListener extends AbstractEntityListener
      *
      * @throws NonUniqueResultException
      */
-    public function preRemove(Test $test, LifecycleEventArgs $event)
+    public function preRemove(Test $test, LifecycleEventArgs $event): void
     {
         //
         // notifications for deletion are currently made by sweetalert dialog if func is active

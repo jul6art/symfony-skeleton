@@ -55,7 +55,7 @@ class UserSubscriber implements EventSubscriberInterface
     /**
      * @param InteractiveLoginEvent $event
      */
-    public function onInteractiveLogin(InteractiveLoginEvent $event)
+    public function onInteractiveLogin(InteractiveLoginEvent $event): void
     {
         $user = $event->getAuthenticationToken()->getUser();
         $locale = $event->getRequest()->getSession()->get('_locale');
@@ -69,7 +69,7 @@ class UserSubscriber implements EventSubscriberInterface
     /**
      * @param UserEvent $event
      */
-    public function onUserEdited(UserEvent $event)
+    public function onUserEdited(UserEvent $event): void
     {
         $this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
     }
