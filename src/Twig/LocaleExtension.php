@@ -2,13 +2,8 @@
 
 namespace App\Twig;
 
-use App\Entity\Functionality;
-use App\Entity\User;
-use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -17,16 +12,6 @@ use Twig\TwigFunction;
  */
 class LocaleExtension extends AbstractExtension
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
-
     /**
      * @var RequestStack
      */
@@ -38,26 +23,15 @@ class LocaleExtension extends AbstractExtension
     private $locale;
 
     /**
-     * @var array
-     */
-    private $available_locales;
-
-    /**
      * LocaleExtension constructor.
      *
-     * @param TokenStorageInterface         $tokenStorage
-     * @param AuthorizationCheckerInterface $authorizationChecker
-     * @param RequestStack                  $stack
-     * @param string                        $locale
-     * @param array                         $available_locales
+     * @param RequestStack $stack
+     * @param string       $locale
      */
-    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, RequestStack $stack, string $locale, array $available_locales)
+    public function __construct(RequestStack $stack, string $locale)
     {
-        $this->tokenStorage = $tokenStorage;
-        $this->authorizationChecker = $authorizationChecker;
         $this->stack = $stack;
         $this->locale = $locale;
-        $this->available_locales = $available_locales;
     }
 
     /**
@@ -124,11 +98,11 @@ class LocaleExtension extends AbstractExtension
     }
 
     /**
-     * @return string|null
+     * @return string
      *
      * @throws NonUniqueResultException
      */
-    public function getUserLocale(): ?string
+    public function getUserLocale(): string
     {
         $request = $this->stack->getMasterRequest();
 
@@ -136,21 +110,6 @@ class LocaleExtension extends AbstractExtension
             return $this->locale;
         }
 
-        if (!$request->request->has('user_locale') or !\in_array($request->request->get('user_locale'), $this->available_locales)) {
-            $user = $this->tokenStorage->getToken()->getUser();
-            $locale = $this->locale;
-
-            if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)) {
-                if ($user instanceof User and $user->hasSetting(User::SETTING_LOCALE)) {
-                    $locale = $user->getLocale();
-                }
-            }
-
-            $request->request->set('user_locale', $locale);
-
-            return $locale;
-        }
-
-        return $request->request->get('user_locale');
+        return $request->getLocale();
     }
 }

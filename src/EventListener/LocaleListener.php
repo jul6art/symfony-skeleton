@@ -82,28 +82,36 @@ class LocaleListener
             $newLocale = null;
         }
 
-        $userLocale = null;
-
-        if (
-            $user instanceof User
-            and $user->hasSetting(User::SETTING_LOCALE)
-        ) {
-            $userLocale = $user->getLocale();
-
-            if (null === $newLocale) {
-                $newLocale = $userLocale;
-            }
-        }
-
-        if (null !== $userLocale) {
-            if ($newLocale !== $userLocale) {
-                $user->setLocale($newLocale);
-                $this->userManager->save($user);
-            }
-        }
-
         if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
             $newLocale = $this->defaultLocale;
+        } else {
+            $userLocale = null;
+
+            if (
+                $user instanceof User
+                and $user->hasSetting(User::SETTING_LOCALE)
+            ) {
+                $userLocale = $user->getLocale();
+
+                if (null === $newLocale) {
+                    $newLocale = $userLocale;
+                }
+            }
+
+            if (null !== $userLocale) {
+                if ($newLocale !== $userLocale) {
+                    $user->setLocale($newLocale);
+                    $this->userManager->save($user);
+                }
+            }
+        }
+
+        $sessionLocale = $request->getSession()->get('_locale');
+        if (
+            null !== $sessionLocale
+            and $newLocale !== $sessionLocale
+        ) {
+            $newLocale = $sessionLocale;
         }
 
         if (
@@ -113,14 +121,6 @@ class LocaleListener
             $request->getSession()->set('_locale', $newLocale);
             $request->setLocale($newLocale);
             $this->translator->setLocale($newLocale);
-        }
-
-        $sessionLocale = $request->getSession()->get('_locale');
-        if (
-            null !== $sessionLocale
-            and $request->getLocale() !== $sessionLocale
-        ) {
-            $request->setLocale($request->getSession()->get('_locale'));
         }
     }
 }

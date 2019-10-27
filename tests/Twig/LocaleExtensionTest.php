@@ -6,8 +6,6 @@ use App\Twig\LocaleExtension;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\TwigFunction;
 
 /**
@@ -18,27 +16,12 @@ class LocaleExtensionTest extends WebTestCase
     /**
      * @var MockObject
      */
-    private $tokenStorage;
-
-    /**
-     * @var MockObject
-     */
-    private $authorizationChecker;
-
-    /**
-     * @var MockObject
-     */
     private $stack;
 
     /**
      * @var string
      */
     private $locale;
-
-    /**
-     * @var array|string[]
-     */
-    private $available_locales;
 
     /**
      * @var LocaleExtension
@@ -56,17 +39,11 @@ class LocaleExtensionTest extends WebTestCase
     {
         parent::__construct($name, $data, $dataName);
         $client = static::createClient();
-        $this->tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $this->authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $this->stack = $this->createMock(RequestStack::class);
         $this->locale = $client->getContainer()->getParameter('locale');
-        $this->available_locales = $client->getContainer()->getParameter('available_locales');
         $this->localeExtension = new LocaleExtension(
-            $this->tokenStorage,
-            $this->authorizationChecker,
             $this->stack,
-            $this->locale,
-            $this->available_locales
+            $this->locale
         );
     }
 

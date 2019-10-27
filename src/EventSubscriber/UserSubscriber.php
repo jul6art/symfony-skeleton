@@ -12,6 +12,8 @@ use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Http\SecurityEvents;
 
 /**
  * Class UserSubscriber.
@@ -30,6 +32,7 @@ class UserSubscriber implements EventSubscriberInterface
     {
         return [
             FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
+            SecurityEvents::INTERACTIVE_LOGIN => 'onInteractiveLogin',
             UserEvent::EDITED => 'onUserEdited',
         ];
     }
@@ -47,6 +50,20 @@ class UserSubscriber implements EventSubscriberInterface
         $this->userManager
             ->updateGroups($user)
             ->save($user);
+    }
+
+    /**
+     * @param InteractiveLoginEvent $event
+     */
+    public function onInteractiveLogin(InteractiveLoginEvent $event)
+    {
+        $user = $event->getAuthenticationToken()->getUser();
+        $locale = $event->getRequest()->getSession()->get('_locale');
+
+        if (null !== $locale and null !== $user and $user->getLocale() !== $locale) {
+            $user->setLocale($locale);
+            $this->userManager->save($user);
+        }
     }
 
     /**
