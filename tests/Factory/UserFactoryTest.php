@@ -68,7 +68,7 @@ class UserFactoryTest extends WebTestCase
      *
      * @throws NonUniqueResultException
      */
-    public function testBuild()
+    public function testBuild(): void
     {
         $group = Group::GROUP_NAME_USER;
 
@@ -92,7 +92,7 @@ class UserFactoryTest extends WebTestCase
      *
      * @throws NonUniqueResultException
      */
-    public function testBuild02()
+    public function testBuild02(): void
     {
         $group = Group::GROUP_NAME_ADMIN;
 

@@ -48,7 +48,7 @@ class TestControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testIndex()
+    public function testIndex(): void
     {
         $client = static::createClient();
 
@@ -64,7 +64,7 @@ class TestControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testIndex02()
+    public function testIndex02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -83,7 +83,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testIndex03()
+    public function testIndex03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -102,7 +102,7 @@ class TestControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testAdd()
+    public function testAdd(): void
     {
         $client = static::createClient();
 
@@ -118,7 +118,7 @@ class TestControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testAdd02()
+    public function testAdd02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -137,7 +137,7 @@ class TestControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testAdd03()
+    public function testAdd03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -169,7 +169,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testAdd04()
+    public function testAdd04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -223,7 +223,7 @@ class TestControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testShow()
+    public function testShow(): void
     {
         $client = static::createClient();
 
@@ -242,7 +242,7 @@ class TestControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testShow02()
+    public function testShow02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -264,7 +264,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testShow03()
+    public function testShow03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -286,7 +286,7 @@ class TestControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testEdit()
+    public function testEdit(): void
     {
         $client = static::createClient();
 
@@ -305,7 +305,7 @@ class TestControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testEdit02()
+    public function testEdit02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -327,7 +327,7 @@ class TestControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testEdit03()
+    public function testEdit03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -363,7 +363,7 @@ class TestControllerTest extends WebTestCase
      *
      * Not found
      */
-    public function testEdit04()
+    public function testEdit04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -382,7 +382,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testEdit05()
+    public function testEdit05(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -439,7 +439,7 @@ class TestControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testDelete()
+    public function testDelete(): void
     {
         $client = static::createClient();
 
@@ -458,7 +458,7 @@ class TestControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testDelete02()
+    public function testDelete02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -480,7 +480,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testDelete03()
+    public function testDelete03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -506,7 +506,7 @@ class TestControllerTest extends WebTestCase
      *
      * Successfull with xmlhttprequest
      */
-    public function testDelete04()
+    public function testDelete04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,

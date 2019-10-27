@@ -50,7 +50,7 @@ class LocaleExtensionTest extends WebTestCase
     /**
      * Test App\\Twig\\LocaleExtension getFunctions Method.
      */
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
         $functions = $this->localeExtension->getFunctions();
 
@@ -72,7 +72,7 @@ class LocaleExtensionTest extends WebTestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testGetLocale()
+    public function testGetLocale(): void
     {
         $result = $this->localeExtension->getLocale();
 
@@ -88,7 +88,7 @@ class LocaleExtensionTest extends WebTestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testGetValidateLocale()
+    public function testGetValidateLocale(): void
     {
         $result = $this->localeExtension->getValidateLocale();
 
@@ -104,7 +104,7 @@ class LocaleExtensionTest extends WebTestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testGetWysiwygLocale()
+    public function testGetWysiwygLocale(): void
     {
         $result = $this->localeExtension->getWysiwygLocale();
 
@@ -120,7 +120,7 @@ class LocaleExtensionTest extends WebTestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testUserLocale()
+    public function testUserLocale(): void
     {
         $result = $this->localeExtension->getUserLocale();
 

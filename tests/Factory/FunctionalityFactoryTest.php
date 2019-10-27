@@ -21,7 +21,7 @@ class FunctionalityFactoryTest extends TestCase
     /**
      * Test App\\Factory\\FunctionalityFactory create Method.
      */
-    public function testCreate()
+    public function testCreate(): void
     {
         $faker = Factory::create();
 

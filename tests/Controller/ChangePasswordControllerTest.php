@@ -46,7 +46,7 @@ class ChangePasswordControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testChangePassword()
+    public function testChangePassword(): void
     {
         $client = static::createClient();
 
@@ -62,7 +62,7 @@ class ChangePasswordControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testChangePassword02()
+    public function testChangePassword02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -94,7 +94,7 @@ class ChangePasswordControllerTest extends WebTestCase
      *
      * Successful
      */
-    public function testChangePassword03()
+    public function testChangePassword03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,

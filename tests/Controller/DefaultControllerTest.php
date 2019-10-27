@@ -49,7 +49,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testIndex()
+    public function testIndex(): void
     {
         $client = static::createClient();
 
@@ -65,7 +65,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testIndex02()
+    public function testIndex02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -84,7 +84,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testIndex03()
+    public function testIndex03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -103,7 +103,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Invalid locale
      */
-    public function testLocale()
+    public function testLocale(): void
     {
         $client = static::createClient();
 
@@ -119,7 +119,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testLocale02()
+    public function testLocale02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -140,7 +140,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testLocale03()
+    public function testLocale03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -161,7 +161,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testCache()
+    public function testCache(): void
     {
         $client = static::createClient();
 
@@ -177,7 +177,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testCache02()
+    public function testCache02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -196,7 +196,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testTheme()
+    public function testTheme(): void
     {
         $client = static::createClient();
 
@@ -212,7 +212,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Invalid theme
      */
-    public function testTheme02()
+    public function testTheme02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -231,7 +231,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testTheme03()
+    public function testTheme03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -252,7 +252,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testTheme04()
+    public function testTheme04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -273,7 +273,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testTheme05()
+    public function testTheme05(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -294,7 +294,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testFunctionality()
+    public function testFunctionality(): void
     {
         $client = static::createClient();
 
@@ -310,7 +310,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User has bad Roles
      */
-    public function testFunctionality02()
+    public function testFunctionality02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -330,7 +330,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Invalid functionality
      */
-    public function testFunctionality03()
+    public function testFunctionality03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -349,7 +349,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func audit
      */
-    public function testFunctionality04()
+    public function testFunctionality04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -379,7 +379,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func cache
      */
-    public function testFunctionality05()
+    public function testFunctionality05(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -409,7 +409,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func edit in place
      */
-    public function testFunctionality06()
+    public function testFunctionality06(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -439,7 +439,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func confirm delete
      */
-    public function testFunctionality07()
+    public function testFunctionality07(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -469,7 +469,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func form watch
      */
-    public function testFunctionality08()
+    public function testFunctionality08(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -499,7 +499,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func manage settings
      */
-    public function testFunctionality09()
+    public function testFunctionality09(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -529,7 +529,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func progressive web app
      */
-    public function testFunctionality10()
+    public function testFunctionality10(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -563,7 +563,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func swicth locale
      */
-    public function testFunctionality11()
+    public function testFunctionality11(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -593,7 +593,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with func swicth theme
      */
-    public function testFunctionality12()
+    public function testFunctionality12(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -623,7 +623,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with ajax call
      */
-    public function testFunctionality13()
+    public function testFunctionality13(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -643,7 +643,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * User must be logged
      */
-    public function testSetting()
+    public function testSetting(): void
     {
         $client = static::createClient();
 
@@ -661,7 +661,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting02()
+    public function testSetting02(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
@@ -681,7 +681,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * Invalid setting
      */
-    public function testSetting03()
+    public function testSetting03(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -702,7 +702,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting04()
+    public function testSetting04(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -729,7 +729,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting05()
+    public function testSetting05(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -756,7 +756,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting06()
+    public function testSetting06(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -783,7 +783,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting07()
+    public function testSetting07(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -810,7 +810,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting08()
+    public function testSetting08(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -837,7 +837,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting09()
+    public function testSetting09(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
@@ -864,7 +864,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @throws ORMException
      */
-    public function testSetting10()
+    public function testSetting10(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,

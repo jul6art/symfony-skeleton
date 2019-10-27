@@ -21,7 +21,7 @@ class SettingFactoryTest extends TestCase
     /**
      * Test App\\Factory\\SettingFactory create Method.
      */
-    public function testCreate()
+    public function testCreate(): void
     {
         $faker = Factory::create();
 

@@ -33,7 +33,7 @@ class AuditExtensionTest extends TestCase
     /**
      * Test App\\Twig\\AuditExtension getFilters Method.
      */
-    public function testGetFilters()
+    public function testGetFilters(): void
     {
         $filters = $this->auditExtension->getFilters();
 
@@ -47,7 +47,7 @@ class AuditExtensionTest extends TestCase
      *
      * ID is null
      */
-    public function testBlameAudit()
+    public function testBlameAudit(): void
     {
         $result = $this->auditExtension->blameAudit(null, []);
 
@@ -59,7 +59,7 @@ class AuditExtensionTest extends TestCase
      *
      * Array is empty
      */
-    public function testBlameAudit02()
+    public function testBlameAudit02(): void
     {
         $result = $this->auditExtension->blameAudit('1', []);
 
@@ -71,7 +71,7 @@ class AuditExtensionTest extends TestCase
      *
      * Array does not contain key
      */
-    public function testBlameAudit03()
+    public function testBlameAudit03(): void
     {
         $result = $this->auditExtension->blameAudit('1', []);
 
@@ -83,7 +83,7 @@ class AuditExtensionTest extends TestCase
      *
      * Success
      */
-    public function testBlameAudit04()
+    public function testBlameAudit04(): void
     {
         $result = $this->auditExtension->blameAudit('1', [1 => 'foo']);
 

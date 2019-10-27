@@ -33,7 +33,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
     /**
      * Test App\\Twig\\JsonEncodeWithQuotesExtension getFilters Method.
      */
-    public function testGetFilters()
+    public function testGetFilters(): void
     {
         $filters = $this->jsonEncodeWithQuotesExtension->getFilters();
 
@@ -47,7 +47,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
      *
      * Encode empty array
      */
-    public function testJsonEncodeWithQuotes()
+    public function testJsonEncodeWithQuotes(): void
     {
         $array = [];
 
@@ -63,7 +63,7 @@ class JsonEncodeWithQuotesExtensionTest extends TestCase
      *
      * Encode not empty array
      */
-    public function testJsonEncodeWithQuotes02()
+    public function testJsonEncodeWithQuotes02(): void
     {
         $array = ['foo'];
 

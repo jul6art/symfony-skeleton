@@ -34,7 +34,7 @@ class FunctionalityExtensionTest extends TestCase
     /**
      * Test App\\Twig\\FunctionalityExtension getFilters Method.
      */
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
         $functions = $this->functionalityExtension->getFunctions();
 
@@ -52,7 +52,7 @@ class FunctionalityExtensionTest extends TestCase
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function testIsFunctionalityActive()
+    public function testIsFunctionalityActive(): void
     {
         $result = $this->functionalityExtension->isFunctionalityActive('');
 

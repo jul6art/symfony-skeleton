@@ -43,7 +43,7 @@ class EditInPlaceExtensionTest extends TestCase
     /**
      * Test App\\Twig\\EditInPlaceExtension getFunctions Method.
      */
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
         $functions = $this->editInPlaceExtension->getFunctions();
 
@@ -59,7 +59,7 @@ class EditInPlaceExtensionTest extends TestCase
      *
      * Token has no user
      */
-    public function testEdit()
+    public function testEdit(): void
     {
         $result = $this->editInPlaceExtension->edit();
 
@@ -73,7 +73,7 @@ class EditInPlaceExtensionTest extends TestCase
      *
      * Token has no user
      */
-    public function testTranslate()
+    public function testTranslate(): void
     {
         $result = $this->editInPlaceExtension->translate();
 

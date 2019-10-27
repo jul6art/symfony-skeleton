@@ -46,7 +46,7 @@ class SecurityControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testLogin()
+    public function testLogin(): void
     {
         $client = static::createClient();
 
@@ -77,7 +77,7 @@ class SecurityControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testLogin02()
+    public function testLogin02(): void
     {
         $client = static::createClient();
 

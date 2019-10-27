@@ -44,7 +44,7 @@ class ResettingControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testRequest()
+    public function testRequest(): void
     {
         $client = static::createClient();
 
@@ -72,7 +72,7 @@ class ResettingControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testRequest02()
+    public function testRequest02(): void
     {
         $client = static::createClient();
 
@@ -101,7 +101,7 @@ class ResettingControllerTest extends WebTestCase
      *
      * Invalid user
      */
-    public function testReset()
+    public function testReset(): void
     {
         $client = static::createClient();
 
@@ -123,7 +123,7 @@ class ResettingControllerTest extends WebTestCase
      *
      * Successful
      */
-    public function testReset02()
+    public function testReset02(): void
     {
         $client = static::createClient();
 

@@ -44,7 +44,7 @@ class RegistrationControllerTest extends WebTestCase
      *
      * Invalid form
      */
-    public function testRegister()
+    public function testRegister(): void
     {
         $client = static::createClient();
 
@@ -73,7 +73,7 @@ class RegistrationControllerTest extends WebTestCase
      *
      * Successfull
      */
-    public function testRegister02()
+    public function testRegister02(): void
     {
         $client = static::createClient();
 
