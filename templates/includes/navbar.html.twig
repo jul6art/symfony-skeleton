@@ -35,7 +35,7 @@
                 &copy; {{ 'now'|date('Y') }} <a href="https://vsweb.be" target="_blank">VsWeb</a>.
             </div>
             <div class="version">
-                <b>{{ 'layout.version'|trans({}, 'layout') }}: </b>1.0.{{ git_version() }}
+                <b>{{ 'layout.version'|trans({}, 'layout') }}: </b>{{ git_version() }}
             </div>
         </div>
         <!-- #Footer -->

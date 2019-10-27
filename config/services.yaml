@@ -48,6 +48,7 @@ parameters:
     locale: 'fr'
     logo: '/build/images/logo.png'
     user_class: App\Entity\User
+    skeleton_version: 1.0.1
 
 services:
     _defaults:
@@ -63,6 +64,7 @@ services:
             $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
             $environment: '%kernel.environment%'
             $project_dir: '%kernel.project_dir%'
+            $skeleton_version: '%skeleton_version%'
 
     App\:
         resource: '../src/*'

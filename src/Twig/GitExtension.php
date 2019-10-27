@@ -2,7 +2,9 @@
 
 namespace App\Twig;
 
+use DateTime;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -11,19 +13,35 @@ use Twig\TwigFunction;
  */
 class GitExtension extends AbstractExtension
 {
+    const SESSION_KEY = 'git_version';
+
+    /**
+     * @var SessionInterface
+     */
+    private $session;
+
     /**
      * @var string
      */
     private $project_dir;
 
     /**
+     * @var string
+     */
+    private $skeleton_version;
+
+    /**
      * GitExtension constructor.
      *
-     * @param string $project_dir
+     * @param SessionInterface $session
+     * @param string           $project_dir
+     * @param string           $skeleton_version
      */
-    public function __construct(string $project_dir)
+    public function __construct(SessionInterface $session, string $project_dir, string $skeleton_version)
     {
+        $this->session = $session;
         $this->project_dir = $project_dir;
+        $this->skeleton_version = $skeleton_version;
     }
 
     /**
@@ -38,18 +56,31 @@ class GitExtension extends AbstractExtension
 
     /**
      * @return string
+     *
+     * @throws \Exception
      */
     public function getGitVersion(): string
     {
-        $path = "$this->project_dir/.git/refs/heads/master";
-        $defaultVersion = 'NaN';
-
         $fileSystem = new Filesystem();
 
-        if (!$fileSystem->exists($path)) {
-            return $defaultVersion;
+        if (!$fileSystem->exists("$this->project_dir/.git") or null === $this->session) {
+            return 'NaN';
         }
 
-        return substr(file_get_contents($path), 0, 7);
+        if (!$this->session->has(self::SESSION_KEY)) {
+            $hash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+            $date = new DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+            $date->setTimezone(new \DateTimeZone('UTC'));
+
+            $gitVersion = sprintf('v%s-dev.%s (%s)', $this->skeleton_version, $hash, $date->format('Y-m-d'));
+
+            $this->session->set(self::SESSION_KEY, $gitVersion);
+            $this->session->save();
+
+            return $gitVersion;
+        }
+
+        return $this->session->get(self::SESSION_KEY);
     }
 }
