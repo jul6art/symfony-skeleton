@@ -57,7 +57,7 @@ class EntityToIdTransformer implements DataTransformerInterface
             return $entity->getId();
         }
 
-        throw new TransformationFailedException((\is_object($entity) ? get_class($entity) : '') . '(' . gettype($entity) . ') is not a valid class for EntityToIdTransformer');
+        throw new TransformationFailedException((\is_object($entity) ? \get_class($entity) : '') . '(' . \gettype($entity) . ') is not a valid class for EntityToIdTransformer');
     }
 
     /**
@@ -97,6 +97,6 @@ class EntityToIdTransformer implements DataTransformerInterface
             return $entities;
         }
 
-        throw new TransformationFailedException(gettype($id) . ' is not a valid type for EntityToIdTransformer');
+        throw new TransformationFailedException(\gettype($id) . ' is not a valid type for EntityToIdTransformer');
     }
 }

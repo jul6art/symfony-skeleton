@@ -475,6 +475,27 @@ IMPERSONATE
 }
 
 /**
+TRANSLATIONS
+ */
+body.translation-layout table .progress {
+  margin-bottom: 0;
+}
+
+body.translation-layout .card .label {
+  padding: 6px 12px;
+}
+
+body.translation-layout .btn-group {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.translation-layout table .actions {
+  min-width: 84px;
+  display: inline-block;
+}
+
+/**
 FIXES
  */
 .dropdown-menu span.block {

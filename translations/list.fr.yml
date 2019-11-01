@@ -1,4 +1,7 @@
 list:
+    translation:
+        overview: 'Vue d''ensemble des traductions'
+        title: 'Liste des traductions'
     test:
         title: 'Liste des tests'
     user:

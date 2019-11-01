@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("%admin_route_prefix%/user", name="admin_")
+ * @Route("%admin_route_prefix%/user", name="admin_user_")
  */
 class UserController extends AbstractFOSRestController
 {
@@ -30,7 +30,7 @@ class UserController extends AbstractFOSRestController
     /**
      * @param UserDataTableTransformer $userDataTableTransformer
      *
-     * @Route("/", name="user_list", methods={"GET"})
+     * @Route("/", name="list", methods={"GET"})
      *
      * @return Response
      *
@@ -57,7 +57,7 @@ class UserController extends AbstractFOSRestController
      * @param UserTransformer          $userTransformer
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/add", name="user_add", methods={"GET","POST"})
+     * @Route("/add", name="add", methods={"GET","POST"})
      *
      * @return Response
      *
@@ -105,7 +105,7 @@ class UserController extends AbstractFOSRestController
      * @param User            $user
      * @param UserTransformer $userTransformer
      *
-     * @Route("/view/{id}", name="user_view", methods={"GET"})
+     * @Route("/view/{id}", name="view", methods={"GET"})
      *
      * @return Response
      *
@@ -133,7 +133,7 @@ class UserController extends AbstractFOSRestController
      * @param UserTransformer          $userTransformer
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"})
      *
      * @return Response
      *
@@ -174,7 +174,7 @@ class UserController extends AbstractFOSRestController
      * @param User                     $user
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/delete/{id}", name="user_delete", methods={"GET"})
+     * @Route("/delete/{id}", name="delete", methods={"GET"})
      *
      * @return Response
      */
@@ -192,7 +192,7 @@ class UserController extends AbstractFOSRestController
      * @param Request $request
      * @param User    $user
      *
-     * @Route("/impersonate/{id}", name="user_impersonate", methods={"GET"})
+     * @Route("/impersonate/{id}", name="impersonate", methods={"GET"})
      *
      * @return Response
      */

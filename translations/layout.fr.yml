@@ -4,5 +4,4 @@ layout:
     settings:
         title:
     version: Version
-    impersonate_title: 'Quitter l''usurpation et'
-    impersonate_text: 'revenir à mon compte'
+    impersonate_text: 'connecté en tant que <br>"%username%"'

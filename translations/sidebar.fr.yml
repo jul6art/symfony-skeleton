@@ -48,6 +48,7 @@ sidebar:
         confirm_delete: 'Popup de confirmation'
         edit_in_place: 'Modification à la volée'
         form_watcher: 'Surveillance des formulaires'
+        maintenance: 'Maintenance'
         manage_settings: 'Gestion des paramètres'
         progressive_web_app: 'Progressive web app'
         switch_locale: 'Multilangue'

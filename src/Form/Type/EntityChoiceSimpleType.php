@@ -94,11 +94,11 @@ class EntityChoiceSimpleType extends AbstractType
 
             if (null === $options['entity_group_by']) {
                 array_map(function ($item) use (&$return, $options) {
-                    $return[call_user_func($options['entity_label'], $item)] = $item['id'];
+                    $return[\call_user_func($options['entity_label'], $item)] = $item['id'];
                 }, $results);
             } else {
                 array_map(function ($item) use (&$return, $options) {
-                    $return[$item['type']][call_user_func($options['entity_label'], $item)] = $item['id'];
+                    $return[$item['type']][\call_user_func($options['entity_label'], $item)] = $item['id'];
                 }, $results);
             }
 
@@ -107,7 +107,7 @@ class EntityChoiceSimpleType extends AbstractType
 
         $queryBuilderNormalizer = function (Options $options, $queryBuilder) {
             if (\is_callable($queryBuilder)) {
-                $queryBuilder = call_user_func($queryBuilder, $options['em']->getRepository($options['class']));
+                $queryBuilder = \call_user_func($queryBuilder, $options['em']->getRepository($options['class']));
             }
 
             return $queryBuilder;

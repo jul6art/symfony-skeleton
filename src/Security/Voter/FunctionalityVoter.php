@@ -20,6 +20,7 @@ class FunctionalityVoter extends AbstractVoter
     public const CONFIRM_DELETE = 'app.voters.functionality.confirm_delete';
     public const EDIT = 'app.voters.functionality.edit';
     public const EDIT_IN_PLACE = 'app.voters.functionality.edit_in_place';
+    public const MAINTENANCE = 'app.voters.functionality.maintenance';
     public const MANAGE_FUNCTIONALITIES = 'app.voters.functionality.manage_functionalities';
     public const MANAGE_SETTINGS = 'app.voters.functionality.manage_settings';
     public const PROGRESSIVE_WEB_APP = 'app.voters.functionality.progressive_web_app';
@@ -42,6 +43,7 @@ class FunctionalityVoter extends AbstractVoter
                 self::CONFIRM_DELETE,
                 self::EDIT,
                 self::EDIT_IN_PLACE,
+                self::MAINTENANCE,
                 self::MANAGE_FUNCTIONALITIES,
                 self::MANAGE_SETTINGS,
                 self::PROGRESSIVE_WEB_APP,
@@ -86,6 +88,8 @@ class FunctionalityVoter extends AbstractVoter
             return $this->canEdit($subject, $token);
         } elseif (self::EDIT_IN_PLACE === $attribute) {
             return $this->canEditInPlace($subject, $token);
+        } elseif (self::MAINTENANCE === $attribute) {
+            return $this->canMaintenance($subject, $token);
         } elseif (self::MANAGE_FUNCTIONALITIES === $attribute) {
             return $this->canManageFunctionalities($subject, $token);
         } elseif (self::MANAGE_SETTINGS === $attribute) {
@@ -188,6 +192,23 @@ class FunctionalityVoter extends AbstractVoter
         }
 
         return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
+    }
+
+    /**
+     * @param string         $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     *
+     * @throws NonUniqueResultException
+     */
+    public function canMaintenance(string $subject, TokenInterface $token): bool
+    {
+        if (!$this->accessDecisionManager->decide($token, ['ROLE_ADMIN'])) {
+            return false;
+        }
+
+        return $this->functionalityManager->isActive(Functionality::FUNC_MAINTENANCE);
     }
 
     /**

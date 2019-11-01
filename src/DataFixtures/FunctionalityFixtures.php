@@ -28,6 +28,7 @@ class FunctionalityFixtures extends Fixture
             Functionality::FUNC_EDIT_IN_PLACE,
             Functionality::FUNC_CONFIRM_DELETE,
             Functionality::FUNC_FORM_WATCHER,
+            Functionality::FUNC_MAINTENANCE,
             Functionality::FUNC_MANAGE_SETTINGS,
             Functionality::FUNC_PROGRESSIVE_WEB_APP,
             Functionality::FUNC_SWITCH_LOCALE,

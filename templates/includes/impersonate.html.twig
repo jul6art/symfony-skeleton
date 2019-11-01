@@ -2,10 +2,12 @@
     <div class="info-box-3 bg-{{ theme_name() }} info-impersonate visible-lg visible-md" data-url="{{ path('admin_user_list', {'_switch_user': '_exit'}) }}">
         <div class="icon">
             <i class="material-icons">undo</i>
+
         </div>
         <div class="content">
-            <div class="text">{{ 'layout.impersonate_title'|trans({}, 'layout') }}</div>
-            <div class="text"><small>{{ 'layout.impersonate_text'|trans({}, 'layout') }}</small></div>
+            <div class="text">
+                <p>{{ 'layout.impersonate_text'|trans({'%username%': app.user.fullname}, 'layout')|raw }}</p>
+            </div>
         </div>
     </div>
 {% endif %}

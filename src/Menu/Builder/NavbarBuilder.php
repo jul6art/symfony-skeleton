@@ -52,6 +52,13 @@ class NavbarBuilder
         $this->authorizationChecker = $authorizationChecker;
     }
 
+    /**
+     * @param array $options
+     *
+     * @return ItemInterface
+     *
+     * @throws NonUniqueResultException
+     */
     public function createMenu(array $options)
     {
         $menu = $this->factory->createItem('root', [
@@ -68,7 +75,9 @@ class NavbarBuilder
             ->menuImpersonate($menu)
             ->menuHome($menu)
             ->menuUsers($menu)
-            ->menuTests($menu);
+            ->menuTests($menu)
+            ->menuTranslate($menu)
+            ->menuMaintenance($menu);
 
         return $menu;
     }
@@ -148,7 +157,7 @@ class NavbarBuilder
                 'route' => 'admin_test_list',
             ])->setExtras([
                 'translation_domain' => 'navbar',
-                'activated_routes' => ['admin_test_index', 'admin_test_edit', 'admin_test_view'],
+                'activated_routes' => ['admin_test_edit', 'admin_test_view'],
                 'badge' => $badge,
             ])->setLinkAttribute('class', 'waves-effect waves-block');
         }
@@ -201,7 +210,7 @@ class NavbarBuilder
                 'route' => 'admin_user_list',
             ])->setExtras([
                 'translation_domain' => 'navbar',
-                'activated_routes' => ['admin_user_index', 'admin_user_edit', 'admin_user_view'],
+                'activated_routes' => ['admin_user_edit', 'admin_user_view'],
                 'badge' => $badge,
             ])->setLinkAttribute('class', 'waves-effect waves-block');
         }
@@ -210,6 +219,57 @@ class NavbarBuilder
             $menu['navbar.user.title']->addChild('navbar.user.add', [
                 'route' => 'admin_user_add',
             ])->setExtras([
+                'translation_domain' => 'navbar',
+            ])->setLinkAttribute('class', 'waves-effect waves-block');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return self
+     */
+    private function menuTranslate(ItemInterface $menu): self
+    {
+        if ($this->authorizationChecker->isGranted(DefaultVoter::TRANSLATE)) {
+            $menu->addChild('navbar.translation.title', [
+                'uri' => 'javascript:void(0);',
+            ])->setExtras([
+                'icon' => 'language',
+                'translation_domain' => 'navbar',
+                'activated_routes' => ['lexik_translation_overview', 'lexik_translation_grid', 'lexik_translation_new'],
+            ])->setLinkAttribute('class', 'waves-effect waves-block menu-toggle');
+
+            $menu['navbar.translation.title']->addChild('navbar.translation.overview', [
+                'route' => 'lexik_translation_overview',
+            ])->setExtras([
+                'translation_domain' => 'navbar',
+            ])->setLinkAttribute('class', 'waves-effect waves-block');
+
+            $menu['navbar.translation.title']->addChild('navbar.translation.list', [
+                'route' => 'lexik_translation_grid',
+            ])->setExtras([
+                'translation_domain' => 'navbar',
+            ])->setLinkAttribute('class', 'waves-effect waves-block');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     *
+     * @return self
+     */
+    private function menuMaintenance(ItemInterface $menu): self
+    {
+        if ($this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE)) {
+            $menu->addChild('navbar.maintenance', [
+                'route' => 'admin_maintenance_overview',
+            ])->setExtras([
+                'icon' => 'build',
                 'translation_domain' => 'navbar',
             ])->setLinkAttribute('class', 'waves-effect waves-block');
         }

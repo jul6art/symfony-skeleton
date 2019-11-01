@@ -1,10 +1,15 @@
 navbar:
     title: 'NAVIGATION PRINCIPALE'
     home: 'Accueil'
+    maintenance: 'Maintenance'
     impersonate: 'Revenir à mon compte'
     profile: 'Mon profil'
     change_password: 'Sécurité'
     logout: 'Déconnecter'
+    translation:
+        title: Traductions
+        list: 'Liste des traductions'
+        overview: 'Vue d''ensemble'
     test:
         title: Tests
         list: 'Liste des tests'

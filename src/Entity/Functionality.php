@@ -22,6 +22,7 @@ class Functionality
     public const FUNC_EDIT_IN_PLACE = 'func.edit_in_place';
     public const FUNC_CONFIRM_DELETE = 'func.confirm_delete';
     public const FUNC_FORM_WATCHER = 'func.form_watcher';
+    public const FUNC_MAINTENANCE = 'func.maintenance';
     public const FUNC_MANAGE_SETTINGS = 'func.manage_settings';
     public const FUNC_PROGRESSIVE_WEB_APP = 'func.progressive_web_app';
     public const FUNC_SWITCH_LOCALE = 'func.switch_locale';

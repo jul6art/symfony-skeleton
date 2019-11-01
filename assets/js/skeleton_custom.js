@@ -52,31 +52,23 @@ $.App = {
     });
 
     $('[data-toggle="grid-expand"]').on("click", function() {
-      if (
-        $(this)
-          .closest(".card")
-          .hasClass("collapsed")
-      ) {
+      var button = $(this);
+
+      if (button.closest(".card").hasClass("collapsed")) {
         collapseButtonToggle(
-          $(this)
-            .closest(".card")
-            .find('[data-toggle="grid-collapse"]')
+          button.closest(".card").find('[data-toggle="grid-collapse"]')
         );
       }
 
-      $(this)
-        .closest(".card")
-        .toggleClass("expanded");
+      button.closest(".card").toggleClass("expanded");
 
       setTimeout(function() {
-        $(this)
+        button
           .find(".label-toggle")
           .text(
-            $(this)
-              .closest(".card")
-              .hasClass("expanded")
-              ? $(this).data("state-off-label")
-              : $(this).data("state-on-label")
+            button.closest(".card").hasClass("expanded")
+              ? button.data("state-off-label")
+              : button.data("state-on-label")
           );
       }, 300);
     });

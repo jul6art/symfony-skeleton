@@ -32,6 +32,7 @@ parameters:
         - func.confirm_delete
         - func.edit_in_place
         - func.form_watcher
+        - func.maintenance
         - func.manage_settings
         - func.progressive_web_app
         - func.switch_locale

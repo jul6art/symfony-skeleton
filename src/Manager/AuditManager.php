@@ -64,7 +64,7 @@ class AuditManager extends AbstractManager
      */
     public function audit(string $level, $entity, array $diffs): self
     {
-        $meta = $this->entityManager->getClassMetadata(get_class($entity));
+        $meta = $this->entityManager->getClassMetadata(\get_class($entity));
 
         $blame = $this->helper->blame();
 

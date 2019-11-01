@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("%admin_route_prefix%/test", name="admin_")
+ * @Route("%admin_route_prefix%/test", name="admin_test_")
  */
 class TestController extends AbstractFOSRestController
 {
@@ -32,7 +32,7 @@ class TestController extends AbstractFOSRestController
     /**
      * @param TestDataTableTransformer $testDataTableTransformer
      *
-     * @Route("/", name="test_list", methods={"GET"})
+     * @Route("/", name="list", methods={"GET"})
      *
      * @return Response
      *
@@ -58,7 +58,7 @@ class TestController extends AbstractFOSRestController
      * @param Request         $request
      * @param TestTransformer $testTransformer
      *
-     * @Route("/add", name="test_add", methods={"GET","POST"})
+     * @Route("/add", name="add", methods={"GET","POST"})
      *
      * @return Response
      *
@@ -96,7 +96,7 @@ class TestController extends AbstractFOSRestController
      * @param Test            $test
      * @param TestTransformer $testTransformer
      *
-     * @Route("/view/{id}", name="test_view", methods={"GET"})
+     * @Route("/view/{id}", name="view", methods={"GET"})
      *
      * @return Response
      *
@@ -124,7 +124,7 @@ class TestController extends AbstractFOSRestController
      * @param TestTransformer          $testTransformer
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/edit/{id}", name="test_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"})
      *
      * @return Response
      *
@@ -165,7 +165,7 @@ class TestController extends AbstractFOSRestController
      * @param Test                     $test
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/delete/{id}", name="test_delete", methods={"GET"})
+     * @Route("/delete/{id}", name="delete", methods={"GET"})
      *
      * @return Response
      */

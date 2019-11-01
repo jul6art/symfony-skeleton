@@ -1,8 +1,8 @@
 {% extends 'layout/layout_base.html.twig' %}
 
-{% block page_title %}
-    {{ 'title.translate'|trans({}, 'title') }}
-{% endblock page_title %}
+{% block body_class %}
+    {{ parent() }} translation-layout
+{% endblock body_class %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,11 +14,7 @@
 {% endblock stylesheets %}
 
 {% block content %}
-    <div class="row clearfix">
-        <div class="table-responsive">
-            {% block lexik_content %}{% endblock lexik_content %}
-        </div>
-    </div>
+    {% block lexik_content %}{% endblock lexik_content %}
 {% endblock content %}
 
 {% block javascripts %}
