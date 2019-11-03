@@ -13,7 +13,7 @@
         </li>
     {% endif %}
     <li class="active">
-        <i class="material-icons">add_circle_outline</i> <span class="hidden-xs">{{ 'breadcrumb.user.add'|trans({}, 'breadcrumb')|raw }}</span>
+        <i class="material-icons">add_circle_outline</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.user.add', {}, 'breadcrumb') }}>{{ 'breadcrumb.user.add'|trans({}, 'breadcrumb')|raw }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -28,7 +28,7 @@
 {% endblock page_actions %}
 
 {% block form_title %}
-    {{ 'form.user.add.title'|trans({}, 'form')|raw }}
+    <span{{ translate_in_place('form.user.add.title', {}, 'form') }}>{{ 'form.user.add.title'|trans({}, 'form') }}</span>
 {% endblock form_title %}
 
 {% block form_content %}

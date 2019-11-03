@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.test.view'|trans({'%name%': test.name}, 'breadcrumb')|raw }}</span>
+        <i class="material-icons">visibility</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.view', {'%name%': test.name}, 'breadcrumb') }}>{{ 'breadcrumb.test.view'|trans({'%name%': test.name}, 'breadcrumb')|raw }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -26,7 +26,7 @@
 {% endblock page_actions %}
 
 {% block details_title %}
-    {{ 'details.test.title'|trans({'%name%': test.name}, 'details')|raw }}
+    <span{{ translate_in_place('details.test.title', {'%name%': test.name}, 'details') }}>{{ 'details.test.title'|trans({'%name%': test.name}, 'details')|raw }}</span>
 {% endblock details_title %}
 
 {% block details_content %}

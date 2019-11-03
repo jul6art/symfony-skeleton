@@ -1,6 +1,8 @@
 notification:
     cache:
         cleared: 'Cache vidé. Taille avant: %size%'
+    translation:
+        edited: 'La traduction a bien été modifié'
     test:
         added: 'Le test a bien été ajouté'
         edited: 'Le test a bien été modifié'

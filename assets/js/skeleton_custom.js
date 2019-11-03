@@ -331,18 +331,26 @@ $.App = {
                   value: editor.getContent()
                 },
                 success: function(result) {
-                  //toastr
-
-                  $.App.unblockUI();
                   editor.setContent(
                     toggleParameters(editor.getContent(), parameters, false)
                   );
                   editor.hide();
+                  $.App.unblockUI();
+                  $.App.notify(
+                    "bg-" + THEME_NAME,
+                    WYSIWYG_TRANSLATIONS.success,
+                    TOASTR_POSITION.vertical,
+                    TOASTR_POSITION.horizontal
+                  );
                 },
                 error: function(error) {
-                  //toastt
-
                   $.App.unblockUI();
+                  $.App.notify(
+                    "bg-red",
+                    DIALOG_TRANSLATIONS.ajax_error_text,
+                    TOASTR_POSITION.vertical,
+                    TOASTR_POSITION.horizontal
+                  );
                 }
               });
             }

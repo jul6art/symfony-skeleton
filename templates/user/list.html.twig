@@ -4,10 +4,10 @@
 
 {% block breadcrumb %}
     <li class="active">
-        <i class="material-icons">supervisor_account</i> <span class="hidden-xs">{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">supervisor_account</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.user.title', {}, 'breadcrumb') }}>{{ 'breadcrumb.user.title'|trans({}, 'breadcrumb') }}</span>
     </li>
     <li class="active">
-        <i class="material-icons">list</i> <span class="hidden-xs">{{ 'breadcrumb.user.list'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">list</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.user.list', {}, 'breadcrumb') }}>{{ 'breadcrumb.user.list'|trans({}, 'breadcrumb') }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -37,7 +37,7 @@
 {% endblock page_actions %}
 
 {% block table_title %}
-    <span>{{ 'list.user.title'|trans({}, 'list') }}</span>
+    <span{{ translate_in_place('list.user.title', {}, 'list') }}>{{ 'list.user.title'|trans({}, 'list') }}</span>
 {% endblock table_title %}
 
 {% block table_content %}
