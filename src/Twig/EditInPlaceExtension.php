@@ -74,9 +74,12 @@ class EditInPlaceExtension extends AbstractExtension
     }
 
     /**
+     * @param string $key
+     * @param string $domain
+     *
      * @return string
      */
-    public function translate(): string
+    public function translate(string $key, string $domain): string
     {
         $request = $this->stack->getMasterRequest();
 
@@ -91,7 +94,7 @@ class EditInPlaceExtension extends AbstractExtension
                 $this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)
                 and $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)
             ) {
-                $attributes = ' data-provide=wysiwyg data-inline data-translate';
+                $attributes = " data-provide=wysiwyg data-inline data-translate data-domain=$domain data-key=$key";
             }
 
             $request->request->set('translate_in_place', $attributes);

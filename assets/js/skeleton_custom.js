@@ -241,29 +241,94 @@ $.App = {
     if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== "undefined") {
       tinymce.init({
         selector: '[data-provide="wysiwyg"][data-inline][data-edit]',
+        body_class: "wysiwyg-edit-in-place",
+        skin: "oxide-dark",
         language: WYSIWYG_LOCALE,
+        // plugins: [
+        //   "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        //   "searchreplace wordcount visualblocks visualchars code fullscreen",
+        //   "insertdatetime media nonbreaking save",
+        //   "emoticons template paste textpattern imagetools"
+        // ],
         plugins: [
-          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "advlist autolink lists link charmap print preview hr anchor pagebreak",
           "searchreplace wordcount visualblocks visualchars code fullscreen",
-          "insertdatetime media nonbreaking save",
-          "emoticons template paste textpattern imagetools"
+          "insertdatetime nonbreaking save",
+          "emoticons template paste textpattern"
         ],
         inline: true,
         powerpaste_word_import: "clean",
-        powerpaste_html_import: "clean"
+        powerpaste_html_import: "clean",
+        auto_focus: false,
+        init_instance_callback: function(editor) {
+          let baseElement = editor.bodyElement;
+          editor.on("focus", function(e) {
+            console.log("Editor got focus!");
+          });
+        }
       });
 
       tinymce.init({
         selector: '[data-provide="wysiwyg"][data-inline][data-translate]',
-        language: WYSIWYG_LOCALE,
-        plugins: [
-          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-          "searchreplace wordcount visualblocks visualchars code fullscreen",
-          "insertdatetime media nonbreaking save",
-          "emoticons template paste textpattern imagetools"
-        ],
         inline: true,
-        toolbar: "undo redo"
+        auto_focus: false,
+        skin: "oxide-dark",
+        language: WYSIWYG_LOCALE,
+        toolbar: "undo redo translateInPlaceSave translateInPlaceCancel",
+        // plugins: [
+        //   "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        //   "searchreplace wordcount visualblocks visualchars code fullscreen",
+        //   "insertdatetime media nonbreaking save",
+        //   "emoticons template paste textpattern imagetools"
+        // ],
+        plugins: [
+          "advlist autolink lists link charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime nonbreaking save",
+          "emoticons template paste textpattern"
+        ],
+        setup: editor => {
+          let baseElement = $(editor.getElement());
+          baseElement.on("click", function() {
+            editor.show();
+          });
+
+          editor.ui.registry.addButton("translateInPlaceSave", {
+            text: "Enregistrer",
+            onAction: () => {
+              this.blockUI();
+
+              console.log(editor);
+              console.log(editor.bodyElement);
+
+              $.ajax({
+                url: Routing.generate("admin_translation_edit", {
+                  domain: $(editor.bodyElement).data("domain"),
+                  key: $(editor.bodyElement).data("key")
+                }),
+                method: "POST",
+                data: {
+                  value: editor.getContent()
+                },
+                success: function(result) {
+                  //toastt
+
+                  $.App.unblockUI();
+                },
+                error: function(error) {
+                  //toastt
+
+                  $.App.unblockUI();
+                }
+              });
+            }
+          });
+
+          editor.ui.registry.addButton("translateInPlaceCancel", {
+            text: "Fermer",
+            onAction: () => editor.hide()
+          });
+        }
       });
     }
   },

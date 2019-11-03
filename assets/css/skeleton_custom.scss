@@ -418,13 +418,16 @@ RECAPTCHA
 }
 
 /**
-CKEDITOR
+WYSIWYG
  */
 form .tox-tinymce[role="application"] {
   margin-bottom: 9px !important;
   min-height: 340px;
 }
 
+.tox-tinymce[role="application"] {
+  z-index: 100;
+}
 /**
 DATEPICKER
  */
