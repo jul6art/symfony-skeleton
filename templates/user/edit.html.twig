@@ -28,7 +28,7 @@
 {% endblock page_actions %}
 
 {% block form_title %}
-    <span{{ translate_in_place('form.user.edit.title', {'%name%': user.name}, 'form') }}>{{ 'form.test.edit.title'|trans({'%name%': test.name}, 'form')|raw }}</span>
+    <span{{ translate_in_place('form.user.edit.title', {'%name%': user.name}, 'form') }}>{{ 'form.user.edit.title'|trans({'%name%': user.name}, 'form')|raw }}</span>
 {% endblock form_title %}
 
 {% block form_content %}
