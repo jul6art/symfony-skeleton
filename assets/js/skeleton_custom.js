@@ -239,11 +239,28 @@ $.App = {
   },
   editInPlace: function() {
     if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== "undefined") {
+      let toggleParameters = function(string, parameters, abstract = true) {
+        $.each(parameters, function(key, value) {
+          value = value.replace(/&nbsp;/g, " ");
+          if (abstract) {
+            string = string.replace(new RegExp(value, "g"), key);
+          } else {
+            string = string.replace(new RegExp(key, "g"), value);
+          }
+        });
+
+        return string;
+      };
+
       tinymce.init({
         selector: '[data-provide="wysiwyg"][data-inline][data-edit]',
-        body_class: "wysiwyg-edit-in-place",
+        inline: true,
+        auto_focus: false,
+        entity_encoding: "raw",
         skin: "oxide-dark",
         language: WYSIWYG_LOCALE,
+        powerpaste_word_import: "clean",
+        powerpaste_html_import: "clean",
         // plugins: [
         //   "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         //   "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -255,25 +272,18 @@ $.App = {
           "searchreplace wordcount visualblocks visualchars code fullscreen",
           "insertdatetime nonbreaking save",
           "emoticons template paste textpattern"
-        ],
-        inline: true,
-        powerpaste_word_import: "clean",
-        powerpaste_html_import: "clean",
-        auto_focus: false,
-        init_instance_callback: function(editor) {
-          let baseElement = editor.bodyElement;
-          editor.on("focus", function(e) {
-            console.log("Editor got focus!");
-          });
-        }
+        ]
       });
 
       tinymce.init({
         selector: '[data-provide="wysiwyg"][data-inline][data-translate]',
         inline: true,
         auto_focus: false,
+        entity_encoding: "raw",
         skin: "oxide-dark",
         language: WYSIWYG_LOCALE,
+        powerpaste_word_import: "clean",
+        powerpaste_html_import: "clean",
         toolbar: "undo redo translateInPlaceSave translateInPlaceCancel",
         // plugins: [
         //   "advlist autolink lists link image charmap print preview hr anchor pagebreak",
@@ -289,8 +299,21 @@ $.App = {
         ],
         setup: editor => {
           let baseElement = $(editor.getElement());
+          let parameters = baseElement.data("parameters");
           baseElement.on("click", function() {
             editor.show();
+          });
+
+          editor.on("focus", function() {
+            editor.setContent(
+              toggleParameters(editor.getContent(), parameters)
+            );
+          });
+
+          editor.on("blur", function() {
+            editor.setContent(
+              toggleParameters(editor.getContent(), parameters, false)
+            );
           });
 
           editor.ui.registry.addButton("translateInPlaceSave", {
@@ -298,22 +321,23 @@ $.App = {
             onAction: () => {
               this.blockUI();
 
-              console.log(editor);
-              console.log(editor.bodyElement);
-
               $.ajax({
                 url: Routing.generate("admin_translation_edit", {
-                  domain: $(editor.bodyElement).data("domain"),
-                  key: $(editor.bodyElement).data("key")
+                  domain: baseElement.data("domain"),
+                  key: baseElement.data("key")
                 }),
                 method: "POST",
                 data: {
                   value: editor.getContent()
                 },
                 success: function(result) {
-                  //toastt
+                  //toastr
 
                   $.App.unblockUI();
+                  editor.setContent(
+                    toggleParameters(editor.getContent(), parameters, false)
+                  );
+                  editor.hide();
                 },
                 error: function(error) {
                   //toastt
@@ -326,7 +350,12 @@ $.App = {
 
           editor.ui.registry.addButton("translateInPlaceCancel", {
             text: "Fermer",
-            onAction: () => editor.hide()
+            onAction: () => {
+              editor.setContent(
+                toggleParameters(editor.getContent(), parameters, false)
+              );
+              editor.hide();
+            }
           });
         }
       });

@@ -18,7 +18,7 @@
         </li>
     {% endif %}
     <li class="active">
-        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'breadcrumb.test.edit'|trans({'%name%': test.name}, 'breadcrumb')|raw }}</span>
+        <i class="material-icons">edit</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.edit', {'%name%': test.name}, 'breadcrumb') }}>{{ 'breadcrumb.test.edit'|trans({'%name%': test.name}, 'breadcrumb')|raw }}</span>
     </li>
 {% endblock breadcrumb %}
 

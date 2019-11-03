@@ -425,9 +425,10 @@ form .tox-tinymce[role="application"] {
   min-height: 340px;
 }
 
-.tox-tinymce[role="application"] {
+.tox-tinymce[role="application"].tox-tinymce-inline {
   z-index: 100;
 }
+
 /**
 DATEPICKER
  */

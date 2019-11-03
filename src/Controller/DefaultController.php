@@ -7,6 +7,7 @@ use App\Entity\Setting;
 use App\Manager\FunctionalityManagerTrait;
 use App\Manager\SettingManagerTrait;
 use App\Manager\TestManagerTrait;
+use App\Manager\TranslationManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
@@ -17,6 +18,7 @@ use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Lexik\Bundle\TranslationBundle\Entity\Translation;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -37,6 +39,7 @@ class DefaultController extends AbstractFOSRestController
     use RefererServiceTrait;
     use SettingManagerTrait;
     use TestManagerTrait;
+    use TranslationManagerTrait;
     use UserManagerTrait;
 
     /**
@@ -196,6 +199,42 @@ class DefaultController extends AbstractFOSRestController
         $this->settingManager
             ->update($setting, $value)
             ->save($setting);
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'success' => true,
+            ]);
+        }
+
+        return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Setting $setting
+     * @param string  $value
+     *
+     * @Route("%admin_route_prefix%/translation/edit/{domain}/{key}", name="admin_translation_edit", methods={"POST"}, options={"expose"=true})
+     *
+     * @return Response
+     */
+    public function translate(Request $request, string $domain, string $key): Response
+    {
+        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class);
+
+        $referer = $this->refererService->getFormReferer($request, 'translate');
+
+        $translations = $this->translationManager->findByDomainAndKeyAndLocale($domain, $key, $request->getLocale());
+
+        $this->translationManager
+            ->updateMultiple($translations, $request->request->get('value'))
+            ->flush();
+
+        $cacheDir = dirname($this->getParameter('kernel.cache_dir'));
+        foreach (['prod', 'dev'] as $env) {
+            array_map('unlink', glob("$cacheDir/$env/translations/*"));
+            array_map('unlink', glob("$cacheDir/$env/app*ProjectContainer.php"));
+        }
 
         if ($request->isXmlHttpRequest()) {
             return $this->json([

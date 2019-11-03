@@ -4,10 +4,10 @@
 
 {% block breadcrumb %}
     <li class="active">
-        <i class="material-icons">print</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.title', 'breadcrumb') }}>{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">print</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.title', {}, 'breadcrumb') }}>{{ 'breadcrumb.test.title'|trans({}, 'breadcrumb') }}</span>
     </li>
     <li class="active">
-        <i class="material-icons">list</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.list', 'breadcrumb') }}>{{ 'breadcrumb.test.list'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">list</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.test.list', {}, 'breadcrumb') }}>{{ 'breadcrumb.test.list'|trans({}, 'breadcrumb') }}</span>
     </li>
 {% endblock breadcrumb %}
 
@@ -37,7 +37,7 @@
 {% endblock page_actions %}
 
 {% block table_title %}
-    <span{{ translate_in_place('list.test.title', 'list') }}>{{ 'list.test.title'|trans({}, 'list') }}</span>
+    <span{{ translate_in_place('list.test.title', {}, 'list') }}>{{ 'list.test.title'|trans({}, 'list') }}</span>
 {% endblock table_title %}
 
 {% block table_content %}

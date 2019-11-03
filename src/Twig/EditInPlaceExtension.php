@@ -74,34 +74,35 @@ class EditInPlaceExtension extends AbstractExtension
     }
 
     /**
-     * @param string $key
-     * @param string $domain
+     * @param string       $key
+     * @param array|string $parameters
+     * @param string       $domain
      *
      * @return string
      */
-    public function translate(string $key, string $domain): string
+    public function translate(string $key, array $parameters, string $domain): string
     {
         $request = $this->stack->getMasterRequest();
+        $parametersJSON = json_encode($parameters, JSON_UNESCAPED_UNICODE);
+        $parametersJSON = str_replace(' ', '&nbsp;', $parametersJSON);
+        $requestKey = sprintf('translate_in_place_%s_%s_%s', $domain, $key, $parametersJSON);
 
         if (null === $request) {
             return '';
         }
 
-        if (!$request->request->has('translate_in_place')) {
+        if (!$request->request->has($requestKey)) {
             $attributes = '';
 
-            if (
-                $this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)
-                and $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class)
-            ) {
-                $attributes = " data-provide=wysiwyg data-inline data-translate data-domain=$domain data-key=$key";
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)) {
+                $attributes = " data-provide=wysiwyg data-inline data-translate data-domain=$domain data-key=$key data-parameters=$parametersJSON";
             }
 
-            $request->request->set('translate_in_place', $attributes);
+            $request->request->set($requestKey, $attributes);
 
             return $attributes;
         }
 
-        return $request->request->get('translate_in_place');
+        return $request->request->get($requestKey);
     }
 }

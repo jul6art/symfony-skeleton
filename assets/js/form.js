@@ -2129,6 +2129,7 @@ $.Form = {
   wysiwyg: function() {
     tinymce.init({
       selector: '[data-provide="wysiwyg"]:not([data-inline])',
+      skin: "oxide-dark",
       language: WYSIWYG_LOCALE,
       plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
