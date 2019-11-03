@@ -75,7 +75,7 @@ class EditInPlaceExtensionTest extends TestCase
      */
     public function testTranslate(): void
     {
-        $result = $this->editInPlaceExtension->translate('key', 'doomain');
+        $result = $this->editInPlaceExtension->translate('key', ['key' => 'value'], 'domain');
 
         $this->assertEquals(0, \strlen($result));
 
