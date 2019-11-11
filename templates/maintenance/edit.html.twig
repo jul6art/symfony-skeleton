@@ -1,0 +1,71 @@
+{% extends 'layout/layout_form.html.twig' %}
+
+{% block page_title %}
+    {{ 'title.maintenance.edit'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block breadcrumb %}
+    {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::OVERVIEW'), entity) %}
+        <li class="active">
+            <a href="{{ path('admin_maintenance_overview') }}">
+                <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.maintenance.title'|trans({}, 'breadcrumb') }}</span>
+            </a>
+        </li>
+    {% endif %}
+    <li class="active">
+        <i class="material-icons">edit</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.maintenance.edit', {}, 'breadcrumb') }}>{{ 'breadcrumb.maintenance.edit'|trans({}, 'breadcrumb')|raw }}</span>
+    </li>
+{% endblock breadcrumb %}
+
+{% block page_actions %}
+    {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::OVERVIEW'), entity) %}
+        <div class="pull-right btn-group">
+            <a class="btn bg-blue-grey white waves-effect" href="{{ path('admin_maintenance_overview') }}">
+                <i class="material-icons">arrow_left</i> <span class="hidden-xs">{{ 'button.back'|trans({}, 'button') }}</span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock page_actions %}
+
+{% block form_title %}
+    <span{{ translate_in_place('form.maintenance.edit.title', {}, 'form') }}>{{ 'form.maintenance.edit.title'|trans({}, 'form')|raw }}</span>
+{% endblock form_title %}
+
+{% block form_content %}
+    {{ include('maintenance/_form.html.twig') }}
+{% endblock form_content %}
+
+{% block form_footer %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+            <div class="btn-group btn-group-justified">
+                {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::OVERVIEW'), entity) %}
+                    <div class="btn">
+                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('admin_test_list')) }}">
+                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="btn">
+                    <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
+                            {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' }}>
+                        <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save'|trans({}, 'button') }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock form_footer %}
+
+{% block form_after %}
+    {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::AUDIT'), entity) %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\Maintenance',
+                    id: entity.id,
+                })) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock form_after %}

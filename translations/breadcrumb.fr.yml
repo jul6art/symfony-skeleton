@@ -8,6 +8,10 @@ breadcrumb:
         overview: 'Vue d''ensemble'
         list: 'Liste des traductions'
         title: 'Traductions'
+    maintenance:
+        overview: 'Vue d''ensemble'
+        edit: 'Modifier la maintenance'
+        title: 'Maintenance'
     test:
         add: 'Créer un test'
         edit: 'Modifier le test <strong>%name%</strong>'

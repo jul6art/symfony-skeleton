@@ -10,6 +10,8 @@ button:
         select: 'Tout sélectionner'
         unselect: 'Tout désélectionner'
         delete: 'Supprimer la sélection'
+    maintenance:
+        ip_detect: 'Ajouter mon adresse IP'
     translation:
         overview: 'Vue d''ensemble'
         list: 'Liste des traductions'

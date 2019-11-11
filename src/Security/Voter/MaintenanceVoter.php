@@ -20,13 +20,9 @@ class MaintenanceVoter extends AbstractVoter
     use FunctionalityManagerTrait;
     use SettingManagerTrait;
 
-    public const ADD = 'app.voters.maintenance.add';
     public const AUDIT = 'app.voters.maintenance.audit';
-    public const DELETE = 'app.voters.maintenance.delete';
-    public const DELETE_MULTIPLE = 'app.voters.maintenance.delete_mutiple';
     public const EDIT = 'app.voters.maintenance.edit';
-    public const LIST = 'app.voters.maintenance.list';
-    public const VIEW = 'app.voters.maintenance.view';
+    public const OVERVIEW = 'app.voters.maintenance.overview';
 
     /**
      * @param string $attribute
@@ -38,13 +34,9 @@ class MaintenanceVoter extends AbstractVoter
     {
         if (
             !\in_array($attribute, [
-                self::ADD,
                 self::AUDIT,
-                self::DELETE,
-                self::DELETE_MULTIPLE,
                 self::EDIT,
-                self::LIST,
-                self::VIEW,
+                self::OVERVIEW,
             ])
         ) {
             return false;
@@ -70,33 +62,14 @@ class MaintenanceVoter extends AbstractVoter
         }
 
         // ... (check conditions and return true to grant permission) ...
-        if (self::ADD === $attribute) {
-            return $this->canAdd($subject, $token);
-        } elseif (self::AUDIT === $attribute) {
+        if (self::AUDIT === $attribute) {
             return $this->canAudit($subject, $token);
-        } elseif (self::DELETE === $attribute) {
-            return $this->canDelete($subject, $token);
-        } elseif (self::DELETE_MULTIPLE === $attribute) {
-            return $this->canDeleteMultiple($subject, $token);
         } elseif (self::EDIT === $attribute) {
             return $this->canEdit($subject, $token);
-        } elseif (self::LIST === $attribute) {
-            return $this->canList($subject, $token);
-        } elseif (self::VIEW === $attribute) {
-            return $this->canView($subject, $token);
+        } elseif (self::OVERVIEW === $attribute) {
+            return $this->canOverview($subject, $token);
         }
 
-        return false;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canAdd(string $subject, TokenInterface $token): bool
-    {
         return false;
     }
 
@@ -110,7 +83,7 @@ class MaintenanceVoter extends AbstractVoter
      */
     public function canAudit($subject, TokenInterface $token): bool
     {
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
+        if (!$this->functionalityManager->isActive(Functionality::FUNC_MAINTENANCE)) {
             return false;
         }
 
@@ -127,43 +100,16 @@ class MaintenanceVoter extends AbstractVoter
      * @param TokenInterface $token
      *
      * @return bool
-     */
-    public function canDelete(Maintenance $subject, TokenInterface $token): bool
-    {
-        return false;
-    }
-
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
      *
-     * @return bool
-     */
-    public function canDeleteMultiple(string $subject, TokenInterface $token): bool
-    {
-        return false;
-    }
-
-    /**
-     * @param Maintenance    $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
+     * @throws NonUniqueResultException
      */
     public function canEdit(Maintenance $subject, TokenInterface $token): bool
     {
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
-    }
+        if (!$this->functionalityManager->isActive(Functionality::FUNC_MAINTENANCE)) {
+            return false;
+        }
 
-    /**
-     * @param string         $subject
-     * @param TokenInterface $token
-     *
-     * @return bool
-     */
-    public function canList(string $subject, TokenInterface $token): bool
-    {
-        return false;
+        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
     }
 
     /**
@@ -171,9 +117,11 @@ class MaintenanceVoter extends AbstractVoter
      * @param TokenInterface $token
      *
      * @return bool
+     *
+     * @throws NonUniqueResultException
      */
-    public function canView(Maintenance $subject, TokenInterface $token): bool
+    public function canOverview(Maintenance $subject, TokenInterface $token): bool
     {
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+        return $this->canEdit($subject, $token);
     }
 }

@@ -2,6 +2,9 @@ dh_doctrine_audit:
     # Configuration reference available at:
     # https://github.com/DamienHarper/DoctrineAuditBundle#configuration
     entities:
+        App\Entity\Maintenance:
+            ignored_columns:
+                - updatedAt
         App\Entity\User:
             ignored_columns:
                 - emailCanonical

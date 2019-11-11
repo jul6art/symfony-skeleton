@@ -383,7 +383,11 @@
     {%- if form.vars.readonly ?? false -%}
         {%- set attr = attr|merge({'readonly': true}) -%}
     {%- endif -%}
-    <div class="form-group form-float{% if not valid %} has-error{% endif %}">
+    {% set float = true %}
+    {% if form.vars.no_float ?? false or form.vars.addon_left ?? false or form.vars.addon_right ?? false %}
+        {% set float = false %}
+    {% endif %}
+    <div class="form-group {{ float ? 'form-float' : 'form-no-float' }}{% if not valid %} has-error{% endif %}">
         {{- block('switch_label') -}}
         <div class="{{ form.vars.no_line ?? false ? 'form-no-line' : 'form-line' }}">
             <div class="switch">

@@ -9,6 +9,7 @@ use App\Entity\Maintenance;
  */
 class MaintenanceEvent extends AbstractEvent
 {
+    public const VIEWED = 'event.maintenance.viewed';
     public const ADDED = 'event.maintenance.added';
     public const EDITED = 'event.maintenance.edited';
     public const DELETED = 'event.maintenance.deleted';

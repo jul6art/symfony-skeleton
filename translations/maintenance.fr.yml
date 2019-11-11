@@ -1,0 +1,4 @@
+maintenance:
+    view:
+        title: 'Le site est en maintenance'
+        content: 'Nous effectuons actuellement des mises à jour. Merci de réessayer plus tard.'

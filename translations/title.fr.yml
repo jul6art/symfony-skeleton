@@ -7,6 +7,10 @@ title:
         profile: 'Mon profil'
         edit: 'Mon profil | Modification'
         change_password: 'Mon profil | Modifier mon mot de passe'
+    maintenance:
+        overview: 'Maintenance | Vue d''ensemble'
+        view: 'Maintenance'
+        edit: 'Maintenance | Modification'
     translation:
         overview: 'Traductions | Vue d''ensemble'
         list: 'Traductions | La liste'

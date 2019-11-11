@@ -4,6 +4,7 @@ namespace App\Security\Voter;
 
 use App\Entity\Functionality;
 use App\Manager\FunctionalityManagerTrait;
+use App\Manager\MaintenanceManagerTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -13,6 +14,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class DefaultVoter extends AbstractVoter
 {
     use FunctionalityManagerTrait;
+    use MaintenanceManagerTrait;
 
     public const ACCESS_PAGE_HOME = 'app.voters.pages.home';
     public const MAINTENANCE = 'app.voters.maintenance';
@@ -86,7 +88,13 @@ class DefaultVoter extends AbstractVoter
             return false;
         }
 
-        return $this->accessDecisionManager->decide($token, ['ROLE_ADMIN']);
+        $maintenance = $this->maintenanceManager->findOneByLatest();
+
+        if (null === $maintenance) {
+            return false;
+        }
+
+        return $maintenance->isActive();
     }
 
     /**

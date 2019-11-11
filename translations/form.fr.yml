@@ -47,6 +47,14 @@ form:
             label: 'Confirmation du mot de passe'
         username:
             label: Pseudo
+    maintenance:
+        edit:
+            title: 'Modifier la maintenance'
+        active:
+            label: 'En ligne'
+            help: 'Si le site est en ligne, la maintenance est désactivée'
+        exception_ip_list:
+            label: 'Adresses IP autorisées'
     test:
         add:
             title: 'Créer un test'

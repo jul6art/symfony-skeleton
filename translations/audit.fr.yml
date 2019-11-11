@@ -5,6 +5,7 @@ audit:
         update: 'Modification de l''élément #%id%'
         delete: 'Suppression de l''élément #%id%'
         made_by: 'Action réalisée par %username%'
+        mnt_vi: 'Accés à la page de maintenance'
     updates:
         title: 'Modifications effectuées'
         text: 'Modification de la propriété <strong>%property%</strong> de <strong>%old%</strong> à <strong>%new%</strong>'

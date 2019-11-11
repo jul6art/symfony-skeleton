@@ -4,9 +4,11 @@ namespace App\Menu\Builder;
 
 use App\Entity\Test;
 use App\Entity\User;
+use App\Manager\MaintenanceManagerTrait;
 use App\Manager\TestManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Security\Voter\DefaultVoter;
+use App\Security\Voter\MaintenanceVoter;
 use App\Security\Voter\TestVoter;
 use App\Security\Voter\UserVoter;
 use Doctrine\ORM\NonUniqueResultException;
@@ -20,6 +22,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class NavbarBuilder
 {
+    use MaintenanceManagerTrait;
     use TestManagerTrait;
     use UserManagerTrait;
 
@@ -261,11 +264,18 @@ class NavbarBuilder
     /**
      * @param ItemInterface $menu
      *
-     * @return self
+     * @return $this
+     *
+     * @throws NonUniqueResultException
      */
     private function menuMaintenance(ItemInterface $menu): self
     {
-        if ($this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE)) {
+        if (
+            $this->authorizationChecker->isGranted(
+                MaintenanceVoter::EDIT,
+                $this->maintenanceManager->findOneByLatest()
+            )
+        ) {
             $menu->addChild('navbar.maintenance', [
                 'route' => 'admin_maintenance_overview',
             ])->setExtras([

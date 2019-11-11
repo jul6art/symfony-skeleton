@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.maintenance.view'|trans({}, 'title') }}
+    {{ parent() }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}" />
+    {{ encore_entry_link_tags('error') }}
+{% endblock stylesheets %}
+
+{% block body_content %}
+    <section class="page_error col-{{ constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="col-sm-10 col-sm-offset-1  text-center">
+                        <div class="four_zero_four_bg">
+                            <h1 class="text-center"></h1>
+                        </div>
+
+                        <div class="content_box_error">
+                            <h3 class="h2">
+                                {{ 'maintenance.view.title'|trans({}, 'maintenance')|raw }}
+                            </h3>
+
+                            <p>
+                                {{ 'maintenance.view.content'|trans({}, 'maintenance')|raw }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body_content %}

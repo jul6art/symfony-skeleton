@@ -10,6 +10,7 @@
 namespace App\Manager;
 
 use App\Entity\Maintenance;
+use App\Factory\MaintenanceFactory;
 use App\Repository\MaintenanceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -33,6 +34,14 @@ class MaintenanceManager extends AbstractManager
     {
         parent::__construct($entityManager);
         $this->maintenanceRepository = $this->entityManager->getRepository(Maintenance::class);
+    }
+
+    /**
+     * @return Maintenance
+     */
+    public function create(): Maintenance
+    {
+        return MaintenanceFactory::create();
     }
 
     /**
