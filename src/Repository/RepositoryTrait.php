@@ -19,6 +19,16 @@ use Doctrine\ORM\QueryBuilder;
 trait RepositoryTrait
 {
     /**
+     * @var string
+     */
+    protected $sortAsc = 'ASC';
+
+    /**
+     * @var string
+     */
+    protected $sortDesc = 'DESC';
+
+    /**
      * @param QueryBuilder $builder
      * @param string       $field
      * @param string       $value
@@ -46,6 +56,21 @@ trait RepositoryTrait
         $builder
             ->andWhere($builder->expr()->eq($field, ':field'))
             ->setParameter('field', $user);
+
+        return $this;
+    }
+
+    /**
+     * @param QueryBuilder $builder
+     * @param string       $field
+     *
+     * @return $this
+     */
+    public function filterByLatest(QueryBuilder $builder, string $field): self
+    {
+        $builder
+            ->addOrderBy($field, $this->sortDesc)
+            ->setMaxResults(1);
 
         return $this;
     }

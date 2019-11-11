@@ -1,8 +1,12 @@
 notification:
     cache:
         cleared: 'Cache vidé. Taille avant: %size%'
+    maintenance:
+        edited: 'La maintenance a bien été mise à jour'
+        enabled: 'La maintenance a bien été activée'
+        disabled: 'La maintenance a bien été désactivée'
     translation:
-        edited: 'La traduction a bien été modifié'
+        edited: 'La traduction a bien été modifiée'
     test:
         added: 'Le test a bien été ajouté'
         edited: 'Le test a bien été modifié'

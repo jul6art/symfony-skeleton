@@ -13,7 +13,8 @@ use Doctrine\ORM\NonUniqueResultException;
 class UserEntityListener extends AbstractEntityListener
 {
     /**
-     * @param LifecycleEventArgs $args
+     * @param User               $user
+     * @param LifecycleEventArgs $event
      */
     public function postPersist(User $user, LifecycleEventArgs $event): void
     {
@@ -21,7 +22,8 @@ class UserEntityListener extends AbstractEntityListener
     }
 
     /**
-     * @param LifecycleEventArgs $args
+     * @param User               $user
+     * @param LifecycleEventArgs $event
      *
      * @throws NonUniqueResultException
      */

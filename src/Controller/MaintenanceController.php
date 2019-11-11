@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-use App\Security\Voter\DefaultVoter;
+use App\Entity\Maintenance;
+use App\Manager\MaintenanceManagerTrait;
+use App\Security\Voter\MaintenanceVoter;
 use App\Service\RefererServiceTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -14,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MaintenanceController extends AbstractFOSRestController
 {
+    use MaintenanceManagerTrait;
     use RefererServiceTrait;
 
     /**
@@ -25,7 +28,8 @@ class MaintenanceController extends AbstractFOSRestController
      */
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted(DefaultVoter::MAINTENANCE);
+        $maintenance = $this->maintenanceManager->findOneByLatest();
+        $this->denyAccessUnlessGranted(MaintenanceVoter::EDIT, $maintenance);
 
         $view = $this->view()
                      ->setTemplate('default/dashboard.html.twig')
