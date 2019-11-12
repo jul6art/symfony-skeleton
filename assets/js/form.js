@@ -1754,6 +1754,7 @@ $.Form = {
   init: function() {
     this.autosize();
     this.configure();
+    this.events();
     this.intl_tel();
     this.mask();
     this.picker();
@@ -1821,6 +1822,41 @@ $.Form = {
       .each(function() {
         $.Form.validate($(this));
       });
+  },
+  events: function() {
+    $("body").on("change", '[data-trigger="form-events"]', function(e) {
+      e.preventDefault();
+      let input = $(this);
+      let form = input.closest("form");
+      let tokenInput = form.find('[name*="_token"]');
+
+      let data = {};
+
+      data[input.attr("name")] = input.val();
+      data[tokenInput.attr("name")] = tokenInput.val();
+
+      form.find("[data-event-required]").each(function(key, item) {
+        if ($(item).attr("name") !== input.attr("name")) {
+          data[$(item).attr("name")] = $(item).val();
+        }
+      });
+
+      $.App.blockUI(form);
+
+      $.ajax({
+        url: form.attr("action"),
+        method: form.attr("method"),
+        data: data,
+        success: function(html) {
+          $("#formContainer").replaceWith($(html).find("#formContainer"));
+          form.trigger("form.event.post_submit.success");
+          $.App.unblockUI(form);
+        },
+        error: function() {
+          $.App.unblockUI(form);
+        }
+      });
+    });
   },
   intl_tel: function() {
     let initIntlTelInput = function(selector, type) {

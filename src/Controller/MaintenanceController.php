@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Maintenance;
 use App\Event\MaintenanceEvent;
 use App\Form\Maintenance\EditMaintenanceType;
 use App\Manager\MaintenanceManagerTrait;
@@ -10,8 +9,10 @@ use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\MaintenanceVoter;
 use App\Service\RefererServiceTrait;
 use App\Transformer\MaintenanceTransformer;
+use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\DependencyInjection\Exception\ExceptionInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,13 +46,19 @@ class MaintenanceController extends AbstractFOSRestController
     }
 
     /**
+     * @param Request                  $request
+     * @param MaintenanceTransformer   $maintenanceTransformer
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param AuditHelper              $auditHelper
+     *
      * @Route("%admin_route_prefix%/maintenance/edit", name="edit", methods={"GET", "POST"})
      *
      * @return Response
      *
      * @throws NonUniqueResultException
+     * @throws ExceptionInterface
      */
-    public function edit(Request $request, MaintenanceTransformer $maintenanceTransformer, EventDispatcherInterface $eventDispatcher): Response
+    public function edit(Request $request, MaintenanceTransformer $maintenanceTransformer, EventDispatcherInterface $eventDispatcher, AuditHelper $auditHelper): Response
     {
         $maintenance = $this->maintenanceManager->findOneByLatest();
         $this->denyAccessUnlessGranted(MaintenanceVoter::EDIT, $maintenance);
@@ -61,7 +68,7 @@ class MaintenanceController extends AbstractFOSRestController
         $form = $this->createForm(EditMaintenanceType::class, $maintenance);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() and $form->isValid()) {
+        if (!$request->isXmlHttpRequest() and $form->isSubmitted() and $form->isValid()) {
             $this->maintenanceManager->save($maintenance);
             $eventDispatcher->dispatch(new MaintenanceEvent($maintenance), MaintenanceEvent::EDITED);
 
@@ -70,6 +77,8 @@ class MaintenanceController extends AbstractFOSRestController
 
         $serializer = new Serializer([$maintenanceTransformer]);
 
+        $ip = $auditHelper->blame()['client_ip'];
+
         $view = $this->view()
                      ->setTemplate('maintenance/edit.html.twig')
                      ->setTemplateData([
@@ -77,6 +86,7 @@ class MaintenanceController extends AbstractFOSRestController
                          'maintenance' => $serializer->normalize($maintenance, 'json'),
                          'form' => $form->createView(),
                          'referer' => $referer,
+                         'ip' => $ip,
                      ]);
 
         return $this->handleView($view);

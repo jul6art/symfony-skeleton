@@ -10,8 +10,8 @@
 namespace App\Form\Maintenance;
 
 use App\Entity\Maintenance;
-use App\Form\Type\ChoiceType;
 use App\Form\Type\SwitchType;
+use App\Form\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,12 +34,6 @@ class AddMaintenanceType extends AbstractType
             'no_float' => true,
             'no_line' => true,
             'help' => 'form.maintenance.active.help',
-        ])->add('exceptionIpList', ChoiceType::class, [
-            'label' => 'form.maintenance.exception_ip_list.label',
-            'required' => false,
-            'disabled' => true,
-            'multiple' => true,
-            'choices' => array_flip($options['data']->getExceptionIpList()),
         ]);
 
         $builder->get('active')
@@ -51,6 +45,24 @@ class AddMaintenanceType extends AbstractType
                         return !$active;
                     }
                 ))
+        ;
+
+        $builder->add('exceptionIpList', TextType::class, [
+            'label' => 'form.maintenance.exception_ip_list.label',
+            'required' => false,
+            'no_float' => true,
+            'data' => $options['data']->getExceptionIpList(),
+        ]);
+
+        $builder->get('exceptionIpList')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($exceptionIpList) {
+                    return implode(', ', $exceptionIpList);
+                },
+                function ($exceptionIpList) {
+                    return explode(', ', $exceptionIpList);
+                }
+            ))
         ;
     }
 

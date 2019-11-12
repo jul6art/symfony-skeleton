@@ -88,4 +88,32 @@ class Maintenance
 
         return $this;
     }
+
+    /**
+     * @param string $exceptionIp
+     *
+     * @return $this
+     */
+    public function addExceptionIp(string $exceptionIp): self
+    {
+        if (!in_array($exceptionIp, $this->exceptionIpList)) {
+            $this->exceptionIpList[] = $exceptionIp;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $exceptionIp
+     *
+     * @return $this
+     */
+    public function removeExceptionIp(string $exceptionIp): self
+    {
+        if (in_array($exceptionIp, $this->exceptionIpList)) {
+            unset($this->exceptionIpList[$exceptionIp]);
+        }
+
+        return $this;
+    }
 }

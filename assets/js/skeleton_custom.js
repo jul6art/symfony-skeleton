@@ -13,6 +13,7 @@ $.App = {
     this.colorize();
     this.console();
     this.cookie();
+    this.detectIp();
     this.dialog();
     this.dropdown();
     this.editInPlace();
@@ -148,6 +149,34 @@ $.App = {
       cookiePolicyButtonText: COOKIE_TRANSLATIONS.cookie_policy_button,
       cookiePolicyButtonUrl: COOKIE_TRANSLATIONS.cookie_policy_url
     });
+  },
+  detectIp: function() {
+    $("body")
+      .on("click", '[data-toggle="ip-detect"]', function(e) {
+        e.preventDefault();
+        let ip_list_input = $('[name="edit_maintenance[exceptionIpList]"]'),
+          ip_list = ip_list_input
+            .val()
+            .split(", ")
+            .filter(function(ip) {
+              return ip.length > 0;
+            }),
+          ip = $(this).data("ip");
+
+        if ($.inArray(ip, ip_list) === -1) {
+          ip_list.push(ip);
+          ip_list_input.val(ip_list.join(", ")).trigger("change");
+        }
+      })
+      .on(
+        "form.event.post_submit.success",
+        'form[name="edit_maintenance"]',
+        function() {
+          $(this)
+            .find('[name="edit_maintenance[exceptionIpList][]"]')
+            .selectpicker();
+        }
+      );
   },
   dialog: function() {
     if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== "undefined") {
@@ -590,10 +619,10 @@ $.App = {
     $('[data-toggle="tooltip"]').tooltip();
   },
   unblockUI: function(elem) {
-    if (elem) {
-      $.unblockUI(elem);
-    } else {
+    if (typeof elem === "undefined") {
       $.unblockUI();
+    } else {
+      $(elem).unblock();
     }
   }
 };

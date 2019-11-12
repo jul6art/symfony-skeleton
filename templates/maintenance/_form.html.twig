@@ -1,20 +1,26 @@
-{% if form_errors(form)|length %}
-    <div class="alert has-error">
-        {{ form_errors(form) }}
-    </div>
-{% endif %}
+<section id="formContainer">
+    {% if form_errors(form)|length %}
+        <div class="alert has-error">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
 
-<div class="row">
-    <div class="col-sm-6">
-        {{ form_row(form.exceptionIpList) }}
+    <div class="row">
+        <div class="col-sm-6">
+            {{ form_row(form.exceptionIpList) }}
+        </div>
+        <div class="col-sm-6">
+            {{ form_row(form.active) }}
+        </div>
     </div>
-    <div class="col-sm-6">
-        {{ form_row(form.active) }}
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <button class="btn bg-{{ theme_name() }}" data-toggle="exception_ip"><i class="material-icons">add_circle</i> {{ 'button.maintenance.ip_detect'|trans({}, 'button') }}</button>
-    </div>
-</div>
+    {% if ip is not null %}
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn bg-{{ theme_name() }}" data-toggle="ip-detect" data-ip="{{ ip }}">
+                    <i class="material-icons">add_circle</i> {{ 'button.maintenance.ip_detect'|trans({}, 'button') }}
+                </button>
+            </div>
+        </div>
+    {% endif %}
+</section>
