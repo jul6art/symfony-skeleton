@@ -68,7 +68,11 @@ class MaintenanceListener
 
         $redirect = false;
         $routeMaintenance = 'admin_maintenance_view';
-        $isRouteMaintenance = $request->attributes->get('_route') === $routeMaintenance;
+        $isRouteMaintenance = \in_array($request->attributes->get('_route'), [
+            $routeMaintenance,
+            'admin_maintenance_edit',
+            'admin_maintenance_overview',
+        ]);
 
         if ($this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE) and !$isRouteMaintenance) {
             $blame = $this->helper->blame();
@@ -78,7 +82,10 @@ class MaintenanceListener
             if (null !== $maintenance and !\in_array($blame['client_ip'], $maintenance->getExceptionIpList())) {
                 $redirect = $routeMaintenance;
             }
-        } elseif (!$this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE) and $isRouteMaintenance) {
+        } elseif (
+            !$this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE)
+                  and $routeMaintenance === $request->attributes->get('_route')
+        ) {
             $redirect = 'admin_homepage';
         }
 
