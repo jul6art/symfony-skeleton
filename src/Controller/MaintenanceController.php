@@ -34,13 +34,19 @@ class MaintenanceController extends AbstractFOSRestController
      *
      * @throws NonUniqueResultException
      */
-    public function index(Request $request, EventDispatcherInterface $eventDispatcher): Response
+    public function index(Request $request, MaintenanceTransformer $maintenanceTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $maintenance = $this->maintenanceManager->findOneByLatest();
         $this->denyAccessUnlessGranted(MaintenanceVoter::EDIT, $maintenance);
 
+        $serializer = new Serializer([$maintenanceTransformer]);
+
         $view = $this->view()
-                     ->setTemplate('test/edit.html.twig');
+                     ->setTemplate('maintenance/overview.html.twig')
+                     ->setTemplateData([
+                         'entity' => $maintenance,
+                         'maintenance' => $serializer->normalize($maintenance, 'json'),
+                     ]);
 
         return $this->handleView($view);
     }

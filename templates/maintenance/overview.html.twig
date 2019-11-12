@@ -1,0 +1,82 @@
+{% extends 'layout/layout_details.html.twig' %}
+
+{% block page_title %}
+    {{ 'title.maintenance.overview'|trans({}, 'title') }}
+{% endblock page_title %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <i class="material-icons">build</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.maintenance.title', {}, 'breadcrumb') }}>{{ 'breadcrumb.maintenance.title'|trans({}, 'breadcrumb') }}</span>
+    </li>
+    <li class="active">
+        <i class="material-icons">visibility</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.maintenance.overview', {}, 'breadcrumb') }}>{{ 'breadcrumb.maintenance.overview'|trans({}, 'breadcrumb')|raw }}</span>
+    </li>
+{% endblock breadcrumb %}
+
+{% block details_title %}
+    <span{{ translate_in_place('details.maintenance.title', {}, 'details') }}>{{ 'details.maintenance.title'|trans({}, 'details')|raw }}</span>
+{% endblock details_title %}
+
+{% block details_content %}
+    <div class="table-responsive">
+        <table class="table table table-bordered table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>{{ ('table.head.maintenance.active.label')|trans({}, 'table') }}</th>
+                    <td>{{ maintenance.active|raw }}</td>
+                </tr>
+                <tr class="list-group-row">
+                    <th>{{ ('table.head.maintenance.exception_ip_list')|trans({}, 'table') }}</th>
+                    <td>{{ maintenance.exceptionIpList|raw }}</td>
+                </tr>
+                <tr>
+                    <th>{{ ('table.head.maintenance.page_title')|trans({}, 'table') }}</th>
+                    <td>
+                        <p>
+                            <span{{ translate_in_place('maintenance.view.title', {}, 'maintenance') }}>
+                                {{ 'maintenance.view.title'|trans({}, 'maintenance')|raw }}
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ ('table.head.maintenance.page_content')|trans({}, 'table') }}</th>
+                    <td>
+                        <p>
+                            <span{{ translate_in_place('maintenance.view.content', {}, 'maintenance') }}>
+                                {{ 'maintenance.view.content'|trans({}, 'maintenance')|raw }}
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock details_content %}
+
+{% block details_footer %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9">
+            <div class="btn-group btn-group-justified">
+                <div class="btn">
+                    <a class="btn btn-block waves-effect bg-{{ theme_name() }}" href="{{ path('admin_maintenance_edit', {id: maintenance.id}) }}">
+                        <i class="material-icons">edit</i> <span class="hidden-xs">{{ 'button.edit'|trans({}, 'button') }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock details_footer %}
+
+{% block details_after %}
+    {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::AUDIT'), entity) %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\Maintenance',
+                    id: entity.id,
+                })) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock details_after %}

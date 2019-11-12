@@ -84,7 +84,9 @@ class Maintenance
      */
     public function setExceptionIpList(?array $exceptionIpList): self
     {
-        $this->exceptionIpList = $exceptionIpList;
+        $this->exceptionIpList = array_filter($exceptionIpList, function ($ip) {
+            return filter_var($ip, FILTER_VALIDATE_IP);
+        });
 
         return $this;
     }

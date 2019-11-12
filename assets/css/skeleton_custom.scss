@@ -173,8 +173,16 @@ table.dataTable .icon-button-demo {
   margin-top: 10px;
 }
 
+table tr.list-group-row td {
+  padding: 0;
+
+  > .list-group {
+    margin-bottom: 0;
+  }
+}
+
 /**
-BUTTONNS BEFORE LISTS
+BUTTONS BEFORE LISTS
  */
 .table-actions-before {
   position: relative;

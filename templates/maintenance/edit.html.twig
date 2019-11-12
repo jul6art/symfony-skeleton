@@ -8,7 +8,7 @@
     {% if is_granted(constant('App\\Security\\Voter\\MaintenanceVoter::OVERVIEW'), entity) %}
         <li class="active">
             <a href="{{ path('admin_maintenance_overview') }}">
-                <i class="material-icons">print</i> <span class="hidden-xs">{{ 'breadcrumb.maintenance.title'|trans({}, 'breadcrumb') }}</span>
+                <i class="material-icons">build</i> <span class="hidden-xs">{{ 'breadcrumb.maintenance.title'|trans({}, 'breadcrumb') }}</span>
             </a>
         </li>
     {% endif %}

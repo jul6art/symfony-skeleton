@@ -41,8 +41,8 @@ class MaintenanceTransformer implements NormalizerInterface
 
         return [
             'id' => $maintenance->getId(),
-            'active' => $maintenance->isActive(),
-            'exceptionIpList' => $maintenance->getExceptionIpList(),
+            'active' => $this->renderCell('maintenance/cell/active.html.twig', ['active' => $maintenance->isActive()]),
+            'exceptionIpList' => $this->renderCell('includes/datatable/cell/list.html.twig', ['list' => $maintenance->getExceptionIpList()]),
         ];
     }
 

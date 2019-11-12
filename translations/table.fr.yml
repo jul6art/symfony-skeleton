@@ -18,8 +18,16 @@ table:
             email: Email
             gender: Sexe
             id: ID
-            name: Prénom nom
+            name: 'Prénom nom'
             username: Pseudo
+        maintenance:
+            active:
+                label: Statut
+                on: 'En ligne'
+                off: 'Hors ligne'
+            exception_ip_list: 'Adresses IP autorisées'
+            page_title: 'Titre de la page de maintenance'
+            page_content: 'Contenu de la page de maintenance'
     actions:
         test:
             view:  'Voir le test'

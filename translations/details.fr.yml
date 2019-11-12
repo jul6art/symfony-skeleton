@@ -1,6 +1,8 @@
 details:
     test:
         title: 'Aperçu du test <strong>%name%</strong>'
+    maintenance:
+        title: 'Aperçu de la maintenance'
     user:
         title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
     profile:
