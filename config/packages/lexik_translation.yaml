@@ -2,3 +2,4 @@ lexik_translation:
   fallback_locale: ['%locale%']
   managed_locales: '%available_locales%'
   base_layout: 'layout/layout_translate.html.twig'
+  grid_input_type: textarea
