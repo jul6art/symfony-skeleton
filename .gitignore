@@ -70,7 +70,6 @@
 *~
 .DS_Store
 *.sql
-/TODO.md
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
