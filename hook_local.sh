@@ -6,7 +6,8 @@ echo '--- FILES LOADING ---'
 composer install --no-suggest
 php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 php bin/console fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js
-yarn install
+# yarn install
+yarn install  --check-files
 yarn encore dev
 php bin/console cache:clear --env=dev
 php bin/console cache:warmup --env=dev
@@ -16,7 +17,7 @@ php bin/console doctrine:schema:drop --force
 php bin/console doctrine:schema:update --force
 php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console doctrine:fixtures:load --no-interaction
-php bin/console lexik:translations:import -g -m -c
+php bin/console lexik:translations:import -f -c
 php bin/console audit:clean --no-confirm
 
 echo '--- CHECK VULNERABILITIES ---'

@@ -72,6 +72,7 @@ class MaintenanceListener
             $routeMaintenance,
             'admin_maintenance_edit',
             'admin_maintenance_overview',
+            'fos_js_routing_js',
         ]);
 
         if ($this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE) and !$isRouteMaintenance) {

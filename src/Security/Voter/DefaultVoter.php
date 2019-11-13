@@ -103,6 +103,8 @@ class DefaultVoter extends AbstractVoter
      *
      * @return bool
      *
+     * @TODO must appear in access control section of security
+     *
      * @throws NonUniqueResultException
      */
     public function canTranslate($subject, TokenInterface $token): bool

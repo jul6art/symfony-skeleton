@@ -2,7 +2,8 @@ lexik_translation_new_redirect:
     path: '%admin_route_prefix%/translation/new'
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
     defaults:
-        path: '/'
+        path: /
+        permanent: true
 
 lexik_translation_edition:
     resource: "@LexikTranslationBundle/Resources/config/routing.yml"
