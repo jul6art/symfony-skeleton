@@ -181,6 +181,50 @@ table tr.list-group-row td {
   }
 }
 
+#translation-overview table .progress {
+  height: 15px;
+  border-radius: 8px;
+  background-color: #818181;
+  overflow: visible;
+
+  .progress-bar {
+    border-radius: 8px;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      background-color: #f1f1f1;
+      border-radius: 21px;
+      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+      right: -16px;
+      top: -3px;
+      transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease;
+    }
+  }
+
+  .progress-bar-success {
+    background-color: #84c7c1;
+
+    &:after {
+      right: -5px;
+      background-color: #26a69a;
+    }
+  }
+
+  .progress-bar-danger:not([aria-valuenow="0"]) {
+    background-color: #f44336;
+
+    &:after {
+      right: -5px;
+      background-color: darken(#f44336, 10%);
+    }
+  }
+}
+
 /**
 BUTTONS BEFORE LISTS
  */
