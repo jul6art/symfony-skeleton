@@ -21,10 +21,9 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
-    fix <div class="btn"> dans forms etc
+    améliorer traductions js par un plugin js ?
     optimisations html - js - php
         https://www.htmhell.dev/
-    améliorer traductions js par un plugin js ?
     
     javascript edit in place
         mettre en place partout

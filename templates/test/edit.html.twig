@@ -45,13 +45,11 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
             <div class="btn-group btn-group-justified">
                 {% if is_granted(constant('App\\Security\\Voter\\TestVoter::LIST'), 'App\\Entity\\Test') %}
-                    <div class="btn">
-                        <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('admin_test_list')) }}">
-                            <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
-                        </a>
-                    </div>
+                    <a class="btn btn-block waves-effect bg-blue-grey" href="{{ referer|default(path('admin_test_list')) }}">
+                        <i class="material-icons">cancel</i> <span class="hidden-xs">{{ 'button.cancel'|trans({}, 'button') }}</span>
+                    </a>
                 {% endif %}
-                <div class="btn">
+                <div class="btn-group">
                     <button class="btn btn-block waves-effect bg-{{ theme_name() }}" type="submit"
                             {{ is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') ? 'disabled' }}>
                         <i class="material-icons">save</i> <span class="hidden-xs">{{ 'button.save'|trans({}, 'button') }}</span>
