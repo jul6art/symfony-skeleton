@@ -15,6 +15,9 @@ import "jquery-cookie-bubble/js/cookieBubble";
 // routing
 window.Routing = require("./routing");
 
+// translator
+window.Translator = require("bazinga-translator");
+
 // theme
 import "./skeleton_script";
 import "./skeleton_custom";

@@ -1,20 +1,16 @@
-navbar:
-    title: 'NAVIGATION PRINCIPALE'
-    home: 'Accueil'
-    maintenance: 'Maintenance'
-    impersonate: 'Revenir à mon compte'
-    profile: 'Mon profil'
-    change_password: 'Sécurité'
-    logout: 'Déconnecter'
-    translation:
-        title: Traductions
-        list: 'Liste des traductions'
-        overview: 'Vue d''ensemble'
-    test:
-        title: Tests
-        list: 'Liste des tests'
-        add: 'Créer un test'
-    user:
-        title: Utilisateurs
-        list: 'Liste des utilisateurs'
-        add: 'Créer un utilisateur'
+navbar.title: 'NAVIGATION PRINCIPALE'
+navbar.home: Accueil
+navbar.maintenance: Maintenance
+navbar.impersonate: 'Revenir à mon compte'
+navbar.profile: 'Mon profil'
+navbar.change_password: Sécurité
+navbar.logout: Déconnecter
+navbar.translation.title: Traductions
+navbar.translation.list: 'Liste des traductions'
+navbar.translation.overview: 'Vue d''ensemble'
+navbar.test.title: Tests
+navbar.test.list: 'Liste des tests'
+navbar.test.add: 'Créer un test'
+navbar.user.title: Utilisateurs
+navbar.user.list: 'Liste des utilisateurs'
+navbar.user.add: 'Créer un utilisateur'

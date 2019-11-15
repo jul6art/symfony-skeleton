@@ -1,24 +1,13 @@
-jquery:
-    validate:
-        messages:
-            phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
-            regex: 'La valeur entrée ne respecte pas le modèle requis'
-            samePassword: 'Les mots de passe ne sont pas identiques'
-form:
-    boolean:
-        error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'
-    datetime:
-        error: 'La valeur entrée n''est pas une date valide'
-        error_min_date: 'La valeur entrée doit être supérieure ou égale à la date minimum qui est le {{ date }}'
-        error_max_date: 'La valeur entrée doit être inférieure ou égale à la date maximum qui est le {{ date }}'
-        error_disabled_days: 'La valeur entrée ne doit pas tomber un jour de la semaine qui est désactivé'
-    gender:
-        error: 'La valeur entrée n''est pas un genre valide'
-    phone:
-        error: 'La valeur entrée n''est pas un numéro de téléphone valide'
-    password_verification:
-        error: 'Les mots de passe ne correspondent pas'
-    range:
-        error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
-    recaptcha:
-        error: 'La valeur entrée n''est pas un captcha valide'
+jquery.validate.messages.phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
+jquery.validate.messages.regex: 'La valeur entrée ne respecte pas le modèle requis'
+jquery.validate.messages.samePassword: 'Les mots de passe ne sont pas identiques'
+form.boolean.error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'
+form.datetime.error: 'La valeur entrée n''est pas une date valide'
+form.datetime.error_min_date: 'La valeur entrée doit être supérieure ou égale à la date minimum qui est le {{ date }}'
+form.datetime.error_max_date: 'La valeur entrée doit être inférieure ou égale à la date maximum qui est le {{ date }}'
+form.datetime.error_disabled_days: 'La valeur entrée ne doit pas tomber un jour de la semaine qui est désactivé'
+form.gender.error: 'La valeur entrée n''est pas un genre valide'
+form.phone.error: 'La valeur entrée n''est pas un numéro de téléphone valide'
+form.password_verification.error: 'Les mots de passe ne correspondent pas'
+form.range.error: 'La valeur entrée n''est pas une valeur possible de l''échelle graduée'
+form.recaptcha.error: 'La valeur entrée n''est pas un captcha valide'

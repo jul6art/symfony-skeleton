@@ -1,0 +1,8 @@
+dialog.ajax.buttons.success: OK
+dialog.ajax.buttons.cancel: annuler
+dialog.ajax.cancel.title: Annulé!
+dialog.ajax.success.title: Succès!
+dialog.ajax.confirm.title: 'Êtes-vous sure ?'
+dialog.ajax.error.title: Annulé!
+dialog.ajax.error.text: 'La requête a échoué, désolé!'
+dialog.ajax.refresh.title: 'Vous devez recharger la page!'

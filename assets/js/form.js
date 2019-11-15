@@ -25,7 +25,7 @@ if (VALIDATE_LOCALE !== "en") {
 }
 
 // manually imported areYouSure  script
-if (typeof ACTIVATED_FUNCTIONS.form_watcher !== "undefined") {
+if (typeof ACCESS.form_watcher !== "undefined") {
   $.fn.areYouSure = function(options) {
     let settings = $.extend(
       {
@@ -2049,7 +2049,7 @@ $.Form = {
   rangeValue: function(range, input) {
     range.noUiSlider.on("update", function() {
       input.val(range.noUiSlider.get());
-      if (typeof ACTIVATED_FUNCTIONS.form_watcher !== "undefined") {
+      if (typeof ACCESS.form_watcher !== "undefined") {
         input.closest("form").trigger("checkform.areYouSure");
       }
     });
@@ -2144,7 +2144,7 @@ $.Form = {
     FORM_VALIDATOR(".input-captcha").valid();
   },
   watch: function() {
-    if (typeof ACTIVATED_FUNCTIONS.form_watcher !== "undefined") {
+    if (typeof ACCESS.form_watcher !== "undefined") {
       $("form:not(.no_watch)").areYouSure({
         fieldSelector: ":input:not(input[type=submit]):not(input[type=button])",
         change: function() {

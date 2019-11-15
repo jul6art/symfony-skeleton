@@ -1,5 +1,3 @@
-cookie:
-    message: 'Nous utilisons des cookies pour personaliser votre experience. En continuant sur le site, vous acceptez l''usage des cookies.'
-    buttons:
-        confirm: 'accepter'
-        cookie_policy: 'politique de cookies'
+cookie.message: 'Nous utilisons des cookies pour personaliser votre experience. En continuant sur le site, vous acceptez l''usage des cookies.'
+cookie.buttons.confirm: accepter
+cookie.buttons.cookie_policy: 'politique de cookies'

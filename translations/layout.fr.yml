@@ -1,7 +1,4 @@
-layout:
-    loader:
-        placeholder: 'Veuillez patentier ...'
-    settings:
-        title:
-    version: Version
-    impersonate_text: 'connecté en tant que <br>"%username%"'
+layout.loader.placeholder: 'Veuillez patentier ...'
+layout.settings.title: null
+layout.version: Version
+layout.impersonate_text: 'connecté en tant que <br>"%username%"'

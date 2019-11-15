@@ -1,21 +1,15 @@
-button:
-    add: Ajouter
-    back: Retour
-    cancel: Annuler
-    delete: Supprimer
-    edit: Modifier
-    save: Enregistrer
-    multiple_actions:
-        title: 'Actions groupées'
-        select: 'Tout sélectionner'
-        unselect: 'Tout désélectionner'
-        delete: 'Supprimer la sélection'
-    maintenance:
-        ip_detect: 'Ajouter mon adresse IP'
-    translation:
-        overview: 'Vue d''ensemble'
-        list: 'Liste des traductions'
-    test:
-        delete: 'Supprimer le test <strong>%name%</strong>'
-    user:
-        delete: 'Supprimer l''utilisateur <strong>%name%</strong>'
+button.add: Ajouter
+button.back: Retour
+button.cancel: Annuler
+button.delete: Supprimer
+button.edit: Modifier
+button.save: Enregistrer
+button.multiple_actions.title: 'Actions groupées'
+button.multiple_actions.select: 'Tout sélectionner'
+button.multiple_actions.unselect: 'Tout désélectionner'
+button.multiple_actions.delete: 'Supprimer la sélection'
+button.maintenance.ip_detect: 'Ajouter mon adresse IP'
+button.translation.overview: 'Vue d''ensemble'
+button.translation.list: 'Liste des traductions'
+button.test.delete: 'Supprimer le test <strong>%name%</strong>'
+button.user.delete: 'Supprimer l''utilisateur <strong>%name%</strong>'

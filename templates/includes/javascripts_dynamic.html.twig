@@ -1,10 +1,10 @@
 <script>
-    const LOCALE = '{{ user_locale() }}';
-    const VALIDATE_LOCALE = '{{ validate_locale() }}';
-    const WYSIWYG_LOCALE = '{{ wysiwyg_locale() }}';
-    const THEME_NAME  = '{{ theme_name() }}';
-    const FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }};
-    const DATATABLE_TRANSLATIONS = {
+    var LOCALE = '{{ user_locale() }}',
+        VALIDATE_LOCALE = '{{ validate_locale() }}',
+        WYSIWYG_LOCALE = '{{ wysiwyg_locale() }}',
+        THEME_NAME  = '{{ theme_name() }}',
+        FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }},
+        DATATABLE_TRANSLATIONS = {
         "lengthMenu": "{{ 'table.default.lengthMenu'|trans({}, 'table') }}",
         "zeroRecords": "{{ 'table.default.zeroRecords'|trans({}, 'table') }}",
         "info": "{{ 'table.default.info'|trans({}, 'table') }}",
@@ -15,52 +15,42 @@
             "previous": "{{ 'table.default.previous'|trans({}, 'table') }}",
             "next": "{{ 'table.default.next'|trans({}, 'table') }}",
         }
-    };
-    const COOKIE_TRANSLATIONS = {
+    },
+        COOKIE_TRANSLATIONS = {
         "message": "{{ 'cookie.message'|trans({}, 'cookie') }}",
         "confirm_button": "{{ 'cookie.buttons.confirm'|trans({}, 'cookie') }}",
         "cookie_policy_button": "{{ 'cookie.buttons.cookie_policy'|trans({}, 'cookie') }}",
         "cookie_policy_url": "{{ cookie_policy_url }}",
-    };
-    const DIALOG_TRANSLATIONS = {
-        "ajax_error_title": "{{ 'dialog.ajax.error.title'|trans({}, 'dialog') }}",
-        "ajax_error_text": "{{ 'dialog.ajax.error.text'|trans({}, 'dialog') }}",
-        "cancel_button": "{{ 'dialog.ajax.buttons.cancel'|trans({}, 'dialog') }}",
-        "cancel_title": "{{ 'dialog.ajax.cancel.title'|trans({}, 'dialog') }}",
-        "success_title": "{{ 'dialog.ajax.success.title'|trans({}, 'dialog') }}",
-        "confirm_button": "{{ 'dialog.ajax.buttons.success'|trans({}, 'dialog') }}",
-        "confirm_title": "{{ 'dialog.ajax.confirm.title'|trans({}, 'dialog') }}",
-        "refresh_title": "{{ 'dialog.ajax.refresh.title'|trans({}, 'dialog') }}",
-    };
-    const WYSIWYG_TRANSLATIONS = {
+    },
+        WYSIWYG_TRANSLATIONS = {
         "success": "{{ 'notification.translation.edited'|trans({}, 'notification') }}",
-    };
-    const DATEPICKER_TRANSLATIONS = {
+    },
+        DATEPICKER_TRANSLATIONS = {
         "cancel": "{{ 'jquery.datepicker.messages.cancel'|trans({}, 'form') }}",
         "clear": "{{ 'jquery.datepicker.messages.clear'|trans({}, 'form') }}",
         "now": "{{ 'jquery.datepicker.messages.now'|trans({}, 'form') }}",
         "ok": "{{ 'jquery.datepicker.messages.ok'|trans({}, 'form') }}",
-    };
-    const VALIDATOR_TRANSLATIONS = {
+    },
+        VALIDATOR_TRANSLATIONS = {
         "phone": "{{ 'jquery.validate.messages.phone'|trans({}, 'validators') }}",
         "regex": "{{ 'jquery.validate.messages.regex'|trans({}, 'validators') }}",
         "samePassword": "{{ 'jquery.validate.messages.samePassword'|trans({}, 'validators') }}",
-    };
-    const TOASTR_POSITION = {
+    },
+        TOASTR_POSITION = {
         "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
         "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
-    };
-    const ACTIVATED_FUNCTIONS = {};
+    },
+        ACCESS = {};
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %}
-        ACTIVATED_FUNCTIONS.confirm_delete = true;
+        ACCESS.confirm_delete = true;
     {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') %}
-        ACTIVATED_FUNCTIONS.edit_in_place = true;
+        ACCESS.edit_in_place = true;
     {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') %}
-        ACTIVATED_FUNCTIONS.progressive_web_app = true;
+        ACCESS.progressive_web_app = true;
     {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') %}
-        ACTIVATED_FUNCTIONS.form_watcher = true;
+        ACCESS.form_watcher = true;
     {% endif %}
 </script>

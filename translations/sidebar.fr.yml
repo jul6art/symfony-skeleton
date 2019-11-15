@@ -1,55 +1,45 @@
-sidebar:
-    skins:
-        title: THÈMES
-        colors:
-            red: Rouge
-            pink: Rose
-            purple: Mauve
-            deep-purple: 'Mauve foncé'
-            indigo: Indigo
-            blue: Bleu
-            light-blue: 'Bleu clair'
-            cyan: Cyan
-            teal: 'Bleu vert'
-            green: Vert
-            light-green: 'Vert pomme'
-            lime: Citron
-            yellow: Jaune
-            amber: Ambre
-            orange: Orange
-            deep-orange: 'Orange foncé'
-            brown: Brun
-            grey: Gris
-            blue-grey: 'Gris bleu'
-            black: Noir
-    settings:
-        title: PARAMÈTRES
-    setting:
-        project_name: 'Nom du projet'
-        base_title: 'Titre de base'
-        default_theme: 'Thème par défaut'
-        audit_limit: 'Limite d''audit'
-        toastr_vertical_position:
-            title: 'Position verticale des notifs'
-            choices:
-                top: Haut
-                middle: Milieu
-                bottom: Bas
-        toastr_horizontal_position:
-            title: 'Position horizontale des notifs'
-            choices:
-                left: Gauche
-                center: Centre
-                right: Droite
-    func:
-        title: FONCTIONALITÉS
-        audit: 'Audit'
-        clear_cache: 'Cache'
-        confirm_delete: 'Popup de confirmation'
-        edit_in_place: 'Modification à la volée'
-        form_watcher: 'Surveillance des formulaires'
-        maintenance: 'Maintenance'
-        manage_settings: 'Gestion des paramètres'
-        progressive_web_app: 'Progressive web app'
-        switch_locale: 'Multilangue'
-        switch_theme: 'Choix du thème'
+sidebar.skins.title: THÈMES
+sidebar.skins.colors.red: Rouge
+sidebar.skins.colors.pink: Rose
+sidebar.skins.colors.purple: Mauve
+sidebar.skins.colors.deep-purple: 'Mauve foncé'
+sidebar.skins.colors.indigo: Indigo
+sidebar.skins.colors.blue: Bleu
+sidebar.skins.colors.light-blue: 'Bleu clair'
+sidebar.skins.colors.cyan: Cyan
+sidebar.skins.colors.teal: 'Bleu vert'
+sidebar.skins.colors.green: Vert
+sidebar.skins.colors.light-green: 'Vert pomme'
+sidebar.skins.colors.lime: Citron
+sidebar.skins.colors.yellow: Jaune
+sidebar.skins.colors.amber: Ambre
+sidebar.skins.colors.orange: Orange
+sidebar.skins.colors.deep-orange: 'Orange foncé'
+sidebar.skins.colors.brown: Brun
+sidebar.skins.colors.grey: Gris
+sidebar.skins.colors.blue-grey: 'Gris bleu'
+sidebar.skins.colors.black: Noir
+sidebar.settings.title: PARAMÈTRES
+sidebar.setting.project_name: 'Nom du projet'
+sidebar.setting.base_title: 'Titre de base'
+sidebar.setting.default_theme: 'Thème par défaut'
+sidebar.setting.audit_limit: 'Limite d''audit'
+sidebar.setting.toastr_vertical_position.title: 'Position verticale des notifs'
+sidebar.setting.toastr_vertical_position.choices.top: Haut
+sidebar.setting.toastr_vertical_position.choices.middle: Milieu
+sidebar.setting.toastr_vertical_position.choices.bottom: Bas
+sidebar.setting.toastr_horizontal_position.title: 'Position horizontale des notifs'
+sidebar.setting.toastr_horizontal_position.choices.left: Gauche
+sidebar.setting.toastr_horizontal_position.choices.center: Centre
+sidebar.setting.toastr_horizontal_position.choices.right: Droite
+sidebar.func.title: FONCTIONALITÉS
+sidebar.func.audit: Audit
+sidebar.func.clear_cache: Cache
+sidebar.func.confirm_delete: 'Popup de confirmation'
+sidebar.func.edit_in_place: 'Modification à la volée'
+sidebar.func.form_watcher: 'Surveillance des formulaires'
+sidebar.func.maintenance: Maintenance
+sidebar.func.manage_settings: 'Gestion des paramètres'
+sidebar.func.progressive_web_app: 'Progressive web app'
+sidebar.func.switch_locale: Multilangue
+sidebar.func.switch_theme: 'Choix du thème'

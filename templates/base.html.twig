@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
-<html lang="{{ app.request.locale }}" class="ie8 no-js"> <![endif]-->
+<html lang="{{ app.request.locale|split('_')[0] }}" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]>
-<html lang="{{ app.request.locale }}" class="ie9 no-js"> <![endif]-->
+<html lang="{{ app.request.locale|split('_')[0] }}" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.locale|split('_')[0] }}">
 <!--<![endif]-->
 <!--
  __    __    ___            __    __    __   ____

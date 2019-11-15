@@ -1,14 +1,7 @@
-account:
-    login:
-        links:
-            register: 'Créer un compte'
-            reset_password: 'Mot de passe oublié'
-        title: 'Connectez-vous pour démarrer votre session'
-    register:
-        links:
-            login: 'Connection'
-        title: 'Enregistrez-vous pour devenir membre'
-    resetting:
-        links:
-            login: 'Connection'
-        title:  'Entrez l''adresse email ou le pseudo que vous avez utilisé pour vous inscrire. Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe.'
+account.login.links.register: 'Créer un compte'
+account.login.links.reset_password: 'Mot de passe oublié'
+account.login.title: 'Connectez-vous pour démarrer votre session'
+account.register.links.login: Connection
+account.register.title: 'Enregistrez-vous pour devenir membre'
+account.resetting.links.login: Connection
+account.resetting.title: 'Entrez l''adresse email ou le pseudo que vous avez utilisé pour vous inscrire. Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe.'

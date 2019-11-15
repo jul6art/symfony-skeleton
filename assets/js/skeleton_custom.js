@@ -6,7 +6,6 @@ import tinymce from "tinymce/tinymce";
 import "tinymce/themes/silver";
 import "tinymce/plugins/paste";
 import "tinymce/plugins/link";
-
 $.App = {
   init: function() {
     this.card();
@@ -179,7 +178,7 @@ $.App = {
       );
   },
   dialog: function() {
-    if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== "undefined") {
+    if (typeof ACCESS.confirm_delete !== "undefined") {
       require("sweetalert");
       $("body").on("click", '[data-confirm="confirm"]', function(e) {
         e.preventDefault();
@@ -189,12 +188,12 @@ $.App = {
         wrapper.innerHTML = link.data("dialog-confirm");
 
         swal({
-          title: DIALOG_TRANSLATIONS.confirm_title,
+          title: Translator.trans("dialog.ajax.confirm.title"),
           content: wrapper,
           icon: "warning",
           buttons: [
-            DIALOG_TRANSLATIONS.cancel_button,
-            DIALOG_TRANSLATIONS.confirm_button
+            Translator.trans("dialog.ajax.buttons.cancel"),
+            Translator.trans("dialog.ajax.buttons.success")
           ],
           dangerMode: true
         })
@@ -207,7 +206,7 @@ $.App = {
                   if (response.success) {
                     wrapper.innerHTML = link.data("dialog-success");
                     swal({
-                      title: DIALOG_TRANSLATIONS.success_title,
+                      title: Translator.trans("dialog.ajax.success.title"),
                       content: wrapper,
                       icon: "success"
                     }).then(() => {
@@ -223,8 +222,8 @@ $.App = {
                 if (err) {
                   console.log(err);
                   swal(
-                    DIALOG_TRANSLATIONS.ajax_error_title,
-                    DIALOG_TRANSLATIONS.ajax_error_text,
+                    Translator.trans("dialog.ajax.error.title"),
+                    Translator.trans("dialog.ajax.error.text"),
                     "error"
                   );
                 } else {
@@ -235,7 +234,7 @@ $.App = {
             } else {
               wrapper.innerHTML = link.data("dialog-cancel");
               swal({
-                title: DIALOG_TRANSLATIONS.cancel_title,
+                title: Translator.trans("dialog.ajax.cancel.title"),
                 content: wrapper,
                 icon: "error"
               });
@@ -245,8 +244,8 @@ $.App = {
             if (err) {
               console.log(err);
               swal(
-                DIALOG_TRANSLATIONS.ajax_error_title,
-                DIALOG_TRANSLATIONS.ajax_error_text,
+                Translator.trans("dialog.ajax.error.title"),
+                Translator.trans("dialog.ajax.error.text"),
                 "error"
               );
             } else {
@@ -267,7 +266,7 @@ $.App = {
     });
   },
   editInPlace: function() {
-    if (typeof ACTIVATED_FUNCTIONS.edit_in_place !== "undefined") {
+    if (typeof ACCESS.edit_in_place !== "undefined") {
       let toggleParameters = function(string, parameters, abstract = true) {
         $.each(parameters, function(key, value) {
           value = value.replace(/&nbsp;/g, " ");
@@ -376,7 +375,7 @@ $.App = {
                   $.App.unblockUI();
                   $.App.notify(
                     "bg-red",
-                    DIALOG_TRANSLATIONS.ajax_error_text,
+                    Translator.trans("dialog.ajax.error.text"),
                     TOASTR_POSITION.vertical,
                     TOASTR_POSITION.horizontal
                   );
@@ -507,7 +506,7 @@ $.App = {
     );
   },
   progressiveWebApp: function() {
-    if (typeof ACTIVATED_FUNCTIONS.progressive_web_app !== "undefined") {
+    if (typeof ACCESS.progressive_web_app !== "undefined") {
       let manifestLink = $("#progressiveWebAppManifest");
 
       if (manifestLink.length) {
@@ -535,7 +534,7 @@ $.App = {
       .on("change", '#settings input[type="checkbox"]', function(e) {
         let input = $(this);
 
-        if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== "undefined") {
+        if (typeof ACCESS.confirm_delete !== "undefined") {
           $.ajax({
             url: Routing.generate("admin_functionality_switch", {
               functionality: input.data("id"),
@@ -544,7 +543,7 @@ $.App = {
             method: "GET",
             success: function(result) {
               if (result.success) {
-                swal(DIALOG_TRANSLATIONS.refresh_title, {
+                swal(Translator.trans("dialog.ajax.refresh.title"), {
                   icon: "success"
                 }).then(() => {
                   window.location.reload();
@@ -555,8 +554,8 @@ $.App = {
             if (err) {
               console.log(err);
               swal(
-                DIALOG_TRANSLATIONS.ajax_error_title,
-                DIALOG_TRANSLATIONS.ajax_error_text,
+                Translator.trans("dialog.ajax.error.title"),
+                Translator.trans("dialog.ajax.error.text"),
                 "error"
               );
             } else {
@@ -577,7 +576,7 @@ $.App = {
         let input = $(this);
 
         if (input.val() != -1) {
-          if (typeof ACTIVATED_FUNCTIONS.confirm_delete !== "undefined") {
+          if (typeof ACCESS.confirm_delete !== "undefined") {
             $.ajax({
               url: Routing.generate("admin_setting_set", {
                 setting: input.data("id"),
@@ -586,7 +585,7 @@ $.App = {
               method: "GET",
               success: function(result) {
                 if (result.success) {
-                  swal(DIALOG_TRANSLATIONS.refresh_title, {
+                  swal(Translator.trans("dialog.ajax.refresh.title"), {
                     icon: "success"
                   }).then(() => {
                     window.location.reload();
@@ -597,8 +596,8 @@ $.App = {
               if (err) {
                 console.log(err);
                 swal(
-                  DIALOG_TRANSLATIONS.ajax_error_title,
-                  DIALOG_TRANSLATIONS.ajax_error_text,
+                  Translator.trans("dialog.ajax.error.title"),
+                  Translator.trans("dialog.ajax.error.text"),
                   "error"
                 );
               } else {

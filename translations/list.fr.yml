@@ -1,8 +1,4 @@
-list:
-    translation:
-        overview: 'Vue d''ensemble des traductions'
-        title: 'Liste des traductions'
-    test:
-        title: 'Liste des tests'
-    user:
-        title: 'Liste des utilisateurs'
+list.translation.overview: 'Vue d''ensemble des traductions'
+list.translation.title: 'Liste des traductions'
+list.test.title: 'Liste des tests'
+list.user.title: 'Liste des utilisateurs'

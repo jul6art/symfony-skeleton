@@ -1,13 +1,6 @@
-details:
-    test:
-        title: 'Aperçu du test <strong>%name%</strong>'
-    maintenance:
-        title: 'Aperçu de la maintenance'
-    user:
-        title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
-    profile:
-        title: 'Aperçu de mon pofil'
-        links:
-            avatar:
-                mine: 'Modifier mon avatar'
-                not_mine: 'Modifier l''avatar'
+details.test.title: 'Aperçu du test <strong>%name%</strong>'
+details.maintenance.title: 'Aperçu de la maintenance'
+details.user.title: 'Aperçu de l''utilisateur <strong>%name%</strong>'
+details.profile.title: 'Aperçu de mon pofil'
+details.profile.links.avatar.mine: 'Modifier mon avatar'
+details.profile.links.avatar.not_mine: 'Modifier l''avatar'

@@ -21,7 +21,9 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
-    améliorer traductions js par un plugin js ?
+    améliorer js
+        inntégrer translatorr partout
+        ne plus traduire en attribut data
     optimisations html - js - php
         https://www.htmhell.dev/
     

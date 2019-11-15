@@ -1,26 +1,20 @@
-breadcrumb:
-    home: Accueil
-    account:
-        profile: 'Mon profil'
-        edit: 'Modifier mon profil'
-        change_password: 'Modifier mon mot de passe'
-    translation:
-        overview: 'Vue d''ensemble'
-        list: 'Liste des traductions'
-        title: 'Traductions'
-    maintenance:
-        overview: 'Vue d''ensemble'
-        edit: 'Modifier la maintenance'
-        title: 'Maintenance'
-    test:
-        add: 'Créer un test'
-        edit: 'Modifier le test <strong>%name%</strong>'
-        list: 'Liste des tests'
-        title: 'Tests'
-        view: 'Voir le test <strong>%name%</strong>'
-    user:
-        add: 'Créer un utilisateur'
-        edit: 'Modifier l''utilisateur <strong>%name%</strong>'
-        list: 'Liste des utilisateurs'
-        title: 'Utilisateurs'
-        view: 'Voir l''utilisateur <strong>%name%</strong>'
+breadcrumb.home: Accueil
+breadcrumb.account.profile: 'Mon profil'
+breadcrumb.account.edit: 'Modifier mon profil'
+breadcrumb.account.change_password: 'Modifier mon mot de passe'
+breadcrumb.translation.overview: 'Vue d''ensemble'
+breadcrumb.translation.list: 'Liste des traductions'
+breadcrumb.translation.title: Traductions
+breadcrumb.maintenance.overview: 'Vue d''ensemble'
+breadcrumb.maintenance.edit: 'Modifier la maintenance'
+breadcrumb.maintenance.title: Maintenance
+breadcrumb.test.add: 'Créer un test'
+breadcrumb.test.edit: 'Modifier le test <strong>%name%</strong>'
+breadcrumb.test.list: 'Liste des tests'
+breadcrumb.test.title: Tests
+breadcrumb.test.view: 'Voir le test <strong>%name%</strong>'
+breadcrumb.user.add: 'Créer un utilisateur'
+breadcrumb.user.edit: 'Modifier l''utilisateur <strong>%name%</strong>'
+breadcrumb.user.list: 'Liste des utilisateurs'
+breadcrumb.user.title: Utilisateurs
+breadcrumb.user.view: 'Voir l''utilisateur <strong>%name%</strong>'

@@ -1180,6 +1180,11 @@ batch@0.6.1:
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
   integrity sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=
 
+bazinga-translator@^2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/bazinga-translator/-/bazinga-translator-2.6.6.tgz#e3d8eac369fbdb717bf4721cadac924d977189c0"
+  integrity sha1-49jqw2n723F79HIcraySTZdxicA=
+
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
@@ -1260,7 +1265,7 @@ bootstrap-material-datetimepicker@2.7.1:
     bootstrap "~3.3.4"
     bootstrap-material-design "~0.3.0"
     jquery "1.12.3"
-    moment "2.19.3"
+    moment "~2.10.2"
 
 bootstrap-material-design@~0.3.0:
   version "0.3.0"
@@ -4539,6 +4544,11 @@ moment@2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
   integrity sha1-vbmdJw1tf9p4zA+6zoVeJ/59pp8=
+
+moment@~2.10.2:
+  version "2.10.6"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.6.tgz#6cb21967c79cba7b0ca5e66644f173662b3efa77"
+  integrity sha1-bLIZZ8ecunsMpeZmRPFzZis++nc=
 
 move-concurrently@^1.0.1:
   version "1.0.1"

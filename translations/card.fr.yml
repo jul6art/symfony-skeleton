@@ -1,7 +1,5 @@
-card:
-    actions:
-        collapse: 'réduire'
-        expand: 'agrandir'
-        fullscreen: 'plein écran'
-        embed: 'intégré'
-        close: 'fermer'
+card.actions.collapse: réduire
+card.actions.expand: agrandir
+card.actions.fullscreen: 'plein écran'
+card.actions.embed: intégré
+card.actions.close: fermer

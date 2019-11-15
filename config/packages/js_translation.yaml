@@ -1,0 +1,5 @@
+bazinga_js_translation:
+  locale_fallback: '%locale%'
+  default_domain: javascript
+  active_domains:
+    - javascript

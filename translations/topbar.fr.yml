@@ -1,7 +1,4 @@
-topbar:
-    search:
-        placeholder: 'RECHERCHER ...'
-    locales:
-        fr: Français
-        en: English
-        de: Deutsch
+topbar.search.placeholder: 'RECHERCHER ...'
+topbar.locales.fr: Français
+topbar.locales.en: English
+topbar.locales.de: Deutsch

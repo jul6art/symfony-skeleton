@@ -1,67 +1,33 @@
-jquery:
-    datepicker:
-        messages:
-            ok: Ok
-            clear: Vider
-            cancel: Annuler
-            now: Maintenant
-
-form:
-    common:
-        required: Obligatoire
-        boolean:
-            choices:
-                yes: Oui
-                no: Non
-    account:
-        profile:
-            title: 'Modifier mon profil'
-        change_password:
-            title: 'Modifier mon mot de passe'
-    user:
-        add:
-            title: 'Créer un utilisateur'
-        edit:
-            title: 'Modifier l''utilisateur <strong>%name%</strong>'
-        gender:
-            label: Sexe
-            choices:
-                m: Homme
-                f: Femme
-        email:
-            label: Email
-        firstname:
-            label: Prénom
-        lastname:
-            label: Nom
-        current_password:
-            label: 'Mot de passe actuel'
-        new_password:
-            label: 'Nouveau mot de passe'
-        new_password_confirmation:
-            label: 'Confirmation du nouveau mot de passe'
-        password:
-            label: 'Mot de passe'
-            missmatch: 'Les mots de passe ne correspondent pas'
-        password_confirmation:
-            label: 'Confirmation du mot de passe'
-        username:
-            label: Pseudo
-    maintenance:
-        edit:
-            title: 'Modifier la maintenance'
-        active:
-            label: 'En ligne'
-            help: 'Si le site est en ligne, la maintenance est désactivée'
-        exception_ip_list:
-            label: 'Adresses IP autorisées'
-    test:
-        add:
-            title: 'Créer un test'
-        edit:
-            title: 'Modifier le test <strong>%name%</strong>'
-        name:
-            label: Nom
-            help: 'Je suis un texte d''aide'
-        content:
-            label: Contenu
+jquery.datepicker.messages.ok: Ok
+jquery.datepicker.messages.clear: Vider
+jquery.datepicker.messages.cancel: Annuler
+jquery.datepicker.messages.now: Maintenant
+form.common.required: Obligatoire
+form.common.boolean.choices.yes: Oui
+form.common.boolean.choices.no: Non
+form.account.profile.title: 'Modifier mon profil'
+form.account.change_password.title: 'Modifier mon mot de passe'
+form.user.add.title: 'Créer un utilisateur'
+form.user.edit.title: 'Modifier l''utilisateur <strong>%name%</strong>'
+form.user.gender.label: Sexe
+form.user.gender.choices.m: Homme
+form.user.gender.choices.f: Femme
+form.user.email.label: Email
+form.user.firstname.label: Prénom
+form.user.lastname.label: Nom
+form.user.current_password.label: 'Mot de passe actuel'
+form.user.new_password.label: 'Nouveau mot de passe'
+form.user.new_password_confirmation.label: 'Confirmation du nouveau mot de passe'
+form.user.password.label: 'Mot de passe'
+form.user.password.missmatch: 'Les mots de passe ne correspondent pas'
+form.user.password_confirmation.label: 'Confirmation du mot de passe'
+form.user.username.label: Pseudo
+form.maintenance.edit.title: 'Modifier la maintenance'
+form.maintenance.active.label: 'En ligne'
+form.maintenance.active.help: 'Si le site est en ligne, la maintenance est désactivée'
+form.maintenance.exception_ip_list.label: 'Adresses IP autorisées'
+form.test.add.title: 'Créer un test'
+form.test.edit.title: 'Modifier le test <strong>%name%</strong>'
+form.test.name.label: Nom
+form.test.name.help: 'Je suis un texte d''aide'
+form.test.content.label: Contenu

@@ -5,3 +5,4 @@
 {% else %}
     <script src="{{ asset('js/fos_js_routes.js') }}"></script>
 {% endif %}
+<script src="{{ url('bazinga_jstranslation_js', { 'domain': 'javascript', 'locales': app.request.locale|split('_')[0] }) }}"></script>

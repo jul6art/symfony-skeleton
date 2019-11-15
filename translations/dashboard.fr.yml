@@ -1,5 +1,3 @@
-dashboard:
-    infobox:
-        functionalities: FONCTIONALITÉS
-        tests: TESTS
-        users: UTILISATEURS
+dashboard.infobox.functionalities: FONCTIONALITÉS
+dashboard.infobox.tests: TESTS
+dashboard.infobox.users: UTILISATEURS

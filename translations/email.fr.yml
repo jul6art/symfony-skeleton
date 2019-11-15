@@ -1,43 +1,7 @@
-email:
-    account:
-        registration:
-            link:
-                text: 'Valider mon compte'
-            message: |
-                <p>Bonjour %username% !
-                <br><br>
-                Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
-                <br>
-                Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
-                <br><br>
-                Cordialement,
-                <br>
-                %project_name%</p>
-        resetting:
-            link:
-                text: 'Réinitialiser mon mot de passe'
-            message: |
-                <p>Bonjour %username% !
-                <br><br>
-                Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
-                <br><br>
-                Cordialement,
-                <br>
-                %project_name%</p>
-    user:
-        add:
-            subject: 'Nouvelle connexion pour %name%'
-            link:
-                text: 'Me connecter'
-            message: |
-                <p>Bonjour %name% !
-                <br><br>
-                Pour vous connecter à votre compte utilisateur, merci de vous rendre sur %url%
-                <br>
-                <strong>Pseudo:</strong> %username%
-                <br>
-                <strong>Mot de passe:</strong> %password%
-                <br><br>
-                Cordialement,
-                <br>
-                %project_name%</p>
+email.account.registration.link.text: 'Valider mon compte'
+email.account.registration.message: "<p>Bonjour %username% !\n<br><br>\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n<br>\nCe lien ne peut être utilisé qu'une seule fois pour valider votre compte.\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"
+email.account.resetting.link.text: 'Réinitialiser mon mot de passe'
+email.account.resetting.message: "<p>Bonjour %username% !\n<br><br>\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"
+email.user.add.subject: 'Nouvelle connexion pour %name%'
+email.user.add.link.text: 'Me connecter'
+email.user.add.message: "<p>Bonjour %name% !\n<br><br>\nPour vous connecter à votre compte utilisateur, merci de vous rendre sur %url%\n<br>\n<strong>Pseudo:</strong> %username%\n<br>\n<strong>Mot de passe:</strong> %password%\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"

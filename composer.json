@@ -44,7 +44,8 @@
         "symfony/web-link": "^4.0",
         "symfony/webpack-encore-bundle": "^1.5",
         "symfony/yaml": "^4.0",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "willdurand/js-translation-bundle": "^2.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",

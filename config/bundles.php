@@ -24,4 +24,5 @@ return [
     WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
     DH\DoctrineAuditBundle\DHDoctrineAuditBundle::class => ['all' => true],
     Lexik\Bundle\TranslationBundle\LexikTranslationBundle::class => ['all' => true],
+    Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle::class => ['all' => true],
 ];

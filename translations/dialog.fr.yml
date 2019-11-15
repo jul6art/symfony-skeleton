@@ -1,24 +1,6 @@
-dialog:
-    ajax:
-        buttons:
-            success: 'OK'
-            cancel: 'annuler'
-        cancel:
-            title: 'Annulé!'
-        success:
-            title: 'Succès!'
-        confirm:
-            title: 'Êtes-vous sure ?'
-        error:
-            title: 'Annulé!'
-            text: 'La requête a échoué, désolé!'
-        refresh:
-            title: 'Vous devez recharger la page!'
-        test:
-            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test <strong>%name%</strong>!'
-            cancel: 'Le test <strong>%name%</strong> est toujours là!'
-            success: 'Le test <strong>%name%</strong> a bien été supprimé!'
-        user:
-            confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur <strong>%name%</strong>!'
-            cancel: 'L''utilisateur <strong>%name%</strong> est toujours là!'
-            success: 'L''utilisateur <strong>%name%</strong> a bien été supprimé!'
+dialog.ajax.test.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test <strong>%name%</strong>!'
+dialog.ajax.test.cancel: 'Le test <strong>%name%</strong> est toujours là!'
+dialog.ajax.test.success: 'Le test <strong>%name%</strong> a bien été supprimé!'
+dialog.ajax.user.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur <strong>%name%</strong>!'
+dialog.ajax.user.cancel: 'L''utilisateur <strong>%name%</strong> est toujours là!'
+dialog.ajax.user.success: 'L''utilisateur <strong>%name%</strong> a bien été supprimé!'

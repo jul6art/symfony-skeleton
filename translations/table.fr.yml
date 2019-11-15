@@ -1,44 +1,32 @@
-table:
-    default:
-        lengthMenu: '_MENU_ résultats par page'
-        zeroRecords: 'Aucun résultat - désolé'
-        info: 'Page _PAGE_ de _PAGES_'
-        infoEmpty: 'Aucune donnée disponible'
-        infoFiltered: '(filtrés sur _MAX_ éléments)'
-        search: 'Rechercher'
-        previous: 'Précedent'
-        next: 'Suivant'
-    head:
-        actions: Actions
-        test:
-            id: ID
-            name: Nom
-            content: Contenu
-        user:
-            email: Email
-            gender: Sexe
-            id: ID
-            name: 'Prénom nom'
-            username: Pseudo
-        maintenance:
-            active:
-                label: Statut
-                on: 'En ligne'
-                off: 'Hors ligne'
-            exception_ip_list: 'Adresses IP autorisées'
-            page_title: 'Titre de la page de maintenance'
-            page_content: 'Contenu de la page de maintenance'
-    actions:
-        test:
-            view:  'Voir le test'
-            edit:  'Modifier le test'
-            delete:  'Supprimer le test'
-        user:
-            view:  'Voir l''utilisateur'
-            edit:  'Modifier l''utilisateur'
-            impersonate:  'Se connecter en tant que'
-            delete:  'Supprimer l''utilisateur'
-    user:
-        gender:
-            f: Femme
-            m: Homme
+table.default.lengthMenu: '_MENU_ résultats par page'
+table.default.zeroRecords: 'Aucun résultat - désolé'
+table.default.info: 'Page _PAGE_ de _PAGES_'
+table.default.infoEmpty: 'Aucune donnée disponible'
+table.default.infoFiltered: '(filtrés sur _MAX_ éléments)'
+table.default.search: Rechercher
+table.default.previous: Précedent
+table.default.next: Suivant
+table.head.actions: Actions
+table.head.test.id: ID
+table.head.test.name: Nom
+table.head.test.content: Contenu
+table.head.user.email: Email
+table.head.user.gender: Sexe
+table.head.user.id: ID
+table.head.user.name: 'Prénom nom'
+table.head.user.username: Pseudo
+table.head.maintenance.active.label: Statut
+table.head.maintenance.active.on: 'En ligne'
+table.head.maintenance.active.off: 'Hors ligne'
+table.head.maintenance.exception_ip_list: 'Adresses IP autorisées'
+table.head.maintenance.page_title: 'Titre de la page de maintenance'
+table.head.maintenance.page_content: 'Contenu de la page de maintenance'
+table.actions.test.view: 'Voir le test'
+table.actions.test.edit: 'Modifier le test'
+table.actions.test.delete: 'Supprimer le test'
+table.actions.user.view: 'Voir l''utilisateur'
+table.actions.user.edit: 'Modifier l''utilisateur'
+table.actions.user.impersonate: 'Se connecter en tant que'
+table.actions.user.delete: 'Supprimer l''utilisateur'
+table.user.gender.f: Femme
+table.user.gender.m: Homme

@@ -1,17 +1,11 @@
-notification:
-    cache:
-        cleared: 'Cache vidé. Taille avant: %size%'
-    maintenance:
-        edited: 'La maintenance a bien été mise à jour'
-        enabled: 'La maintenance a bien été activée'
-        disabled: 'La maintenance a bien été désactivée'
-    translation:
-        edited: 'La traduction a bien été modifiée'
-    test:
-        added: 'Le test a bien été ajouté'
-        edited: 'Le test a bien été modifié'
-        deleted: 'Le test a bien été supprimé'
-    user:
-        added: 'L''utilisateur a bien été ajouté'
-        edited: 'L''utilisateur a bien été modifié'
-        deleted: 'L''utilisateur a bien été supprimé'
+notification.cache.cleared: 'Cache vidé. Taille avant: %size%'
+notification.maintenance.edited: 'La maintenance a bien été mise à jour'
+notification.maintenance.enabled: 'La maintenance a bien été activée'
+notification.maintenance.disabled: 'La maintenance a bien été désactivée'
+notification.translation.edited: 'La traduction a bien été modifiée'
+notification.test.added: 'Le test a bien été ajouté'
+notification.test.edited: 'Le test a bien été modifié'
+notification.test.deleted: 'Le test a bien été supprimé'
+notification.user.added: 'L''utilisateur a bien été ajouté'
+notification.user.edited: 'L''utilisateur a bien été modifié'
+notification.user.deleted: 'L''utilisateur a bien été supprimé'

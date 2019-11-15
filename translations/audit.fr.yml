@@ -1,11 +1,8 @@
-audit:
-    title: 'Historique de l''activité'
-    actions:
-        insert: 'Création de l''élément #%id%'
-        update: 'Modification de l''élément #%id%'
-        delete: 'Suppression de l''élément #%id%'
-        made_by: 'Action réalisée par %username%'
-        mnt_vi: 'Accés à la page de maintenance'
-    updates:
-        title: 'Modifications effectuées'
-        text: 'Modification de la propriété <strong>%property%</strong> de <strong>%old%</strong> à <strong>%new%</strong>'
+audit.title: 'Historique de l''activité'
+audit.actions.insert: 'Création de l''élément #%id%'
+audit.actions.update: 'Modification de l''élément #%id%'
+audit.actions.delete: 'Suppression de l''élément #%id%'
+audit.actions.made_by: 'Action réalisée par %username%'
+audit.actions.mnt_vi: 'Accés à la page de maintenance'
+audit.updates.title: 'Modifications effectuées'
+audit.updates.text: 'Modification de la propriété <strong>%property%</strong> de <strong>%old%</strong> à <strong>%new%</strong>'
