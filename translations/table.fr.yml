@@ -1,11 +1,3 @@
-table.default.lengthMenu: '_MENU_ résultats par page'
-table.default.zeroRecords: 'Aucun résultat - désolé'
-table.default.info: 'Page _PAGE_ de _PAGES_'
-table.default.infoEmpty: 'Aucune donnée disponible'
-table.default.infoFiltered: '(filtrés sur _MAX_ éléments)'
-table.default.search: Rechercher
-table.default.previous: Précedent
-table.default.next: Suivant
 table.head.actions: Actions
 table.head.test.id: ID
 table.head.test.name: Nom

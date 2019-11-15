@@ -141,12 +141,14 @@ $.App = {
   },
   cookie: function() {
     $.cookieBubble({
-      messageText: COOKIE_TRANSLATIONS.message,
+      messageText: Translator.trans("javascript.cookie.message"),
       iconColor: $.App.getThemeColor(THEME_NAME),
       buttonColor: $.App.getThemeColor(THEME_NAME),
-      buttonText: COOKIE_TRANSLATIONS.confirm_button,
-      cookiePolicyButtonText: COOKIE_TRANSLATIONS.cookie_policy_button,
-      cookiePolicyButtonUrl: COOKIE_TRANSLATIONS.cookie_policy_url
+      buttonText: Translator.trans("javascript.cookie.buttons.confirm"),
+      cookiePolicyButtonText: Translator.trans(
+        "javascript.cookie.buttons.cookie_policy"
+      ),
+      cookiePolicyButtonUrl: COOKIE_POLICY_URL
     });
   },
   detectIp: function() {
@@ -188,12 +190,12 @@ $.App = {
         wrapper.innerHTML = link.data("dialog-confirm");
 
         swal({
-          title: Translator.trans("dialog.ajax.confirm.title"),
+          title: Translator.trans("javascript.dialog.ajax.confirm.title"),
           content: wrapper,
           icon: "warning",
           buttons: [
-            Translator.trans("dialog.ajax.buttons.cancel"),
-            Translator.trans("dialog.ajax.buttons.success")
+            Translator.trans("javascript.dialog.ajax.buttons.cancel"),
+            Translator.trans("javascript.dialog.ajax.buttons.success")
           ],
           dangerMode: true
         })
@@ -206,7 +208,9 @@ $.App = {
                   if (response.success) {
                     wrapper.innerHTML = link.data("dialog-success");
                     swal({
-                      title: Translator.trans("dialog.ajax.success.title"),
+                      title: Translator.trans(
+                        "javascript.dialog.ajax.success.title"
+                      ),
                       content: wrapper,
                       icon: "success"
                     }).then(() => {
@@ -222,8 +226,8 @@ $.App = {
                 if (err) {
                   console.log(err);
                   swal(
-                    Translator.trans("dialog.ajax.error.title"),
-                    Translator.trans("dialog.ajax.error.text"),
+                    Translator.trans("javascript.dialog.ajax.error.title"),
+                    Translator.trans("javascript.dialog.ajax.error.text"),
                     "error"
                   );
                 } else {
@@ -234,7 +238,7 @@ $.App = {
             } else {
               wrapper.innerHTML = link.data("dialog-cancel");
               swal({
-                title: Translator.trans("dialog.ajax.cancel.title"),
+                title: Translator.trans("javascript.dialog.ajax.cancel.title"),
                 content: wrapper,
                 icon: "error"
               });
@@ -244,8 +248,8 @@ $.App = {
             if (err) {
               console.log(err);
               swal(
-                Translator.trans("dialog.ajax.error.title"),
-                Translator.trans("dialog.ajax.error.text"),
+                Translator.trans("javascript.dialog.ajax.error.title"),
+                Translator.trans("javascript.dialog.ajax.error.text"),
                 "error"
               );
             } else {
@@ -366,7 +370,9 @@ $.App = {
                   $.App.unblockUI();
                   $.App.notify(
                     "bg-" + THEME_NAME,
-                    WYSIWYG_TRANSLATIONS.success,
+                    Translator.trans(
+                      "javascript.notification.translation.edited"
+                    ),
                     TOASTR_POSITION.vertical,
                     TOASTR_POSITION.horizontal
                   );
@@ -375,7 +381,7 @@ $.App = {
                   $.App.unblockUI();
                   $.App.notify(
                     "bg-red",
-                    Translator.trans("dialog.ajax.error.text"),
+                    Translator.trans("javascript.dialog.ajax.error.text"),
                     TOASTR_POSITION.vertical,
                     TOASTR_POSITION.horizontal
                   );
@@ -543,7 +549,7 @@ $.App = {
             method: "GET",
             success: function(result) {
               if (result.success) {
-                swal(Translator.trans("dialog.ajax.refresh.title"), {
+                swal(Translator.trans("javascript.dialog.ajax.refresh.title"), {
                   icon: "success"
                 }).then(() => {
                   window.location.reload();
@@ -554,8 +560,8 @@ $.App = {
             if (err) {
               console.log(err);
               swal(
-                Translator.trans("dialog.ajax.error.title"),
-                Translator.trans("dialog.ajax.error.text"),
+                Translator.trans("javascript.dialog.ajax.error.title"),
+                Translator.trans("javascript.dialog.ajax.error.text"),
                 "error"
               );
             } else {
@@ -585,9 +591,12 @@ $.App = {
               method: "GET",
               success: function(result) {
                 if (result.success) {
-                  swal(Translator.trans("dialog.ajax.refresh.title"), {
-                    icon: "success"
-                  }).then(() => {
+                  swal(
+                    Translator.trans("javascript.dialog.ajax.refresh.title"),
+                    {
+                      icon: "success"
+                    }
+                  ).then(() => {
                     window.location.reload();
                   });
                 }
@@ -596,8 +605,8 @@ $.App = {
               if (err) {
                 console.log(err);
                 swal(
-                  Translator.trans("dialog.ajax.error.title"),
-                  Translator.trans("dialog.ajax.error.text"),
+                  Translator.trans("javascript.dialog.ajax.error.title"),
+                  Translator.trans("javascript.dialog.ajax.error.text"),
                   "error"
                 );
               } else {

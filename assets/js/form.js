@@ -1785,7 +1785,7 @@ $.Form = {
           return true;
         }
       },
-      VALIDATOR_TRANSLATIONS.phone
+      Translator.trans("javascript.validation.messages.phone")
     );
 
     FORM_VALIDATOR.validator.addMethod(
@@ -1798,7 +1798,7 @@ $.Form = {
           return true;
         }
       },
-      VALIDATOR_TRANSLATIONS.regex
+      Translator.trans("javascript.validation.messages.regex")
     );
 
     FORM_VALIDATOR.validator.addMethod(
@@ -1810,7 +1810,7 @@ $.Form = {
 
         return true;
       },
-      VALIDATOR_TRANSLATIONS.samePassword
+      Translator.trans("javascript.validation.messages.samePassword")
     );
 
     FORM_VALIDATOR.validator.addClassRules("password_verification", {
@@ -1936,9 +1936,9 @@ $.Form = {
           weekStart: 1,
           time: false,
           lang: LOCALE,
-          okText: DATEPICKER_TRANSLATIONS.ok,
-          clearText: DATEPICKER_TRANSLATIONS.clear,
-          cancelText: DATEPICKER_TRANSLATIONS.cancel
+          okText: Translator.trans("javascript.datepicker.messages.ok"),
+          clearText: Translator.trans("javascript.datepicker.messages.clear"),
+          cancelText: Translator.trans("javascript.datepicker.messages.cancel")
         })
       );
     });
@@ -1949,9 +1949,9 @@ $.Form = {
         clearButton: true,
         date: false,
         lang: LOCALE,
-        okText: DATEPICKER_TRANSLATIONS.ok,
-        clearText: DATEPICKER_TRANSLATIONS.clear,
-        cancelText: DATEPICKER_TRANSLATIONS.cancel
+        okText: Translator.trans("javascript.datepicker.messages.ok"),
+        clearText: Translator.trans("javascript.datepicker.messages.clear"),
+        cancelText: Translator.trans("javascript.datepicker.messages.cancel")
       });
     });
 
@@ -1976,9 +1976,9 @@ $.Form = {
           clearButton: true,
           weekStart: 1,
           lang: LOCALE,
-          okText: DATEPICKER_TRANSLATIONS.ok,
-          clearText: DATEPICKER_TRANSLATIONS.clear,
-          cancelText: DATEPICKER_TRANSLATIONS.cancel
+          okText: Translator.trans("javascript.datepicker.messages.ok"),
+          clearText: Translator.trans("javascript.datepicker.messages.clear"),
+          cancelText: Translator.trans("javascript.datepicker.messages.cancel")
         })
       );
     });

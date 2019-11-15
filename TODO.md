@@ -22,7 +22,7 @@ URGENT
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
     améliorer js
-        inntégrer translatorr partout
+        javascript dynamic {%- -%}
         ne plus traduire en attribut data
     optimisations html - js - php
         https://www.htmhell.dev/

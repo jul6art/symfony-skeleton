@@ -3,54 +3,24 @@
         VALIDATE_LOCALE = '{{ validate_locale() }}',
         WYSIWYG_LOCALE = '{{ wysiwyg_locale() }}',
         THEME_NAME  = '{{ theme_name() }}',
+        COOKIE_POLICY_URL = "{{ cookie_policy_url }}",
         FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }},
-        DATATABLE_TRANSLATIONS = {
-        "lengthMenu": "{{ 'table.default.lengthMenu'|trans({}, 'table') }}",
-        "zeroRecords": "{{ 'table.default.zeroRecords'|trans({}, 'table') }}",
-        "info": "{{ 'table.default.info'|trans({}, 'table') }}",
-        "infoEmpty": "{{ 'table.default.infoEmpty'|trans({}, 'table') }}",
-        "infoFiltered": "{{ 'table.default.infoFiltered'|trans({}, 'table') }}",
-        "search": "{{ 'table.default.search'|trans({}, 'table') }}",
-        "paginate": {
-            "previous": "{{ 'table.default.previous'|trans({}, 'table') }}",
-            "next": "{{ 'table.default.next'|trans({}, 'table') }}",
-        }
-    },
-        COOKIE_TRANSLATIONS = {
-        "message": "{{ 'cookie.message'|trans({}, 'cookie') }}",
-        "confirm_button": "{{ 'cookie.buttons.confirm'|trans({}, 'cookie') }}",
-        "cookie_policy_button": "{{ 'cookie.buttons.cookie_policy'|trans({}, 'cookie') }}",
-        "cookie_policy_url": "{{ cookie_policy_url }}",
-    },
-        WYSIWYG_TRANSLATIONS = {
-        "success": "{{ 'notification.translation.edited'|trans({}, 'notification') }}",
-    },
-        DATEPICKER_TRANSLATIONS = {
-        "cancel": "{{ 'jquery.datepicker.messages.cancel'|trans({}, 'form') }}",
-        "clear": "{{ 'jquery.datepicker.messages.clear'|trans({}, 'form') }}",
-        "now": "{{ 'jquery.datepicker.messages.now'|trans({}, 'form') }}",
-        "ok": "{{ 'jquery.datepicker.messages.ok'|trans({}, 'form') }}",
-    },
-        VALIDATOR_TRANSLATIONS = {
-        "phone": "{{ 'jquery.validate.messages.phone'|trans({}, 'validators') }}",
-        "regex": "{{ 'jquery.validate.messages.regex'|trans({}, 'validators') }}",
-        "samePassword": "{{ 'jquery.validate.messages.samePassword'|trans({}, 'validators') }}",
-    },
         TOASTR_POSITION = {
-        "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
-        "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
-    },
+            "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
+            "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
+        },
         ACCESS = {};
-    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') %}
+
+    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') -%}
         ACCESS.confirm_delete = true;
     {% endif %}
-    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') %}
+    {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') -%}
         ACCESS.edit_in_place = true;
     {% endif %}
-    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') %}
+    {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') -%}
         ACCESS.progressive_web_app = true;
     {% endif %}
-    {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') %}
+    {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') -%}
         ACCESS.form_watcher = true;
     {% endif %}
 </script>

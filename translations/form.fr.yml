@@ -1,7 +1,3 @@
-jquery.datepicker.messages.ok: Ok
-jquery.datepicker.messages.clear: Vider
-jquery.datepicker.messages.cancel: Annuler
-jquery.datepicker.messages.now: Maintenant
 form.common.required: Obligatoire
 form.common.boolean.choices.yes: Oui
 form.common.boolean.choices.no: Non

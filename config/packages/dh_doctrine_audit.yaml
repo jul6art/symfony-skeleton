@@ -11,4 +11,6 @@ dh_doctrine_audit:
                 - lastLogin
                 - updatedAt
                 - usernameCanonical
+                - password
+                - salt
         App\Entity\Test: ~ # all properties are audited

@@ -16,7 +16,18 @@ $(document).ready(function() {
     let datatableOptions = {
       dom: "BflrRtip",
       lengthMenu: [10, 25, 50, 100, 500, 1000],
-      language: DATATABLE_TRANSLATIONS
+      language: {
+        lengthMenu: Translator.trans("javascript.table.default.lengthMenu"),
+        zeroRecords: Translator.trans("javascript.table.default.zeroRecords"),
+        info: Translator.trans("javascript.table.default.info"),
+        infoEmpty: Translator.trans("javascript.table.default.infoEmpty"),
+        infoFiltered: Translator.trans("javascript.table.default.infoFiltered"),
+        search: Translator.trans("javascript.table.default.search"),
+        paginate: {
+          previous: Translator.trans("javascript.table.default.previous"),
+          next: Translator.trans("javascript.table.default.next")
+        }
+      }
     };
 
     if (table.data("export")) {

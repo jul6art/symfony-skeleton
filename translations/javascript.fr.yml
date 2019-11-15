@@ -1,8 +1,27 @@
-dialog.ajax.buttons.success: OK
-dialog.ajax.buttons.cancel: annuler
-dialog.ajax.cancel.title: Annulé!
-dialog.ajax.success.title: Succès!
-dialog.ajax.confirm.title: 'Êtes-vous sure ?'
-dialog.ajax.error.title: Annulé!
-dialog.ajax.error.text: 'La requête a échoué, désolé!'
-dialog.ajax.refresh.title: 'Vous devez recharger la page!'
+javascript.dialog.ajax.buttons.success: OK
+javascript.dialog.ajax.buttons.cancel: annuler
+javascript.dialog.ajax.cancel.title: Annulé!
+javascript.dialog.ajax.success.title: Succès!
+javascript.dialog.ajax.confirm.title: 'Êtes-vous sure ?'
+javascript.dialog.ajax.error.title: Annulé!
+javascript.dialog.ajax.error.text: 'La requête a échoué, désolé!'
+javascript.dialog.ajax.refresh.title: 'Vous devez recharger la page!'
+javascript.cookie.message: 'Nous utilisons des cookies pour personaliser votre experience. En continuant sur le site, vous acceptez l''usage des cookies.'
+javascript.cookie.buttons.confirm: accepter
+javascript.cookie.buttons.cookie_policy: 'politique de cookies'
+javascript.notification.translation.edited: 'La traduction a bien été modifiée'
+javascript.datepicker.messages.ok: Ok
+javascript.datepicker.messages.clear: Vider
+javascript.datepicker.messages.cancel: Annuler
+javascript.datepicker.messages.now: Maintenant
+javascript.validation.messages.phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
+javascript.validation.messages.regex: 'La valeur entrée ne respecte pas le modèle requis'
+javascript.validation.messages.samePassword: 'Les mots de passe ne sont pas identiques'
+javascript.table.default.lengthMenu: '_MENU_ résultats par page'
+javascript.table.default.zeroRecords: 'Aucun résultat - désolé'
+javascript.table.default.info: 'Page _PAGE_ de _PAGES_'
+javascript.table.default.infoEmpty: 'Aucune donnée disponible'
+javascript.table.default.infoFiltered: '(filtrés sur _MAX_ éléments)'
+javascript.table.default.search: Rechercher
+javascript.table.default.previous: Précedent
+javascript.table.default.next: Suivant

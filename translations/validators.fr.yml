@@ -1,6 +1,3 @@
-jquery.validate.messages.phone: 'La valeur entrée n''est pas un numéro de téléphone valide'
-jquery.validate.messages.regex: 'La valeur entrée ne respecte pas le modèle requis'
-jquery.validate.messages.samePassword: 'Les mots de passe ne sont pas identiques'
 form.boolean.error: 'La valeur entrée n''est pas une valeur possible. Cochez simplement "Oui" ou "Non"'
 form.datetime.error: 'La valeur entrée n''est pas une date valide'
 form.datetime.error_min_date: 'La valeur entrée doit être supérieure ou égale à la date minimum qui est le {{ date }}'
