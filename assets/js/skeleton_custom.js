@@ -343,6 +343,7 @@ $.App = {
           let parameters = baseElement.data("parameters");
           baseElement.on("click", function() {
             editor.show();
+            baseElement.trigger("focus");
           });
 
           editor.on("focus", function() {
@@ -408,6 +409,10 @@ $.App = {
               editor.hide();
             }
           });
+        },
+        init_instance_callback: editor => {
+          editor.hide();
+          editor.fire("blur");
         }
       });
     }
