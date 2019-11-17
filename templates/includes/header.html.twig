@@ -17,7 +17,7 @@
                 {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::SWITCH_LOCALE'), 'App\\Entity\\Functionality') %}
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
-                            <i class="fa fa-globe fa-2x"></i>
+                            <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
                         </a>
                         {% include 'includes/locales_dropdown.html.twig' with {locale: locale()} %}
                     </li>

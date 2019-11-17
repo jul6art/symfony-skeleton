@@ -20,9 +20,6 @@ bugs
 URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
-        
-    optimisations html - js - php
-        https://www.htmhell.dev/
     
     javascript edit in place
         mettre en place partout

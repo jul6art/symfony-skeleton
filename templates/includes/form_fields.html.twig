@@ -118,7 +118,8 @@
             {{- label|trans({}, translation_domain) -}}
         {%- endif -%}
         {%- if form.vars.tooltip ?? false -%}
-             <i class="fa fa-question-circle tooltip-help" data-toggle="tooltip" data-original-title="{{ translation_domain is same as(false) ? form.vars.tooltip : form.vars.tooltip|trans({}, translation_domain) }}"></i>
+             <i class="fa fa-question-circle tooltip-help" data-toggle="tooltip" aria-hidden="true"
+                data-original-title="{{ translation_domain is same as(false) ? form.vars.tooltip : form.vars.tooltip|trans({}, translation_domain) }}"></i>
         {%- endif -%}
         {%- if required -%}
             <span class="badge bg-blue-grey">{{ 'form.common.required' | trans({}, translation_domain) }}</span>

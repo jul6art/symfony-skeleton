@@ -16,16 +16,16 @@
 
                                 <a role="button" data-toggle="collapse" href="#collapseAudit_{{ loop.index }}" aria-expanded="false"{% if collapsed %} aria-controls="collapseAudit_{{ loop.index }}"{% endif %} class="collapsed">
                                     {% if audit.type == 'insert' %}
-                                        <i class="material-icons">add_circle_outline</i>
+                                        <i class="material-icons" aria-hidden="true">add_circle_outline</i>
                                         {{ 'audit.actions.insert'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% elseif audit.type == 'update' %}
-                                        <i class="material-icons">edit</i>
+                                        <i class="material-icons" aria-hidden="true">edit</i>
                                         {{ 'audit.actions.update'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% elseif audit.type == 'remove' %}
-                                        <i class="material-icons">remove_circle_outline</i>
+                                        <i class="material-icons" aria-hidden="true">remove_circle_outline</i>
                                         {{ 'audit.actions.delete'|trans({'%id%': audit.objectId, '%username%': audit.userId},  'audit') }}
                                     {% else %}
-                                        <i class="material-icons">info_outline</i>
+                                        <i class="material-icons" aria-hidden="true">info_outline</i>
 
                                         {% set diffs = {
                                             '%objectId%': audit.objectId,

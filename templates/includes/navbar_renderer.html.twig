@@ -113,7 +113,7 @@
     {% import _self as knp_menu %}
     <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>
         {% if item.extra('icon') %}
-            <i class="material-icons">{{ item.extra('icon') }}</i>
+            <i class="material-icons" aria-hidden="true">{{ item.extra('icon') }}</i>
         {% endif %}
         {% if item.parent.name == 'root' %}
             <span class="title">{{ block('label') }}</span>
