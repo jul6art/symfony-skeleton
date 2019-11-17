@@ -11,13 +11,10 @@
                 <li>
                     <a href="{{ path(action.route, action.routeParams) }}" class="waves-effect waves-block"
                     {% for key, value in action.parameters %}
-                        {% if key != 'dialog-confirm-parameters' %}
-                            {{ key }}=
-                            {% if key in ['data-dialog-confirm', 'data-dialog-cancel', 'data-dialog-success'] %}
-                                "{{ value|trans(action.parameters['dialog-confirm-parameters']|default({}), 'dialog') }}"
-                            {% else %}
-                                "{{ value }}"
-                            {% endif %}
+                        {% if key == 'data-dialog-confirm-parameters' %}
+                            {{ key }}="{{ value|json_encode_with_quotes }}"
+                        {% else %}
+                            {{ key }}="{{ value }}"
                         {% endif %}
                     {% endfor %}
                     >

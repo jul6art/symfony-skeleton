@@ -11,6 +11,7 @@
 {% block body_class %}theme-{{ theme_name() }}{% endblock body_class %}
 
 {% block body_content %}
+    {% include 'includes/impersonate.html.twig' %}
     {% include 'includes/loader.html.twig' %}
 
     <!-- Overlay For Sidebars -->
@@ -55,7 +56,6 @@
 {% endblock body_content %}
 
 {% block javascripts %}
-    {% include 'includes/impersonate.html.twig' %}
     {% include 'includes/javascripts_dynamic.html.twig' %}
     {% include 'includes/javascripts.html.twig' %}
 {% endblock javascripts %}

@@ -187,7 +187,10 @@ $.App = {
         let link = $(this);
 
         let wrapper = document.createElement("div");
-        wrapper.innerHTML = link.data("dialog-confirm");
+        wrapper.innerHTML = Translator.trans(
+          link.data("dialog-confirm"),
+          link.data("dialog-confirm-parameters")
+        );
 
         swal({
           title: Translator.trans("javascript.dialog.ajax.confirm.title"),
@@ -206,7 +209,10 @@ $.App = {
                 method: "get",
                 success: function(response) {
                   if (response.success) {
-                    wrapper.innerHTML = link.data("dialog-success");
+                    wrapper.innerHTML = Translator.trans(
+                      link.data("dialog-success"),
+                      link.data("dialog-confirm-parameters")
+                    );
                     swal({
                       title: Translator.trans(
                         "javascript.dialog.ajax.success.title"
@@ -236,7 +242,10 @@ $.App = {
                 }
               });
             } else {
-              wrapper.innerHTML = link.data("dialog-cancel");
+              wrapper.innerHTML = wrapper.innerHTML = Translator.trans(
+                link.data("dialog-cancel"),
+                link.data("dialog-confirm-parameters")
+              );
               swal({
                 title: Translator.trans("javascript.dialog.ajax.cancel.title"),
                 content: wrapper,
@@ -271,10 +280,10 @@ $.App = {
   },
   editInPlace: function() {
     if (typeof ACCESS.edit_in_place !== "undefined") {
-      let toggleParameters = function(string, parameters, abstract = true) {
+      let toggleParameters = function(string, parameters, returnValue = true) {
         $.each(parameters, function(key, value) {
           value = value.replace(/&nbsp;/g, " ");
-          if (abstract) {
+          if (returnValue) {
             string = string.replace(new RegExp(value, "g"), key);
           } else {
             string = string.replace(new RegExp(key, "g"), value);

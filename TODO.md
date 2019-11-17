@@ -20,10 +20,7 @@ bugs
 URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
-    
-    améliorer js
-        javascript dynamic {%- -%}
-        ne plus traduire en attribut data
+        
     optimisations html - js - php
         https://www.htmhell.dev/
     
@@ -47,7 +44,7 @@ URGENT
         https://symfony.com/doc/current/testing.html
         mockery mock??
     
-    bugs js: range validator google.recaptcha datetimepicker ...
+    bugs js: range validator google.recaptcha datetimepicker wysiwyg IE11 ...
         
     tuto bienvenue
         fonctionalité

@@ -1,6 +1,0 @@
-dialog.ajax.test.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer le test <strong>%name%</strong>!'
-dialog.ajax.test.cancel: 'Le test <strong>%name%</strong> est toujours là!'
-dialog.ajax.test.success: 'Le test <strong>%name%</strong> a bien été supprimé!'
-dialog.ajax.user.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur <strong>%name%</strong>!'
-dialog.ajax.user.cancel: 'L''utilisateur <strong>%name%</strong> est toujours là!'
-dialog.ajax.user.success: 'L''utilisateur <strong>%name%</strong> a bien été supprimé!'
