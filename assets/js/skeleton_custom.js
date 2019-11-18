@@ -180,7 +180,7 @@ $.App = {
       );
   },
   dialog: function() {
-    if (typeof ACCESS.confirm_delete !== "undefined") {
+    if (typeof FUNCTIONALITIES.confirm_delete !== "undefined") {
       require("sweetalert");
       $("body").on("click", '[data-confirm="confirm"]', function(e) {
         e.preventDefault();
@@ -279,7 +279,7 @@ $.App = {
     });
   },
   editInPlace: function() {
-    if (typeof ACCESS.edit_in_place !== "undefined") {
+    if (typeof FUNCTIONALITIES.edit_in_place !== "undefined") {
       let toggleParameters = function(string, parameters, returnValue = true) {
         $.each(parameters, function(key, value) {
           value = value.replace(/&nbsp;/g, " ");
@@ -526,7 +526,7 @@ $.App = {
     );
   },
   progressiveWebApp: function() {
-    if (typeof ACCESS.progressive_web_app !== "undefined") {
+    if (typeof FUNCTIONALITIES.progressive_web_app !== "undefined") {
       let manifestLink = $("#progressiveWebAppManifest");
 
       if (manifestLink.length) {
@@ -554,7 +554,7 @@ $.App = {
       .on("change", '#settings input[type="checkbox"]', function(e) {
         let input = $(this);
 
-        if (typeof ACCESS.confirm_delete !== "undefined") {
+        if (typeof FUNCTIONALITIES.confirm_delete !== "undefined") {
           $.ajax({
             url: Routing.generate("admin_functionality_switch", {
               functionality: input.data("id"),
@@ -596,7 +596,7 @@ $.App = {
         let input = $(this);
 
         if (input.val() != -1) {
-          if (typeof ACCESS.confirm_delete !== "undefined") {
+          if (typeof FUNCTIONALITIES.confirm_delete !== "undefined") {
             $.ajax({
               url: Routing.generate("admin_setting_set", {
                 setting: input.data("id"),

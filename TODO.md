@@ -21,8 +21,6 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
-    tester vite fait suur IE11
-    
     javascript edit in place
         mettre en place partout
             pages details

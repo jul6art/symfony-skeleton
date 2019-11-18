@@ -9,18 +9,18 @@
             "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
             "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
         },
-        ACCESS = {};
+        FUNCTIONALITIES = {};
 
     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::CONFIRM_DELETE'), 'App\\Entity\\Functionality') -%}
-        ACCESS.confirm_delete = true;
+        FUNCTIONALITIES.confirm_delete = true;
     {% endif %}
     {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::EDIT_IN_PLACE'), 'App\\Entity\\Functionality') -%}
-        ACCESS.edit_in_place = true;
+        FUNCTIONALITIES.edit_in_place = true;
     {% endif %}
     {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::PROGRESSIVE_WEB_APP'), 'App\\Entity\\Functionality') -%}
-        ACCESS.progressive_web_app = true;
+        FUNCTIONALITIES.progressive_web_app = true;
     {% endif %}
     {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') -%}
-        ACCESS.form_watcher = true;
+        FUNCTIONALITIES.form_watcher = true;
     {% endif %}
 </script>
