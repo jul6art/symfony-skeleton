@@ -35,11 +35,13 @@ URGENT
     usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
     password min et max length ett password strength plugin
         
-    tests translate et maintenance
-    tests usercontroller impersonate action (chaque cas du voter)
-    tests services
-        https://symfony.com/doc/current/testing.html
-        mockery mock??
+    tests
+        voir TEST.md
+        translate et maintenance
+        usercontroller impersonate action (chaque cas du voter)
+        services
+            https://symfony.com/doc/current/testing.html
+            mockery mock??
     
     bugs js: range validator google.recaptcha datetimepicker wysiwyg IE11 ...
         
