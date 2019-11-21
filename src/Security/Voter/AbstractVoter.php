@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Created by VsWeb.
+ * Project: symfony-skeleton
  * User: Jul6art
- * Date: 21/05/2019
- * Time: 20:26.
+ * Date: 21/11/2019
+ * Time: 21:39.
  */
 
 namespace App\Security\Voter;
