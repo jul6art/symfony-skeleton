@@ -37,17 +37,19 @@ class FileService
     public function getSizeAndUnit($directory = ''): string
     {
         $size = $this->getSize($directory);
+        $unity = 'Octets';
 
-        if ($size < 1024) {
-            $size = "$size Octets";
-        } elseif ($size < 1048576 and $size > 1023) {
-            $size = sprintf('%s Ko', round($size / 1024, 1));
+        if ($size < 1048576 and $size > 1023) {
+            $unity = 'Ko';
+            $size = round($size / 1024, 1);
         } elseif ($size < 1073741824 and $size > 1048575) {
-            $size = sprintf('%s Mo', round($size / 1048576, 1));
-        } else {
-            $size = sprintf('%s Go', round($size / 1073741824, 1));
+            $unity = 'Mo';
+            $size = round($size / 1048576, 1);
+        } elseif ($size > 1073741823) {
+            $unity = 'Go';
+            $size = round($size / 1073741824, 1);
         }
 
-        return $size;
+        return "$size $unity";
     }
 }

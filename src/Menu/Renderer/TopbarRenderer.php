@@ -158,7 +158,7 @@ class TopbarRenderer extends Renderer implements RendererInterface
 
         // renders the embedded ul
         $childrenClass = (array) $item->getChildrenAttribute('class');
-        $childrenClass[] = sprintf('menu_level_%s', $item->getLevel());
+        $childrenClass[] = "menu_level_{$item->getLevel()}";
 
         $childrenAttributes = $item->getChildrenAttributes();
         $childrenAttributes['class'] = implode(' ', $childrenClass);

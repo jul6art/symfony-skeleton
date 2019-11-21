@@ -23,10 +23,9 @@ class GroupFixtures extends Fixture
         ];
 
         foreach ($groups as $value) {
+            $roleName = strtoupper($value);
             $group = (new Group($value))
-                ->setRoles([
-                    sprintf('ROLE_%s', strtoupper($value)),
-                ]);
+                ->setRoles(["ROLE_$roleName"]);
 
             if (Group::GROUP_NAME_USER !== $value) {
                 $group->addRole('ROLE_ALLOWED_TO_SWITCH');

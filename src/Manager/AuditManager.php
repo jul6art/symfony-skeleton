@@ -68,7 +68,7 @@ class AuditManager extends AbstractManager
 
         $blame = $this->helper->blame();
 
-        $schema = $meta->getSchemaName() ? sprintf('%s.', $meta->getSchemaName()) : '';
+        $schema = $meta->getSchemaName() ? "{$meta->getSchemaName()}." : '';
         $auditTable = sprintf(
             '%s%s%s%s',
             $schema,
