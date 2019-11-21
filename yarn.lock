@@ -1265,7 +1265,6 @@ bootstrap-material-datetimepicker@2.7.1:
     bootstrap "~3.3.4"
     bootstrap-material-design "~0.3.0"
     jquery "1.12.3"
-    moment "~2.10.2"
 
 bootstrap-material-design@~0.3.0:
   version "0.3.0"
@@ -4544,11 +4543,6 @@ moment@2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
   integrity sha1-vbmdJw1tf9p4zA+6zoVeJ/59pp8=
-
-moment@~2.10.2:
-  version "2.10.6"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.6.tgz#6cb21967c79cba7b0ca5e66644f173662b3efa77"
-  integrity sha1-bLIZZ8ecunsMpeZmRPFzZis++nc=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
