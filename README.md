@@ -79,18 +79,18 @@ nano .env
     CURRENT_DOMAIN=symfony-skeleton.localhost
     ###< domain ###
 
-### Start server
-
-```bash
-sh hook_local.sh
-php bin/console server:start
-```
-
-### Testing
+### Run tests
 
 ```bash
 sh hook_local.sh
 ./vendor/bin/simple-phpunit
+```
+
+### Start server
+
+```bash
+sh hook_local.sh
+php bin/console server:run
 ```
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
