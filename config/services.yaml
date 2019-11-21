@@ -129,6 +129,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
 
+    App\EventListener\UserListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
             - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'

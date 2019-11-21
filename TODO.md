@@ -26,8 +26,7 @@ URGENT
             pages details
             maintenance
             layout
-            fos pages
-            form inputs label
+            fos pages change password
             
     versions vulnerabilities et php upgrades
     
