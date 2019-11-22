@@ -296,6 +296,20 @@ LOGIN
 }
 
 .login-box {
+  > .logo {
+    padding: 20px 20px 0;
+
+    a {
+      font-size: 20px !important;
+
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 160px;
+      }
+    }
+  }
+
   > .card {
     margin-bottom: 10px;
   }
