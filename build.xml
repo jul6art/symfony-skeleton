@@ -20,7 +20,7 @@
     <!--/>-->
 
     <target name="build" description="Build"
-            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, unit_tests"
+            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, security, unit_tests"
     />
 
     <target name="deploy" description="Deploy and deployment process"
@@ -147,6 +147,13 @@
             <arg value="doctrine:fixtures:load" />
             <arg value="--no-interaction" />
             <arg value="--env=dev" />
+        </exec>
+    </target>
+
+    <target name="security" description="Symfony security checker">
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
+            <arg value="security:check" />
         </exec>
     </target>
 
