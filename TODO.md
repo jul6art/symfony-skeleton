@@ -23,7 +23,7 @@ URGENT
     
     command de clean des sessions + CRON + noter CRON readme
         
-    messenger bundle asynchrone au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO + CROn + noter CRON readme
+    messenger bundle asynchrone au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO + CRON + noter CRON readme
         https://symfony.com/doc/current/messenger.html
         
     socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
