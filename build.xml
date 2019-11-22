@@ -9,8 +9,10 @@
 
     <property name="symfony_env" value="dev"/>
     <property name="composer" value="composer"/>
+    <property name="yarn" value="yarn"/>
     <property name="php" value="php"/>
     <property name="phpunit" value="./vendor/bin/simple-phpunit"/>
+    <property name="console_path" value="bin/console"/>
     <property name="parameters" value="/PATH/TO/PARAMETERS"/>
 
     <!--<target name="build" description="Build"-->
@@ -46,7 +48,7 @@
     </target>
 
     <target name="yarn" description="Installing yarn dependencies">
-        <exec executable="yarn" failonerror="true">
+        <exec executable="${yarn}" failonerror="true">
             <arg value="install"/>
         </exec>
         <exec executable="yarn" failonerror="true">
@@ -56,7 +58,7 @@
     </target>
 
     <target name="composer" description="Installing composer dependencies">
-        <exec executable="composer" failonerror="true">
+        <exec executable="${composer}" failonerror="true">
             <arg value="install" />
             <arg value="--no-progress" />
             <arg value="--no-suggest" />
@@ -64,14 +66,14 @@
     </target>
 
     <target name="fosjs" description="FOSJS routing">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="fos:js-routing:dump"/>
             <arg value="--format=json"/>
             <arg value="--target=public/js/fos_js_routes.json"/>
         </exec>
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="fos:js-routing:dump"/>
             <arg value="--format=js"/>
             <arg value="--target=public/js/fos_js_routes.js"/>
@@ -79,16 +81,16 @@
     </target>
 
     <target name="audit" description="Audit cleaning">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="audit:clean"/>
             <arg value="--no-confirm"/>
         </exec>
     </target>
 
     <target name="lexik" description="Force lexik translation update">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="lexik:translations:import"/>
             <arg value="--cache-clear"/>
             <arg value="--force"/>
@@ -96,24 +98,24 @@
     </target>
 
     <target name="cache" description="Cache cleaning">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="cache:clear"/>
             <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
     <target name="assets" description="Assetic dump">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console"/>
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}"/>
             <arg value="assetic:dump"/>
             <arg value="--env=${symfony_env}" />
         </exec>
     </target>
 
     <target name="database_drop" description="Database drop">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console" />
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
             <arg value="doctrine:schema:update" />
             <arg value="--no-interaction" />
             <arg value="--force" />
@@ -122,8 +124,8 @@
     </target>
 
     <target name="database_update" description="Database update">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console" />
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
             <arg value="doctrine:schema:update" />
             <arg value="--no-interaction" />
             <arg value="--force" />
@@ -132,16 +134,16 @@
     </target>
 
     <target name="database_migrate" description="Database migrations">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console" />
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
             <arg value="doctrine:migrations:migrate" />
             <arg value="--no-interaction" />
         </exec>
     </target>
 
     <target name="fixtures" description="Database fixtures">
-        <exec executable="php" failonerror="true">
-            <arg value="bin/console" />
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
             <arg value="doctrine:fixtures:load" />
             <arg value="--no-interaction" />
             <arg value="--env=dev" />
@@ -149,7 +151,7 @@
     </target>
 
     <target name="unit_tests" description="Launch Unit Tests">
-        <exec executable="phpunit" failonerror="true">
+        <exec executable="${phpunit}" failonerror="true">
         </exec>
     </target>
 
