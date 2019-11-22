@@ -21,6 +21,13 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
+    command de clean des sessions + CRON + noter CRON readme
+        
+    messenger bundle asynchrone au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO + CROn + noter CRON readme
+        https://symfony.com/doc/current/messenger.html
+        
+    socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
+    
     javascript edit in place
         mettre en place partout
             pages details
@@ -48,9 +55,6 @@ URGENT
         fonctionalité
         https://clu3.github.io/bootstro.js/index.html#
         http://fortesinformatica.github.io/Sideshow/example.html
-        
-    messenger bundle au lieu de maillistener et là ou c'est adéquat (+ documentation)
-        https://symfony.com/doc/current/messenger.html
 
 datatables
 
