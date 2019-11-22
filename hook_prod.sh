@@ -17,7 +17,7 @@ php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console doctrine:fixtures:load --no-interaction --env=dev
 
 echo '--- TRANSLATIONS LOADING ---'
-php bin/console lexik:translations:import -g -m -c
+php bin/console lexik:translations:import -m -c
 php bin/console lexik:translations:export
 php bin/console bazinga:js-translation:dump public/js/
 php bin/console audit:clean --no-confirm
