@@ -51,6 +51,7 @@ parameters:
     logo: '/build/images/logo.png'
     user_class: App\Entity\User
     skeleton_version: 1.0.1
+    session_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
 
 services:
     _defaults:

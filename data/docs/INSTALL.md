@@ -35,6 +35,13 @@ Base sf4 admin project
 
 ### [Audit](/data/docs/AUDIT.md)
 
+### Commands
+
+```bash
+bin/console skeleton:sessions:clear
+bin/console skeleton:messages:dequeue
+```
+
 ### Theme
 
 > Default theme is set in the setting sidebar, every user can choose the theme he wants

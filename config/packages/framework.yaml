@@ -7,8 +7,8 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
-        cookie_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
-        gc_maxlifetime: 604800 # 30 * 24 * 3600 -> 30 jours
+        cookie_lifetime: '%session_lifetime%'
+        gc_maxlifetime: '%session_lifetime%'
         cookie_secure: auto
         cookie_samesite: lax
         cookie_domain: '%current_cookie_domain%'
