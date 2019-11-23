@@ -22,15 +22,27 @@
         <table class="table table table-bordered table-striped table-hover">
             <tbody>
                 <tr>
-                    <th>{{ ('table.head.maintenance.active.label')|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.maintenance.active.label', {}, 'table') }}>
+                            {{ ('table.head.maintenance.active.label')|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>{{ maintenance.active|raw }}</td>
                 </tr>
                 <tr class="list-group-row">
-                    <th>{{ ('table.head.maintenance.exception_ip_list')|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.maintenance.exception_ip_list', {}, 'table') }}>
+                            {{ ('table.head.maintenance.exception_ip_list')|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>{{ maintenance.exceptionIpList|raw }}</td>
                 </tr>
                 <tr>
-                    <th>{{ ('table.head.maintenance.page_title')|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.maintenance.page_title', {}, 'table') }}>
+                            {{ ('table.head.maintenance.page_title')|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>
                         <p>
                             <span{{ translate_in_place('maintenance.view.title', {}, 'maintenance') }}>
@@ -40,7 +52,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{{ ('table.head.maintenance.page_content')|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.maintenance.page_content', {}, 'table') }}>
+                            {{ ('table.head.maintenance.page_content')|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>
                         <p>
                             <span{{ translate_in_place('maintenance.view.content', {}, 'maintenance') }}>

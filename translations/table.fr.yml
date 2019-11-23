@@ -10,9 +10,9 @@ table.head.user.username: Pseudo
 table.head.maintenance.active.label: Statut
 table.head.maintenance.active.on: 'En ligne'
 table.head.maintenance.active.off: 'Hors ligne'
-table.head.maintenance.exception_ip_list: 'Adresses IP autorisées'
-table.head.maintenance.page_title: 'Titre de la page de maintenance'
-table.head.maintenance.page_content: 'Contenu de la page de maintenance'
+table.head.maintenance.exception_ip_list: 'IP autorisées'
+table.head.maintenance.page_title: 'Titre'
+table.head.maintenance.page_content: 'Contenu'
 table.actions.test.view: 'Voir le test'
 table.actions.test.edit: 'Modifier le test'
 table.actions.test.delete: 'Supprimer le test'

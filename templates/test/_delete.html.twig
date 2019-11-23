@@ -1,7 +1,8 @@
 <a class="col-{{ theme_name() }}" href="{{ path('admin_test_delete', {id: test.id}) }}" data-confirm="confirm"
    data-redirect="{{ path('admin_test_list') }}"
-   data-dialog-confirm="{{ 'dialog.ajax.test.confirm' | trans({'%name%': test.name}, 'dialog')|raw }}"
-   data-dialog-cancel="{{ 'dialog.ajax.test.cancel'|trans({'%name%': test.name}, 'dialog') }}"
-   data-dialog-success="{{ 'dialog.ajax.test.success'|trans({'%name%': test.name}, 'dialog') }}">
+   data-dialog-confirm="javascript.dialog.ajax.test.confirm"
+   data-dialog-cancel="javascript.dialog.ajax.test.cancel"
+   data-dialog-success="javascript.dialog.ajax.test.success"
+   data-dialog-confirm-parameters="{{ {'name': test.name}|json_encode_with_quotes }}">
     {{ 'button.test.delete'|trans({'%name%': test.name}, 'button')|raw }}
 </a>
