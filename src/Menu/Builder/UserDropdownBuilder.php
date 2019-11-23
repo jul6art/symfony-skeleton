@@ -94,7 +94,7 @@ class UserDropdownBuilder
             ]);
 
             $menu->addChild('navbar.divider', [
-                'uri' => 'javascript:void(0);',
+                'uri' => '#!',
                 'label' => false,
             ])->setAttribute('class', 'divider');
         }

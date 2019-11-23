@@ -154,7 +154,7 @@ class NavbarBuilder
             or $this->authorizationChecker->isGranted(TestVoter::ADD, Test::class)
         ) {
             $menu->addChild('navbar.test.title', [
-                'uri' => 'javascript:void(0);',
+                'uri' => '#!',
             ])->setExtras([
                 'icon' => 'print',
                 'translation_domain' => 'navbar',
@@ -207,7 +207,7 @@ class NavbarBuilder
             or $this->authorizationChecker->isGranted(UserVoter::ADD, User::class)
         ) {
             $menu->addChild('navbar.user.title', [
-                'uri' => 'javascript:void(0);',
+                'uri' => '#!',
             ])->setExtras([
                 'icon' => 'supervisor_account',
                 'translation_domain' => 'navbar',
@@ -246,7 +246,7 @@ class NavbarBuilder
     {
         if ($this->authorizationChecker->isGranted(DefaultVoter::TRANSLATE)) {
             $menu->addChild('navbar.translation.title', [
-                'uri' => 'javascript:void(0);',
+                'uri' => '#!',
             ])->setExtras([
                 'icon' => 'language',
                 'translation_domain' => 'navbar',

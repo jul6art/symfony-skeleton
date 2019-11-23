@@ -35,7 +35,11 @@
             <tbody>
             {% for key, value in test %}
                 <tr>
-                    <th>{{ ('table.head.test.' ~ key)|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.test.' ~ key, {}, 'table') }}>
+                            {{ ('table.head.test.' ~ key)|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>{{ value|raw }}</td>
                 </tr>
             {% endfor %}

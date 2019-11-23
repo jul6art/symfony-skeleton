@@ -56,7 +56,11 @@
             <tbody>
             {% for key, value in user %}
                 <tr>
-                    <th>{{ ('table.head.user.' ~ key)|trans({}, 'table') }}</th>
+                    <th>
+                        <span{{ translate_in_place('table.head.user.' ~ key, {}, 'table') }}>
+                            {{ ('table.head.user.' ~ key)|trans({}, 'table') }}
+                        </span>
+                    </th>
                     <td>{{ value|raw }}</td>
                 </tr>
             {% endfor %}

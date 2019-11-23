@@ -64,7 +64,7 @@ class TopbarBuilder
             or $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class)
         ) {
             $menu->addChild('topbar.manage_functionalities', [
-                'uri' => 'javascript:void(0);',
+                'uri' => '#!',
                 'label' => false,
             ])->setExtras([
                 'icon' => 'more_vert',

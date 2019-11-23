@@ -1,6 +1,6 @@
 {% extends 'layout/layout_card.html.twig' %}
 
-{% set card_title = 'audit.title'|trans({}, 'audit') %}
+{% set card_title = '<span' ~ translate_in_place('audit.title', {}, 'audit') ~ '>' ~ 'audit.title'|trans({}, 'audit') ~ '</span>' %}
 
 {% block card_content %}
     <div class="row clearfix">
