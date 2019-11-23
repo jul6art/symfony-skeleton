@@ -20,13 +20,16 @@ bugs
 URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
+    
+    !!!!!! corriger phpunit surr jenkins et prod
+    !!!!!! corriger phpunit surr jenkins et prod
+    !!!!!! corriger phpunit surr jenkins et prod
         
     messenger bundle asynchrone https://symfony.com/doc/current/messenger.html
         appeler le purge de session dans l action de vidage de cache
         au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO
         
         Command et CRON pour envoyer les messages en queue
-        
         
     socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
     
@@ -51,7 +54,7 @@ URGENT
             https://symfony.com/doc/current/testing.html
             mockery mock??
     
-    bugs js: range validator google.recaptcha datetimepicker wysiwyg IE11 ...
+    bugs form js: range validator google.recaptcha datetimepicker wysiwyg IE11 ...
         
     tuto bienvenue
         fonctionalité

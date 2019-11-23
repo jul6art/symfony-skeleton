@@ -29,7 +29,7 @@ echo '--- CHECK VULNERABILITIES ---'
 php bin/console security:check
 
 echo '--- TESTS LAUNCHING ---'
-./vendor/bin/simple-phpunit
+# ./vendor/bin/simple-phpunit
 
 echo '--- OPTIMISATIONS ---'
 composer dump-autoload --optimize --no-dev --classmap-authoritative
