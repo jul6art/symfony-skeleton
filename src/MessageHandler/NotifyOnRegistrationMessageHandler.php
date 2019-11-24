@@ -44,7 +44,7 @@ class NotifyOnRegistrationMessageHandler
         );
 
         foreach ($admins as $admin) {
-            if ($admin->getEmail() !== $message->getEmail()) {
+            if (strtolower($admin->getEmail()) !== strtolower($message->getEmail())) {
                 $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
                     'user' => $admin,
                     'firstname' => $message->getFirstname(),

@@ -73,14 +73,14 @@ class MailSubscriber implements EventSubscriberInterface
     public function onUserAdded(UserEvent $event): void
     {
         $user = $event->getUser();
-        $password = $event->find('password');
 
         $this->bus->dispatch(new NotifyOnAddedMessage(
             $user->getFirstname(),
             $user->getLastname(),
             $user->getUsername(),
             $user->getEmail(),
-            $password
+            $event->find('password'),
+            $event->find('createdBy')->getEmail()
         ));
     }
 }

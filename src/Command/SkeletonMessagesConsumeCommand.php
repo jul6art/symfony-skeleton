@@ -38,6 +38,7 @@ class SkeletonMessagesConsumeCommand extends Command
         $this
             ->setDescription('Consume messages queues')
             ->addOption('transport', 't', InputOption::VALUE_OPTIONAL, 'Queue to consume')
+            ->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Time limit in seconds (default 90)', 90)
         ;
     }
 
@@ -54,30 +55,25 @@ class SkeletonMessagesConsumeCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->note('Processing messages consuming');
 
+        $transports = [];
+
         if (\in_array($input->getOption('transport'), [null, self::QUEUE_PARAMETER_HIGH])) {
             $io->note('Consume high priority  messages');
-
-            $command = $this->getApplication()->find('messenger:consume');
-
-            $arguments = [
-                'command' => 'messenger:consume',
-                'receivers' => [self::QUEUE_PRIORITY_HIGH],
-                '--time-limit' => 90,
-            ];
-
-            $greetInput = new ArrayInput($arguments);
-            $returnCode = $command->run($greetInput, $output);
+            $transports[] = self::QUEUE_PRIORITY_HIGH;
         }
 
         if (\in_array($input->getOption('transport'), [null, self::QUEUE_PARAMETER_LOW])) {
             $io->note('Consume low priority  messages');
+            $transports[] = self::QUEUE_PRIORITY_LOW;
+        }
 
+        if (\count($transports)) {
             $command = $this->getApplication()->find('messenger:consume');
 
             $arguments = [
                 'command' => 'messenger:consume',
-                'receivers' => [self::QUEUE_PRIORITY_LOW],
-                '--time-limit' => 90,
+                'receivers' => $transports,
+                '--time-limit' => (int) $input->getOption('limit'),
             ];
 
             $greetInput = new ArrayInput($arguments);
@@ -86,6 +82,6 @@ class SkeletonMessagesConsumeCommand extends Command
 
         $io->success('Messages successfully consumed!');
 
-        return 0;
+        return $returnCode;
     }
 }

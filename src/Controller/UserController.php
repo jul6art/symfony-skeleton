@@ -84,7 +84,9 @@ class UserController extends AbstractFOSRestController
         if ($form->isSubmitted() and $form->isValid()) {
             $password = $this->userManager->generatePassword();
             $user->setPlainPassword($password);
-            $event = (new UserEvent($user))->addData('password', $password);
+            $event = (new UserEvent($user))
+                ->addData('password', $password)
+                ->addData('createdBy', $this->getUser());
 
             $this->userManager
                 ->updateSettings($user)

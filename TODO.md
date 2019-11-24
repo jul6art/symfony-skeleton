@@ -24,15 +24,6 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
-        
-    messenger bundle asynchrone
-        count queue
-        CRON pour envoyer les messages en queue
-        
-    socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
-        https://symfony.com/blog/symfony-gets-real-time-push-capabilities
-            
-    versions vulnerabilities et php upgrades
     
     utilisateurs
         bouton supprimer mon compte dans la page de vue de mon profil
@@ -40,6 +31,11 @@ URGENT
         revoir gestion des groupes dans users list / création / édition
         usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
         password min et max length et password strength plugin
+        
+    socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
+        https://symfony.com/blog/symfony-gets-real-time-push-capabilities
+            
+    versions vulnerabilities et php upgrades
         
     tests
         voir TEST.md

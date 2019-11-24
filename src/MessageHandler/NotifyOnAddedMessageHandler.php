@@ -39,6 +39,9 @@ class NotifyOnAddedMessageHandler
      */
     public function __invoke(NotifyOnAddedMessage $message)
     {
+        /*
+         * SEND CREDENTIALS TO ADDED USER
+         */
         $this->mailerService->send($message->getEmail(), 'email/user/add/email.html.twig', [
             'password' => $message->getPassword(),
             'username' => $message->getUsername(),
@@ -49,15 +52,25 @@ class NotifyOnAddedMessageHandler
             $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN)
         );
 
+        /*
+         * NOTIFY ADMINS EXCEPT CREATOR
+         */
         foreach ($admins as $admin) {
-            $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
-                'user' => $admin,
-                'firstname' => $message->getFirstname(),
-                'lastname' => $message->getLastname(),
-                'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-                'username' => $message->getUsername(),
-                'email' => $message->getEmail(),
-            ]);
+            if (
+                !\in_array(strtolower($admin->getEmail()), [
+                    strtolower($message->getEmail()),
+                    strtolower($message->getCreatedBy()),
+                ])
+            ) {
+                $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
+                    'user' => $admin,
+                    'firstname' => $message->getFirstname(),
+                    'lastname' => $message->getLastname(),
+                    'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
+                    'username' => $message->getUsername(),
+                    'email' => $message->getEmail(),
+                ]);
+            }
         }
     }
 }

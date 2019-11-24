@@ -38,26 +38,34 @@ class NotifyOnAddedMessage
     private $password;
 
     /**
-     * NotifyUserOnAddedMessage constructor.
+     * @var string|null
+     */
+    private $createdBy;
+
+    /**
+     * NotifyOnAddedMessage constructor.
      *
      * @param string|null $firstname
      * @param string|null $lastname
      * @param string|null $username
      * @param string|null $email
      * @param string|null $password
+     * @param string|null $createdBy
      */
     public function __construct(
         string $firstname = null,
         string $lastname = null,
         string $username = null,
         string $email = null,
-        string $password = null
+        string $password = null,
+        string $createdBy = null
     ) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
+        $this->createdBy = $createdBy;
     }
 
     /**
@@ -98,5 +106,13 @@ class NotifyOnAddedMessage
     public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCreatedBy(): string
+    {
+        return $this->createdBy;
     }
 }
