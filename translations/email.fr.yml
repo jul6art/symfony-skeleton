@@ -5,3 +5,9 @@ email.account.resetting.message: "<p>Bonjour %username% !\n<br><br>\nPour réini
 email.user.add.subject: 'Nouvelle connexion pour %name%'
 email.user.add.link.text: 'Me connecter'
 email.user.add.message: "<p>Bonjour %name% !\n<br><br>\nPour vous connecter à votre compte utilisateur, merci de vous rendre sur %url%\n<br>\n<strong>Pseudo:</strong> %username%\n<br>\n<strong>Mot de passe:</strong> %password%\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"
+email.user.notifications.register.subject: 'Nouvelle inscription'
+email.user.notifications.register.link.text: 'Liste des utilisateurs'
+email.user.notifications.register.message: "<p>Bonjour %name% !\n<br><br>\nUn nouvel utilisateur s'est inscrit.<br>\nPour voir la liste des utilisateurs, merci de vous rendre sur %url%\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"
+email.user.notifications.added.subject: 'Nouvel utilisateur ajouté'
+email.user.notifications.added.link.text: 'Liste des utilisateurs'
+email.user.notifications.added.message: "<p>Bonjour %name% !\n<br><br>\nUn nouvel utilisateur a été ajouté par un administrateur.<br>\nPour voir la liste des utilisateurs, merci de vous rendre sur %url%\n<br><br>\nCordialement,\n<br>\n%project_name%</p>"

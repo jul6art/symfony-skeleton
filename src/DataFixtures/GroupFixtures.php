@@ -39,6 +39,11 @@ class GroupFixtures extends Fixture
                 $group->addRole('ROLE_ALLOWED_TO_SWITCH');
             }
 
+            if (Group::GROUP_NAME_SUPER_ADMIN === $value) {
+                $roleName = strtoupper(Group::GROUP_NAME_ADMIN);
+                $group->addRole("ROLE_$roleName");
+            }
+
             $this->addReference("group_$value", $group);
             $manager->persist($group);
         }

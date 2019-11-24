@@ -51,6 +51,14 @@ class UserManager extends AbstractManager
     }
 
     /**
+     * @return GroupManager
+     */
+    public function getGroupManager(): GroupManager
+    {
+        return $this->groupManager;
+    }
+
+    /**
      * @return User
      *
      * @throws NonUniqueResultException
@@ -125,7 +133,6 @@ class UserManager extends AbstractManager
      */
     public function updateGroups(User $user): self
     {
-        $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
         $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
 
         return $this;
@@ -163,6 +170,14 @@ class UserManager extends AbstractManager
         $user->setEnabled(false);
 
         return $this;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function findByGroup(Group $group): array
+    {
+        return $this->userRepository->findByGroup($group);
     }
 
     /**

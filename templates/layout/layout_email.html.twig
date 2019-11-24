@@ -109,9 +109,9 @@
                             <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
                                 <span style="color: #999999; font-size: 12px; text-align: center;">
                                     <h1 style="margin-bottom: 0">
-                                        <a class="navbar-brand" href="{{ url('admin_homepage') }}" style="color: #607D8B; text-decoration: none;">
+                                        <a class="navbar-brand" href="{{ http_protocol ~ current_domain ~ path('admin_homepage') }}" style="color: #607D8B; text-decoration: none;">
                                         {% if logo is defined %}
-                                            <img src="{{ absolute_url(logo) }}" style="display: block; margin: 0 auto 15px;" alt="logo {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" class="inline">
+                                            <img src="{{ http_protocol ~ current_domain ~ logo }}" style="display: block; margin: 0 auto 15px;" alt="logo {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" class="inline">
                                         {% endif %}
                                             {{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))|upper }}
                                         </a>

@@ -2,17 +2,20 @@
 
 {% block subject %}
     {%- autoescape false -%}
-        {{ 'email.user.add.subject'|trans({'%name%': fullname}, 'email') }}
+        {{ 'email.user.notifications.register.subject'|trans({}, 'email') }}
     {%- endautoescape -%}
 {% endblock subject %}
 
-{% set url = http_protocol ~ current_domain ~ path('admin_homepage') %}
+{% set url = http_protocol ~ current_domain ~ path('admin_user_list') %}
 
 {% block body_html %}
-    {{ 'email.user.add.message'|trans({
-        '%name%': fullname,
+    {{ 'email.user.notifications.register.message'|trans({
+        '%name%': user.fullname,
+        '%firstname%': firstname,
+        '%lastname%': lastname,
+        '%fullname%': fullname,
         '%username%': username,
-        '%password%': password,
+        '%email%': email,
         '%url%': url,
         '%project_name%': setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))
     }, 'email')|raw }}
@@ -20,7 +23,7 @@
 
 {% set links = [
     {
-        text: 'email.user.add.link.text'|trans({}, 'email'),
+        text: 'email.user.notifications.register.link.text'|trans({}, 'email'),
         url: url,
     },
 ] %}

@@ -10,8 +10,15 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\User;
 use App\Event\UserEvent;
+use App\Message\NotifyAdminOnRegistrationMessage;
+use App\Message\NotifyUserOnAddedMessage;
 use App\Service\MailerServiceTrait;
+use App\Traits\MessageBusTrait;
+use Doctrine\ORM\NonUniqueResultException;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -24,6 +31,7 @@ use Twig\Error\SyntaxError;
 class MailSubscriber implements EventSubscriberInterface
 {
     use MailerServiceTrait;
+    use MessageBusTrait;
 
     /**
      * @return array
@@ -31,8 +39,27 @@ class MailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
+            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
             UserEvent::ADDED => 'onUserAdded',
         ];
+    }
+
+    /**
+     * @param FormEvent $event
+     *
+     * @throws NonUniqueResultException
+     */
+    public function onRegistrationSuccess(FormEvent $event): void
+    {
+        $user = $event->getForm()->getData();
+        if ($user instanceof User) {
+            $this->bus->dispatch(new NotifyAdminOnRegistrationMessage(
+                $user->getFirstname(),
+                $user->getLastname(),
+                $user->getUsername(),
+                $user->getEmail()
+            ));
+        }
     }
 
     /**
@@ -48,9 +75,12 @@ class MailSubscriber implements EventSubscriberInterface
         $user = $event->getUser();
         $password = $event->find('password');
 
-        $this->mailerService->send($user->getEmail(), 'email/user/add/email.html.twig', [
-            'password' => $password,
-            'user' => $user,
-        ]);
+        $this->bus->dispatch(new NotifyUserOnAddedMessage(
+            $user->getFirstname(),
+            $user->getLastname(),
+            $user->getUsername(),
+            $user->getEmail(),
+            $password
+        ));
     }
 }

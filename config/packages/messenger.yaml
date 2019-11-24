@@ -13,5 +13,7 @@ framework:
                     queue_name: low
 
         routing:
-            # async is whatever name you gave your transport above
+            # async_priority_low is whatever name you gave your transport above
             'App\Message\ClearSessionsMessage':  async_priority_low
+            'App\Message\NotifyAdminOnRegistrationMessage':  async_priority_high
+            'App\Message\NotifyUserOnAddedMessage':  async_priority_high

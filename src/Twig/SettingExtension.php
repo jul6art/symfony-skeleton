@@ -75,18 +75,19 @@ class SettingExtension extends AbstractExtension
     {
         $request = $this->stack->getMasterRequest();
 
-        if (!$request->request->has($name)) {
+        if (null === $request or !$request->request->has($name)) {
+            $value = $default;
             $setting = $this->settingManager->findOneByName($name);
 
             if (null !== $setting) {
-                $request->request->set($name, $setting->getValue());
-
-                return $setting->getValue();
+                $value = $setting->getValue();
             }
 
-            $request->request->set($name, $default);
+            if (null !== $request) {
+                $request->request->set($name, $value);
+            }
 
-            return $default;
+            return $value;
         } else {
             return $request->request->get($name);
         }

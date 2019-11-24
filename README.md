@@ -76,6 +76,7 @@ nano .env
     ###> domain ###
     # Add your subdomains here. ex: admin.symfony-skeleton.localhost
     # So you can select routes or controllers depending on the host
+    HTTP_PROTOCOL=http://
     CURRENT_DOMAIN=symfony-skeleton.localhost
     ###< domain ###
 

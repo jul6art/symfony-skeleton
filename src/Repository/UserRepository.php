@@ -10,9 +10,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Group;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -33,6 +35,60 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    /**
+     * @param QueryBuilder $builder
+     *
+     * @return $this
+     */
+    public function joinGroup(QueryBuilder $builder): self
+    {
+        if (!\in_array('g', $builder->getAllAliases())) {
+            $builder
+                ->leftJoin('u.groups', 'g');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param QueryBuilder $builder
+     * @param string       $field
+     * @param User         $user
+     *
+     * @return self
+     */
+    public function filterByGroup(QueryBuilder $builder, Group $group): self
+    {
+        $this
+            ->joinGroup($builder);
+
+        $builder
+            ->andWhere($builder->expr()->eq('g.id', ':group'))
+            ->setParameter('group', $group);
+
+        return $this;
+    }
+
+    /**
+     * @param QueryBuilder $builder
+     * @param string       $role
+     *
+     * @return $this
+     */
+    public function filterByRole(QueryBuilder $builder, string $role): self
+    {
+        $this
+            ->joinGroup($builder);
+
+        $roleName = strtoupper($role);
+
+        $builder
+            ->andWhere($builder->expr()->like('g.role', ':role'))
+            ->setParameter('role', "'%ROLE_{$roleName}%'");
+
+        return $this;
     }
 
     /**
@@ -67,6 +123,36 @@ class UserRepository extends ServiceEntityRepository
             ->filterLowercase($builder, 'u.email', $email);
 
         return $builder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param Group $group
+     *
+     * @return User[]
+     */
+    public function findByGroup(Group $group): array
+    {
+        $builder = $this->createQueryBuilder('u');
+
+        $this
+            ->filterByGroup($builder, $group);
+
+        return $builder->getQuery()->getResult();
+    }
+
+    /**s
+     * @param string $role
+     *
+     * @return User[]
+     */
+    public function findByRole(string $role): array
+    {
+        $builder = $this->createQueryBuilder('u');
+
+        $this
+            ->filterByRole($builder, $role);
+
+        return $builder->getQuery()->getResult();
     }
 
     /**
