@@ -17,7 +17,9 @@
 {% endblock page_actions %}
 
 {% block details_title %}
-    {{ 'details.profile.title'|trans({}, 'details')|raw }}
+    <span{{ translate_in_place('details.profile.title', {}, 'details') }}>
+        {{ 'details.profile.title'|trans({}, 'details')|raw }}
+    </span>
 {% endblock details_title %}
 
 {% block details_sidebar_left %}

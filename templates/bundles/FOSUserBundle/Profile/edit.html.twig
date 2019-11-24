@@ -15,7 +15,9 @@
 {% endblock page_actions %}
 
 {% block form_title %}
-    {{ 'form.account.profile.title'|trans({}, 'form')}}
+    <span{{ translate_in_place('form.account.profile.title', {}, 'form') }}>
+        {{ 'form.account.profile.title'|trans({}, 'form')}}
+    </span>
 {% endblock form_title %}
 
 {% block form_content %}

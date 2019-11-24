@@ -2,23 +2,43 @@
     <table class="table table table-bordered table-striped table-hover">
         <tbody>
             <tr>
-                <th>{{ 'table.head.user.id'|trans({}, 'table') }}</th>
+                <th>
+                    <span{{ translate_in_place('table.head.user.id', {}, 'table') }}>
+                        {{ 'table.head.user.id'|trans({}, 'table') }}
+                    </span>
+                </th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>{{ 'table.head.user.gender'|trans({}, 'table') }}</th>
+                <th>
+                    <span{{ translate_in_place('table.head.user.gender', {}, 'table') }}>
+                        {{ 'table.head.user.gender'|trans({}, 'table') }}
+                    </span>
+                </th>
                 <td><span class="label bg-blue-grey">{{ ('table.user.gender.' ~ user.gender)|trans({}, 'table') }}</span></td>
             </tr>
             <tr>
-                <th>{{ 'table.head.user.name'|trans({}, 'table') }}</th>
+                <th>
+                    <span{{ translate_in_place('table.head.user.name', {}, 'table') }}>
+                        {{ 'table.head.user.name'|trans({}, 'table') }}
+                    </span>
+                </th>
                 <td>{{ user.fullname }}</td>
             </tr>
             <tr>
-                <th>{{ 'table.head.user.username'|trans({}, 'table') }}</th>
+                <th>
+                    <span{{ translate_in_place('table.head.user.username', {}, 'table') }}>
+                        {{ 'table.head.user.username'|trans({}, 'table') }}
+                    </span>
+                </th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>{{ 'table.head.user.email'|trans({}, 'table') }}</th>
+                <th>
+                    <span{{ translate_in_place('table.head.user.email', {}, 'table') }}>
+                        {{ 'table.head.user.email'|trans({}, 'table') }}
+                    </span>
+                </th>
                 <td><a class="white-space-nowrap" href="mailto:{{ user.email }}">{{ user.email }}</a></td>
             </tr>
         </tbody>

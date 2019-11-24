@@ -440,13 +440,17 @@
 
 {% block help -%}
     {% if help ?? false %}
-        <span class="help-block only-help" id="{{ id ~ '_help' }}">{{ translation_domain is same as(false) ? help : help|trans({}, translation_domain) }}</span>
+        <span class="help-block only-help" id="{{ id ~ '_help' }}"{{ translate_in_place(help, {}, translation_domain ?? 'form') }}>
+            {{ translation_domain is same as(false) ? help : help|trans({}, translation_domain) }}
+        </span>
     {% endif %}
 
     {% if form.vars.alert ?? false %}
         <div class="alert alert-dismissible {{ form.vars.alert_class ?? false ? form.vars.alert_class : ('bg-' ~ theme_name()) }}">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            {{ translation_domain is same as(false) ? form.vars.alert : form.vars.alert|trans({}, translation_domain) }}
+            <span{{ translate_in_place(form.vars.alert, {}, translation_domain ?? 'form') }}>
+                {{ translation_domain is same as(false) ? form.vars.alert : form.vars.alert|trans({}, translation_domain) }}
+            </span>
         </div>
     {% endif %}
 {%- endblock help %}

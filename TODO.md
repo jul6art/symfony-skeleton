@@ -24,27 +24,27 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
+    
+    toastr notifs translations
         
-    messenger bundle asynchrone https://symfony.com/doc/current/messenger.html
+    messenger bundle asynchrone
+        https://symfony.com/doc/current/messenger.html
         appeler le purge de session dans l action de vidage de cache
         au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO
         
         Command et CRON pour envoyer les messages en queue
         
     socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
-    
-    javascript edit in place
-        mettre en place partout
-            pages details
-            maintenance
-            layout
-            fos pages change password
+        https://symfony.com/blog/symfony-gets-real-time-push-capabilities
             
     versions vulnerabilities et php upgrades
     
-    revoir gestion des groupes dans users list / création / édition
-    usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
-    password min et max length ett password strength plugin
+    utilisateurs
+        bouton supprimer mon compte dans la page de vue de mon profil
+        action activer/désactiver et colonne avec switch disabled
+        revoir gestion des groupes dans users list / création / édition
+        usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
+        password min et max length et password strength plugin
         
     tests
         voir TEST.md
@@ -114,13 +114,19 @@ autres types: + leur validation + leurs traductions
     multiselect
     tags inputs
     
-### host
+### production
+
+    traduire en EN et virer DE
     refaire une migration unique
     vérifier documentation
 
-cron relaunch fixtures hourly
+cron
     
-### V2 skeleton post projet
+    relaunch fixtures hourly
+    clear outdated sessions daily
+    dequeue messages 15 minutes
+    
+### V2 skeleton
 
 séparer en bundles
 

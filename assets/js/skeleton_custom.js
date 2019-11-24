@@ -16,6 +16,7 @@ $.App = {
     this.dialog();
     this.dropdown();
     this.editInPlace();
+    this.esc();
     this.impersonate();
     this.progressiveWebApp();
     this.settings();
@@ -352,6 +353,11 @@ $.App = {
             );
           });
 
+          $("body").on("keyboard.keyup.esc", function(e) {
+            editor.fire("blur");
+            editor.hide();
+          });
+
           editor.on("blur", function() {
             editor.setContent(
               toggleParameters(editor.getContent(), parameters, false)
@@ -411,15 +417,18 @@ $.App = {
           });
         },
         init_instance_callback: editor => {
-          editor.hide();
           editor.fire("blur");
+          editor.hide();
         }
       });
     }
   },
-  impersonate: function() {
-    $(".info-impersonate").on("click", function() {
-      window.location = $(this).data("url");
+  esc: function() {
+    $(document).keyup(function(e) {
+      // escape key maps to keycode `27`
+      if (e.keyCode == 27) {
+        $("body").trigger("keyboard.keyup.esc");
+      }
     });
   },
   getThemeColor: function(color) {
@@ -468,6 +477,11 @@ $.App = {
       case "blue-grey":
         return "#607D8B";
     }
+  },
+  impersonate: function() {
+    $(".info-impersonate").on("click", function() {
+      window.location = $(this).data("url");
+    });
   },
   notify: function(
     colorName,
