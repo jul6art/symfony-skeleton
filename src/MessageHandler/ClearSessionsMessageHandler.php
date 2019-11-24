@@ -10,34 +10,39 @@
 
 namespace App\MessageHandler;
 
+use App\Manager\SessionManagerTrait;
 use App\Message\ClearSessionsMessage;
-use Psr\Log\LoggerInterface;
+use Doctrine\DBAL\DBALException;
 
 /**
  * Class ClearSessionsMessageHandler.
  */
 class ClearSessionsMessageHandler
 {
+    use SessionManagerTrait;
+
     /**
-     * @var LoggerInterface
+     * @var int
      */
-    private $logger;
+    private $session_lifetime;
 
     /**
      * ClearSessionsMessageHandler constructor.
      *
-     * @param LoggerInterface $logger
+     * @param int $session_lifetime
      */
-    public function __construct(LoggerInterface $logger)
+    public function __construct(int $session_lifetime)
     {
-        $this->logger = $logger;
+        $this->session_lifetime = $session_lifetime;
     }
 
     /**
      * @param ClearSessionsMessage $message
+     *
+     * @throws DBALException
      */
     public function __invoke(ClearSessionsMessage $message)
     {
-        $this->logger->critical('test');
+        $this->sessionManager->clear($this->session_lifetime);
     }
 }

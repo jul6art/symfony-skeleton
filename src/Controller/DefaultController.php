@@ -127,14 +127,14 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $this->refererService->getFormReferer($request, 'cache');
 
-//        $application = new Application($kernel);
-//        $application->setAutoExit(false);
-//        $application->run(new ArrayInput([
-//            'command' => 'cache:clear',
-//            '--env' => $kernel->getEnvironment(),
-//        ]), new BufferedOutput());
-
         $bus->dispatch(new ClearSessionsMessage());
+
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+        $application->run(new ArrayInput([
+            'command' => 'cache:clear',
+            '--env' => $kernel->getEnvironment(),
+        ]), new BufferedOutput());
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 

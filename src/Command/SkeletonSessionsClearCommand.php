@@ -56,7 +56,7 @@ class SkeletonSessionsClearCommand extends Command implements ContainerAwareInte
         $io = new SymfonyStyle($input, $output);
         $io->note('Removing outdated sessions from database');
 
-        $this->sessionManager->purge($this->container->getParameter('session_lifetime'));
+        $this->sessionManager->clear($this->container->getParameter('session_lifetime'));
 
         $io->success('All outdated sessions have been removed');
 

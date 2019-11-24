@@ -46,7 +46,7 @@ class SessionManager extends AbstractManager
      *
      * @throws DBALException
      */
-    public function purge(int $maxlifetime): self
+    public function clear(int $maxlifetime): self
     {
         /*
          * ONLY AVAILABLE FOR PDO SESSION HANDLER
