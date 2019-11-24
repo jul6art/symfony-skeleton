@@ -32,7 +32,9 @@ URGENT
         usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
         password min et max length et password strength plugin
         
-    socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
+    socket comme dans cdb pour 
+        incrémenter les vignettes de nombre d'entités 
+        notifs en haut de page pour les users !createdBy avec lien vers la liste des items
         https://symfony.com/blog/symfony-gets-real-time-push-capabilities
             
     versions vulnerabilities et php upgrades
