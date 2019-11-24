@@ -39,7 +39,10 @@ Base sf4 admin project
 
 ```bash
 bin/console skeleton:sessions:clear
-bin/console skeleton:messages:dequeue
+```
+
+```bash
+bin/console skeleton:messages:consume
 ```
 
 ### Theme

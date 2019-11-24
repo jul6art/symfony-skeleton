@@ -26,11 +26,8 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
         
     messenger bundle asynchrone
-        https://symfony.com/doc/current/messenger.html
-        appeler le purge de session dans l action de vidage de cache
-        au lieu de maillistener pour prévenir TOUS les admins au register et ajout de users depuis le BO
-        
-        Command et CRON pour envoyer les messages en queue
+        count queue
+        CRON pour envoyer les messages en queue
         
     socket comme dans cdb pour incrémenter les vignettes de nombre d'entités
         https://symfony.com/blog/symfony-gets-real-time-push-capabilities

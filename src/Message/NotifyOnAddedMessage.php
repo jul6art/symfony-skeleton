@@ -11,9 +11,9 @@
 namespace App\Message;
 
 /**
- * Class NotifyUserOnAddedMessage.
+ * Class NotifyOnAddedMessage.
  */
-class NotifyUserOnAddedMessage
+class NotifyOnAddedMessage
 {
     /**
      * @var string|null

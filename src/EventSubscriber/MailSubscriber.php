@@ -12,8 +12,8 @@ namespace App\EventSubscriber;
 
 use App\Entity\User;
 use App\Event\UserEvent;
-use App\Message\NotifyAdminOnRegistrationMessage;
-use App\Message\NotifyUserOnAddedMessage;
+use App\Message\NotifyOnRegistrationMessage;
+use App\Message\NotifyOnAddedMessage;
 use App\Service\MailerServiceTrait;
 use App\Traits\MessageBusTrait;
 use Doctrine\ORM\NonUniqueResultException;
@@ -53,7 +53,7 @@ class MailSubscriber implements EventSubscriberInterface
     {
         $user = $event->getForm()->getData();
         if ($user instanceof User) {
-            $this->bus->dispatch(new NotifyAdminOnRegistrationMessage(
+            $this->bus->dispatch(new NotifyOnRegistrationMessage(
                 $user->getFirstname(),
                 $user->getLastname(),
                 $user->getUsername(),
@@ -75,7 +75,7 @@ class MailSubscriber implements EventSubscriberInterface
         $user = $event->getUser();
         $password = $event->find('password');
 
-        $this->bus->dispatch(new NotifyUserOnAddedMessage(
+        $this->bus->dispatch(new NotifyOnAddedMessage(
             $user->getFirstname(),
             $user->getLastname(),
             $user->getUsername(),

@@ -12,8 +12,7 @@ namespace App\MessageHandler;
 
 use App\Entity\Group;
 use App\Manager\UserManagerTrait;
-use App\Message\NotifyAdminOnRegistrationMessage;
-use App\Message\NotifyUserOnAddedMessage;
+use App\Message\NotifyOnAddedMessage;
 use App\Service\MailerServiceTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Throwable;
@@ -24,21 +23,21 @@ use Twig\Error\SyntaxError;
 /**
  * Class NotifyUserOnAddedMessageHandler.
  */
-class NotifyUserOnAddedMessageHandler
+class NotifyOnAddedMessageHandler
 {
     use MailerServiceTrait;
     use UserManagerTrait;
 
     /**
-     * @param NotifyAdminOnRegistrationMessage $message
+     * @param NotifyOnAddedMessage $message
      *
-     * @throws NonUniqueResultException
-     * @throws Throwable
      * @throws LoaderError
+     * @throws NonUniqueResultException
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws Throwable
      */
-    public function __invoke(NotifyUserOnAddedMessage $message)
+    public function __invoke(NotifyOnAddedMessage $message)
     {
         $this->mailerService->send($message->getEmail(), 'email/user/add/email.html.twig', [
             'password' => $message->getPassword(),

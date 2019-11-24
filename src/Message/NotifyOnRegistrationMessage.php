@@ -11,9 +11,9 @@
 namespace App\Message;
 
 /**
- * Class NotifyAdminOnRegistrationMessage.
+ * Class NotifyOnRegistrationMessage.
  */
-class NotifyAdminOnRegistrationMessage
+class NotifyOnRegistrationMessage
 {
     /**
      * @var string|null

@@ -13,6 +13,7 @@ namespace App\Controller;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Manager\FunctionalityManagerTrait;
+use App\Manager\QueueManagerTrait;
 use App\Manager\SettingManagerTrait;
 use App\Manager\TestManagerTrait;
 use App\Manager\TranslationManagerTrait;
@@ -25,6 +26,7 @@ use App\Service\FileServiceTrait;
 use App\Service\RefererServiceTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Lexik\Bundle\TranslationBundle\Entity\Translation;
@@ -46,6 +48,7 @@ class DefaultController extends AbstractFOSRestController
 {
     use FileServiceTrait;
     use FunctionalityManagerTrait;
+    use QueueManagerTrait;
     use RefererServiceTrait;
     use SettingManagerTrait;
     use TestManagerTrait;
@@ -58,6 +61,7 @@ class DefaultController extends AbstractFOSRestController
      * @return Response
      *
      * @throws NonUniqueResultException
+     * @throws DBALException
      */
     public function index(): Response
     {
@@ -67,6 +71,7 @@ class DefaultController extends AbstractFOSRestController
                      ->setTemplate('default/dashboard.html.twig')
                      ->setTemplateData([
                          'count_functionalities' => $this->functionalityManager->countAllByConfigured(),
+                         'count_queue' => $this->queueManager->countAll(),
                          'count_users' => $this->userManager->countAll(),
                          'count_tests' => $this->testManager->countAll(),
                      ]);
