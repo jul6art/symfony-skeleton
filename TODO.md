@@ -59,7 +59,7 @@ datatables
     https://php.developpez.com/actu/84373/Exemple-simple-pour-integrer-dataTable-avec-symfony2-par-phpiste/
     https://github.com/stwe/DtBundleDemo10/blob/master/src/AppBundle/Controller/EntityAController.php
     
-    blockui a sur la table avec couleur de fond pendant chaque appel ajax (implémenté, à vérifier)
+    blockui sur la table avec couleur de fond pendant chaque appel ajax (implémenté, à vérifier)
     filtering and url and data-ajax
     voir options datatable-bundle
     tester cas pourris: concat, abstarcttable, count, ...
