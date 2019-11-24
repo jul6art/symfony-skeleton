@@ -80,6 +80,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\MessageHandler\:
+        resource: '../src/MessageHandler'
+        tags: ['messenger.message_handler']
+
     App\Maker\MakeSkeleton:
         arguments:
             - '@maker.doctrine_helper'

@@ -79,6 +79,10 @@ nano .env
     CURRENT_DOMAIN=symfony-skeleton.localhost
     ###< domain ###
 
+    ###> symfony/messenger ###
+    MESSENGER_TRANSPORT_DSN=doctrine://default
+    ###< symfony/messenger ###
+
 ### Run tests
 
 ```bash

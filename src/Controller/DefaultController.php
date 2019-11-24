@@ -17,6 +17,7 @@ use App\Manager\SettingManagerTrait;
 use App\Manager\TestManagerTrait;
 use App\Manager\TranslationManagerTrait;
 use App\Manager\UserManagerTrait;
+use App\Message\ClearSessionsMessage;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
@@ -34,6 +35,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -117,7 +119,7 @@ class DefaultController extends AbstractFOSRestController
      *
      * @throws \Exception
      */
-    public function cache(Request $request, KernelInterface $kernel, TranslatorInterface $translator): Response
+    public function cache(Request $request, KernelInterface $kernel, TranslatorInterface $translator, MessageBusInterface $bus): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class);
 
@@ -125,12 +127,14 @@ class DefaultController extends AbstractFOSRestController
 
         $referer = $this->refererService->getFormReferer($request, 'cache');
 
-        $application = new Application($kernel);
-        $application->setAutoExit(false);
-        $application->run(new ArrayInput([
-            'command' => 'cache:clear',
-            '--env' => $kernel->getEnvironment(),
-        ]), new BufferedOutput());
+//        $application = new Application($kernel);
+//        $application->setAutoExit(false);
+//        $application->run(new ArrayInput([
+//            'command' => 'cache:clear',
+//            '--env' => $kernel->getEnvironment(),
+//        ]), new BufferedOutput());
+
+        $bus->dispatch(new ClearSessionsMessage());
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 

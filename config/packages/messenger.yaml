@@ -1,0 +1,17 @@
+framework:
+    messenger:
+        transports:
+            sync: 'sync://'
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    # queue_name is specific to the doctrine transport
+                    queue_name: high
+            async_priority_low:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: low
+
+        routing:
+            # async is whatever name you gave your transport above
+            'App\Message\ClearSessionsMessage':  async_priority_low

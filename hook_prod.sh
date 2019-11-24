@@ -21,6 +21,8 @@ php bin/console lexik:translations:import -m -c
 php bin/console lexik:translations:export
 php bin/console bazinga:js-translation:dump public/js/
 php bin/console audit:clean --no-confirm
+php bin/console messenger:consume --limit=0
+php bin/console messenger:stop-workers
 
 echo '--- FILES PERMISSIONS ---'
 sudo chmod -R 777 /home/symfony-skeleton/public_html/var

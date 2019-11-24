@@ -23,6 +23,8 @@ php bin/console lexik:translations:import -f -c
 php bin/console lexik:translations:export
 php bin/console bazinga:js-translation:dump public/js/
 php bin/console audit:clean --no-confirm
+php bin/console messenger:consume --limit=0
+php bin/console messenger:stop-workers
 
 echo '--- CHECK VULNERABILITIES ---'
 php bin/console security:check

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6370a5c3b1a48e202f2938f66200d096",
+    "content-hash": "b0560545c025ebd073aae29c3aa6f80e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4550,6 +4550,79 @@
                 "semaphore"
             ],
             "time": "2019-11-11T13:09:26+00:00"
+        },
+        {
+            "name": "symfony/messenger",
+            "version": "v4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/messenger.git",
+                "reference": "e84e120e3560260002cf7d98c114e8cb9c94bd78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/e84e120e3560260002cf7d98c114e8cb9c94bd78",
+                "reference": "e84e120e3560260002cf7d98c114e8cb9c94bd78",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/event-dispatcher": "<4.3",
+                "symfony/framework-bundle": "<4.4",
+                "symfony/http-kernel": "<4.4"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.6",
+                "doctrine/persistence": "~1.0",
+                "psr/cache": "~1.0",
+                "symfony/console": "^3.4|^4.0|^5.0",
+                "symfony/dependency-injection": "^3.4.19|^4.1.8|^5.0",
+                "symfony/event-dispatcher": "^4.3|^5.0",
+                "symfony/http-kernel": "^4.4",
+                "symfony/process": "^3.4|^4.0|^5.0",
+                "symfony/property-access": "^3.4|^4.0|^5.0",
+                "symfony/serializer": "^3.4|^4.0|^5.0",
+                "symfony/service-contracts": "^1.1|^2",
+                "symfony/stopwatch": "^3.4|^4.0|^5.0",
+                "symfony/validator": "^3.4|^4.0|^5.0"
+            },
+            "suggest": {
+                "enqueue/messenger-adapter": "For using the php-enqueue library as a transport."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Messenger\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Roze",
+                    "email": "samuel.roze@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Messenger Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-11-12T17:18:47+00:00"
         },
         {
             "name": "symfony/mime",
