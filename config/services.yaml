@@ -68,6 +68,7 @@ services:
             $environment: '%kernel.environment%'
             $project_dir: '%kernel.project_dir%'
             $skeleton_version: '%skeleton_version%'
+            $session_lifetime: '%session_lifetime%'
 
     App\:
         resource: '../src/*'
