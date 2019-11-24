@@ -11,6 +11,7 @@
 namespace App\MessageHandler;
 
 use App\Entity\Group;
+use App\Entity\User;
 use App\Manager\UserManagerTrait;
 use App\Message\NotifyOnRegistrationMessage;
 use App\Service\MailerServiceTrait;
@@ -43,20 +44,22 @@ class NotifyOnRegistrationMessageHandler
             $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN)
         );
 
+        $admins = array_filter($admins, function (User $user) use ($message) {
+            return null !== $user->getLastLogin() and strtolower($user->getEmail()) !== strtolower($message->getEmail());
+        });
+
         foreach ($admins as $admin) {
-            if (strtolower($admin->getEmail()) !== strtolower($message->getEmail())) {
-                try {
-                    $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
-                        'user' => $admin,
-                        'firstname' => $message->getFirstname(),
-                        'lastname' => $message->getLastname(),
-                        'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-                        'username' => $message->getUsername(),
-                        'email' => $message->getEmail(),
-                    ]);
-                } catch (\Exception $e) {
-                    // @TODO die silently
-                }
+            try {
+                $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
+                    'user' => $admin,
+                    'firstname' => $message->getFirstname(),
+                    'lastname' => $message->getLastname(),
+                    'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
+                    'username' => $message->getUsername(),
+                    'email' => $message->getEmail(),
+                ]);
+            } catch (\Exception $e) {
+                // @TODO die silently
             }
         }
     }

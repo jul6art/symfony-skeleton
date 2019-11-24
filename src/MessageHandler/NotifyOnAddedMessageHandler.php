@@ -11,6 +11,7 @@
 namespace App\MessageHandler;
 
 use App\Entity\Group;
+use App\Entity\User;
 use App\Manager\UserManagerTrait;
 use App\Message\NotifyOnAddedMessage;
 use App\Service\MailerServiceTrait;
@@ -52,28 +53,28 @@ class NotifyOnAddedMessageHandler
             $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN)
         );
 
+        $admins = array_filter($admins, function (User $user) use ($message) {
+            return null !== $user->getLastLogin() and !\in_array(strtolower($user->getEmail()), [
+                strtolower($message->getEmail()),
+                strtolower($message->getCreatedBy()),
+            ]);
+        });
+
         /*
          * NOTIFY ADMINS EXCEPT CREATOR
          */
         foreach ($admins as $admin) {
-            if (
-                !\in_array(strtolower($admin->getEmail()), [
-                    strtolower($message->getEmail()),
-                    strtolower($message->getCreatedBy()),
-                ])
-            ) {
-                try {
-                    $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
-                        'user' => $admin,
-                        'firstname' => $message->getFirstname(),
-                        'lastname' => $message->getLastname(),
-                        'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-                        'username' => $message->getUsername(),
-                        'email' => $message->getEmail(),
-                    ]);
-                } catch (\Exception $e) {
-                    // @TODO die silently
-                }
+            try {
+                $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
+                    'user' => $admin,
+                    'firstname' => $message->getFirstname(),
+                    'lastname' => $message->getLastname(),
+                    'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
+                    'username' => $message->getUsername(),
+                    'email' => $message->getEmail(),
+                ]);
+            } catch (\Exception $e) {
+                // @TODO die silently
             }
         }
     }
