@@ -38,7 +38,7 @@ class SkeletonMessagesConsumeCommand extends Command
         $this
             ->setDescription('Consume messages queues')
             ->addOption('transport', 't', InputOption::VALUE_OPTIONAL, 'Queue to consume')
-            ->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Time limit in seconds (default 90)', 90)
+            ->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Time limit in seconds (default 600)', 600)
         ;
     }
 
