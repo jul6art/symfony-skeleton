@@ -5,9 +5,11 @@
 {% block lexik_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/lexiktranslation/css/translation.css') }}">
-{% endblock %}
+{% endblock lexik_stylesheets %}
 
-{% block page_title %}{{ 'title.translation.list'|trans({}, 'title') }}{% endblock page_title %}
+{% block page_title %}
+    {{ 'title.translation.list'|trans({}, 'title') }}
+{% endblock page_title %}
 
 {% block breadcrumb %}
     <li class="active">
@@ -16,7 +18,9 @@
         </a>
     </li>
     <li class="active">
-        <i class="material-icons">list</i> <span class="hidden-xs">{{ 'breadcrumb.translation.list'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">list</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.translation.list', {}, 'breadcrumb') }}>
+            {{ 'breadcrumb.translation.list'|trans({}, 'breadcrumb') }}
+        </span>
     </li>
 {% endblock breadcrumb %}
 
@@ -31,9 +35,15 @@
     </div>
 {% endblock page_actions %}
 
+{% block translation_card_title %}
+    <span{{ translate_in_place('list.translation.title', {}, 'list') }}>
+        {{ 'list.translation.title'|trans({}, 'list') }}
+    </span>
+{% endblock translation_card_title %}
+
 {% block lexik_content %}
     {% include 'layout/layout_card.html.twig' with {
-        card_title: 'list.translation.title'|trans({}, 'list'),
+        card_title: block('translation_card_title'),
         card_content: include('bundles/LexikTranslationBundle/Translation/_ngGrid.html.twig'),
         card_footer: ''
     } %}
@@ -43,10 +53,10 @@
     {{ parent() }}
     <script>
         var translationCfg = {
-            locales: {{ locales | json_encode | raw }},
+            locales: {{ locales|json_encode|raw }},
             inputType: '{{ inputType }}',
             autoCacheClean: {{ autoCacheClean ? 'true' : 'false' }},
-            profilerTokens: {{ tokens is not null ? (tokens | json_encode | raw) : 'null' }},
+            profilerTokens: {{ tokens is not null ? (tokens|json_encode|raw) : 'null' }},
             toggleSimilar: '{{ toggleSimilar }}',
             csrfToken: '{{ csrf_token('lexik-translation') }}',
             url: {
@@ -79,4 +89,4 @@
         };
     </script>
     <script src="{{ asset('bundles/lexiktranslation/js/translation.js') }}"></script>
-{% endblock %}
+{% endblock lexik_javascript_footer %}

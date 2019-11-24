@@ -37,11 +37,15 @@
                 <i class="material-icons">sync</i>
                 <span class="hidden-xs">{{ labels.invalidateCache }}</span>
             </a>
-            <div ng-show="sharedMsg.content != ''" class="pull-right label label-{{ sharedMsg.css }}">
-                <span>
-                    <i class="glyphicon glyphicon-{{ sharedMsg.icon }}"></i>
-                    {{ sharedMsg.content }}
-                </span>
+            <div class="hidden" id="translationSharedMsgContent">
+                <div ng-show="sharedMsg.content != ''" class="pull-right label label-{{ sharedMsg.css }}">
+                    <span>
+                        <i class="glyphicon glyphicon-{{ sharedMsg.icon }}"></i>
+                        <span class="text">
+                            {{ sharedMsg.content }}
+                        </span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

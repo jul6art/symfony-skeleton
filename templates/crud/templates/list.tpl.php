@@ -1,6 +1,8 @@
 {% extends 'layout/layout_table.html.twig' %}
 
-{% block page_title %}{{ 'title.test.list' | trans({}, 'title') }}{% endblock page_title %}
+{% block page_title %}
+    {{ 'title.test.list' | trans({}, 'title') }}
+{% endblock page_title %}
 
 {% block breadcrumb %}
 <li class="active"><i class="material-icons">print</i> {{ 'breadcrumb.test.title' | trans({}, 'breadcrumb') }}</li>

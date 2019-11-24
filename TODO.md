@@ -24,8 +24,6 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
-    
-    toastr notifs translations
         
     messenger bundle asynchrone
         https://symfony.com/doc/current/messenger.html

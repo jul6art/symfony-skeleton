@@ -2,14 +2,20 @@
 
 {% trans_default_domain 'LexikTranslationBundle' %}
 
-{% block page_title %}{{ 'title.translation.overview'|trans({}, 'title') }}{% endblock page_title %}
+{% block page_title %}
+    {{ 'title.translation.overview'|trans({}, 'title') }}
+{% endblock page_title %}
 
 {% block breadcrumb %}
     <li class="active">
-        <i class="material-icons">language</i> <span class="hidden-xs">{{ 'breadcrumb.translation.title'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">language</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.translation.title', {}, 'breadcrumb') }}>
+            {{ 'breadcrumb.translation.title'|trans({}, 'breadcrumb') }}
+        </span>
     </li>
     <li class="active">
-        <i class="material-icons">visibility</i> <span class="hidden-xs">{{ 'breadcrumb.translation.overview'|trans({}, 'breadcrumb') }}</span>
+        <i class="material-icons">visibility</i> <span class="hidden-xs"{{ translate_in_place('breadcrumb.translation.overview', {}, 'breadcrumb') }}>
+            {{ 'breadcrumb.translation.overview'|trans({}, 'breadcrumb') }}
+        </span>
     </li>
 {% endblock breadcrumb %}
 
@@ -21,14 +27,28 @@
     </div>
 {% endblock page_actions %}
 
+{% block translation_card_title %}
+    <span{{ translate_in_place('list.translation.overview', {}, 'list') }}>
+        {{ 'list.translation.overview'|trans({}, 'list') }}
+    </span>
+{% endblock translation_card_title %}
+
 {% block translation_card_content %}
-    <p>{{ 'overview.msg_latest_translation'|trans({'%date%': latestTrans|date('Y-m-d H:i')}) }}</p>
+    <p>
+        <span{{ translate_in_place('overview.msg_latest_translation', {'%date%': latestTrans|date('Y-m-d H:i')}, 'LexikTranslationBundle') }}>
+            {{ 'overview.msg_latest_translation'|trans({'%date%': latestTrans|date('Y-m-d H:i')}) }}
+        </span>
+    </p>
 
     <div id="translation-overview">
         <div class="row margin-row">
             <div class="col-md-12">
-                {% if  not stats|length %}
-                    <div class="alert alert-info">{{ 'overview.no_stats'|trans }}</div>
+                {% if not stats|length %}
+                    <div class="alert alert-info">
+                        <span{{ translate_in_place('overview.no_stats', {}, 'LexikTranslationBundle') }}>
+                            {{ 'overview.no_stats'|trans }}
+                        </span>
+                    </div>
                 {% else %}
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-overview">
@@ -74,12 +94,16 @@
         </div>
     </div>
 
-    <p>{{ 'overview.msg_latest_translation'|trans({'%date%': latestTrans|date('Y-m-d H:i')}) }}</p>
+    <p>
+        <span{{ translate_in_place('overview.msg_latest_translation', {'%date%': latestTrans|date('Y-m-d H:i')}, 'LexikTranslationBundle') }}>
+            {{ 'overview.msg_latest_translation'|trans({'%date%': latestTrans|date('Y-m-d H:i')}) }}
+        </span>
+    </p>
 {% endblock translation_card_content %}
 
 {% block lexik_content %}
     {% include 'layout/layout_card.html.twig' with {
-        card_title: 'list.translation.overview'|trans({}, 'list'),
+        card_title: block('translation_card_title'),
         card_content: block('translation_card_content'),
         card_footer: ''
     } %}

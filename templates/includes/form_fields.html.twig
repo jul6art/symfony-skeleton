@@ -425,7 +425,7 @@
 {# Errors #}
 
 {% block form_errors -%}
-    {% if errors|length > 0 -%}
+    {% if errors|length -%}
         {% if form is not rootform %}<span class="help-block">{% else %}<div class="alert alert-danger">{% endif %}
         <ul class="list-unstyled">
         {%- for error in errors -%}
