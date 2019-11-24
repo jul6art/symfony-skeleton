@@ -45,14 +45,18 @@ class NotifyOnRegistrationMessageHandler
 
         foreach ($admins as $admin) {
             if (strtolower($admin->getEmail()) !== strtolower($message->getEmail())) {
-                $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
-                    'user' => $admin,
-                    'firstname' => $message->getFirstname(),
-                    'lastname' => $message->getLastname(),
-                    'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-                    'username' => $message->getUsername(),
-                    'email' => $message->getEmail(),
-                ]);
+                try {
+                    $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
+                        'user' => $admin,
+                        'firstname' => $message->getFirstname(),
+                        'lastname' => $message->getLastname(),
+                        'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
+                        'username' => $message->getUsername(),
+                        'email' => $message->getEmail(),
+                    ]);
+                } catch (\Exception $e) {
+                    // @TODO die silently
+                }
             }
         }
     }
