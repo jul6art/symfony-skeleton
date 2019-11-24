@@ -34,6 +34,7 @@ class UserVoter extends AbstractVoter
     public const CHANGE_PASSWORD = 'app.voters.user.change_password';
     public const CHANGE_AVATAR = 'app.voters.user.change_avatar';
     public const DELETE = 'app.voters.user.delete';
+    public const SELF_DELETE = 'app.voters.user.self_delete';
     public const DELETE_MULTIPLE = 'app.voters.user.delete_mutiple';
     public const EDIT = 'app.voters.user.edit';
     public const LIST = 'app.voters.user.list';
@@ -56,6 +57,7 @@ class UserVoter extends AbstractVoter
                 self::AUDIT,
                 self::CHANGE_AVATAR,
                 self::CHANGE_PASSWORD,
+                self::SELF_DELETE,
                 self::DELETE,
                 self::DELETE_MULTIPLE,
                 self::EDIT,
@@ -97,6 +99,8 @@ class UserVoter extends AbstractVoter
             return $this->canChangeAvatar($subject, $token);
         } elseif (self::CHANGE_PASSWORD === $attribute) {
             return $this->canChangePassword($subject, $token);
+        } elseif (self::SELF_DELETE === $attribute) {
+            return $this->canSelfDelete($subject, $token);
         } elseif (self::DELETE === $attribute) {
             return $this->canDelete($subject, $token);
         } elseif (self::DELETE_MULTIPLE === $attribute) {
@@ -190,6 +194,17 @@ class UserVoter extends AbstractVoter
         }
 
         return $this->canEdit($subject, $token);
+    }
+
+    /**
+     * @param User           $subject
+     * @param TokenInterface $token
+     *
+     * @return bool
+     */
+    public function canSelfDelete(User $subject, TokenInterface $token): bool
+    {
+        return  $subject === $token->getUser();
     }
 
     /**

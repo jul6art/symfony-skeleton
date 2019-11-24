@@ -199,6 +199,27 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @param Request                  $request
+     * @param User                     $user
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @Route("/delete/self", name="delete", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function selfDelete(Request $request, EventDispatcherInterface $eventDispatcher): Response
+    {
+        $user = $this->getUser();
+        $this->denyAccessUnlessGranted(UserVoter::SELF_DELETE, $user);
+
+        $eventDispatcher->dispatch(new UserEvent($user), UserEvent::DELETED);
+        $this->userManager->delete($user);
+        $this->userManager->logout();
+
+        return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('fos_user_security_logout');
+    }
+
+    /**
      * @param Request $request
      * @param User    $user
      *

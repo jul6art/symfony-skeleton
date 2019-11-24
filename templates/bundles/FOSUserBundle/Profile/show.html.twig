@@ -59,3 +59,20 @@
     </div>
 {% endblock details_footer %}
 
+{% block details_after %}
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::AUDIT'), user) %}
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                {{ render(controller('App\\Controller\\DefaultController::audit', {
+                    class: 'App\\Entity\\User',
+                    id: user.id,
+                })) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::SELF_DELETE'), user) %}
+        {% include 'user/_self_delete.html.twig' %}
+    {% endif %}
+{% endblock details_after %}
+

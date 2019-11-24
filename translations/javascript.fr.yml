@@ -12,6 +12,9 @@ javascript.dialog.ajax.test.success: 'Le test <strong>%name%</strong> a bien ét
 javascript.dialog.ajax.user.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer l''utilisateur <strong>%name%</strong>!'
 javascript.dialog.ajax.user.cancel: 'L''utilisateur <strong>%name%</strong> est toujours là!'
 javascript.dialog.ajax.user.success: 'L''utilisateur <strong>%name%</strong> a bien été supprimé!'
+javascript.dialog.ajax.user.self.confirm: 'Une fois supprimé, vous ne pourrez pas récupérer votre compte!'
+javascript.dialog.ajax.user.self.cancel: 'Votre compte est toujours actif!'
+javascript.dialog.ajax.user.self.success: 'Votre compte a bien été supprimé!'
 javascript.cookie.message: 'Nous utilisons des cookies pour personaliser votre experience. En continuant sur le site, vous acceptez l''usage des cookies.'
 javascript.cookie.buttons.confirm: accepter
 javascript.cookie.buttons.cookie_policy: 'politique de cookies'

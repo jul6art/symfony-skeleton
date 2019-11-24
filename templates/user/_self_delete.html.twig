@@ -1,0 +1,7 @@
+<a class="col-{{ theme_name() }}" href="{{ path('admin_user_delete', {id: user.id}) }}" data-confirm="confirm"
+   data-redirect="{{ path('fos_user_security_logout') }}"
+   data-dialog-confirm="javascript.dialog.ajax.user.self.confirm"
+   data-dialog-cancel="javascript.dialog.ajax.user.self.cancel"
+   data-dialog-success="javascript.dialog.ajax.user.self.success">
+    {{ 'button.user.self_delete'|trans({}, 'button')|raw }}
+</a>

@@ -26,7 +26,6 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     
     utilisateurs
-        bouton supprimer mon compte dans la page de vue de mon profil
         action activer/désactiver et colonne avec switch disabled
         revoir gestion des groupes dans users list / création / édition
         usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));

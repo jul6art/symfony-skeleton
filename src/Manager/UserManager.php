@@ -18,6 +18,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Saacsos\Randomgenerator\Util\RandomGenerator;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class UserManager.
@@ -33,6 +34,11 @@ class UserManager extends AbstractManager
     private $userRepository;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
      * @var string
      */
     private $locale;
@@ -41,12 +47,14 @@ class UserManager extends AbstractManager
      * UserManager constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param TokenStorageInterface  $tokenStorage
      * @param string                 $locale
      */
-    public function __construct(EntityManagerInterface $entityManager, string $locale)
+    public function __construct(EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage, string $locale)
     {
         parent::__construct($entityManager);
         $this->userRepository = $entityManager->getRepository(User::class);
+        $this->tokenStorage = $tokenStorage;
         $this->locale = $locale;
     }
 
@@ -168,6 +176,18 @@ class UserManager extends AbstractManager
     public function deactivate(User $user): self
     {
         $user->setEnabled(false);
+
+        return $this;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return UserManager
+     */
+    public function logout(): self
+    {
+        $this->tokenStorage->setToken(null);
 
         return $this;
     }
