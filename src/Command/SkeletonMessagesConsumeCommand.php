@@ -53,17 +53,25 @@ class SkeletonMessagesConsumeCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+
+        $command = $this->getApplication()->find('messenger:stop-workers');
+
+        $arguments = [
+            'command' => 'messenger:stop-workers',
+        ];
+
+        $arrayInput = new ArrayInput($arguments);
+        $returnCode = $command->run($arrayInput, $output);
+
         $io->note('Processing messages consuming');
 
         $transports = [];
 
         if (\in_array($input->getOption('transport'), [null, self::QUEUE_PARAMETER_HIGH])) {
-            $io->note('Consume high priority  messages');
             $transports[] = self::QUEUE_PRIORITY_HIGH;
         }
 
         if (\in_array($input->getOption('transport'), [null, self::QUEUE_PARAMETER_LOW])) {
-            $io->note('Consume low priority  messages');
             $transports[] = self::QUEUE_PRIORITY_LOW;
         }
 
@@ -76,8 +84,8 @@ class SkeletonMessagesConsumeCommand extends Command
                 '--time-limit' => (int) $input->getOption('limit'),
             ];
 
-            $greetInput = new ArrayInput($arguments);
-            $returnCode = $command->run($greetInput, $output);
+            $arrayInput = new ArrayInput($arguments);
+            $returnCode = $command->run($arrayInput, $output);
         }
 
         $io->success('Messages successfully consumed!');
