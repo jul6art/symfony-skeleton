@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0560545c025ebd073aae29c3aa6f80e",
+    "content-hash": "cc3b1b117acfabf351dd4ad0f1fe01d4",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4487,20 +4487,20 @@
         },
         {
             "name": "symfony/lock",
-            "version": "v4.4.0",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/lock.git",
-                "reference": "6eca6ef15a5feef9855fdfe25a26c7096f0be351"
+                "reference": "527620c4b6105d28acbc32d29238a075e94bf889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/lock/zipball/6eca6ef15a5feef9855fdfe25a26c7096f0be351",
-                "reference": "6eca6ef15a5feef9855fdfe25a26c7096f0be351",
+                "url": "https://api.github.com/repos/symfony/lock/zipball/527620c4b6105d28acbc32d29238a075e94bf889",
+                "reference": "527620c4b6105d28acbc32d29238a075e94bf889",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "psr/log": "~1.0"
             },
             "conflict": {
@@ -4514,7 +4514,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -4549,7 +4549,7 @@
                 "redlock",
                 "semaphore"
             ],
-            "time": "2019-11-11T13:09:26+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/messenger",
