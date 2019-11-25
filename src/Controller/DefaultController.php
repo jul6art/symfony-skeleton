@@ -90,11 +90,11 @@ class DefaultController extends AbstractFOSRestController
      */
     public function locale(Request $request, string $locale, TranslatorInterface $translator, array $available_locales): Response
     {
+        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
+
         if (!\in_array($locale, $available_locales)) {
             throw new NotFoundHttpException();
         }
-
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
 
         $referer = $this->refererService->getFormReferer($request, 'locale');
 
@@ -151,21 +151,23 @@ class DefaultController extends AbstractFOSRestController
      * @param string  $name
      * @param array   $available_colors
      *
-     * @Route("%admin_route_prefix%/theme/{name}", name="admin_theme_switch", methods={"GET"})
+     * @Route("%admin_route_prefix%/theme/{color}", name="admin_theme_switch", methods={"GET"})
      *
      * @return Response
      */
-    public function theme(Request $request, string $name, array $available_colors): Response
+    public function theme(Request $request, string $color, array $available_colors): Response
     {
         $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class);
 
+        if (!\in_array($color, $available_colors)) {
+            throw new NotFoundHttpException();
+        }
+
         $referer = $this->refererService->getFormReferer($request, 'theme');
 
-        if (\in_array($name, $available_colors) and null !== $this->getUser()) {
-            $this->userManager
-                ->updateTheme($this->getUser(), $name)
-                ->save($this->getUser());
-        }
+        $this->userManager
+            ->updateTheme($this->getUser(), $color)
+            ->save($this->getUser());
 
         return $this->redirect($referer ?? $this->generateUrl('admin_homepage'));
     }

@@ -21,7 +21,7 @@
                 <ul class="demo-choose-skin">
                     {% for color in available_colors %}
                         <li data-theme="{{ color }}"{{ color == theme_name() ? ' class="active"' }}>
-                            <a href="{{ path('admin_theme_switch', {name: color}) }}" class="block">
+                            <a href="{{ path('admin_theme_switch', {color: color}) }}" class="block">
                                 <div class="{{ color }}"></div>
                                 <span>{{ ('sidebar.skins.colors.' ~ color)|trans({}, 'sidebar') }}</span>
                             </a>

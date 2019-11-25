@@ -54,14 +54,7 @@ class SkeletonMessagesConsumeCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $command = $this->getApplication()->find('messenger:stop-workers');
-
-        $arguments = [
-            'command' => 'messenger:stop-workers',
-        ];
-
-        $arrayInput = new ArrayInput($arguments);
-        $returnCode = $command->run($arrayInput, $output);
+        $this->stopWorkers($output);
 
         $io->note('Processing messages consuming');
 
@@ -91,5 +84,25 @@ class SkeletonMessagesConsumeCommand extends Command
         $io->success('Messages successfully consumed!');
 
         return $returnCode;
+    }
+
+    /**
+     * @param OutputInterface $output
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
+    private function stopWorkers(OutputInterface $output): int
+    {
+        $command = $this->getApplication()->find('messenger:stop-workers');
+
+        $arguments = [
+            'command' => 'messenger:stop-workers',
+        ];
+
+        $arrayInput = new ArrayInput($arguments);
+
+        return $command->run($arrayInput, $output);
     }
 }

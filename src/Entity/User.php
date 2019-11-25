@@ -40,7 +40,7 @@ class User extends BaseUser
     public const GENDER_FEMALE = 'f';
     public const SETTING_LOCALE = 'locale';
     public const SETTING_THEME = 'theme';
-    public const LENGTH_MIN_PASSWORD = 6;
+    public const LENGTH_MIN_PASSWORD = 5;
     public const LENGTH_MAX_PASSWORD = 32;
     public const LENGTH_GENERATED_PASSWORD = 8;
     public const DEFAULT_PASSWORD = 'vsweb';
@@ -102,7 +102,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-
         $this->settings = new ArrayCollection();
     }
 

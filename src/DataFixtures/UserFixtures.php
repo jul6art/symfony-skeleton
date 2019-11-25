@@ -17,6 +17,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;
 use Faker\Factory;
+use Faker\Generator;
 
 /**
  * Class UserFixtures.
@@ -37,55 +38,55 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
+        /**
+         * USER.
+         */
         $user = $this->userManager
             ->create()
-            ->setEnabled(true)
-            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('user')
-            ->setFirstname($faker->firstName)
-            ->setLastname($faker->lastName)
-            ->setPlainPassword(User::DEFAULT_PASSWORD)
             ->setEmail('user@vsweb.be');
+
+        $this->updateUser($user, $faker);
 
         $this->setReference('user_user', $user);
         $manager->persist($user);
 
+        /**
+         * ADMIN.
+         */
         $admin = $this->userManager
             ->createAdmin()
-            ->setEnabled(true)
-            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('admin')
-            ->setFirstname($faker->firstName)
-            ->setLastname($faker->lastName)
-            ->setPlainPassword(User::DEFAULT_PASSWORD)
             ->setEmail('admin@vsweb.be');
+
+        $this->updateUser($admin, $faker);
 
         $this->setReference('user_admin', $admin);
         $manager->persist($admin);
 
+        /**
+         * SUPER ADMIN.
+         */
         $superAdmin = $this->userManager
             ->createSuperAdmin()
-            ->setEnabled(true)
-            ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('superadmin')
-            ->setFirstname($faker->firstName)
-            ->setLastname($faker->lastName)
-            ->setPlainPassword(User::DEFAULT_PASSWORD)
             ->setEmail('super_admin@vsweb.be');
+
+        $this->updateUser($superAdmin, $faker);
 
         $this->setReference('user_super_admin', $superAdmin);
         $manager->persist($superAdmin);
 
+        /*
+         * CITIZENS
+         */
         for ($i = 0; $i < self::LIMIT; ++$i) {
             $user = $this->userManager
                 ->create()
-                ->setEnabled(true)
-                ->setGender($faker->randomElement(self::GENDER_CHOICES))
                 ->setUsername($faker->userName)
-                ->setFirstname($faker->firstName)
-                ->setLastname($faker->lastName)
-                ->setPlainPassword(User::DEFAULT_PASSWORD)
                 ->setEmail($faker->email);
+
+            $this->updateUser($user, $faker);
 
             $this->setReference("user_user_$i", $user);
             $manager->persist($user);
@@ -102,5 +103,23 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         return [
             GroupFixtures::class,
         ];
+    }
+
+    /**
+     * @param User      $user
+     * @param Generator $faker
+     *
+     * @return User
+     *
+     * @throws NonUniqueResultException
+     */
+    private function updateUser(User $user, Generator $faker): User
+    {
+        return $user
+            ->setEnabled(true)
+            ->setGender($faker->randomElement(self::GENDER_CHOICES))
+            ->setFirstname($faker->firstName)
+            ->setLastname($faker->lastName)
+            ->setPlainPassword(User::DEFAULT_PASSWORD);
     }
 }

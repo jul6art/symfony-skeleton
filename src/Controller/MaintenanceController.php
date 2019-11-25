@@ -82,7 +82,7 @@ class MaintenanceController extends AbstractFOSRestController
         $form = $this->createForm(EditMaintenanceType::class, $maintenance);
         $form->handleRequest($request);
 
-        if (!$request->isXmlHttpRequest() and $form->isSubmitted() and $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $this->maintenanceManager->save($maintenance);
             $eventDispatcher->dispatch(new MaintenanceEvent($maintenance), MaintenanceEvent::EDITED);
 

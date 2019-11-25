@@ -43,13 +43,13 @@ class FunctionalityFixtures extends Fixture
             Functionality::FUNC_SWITCH_THEME,
         ];
 
-        foreach ($functionalities as $value) {
+        array_walk($functionalities, function (string $name) use ($manager) {
             $functionality = ($this->functionalityManager->create())
-                ->setName($value);
+                ->setName($name);
 
-            $this->setReference("func_$value", $functionality);
+            $this->setReference("func_$name", $functionality);
             $manager->persist($functionality);
-        }
+        });
 
         $manager->flush();
     }

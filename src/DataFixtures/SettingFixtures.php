@@ -36,14 +36,14 @@ class SettingFixtures extends Fixture
             Setting::SETTING_TOASTR_HORIZONTAL_POSITION => Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE,
         ];
 
-        foreach ($settings as $key => $value) {
+        array_walk($settings, function (string $value, string $key) use ($manager) {
             $setting = ($this->settingManager->create())
                 ->setName($key)
                 ->setValue($value);
 
             $this->addReference("setting_$key", $setting);
             $manager->persist($setting);
-        }
+        });
 
         $manager->flush();
     }

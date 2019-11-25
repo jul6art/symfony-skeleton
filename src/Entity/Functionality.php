@@ -63,16 +63,27 @@ class Functionality
         $this->active = true;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -80,11 +91,19 @@ class Functionality
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function isActive(): ?bool
     {
         return $this->active;
     }
 
+    /**
+     * @param bool $active
+     *
+     * @return $this
+     */
     public function setActive(bool $active): self
     {
         $this->active = $active;
