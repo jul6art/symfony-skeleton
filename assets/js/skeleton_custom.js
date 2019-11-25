@@ -35,6 +35,7 @@ $.App = {
     }
   },
   card: function() {
+    let body = $("body");
     let collapseButtonToggle = function(button) {
       button.closest(".card").toggleClass("collapsed");
 
@@ -49,11 +50,11 @@ $.App = {
       }, 300);
     };
 
-    $('[data-toggle="grid-collapse"]').on("click", function() {
+    body.on("click", '[data-toggle="grid-collapse"]', function() {
       collapseButtonToggle($(this));
     });
 
-    $('[data-toggle="grid-expand"]').on("click", function() {
+    body.on("click", '[data-toggle="grid-expand"]', function() {
       var button = $(this);
 
       if (button.closest(".card").hasClass("collapsed")) {
@@ -75,7 +76,7 @@ $.App = {
       }, 300);
     });
 
-    $('[data-toggle="grid-close"]').on("click", function() {
+    body.on("click", '[data-toggle="grid-close"]', function() {
       $(this)
         .closest(".card")
         .remove();
@@ -122,15 +123,15 @@ $.App = {
 
     window.vsweb_console_start = function() {
       if (localStorageSupported()) {
-        localStorage["vsweb-console-message"] = 1;
+        localStorage.setItem("vsweb-console-message", 1);
       }
-      return true;
     };
 
     window.vsweb_console_stop = function() {
       if (localStorageSupported()) {
-        localStorage["vsweb-console-message"] = 0;
+        localStorage.setItem("vsweb-console-message", 0);
       }
+
       return true;
     };
 
@@ -154,32 +155,22 @@ $.App = {
     });
   },
   detectIp: function() {
-    $("body")
-      .on("click", '[data-toggle="ip-detect"]', function(e) {
-        e.preventDefault();
-        let ip_list_input = $('[name="edit_maintenance[exceptionIpList]"]'),
-          ip_list = ip_list_input
-            .val()
-            .split(", ")
-            .filter(function(ip) {
-              return ip.length > 0;
-            }),
-          ip = $(this).data("ip");
+    $("body").on("click", '[data-toggle="ip-detect"]', function(e) {
+      e.preventDefault();
+      let ip_list_input = $('[name="edit_maintenance[exceptionIpList]"]'),
+        ip_list = ip_list_input
+          .val()
+          .split(", ")
+          .filter(function(ip) {
+            return ip.length > 0;
+          }),
+        ip = $(this).data("ip");
 
-        if ($.inArray(ip, ip_list) === -1) {
-          ip_list.push(ip);
-          ip_list_input.val(ip_list.join(", ")).trigger("change");
-        }
-      })
-      .on(
-        "form.event.post_submit.success",
-        'form[name="edit_maintenance"]',
-        function() {
-          $(this)
-            .find('[name="edit_maintenance[exceptionIpList][]"]')
-            .selectpicker();
-        }
-      );
+      if ($.inArray(ip, ip_list) === -1) {
+        ip_list.push(ip);
+        ip_list_input.val(ip_list.join(", ")).trigger("change");
+      }
+    });
   },
   dialog: function() {
     if (typeof FUNCTIONALITIES.confirm_delete !== "undefined") {
@@ -232,7 +223,9 @@ $.App = {
                 }
               }).catch(err => {
                 if (err) {
-                  console.log(err);
+                  if (window.console) {
+                    console.log(err);
+                  }
                   swal(
                     Translator.trans("javascript.dialog.ajax.error.title"),
                     Translator.trans("javascript.dialog.ajax.error.text"),
@@ -257,7 +250,9 @@ $.App = {
           })
           .catch(err => {
             if (err) {
-              console.log(err);
+              if (window.console) {
+                console.log(err);
+              }
               swal(
                 Translator.trans("javascript.dialog.ajax.error.title"),
                 Translator.trans("javascript.dialog.ajax.error.text"),
@@ -272,12 +267,10 @@ $.App = {
     }
   },
   dropdown: function() {
-    $(document).keyup(function(e) {
-      if (e.keyCode === 27) {
-        $('[data-toggle="dropdown"]')
-          .parent()
-          .removeClass("open");
-      }
+    $("body").on("keyboard.keyup.esc", function() {
+      $('[data-toggle="dropdown"]')
+        .parent()
+        .removeClass("open");
     });
   },
   editInPlace: function() {
@@ -366,7 +359,7 @@ $.App = {
           });
 
           editor.ui.registry.addButton("translateInPlaceSave", {
-            text: "Enregistrer",
+            text: Translator.trans("javascript.wysiwyg.buttons.save"),
             onAction: () => {
               this.blockUI();
 
@@ -408,7 +401,7 @@ $.App = {
           });
 
           editor.ui.registry.addButton("translateInPlaceCancel", {
-            text: "Fermer",
+            text: Translator.trans("javascript.wysiwyg.buttons.close"),
             onAction: () => {
               editor.setContent(
                 toggleParameters(editor.getContent(), parameters, false)
@@ -541,25 +534,25 @@ $.App = {
   },
   progressiveWebApp: function() {
     if (typeof FUNCTIONALITIES.progressive_web_app !== "undefined") {
-      let manifestLink = $("#progressiveWebAppManifest");
+      let manifestNode = $("#progressiveWebAppManifest");
 
-      if (manifestLink.length) {
+      if (manifestNode.length) {
         let manifest = {
-          short_name: manifestLink.data("name"),
-          name: manifestLink.data("name"),
-          icons: manifestLink.data("icons"),
+          short_name: manifestNode.data("name"),
+          name: manifestNode.data("name"),
+          icons: manifestNode.data("icons"),
           start_url: window.location.origin + "/",
           scope: window.location.origin + "/",
-          background_color: getThemeColor(manifestLink.data("color")),
+          background_color: getThemeColor(manifestNode.data("color")),
           display: "standalone",
-          theme_color: getThemeColor(manifestLink.data("color"))
+          theme_color: getThemeColor(manifestNode.data("color"))
         };
 
         let stringManifest = JSON.stringify(manifest),
           blob = new Blob([stringManifest], { type: "application/json" }),
           url = URL.createObjectURL(blob);
 
-        manifestLink.attr("href", url);
+        manifestNode.attr("href", url);
       }
     }
   },
@@ -586,7 +579,9 @@ $.App = {
             }
           }).catch(err => {
             if (err) {
-              console.log(err);
+              if (window.console) {
+                console.log(err);
+              }
               swal(
                 Translator.trans("javascript.dialog.ajax.error.title"),
                 Translator.trans("javascript.dialog.ajax.error.text"),
@@ -631,7 +626,9 @@ $.App = {
               }
             }).catch(err => {
               if (err) {
-                console.log(err);
+                if (window.console) {
+                  console.log(err);
+                }
                 swal(
                   Translator.trans("javascript.dialog.ajax.error.title"),
                   Translator.trans("javascript.dialog.ajax.error.text"),

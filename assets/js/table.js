@@ -56,27 +56,30 @@ $(document).ready(function() {
     let datatable = table.DataTable(datatableOptions);
 
     datatable.on("init.dt.dth", function() {
-      console.log("init");
+      if (window.console) {
+        console.log("init");
+      }
     });
 
     datatable.on("draw.dt", function() {
-      console.log("draw");
+      if (window.console) {
+        console.log("draw");
+      }
     });
 
     $("body").on("datatable.refresh.force", function() {
-      datatable.draw();
+      if (window.console) {
+        datatable.draw();
+      }
     });
 
     datatable.on("processing.dt", function(e, settings, processing) {
-      console.log("processing");
-      console.log(e);
-      console.log(settings);
-      console.log(processing);
+      if (window.console) {
+        console.log("processing");
+      }
       if (processing) {
-        console.log("on");
         $.App.blockUI(table);
       } else {
-        console.log("off");
         $.App.unblockUI(table);
       }
     });

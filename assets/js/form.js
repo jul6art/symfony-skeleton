@@ -1915,22 +1915,22 @@ $.Form = {
   },
   picker: function() {
     $('[data-provide="datepicker"]').each(function() {
-      let pickerSettings = {};
+      let options = {};
 
       if ($(this).data("disabled-days")) {
-        pickerSettings.disabledDays = $(this).data("disabled-days");
+        options.disabledDays = $(this).data("disabled-days");
       }
 
       if ($(this).data("min-date")) {
-        pickerSettings.minDate = $(this).data("min-date");
+        options.minDate = $(this).data("min-date");
       }
 
       if ($(this).data("max-date")) {
-        pickerSettings.maxDate = $(this).data("max-date");
+        options.maxDate = $(this).data("max-date");
       }
 
       $(this).datetimepicker(
-        $.extend(pickerSettings, {
+        $.extend(options, {
           format: "DD-MM-YYYY",
           clearButton: true,
           weekStart: 1,
@@ -1956,22 +1956,22 @@ $.Form = {
     });
 
     $('[data-provide="datetimepicker"]').each(function() {
-      let pickerSettings = {};
+      let options = {};
 
       if ($(this).data("disabled-days")) {
-        pickerSettings.disabledDays = $(this).data("disabled-days");
+        options.disabledDays = $(this).data("disabled-days");
       }
 
       if ($(this).data("min-date")) {
-        pickerSettings.minDate = $(this).data("min-date");
+        options.minDate = $(this).data("min-date");
       }
 
       if ($(this).data("max-date")) {
-        pickerSettings.maxDate = $(this).data("max-date");
+        options.maxDate = $(this).data("max-date");
       }
 
       $(this).datetimepicker(
-        $.extend(pickerSettings, {
+        $.extend(options, {
           format: "DD-MM-YYYY HH:mm",
           clearButton: true,
           weekStart: 1,

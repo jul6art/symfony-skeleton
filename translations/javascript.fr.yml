@@ -34,3 +34,5 @@ javascript.table.default.infoFiltered: '(filtrés sur _MAX_ éléments)'
 javascript.table.default.search: Rechercher
 javascript.table.default.previous: Précedent
 javascript.table.default.next: Suivant
+javascript.wysiwyg.buttons.save: Enregistrer
+javascript.wysiwyg.buttons.close: Fermer
