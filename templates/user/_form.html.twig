@@ -24,4 +24,9 @@
     <div class="col-sm-6">
         {{ form_row(form.email) }}
     </div>
+    {% if form.groups is defined %}
+        <div class="col-sm-6">
+            {{ form_row(form.groups) }}
+        </div>
+    {% endif %}
 </div>

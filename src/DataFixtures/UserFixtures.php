@@ -64,15 +64,14 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($admin);
 
         $superAdmin = $this->userManager
-            ->createAdmin()
+            ->createSuperAdmin()
             ->setEnabled(true)
             ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setUsername('superadmin')
             ->setFirstname($faker->firstName)
             ->setLastname($faker->lastName)
             ->setPlainPassword(User::DEFAULT_PASSWORD)
-            ->setEmail('super_admin@vsweb.be')
-            ->addGroup($this->getReference('group_super_admin'));
+            ->setEmail('super_admin@vsweb.be');
 
         $this->setReference('user_super_admin', $superAdmin);
         $manager->persist($superAdmin);

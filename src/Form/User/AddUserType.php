@@ -38,6 +38,8 @@ class AddUserType extends AbstractType
             'label' => 'form.user.email.label',
         ])->add('gender', GenderType::class, [
             'label' => 'form.user.gender.label',
+        ])->add('groups', GroupsType::class, [
+            'label' => 'form.user.groups.label',
         ])->add('username', TextType::class, [
             'label' => 'form.user.username.label',
         ]);

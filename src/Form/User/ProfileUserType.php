@@ -14,9 +14,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class EditUserType.
+ * Class ProfileUserType.
  */
-class EditUserType extends AbstractType
+class ProfileUserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -24,6 +24,7 @@ class EditUserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->remove('groups');
     }
 
     /**

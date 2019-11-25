@@ -5,6 +5,10 @@ form.account.profile.title: 'Modifier mon profil'
 form.account.change_password.title: 'Modifier mon mot de passe'
 form.user.add.title: 'Créer un utilisateur'
 form.user.edit.title: 'Modifier l''utilisateur <strong>%name%</strong>'
+form.user.groups.label: Groupe
+form.user.groups.user: Utilisateur
+form.user.groups.admin: Admin.
+form.user.groups.super_admin: 'Super admin.'
 form.user.gender.label: Sexe
 form.user.gender.choices.m: Homme
 form.user.gender.choices.f: Femme

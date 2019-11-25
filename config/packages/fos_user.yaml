@@ -15,7 +15,7 @@ fos_user:
             validation_groups:  [ChangePassword, Default]
     profile:
         form:
-            type:               App\Form\User\EditUserType
+            type:               App\Form\User\ProfileUserType
             validation_groups:  [Profile, Default]
     registration:
         confirmation:

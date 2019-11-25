@@ -91,6 +91,18 @@ class UserManager extends AbstractManager
     }
 
     /**
+     * @return User
+     *
+     * @throws NonUniqueResultException
+     */
+    public function createSuperAdmin(): User
+    {
+        $defaultTheme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+
+        return UserFactory::build($this->groupManager, Group::GROUP_NAME_SUPER_ADMIN, $this->locale, $defaultTheme);
+    }
+
+    /**
      * @param User   $user
      * @param string $locale
      *
@@ -117,16 +129,17 @@ class UserManager extends AbstractManager
     }
 
     /**
-     * @param User $user
+     * @param User        $user
+     * @param string|null $locale
      *
-     * @return UserManager
+     * @return $this
      *
      * @throws NonUniqueResultException
      */
-    public function updateSettings(User $user): self
+    public function presetSettings(User $user, string $locale = null): self
     {
         $user
-            ->setLocale($this->locale)
+            ->setLocale($locale ?? $this->locale)
             ->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
 
         return $this;
@@ -139,9 +152,9 @@ class UserManager extends AbstractManager
      *
      * @throws NonUniqueResultException
      */
-    public function updateGroups(User $user): self
+    public function presetGroups(User $user): self
     {
-        $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
+        $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_USER));
 
         return $this;
     }

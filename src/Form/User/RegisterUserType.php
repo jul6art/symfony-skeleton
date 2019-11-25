@@ -20,6 +20,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Class RegisterUserType.
@@ -78,6 +79,14 @@ class RegisterUserType extends AbstractType
             ],
         ])->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
+            'options' => [
+                'constraints' => [
+                    new Length([
+                        'min' => User::LENGTH_MIN_PASSWORD,
+                        'max' => User::LENGTH_MAX_PASSWORD,
+                    ]),
+                ],
+            ],
             'first_options' => [
                 'addon_left' => '<i class="material-icons">lock</i>',
                 'label' => false,
@@ -85,6 +94,8 @@ class RegisterUserType extends AbstractType
                     'autocomplete' => 'off',
                     'class' => 'password',
                     'placeholder' => 'form.user.password.label',
+                    'minLength' => User::LENGTH_MIN_PASSWORD,
+                    'maxLength' => User::LENGTH_MAX_PASSWORD,
                 ],
             ],
             'second_options' => [
@@ -94,6 +105,8 @@ class RegisterUserType extends AbstractType
                     'autocomplete' => 'off',
                     'class' => 'password_verification',
                     'placeholder' => 'form.user.password_confirmation.label',
+                    'minLength' => User::LENGTH_MIN_PASSWORD,
+                    'maxLength' => User::LENGTH_MAX_PASSWORD,
                 ],
             ],
             'invalid_message' => 'form.password_verification.error',

@@ -89,8 +89,7 @@ class UserController extends AbstractFOSRestController
                 ->addData('createdBy', $this->getUser());
 
             $this->userManager
-                ->updateSettings($user)
-                ->updateGroups($user)
+                ->presetSettings($user)
                 ->activate($user)
                 ->save($user);
 

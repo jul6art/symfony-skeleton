@@ -26,10 +26,10 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     
     utilisateurs
-        action activer/désactiver et colonne avec switch disabled
-        revoir gestion des groupes dans users list / création / édition
-        usermanager: retirer $user->addGroup($this->groupManager->findOneByName(Group::GROUP_NAME_ADMIN));
-        password min et max length et password strength plugin
+        colonne avec switch disabled
+        colonne groups
+        action activer/désactiver
+        password strength plugin
         
     socket comme dans cdb pour 
         incrémenter les vignettes de nombre d'entités 

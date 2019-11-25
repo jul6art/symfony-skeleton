@@ -10,9 +10,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Setting;
 use App\Event\UserEvent;
-use App\Manager\SettingManagerTrait;
 use App\Manager\UserManagerTrait;
 use App\Traits\FlashBagTrait;
 use App\Traits\TranslatorTrait;
@@ -29,7 +27,6 @@ use Symfony\Component\Security\Http\SecurityEvents;
 class UserSubscriber implements EventSubscriberInterface
 {
     use FlashBagTrait;
-    use SettingManagerTrait;
     use TranslatorTrait;
     use UserManagerTrait;
 
@@ -53,10 +50,9 @@ class UserSubscriber implements EventSubscriberInterface
     public function onRegistrationSuccess(FormEvent $event): void
     {
         $user = $event->getForm()->getData();
-        $user->setLocale($event->getRequest()->getLocale());
-        $user->setTheme($this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME));
         $this->userManager
-            ->updateGroups($user)
+            ->presetSettings($user, $event->getRequest()->getLocale())
+            ->presetGroups($user)
             ->save($user);
     }
 

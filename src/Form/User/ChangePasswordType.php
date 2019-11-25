@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
@@ -49,7 +50,7 @@ class ChangePasswordType extends AbstractType
             ),
             'addon_left' => '<i class="material-icons">lock</i>',
             'attr' => array(
-                'autocomplete' => 'current-password',
+                'autocomplete' => 'off',
                 'placeholder' => 'form.user.current_password.label',
             ),
         ));
@@ -57,26 +58,33 @@ class ChangePasswordType extends AbstractType
         $builder->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
             'options' => [
-                'attr' => [
-                    'autocomplete' => 'new-password',
+                'constraints' => [
+                    new Length([
+                        'min' => User::LENGTH_MIN_PASSWORD,
+                        'max' => User::LENGTH_MAX_PASSWORD,
+                    ]),
                 ],
             ],
             'first_options' => [
                 'addon_left' => '<i class="material-icons">lock</i>',
                 'label' => false,
                 'attr' => [
-                    'autocomplete' => false,
+                    'autocomplete' => 'off',
                     'class' => 'password',
                     'placeholder' => 'form.user.new_password.label',
+                    'minLength' => User::LENGTH_MIN_PASSWORD,
+                    'maxLength' => User::LENGTH_MAX_PASSWORD,
                 ],
             ],
             'second_options' => [
                 'addon_left' => '<i class="material-icons">lock</i>',
                 'label' => false,
                 'attr' => [
-                    'autocomplete' => false,
+                    'autocomplete' => 'off',
                     'class' => 'password_verification',
                     'placeholder' => 'form.user.new_password_confirmation.label',
+                    'minLength' => User::LENGTH_MIN_PASSWORD,
+                    'maxLength' => User::LENGTH_MAX_PASSWORD,
                 ],
             ],
             'invalid_message' => 'form.password_verification.error',

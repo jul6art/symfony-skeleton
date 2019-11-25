@@ -40,6 +40,8 @@ class User extends BaseUser
     public const GENDER_FEMALE = 'f';
     public const SETTING_LOCALE = 'locale';
     public const SETTING_THEME = 'theme';
+    public const LENGTH_MIN_PASSWORD = 6;
+    public const LENGTH_MAX_PASSWORD = 32;
     public const LENGTH_GENERATED_PASSWORD = 8;
     public const DEFAULT_PASSWORD = 'vsweb';
     public const DEFAULT_ADMIN_USERNAME = 'admin';
@@ -80,6 +82,7 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Group")
+     * @Assert\Count(min="1", max="1")
      * @ORM\JoinTable(name="user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
