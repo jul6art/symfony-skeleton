@@ -24,11 +24,15 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
+        
+    @media (prefers-color-scheme: dark) {
+        https://www.instagram.com/p/B5Sv0QHAENT/?igshid=1qy5s93mz8zqx
+    }   
    
     dossier src/Twig 
         array_map
         clean code
-        arreter de faire plusieurs calls sur la meme page dans les funcctions twig => liistener?
+        arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?
     
     utilisateurs
         colonne avec switch disabled
