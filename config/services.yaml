@@ -81,6 +81,11 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\EntityListener\:
+        resource: '../src/EntityListener'
+        tags:
+            - { name: doctrine.orm.entity_listener }
+
     App\MessageHandler\:
         resource: '../src/MessageHandler'
         tags: ['messenger.message_handler']
@@ -122,24 +127,28 @@ services:
         tags:
             - { name: twig.extension }
 
-    App\EntityListener\:
-        resource: '../src/EntityListener'
-        tags:
-            - { name: doctrine.orm.entity_listener }
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
+            - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }
 
     App\EventListener\LocaleListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
 
+    App\EventListener\MailListener:
+        tags:
+            - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
+            - { name: kernel.event_listener, event: event.user.added, method: onUserAdded }
+
     App\EventListener\MaintenanceListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request }
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: event.maintenance.viewed, method: onMaintenanceViewed }
 
     App\EventListener\UserListener:
         tags:
-            - { name: kernel.event_listener, event: kernel.request }
-
-    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
-        arguments:
-            - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
-            - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }
+            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
+            - { name: kernel.event_listener, event: event.user.edited, method: onUserEdited }

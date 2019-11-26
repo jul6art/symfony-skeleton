@@ -8,41 +8,26 @@
  * Time: 21:39.
  */
 
-namespace App\EventSubscriber;
+namespace App\EventListener;
 
 use App\Entity\User;
 use App\Event\UserEvent;
-use App\Message\NotifyOnRegistrationMessage;
 use App\Message\NotifyOnAddedMessage;
-use App\Service\MailerServiceTrait;
+use App\Message\NotifyOnRegistrationMessage;
 use App\Traits\MessageBusTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\FOSUserEvents;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Throwable;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class MailSubscriber.
+ * Class MailListener.
  */
-class MailSubscriber implements EventSubscriberInterface
+class MailListener
 {
-    use MailerServiceTrait;
     use MessageBusTrait;
-
-    /**
-     * @return array
-     */
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
-            UserEvent::ADDED => 'onUserAdded',
-        ];
-    }
 
     /**
      * @param FormEvent $event
@@ -52,6 +37,7 @@ class MailSubscriber implements EventSubscriberInterface
     public function onRegistrationSuccess(FormEvent $event): void
     {
         $user = $event->getForm()->getData();
+
         if ($user instanceof User) {
             $this->bus->dispatch(new NotifyOnRegistrationMessage(
                 $user->getFirstname(),

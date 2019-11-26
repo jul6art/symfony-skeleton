@@ -10,9 +10,13 @@
 
 namespace App\EventListener;
 
+use App\Event\MaintenanceEvent;
+use App\Manager\AuditManagerTrait;
 use App\Manager\MaintenanceManagerTrait;
 use App\Security\Voter\DefaultVoter;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -24,6 +28,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class MaintenanceListener
 {
+    use AuditManagerTrait;
     use MaintenanceManagerTrait;
 
     /**
@@ -74,6 +79,9 @@ class MaintenanceListener
             'admin_maintenance_edit',
             'admin_maintenance_overview',
             'fos_js_routing_js',
+            'web_profiler_wdt',
+            'web_profiler_profiler',
+            'bazinga_jstranslation_js',
         ]);
 
         if ($this->authorizationChecker->isGranted(DefaultVoter::MAINTENANCE) and !$isRouteMaintenance) {
@@ -94,5 +102,20 @@ class MaintenanceListener
         if ($redirect) {
             $event->setResponse(new RedirectResponse($this->router->generate($redirect)));
         }
+    }
+
+    /**
+     * @param MaintenanceEvent $event
+     *
+     * @throws DBALException
+     * @throws MappingException
+     */
+    public function onMaintenanceViewed(MaintenanceEvent $event): void
+    {
+        $maintenance = $event->getMaintenance();
+
+        $this->auditManager->audit('mnt_vi', $maintenance, [
+            'id' => $maintenance->getId(),
+        ]);
     }
 }

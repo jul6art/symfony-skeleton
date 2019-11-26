@@ -11,17 +11,27 @@
 namespace App\EventListener;
 
 use App\Entity\User;
+use App\Event\UserEvent;
+use App\Manager\UserManagerTrait;
+use App\Traits\FlashBagTrait;
+use App\Traits\TranslatorTrait;
 use Doctrine\ORM\NonUniqueResultException;
+use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * Class UserListener.
  */
 class UserListener
 {
+    use FlashBagTrait;
+    use TranslatorTrait;
+    use UserManagerTrait;
+
     /**
      * @var TokenStorageInterface
      */
@@ -42,6 +52,20 @@ class UserListener
     {
         $this->tokenStorage = $tokenStorage;
         $this->router = $router;
+    }
+
+    /**
+     * @param InteractiveLoginEvent $event
+     */
+    public function onInteractiveLogin(InteractiveLoginEvent $event): void
+    {
+        $user = $event->getAuthenticationToken()->getUser();
+        $locale = $event->getRequest()->getSession()->get('_locale');
+
+        if (null !== $locale and null !== $user and $user->getLocale() !== $locale) {
+            $user->setLocale($locale);
+            $this->userManager->save($user);
+        }
     }
 
     /**
@@ -71,5 +95,27 @@ class UserListener
                 $event->setResponse(new RedirectResponse($this->router->generate('admin_homepage')));
             }
         }
+    }
+
+    /**
+     * @param FormEvent $event
+     *
+     * @throws NonUniqueResultException
+     */
+    public function onRegistrationSuccess(FormEvent $event): void
+    {
+        $user = $event->getForm()->getData();
+        $this->userManager
+            ->presetSettings($user, $event->getRequest()->getLocale())
+            ->presetGroups($user)
+            ->save($user);
+    }
+
+    /**
+     * @param UserEvent $event
+     */
+    public function onUserEdited(UserEvent $event): void
+    {
+        $this->flashBag->add('success', $this->translator->trans('notification.user.edited', [], 'notification'));
     }
 }
