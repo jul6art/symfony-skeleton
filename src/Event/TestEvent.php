@@ -32,8 +32,8 @@ class TestEvent extends AbstractEvent
      */
     public function __construct(Test $test)
     {
-        $this->test = $test;
         parent::__construct();
+        $this->test = $test;
     }
 
     /**

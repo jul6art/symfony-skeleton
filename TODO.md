@@ -24,6 +24,11 @@ URGENT
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
     !!!!!! corriger phpunit surr jenkins et prod
+   
+    dossier src/Twig 
+        array_map
+        clean code
+        arreter de faire plusieurs calls sur la meme page dans les funcctions twig => liistener?
     
     utilisateurs
         colonne avec switch disabled
@@ -38,7 +43,7 @@ URGENT
             
     versions vulnerabilities et php upgrades
         
-    tests
+    REVOIR MOCK tests CA NEE VA PAS, a part test fonctionnel, revoir factory, ...
         voir TEST.md
         translate et maintenance
         usercontroller impersonate action (chaque cas du voter)

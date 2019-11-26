@@ -117,6 +117,6 @@ class SettingManager extends AbstractManager
     {
         $setting = $this->settingRepository->findOneByName($name);
 
-        return null === $setting ? (string) $default : $setting->getValue();
+        return null === $setting ? $default : $setting->getValue();
     }
 }

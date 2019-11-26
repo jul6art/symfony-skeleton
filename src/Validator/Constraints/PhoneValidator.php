@@ -35,7 +35,7 @@ class PhoneValidator extends ConstraintValidator
             return;
         }
 
-        if (0 !== strpos($value, '+')) {
+        if (0 !== strpos($value, '+') or 1 === \strlen($value)) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

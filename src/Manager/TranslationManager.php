@@ -94,7 +94,9 @@ class TranslationManager extends AbstractManager
      */
     public function findByDomainAndKeyAndLocale(string $domain, string $key, string $locale): array
     {
-        $builder = $this->entityManager->getRepository(Translation::class)->createQueryBuilder('t');
+        $builder = $this->entityManager
+            ->getRepository(Translation::class)
+            ->createQueryBuilder('t');
 
         $this
             ->filterByDomain($builder, $domain)

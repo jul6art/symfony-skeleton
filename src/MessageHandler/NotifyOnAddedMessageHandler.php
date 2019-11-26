@@ -15,6 +15,7 @@ use App\Entity\User;
 use App\Manager\UserManagerTrait;
 use App\Message\NotifyOnAddedMessage;
 use App\Service\MailerServiceTrait;
+use App\Traits\LoggerTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -26,6 +27,7 @@ use Twig\Error\SyntaxError;
  */
 class NotifyOnAddedMessageHandler
 {
+    use LoggerTrait;
     use MailerServiceTrait;
     use UserManagerTrait;
 
@@ -40,42 +42,42 @@ class NotifyOnAddedMessageHandler
      */
     public function __invoke(NotifyOnAddedMessage $message)
     {
-        /*
-         * SEND CREDENTIALS TO ADDED USER
-         */
-        $this->mailerService->send($message->getEmail(), 'email/user/add/email.html.twig', [
-            'password' => $message->getPassword(),
-            'username' => $message->getUsername(),
-            'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-        ]);
-
-        $admins = $this->userManager->findByGroup(
-            $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN)
-        );
-
-        $admins = array_filter($admins, function (User $user) use ($message) {
-            return null !== $user->getLastLogin() and !\in_array(strtolower($user->getEmail()), [
-                strtolower($message->getEmail()),
-                strtolower($message->getCreatedBy()),
+        try {
+            $this->mailerService->send($message->getEmail(), 'email/user/add/email.html.twig', [
+                'password' => $message->getPassword(),
+                'username' => $message->getUsername(),
+                'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
             ]);
-        });
-
-        /*
-         * NOTIFY ADMINS EXCEPT CREATOR
-         */
-        foreach ($admins as $admin) {
-            try {
-                $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
-                    'user' => $admin,
-                    'firstname' => $message->getFirstname(),
-                    'lastname' => $message->getLastname(),
-                    'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
-                    'username' => $message->getUsername(),
-                    'email' => $message->getEmail(),
-                ]);
-            } catch (\Exception $e) {
-                // @TODO die silently
-            }
+        } catch (\Exception $e) {
+            $this->logger->critical($e->getMessage());
         }
+
+        $admins = array_merge($this->userManager->findByGroup(
+            $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN)
+        ), $this->userManager->findByGroup(
+            $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_SUPER_ADMIN)
+        ));
+
+        array_walk($admins, function (User $admin) use ($message) {
+            if (
+                null !== $admin->getLastLogin() and !\in_array(strtolower($admin->getEmail()), [
+                    strtolower($message->getEmail()),
+                    strtolower($message->getCreatedBy()),
+                ])
+            ) {
+                try {
+                    $this->mailerService->send($admin->getEmail(), 'email/user/notifications/add.html.twig', [
+                        'user' => $admin,
+                        'firstname' => $message->getFirstname(),
+                        'lastname' => $message->getLastname(),
+                        'fullname' => sprintf('%s %s', $message->getFirstname(), $message->getLastname()),
+                        'username' => $message->getUsername(),
+                        'email' => $message->getEmail(),
+                    ]);
+                } catch (\Exception $e) {
+                    $this->logger->critical($e->getMessage());
+                }
+            }
+        });
     }
 }

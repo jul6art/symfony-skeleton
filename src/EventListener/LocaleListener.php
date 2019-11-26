@@ -75,7 +75,7 @@ class LocaleListener
             return;
         }
 
-        $user = $this->tokenStorage->getToken()->getUser();
+        $user = null !== $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
 
         $newLocale = $request->query->get('_locale');
 

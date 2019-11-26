@@ -20,6 +20,7 @@ class UserEvent extends AbstractEvent
     public const ADDED = 'event.user.added';
     public const EDITED = 'event.user.edited';
     public const DELETED = 'event.user.deleted';
+
     /**
      * @var User
      */
@@ -32,8 +33,8 @@ class UserEvent extends AbstractEvent
      */
     public function __construct(User $user)
     {
-        $this->user = $user;
         parent::__construct();
+        $this->user = $user;
     }
 
     /**

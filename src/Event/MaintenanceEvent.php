@@ -34,8 +34,8 @@ class MaintenanceEvent extends AbstractEvent
      */
     public function __construct(Maintenance $maintenance)
     {
-        $this->maintenance = $maintenance;
         parent::__construct();
+        $this->maintenance = $maintenance;
     }
 
     /**
