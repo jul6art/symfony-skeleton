@@ -212,8 +212,9 @@ class UserController extends AbstractFOSRestController
         $this->denyAccessUnlessGranted(UserVoter::SELF_DELETE, $user);
 
         $eventDispatcher->dispatch(new UserEvent($user), UserEvent::DELETED);
-        $this->userManager->delete($user);
-        $this->userManager->logout();
+        $this->userManager
+            ->delete($user)
+            ->logout();
 
         return $request->isXmlHttpRequest() ? $this->json(['success' => true]) : $this->redirectToRoute('fos_user_security_logout');
     }

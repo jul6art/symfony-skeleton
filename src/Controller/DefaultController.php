@@ -18,7 +18,7 @@ use App\Manager\SettingManagerTrait;
 use App\Manager\TestManagerTrait;
 use App\Manager\TranslationManagerTrait;
 use App\Manager\UserManagerTrait;
-use App\Message\ClearSessionsMessage;
+use App\Message\PurgeSessionsMessage;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
@@ -139,7 +139,7 @@ class DefaultController extends AbstractFOSRestController
             '--env' => $kernel->getEnvironment(),
         ]), new BufferedOutput());
 
-        $bus->dispatch(new ClearSessionsMessage());
+        $bus->dispatch(new PurgeSessionsMessage());
 
         $this->addFlash('success', $translator->trans('notification.cache.cleared', ['%size%' => $size], 'notification'));
 

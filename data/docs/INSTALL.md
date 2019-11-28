@@ -38,7 +38,7 @@ Base sf4 admin project
 ### Commands
 
 ```bash
-bin/console skeleton:sessions:clear
+bin/console skeleton:sessions:purge
 ```
 
 ```bash

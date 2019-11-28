@@ -1,40 +1,44 @@
 cd /home/symfony-skeleton/public_html/
 
+PATH_COMPOSER="composer"
+PATH_PHP="php"
+PATH_YARN="yarn"
+
 set -e
 
 echo '--- FILES LOADING ---'
-composer install --no-suggest
-php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
-php bin/console fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js
-yarn install  --check-files
-yarn encore production
-php bin/console cache:clear --env=prod
-php bin/console cache:warmup --env=prod
+${PATH_COMPOSER} install --no-suggest
+${PATH_PHP} bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+${PATH_PHP} bin/console fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js
+${PATH_YARN} install  --check-files
+${PATH_YARN} encore production
+${PATH_PHP} bin/console cache:clear --env=prod
+${PATH_PHP} bin/console cache:warmup --env=prod
 
 echo '--- DATABASE LOADING ---'
-php bin/console doctrine:migrations:migrate --no-interaction
+${PATH_PHP} bin/console doctrine:migrations:migrate --no-interaction
 ## si cette ligne crash, vider la db à la main
-php bin/console doctrine:fixtures:load --no-interaction --env=dev
-php bin/console audit:clean --no-confirm
-php bin/console messenger:stop-workers
-php bin/console skeleton:sessions:clear
-php bin/console skeleton:messages:consume -l 90
+${PATH_PHP} bin/console doctrine:fixtures:load --no-interaction --env=dev
+${PATH_PHP} bin/console audit:clean --no-confirm
+${PATH_PHP} bin/console messenger:stop-workers
+${PATH_PHP} bin/console skeleton:sessions:purge
+${PATH_PHP} bin/console skeleton:messages:consume -l 90
 
 echo '--- TRANSLATIONS LOADING ---'
-php bin/console lexik:translations:import -m -c
-php bin/console lexik:translations:export
-php bin/console bazinga:js-translation:dump public/js/
+${PATH_PHP} bin/console lexik:translations:import -m -c
+${PATH_PHP} bin/console lexik:translations:export
+${PATH_PHP} bin/console bazinga:js-translation:dump public/js/
 
-echo '--- FILES PERMISSIONS ---'
+# echo '--- FILES PERMISSIONS ---'
 sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 
 echo '--- CHECK VULNERABILITIES ---'
-php bin/console security:check
+${PATH_PHP} bin/console security:check
 
 echo '--- TESTS LAUNCHING ---'
 # ./vendor/bin/simple-phpunit
 
 echo '--- OPTIMISATIONS ---'
-composer dump-autoload --optimize --no-dev --classmap-authoritative
+${PATH_COMPOSER} dump-autoload --optimize --no-dev --classmap-authoritative
 
 echo '--- SUCCESSFULL DEPLOY ---'

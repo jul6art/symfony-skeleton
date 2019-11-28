@@ -11,8 +11,8 @@
 namespace App\Message;
 
 /**
- * Class ClearSessionsMessage.
+ * Class PurgeSessionsMessage.
  */
-class ClearSessionsMessage
+class PurgeSessionsMessage
 {
 }

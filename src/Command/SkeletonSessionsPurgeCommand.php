@@ -20,16 +20,16 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class SkeletonSessionsClearCommand.
+ * Class SkeletonSessionsPurgeCommand.
  */
-class SkeletonSessionsClearCommand extends Command implements ContainerAwareInterface
+class SkeletonSessionsPurgeCommand extends Command implements ContainerAwareInterface
 {
     use SessionManagerTrait;
 
     /**
      * @var string
      */
-    protected static $defaultName = 'skeleton:sessions:clear';
+    protected static $defaultName = 'skeleton:sessions:purge';
 
     /**
      * @var ContainerInterface|null
@@ -56,7 +56,7 @@ class SkeletonSessionsClearCommand extends Command implements ContainerAwareInte
         $io = new SymfonyStyle($input, $output);
         $io->note('Removing outdated sessions from database');
 
-        $this->sessionManager->clear($this->container->getParameter('session_lifetime'));
+        $this->sessionManager->purge($this->container->getParameter('session_lifetime'));
 
         $io->success('All outdated sessions have been removed');
 

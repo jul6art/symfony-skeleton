@@ -36,9 +36,9 @@ abstract class AbstractManager
      * @param $entity
      * @param bool $flush
      *
-     * @return bool
+     * @return $this
      */
-    public function save($entity, bool $flush = true): bool
+    public function save($entity, bool $flush = true): self
     {
         $this->entityManager->persist($entity);
 
@@ -46,26 +46,36 @@ abstract class AbstractManager
             $this->entityManager->flush();
         }
 
-        return true;
+        return $this;
     }
 
     /**
-     * @return bool
+     * @return $this
      */
-    public function flush(): bool
+    public function clear(): self
+    {
+        $this->entityManager->clear();
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function flush(): self
     {
         $this->entityManager->flush();
 
-        return true;
+        return $this;
     }
 
     /**
      * @param $entity
      * @param bool $flush
      *
-     * @return bool
+     * @return $this
      */
-    public function delete($entity, bool $flush = true): bool
+    public function delete($entity, bool $flush = true): self
     {
         $this->entityManager->remove($entity);
 
@@ -73,6 +83,6 @@ abstract class AbstractManager
             $this->entityManager->flush();
         }
 
-        return true;
+        return $this;
     }
 }

@@ -14,6 +14,6 @@ framework:
 
         routing:
             # async_priority_low is whatever name you gave your transport above
-            'App\Message\ClearSessionsMessage':  async_priority_low
+            'App\Message\PurgeSessionsMessage':  async_priority_low
             'App\Message\NotifyOnRegistrationMessage':  async_priority_high
             'App\Message\NotifyOnAddedMessage':  async_priority_high

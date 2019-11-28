@@ -19,14 +19,17 @@ class NotifyOnAddedMessage
      * @var string|null
      */
     private $firstname;
+
     /**
      * @var string|null
      */
     private $lastname;
+
     /**
      * @var string|null
      */
     private $username;
+
     /**
      * @var string|null
      */

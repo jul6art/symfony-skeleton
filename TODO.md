@@ -21,9 +21,24 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
-    !!!!!! corriger phpunit surr jenkins et prod
-    !!!!!! corriger phpunit surr jenkins et prod
-    !!!!!! corriger phpunit surr jenkins et prod
+    !!!!!! corriger phpunit sur jenkins et prod
+    !!!!!! corriger phpunit sur jenkins et prod
+    !!!!!! corriger phpunit sur jenkins et prod
+    
+    $batchSize = 20;
+    for ($i = 1; $i <= 10000; ++$i) {
+        $user = new CmsUser;
+        $user->setStatus('user');
+        $user->setUsername('user' . $i);
+        $user->setName('Mr.Smith-' . $i);
+        $em->persist($user);
+        if (($i % $batchSize) === 0) {
+            $em->flush();
+            $em->clear(); // Detaches all objects from Doctrine!
+        }
+    }
+    $em->flush(); //Persist objects that did not make up an entire batch
+    $em->clear();
         
     @media (prefers-color-scheme: dark) {
         https://www.instagram.com/p/B5Sv0QHAENT/?igshid=1qy5s93mz8zqx
@@ -82,6 +97,8 @@ datatables
     export col to exclude (action)
     row-checkbox
     actions multiples
+        attention: flush et clear entitymanager tous les 20 items
+        https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/batch-processing.html
     row-select
 
 Valider code

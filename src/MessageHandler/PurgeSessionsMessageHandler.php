@@ -11,13 +11,13 @@
 namespace App\MessageHandler;
 
 use App\Manager\SessionManagerTrait;
-use App\Message\ClearSessionsMessage;
+use App\Message\PurgeSessionsMessage;
 use Doctrine\DBAL\DBALException;
 
 /**
- * Class ClearSessionsMessageHandler.
+ * Class PurgeSessionsMessageHandler.
  */
-class ClearSessionsMessageHandler
+class PurgeSessionsMessageHandler
 {
     use SessionManagerTrait;
 
@@ -27,7 +27,7 @@ class ClearSessionsMessageHandler
     private $session_lifetime;
 
     /**
-     * ClearSessionsMessageHandler constructor.
+     * PurgeSessionsMessageHandler constructor.
      *
      * @param int $session_lifetime
      */
@@ -37,12 +37,12 @@ class ClearSessionsMessageHandler
     }
 
     /**
-     * @param ClearSessionsMessage $message
+     * @param PurgeSessionsMessage $message
      *
      * @throws DBALException
      */
-    public function __invoke(ClearSessionsMessage $message)
+    public function __invoke(PurgeSessionsMessage $message)
     {
-        $this->sessionManager->clear($this->session_lifetime);
+        $this->sessionManager->purge($this->session_lifetime);
     }
 }
