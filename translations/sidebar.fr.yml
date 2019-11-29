@@ -19,6 +19,7 @@ sidebar.skins.colors.brown: Brun
 sidebar.skins.colors.grey: Gris
 sidebar.skins.colors.blue-grey: 'Gris bleu'
 sidebar.skins.colors.black: Noir
+sidebar.skins.colors.dark: Dark
 sidebar.settings.title: PARAMÈTRES
 sidebar.setting.project_name: 'Nom du projet'
 sidebar.setting.base_title: 'Titre de base'

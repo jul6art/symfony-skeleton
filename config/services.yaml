@@ -26,6 +26,7 @@ parameters:
         - grey
         - blue-grey
         - black
+        - dark
     available_functionalities:
         - func.audit
         - func.clear_cache

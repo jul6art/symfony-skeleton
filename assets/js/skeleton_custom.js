@@ -432,6 +432,8 @@ $.App = {
         return "#FFFFFF";
       case "black":
         return "#000000";
+      case "dark":
+        return "#111111";
       case "red":
         return "#F44336";
       case "pink":
