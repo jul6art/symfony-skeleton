@@ -39,14 +39,8 @@ URGENT
     }
     $em->flush(); //Persist objects that did not make up an entire batch
     $em->clear();
-        
-    @media (prefers-color-scheme: dark) {
-        https://www.instagram.com/p/B5Sv0QHAENT/?igshid=1qy5s93mz8zqx
-    }   
    
     dossier src/Twig 
-        array_map
-        clean code
         arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?
     
     utilisateurs

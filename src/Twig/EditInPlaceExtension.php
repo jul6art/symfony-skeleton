@@ -22,6 +22,8 @@ use Twig\TwigFunction;
  */
 class EditInPlaceExtension extends AbstractExtension
 {
+    const SESSION_KEY = 'edit_in_place';
+
     /**
      * @var AuthorizationCheckerInterface
      */
@@ -66,19 +68,19 @@ class EditInPlaceExtension extends AbstractExtension
             return '';
         }
 
-        if (!$request->request->has('edit_in_place')) {
+        if (!$request->request->has(self::SESSION_KEY)) {
             $attributes = '';
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)) {
                 $attributes = ' data-provide=wysiwyg data-inline data-edit';
             }
 
-            $request->request->set('edit_in_place', $attributes);
+            $request->request->set(self::SESSION_KEY, $attributes);
 
             return $attributes;
         }
 
-        return $request->request->get('edit_in_place');
+        return $request->request->get(self::SESSION_KEY);
     }
 
     /**
