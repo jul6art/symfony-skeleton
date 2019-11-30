@@ -114,7 +114,7 @@ class UserController extends AbstractFOSRestController
      * @param User            $user
      * @param UserTransformer $userTransformer
      *
-     * @Route("/view/{id}", name="view", methods={"GET"})
+     * @Route("/view/{id}", name="view", methods={"GET"}, requirements={"id"="\d+"})
      *
      * @return Response
      *
@@ -142,7 +142,7 @@ class UserController extends AbstractFOSRestController
      * @param UserTransformer          $userTransformer
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/edit/{id}", name="edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"}, requirements={"id"="\d+"})
      *
      * @return Response
      *
@@ -183,7 +183,7 @@ class UserController extends AbstractFOSRestController
      * @param User                     $user
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/delete/{id}", name="delete", methods={"GET"})
+     * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
      *
      * @return Response
      */
@@ -202,7 +202,7 @@ class UserController extends AbstractFOSRestController
      * @param User                     $user
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/delete/self", name="delete", methods={"GET"})
+     * @Route("/delete/self", name="delete_self", methods={"GET"})
      *
      * @return Response
      */
@@ -223,7 +223,7 @@ class UserController extends AbstractFOSRestController
      * @param Request $request
      * @param User    $user
      *
-     * @Route("/impersonate/{id}", name="impersonate", methods={"GET"})
+     * @Route("/impersonate/{id}", name="impersonate", methods={"GET"}, requirements={"id"="\d+"})
      *
      * @return Response
      */

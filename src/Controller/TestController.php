@@ -104,7 +104,7 @@ class TestController extends AbstractFOSRestController
      * @param Test            $test
      * @param TestTransformer $testTransformer
      *
-     * @Route("/view/{id}", name="view", methods={"GET"})
+     * @Route("/view/{id}", name="view", methods={"GET"}, requirements={"id"="\d+"})
      *
      * @return Response
      *
@@ -132,7 +132,7 @@ class TestController extends AbstractFOSRestController
      * @param TestTransformer          $testTransformer
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/edit/{id}", name="edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"}, requirements={"id"="\d+"})
      *
      * @return Response
      *
@@ -173,7 +173,7 @@ class TestController extends AbstractFOSRestController
      * @param Test                     $test
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @Route("/delete/{id}", name="delete", methods={"GET"})
+     * @Route("/delete/{id}", name="delete", methods={"GET"}, requirements={"id"="\d+"})
      *
      * @return Response
      */
