@@ -1,5 +1,5 @@
 body {
-    background-color: #2B2B2A;
+    background-color: #2B2B2A!important;
     color: #A3A3A3;
 }
 
@@ -174,7 +174,7 @@ DROPDOWN
 CARD
  */
 .card {
-    background-color: #111111;
+    background-color: #111111!important;
 }
 
 .card .header h2 {

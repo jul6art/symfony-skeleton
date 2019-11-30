@@ -79,6 +79,7 @@ class MaintenanceListener
             'admin_maintenance_edit',
             'admin_maintenance_overview',
             'fos_js_routing_js',
+            '_wdt',
             'web_profiler_wdt',
             'web_profiler_profiler',
             'bazinga_jstranslation_js',
