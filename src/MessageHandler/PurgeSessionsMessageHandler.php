@@ -17,7 +17,7 @@ use Doctrine\DBAL\DBALException;
 /**
  * Class PurgeSessionsMessageHandler.
  */
-class PurgeSessionsMessageHandler
+class PurgeSessionsMessageHandler extends AbstractMessageHandler
 {
     use SessionManagerTrait;
 
@@ -43,6 +43,10 @@ class PurgeSessionsMessageHandler
      */
     public function __invoke(PurgeSessionsMessage $message)
     {
-        $this->sessionManager->purge($this->session_lifetime);
+        try {
+            $this->sessionManager->purge($this->session_lifetime);
+        } catch (\Exception $e) {
+            $this->logger->critical($e->getMessage());
+        }
     }
 }

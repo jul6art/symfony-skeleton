@@ -1265,6 +1265,7 @@ bootstrap-material-datetimepicker@2.7.1:
     bootstrap "~3.3.4"
     bootstrap-material-design "~0.3.0"
     jquery "1.12.3"
+    moment "~2.10.2"
 
 bootstrap-material-design@~0.3.0:
   version "0.3.0"
@@ -2753,6 +2754,11 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+
+event-source-polyfill@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/event-source-polyfill/-/event-source-polyfill-1.0.9.tgz#1fe3ebf8e3faddafd4fc237424f5e5ab2706b6d0"
+  integrity sha512-+x0BMKTYwZcmGmlkHK0GsXkX1+otfEwqu3QitN0wmWuHaZniw3HeIx1k5OjWX3JUHQHlPS4yONol6eokS1ZAWg==
 
 eventemitter3@^3.0.0:
   version "3.1.0"
@@ -4543,6 +4549,11 @@ moment@2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
   integrity sha1-vbmdJw1tf9p4zA+6zoVeJ/59pp8=
+
+moment@~2.10.2:
+  version "2.10.6"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.6.tgz#6cb21967c79cba7b0ca5e66644f173662b3efa77"
+  integrity sha1-bLIZZ8ecunsMpeZmRPFzZis++nc=
 
 move-concurrently@^1.0.1:
   version "1.0.1"

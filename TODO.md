@@ -12,19 +12,18 @@ optimisations
     pas de isset($a) mais $a ?? $b
     pas de backslash avant DateTime ou DateInterval mais bien les importer (use statement)
     backslash avant les fonctions: in_array, count, strlen, strval, gettype, get_class, call_user_func, array_slice, is_{type}
-
-bugs
-
-    js require et imports de quelques scripts (voir script-loader ????)
-
-URGENT
-
-    TESTER HELP ET ALERT AVEC TOUS LES TYPES
     
-    !!!!!! corriger phpunit sur jenkins et prod
-    !!!!!! corriger phpunit sur jenkins et prod
-    !!!!!! corriger phpunit sur jenkins et prod
+    filtres de datatables
+    select2 's
+    entités traduites
     
+    // comment gérer string ou array pour un argument de méthode
+    if (!\is_array($topics) && !\is_string($topics)) {
+        throw new \InvalidArgumentException('$topics must be an array of strings or a string');
+    }
+    $this->topics = (array) $topics;
+    
+    // commennt optimiser les process batch
     $batchSize = 20;
     for ($i = 1; $i <= 10000; ++$i) {
         $user = new CmsUser;
@@ -39,6 +38,18 @@ URGENT
     }
     $em->flush(); //Persist objects that did not make up an entire batch
     $em->clear();
+
+bugs
+
+    js require et imports de quelques scripts (voir script-loader ????)
+
+URGENT
+
+    TESTER HELP ET ALERT AVEC TOUS LES TYPES
+    
+    !!!!!! corriger phpunit sur jenkins et prod
+    !!!!!! corriger phpunit sur jenkins et prod
+    !!!!!! corriger phpunit sur jenkins et prod
    
     dossier src/Twig 
         arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?
@@ -50,6 +61,9 @@ URGENT
         password strength plugin
         
     socket comme dans cdb pour 
+        JWT_KEY: 49B96A75FE1F1563338574AD13DFB
+        JWT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjdXJlIjp7InB1Ymxpc2giOlsiKiJdfX0.mzTdGM7BOUvL_suqwh8ibm-v5rprhDYyEZ5GahJF1o4 
+        JWT_KEY='49B96A75FE1F1563338574AD13DFB' ADDR='localhost:3000' ALLOW_ANONYMOUS=1 CORS_ALLOWED_ORIGINS=* ./mercure/macos/mercure
         incrémenter les vignettes de nombre d'entités 
         notifs en haut de page pour les users !createdBy avec lien vers la liste des items
         https://symfony.com/blog/symfony-gets-real-time-push-capabilities

@@ -4,6 +4,7 @@
         WYSIWYG_LOCALE = '{{ wysiwyg_locale() }}',
         THEME_NAME  = '{{ theme_name() }}',
         COOKIE_POLICY_URL = "{{ cookie_policy_url }}",
+        PUBLISH_URL = "{{ publish_url }}",
         FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }},
         TOASTR_POSITION = {
             "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
@@ -22,5 +23,13 @@
     {% endif %}
     {%- if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::WATCH_FORM'), 'App\\Entity\\Functionality') -%}
         FUNCTIONALITIES.form_watcher = true;
+    {% endif %}
+
+    var PUSH_TOPICS = [];
+    {% if is_granted(constant('App\\Security\\Voter\\UserVoter::ADD'), 'App\\Entity\\User') -%}
+        PUSH_TOPICS.push("{{ url('admin_user_add') }}");
+    {% endif %}
+    {% if is_granted(constant('App\\Security\\Voter\\TestVoter::ADD'), 'App\\Entity\\Test') -%}
+        PUSH_TOPICS.push("{{ url('admin_test_add') }}");
     {% endif %}
 </script>

@@ -93,3 +93,4 @@ yarn-error.log
 ###< squizlabs/php_codesniffer ###
 TEST.md
 .phpunit.result.cache
+/updates.db

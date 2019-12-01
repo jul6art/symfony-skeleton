@@ -36,6 +36,7 @@
         "datatables.net-dt": "^1.10.19",
         "datatables.net-responsive": "^2.2.3",
         "datatables.net-responsive-dt": "^2.2.3",
+        "event-source-polyfill": "^1.0.9",
         "flag-icon-css": "3.4.5",
         "font-awesome": "^4.7.0",
         "fstream": "1.0.12",

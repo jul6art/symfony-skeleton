@@ -73,6 +73,24 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * @param QueryBuilder $builder
+     * @param array        $groupList
+     *
+     * @return $this
+     */
+    public function filterByGroupList(QueryBuilder $builder, array $groupList): self
+    {
+        $this
+            ->joinGroup($builder);
+
+        $builder
+            ->andWhere($builder->expr()->in('g.id', ':groupList'))
+            ->setParameter('groupList', $groupList);
+
+        return $this;
+    }
+
+    /**
+     * @param QueryBuilder $builder
      * @param string       $role
      *
      * @return $this
@@ -136,6 +154,21 @@ class UserRepository extends ServiceEntityRepository
 
         $this
             ->filterByGroup($builder, $group);
+
+        return $builder->getQuery()->getResult();
+    }
+
+    /**
+     * @param array $groupList
+     *
+     * @return array
+     */
+    public function findByGroupList(array $groupList): array
+    {
+        $builder = $this->createQueryBuilder('u');
+
+        $this
+            ->filterByGroupList($builder, $groupList);
 
         return $builder->getQuery()->getResult();
     }

@@ -42,17 +42,17 @@ parameters:
         - fr
         - en
         - de
-    current_cookie_domain: '.%env(CURRENT_DOMAIN)%'
     cookie_policy_url: 'http://allaboutcookies.org/'
-    mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
-    mailer_from_name: '%env(MAILER_FROM_NAME)%'
-    group_class: App\Entity\Group
+    current_cookie_domain: '.%env(CURRENT_DOMAIN)%'
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    group_class: App\Entity\Group
     locale: 'fr'
     logo: '/build/images/logo.png'
-    user_class: App\Entity\User
-    skeleton_version: 1.0.1
+    mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
+    mailer_from_name: '%env(MAILER_FROM_NAME)%'
     session_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
+    skeleton_version: 1.0.1
+    user_class: App\Entity\User
 
 services:
     _defaults:
@@ -62,14 +62,16 @@ services:
             $available_colors: '%available_colors%'
             $available_functionalities: '%available_functionalities%'
             $available_locales: '%available_locales%'
+            $current_domain: '%env(CURRENT_DOMAIN)%'
+            $environment: '%kernel.environment%'
+            $http_protocol: '%env(HTTP_PROTOCOL)%'
             $locale: '%locale%'
             $mailer_from_address: '%mailer_from_address%'
             $mailer_from_name: '%mailer_from_name%'
-            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
-            $environment: '%kernel.environment%'
             $project_dir: '%kernel.project_dir%'
-            $skeleton_version: '%skeleton_version%'
+            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
             $session_lifetime: '%session_lifetime%'
+            $skeleton_version: '%skeleton_version%'
 
     App\:
         resource: '../src/*'
@@ -118,6 +120,10 @@ services:
         tags:
             - { name: knp_menu.renderer, alias: topbar_renderer }
 
+    App\Mercure\JwtProvider:
+        arguments:
+            - '%env(MERCURE_JWT_KEY)%'
+
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
@@ -137,7 +143,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
 
-    App\EventListener\MailListener:
+    App\EventListener\NotificationListener:
         tags:
             - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
             - { name: kernel.event_listener, event: event.user.added, method: onUserAdded }

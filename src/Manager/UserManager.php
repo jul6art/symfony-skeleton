@@ -206,11 +206,38 @@ class UserManager extends AbstractManager
     }
 
     /**
-     * @return User[]
+     * @param Group $group
+     *
+     * @return array
      */
     public function findByGroup(Group $group): array
     {
         return $this->userRepository->findByGroup($group);
+    }
+
+    /**
+     * @param array $groupList
+     *
+     * @return array
+     */
+    public function findByGroupList(array $groupList): array
+    {
+        return $this->userRepository->findByGroupList($groupList);
+    }
+
+    /**
+     * @param array $groupList
+     * @param array $exceptions
+     *
+     * @return array
+     */
+    public function findByGroupListExcepted(array $groupList, array $exceptions): array
+    {
+        $users = $this->findByGroupList($groupList);
+
+        return array_filter($users, function (User $user) use ($exceptions) {
+            return !\in_array($user->getId(), $exceptions);
+        });
     }
 
     /**

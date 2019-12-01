@@ -10,7 +10,7 @@ Base sf4 admin project
 
 [LIVE DEMO (USER: admin, PASSWORD: vsweb)](https://symfony-skeleton.vsweb.be/)
 
-[COMPLETE DOCUMENTATION](/data/docs/INSTALL.md)
+[COMPLETE DOCUMENTATION](/data/doc/INSTALL.md)
 
 ### Requirements
 
@@ -100,6 +100,6 @@ bin/console server:run
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-[COMPLETE DOCUMENTATION](/data/docs/INSTALL.md)
+[COMPLETE DOCUMENTATION](/data/doc/INSTALL.md)
 
 &copy; 2019 [VsWeb](https://vsweb.be)

@@ -25,4 +25,5 @@ return [
     DH\DoctrineAuditBundle\DHDoctrineAuditBundle::class => ['all' => true],
     Lexik\Bundle\TranslationBundle\LexikTranslationBundle::class => ['all' => true],
     Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle::class => ['all' => true],
+    Symfony\Bundle\MercureBundle\MercureBundle::class => ['all' => true],
 ];
