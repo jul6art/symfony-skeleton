@@ -65,6 +65,7 @@ URGENT
         JWT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjdXJlIjp7InB1Ymxpc2giOlsiKiJdfX0.mzTdGM7BOUvL_suqwh8ibm-v5rprhDYyEZ5GahJF1o4 
         JWT_KEY='49B96A75FE1F1563338574AD13DFB' ADDR='localhost:3000' ALLOW_ANONYMOUS=1 CORS_ALLOWED_ORIGINS=* ./mercure/macos/mercure
         
+        fix sur prod (urls :3000?)
         incrémenter les vignettes de nombre d'entités 
         notifs en haut de page pour les users !createdBy avec lien vers la vue de l'item (vue de l item set notif as read)
         https://symfony.com/blog/symfony-gets-real-time-push-capabilities

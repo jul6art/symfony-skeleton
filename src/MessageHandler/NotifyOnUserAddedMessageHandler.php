@@ -54,7 +54,6 @@ class NotifyOnUserAddedMessageHandler extends AbstractMessageHandler
         try {
             $this->publisherService->publish('admin_user_add', [], [
                 'id' => $message->getId(),
-                'createdBy' => $message->getCreatedBy(),
             ], $admins);
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());

@@ -48,6 +48,20 @@ class NotifyOnRegistrationMessageHandler extends AbstractMessageHandler
             [$message->getId()]
         );
 
+        /*
+         * PUSH NOTIFICATIONS
+         */
+        try {
+            $this->publisherService->publish('admin_user_add', [], [
+                'id' => $message->getId(),
+            ], $admins);
+        } catch (\Exception $e) {
+            $this->logger->critical($e->getMessage());
+        }
+
+        /*
+         * EMAILS
+         */
         array_walk($admins, function (User $admin) use ($message) {
             try {
                 $this->mailerService->send($admin->getEmail(), 'email/user/notifications/register.html.twig', [
