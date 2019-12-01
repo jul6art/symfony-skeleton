@@ -120,7 +120,7 @@ class UserController extends AbstractFOSRestController
      *
      * @throws ExceptionInterface
      */
-    public function show(User $user, UserTransformer $userTransformer): Response
+    public function show(User $user, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
         $this->denyAccessUnlessGranted(UserVoter::VIEW, $user);
 

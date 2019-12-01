@@ -26,6 +26,10 @@
     {% endif %}
 
     var PUSH_TOPICS = [];
+    var PUSH_TARGET = "ANONYMOUS";
+    {% if app.user -%}
+        PUSH_TARGET = "{{ url('admin_user_view', {id: app.user.id}) }}";
+    {% endif %}
     {% if is_granted(constant('App\\Security\\Voter\\UserVoter::ADD'), 'App\\Entity\\User') -%}
         PUSH_TOPICS.push("{{ url('admin_user_add') }}");
     {% endif %}

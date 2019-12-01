@@ -11,14 +11,17 @@ $.Push = {
 
     const es = new EventSource(u);
     es.onmessage = e => {
-      console.log(e);
-
-      $.App.notify(
-        "bg-" + THEME_NAME,
-        "Nouvel utilisateur ajouté",
-        TOASTR_POSITION.vertical,
-        TOASTR_POSITION.horizontal
-      );
+      data = JSON.parse(e.data);
+      $.each(data.targets, function(key, item) {
+        if (item === PUSH_TARGET) {
+          $.App.notify(
+            "bg-" + THEME_NAME,
+            "Nouvel utilisateur ajouté",
+            TOASTR_POSITION.vertical,
+            TOASTR_POSITION.horizontal
+          );
+        }
+      });
     };
   }
 };

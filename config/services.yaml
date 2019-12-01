@@ -48,6 +48,7 @@ parameters:
     group_class: App\Entity\Group
     locale: 'fr'
     logo: '/build/images/logo.png'
+    mercure_jwt_key: '%env(MERCURE_JWT_KEY)%'
     mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
     mailer_from_name: '%env(MAILER_FROM_NAME)%'
     session_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
@@ -122,7 +123,7 @@ services:
 
     App\Mercure\JwtProvider:
         arguments:
-            - '%env(MERCURE_JWT_KEY)%'
+            $token: '%env(MERCURE_JWT_TOKEN)%'
 
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl

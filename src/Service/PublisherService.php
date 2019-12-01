@@ -10,6 +10,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Traits\RouterTrait;
 use App\Traits\SerializerTrait;
 use Symfony\Component\Mercure\PublisherInterface;
@@ -57,8 +58,17 @@ class PublisherService
      * @param array  $routeParams
      * @param array  $data
      */
-    public function publish(string $route, array $routeParams = [], array $data = []): void
+    public function publish(string $route, array $routeParams = [], array $data = [], array $targets = []): void
     {
+        $data['targets'] = array_map(function (User $user) {
+            return sprintf(
+                '%s%s%s',
+                $this->http_protocol,
+                $this->current_domain,
+                $this->router->generate('admin_user_view', ['id' => $user->getId()])
+            );
+        }, $targets);
+
         $publisher = $this->publisher;
         $publisher(new Update(
             sprintf(

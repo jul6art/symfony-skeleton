@@ -40,13 +40,22 @@ class NotifyOnUserAddedMessageHandler extends AbstractMessageHandler
      */
     public function __invoke(NotifyOnUserAddedMessage $message)
     {
+        $admins = $this->userManager->findByGroupListExcepted(
+            [
+                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN),
+                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_SUPER_ADMIN),
+            ],
+            [$message->getId(), $message->getCreatedBy()]
+        );
+
         /*
          * PUSH NOTIFICATIONS
          */
         try {
             $this->publisherService->publish('admin_user_add', [], [
                 'id' => $message->getId(),
-            ]);
+                'createdBy' => $message->getCreatedBy(),
+            ], $admins);
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
         }
@@ -63,14 +72,6 @@ class NotifyOnUserAddedMessageHandler extends AbstractMessageHandler
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
         }
-
-        $admins = $this->userManager->findByGroupListExcepted(
-            [
-                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN),
-                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_SUPER_ADMIN),
-            ],
-            [$message->getId(), $message->getCreatedBy()]
-        );
 
         array_walk($admins, function (User $admin) use ($message) {
             try {

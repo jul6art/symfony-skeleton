@@ -10,9 +10,6 @@
 
 namespace App\Mercure;
 
-use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
-
 /**
  * Class JwtProvider.
  */
@@ -21,16 +18,16 @@ class JwtProvider
     /**
      * @var string
      */
-    private $secret;
+    private $token;
 
     /**
      * JwtProvider constructor.
      *
      * @param string $secret
      */
-    public function __construct(string $secret)
+    public function __construct(string $token)
     {
-        $this->secret = $secret;
+        $this->token = $token;
     }
 
     /**
@@ -38,10 +35,6 @@ class JwtProvider
      */
     public function __invoke(): string
     {
-        $builder = (new Builder())
-            ->set('mercure', ['publish' => ['*']])
-            ->sign(new Sha256(), $this->secret);
-
-        return (string) $builder->getToken();
+        return $this->token;
     }
 }
