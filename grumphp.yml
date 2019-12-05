@@ -33,7 +33,7 @@ parameters:
             regexps_exclude: []
             fuzzy: true
             min_lines: 40
-            min_tokens: 20
+            min_tokens: 70
         phpcsfixer2:
             triggered_by: ['php']
             rules: ["@@PSR2"]
