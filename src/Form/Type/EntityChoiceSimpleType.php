@@ -78,9 +78,9 @@ class EntityChoiceSimpleType extends AbstractType
             if (null === $options['query_builder']) {
                 $results = $options['em']
                     ->createQueryBuilder()
-                    ->select('e.id', 'e.' . $options['field'])
+                    ->select('e.id', "e.{$options['field']}")
                     ->from($options['class'], 'e', 'e.id')
-                    ->orderBy('e.' . $options['field'], 'ASC')
+                    ->orderBy("e.{$options['field']}", 'ASC')
                     ->getQuery()
                     ->getArrayResult()
                 ;
@@ -126,8 +126,7 @@ class EntityChoiceSimpleType extends AbstractType
             $em = $registry->getManagerForClass($options['class']);
             if (null === $em) {
                 throw new \Exception(sprintf(
-                    'Class "%s" seems not to be a managed Doctrine entity. ' .
-                    'Did you forget to map it?',
+                    'Class "%s" seems not to be a managed Doctrine entity. Did you forget to map it?',
                     $options['class']
                 ));
             }

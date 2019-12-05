@@ -21,7 +21,8 @@ trait TestTrait
     {
         $testClassExploded = explode('\\', get_class($this));
 
-        $dir = sprintf('%s%s%s%s%s%s%s',
+        $dir = sprintf(
+            '%s%s%s%s%s%s%s',
             __DIR__,
             DIRECTORY_SEPARATOR,
             'result',
@@ -35,7 +36,8 @@ trait TestTrait
             mkdir($dir, 0777, true);
         }
 
-        file_put_contents(sprintf('%s%s%s',
+        file_put_contents(sprintf(
+            '%s%s%s',
             $dir,
             DIRECTORY_SEPARATOR,
             $filename

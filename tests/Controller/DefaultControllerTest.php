@@ -280,7 +280,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $client->request('GET', '/admin/theme/' . Setting::SETTING_DEFAULT_THEME_VALUE);
+        $client->request('GET', '/admin/theme/'.Setting::SETTING_DEFAULT_THEME_VALUE);
 
         $client->followRedirect();
 

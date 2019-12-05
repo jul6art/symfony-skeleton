@@ -16,7 +16,7 @@ namespace App\Message;
 class NotifyOnRegistrationMessage
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
 
@@ -43,14 +43,14 @@ class NotifyOnRegistrationMessage
     /**
      * NotifyOnRegistrationMessage constructor.
      *
-     * @param int         $id
+     * @param int|null    $id
      * @param string|null $firstname
      * @param string|null $lastname
      * @param string|null $username
      * @param string|null $email
      */
     public function __construct(
-        int $id,
+        int $id = null,
         string $firstname = null,
         string $lastname = null,
         string $username = null,
@@ -64,9 +64,9 @@ class NotifyOnRegistrationMessage
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

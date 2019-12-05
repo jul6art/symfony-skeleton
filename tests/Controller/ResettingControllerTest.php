@@ -111,7 +111,7 @@ class ResettingControllerTest extends WebTestCase
             ->getRepository(User::class)
             ->findOneByUsername(User::DEFAULT_ADMIN_USERNAME);
 
-        $client->request('GET', '/resetting/reset/' . $user->getConfirmationToken());
+        $client->request('GET', '/resetting/reset/'.$user->getConfirmationToken());
 
         $this->save('result.html', $client->getResponse()->getContent());
 
@@ -133,7 +133,7 @@ class ResettingControllerTest extends WebTestCase
             ->getRepository(User::class)
             ->findOneByUsername(User::DEFAULT_USER_USERNAME);
 
-        $crawler = $client->request('GET', '/resetting/reset/' . $user->getConfirmationToken());
+        $crawler = $client->request('GET', '/resetting/reset/'.$user->getConfirmationToken());
 
         $this->save('result.html', $client->getResponse()->getContent());
 

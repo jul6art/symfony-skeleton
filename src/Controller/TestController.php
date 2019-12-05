@@ -55,8 +55,7 @@ class TestController extends AbstractFOSRestController
         $view = $this->view()
                      ->setTemplate('test/list.html.twig')
                      ->setTemplateData([
-                         'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json', [
-                         ]),
+                         'tests' => $serializer->normalize($this->testManager->findAllForTable(), 'json'),
                      ]);
 
         return $this->handleView($view);

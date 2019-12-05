@@ -58,7 +58,11 @@ class EntityToIdTransformer implements DataTransformerInterface
             return $entity->getId();
         }
 
-        throw new TransformationFailedException((\is_object($entity) ? \get_class($entity) : '') . '(' . \gettype($entity) . ') is not a valid class for EntityToIdTransformer');
+        throw new TransformationFailedException(sprintf(
+            '%s(%s) is not a valid class for EntityToIdTransformer',
+            (\is_object($entity) ? \get_class($entity) : ''),
+            \gettype($entity)
+        ));
     }
 
     /**
@@ -75,10 +79,14 @@ class EntityToIdTransformer implements DataTransformerInterface
         }
 
         if (\is_numeric($id)) {
-            $entity = $this->entityRepository->findOneBy(array('id' => $id));
+            $entity = $this->entityRepository->findOneBy(['id' => $id]);
 
             if (null === $entity) {
-                throw new TransformationFailedException('A ' . $this->entityRepository->getClassName() . ' with id #' . $id . ' does not exist!');
+                throw new TransformationFailedException(sprintf(
+                    'A %s with id #%s does not exist!',
+                    $this->entityRepository->getClassName(),
+                    $id
+                ));
             }
 
             return $entity;
@@ -89,15 +97,22 @@ class EntityToIdTransformer implements DataTransformerInterface
                 return [];
             }
 
-            $entities = $this->entityRepository->findBy(array('id' => $id));
+            $entities = $this->entityRepository->findBy(['id' => $id]);
 
             if (\count($id) !== \count($entities)) {
-                throw new TransformationFailedException('Some ' . $this->entityRepository->getClassName() . ' with id #' . implode(', ', $id) . ' do not exist!');
+                throw new TransformationFailedException(sprintf(
+                    'Some %s with id #%s do not exist!',
+                    $this->entityRepository->getClassName(),
+                    implode(', ', $id)
+                ));
             }
 
             return $entities;
         }
 
-        throw new TransformationFailedException(\gettype($id) . ' is not a valid type for EntityToIdTransformer');
+        throw new TransformationFailedException(sprintf(
+            '%s is not a valid type for EntityToIdTransformer',
+            \gettype($id)
+        ));
     }
 }

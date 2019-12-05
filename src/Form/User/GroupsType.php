@@ -33,7 +33,7 @@ class GroupsType extends AbstractType
             'no_float' => true,
             'field' => 'name',
             'entity_label' => function ($group) {
-                return 'form.user.groups.' . $group['name'];
+                return "form.user.groups.{$group['name']}";
             },
         ]);
     }

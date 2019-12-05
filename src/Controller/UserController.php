@@ -53,8 +53,7 @@ class UserController extends AbstractFOSRestController
         $view = $this->view()
                      ->setTemplate('user/list.html.twig')
                      ->setTemplateData([
-                         'users' => $serializer->normalize($this->userManager->findAllForTable(), 'json', [
-                         ]),
+                         'users' => $serializer->normalize($this->userManager->findAllForTable(), 'json'),
                      ]);
 
         return $this->handleView($view);

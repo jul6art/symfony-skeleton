@@ -36,7 +36,7 @@ parameters:
             min_tokens: 20
         phpcsfixer2:
             triggered_by: ['php']
-            rules: []
+            rules: ["@@PSR2"]
             allow_risky: ~
             cache_file: .php_cs.cache
             config: .php_cs

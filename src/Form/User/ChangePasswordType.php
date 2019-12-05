@@ -41,19 +41,19 @@ class ChangePasswordType extends AbstractType
             ];
         }
 
-        $builder->add('current_password', PasswordType::class, array(
+        $builder->add('current_password', PasswordType::class, [
             'label' => false,
             'mapped' => false,
-            'constraints' => array(
+            'constraints' => [
                 new NotBlank(),
                 new UserPassword($constraintsOptions),
-            ),
+            ],
             'addon_left' => '<i class="material-icons">lock</i>',
-            'attr' => array(
+            'attr' => [
                 'autocomplete' => 'off',
                 'placeholder' => 'form.user.current_password.label',
-            ),
-        ));
+            ],
+        ]);
 
         $builder->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,

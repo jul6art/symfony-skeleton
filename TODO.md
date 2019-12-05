@@ -6,12 +6,12 @@ base theme
     
 optimisations
     
-    concatenation: double quotes comme ceci: "il y a une $a variable"   "je suis con{$act}caténée"
-    pas de switch cases
-    pas de is_null()
+    pas de is_null() mais === null
     pas de isset($a) mais $a ?? $b
     pas de backslash avant DateTime ou DateInterval mais bien les importer (use statement)
-    backslash avant les fonctions: in_array, count, strlen, strval, gettype, get_class, call_user_func, array_slice, is_{type}
+    concatenation: double quotes comme ceci: "il y a une $a variable"   "je suis con{$act}caténée"
+    éviter les switch cases
+    backslash avant les fonctions: in_array, count, strlen, strval, gettype, get_class, call_user_func, array_slice, is_{type} (is_int, is_array, ...)
     
     filtres de datatables
     select2 's
@@ -50,6 +50,11 @@ URGENT
     !!!!!! corriger phpunit sur jenkins et prod
     !!!!!! corriger phpunit sur jenkins et prod
     !!!!!! corriger phpunit sur jenkins et prod
+        
+    optimisations si Jerem est ok
+        nommer traits en awaretraits
+        dossier constants
+        builderhelper like
    
     dossier src/Twig 
         arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?
@@ -158,6 +163,20 @@ cron
 ### V2 skeleton
 
 séparer en bundles
+
+    aucune librairie externe dans le composer json
+          "require": {
+                "NAMESPACE/address-bundle": "^2.0",
+                "NAMESPACE/admin-provider-audit-bridge-bundle": "^1.0",
+                "NAMESPACE/datatable-date-bridge-bundle": "^1.0",
+                "NAMESPACE/excel-bundle": "^1.0",
+                "NAMESPACE/hierarchy-handler-bundle": "^1.0",
+                "NAMESPACE/pdf-bundle": "^1.0",
+                "NAMESPACE/symfony-dependencies": "^1.0",
+                "NAMESPACE/user-provider-audit-bridge-bundle": "^1.0",
+                "NAMESPACE/zip-bundle": "^1.0"
+            },
+    bridges, providers, interfacer un maximum l'utilisation des librairies externes
 
 systeme de notification equivalent websocket (liste header + page  de notifs et badges)
 
