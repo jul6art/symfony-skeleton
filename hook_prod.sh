@@ -36,7 +36,7 @@ echo '--- CHECK VULNERABILITIES ---'
 ${PATH_PHP} bin/console security:check
 
 echo '--- TESTS LAUNCHING ---'
-# ./vendor/bin/simple-phpunit
+./vendor/bin/simple-phpunit
 
 echo '--- OPTIMISATIONS ---'
 ${PATH_COMPOSER} dump-autoload --optimize --no-dev --classmap-authoritative
