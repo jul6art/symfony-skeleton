@@ -18,9 +18,9 @@ use Twig\Error\SyntaxError;
 use Twig\Environment;
 
 /**
- * Trait DataTableTransformerTrait.
+ * Trait DataTableTransformerAwareTrait.
  */
-trait DataTableTransformerTrait
+trait DataTableTransformerAwareTrait
 {
     /**
      * @var Environment

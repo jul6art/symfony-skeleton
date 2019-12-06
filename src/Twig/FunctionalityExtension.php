@@ -11,7 +11,7 @@
 namespace App\Twig;
 
 use App\Entity\Functionality;
-use App\Manager\FunctionalityManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -21,7 +21,7 @@ use Twig\TwigFunction;
  */
 class FunctionalityExtension extends AbstractExtension
 {
-    use FunctionalityManagerTrait;
+    use FunctionalityManagerAwareTrait;
 
     /**
      * @return array

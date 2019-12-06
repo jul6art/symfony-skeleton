@@ -13,8 +13,8 @@ namespace App\Security\Voter;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
-use App\Manager\FunctionalityManagerTrait;
-use App\Manager\SettingManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\SettingManagerAwareTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -26,8 +26,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserVoter extends AbstractVoter
 {
-    use FunctionalityManagerTrait;
-    use SettingManagerTrait;
+    use FunctionalityManagerAwareTrait;
+    use SettingManagerAwareTrait;
 
     public const ADD = 'app.voters.user.add';
     public const AUDIT = 'app.voters.user.audit';

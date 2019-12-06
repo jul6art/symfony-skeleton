@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class SettingRepository extends ServiceEntityRepository
 {
-    use RepositoryTrait;
+    use RepositoryAwareTrait;
 
     /**
      * SettingRepository constructor.

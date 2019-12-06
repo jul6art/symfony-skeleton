@@ -21,7 +21,7 @@ use Twig\Error\SyntaxError;
  */
 class MaintenanceTransformer implements NormalizerInterface
 {
-    use CellFormatterTrait;
+    use CellFormatterAwareTrait;
 
     /**
      * @param mixed $maintenance

@@ -11,8 +11,8 @@
 namespace App\Security\Voter;
 
 use App\Entity\Functionality;
-use App\Manager\FunctionalityManagerTrait;
-use App\Manager\MaintenanceManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\MaintenanceManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -21,8 +21,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class DefaultVoter extends AbstractVoter
 {
-    use FunctionalityManagerTrait;
-    use MaintenanceManagerTrait;
+    use FunctionalityManagerAwareTrait;
+    use MaintenanceManagerAwareTrait;
 
     public const ACCESS_PAGE_HOME = 'app.voters.pages.home';
     public const MAINTENANCE = 'app.voters.maintenance';

@@ -21,8 +21,8 @@ use Twig\Error\SyntaxError;
  */
 class TestDataTableTransformer extends TestTransformer
 {
-    use CellFormatterTrait;
-    use DataTableTransformerTrait;
+    use CellFormatterAwareTrait;
+    use DataTableTransformerAwareTrait;
 
     /**
      * Automatically called on each iteration

@@ -10,7 +10,7 @@
 
 namespace App\Command;
 
-use App\Manager\SessionManagerTrait;
+use App\Manager\SessionManagerAwareTrait;
 use Doctrine\DBAL\DBALException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class SkeletonSessionsPurgeCommand extends Command implements ContainerAwareInterface
 {
-    use SessionManagerTrait;
+    use SessionManagerAwareTrait;
 
     /**
      * @var string

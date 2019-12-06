@@ -13,9 +13,9 @@ namespace App\Traits;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Trait RouterTrait.
+ * Trait RouterAwareTrait.
  */
-trait RouterTrait
+trait RouterAwareTrait
 {
     /**
      * @var RouterInterface

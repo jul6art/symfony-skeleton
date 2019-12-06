@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait AuditManagerTrait.
+ * Trait AuditManagerAwareTrait.
  */
-trait AuditManagerTrait
+trait AuditManagerAwareTrait
 {
     /**
      * @var AuditManager

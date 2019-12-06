@@ -14,9 +14,9 @@ use App\Entity\User;
 use App\Event\UserEvent;
 use App\Form\User\AddUserType;
 use App\Form\User\EditUserType;
-use App\Manager\UserManagerTrait;
+use App\Manager\UserManagerAwareTrait;
 use App\Security\Voter\UserVoter;
-use App\Service\RefererServiceTrait;
+use App\Service\RefererServiceAwareTrait;
 use App\Transformer\UserDataTableTransformer;
 use App\Transformer\UserTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -32,8 +32,8 @@ use Symfony\Component\Serializer\Serializer;
  */
 class UserController extends AbstractFOSRestController
 {
-    use RefererServiceTrait;
-    use UserManagerTrait;
+    use RefererServiceAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @param UserDataTableTransformer $userDataTableTransformer

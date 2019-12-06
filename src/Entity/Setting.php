@@ -10,7 +10,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\BlameableEntity;
+use App\Entity\Traits\BlameableEntityAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -22,7 +22,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class Setting
 {
     use TimestampableEntity;
-    use BlameableEntity;
+    use BlameableEntityAwareTrait;
 
     public const SETTING_PROJECT_NAME = 'setting.project_name';
     public const SETTING_BASE_TITLE = 'setting.base_title';

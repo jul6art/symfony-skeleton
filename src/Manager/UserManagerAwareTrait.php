@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait UserManagerTrait.
+ * Trait UserManagerAwareTrait.
  */
-trait UserManagerTrait
+trait UserManagerAwareTrait
 {
     /**
      * @var UserManager

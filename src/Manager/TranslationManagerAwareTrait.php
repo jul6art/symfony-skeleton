@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait TranslationManagerTrait.
+ * Trait TranslationManagerAwareTrait.
  */
-trait TranslationManagerTrait
+trait TranslationManagerAwareTrait
 {
     /**
      * @var TranslationManager

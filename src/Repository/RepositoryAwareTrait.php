@@ -15,9 +15,9 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Trait RepositoryTrait.
+ * Trait RepositoryAwareTrait.
  */
-trait RepositoryTrait
+trait RepositoryAwareTrait
 {
     /**
      * @var string

@@ -13,9 +13,9 @@ namespace App\Traits;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Trait SerializerTrait.
+ * Trait SerializerAwareTrait.
  */
-trait SerializerTrait
+trait SerializerAwareTrait
 {
     /**
      * @var SerializerInterface

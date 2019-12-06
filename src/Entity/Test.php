@@ -10,7 +10,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\BlameableEntity;
+use App\Entity\Traits\BlameableEntityAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Test
 {
-    use BlameableEntity;
+    use BlameableEntityAwareTrait;
     use TimestampableEntity;
 
     public const TEXT_LENGTH = 15;

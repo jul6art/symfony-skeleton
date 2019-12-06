@@ -13,9 +13,9 @@ namespace App\Traits;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
- * Trait MessageBusTrait.
+ * Trait MessageBusAwareTrait.
  */
-trait MessageBusTrait
+trait MessageBusAwareTrait
 {
     /**
      * @var MessageBusInterface

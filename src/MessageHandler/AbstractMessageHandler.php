@@ -10,14 +10,14 @@
 
 namespace App\MessageHandler;
 
-use App\Service\PublisherServiceTrait;
-use App\Traits\LoggerTrait;
+use App\Service\PublisherServiceAwareTrait;
+use App\Traits\LoggerAwareTrait;
 
 /**
  * Class AbstractMessageHandler.
  */
 abstract class AbstractMessageHandler
 {
-    use LoggerTrait;
-    use PublisherServiceTrait;
+    use LoggerAwareTrait;
+    use PublisherServiceAwareTrait;
 }

@@ -10,7 +10,7 @@
 
 namespace App\MessageHandler;
 
-use App\Manager\SessionManagerTrait;
+use App\Manager\SessionManagerAwareTrait;
 use App\Message\PurgeSessionsMessage;
 use Doctrine\DBAL\DBALException;
 
@@ -19,7 +19,7 @@ use Doctrine\DBAL\DBALException;
  */
 class PurgeSessionsMessageHandler extends AbstractMessageHandler
 {
-    use SessionManagerTrait;
+    use SessionManagerAwareTrait;
 
     /**
      * @var int

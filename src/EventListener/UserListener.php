@@ -12,9 +12,9 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use App\Event\UserEvent;
-use App\Manager\UserManagerTrait;
-use App\Traits\FlashBagTrait;
-use App\Traits\TranslatorTrait;
+use App\Manager\UserManagerAwareTrait;
+use App\Traits\FlashBagAwareTrait;
+use App\Traits\TranslatorAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,9 +28,9 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
  */
 class UserListener
 {
-    use FlashBagTrait;
-    use TranslatorTrait;
-    use UserManagerTrait;
+    use FlashBagAwareTrait;
+    use TranslatorAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @var TokenStorageInterface

@@ -13,9 +13,9 @@ namespace App\Traits;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Trait TranslatorTrait.
+ * Trait TranslatorAwareTrait.
  */
-trait TranslatorTrait
+trait TranslatorAwareTrait
 {
     /**
      * @var TranslatorInterface

@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait MaintenanceManagerTrait.
+ * Trait MaintenanceManagerAwareTrait.
  */
-trait MaintenanceManagerTrait
+trait MaintenanceManagerAwareTrait
 {
     /**
      * @var MaintenanceManager

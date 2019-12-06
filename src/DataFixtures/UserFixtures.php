@@ -11,7 +11,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Manager\UserManagerTrait;
+use App\Manager\UserManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,7 +24,7 @@ use Faker\Generator;
  */
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
-    use UserManagerTrait;
+    use UserManagerAwareTrait;
 
     private const LIMIT = 30;
     private const GENDER_CHOICES = ['m', 'f'];

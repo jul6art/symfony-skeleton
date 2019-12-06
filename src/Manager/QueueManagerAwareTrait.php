@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait QueueManagerTrait.
+ * Trait QueueManagerAwareTrait.
  */
-trait QueueManagerTrait
+trait QueueManagerAwareTrait
 {
     /**
      * @var QueueManager

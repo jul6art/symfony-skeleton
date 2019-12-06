@@ -24,7 +24,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class GroupRepository extends ServiceEntityRepository
 {
-    use RepositoryTrait;
+    use RepositoryAwareTrait;
 
     /**
      * TestRepository constructor.

@@ -25,7 +25,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    use RepositoryTrait;
+    use RepositoryAwareTrait;
 
     /**
      * FunctionalityRepository constructor.

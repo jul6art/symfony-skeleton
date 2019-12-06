@@ -12,7 +12,7 @@ namespace App\Security\Voter;
 
 use App\Entity\Functionality;
 use App\Manager\FunctionalityManager;
-use App\Manager\FunctionalityManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class FunctionalityVoter extends AbstractVoter
 {
-    use FunctionalityManagerTrait;
+    use FunctionalityManagerAwareTrait;
 
     public const AUDIT = 'app.voters.functionality.audit';
     public const CACHE_CLEAR = 'app.voters.functionality.cache_clear';

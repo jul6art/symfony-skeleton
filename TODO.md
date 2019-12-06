@@ -45,14 +45,10 @@ bugs
 
 URGENT
 
-    TESTER HELP ET ALERT AVEC TOUS LES TYPES
+    TESTER HELP ET ALERT AVEC TOUS LES TYPES D'INPUTS
     
-    !!!!!! corriger phpunit sur jenkins et prod
-    !!!!!! corriger phpunit sur jenkins et prod
-    !!!!!! corriger phpunit sur jenkins et prod
         
-    optimisations si Jerem est ok
-        nommer traits en awaretraits
+    inspirations de JL
         dossier constants
         builderhelper like
    
@@ -65,7 +61,7 @@ URGENT
         action activer/désactiver
         password strength plugin
         
-    socket comme dans cdb pour 
+    mercure
         JWT_KEY: 49B96A75FE1F1563338574AD13DFB
         JWT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjdXJlIjp7InB1Ymxpc2giOlsiKiJdfX0.mzTdGM7BOUvL_suqwh8ibm-v5rprhDYyEZ5GahJF1o4 
         JWT_KEY='49B96A75FE1F1563338574AD13DFB' ADDR='localhost:3000' ALLOW_ANONYMOUS=1 CORS_ALLOWED_ORIGINS=* ./mercure/macos/mercure

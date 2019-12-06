@@ -10,16 +10,16 @@
 
 namespace App\EntityListener;
 
-use App\Manager\FunctionalityManagerTrait;
-use App\Traits\FlashBagTrait;
-use App\Traits\TranslatorTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
+use App\Traits\FlashBagAwareTrait;
+use App\Traits\TranslatorAwareTrait;
 
 /**
  * Class AbstractEntityListener.
  */
 abstract class AbstractEntityListener
 {
-    use FlashBagTrait;
-    use FunctionalityManagerTrait;
-    use TranslatorTrait;
+    use FlashBagAwareTrait;
+    use FunctionalityManagerAwareTrait;
+    use TranslatorAwareTrait;
 }

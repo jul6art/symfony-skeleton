@@ -12,9 +12,9 @@ namespace App\Menu\Builder;
 
 use App\Entity\Test;
 use App\Entity\User;
-use App\Manager\MaintenanceManagerTrait;
-use App\Manager\TestManagerTrait;
-use App\Manager\UserManagerTrait;
+use App\Manager\MaintenanceManagerAwareTrait;
+use App\Manager\TestManagerAwareTrait;
+use App\Manager\UserManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\MaintenanceVoter;
 use App\Security\Voter\TestVoter;
@@ -30,9 +30,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class NavbarBuilder
 {
-    use MaintenanceManagerTrait;
-    use TestManagerTrait;
-    use UserManagerTrait;
+    use MaintenanceManagerAwareTrait;
+    use TestManagerAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @var FactoryInterface

@@ -13,7 +13,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Traits\BlameableEntity;
+use App\Entity\Traits\BlameableEntityAwareTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User extends BaseUser
 {
     use TimestampableEntity;
-    use BlameableEntity;
+    use BlameableEntityAwareTrait;
 
     public const ROLE_ADMIN = 'ROLE_ADMIN';
     public const GENDER_MALE = 'm';

@@ -13,9 +13,9 @@ namespace App\Traits;
 use Psr\Log\LoggerInterface;
 
 /**
- * Trait LoggerTrait.
+ * Trait LoggerAwareTrait.
  */
-trait LoggerTrait
+trait LoggerAwareTrait
 {
     /**
      * @var LoggerInterface

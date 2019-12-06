@@ -12,9 +12,9 @@ namespace App\MessageHandler;
 
 use App\Entity\Group;
 use App\Entity\User;
-use App\Manager\UserManagerTrait;
+use App\Manager\UserManagerAwareTrait;
 use App\Message\NotifyOnRegistrationMessage;
-use App\Service\MailerServiceTrait;
+use App\Service\MailerServiceAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -26,8 +26,8 @@ use Twig\Error\SyntaxError;
  */
 class NotifyOnRegistrationMessageHandler extends AbstractMessageHandler
 {
-    use MailerServiceTrait;
-    use UserManagerTrait;
+    use MailerServiceAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @param NotifyOnRegistrationMessage $message

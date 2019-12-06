@@ -11,8 +11,8 @@
 namespace App\Service;
 
 use App\Entity\User;
-use App\Traits\RouterTrait;
-use App\Traits\SerializerTrait;
+use App\Traits\RouterAwareTrait;
+use App\Traits\SerializerAwareTrait;
 use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Mercure\Update;
 
@@ -21,8 +21,8 @@ use Symfony\Component\Mercure\Update;
  */
 class PublisherService
 {
-    use RouterTrait;
-    use SerializerTrait;
+    use RouterAwareTrait;
+    use SerializerAwareTrait;
 
     /**
      * @var PublisherInterface

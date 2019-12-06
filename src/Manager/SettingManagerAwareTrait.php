@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait SettingManagerTrait.
+ * Trait SettingManagerAwareTrait.
  */
-trait SettingManagerTrait
+trait SettingManagerAwareTrait
 {
     /**
      * @var SettingManager

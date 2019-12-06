@@ -11,8 +11,8 @@
 namespace App\EventListener;
 
 use App\Event\MaintenanceEvent;
-use App\Manager\AuditManagerTrait;
-use App\Manager\MaintenanceManagerTrait;
+use App\Manager\AuditManagerAwareTrait;
+use App\Manager\MaintenanceManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\DBAL\DBALException;
@@ -28,8 +28,8 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class MaintenanceListener
 {
-    use AuditManagerTrait;
-    use MaintenanceManagerTrait;
+    use AuditManagerAwareTrait;
+    use MaintenanceManagerAwareTrait;
 
     /**
      * @var AuthorizationCheckerInterface

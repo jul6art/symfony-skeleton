@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait GroupManagerTrait.
+ * Trait GroupManagerAwareTrait.
  */
-trait GroupManagerTrait
+trait GroupManagerAwareTrait
 {
     /**
      * @var GroupManager

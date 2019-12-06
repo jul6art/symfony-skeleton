@@ -11,9 +11,9 @@
 namespace App\Service;
 
 /**
- * Trait RefererServiceTrait.
+ * Trait RefererServiceAwareTrait.
  */
-trait RefererServiceTrait
+trait RefererServiceAwareTrait
 {
     /**
      * @var RefererService

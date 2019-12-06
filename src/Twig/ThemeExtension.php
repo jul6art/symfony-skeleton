@@ -13,7 +13,7 @@ namespace App\Twig;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
-use App\Manager\SettingManagerTrait;
+use App\Manager\SettingManagerAwareTrait;
 use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -27,7 +27,7 @@ use Twig\TwigFunction;
  */
 class ThemeExtension extends AbstractExtension
 {
-    use SettingManagerTrait;
+    use SettingManagerAwareTrait;
 
     const REQUEST_KEY = 'theme_name';
 

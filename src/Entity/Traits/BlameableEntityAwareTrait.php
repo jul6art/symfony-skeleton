@@ -17,7 +17,7 @@ use App\Entity\User;
 /**
  * Add Blameable behavior to an entity.
  */
-trait BlameableEntity
+trait BlameableEntityAwareTrait
 {
     /**
      * @var User

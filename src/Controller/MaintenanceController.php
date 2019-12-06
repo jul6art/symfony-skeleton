@@ -12,10 +12,10 @@ namespace App\Controller;
 
 use App\Event\MaintenanceEvent;
 use App\Form\Maintenance\EditMaintenanceType;
-use App\Manager\MaintenanceManagerTrait;
+use App\Manager\MaintenanceManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\MaintenanceVoter;
-use App\Service\RefererServiceTrait;
+use App\Service\RefererServiceAwareTrait;
 use App\Transformer\MaintenanceTransformer;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
@@ -32,8 +32,8 @@ use Symfony\Component\Serializer\Serializer;
  */
 class MaintenanceController extends AbstractFOSRestController
 {
-    use MaintenanceManagerTrait;
-    use RefererServiceTrait;
+    use MaintenanceManagerAwareTrait;
+    use RefererServiceAwareTrait;
 
     /**
      * @Route("%admin_route_prefix%/maintenance/", name="overview", methods={"GET"})

@@ -16,9 +16,9 @@ use Twig\Error\SyntaxError;
 use Twig\Environment;
 
 /**
- * Trait CellFormatterTrait.
+ * Trait CellFormatterAwareTrait.
  */
-trait CellFormatterTrait
+trait CellFormatterAwareTrait
 {
     /**
      * @var Environment

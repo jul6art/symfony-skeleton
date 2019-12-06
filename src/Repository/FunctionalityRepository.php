@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class FunctionalityRepository extends ServiceEntityRepository
 {
-    use RepositoryTrait;
+    use RepositoryAwareTrait;
 
     /**
      * FunctionalityRepository constructor.

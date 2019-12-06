@@ -10,7 +10,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\BlameableEntity;
+use App\Entity\Traits\BlameableEntityAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Functionality
 {
-    use BlameableEntity;
+    use BlameableEntityAwareTrait;
     use TimestampableEntity;
 
     public const FUNC_AUDIT = 'func.audit';

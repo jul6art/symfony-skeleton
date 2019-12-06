@@ -11,9 +11,9 @@
 namespace App\Service;
 
 /**
- * Trait PublisherServiceTrait.
+ * Trait PublisherServiceAwareTrait.
  */
-trait PublisherServiceTrait
+trait PublisherServiceAwareTrait
 {
     /**
      * @var PublisherService

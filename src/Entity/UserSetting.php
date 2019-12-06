@@ -10,7 +10,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\BlameableEntity;
+use App\Entity\Traits\BlameableEntityAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -22,7 +22,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class UserSetting
 {
     use TimestampableEntity;
-    use BlameableEntity;
+    use BlameableEntityAwareTrait;
 
     /**
      * @var int

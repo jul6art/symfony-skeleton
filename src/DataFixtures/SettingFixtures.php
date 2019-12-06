@@ -11,7 +11,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Setting;
-use App\Manager\SettingManagerTrait;
+use App\Manager\SettingManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -20,7 +20,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class SettingFixtures extends Fixture
 {
-    use SettingManagerTrait;
+    use SettingManagerAwareTrait;
 
     /**
      * @param ObjectManager $manager

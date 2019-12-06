@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait FunctionalityManagerTrait.
+ * Trait FunctionalityManagerAwareTrait.
  */
-trait FunctionalityManagerTrait
+trait FunctionalityManagerAwareTrait
 {
     /**
      * @var FunctionalityManager

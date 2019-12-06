@@ -11,7 +11,7 @@
 namespace App\Twig;
 
 use App\Entity\Setting;
-use App\Manager\SettingManagerTrait;
+use App\Manager\SettingManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
@@ -22,7 +22,7 @@ use Twig\TwigFunction;
  */
 class SettingExtension extends AbstractExtension
 {
-    use SettingManagerTrait;
+    use SettingManagerAwareTrait;
 
     /**
      * @var RequestStack

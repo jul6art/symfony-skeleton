@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait SessionManagerTrait.
+ * Trait SessionManagerAwareTrait.
  */
-trait SessionManagerTrait
+trait SessionManagerAwareTrait
 {
     /**
      * @var SessionManager

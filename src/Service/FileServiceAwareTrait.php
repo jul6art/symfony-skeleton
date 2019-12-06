@@ -11,9 +11,9 @@
 namespace App\Service;
 
 /**
- * Trait FileServiceTrait.
+ * Trait FileServiceAwareTrait.
  */
-trait FileServiceTrait
+trait FileServiceAwareTrait
 {
     /**
      * @var FileService

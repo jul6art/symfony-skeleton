@@ -11,9 +11,9 @@
 namespace App\Service;
 
 /**
- * Trait MailerServiceTrait.
+ * Trait MailerServiceAwareTrait.
  */
-trait MailerServiceTrait
+trait MailerServiceAwareTrait
 {
     /**
      * @var MailerService

@@ -12,8 +12,8 @@ namespace App\EventListener;
 
 use App\Entity\Functionality;
 use App\Entity\User;
-use App\Manager\FunctionalityManagerTrait;
-use App\Manager\UserManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\UserManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -24,8 +24,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class LocaleListener
 {
-    use UserManagerTrait;
-    use FunctionalityManagerTrait;
+    use UserManagerAwareTrait;
+    use FunctionalityManagerAwareTrait;
 
     /**
      * @var string

@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TestRepository extends ServiceEntityRepository
 {
-    use RepositoryTrait;
+    use RepositoryAwareTrait;
 
     /**
      * TestRepository constructor.

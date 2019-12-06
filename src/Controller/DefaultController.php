@@ -12,18 +12,18 @@ namespace App\Controller;
 
 use App\Entity\Functionality;
 use App\Entity\Setting;
-use App\Manager\FunctionalityManagerTrait;
-use App\Manager\QueueManagerTrait;
-use App\Manager\SettingManagerTrait;
-use App\Manager\TestManagerTrait;
-use App\Manager\TranslationManagerTrait;
-use App\Manager\UserManagerTrait;
+use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\QueueManagerAwareTrait;
+use App\Manager\SettingManagerAwareTrait;
+use App\Manager\TestManagerAwareTrait;
+use App\Manager\TranslationManagerAwareTrait;
+use App\Manager\UserManagerAwareTrait;
 use App\Message\PurgeSessionsMessage;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
-use App\Service\FileServiceTrait;
-use App\Service\RefererServiceTrait;
+use App\Service\FileServiceAwareTrait;
+use App\Service\RefererServiceAwareTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
 use Doctrine\DBAL\DBALException;
@@ -46,14 +46,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class DefaultController extends AbstractFOSRestController
 {
-    use FileServiceTrait;
-    use FunctionalityManagerTrait;
-    use QueueManagerTrait;
-    use RefererServiceTrait;
-    use SettingManagerTrait;
-    use TestManagerTrait;
-    use TranslationManagerTrait;
-    use UserManagerTrait;
+    use FileServiceAwareTrait;
+    use FunctionalityManagerAwareTrait;
+    use QueueManagerAwareTrait;
+    use RefererServiceAwareTrait;
+    use SettingManagerAwareTrait;
+    use TestManagerAwareTrait;
+    use TranslationManagerAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @Route("%admin_route_prefix%/", name="admin_homepage", methods={"GET"})

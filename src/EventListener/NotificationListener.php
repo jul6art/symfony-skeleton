@@ -14,7 +14,7 @@ use App\Entity\User;
 use App\Event\UserEvent;
 use App\Message\NotifyOnUserAddedMessage;
 use App\Message\NotifyOnRegistrationMessage;
-use App\Traits\MessageBusTrait;
+use App\Traits\MessageBusAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
 use Throwable;
@@ -27,7 +27,7 @@ use Twig\Error\SyntaxError;
  */
 class NotificationListener
 {
-    use MessageBusTrait;
+    use MessageBusAwareTrait;
 
     /**
      * @param FormEvent $event

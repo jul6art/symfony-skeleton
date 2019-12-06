@@ -13,9 +13,9 @@ namespace App\Traits;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Trait FlashBagTrait.
+ * Trait FlashBagAwareTrait.
  */
-trait FlashBagTrait
+trait FlashBagAwareTrait
 {
     /**
      * @var FlashBagInterface

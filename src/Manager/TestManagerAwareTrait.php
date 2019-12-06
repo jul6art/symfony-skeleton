@@ -11,9 +11,9 @@
 namespace App\Manager;
 
 /**
- * Trait TestManagerTrait.
+ * Trait TestManagerAwareTrait.
  */
-trait TestManagerTrait
+trait TestManagerAwareTrait
 {
     /**
      * @var TestManager

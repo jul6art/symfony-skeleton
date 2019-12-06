@@ -14,10 +14,10 @@ use App\Entity\Test;
 use App\Event\TestEvent;
 use App\Form\Test\AddTestType;
 use App\Form\Test\EditTestType;
-use App\Manager\TestManagerTrait;
-use App\Manager\UserManagerTrait;
+use App\Manager\TestManagerAwareTrait;
+use App\Manager\UserManagerAwareTrait;
 use App\Security\Voter\TestVoter;
-use App\Service\RefererServiceTrait;
+use App\Service\RefererServiceAwareTrait;
 use App\Transformer\TestDataTableTransformer;
 use App\Transformer\TestTransformer;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -33,9 +33,9 @@ use Symfony\Component\Serializer\Serializer;
  */
 class TestController extends AbstractFOSRestController
 {
-    use RefererServiceTrait;
-    use TestManagerTrait;
-    use UserManagerTrait;
+    use RefererServiceAwareTrait;
+    use TestManagerAwareTrait;
+    use UserManagerAwareTrait;
 
     /**
      * @param TestDataTableTransformer $testDataTableTransformer

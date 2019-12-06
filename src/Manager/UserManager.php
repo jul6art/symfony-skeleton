@@ -25,8 +25,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class UserManager extends AbstractManager
 {
-    use GroupManagerTrait;
-    use SettingManagerTrait;
+    use GroupManagerAwareTrait;
+    use SettingManagerAwareTrait;
 
     /**
      * @var UserRepository

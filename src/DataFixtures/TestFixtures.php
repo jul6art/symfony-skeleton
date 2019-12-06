@@ -10,7 +10,7 @@
 
 namespace App\DataFixtures;
 
-use App\Manager\TestManagerTrait;
+use App\Manager\TestManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;
@@ -21,7 +21,7 @@ use Faker\Factory;
  */
 class TestFixtures extends Fixture
 {
-    use TestManagerTrait;
+    use TestManagerAwareTrait;
 
     private const LIMIT = 100;
 
