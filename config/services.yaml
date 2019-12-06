@@ -137,7 +137,10 @@ services:
 
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
-            - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }
+            - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
+            - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }
+#           - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }
+
 
     App\EventListener\LocaleListener:
         tags:
