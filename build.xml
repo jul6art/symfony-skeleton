@@ -15,12 +15,8 @@
     <property name="console_path" value="bin/console"/>
     <property name="parameters" value="/PATH/TO/PARAMETERS"/>
 
-<!--    <target name="build" description="Build"-->
-<!--            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, security, unit_tests"-->
-<!--    />-->
-
     <target name="build" description="Build"
-            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, security"
+            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, security, unit_tests"
     />
 
     <target name="deploy" description="Deploy and deployment process"
