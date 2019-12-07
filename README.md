@@ -10,26 +10,26 @@ Base sf4 admin project
     <a href="https://github.com/jul6art/symfony-skeleton" target="_blank"><img src="https://img.shields.io/static/v1?label=stable&message=v1+coming+soon&color=orange" alt="Version"></a>
 </p>
 
-> Work in progress so keep calm
+> :warning: **WARNING**: Work in progress so keep calm. The good news: this is maintained!
 
 Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: vsweb)
 
 Requirements
 ------------
 
-* php >= 7.1
-* mysql (for postgresql, sqlite or something else, you will need to update doctrine configuration)
-* composer
-* yarn
+* **php** >= 7.1
+* **mysql** (for **postgresql**, **sqlite** or something else, you will need to update doctrine configuration)
+* **composer**
+* **yarn**
 
 Code Quality
 ------------
 
-* phpcs
-* phpcpd
-* phplint
-* twigcs
-* symfony security checker
+* **phpcs**
+* **phpcpd**
+* **phplint**
+* **twigcs**
+* **symfony security checker**
 
 Installation
 ------------
@@ -92,7 +92,7 @@ Documentation
 ------------
 
 * read more about [installation and usage](/data/doc/INSTALL.md)
-* optional documentation about [forms](/data/doc/FORMS.md) or [audit](/data/doc/AUDITS.md)
+* optional documentation about [forms](/data/doc/FORMS.md) or [audit](/data/doc/AUDIT.md)
 * visit the [demo application](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: vsweb)
 
 Testing

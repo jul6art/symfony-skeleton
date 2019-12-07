@@ -1,27 +1,36 @@
 jul6art/symfony-skeleton
-==
+========================
 Base sf4 admin project
--
+----------------------
 
-[![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
-![https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg](https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg)
+<p align="center">
+    <a href="https://jenkins.vsweb.be/job/Symfony%20skeleton/" target="_blank"><img src="https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton" alt="Build Status"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" target="_blank"><img src="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" alt="Build Status"></a>
+    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton" target="_blank"><img src="https://img.shields.io/static/v1?label=stable&message=v1+coming+soon&color=orange" alt="Version"></a>
+</p>
 
-### Audit
 
-> To activate audit for an entity you need to
+Activate audit for an entity
+----------------------------
 
-    - enable in configuration
-    - make the voter return true
+* enable in configuration
+* make the voter return true
     
-> Exclude tracked fields on entity edit audit  (in twig  files)
+Exclude tracked fields
+----------------------
 
-```php
+```twig
 {{ render(controller('App\\Controller\\DefaultController::audit', {
     class: 'App\\Entity\\Test',
     exclude: ['updatedAt', 'updatedBy']
 })) }}
 ```    
-> Custom audit level (6chars max for the level name)
+
+Custom audit level
+------------------
+
+The level name must have 6 characters max.
 
 ```php
 use AuditManagerTrait;
@@ -35,16 +44,22 @@ public function onTestAdded(TestEvent $event)
 }
 ```
 
-in audit translation domain
+In audit translation domain
 
 ```yml
 audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
 ```
 
-> This command removes audits older than a year
+Remove audits older than a year
+-------------------------------
 
-```bash
+```console
 bin/console audit:clean --no-confirm
 ```
+
+License
+-------
+
+The VsWeb Symfony Skeleton is open-sourced software licensed under the MIT license.
 
 &copy; 2019 [VsWeb](https://vsweb.be)

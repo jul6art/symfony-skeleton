@@ -1,10 +1,14 @@
 jul6art/symfony-skeleton
-==
+========================
 Base sf4 admin project
--
+----------------------
 
-[![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
-![https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg](https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg)
+<p align="center">
+    <a href="https://jenkins.vsweb.be/job/Symfony%20skeleton/" target="_blank"><img src="https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton" alt="Build Status"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" target="_blank"><img src="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" alt="Build Status"></a>
+    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton" target="_blank"><img src="https://img.shields.io/static/v1?label=stable&message=v1+coming+soon&color=orange" alt="Version"></a>
+</p>
 
 ### Functionalities
 
@@ -23,48 +27,63 @@ Base sf4 admin project
 
     services.yml -> parameters -> %available_functionalities%
 
-### Breadcrumb
+Breadcrumb
+----------
 
-> You can disable the breadcrumb for a specific page
+You can disable the breadcrumb for a specific page
 
 ```twig
 {% set breadcrumb = false %}
 ```
 
-### [Forms](/data/doc/FORMS.md)
+[Forms](/data/doc/FORMS.md)
+---------------------------
 
-### [Audit](/data/doc/AUDIT.md)
+[Audit](/data/doc/AUDIT.md)
+---------------------------
 
-### Commands
+Commands
+--------
 
-```bash
+Purge outdated sessions
+
+```console
 bin/console skeleton:sessions:purge
 ```
 
-```bash
+Consume queued messages
+
+```console
 bin/console skeleton:messages:consume
 ```
 
-### Theme
+Theme
+_____
 
-> Default theme is set in the setting sidebar, every user can choose the theme he wants
+> :info: **INFO**: Default theme is set in the setting sidebar, every user can choose the theme he wants
 
 You can deactivate this feature in configuration page
 
-### Crud
+Crud
+----
 
-> Html files and controller are adapted to this current architecture but you must write some files manually
+> :warning: **WARNING**: Html files and controller are adapted to this current architecture but you must write some files manually
 
-- Voter
-- Manager
-- Transformers
-- Event
-- EventListener
+* Voter
+* Manager
+* Transformers
+* Event
+* EventListener
 
-> Audit, blameable and timestapable must be set manually
+> **Audit**, **blameable** and **timestapable** must be set manually
 
 > Translation keys are not set
 
 > You can edit controller and twig skeleton files in /templates/crud
+
+License
+-------
+
+The VsWeb Symfony Skeleton is open-sourced software licensed under the MIT license.
 
 &copy; 2019 [VsWeb](https://vsweb.be)

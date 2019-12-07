@@ -1,34 +1,37 @@
 jul6art/symfony-skeleton
-==
+========================
 Base sf4 admin project
--
+----------------------
 
-[![Build Status](https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton)](https://jenkins.vsweb.be/job/Symfony%20skeleton/)
-![https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg](https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg)
+<p align="center">
+    <a href="https://jenkins.vsweb.be/job/Symfony%20skeleton/" target="_blank"><img src="https://jenkins.vsweb.be/buildStatus/icon?job=Symfony+skeleton" alt="Build Status"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" target="_blank"><img src="https://github.com/jul6art/symfony-skeleton/blob/master/data/report/coverage.svg" alt="Build Status"></a>
+    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+    <a href="https://github.com/jul6art/symfony-skeleton" target="_blank"><img src="https://img.shields.io/static/v1?label=stable&message=v1+coming+soon&color=orange" alt="Version"></a>
+</p>
 
-### Forms
+Types
+-----
 
-> Types
-
-    A lot of basic types are overrided in src/Forms/Type to include new options listed after this
+A lot of basic types are overrided in **src/Forms/Type** to include the options:
     
-    addon_left
-    addon_right
-    alert
-    alert_class
-    button_left
-    button_left_class
-    button_right
-    button_right_class
-    exploded
-    mask
-    no_float
-    no_line
-    pattern
-    tooltip
+* addon_left
+* addon_right
+* alert
+* alert_class
+* button_left
+* button_left_class
+* button_right
+* button_right_class
+* exploded
+* mask
+* no_float
+* no_line
+* pattern
+* tooltip
     
-> Addons
-
+Addons
+------
 
 ```php
 $builder
@@ -39,8 +42,8 @@ $builder
 ;
 ```
     
-> Buttons
-
+Buttons
+-------
 
 ```php
 $builder
@@ -52,9 +55,10 @@ $builder
 ;
 ```
     
-> Data-mask and validation
+Data-mask and validation
+------------------------
 
-https://github.com/RobinHerbots/Inputmask
+[InputMask](https://github.com/RobinHerbots/Inputmask) documentation
 
 ```php
 $builder
@@ -65,8 +69,8 @@ $builder
 ;
 ```
     
-> Alert
-
+Alert
+-----
 
 ```php
 $builder
@@ -77,7 +81,8 @@ $builder
 ;
 ```
     
-> Help
+Help
+----
 
 ```php
 $builder
@@ -87,7 +92,8 @@ $builder
 ;
 ```
     
-> Tooltips
+Tooltips
+--------
 
 ```php
 $builder
@@ -97,10 +103,16 @@ $builder
 ;
 ```
 
-> You can override the form theme when extending the layout_form.html.twig
+Override the form theme when extending the **layout_form.html.twig**
+--------------------------------------------------------------------
 
 ```twig
 {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}
 ```
+
+License
+-------
+
+The VsWeb Symfony Skeleton is open-sourced software licensed under the MIT license.
 
 &copy; 2019 [VsWeb](https://vsweb.be)
