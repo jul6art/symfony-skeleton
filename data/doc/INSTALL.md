@@ -77,11 +77,11 @@ Crud
 * Event
 * EventListener
 
-> :warning: **Audit**, **blameable** and **timestapable** must be set manually
+> :warning: **Audit**, **blameable** and **timestampable** must be set manually
 
 > :warning: Translation keys are not set
 
-You can edit controller and twig skeleton files in /templates/crud
+You can edit controller and twig skeleton templates in /templates/crud
 
 License
 -------
