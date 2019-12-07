@@ -23,9 +23,11 @@ Base sf4 admin project
 * Theme choice
     
 
-> Every functionality can be disabled from the database or from 
+> :warning: Every functionality can be disabled 
 
-    services.yml -> parameters -> %available_functionalities%
+from
+* the database
+* the **%available_functionalities%** parameter in **services.yaml**
 
 Breadcrumb
 ----------
@@ -58,16 +60,16 @@ bin/console skeleton:messages:consume
 ```
 
 Theme
-_____
+-----
 
-> :info: **INFO**: Default theme is set in the setting sidebar, every user can choose the theme he wants
+Default theme is set in the setting sidebar, every user can choose the theme he wants
 
-You can deactivate this feature in configuration page
+> :warning: You can deactivate this feature in configuration page
 
 Crud
 ----
 
-> :warning: **WARNING**: Html files and controller are adapted to this current architecture but you must write some files manually
+> :warning: Html files and controller are adapted to this current architecture but you must write some files manually
 
 * Voter
 * Manager
@@ -75,11 +77,11 @@ Crud
 * Event
 * EventListener
 
-> **Audit**, **blameable** and **timestapable** must be set manually
+> :warning: **Audit**, **blameable** and **timestapable** must be set manually
 
-> Translation keys are not set
+> :warning: Translation keys are not set
 
-> You can edit controller and twig skeleton files in /templates/crud
+You can edit controller and twig skeleton files in /templates/crud
 
 License
 -------

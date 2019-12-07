@@ -13,7 +13,7 @@ Base sf4 admin project
 Types
 -----
 
-A lot of basic types are overrided in **src/Forms/Type** to include the options:
+A lot of basic types are overrided in **src/Forms/Type** to include the following options:
     
 * addon_left
 * addon_right
@@ -103,8 +103,8 @@ $builder
 ;
 ```
 
-Override the form theme when extending the **layout_form.html.twig**
---------------------------------------------------------------------
+Override the form theme when extending the form layout
+------------------------------------------------------
 
 ```twig
 {% set custom_form_theme = 'CUSTOM_layout_form.html.twig' %}

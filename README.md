@@ -10,7 +10,7 @@ Base sf4 admin project
     <a href="https://github.com/jul6art/symfony-skeleton" target="_blank"><img src="https://img.shields.io/static/v1?label=stable&message=v1+coming+soon&color=orange" alt="Version"></a>
 </p>
 
-> :warning: **WARNING**: Work in progress so keep calm. The good news: this is maintained!
+> :warning: Work in progress so keep calm. The good news: this is maintained!
 
 Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: vsweb)
 
