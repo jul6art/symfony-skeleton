@@ -1,3 +1,7 @@
+<p align="center">
+    <a href="https://vsweb.be"><img src="https://vsweb.be/userfiles/images/14548837631453228685logo.png" alt="logo VsWeb"></a>
+</p>
+
 jul6art/symfony-skeleton
 ========================
 Base sf4 admin project
