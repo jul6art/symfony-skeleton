@@ -120,6 +120,6 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 License
 -------
 
-The VsWeb Symfony Skeleton is open-sourced software licensed under the MIT license.
+The VsWeb Symfony Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 &copy; 2019 [VsWeb](https://vsweb.be)

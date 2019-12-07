@@ -90,6 +90,6 @@ You can edit controller and twig skeleton templates in /templates/crud
 License
 -------
 
-The VsWeb Symfony Skeleton is open-sourced software licensed under the MIT license.
+The VsWeb Symfony Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 &copy; 2019 [VsWeb](https://vsweb.be)
