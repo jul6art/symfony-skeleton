@@ -26,8 +26,8 @@ Requirements
 * **composer**
 * **yarn**
 
-Code Quality
-------------
+Includes
+--------
 
 * **phpcs**
 * **phpcpd**
