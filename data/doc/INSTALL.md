@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/symfony-skeleton/tree/master/assets/img/devinthehood.png" alt="logo VsWeb"></a>
+    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/symfony-skeleton/tree/master/assets/img/devinthehood.png?raw=true" alt="logo VsWeb"></a>
 </p>
 
 <p align="center">
