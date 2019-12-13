@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://vsweb.be"><img src="https://vsweb.be/userfiles/images/14548837631453228685logo.png" alt="logo VsWeb"></a>
+    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/symfony-skeleton/tree/master/assets/img/devinthehood.png" alt="logo VsWeb"></a>
 </p>
 
 <p align="center">
@@ -122,4 +122,4 @@ License
 
 The VsWeb Symfony Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-&copy; 2019 [VsWeb](https://vsweb.be)
+&copy; 2019 [dev in the hood](https://devinthehood.com)

@@ -47,9 +47,26 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES D'INPUTS
     
+    CORRECTION
+        ne pas envoyer de mail si user != enabled
+        ne pas envoyer de mail à super-admin@vsweb ?
+        
+    install php7.4 sur serveur (après SNAPSHOT)
+    https://github.com/github-changelog-generator/github-changelog-generator
+    revoir code pour php7.4
+        sprintf %d quand nombres
+        typing class properties
+        short fn naming
+        ...
+        interfaces?
+        et noter dans requirements etc
+        
+    backup-bundle
+        https://github.com/kbond/ZenstruckBackupBundle
         
     inspirations de JL
         dossier constants
+        embed fichiers twig pour remplacer include et extends
         builderhelper like
    
     dossier src/Twig 
