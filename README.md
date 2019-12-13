@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/symfony-skeleton/blob/master/assets/img/devinthehood.png?raw=true" alt="logo VsWeb"></a>
+    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/symfony-skeleton/blob/master/assets/img/devinthehood.png?raw=true" alt="logo dev in the hood"></a>
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@ Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, 
 Requirements
 ------------
 
-* **php** >= 7.1
+* **php** >= 7.4
 * **mysql** (for **postgresql**, **sqlite** or something else, you will need to update doctrine configuration)
 * **composer**
 * **yarn**
@@ -120,6 +120,6 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
 License
 -------
 
-The VsWeb Symfony Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Symfony Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 &copy; 2019 [dev in the hood](https://devinthehood.com)
