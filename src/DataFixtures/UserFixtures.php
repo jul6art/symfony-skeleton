@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Created by VsWeb.
+ * Created by devinthehood.
  * Project: symfony-skeleton
  * User: Jul6art
  * Date: 21/11/2019
@@ -44,7 +44,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user = $this->userManager
             ->create()
             ->setUsername('user')
-            ->setEmail('user@vsweb.be');
+            ->setEmail('user@devinthehood.com');
 
         $this->updateUser($user, $faker);
 
@@ -57,7 +57,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $admin = $this->userManager
             ->createAdmin()
             ->setUsername('admin')
-            ->setEmail('admin@vsweb.be');
+            ->setEmail('admin@devinthehood.com');
 
         $this->updateUser($admin, $faker);
 
@@ -70,7 +70,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $superAdmin = $this->userManager
             ->createSuperAdmin()
             ->setUsername('superadmin')
-            ->setEmail('super_admin@vsweb.be');
+            ->setEmail('super_admin@devinthehood.com');
 
         $this->updateUser($superAdmin, $faker);
 

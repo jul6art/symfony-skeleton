@@ -16,7 +16,7 @@ Base sf4 admin project
 
 > :warning: Work in progress so keep calm. The good news: this is maintained!
 
-Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: vsweb)
+Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: devinthehood)
 
 Requirements
 ------------
@@ -97,7 +97,7 @@ Documentation
 
 * read more about [installation and usage](/data/doc/INSTALL.md)
 * optional documentation about [forms](/data/doc/FORMS.md) or [audit](/data/doc/AUDIT.md)
-* visit the [demo application](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: vsweb)
+* visit the [demo application](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: devinthehood)
 
 Testing
 -------

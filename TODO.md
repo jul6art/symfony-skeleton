@@ -49,7 +49,7 @@ URGENT
     
     CORRECTION
         ne pas envoyer de mail si user != enabled
-        ne pas envoyer de mail à super-admin@vsweb ?
+        ne pas envoyer de mail à super-admin@devinthehood ?
         
     install php7.4 sur serveur (après SNAPSHOT)
     https://github.com/github-changelog-generator/github-changelog-generator

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Created by VsWeb.
+ * Created by devinthehood.
  * Project: symfony-skeleton
  * User: Jul6art
  * Date: 21/11/2019
@@ -43,7 +43,7 @@ class User extends BaseUser
     public const LENGTH_MIN_PASSWORD = 5;
     public const LENGTH_MAX_PASSWORD = 32;
     public const LENGTH_GENERATED_PASSWORD = 8;
-    public const DEFAULT_PASSWORD = 'vsweb';
+    public const DEFAULT_PASSWORD = 'devinthehood';
     public const DEFAULT_ADMIN_USERNAME = 'admin';
     public const DEFAULT_USER_USERNAME = 'user';
 
