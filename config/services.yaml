@@ -3,6 +3,9 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+    - { resource: listeners.yaml }
+
 parameters:
     admin_route_prefix: /admin
     available_colors:
@@ -140,25 +143,3 @@ services:
             - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
             - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }
 #           - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }
-
-
-    App\EventListener\LocaleListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request }
-
-    App\EventListener\NotificationListener:
-        tags:
-            - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
-            - { name: kernel.event_listener, event: event.user.added, method: onUserAdded }
-
-    App\EventListener\MaintenanceListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-            - { name: kernel.event_listener, event: event.maintenance.viewed, method: onMaintenanceViewed }
-
-    App\EventListener\UserListener:
-        tags:
-            - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-            - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
-            - { name: kernel.event_listener, event: event.user.edited, method: onUserEdited }

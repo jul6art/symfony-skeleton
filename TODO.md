@@ -65,8 +65,9 @@ URGENT
         https://github.com/kbond/ZenstruckBackupBundle
         
     inspirations de JL
-        dossier constants
+        dossier Constants / dossier Traits / dossier Interfaces
         embed fichiers twig pour remplacer include et extends
+        appeler les fonctions de manager direct dansd les extensions twig si c est juste pour faire un return 
         builderhelper like
    
     dossier src/Twig 
