@@ -99,28 +99,31 @@ services:
 
     App\Maker\MakeSkeleton:
         arguments:
-            - '@maker.doctrine_helper'
-            - '@maker.renderer.form_type_renderer'
+            $doctrineHelper: '@maker.doctrine_helper'
+            $formTypeRenderer: '@maker.renderer.form_type_renderer'
         tags: ['maker.command']
 
     App\Menu\Builder\NavbarBuilder:
-        arguments: ['@knp_menu.factory']
+        arguments:
+            $factory: '@knp_menu.factory'
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: navbar }
 
     App\Menu\Builder\TopbarBuilder:
-        arguments: ['@knp_menu.factory']
+        arguments:
+            $factory: '@knp_menu.factory'
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: topbar }
 
     App\Menu\Builder\UserDropdownBuilder:
-        arguments: ['@knp_menu.factory']
+        arguments:
+            $factory: '@knp_menu.factory'
         tags:
             - { name: knp_menu.menu_builder, method: createMenu, alias: usernav }
 
     App\Menu\Renderer\TopbarRenderer:
         arguments:
-            - '@knp_menu.matcher'
+            $matcher: '@knp_menu.matcher'
         tags:
             - { name: knp_menu.renderer, alias: topbar_renderer }
 
@@ -140,6 +143,16 @@ services:
 
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
-            - 'mysql:dbname=%env(resolve:DATABASE_NAME)%; host=%env(resolve:DATABASE_HOST)%; port=%env(resolve:DATABASE_PORT)%'
-            - { db_table: 'sessions', db_username: '%env(resolve:DATABASE_USER)%', db_password: '%env(resolve:DATABASE_PASSWORD)%' }
-#           - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }
+            $pdoOrDsn: 'mysql:dbname=%env(resolve:DATABASE_NAME)%; host=%env(resolve:DATABASE_HOST)%; port=%env(resolve:DATABASE_PORT)%'
+            $options: { db_table: 'sessions', db_username: '%env(resolve:DATABASE_USER)%', db_password: '%env(resolve:DATABASE_PASSWORD)%' }
+            # - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }
+
+    # This is how to disable invalid third party bundle service
+    #
+    # @TODO upgrade that stuff
+    #
+    dh_doctrine_audit.twig_extension:
+        class: DH\DoctrineAuditBundle\Twig\Extension\TwigExtension
+        autoconfigure: false
+        autowire: false
+        public: false

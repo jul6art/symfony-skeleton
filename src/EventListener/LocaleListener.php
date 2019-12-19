@@ -10,7 +10,7 @@
 
 namespace App\EventListener;
 
-use App\Entity\Functionality;
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\User;
 use App\Manager\FunctionalityManagerAwareTrait;
 use App\Manager\UserManagerAwareTrait;
@@ -83,7 +83,7 @@ class LocaleListener
             $newLocale = null;
         }
 
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+        if (!$this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_SWITCH_LOCALE)) {
             $newLocale = $this->defaultLocale;
         } else {
             $userLocale = null;

@@ -1,4 +1,5 @@
 services:
+
     App\EventListener\LocaleListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }
@@ -19,3 +20,8 @@ services:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistrationSuccess }
             - { name: kernel.event_listener, event: event.user.edited, method: onUserEdited }
+
+    App\EventListener\:
+        resource: '../src/EventListener'
+        autowire: true
+        autoconfigure: true

@@ -13,7 +13,8 @@ namespace App\Repository;
 use App\Entity\Setting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\NoResultException;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Setting|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,10 +28,9 @@ class SettingRepository extends ServiceEntityRepository
 
     /**
      * SettingRepository constructor.
-     *
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Setting::class);
     }
@@ -56,6 +56,7 @@ class SettingRepository extends ServiceEntityRepository
      * @return int
      *
      * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll(): int
     {

@@ -10,8 +10,8 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
-use App\Manager\FunctionalityManager;
 use App\Manager\FunctionalityManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -67,7 +67,7 @@ class FunctionalityVoter extends AbstractVoter
             return true;
         }
 
-        if (Functionality::class === $subject) {
+        if (FunctionalityName::class === $subject) {
             return true;
         }
 
@@ -116,10 +116,8 @@ class FunctionalityVoter extends AbstractVoter
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -130,14 +128,12 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_AUDIT);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_AUDIT);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -148,14 +144,12 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_CLEAR_CACHE);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_CLEAR_CACHE);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -166,7 +160,7 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_CONFIRM_DELETE);
     }
 
     /**
@@ -185,10 +179,8 @@ class FunctionalityVoter extends AbstractVoter
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -199,7 +191,7 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_EDIT_IN_PLACE);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_EDIT_IN_PLACE);
     }
 
     /**
@@ -216,7 +208,7 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_MAINTENANCE);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_MAINTENANCE);
     }
 
     /**
@@ -235,10 +227,8 @@ class FunctionalityVoter extends AbstractVoter
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -249,14 +239,12 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_MANAGE_SETTINGS);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_MANAGE_SETTINGS);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -267,28 +255,24 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_PROGRESSIVE_WEB_APP);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_PROGRESSIVE_WEB_APP);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
      */
     public function canSwitchLocale(string $subject, TokenInterface $token): bool
     {
-        return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_SWITCH_LOCALE);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
@@ -299,20 +283,18 @@ class FunctionalityVoter extends AbstractVoter
             return false;
         }
 
-        return $this->functionalityManager->isActive(Functionality::FUNC_SWITCH_THEME);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_SWITCH_THEME);
     }
 
     /**
-     * @param string               $subject
-     * @param TokenInterface       $token
-     * @param FunctionalityManager $functionalityManager
-     *
+     * @param string $subject
+     * @param TokenInterface $token
      * @return bool
      *
      * @throws NonUniqueResultException
      */
     public function canWatchForm(string $subject, TokenInterface $token): bool
     {
-        return $this->functionalityManager->isActive(Functionality::FUNC_FORM_WATCHER);
+        return $this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_FORM_WATCHER);
     }
 }

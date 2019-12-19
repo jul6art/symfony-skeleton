@@ -14,8 +14,9 @@ use App\Entity\Group;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -28,11 +29,10 @@ class UserRepository extends ServiceEntityRepository
     use RepositoryAwareTrait;
 
     /**
-     * FunctionalityRepository constructor.
-     *
-     * @param RegistryInterface $registry
+     * UserRepository constructor.
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
@@ -54,9 +54,7 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * @param QueryBuilder $builder
-     * @param string       $field
-     * @param User         $user
-     *
+     * @param Group $group
      * @return self
      */
     public function filterByGroup(QueryBuilder $builder, Group $group): self
@@ -212,6 +210,7 @@ class UserRepository extends ServiceEntityRepository
      * @return int
      *
      * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll(): int
     {

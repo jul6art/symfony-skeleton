@@ -13,7 +13,7 @@ namespace App\Repository;
 use App\Entity\Maintenance;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Maintenance|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,11 +26,10 @@ class MaintenanceRepository extends ServiceEntityRepository
     use RepositoryAwareTrait;
 
     /**
-     * TestRepository constructor.
-     *
-     * @param RegistryInterface $registry
+     * MaintenanceRepository constructor.
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Maintenance::class);
     }

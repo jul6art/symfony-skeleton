@@ -10,6 +10,7 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
 use App\Manager\FunctionalityManagerAwareTrait;
 use App\Manager\MaintenanceManagerAwareTrait;
@@ -92,7 +93,7 @@ class DefaultVoter extends AbstractVoter
      */
     public function canMaintenance($subject, TokenInterface $token): bool
     {
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_MAINTENANCE)) {
+        if (!$this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_MAINTENANCE)) {
             return false;
         }
 
@@ -117,7 +118,7 @@ class DefaultVoter extends AbstractVoter
      */
     public function canTranslate($subject, TokenInterface $token): bool
     {
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_SWITCH_LOCALE)) {
+        if (!$this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_SWITCH_LOCALE)) {
             return false;
         }
 

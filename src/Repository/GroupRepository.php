@@ -14,7 +14,8 @@ use App\Entity\Group;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\NoResultException;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Group|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,11 +28,10 @@ class GroupRepository extends ServiceEntityRepository
     use RepositoryAwareTrait;
 
     /**
-     * TestRepository constructor.
-     *
-     * @param RegistryInterface $registry
+     * GroupRepository constructor.
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Group::class);
     }
@@ -91,6 +91,7 @@ class GroupRepository extends ServiceEntityRepository
      * @return int
      *
      * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function countAll(): int
     {

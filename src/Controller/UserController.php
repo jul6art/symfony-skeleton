@@ -19,6 +19,7 @@ use App\Security\Voter\UserVoter;
 use App\Service\RefererServiceAwareTrait;
 use App\Transformer\UserDataTableTransformer;
 use App\Transformer\UserTransformer;
+use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,7 +70,7 @@ class UserController extends AbstractFOSRestController
      * @return Response
      *
      * @throws ExceptionInterface
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function add(Request $request, UserTransformer $userTransformer, EventDispatcherInterface $eventDispatcher): Response
     {

@@ -14,8 +14,8 @@ use App\Entity\User;
 use App\Manager\UserManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 
@@ -83,8 +83,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::LIMIT; ++$i) {
             $user = $this->userManager
                 ->create()
-                ->setUsername($faker->userName)
-                ->setEmail($faker->email);
+                ->setUsername($faker->unique()->userName)
+                ->setEmail($faker->unique()->safeEmail);
 
             $this->updateUser($user, $faker);
 
@@ -110,8 +110,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
      * @param Generator $faker
      *
      * @return User
-     *
-     * @throws NonUniqueResultException
      */
     private function updateUser(User $user, Generator $faker): User
     {

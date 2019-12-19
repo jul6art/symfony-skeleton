@@ -10,11 +10,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Functionality;
+use App\Entity\Constants\FunctionalityName;
 use App\Manager\FunctionalityManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\Persistence\ObjectManager;
+use ReflectionClass;
+use ReflectionException;
 
 /**
  * Class FunctionalityFixtures.
@@ -25,31 +26,17 @@ class FunctionalityFixtures extends Fixture
 
     /**
      * @param ObjectManager $manager
-     *
-     * @throws NonUniqueResultException
+     * @throws ReflectionException
      */
     public function load(ObjectManager $manager)
     {
-        $functionalities = [
-            Functionality::FUNC_AUDIT,
-            Functionality::FUNC_CLEAR_CACHE,
-            Functionality::FUNC_EDIT_IN_PLACE,
-            Functionality::FUNC_CONFIRM_DELETE,
-            Functionality::FUNC_FORM_WATCHER,
-            Functionality::FUNC_MAINTENANCE,
-            Functionality::FUNC_MANAGE_SETTINGS,
-            Functionality::FUNC_PROGRESSIVE_WEB_APP,
-            Functionality::FUNC_SWITCH_LOCALE,
-            Functionality::FUNC_SWITCH_THEME,
-        ];
-
-        array_walk($functionalities, function (string $name) use ($manager) {
+        foreach (array_flip((new ReflectionClass(FunctionalityName::class))->getConstants()) as $key => $value) {
             $functionality = ($this->functionalityManager->create())
-                ->setName($name);
+                ->setName($key);
 
-            $this->setReference("func_$name", $functionality);
+            $this->setReference("func_$key", $functionality);
             $manager->persist($functionality);
-        });
+        }
 
         $manager->flush();
     }

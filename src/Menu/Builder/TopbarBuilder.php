@@ -48,7 +48,7 @@ class TopbarBuilder
             'currentAsLink' => true,
         ]);
 
-        if ($this->authorizationChecker->isGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class)) {
+        if ($this->authorizationChecker->isGranted(FunctionalityVoter::CACHE_CLEAR, FunctionalityName::class)) {
             $menu->addChild('topbar.cache_clear', [
                 'route' => 'admin_cache',
                 'label' => false,
@@ -59,9 +59,9 @@ class TopbarBuilder
         }
 
         if (
-            $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)
-            or $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_FUNCTIONALITIES, Functionality::class)
-            or $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_SETTINGS, Functionality::class)
+            $this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, FunctionalityName::class)
+            or $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_FUNCTIONALITIES, FunctionalityName::class)
+            or $this->authorizationChecker->isGranted(FunctionalityVoter::MANAGE_SETTINGS, FunctionalityName::class)
         ) {
             $menu->addChild('topbar.manage_functionalities', [
                 'uri' => '#!',

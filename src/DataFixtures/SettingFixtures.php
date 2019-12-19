@@ -13,7 +13,7 @@ namespace App\DataFixtures;
 use App\Entity\Setting;
 use App\Manager\SettingManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class SettingFixtures.

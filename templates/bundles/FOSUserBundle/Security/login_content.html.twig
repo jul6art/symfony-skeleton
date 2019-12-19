@@ -28,7 +28,7 @@
         </div>
     </div>
     {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
     {% endif %}
     <div class="row">
         <div class="col-xs-8 p-t-5">

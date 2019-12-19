@@ -12,7 +12,7 @@ namespace App\Repository;
 
 use App\Entity\UserSetting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method UserSetting|null find($id, $lockMode = null, $lockVersion = null)
@@ -24,10 +24,9 @@ class UserSettingRepository extends ServiceEntityRepository
 {
     /**
      * UserSettingRepository constructor.
-     *
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, UserSetting::class);
     }

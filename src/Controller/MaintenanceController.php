@@ -20,11 +20,11 @@ use App\Transformer\MaintenanceTransformer;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Symfony\Component\DependencyInjection\Exception\ExceptionInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
 /**
@@ -41,6 +41,7 @@ class MaintenanceController extends AbstractFOSRestController
      * @return Response
      *
      * @throws NonUniqueResultException
+     * @throws ExceptionInterface
      */
     public function index(Request $request, MaintenanceTransformer $maintenanceTransformer, EventDispatcherInterface $eventDispatcher): Response
     {
@@ -60,10 +61,10 @@ class MaintenanceController extends AbstractFOSRestController
     }
 
     /**
-     * @param Request                  $request
-     * @param MaintenanceTransformer   $maintenanceTransformer
+     * @param Request $request
+     * @param MaintenanceTransformer $maintenanceTransformer
      * @param EventDispatcherInterface $eventDispatcher
-     * @param AuditHelper              $auditHelper
+     * @param AuditHelper $auditHelper
      *
      * @Route("%admin_route_prefix%/maintenance/edit", name="edit", methods={"GET", "POST"})
      *

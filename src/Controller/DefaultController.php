@@ -10,6 +10,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Manager\FunctionalityManagerAwareTrait;
@@ -29,7 +30,6 @@ use DH\DoctrineAuditBundle\Reader\AuditReader;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Lexik\Bundle\TranslationBundle\Entity\Translation;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -90,7 +90,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function locale(Request $request, string $locale, TranslatorInterface $translator, array $available_locales): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, FunctionalityName::class);
 
         if (!\in_array($locale, $available_locales)) {
             throw new NotFoundHttpException();
@@ -126,7 +126,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function cache(Request $request, KernelInterface $kernel, TranslatorInterface $translator, MessageBusInterface $bus): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, FunctionalityName::class);
 
         $size = $this->fileService->getSizeAndUnit($this->getParameter('kernel.cache_dir'));
 
@@ -157,7 +157,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function theme(Request $request, string $color, array $available_colors): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, FunctionalityName::class);
 
         if (!\in_array($color, $available_colors)) {
             throw new NotFoundHttpException();
@@ -230,8 +230,8 @@ class DefaultController extends AbstractFOSRestController
 
     /**
      * @param Request $request
-     * @param Setting $setting
-     * @param string  $value
+     * @param string $domain
+     * @param string $key
      *
      * @Route("%admin_route_prefix%/translation/edit/{domain}/{key}", name="admin_translation_edit", methods={"POST"}, options={"expose"=true})
      *
@@ -239,7 +239,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function translate(Request $request, string $domain, string $key): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT_IN_PLACE, FunctionalityName::class);
 
         $referer = $this->refererService->getFormReferer($request, 'translate');
 

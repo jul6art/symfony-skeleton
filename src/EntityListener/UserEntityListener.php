@@ -10,7 +10,7 @@
 
 namespace App\EntityListener;
 
-use App\Entity\Functionality;
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\User;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\NonUniqueResultException;
@@ -40,7 +40,7 @@ class UserEntityListener extends AbstractEntityListener
         //
         // notifications for deletion are currently made by sweetalert dialog if func is active
         //
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_CONFIRM_DELETE)) {
+        if (!$this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_CONFIRM_DELETE)) {
             $this->flashBag->add('success', $this->translator->trans('notification.user.deleted', [], 'notification'));
         }
     }

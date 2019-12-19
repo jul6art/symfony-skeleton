@@ -10,6 +10,7 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
@@ -143,7 +144,7 @@ class UserVoter extends AbstractVoter
      */
     public function canAudit($subject, TokenInterface $token): bool
     {
-        if (!$this->functionalityManager->isActive(Functionality::FUNC_AUDIT)) {
+        if (!$this->functionalityManager->isActive(FunctionalityName::FUNC_NAME_AUDIT)) {
             return false;
         }
 

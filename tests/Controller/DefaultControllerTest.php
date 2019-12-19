@@ -8,6 +8,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
@@ -317,7 +318,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_MANAGE_SETTINGS)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -356,7 +357,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_AUDIT)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_AUDIT)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -386,7 +387,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CLEAR_CACHE)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_CLEAR_CACHE)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -416,7 +417,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_EDIT_IN_PLACE)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_EDIT_IN_PLACE)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -446,7 +447,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_CONFIRM_DELETE)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_CONFIRM_DELETE)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -476,7 +477,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_FORM_WATCHER)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_FORM_WATCHER)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -506,7 +507,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_MANAGE_SETTINGS)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_MANAGE_SETTINGS)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -536,7 +537,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_PROGRESSIVE_WEB_APP)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_PROGRESSIVE_WEB_APP)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $crawler = $client->followRedirect();
@@ -570,7 +571,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_LOCALE)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_LOCALE)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -600,7 +601,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_THEME)->getId();
         $client->request('GET', "/admin/functionality/$id/0");
 
         $client->followRedirect();
@@ -630,7 +631,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(Functionality::FUNC_SWITCH_THEME)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_THEME)->getId();
         $client->xmlHttpRequest('GET', "/admin/functionality/$id/1");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -658,8 +659,6 @@ class DefaultControllerTest extends WebTestCase
      * Test App\\Controller\\DefaultController setting Action.
      *
      * User has bad roles
-     *
-     * @throws ORMException
      */
     public function testSetting02(): void
     {
@@ -699,8 +698,6 @@ class DefaultControllerTest extends WebTestCase
      * Test App\\Controller\\DefaultController setting Action.
      *
      * Successfull with setting project name
-     *
-     * @throws ORMException
      */
     public function testSetting04(): void
     {
@@ -726,8 +723,6 @@ class DefaultControllerTest extends WebTestCase
      * Test App\\Controller\\DefaultController setting Action.
      *
      * Successfull with setting base title
-     *
-     * @throws ORMException
      */
     public function testSetting05(): void
     {
@@ -753,8 +748,6 @@ class DefaultControllerTest extends WebTestCase
      * Test App\\Controller\\DefaultController setting Action.
      *
      * Successfull with setting default theme
-     *
-     * @throws ORMException
      */
     public function testSetting06(): void
     {
@@ -781,7 +774,6 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with setting audit limit
      *
-     * @throws ORMException
      */
     public function testSetting07(): void
     {
@@ -807,8 +799,6 @@ class DefaultControllerTest extends WebTestCase
      * Test App\\Controller\\DefaultController setting Action.
      *
      * Successfull with setting toastr vertical position
-     *
-     * @throws ORMException
      */
     public function testSetting08(): void
     {
@@ -835,7 +825,6 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with toastr horizontal position
      *
-     * @throws ORMException
      */
     public function testSetting09(): void
     {
@@ -862,7 +851,6 @@ class DefaultControllerTest extends WebTestCase
      *
      * Successfull with ajax call
      *
-     * @throws ORMException
      */
     public function testSetting10(): void
     {

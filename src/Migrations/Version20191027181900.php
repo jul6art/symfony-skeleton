@@ -32,9 +32,9 @@ final class Version20191027181900 extends AbstractMigration
 
         $this->addSql('CREATE TABLE `sessions` (
     `sess_id` VARCHAR(128) NOT NULL PRIMARY KEY,
-    `sess_data` BLOB NOT NULL,
+    `sess_data` MEDIUMBLOB NOT NULL,
     `sess_time` INTEGER UNSIGNED NOT NULL,
-    `sess_lifetime` BIGINT NOT NULL
+    `sess_lifetime` INTEGER UNSIGNED NOT NULL
 ) COLLATE utf8mb4_bin, ENGINE = InnoDB;');
     }
 
