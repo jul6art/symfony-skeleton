@@ -9,8 +9,8 @@ framework:
     session:
         cookie_lifetime: '%session_lifetime%'
         gc_maxlifetime: '%session_lifetime%'
-        cookie_secure: auto
-        cookie_samesite: lax
+        cookie_secure: 'auto'
+        cookie_samesite: 'lax'
         cookie_domain: '%current_cookie_domain%'
         name: SFSESSID
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler

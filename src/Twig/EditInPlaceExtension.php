@@ -71,7 +71,7 @@ class EditInPlaceExtension extends AbstractExtension
         if (!$request->request->has(self::SESSION_KEY)) {
             $attributes = '';
 
-            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, FunctionalityName::class)) {
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)) {
                 $attributes = ' data-provide=wysiwyg data-inline data-edit';
             }
 
@@ -104,7 +104,7 @@ class EditInPlaceExtension extends AbstractExtension
         if (!$request->request->has($requestKey)) {
             $attributes = '';
 
-            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, FunctionalityName::class)) {
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class)) {
                 $attributes = " data-provide=wysiwyg data-inline data-translate data-domain=$domain data-key=$key data-parameters=$parametersJSON";
             }
 

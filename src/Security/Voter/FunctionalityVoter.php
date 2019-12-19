@@ -67,7 +67,7 @@ class FunctionalityVoter extends AbstractVoter
             return true;
         }
 
-        if (FunctionalityName::class === $subject) {
+        if (Functionality::class === $subject) {
             return true;
         }
 

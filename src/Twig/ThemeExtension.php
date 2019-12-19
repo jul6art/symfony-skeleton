@@ -90,7 +90,7 @@ class ThemeExtension extends AbstractExtension
             $user = $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
             $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
 
-            if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, FunctionalityName::class)) {
+            if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)) {
                 if ($user instanceof User and $user->hasSetting(User::SETTING_THEME)) {
                     $theme = $user->getTheme();
                 }

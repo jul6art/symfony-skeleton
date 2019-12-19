@@ -10,7 +10,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Manager\FunctionalityManagerAwareTrait;
@@ -90,7 +89,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function locale(Request $request, string $locale, TranslatorInterface $translator, array $available_locales): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, FunctionalityName::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_LOCALE, Functionality::class);
 
         if (!\in_array($locale, $available_locales)) {
             throw new NotFoundHttpException();
@@ -126,7 +125,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function cache(Request $request, KernelInterface $kernel, TranslatorInterface $translator, MessageBusInterface $bus): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, FunctionalityName::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::CACHE_CLEAR, Functionality::class);
 
         $size = $this->fileService->getSizeAndUnit($this->getParameter('kernel.cache_dir'));
 
@@ -157,7 +156,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function theme(Request $request, string $color, array $available_colors): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, FunctionalityName::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class);
 
         if (!\in_array($color, $available_colors)) {
             throw new NotFoundHttpException();
@@ -239,7 +238,7 @@ class DefaultController extends AbstractFOSRestController
      */
     public function translate(Request $request, string $domain, string $key): Response
     {
-        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT_IN_PLACE, FunctionalityName::class);
+        $this->denyAccessUnlessGranted(FunctionalityVoter::EDIT_IN_PLACE, Functionality::class);
 
         $referer = $this->refererService->getFormReferer($request, 'translate');
 
