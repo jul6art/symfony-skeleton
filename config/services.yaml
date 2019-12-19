@@ -46,14 +46,14 @@ parameters:
         - en
         - de
     cookie_policy_url: 'http://allaboutcookies.org/'
-    current_cookie_domain: '.%env(CURRENT_DOMAIN)%'
-    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    current_cookie_domain: '.%env(resolve:CURRENT_DOMAIN)%'
+    google_recaptcha_site_key: '%env(resolve:GOOGLE_RECAPTCHA_SITE_KEY)%'
     group_class: App\Entity\Group
     locale: 'fr'
     logo: '/build/images/logo.png'
-    mercure_jwt_key: '%env(MERCURE_JWT_KEY)%'
-    mailer_from_address: '%env(MAILER_FROM_ADDRESS)%'
-    mailer_from_name: '%env(MAILER_FROM_NAME)%'
+    mercure_jwt_key: '%env(resolve:MERCURE_JWT_KEY)%'
+    mailer_from_address: '%env(resolve:MAILER_FROM_ADDRESS)%'
+    mailer_from_name: '%env(resolve:MAILER_FROM_NAME)%'
     session_lifetime: 604800 # 30 * 24 * 3600 -> 30 jours
     skeleton_version: 1.0.1
     user_class: App\Entity\User
@@ -66,20 +66,20 @@ services:
             $available_colors: '%available_colors%'
             $available_functionalities: '%available_functionalities%'
             $available_locales: '%available_locales%'
-            $current_domain: '%env(CURRENT_DOMAIN)%'
+            $current_domain: '%env(resolve:CURRENT_DOMAIN)%'
             $environment: '%kernel.environment%'
-            $http_protocol: '%env(HTTP_PROTOCOL)%'
+            $http_protocol: '%env(resolve:HTTP_PROTOCOL)%'
             $locale: '%locale%'
             $mailer_from_address: '%mailer_from_address%'
             $mailer_from_name: '%mailer_from_name%'
             $project_dir: '%kernel.project_dir%'
-            $recaptacha_secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+            $recaptacha_secret: '%env(resolve:GOOGLE_RECAPTCHA_SECRET)%'
             $session_lifetime: '%session_lifetime%'
             $skeleton_version: '%skeleton_version%'
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Factory,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,EventListener,Factory,Migrations,Tests,Kernel.php}'
 
     App\Manager\GroupManager:
         public: true
@@ -126,7 +126,7 @@ services:
 
     App\Mercure\JwtProvider:
         arguments:
-            $token: '%env(MERCURE_JWT_TOKEN)%'
+            $token: '%env(resolve:MERCURE_JWT_TOKEN)%'
 
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
@@ -140,6 +140,6 @@ services:
 
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
-            - 'mysql:dbname=%env(DATABASE_NAME)%; host=%env(DATABASE_HOST)%; port=%env(DATABASE_PORT)%'
-            - { db_table: 'sessions', db_username: '%env(DATABASE_USER)%', db_password: '%env(DATABASE_PASSWORD)%' }
+            - 'mysql:dbname=%env(resolve:DATABASE_NAME)%; host=%env(resolve:DATABASE_HOST)%; port=%env(resolve:DATABASE_PORT)%'
+            - { db_table: 'sessions', db_username: '%env(resolve:DATABASE_USER)%', db_password: '%env(resolve:DATABASE_PASSWORD)%' }
 #           - !service { class: PDO, factory: ['@database_connection', 'getWrappedConnection'] }

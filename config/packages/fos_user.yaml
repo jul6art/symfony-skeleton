@@ -5,8 +5,8 @@ fos_user:
     group:
         group_class: '%group_class%'
     from_email:
-        address: '%env(MAILER_FROM_ADDRESS)%'
-        sender_name: '%env(MAILER_FROM_NAME)%'
+        address: '%env(resolve:MAILER_FROM_ADDRESS)%'
+        sender_name: '%env(resolve:MAILER_FROM_NAME)%'
     service:
         mailer: fos_user.mailer.twig_swift
     change_password:
@@ -22,8 +22,8 @@ fos_user:
             enabled: true
             template: 'email/account/register/email.html.twig'
             from_email:
-                address: '%env(MAILER_FROM_ADDRESS)%'
-                sender_name: '%env(MAILER_FROM_NAME)%'
+                address: '%env(resolve:MAILER_FROM_ADDRESS)%'
+                sender_name: '%env(resolve:MAILER_FROM_NAME)%'
         form:
             type: App\Form\User\RegisterUserType
             validation_groups:  [Registration, Default]

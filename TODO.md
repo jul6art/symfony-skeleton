@@ -69,6 +69,7 @@ URGENT
         embed fichiers twig pour remplacer include et extends
         appeler les fonctions de manager direct dansd les extensions twig si c est juste pour faire un return 
         builderhelper like
+        layoutselectorhandler like
    
     dossier src/Twig 
         arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?

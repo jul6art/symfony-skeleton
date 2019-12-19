@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7d9ea13acb02a72f6624682db4e11cb",
+    "content-hash": "7bc584810268a0648b2d064de9054245",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1611,16 +1611,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.8.0",
+            "version": "v1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
                 "shasum": ""
             },
             "require": {
@@ -1629,12 +1629,12 @@
             "require-dev": {
                 "ext-intl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^1.5"
+                "squizlabs/php_codesniffer": "^2.9.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1657,7 +1657,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-07-12T10:23:15+00:00"
+            "time": "2019-12-12T13:22:17+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -2500,56 +2500,6 @@
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "time": "2019-08-22T18:11:29+00:00"
-        },
-        {
-            "name": "pimple/pimple",
-            "version": "v3.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "psr/container": "^1.0"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "^3.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Pimple": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "http://pimple.sensiolabs.org",
-            "keywords": [
-                "container",
-                "dependency injection"
-            ],
-            "time": "2018-01-21T07:42:36+00:00"
         },
         {
             "name": "psr/cache",
@@ -7616,53 +7566,6 @@
     ],
     "packages-dev": [
         {
-            "name": "friendsoftwig/twigcs",
-            "version": "v3.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/friendsoftwig/twigcs.git",
-                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/friendsoftwig/twigcs/zipball/2cf00ca7a859ac04d5d750c14e15af507c5dd568",
-                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0",
-                "pimple/pimple": "^3.0",
-                "symfony/console": "^2.7 || ^3.0 || ^4.0 || ^5.0",
-                "symfony/finder": "^2.7 || ^3.0 || ^4.0 || ^5.0",
-                "twig/twig": "^1.41 || ^2.10 || ^3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.2 || ^6.5"
-            },
-            "bin": [
-                "bin/twigcs"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Allocine\\Twigcs\\": "src/",
-                    "Allocine\\Twigcs\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "OwlyCode",
-                    "email": "tmaindron@gmail.com"
-                }
-            ],
-            "description": "Checkstyle automation for Twig",
-            "time": "2019-10-20T16:35:53+00:00"
-        },
-        {
             "name": "composer/semver",
             "version": "1.5.0",
             "source": {
@@ -8086,6 +7989,53 @@
             "time": "2019-08-31T12:51:54+00:00"
         },
         {
+            "name": "friendsoftwig/twigcs",
+            "version": "v3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/friendsoftwig/twigcs.git",
+                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/friendsoftwig/twigcs/zipball/2cf00ca7a859ac04d5d750c14e15af507c5dd568",
+                "reference": "2cf00ca7a859ac04d5d750c14e15af507c5dd568",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "pimple/pimple": "^3.0",
+                "symfony/console": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "symfony/finder": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "twig/twig": "^1.41 || ^2.10 || ^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2 || ^6.5"
+            },
+            "bin": [
+                "bin/twigcs"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Allocine\\Twigcs\\": "src/",
+                    "Allocine\\Twigcs\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "OwlyCode",
+                    "email": "tmaindron@gmail.com"
+                }
+            ],
+            "description": "Checkstyle automation for Twig",
+            "time": "2019-10-20T16:35:53+00:00"
+        },
+        {
             "name": "gitonomy/gitlib",
             "version": "v1.1.0",
             "source": {
@@ -8482,6 +8432,56 @@
                 "timer"
             ],
             "time": "2019-06-07T04:22:29+00:00"
+        },
+        {
+            "name": "pimple/pimple",
+            "version": "v3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silexphp/Pimple.git",
+                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/container": "^1.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Pimple": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Pimple, a simple Dependency Injection Container",
+            "homepage": "http://pimple.sensiolabs.org",
+            "keywords": [
+                "container",
+                "dependency injection"
+            ],
+            "time": "2018-01-21T07:42:36+00:00"
         },
         {
             "name": "sebastian/finder-facade",

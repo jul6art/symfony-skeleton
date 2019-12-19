@@ -3,7 +3,7 @@ services:
     # Inject this service in your controllers/services to verify a submitted captcha.
     ReCaptcha\ReCaptcha:
         arguments:
-            $secret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+            $secret: '%env(resolve:GOOGLE_RECAPTCHA_SECRET)%'
             $requestMethod: '@ReCaptcha\RequestMethod'
 
     # Curl is set here as default transport to communicate with Google servers.

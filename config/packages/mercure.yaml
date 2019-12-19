@@ -2,5 +2,5 @@ mercure:
     enable_profiler: '%kernel.debug%'
     hubs:
         default:
-            url: '%env(MERCURE_PUBLISH_URL)%'
+            url: '%env(resolve:MERCURE_PUBLISH_URL)%'
             jwt_provider: App\Mercure\JwtProvider
