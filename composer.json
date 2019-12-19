@@ -31,7 +31,7 @@
         "symfony/flex": "^1.1",
         "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
-        "symfony/lock": "^4.0",
+        "symfony/lock": "^5.0",
         "symfony/mercure-bundle": "^0.2.3",
         "symfony/messenger": "4.*",
         "symfony/monolog-bundle": "^3.1",
