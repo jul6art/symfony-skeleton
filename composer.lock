@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bc584810268a0648b2d064de9054245",
+    "content-hash": "6113db2f2fc69daee8f25a3d712e39d5",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3749,26 +3749,26 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.2",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "40c2606131d56eff6f193b6e2ceb92414653b591"
+                "reference": "1d71f670bc5a07b9ccc97dc44f932177a322d4e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/40c2606131d56eff6f193b6e2ceb92414653b591",
-                "reference": "40c2606131d56eff6f193b6e2ceb92414653b591",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1d71f670bc5a07b9ccc97dc44f932177a322d4e6",
+                "reference": "1d71f670bc5a07b9ccc97dc44f932177a322d4e6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -3795,7 +3795,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-26T23:16:41+00:00"
+            "time": "2019-11-26T23:25:11+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4975,25 +4975,25 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.4.2",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "2be23e63f33de16b49294ea6581f462932a77e2f"
+                "reference": "1ad3d0ffc00cc1990e5c9c7bb6b81578ec3f5f68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/2be23e63f33de16b49294ea6581f462932a77e2f",
-                "reference": "2be23e63f33de16b49294ea6581f462932a77e2f",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/1ad3d0ffc00cc1990e5c9c7bb6b81578ec3f5f68",
+                "reference": "1ad3d0ffc00cc1990e5c9c7bb6b81578ec3f5f68",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -5025,7 +5025,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-10-28T21:57:16+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/orm-pack",
@@ -8190,16 +8190,16 @@
         },
         {
             "name": "phpro/grumphp",
-            "version": "v0.16.2",
+            "version": "v0.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/grumphp.git",
-                "reference": "616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8"
+                "reference": "4d7b88d8673de8cbba546577f81a7f02deed4d88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/grumphp/zipball/616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8",
-                "reference": "616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8",
+                "url": "https://api.github.com/repos/phpro/grumphp/zipball/4d7b88d8673de8cbba546577f81a7f02deed4d88",
+                "reference": "4d7b88d8673de8cbba546577f81a7f02deed4d88",
                 "shasum": ""
             },
             "require": {
@@ -8208,29 +8208,29 @@
                 "ext-json": "*",
                 "gitonomy/gitlib": "^1.0.3",
                 "monolog/monolog": "~1.16 || ^2.0",
-                "php": "^7.1",
+                "php": "^7.2",
                 "seld/jsonlint": "~1.1",
-                "symfony/config": "~3.4 || ~4.0",
-                "symfony/console": "~3.4 || ~4.0",
-                "symfony/dependency-injection": "~3.4 || ~4.0",
-                "symfony/event-dispatcher": "~3.4 || ~4.0",
-                "symfony/filesystem": "~3.4 || ~4.0",
-                "symfony/finder": "~3.4 || ~4.0",
-                "symfony/options-resolver": "~3.4 || ~4.0",
-                "symfony/process": "~3.4 || ~4.0",
-                "symfony/yaml": "~3.4 || ~4.0"
+                "symfony/config": "~3.4 || ~4.0 || ~5.0",
+                "symfony/console": "~3.4 || ~4.0 || ~5.0",
+                "symfony/dependency-injection": "~3.4 || ~4.0 || ~5.0",
+                "symfony/event-dispatcher": "~3.4 || ~4.0 || ~5.0",
+                "symfony/filesystem": "~3.4 || ~4.0 || ~5.0",
+                "symfony/finder": "~3.4 || ~4.0 || ~5.0",
+                "symfony/options-resolver": "~3.4 || ~4.0 || ~5.0",
+                "symfony/process": "~3.4 || ~4.0 || ~5.0",
+                "symfony/yaml": "~3.4 || ~4.0 || ~5.0"
             },
             "require-dev": {
-                "brianium/paratest": "^2.2.0",
-                "composer/composer": "^1.8.5",
-                "friendsofphp/php-cs-fixer": "~2",
-                "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "localheinz/composer-normalize": "^1.2",
-                "nikic/php-parser": "^3.0",
-                "phpspec/phpspec": "^5.1",
-                "phpunit/phpunit": "^7.5.12",
-                "sensiolabs/security-checker": "^5.0",
-                "squizlabs/php_codesniffer": "~2.9"
+                "brianium/paratest": "~3.1",
+                "composer/composer": "~1.9",
+                "friendsofphp/php-cs-fixer": "~2.16",
+                "jakub-onderka/php-parallel-lint": "~1.0",
+                "localheinz/composer-normalize": "~1.3",
+                "nikic/php-parser": "~3.1",
+                "phpspec/phpspec": "~6.1",
+                "phpunit/phpunit": "^7.5.17",
+                "sensiolabs/security-checker": "~6.0",
+                "squizlabs/php_codesniffer": "~3.5"
             },
             "suggest": {
                 "atoum/atoum": "Lets GrumPHP run your unit tests.",
@@ -8291,7 +8291,7 @@
                 }
             ],
             "description": "A composer plugin that enables source code quality checks.",
-            "time": "2019-10-29T05:23:01+00:00"
+            "time": "2019-11-29T13:17:55+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -9301,7 +9301,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "7.3.*",
+        "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-gd": "*",
