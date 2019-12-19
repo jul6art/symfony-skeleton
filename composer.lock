@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bc584810268a0648b2d064de9054245",
+    "content-hash": "a8a735f69bc4e7a382fe4a1b2e9ba1e3",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -52,21 +52,24 @@
         },
         {
             "name": "damienharper/doctrine-audit-bundle",
-            "version": "2.5.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DamienHarper/DoctrineAuditBundle.git",
-                "reference": "998d5112811d20fc1b17d30b305b0dc6500c1e91"
+                "reference": "4cb56c2030514d927c8fd3a52a461841f5c8c132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/998d5112811d20fc1b17d30b305b0dc6500c1e91",
-                "reference": "998d5112811d20fc1b17d30b305b0dc6500c1e91",
+                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/4cb56c2030514d927c8fd3a52a461841f5c8c132",
+                "reference": "4cb56c2030514d927c8fd3a52a461841f5c8c132",
                 "shasum": ""
             },
             "require": {
+                "doctrine/annotations": "^1.8",
                 "pagerfanta/pagerfanta": "^2.1",
                 "php": ">=7.1",
+                "symfony/event-dispatcher": "^3.4 || ^4.0",
+                "symfony/lock": "^3.4 || ^4.0",
                 "symfony/orm-pack": "^1.0",
                 "symfony/security-bundle": "^3.4 || ^4.0",
                 "white-october/pagerfanta-bundle": "^1.2"
@@ -75,6 +78,7 @@
                 "twig/twig": "<1.40|<2.9"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
                 "gedmo/doctrine-extensions": "^2.4",
                 "matthiasnoback/symfony-dependency-injection-test": "^3.1 || ^4.0",
                 "phpstan/phpstan": "^0.11.2",
@@ -82,7 +86,6 @@
                 "phpstan/phpstan-symfony": "^0.11.1",
                 "phpunit/phpunit": "^7.0 || ^8.0",
                 "stof/doctrine-extensions-bundle": "^1.3",
-                "symfony/lock": "^4.2",
                 "symfony/var-dumper": "^4.2",
                 "twig/extensions": "^1.5"
             },
@@ -107,7 +110,7 @@
                 "Audit",
                 "doctrine"
             ],
-            "time": "2019-09-04T07:23:24+00:00"
+            "time": "2019-11-01T10:59:29+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -4438,26 +4441,26 @@
         },
         {
             "name": "symfony/inflector",
-            "version": "v4.4.1",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/inflector.git",
-                "reference": "98581481d9ddabe4db3a66e10202fe1fa08d791b"
+                "reference": "aaeb5e293294070d1b061fa3d7889bac69909320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/inflector/zipball/98581481d9ddabe4db3a66e10202fe1fa08d791b",
-                "reference": "98581481d9ddabe4db3a66e10202fe1fa08d791b",
+                "url": "https://api.github.com/repos/symfony/inflector/zipball/aaeb5e293294070d1b061fa3d7889bac69909320",
+                "reference": "aaeb5e293294070d1b061fa3d7889bac69909320",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -4492,7 +4495,7 @@
                 "symfony",
                 "words"
             ],
-            "time": "2019-11-06T12:02:32+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/intl",
@@ -7246,25 +7249,28 @@
         },
         {
             "name": "white-october/pagerfanta-bundle",
-            "version": "v1.2.4",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git",
-                "reference": "19bf14bf8c72e4205c9ca97028436701fe3991a6"
+                "reference": "6df560869b5e09a3acf920890ab40598998b30ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberPagerfantaBundle/zipball/19bf14bf8c72e4205c9ca97028436701fe3991a6",
-                "reference": "19bf14bf8c72e4205c9ca97028436701fe3991a6",
+                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberPagerfantaBundle/zipball/6df560869b5e09a3acf920890ab40598998b30ae",
+                "reference": "6df560869b5e09a3acf920890ab40598998b30ae",
                 "shasum": ""
             },
             "require": {
                 "pagerfanta/pagerfanta": "^1.1.0|^2.0.0",
-                "php": ">=5.3",
+                "php": ">=5.3.3",
                 "symfony/framework-bundle": "~2.3|~3.0|~4.0",
                 "symfony/property-access": "~2.3|~3.0|~4.0",
                 "symfony/translation": "~2.3|~3.0|~4.0",
                 "symfony/twig-bundle": "~2.3|~3.0|~4.0"
+            },
+            "conflict": {
+                "twig/twig": "<1.34|>=2.0,<2.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "~3.7|~4.0|^5.0",
@@ -7300,7 +7306,7 @@
                 "page",
                 "paging"
             ],
-            "time": "2019-02-14T08:42:52+00:00"
+            "time": "2019-12-02T14:19:37+00:00"
         },
         {
             "name": "willdurand/js-translation-bundle",
