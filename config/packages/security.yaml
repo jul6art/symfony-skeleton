@@ -19,7 +19,6 @@ security:
             logout:       true
             anonymous:    true
             switch_user: true
-            logout_on_user_change: true
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 31557600 # 1 year in seconds
