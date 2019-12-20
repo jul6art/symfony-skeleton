@@ -11,6 +11,7 @@
 namespace App\Factory;
 
 use App\Entity\Test;
+use App\Factory\Interfaces\FactoryInterface;
 
 /**
  * Class TestFactory.

@@ -8,6 +8,8 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\UserPassword;
+use App\Entity\Constants\UserUsername;
 use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
@@ -93,8 +95,8 @@ class SecurityControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[action="/login_check"] [type="submit"]')->form();
         $client->submit($form, [
-            '_username' => User::DEFAULT_ADMIN_USERNAME,
-            '_password' => User::DEFAULT_PASSWORD,
+            '_username' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            '_password' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->followRedirect();

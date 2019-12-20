@@ -12,7 +12,7 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use App\Event\UserEvent;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use App\Traits\FlashBagAwareTrait;
 use App\Traits\TranslatorAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;

@@ -8,7 +8,7 @@
  * Time: 21:39.
  */
 
-namespace App\Factory;
+namespace App\Factory\Interfaces;
 
 /**
  * Interface FactoryInterface.

@@ -10,20 +10,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Constants\SettingName;
 use App\Entity\Functionality;
 use App\Entity\Setting;
-use App\Manager\FunctionalityManagerAwareTrait;
-use App\Manager\QueueManagerAwareTrait;
-use App\Manager\SettingManagerAwareTrait;
-use App\Manager\TestManagerAwareTrait;
-use App\Manager\TranslationManagerAwareTrait;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\QueueManagerAwareTrait;
+use App\Manager\Traits\SettingManagerAwareTrait;
+use App\Manager\Traits\TestManagerAwareTrait;
+use App\Manager\Traits\TranslationManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use App\Message\PurgeSessionsMessage;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\FunctionalityVoter;
 use App\Security\Voter\SettingVoter;
-use App\Service\FileServiceAwareTrait;
-use App\Service\RefererServiceAwareTrait;
+use App\Service\Traits\FileServiceAwareTrait;
+use App\Service\Traits\RefererServiceAwareTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use DH\DoctrineAuditBundle\Reader\AuditReader;
 use Doctrine\DBAL\DBALException;
@@ -282,7 +283,7 @@ class DefaultController extends AbstractFOSRestController
                              AuditHelper::paramToNamespace($class),
                              $id,
                              1,
-                             $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+                             $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingName::SETTING_VALUE_AUDIT_LIMIT)
                          ),
                          'users' => $this->userManager->findAllForAudit(),
                          'exclude' => $exclude,

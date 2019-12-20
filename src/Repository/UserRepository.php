@@ -12,6 +12,7 @@ namespace App\Repository;
 
 use App\Entity\Group;
 use App\Entity\User;
+use App\Repository\Traits\RepositoryAwareTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;

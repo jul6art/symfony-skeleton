@@ -11,6 +11,7 @@
 namespace App\Factory;
 
 use App\Entity\Functionality;
+use App\Factory\Interfaces\FactoryInterface;
 
 /**
  * Class FunctionalityFactory.

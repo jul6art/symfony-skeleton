@@ -10,7 +10,7 @@
 
 namespace App\DataFixtures;
 
-use App\Manager\TestManagerAwareTrait;
+use App\Manager\Traits\TestManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\NonUniqueResultException;

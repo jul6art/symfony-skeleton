@@ -8,6 +8,8 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\UserPassword;
+use App\Entity\Constants\UserUsername;
 use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
@@ -65,8 +67,8 @@ class UserControllerTest extends WebTestCase
     public function testIndex02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/user/');
@@ -84,8 +86,8 @@ class UserControllerTest extends WebTestCase
     public function testIndex03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/user/');
@@ -119,8 +121,8 @@ class UserControllerTest extends WebTestCase
     public function testAdd02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/user/add');
@@ -138,8 +140,8 @@ class UserControllerTest extends WebTestCase
     public function testAdd03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->request('GET', '/admin/user/add');
@@ -170,8 +172,8 @@ class UserControllerTest extends WebTestCase
     public function testAdd04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->request('GET', '/admin/user/add');
@@ -225,8 +227,8 @@ class UserControllerTest extends WebTestCase
     public function testShow02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -247,8 +249,8 @@ class UserControllerTest extends WebTestCase
     public function testShow03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -269,8 +271,8 @@ class UserControllerTest extends WebTestCase
     public function testShow04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/user/view/-1');
@@ -307,8 +309,8 @@ class UserControllerTest extends WebTestCase
     public function testEdit02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -329,8 +331,8 @@ class UserControllerTest extends WebTestCase
     public function testEdit03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -364,8 +366,8 @@ class UserControllerTest extends WebTestCase
     public function testEdit04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->request('GET', '/admin/user/edit/-1');
@@ -383,8 +385,8 @@ class UserControllerTest extends WebTestCase
     public function testEdit05(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $tests = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -441,8 +443,8 @@ class UserControllerTest extends WebTestCase
     public function testDelete02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -463,8 +465,8 @@ class UserControllerTest extends WebTestCase
     public function testDelete03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $users = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(User::class)->findAll();
@@ -489,8 +491,8 @@ class UserControllerTest extends WebTestCase
     public function testDelete04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/user/delete/-1');

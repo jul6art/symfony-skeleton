@@ -12,7 +12,7 @@
     {{ 'email.account.registration.message'|trans({
         '%username%': user.username,
         '%confirmationUrl%': confirmationUrl,
-        '%project_name%': setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE'))
+        '%project_name%': setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_PROJECT_NAME'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_PROJECT_NAME'))
     }, 'email')|raw }}
 {% endblock body_html %}
 

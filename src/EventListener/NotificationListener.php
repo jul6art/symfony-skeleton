@@ -15,12 +15,8 @@ use App\Event\UserEvent;
 use App\Message\NotifyOnUserAddedMessage;
 use App\Message\NotifyOnRegistrationMessage;
 use App\Traits\MessageBusAwareTrait;
-use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Event\FormEvent;
 use Throwable;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 
 /**
  * Class NotificationListener.
@@ -31,8 +27,6 @@ class NotificationListener
 
     /**
      * @param FormEvent $event
-     *
-     * @throws NonUniqueResultException
      */
     public function onRegistrationSuccess(FormEvent $event): void
     {
@@ -53,9 +47,6 @@ class NotificationListener
      * @param UserEvent $event
      *
      * @throws Throwable
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
      */
     public function onUserAdded(UserEvent $event): void
     {

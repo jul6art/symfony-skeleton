@@ -9,11 +9,13 @@
 namespace App\Tests\Controller;
 
 use App\Entity\Constants\FunctionalityName;
+use App\Entity\Constants\SettingName;
+use App\Entity\Constants\UserPassword;
+use App\Entity\Constants\UserUsername;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Entity\User;
 use App\Tests\TestTrait;
-use Doctrine\ORM\ORMException;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -69,8 +71,8 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/');
@@ -88,8 +90,8 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/');
@@ -123,8 +125,8 @@ class DefaultControllerTest extends WebTestCase
     public function testLocale02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/locale/de');
@@ -144,8 +146,8 @@ class DefaultControllerTest extends WebTestCase
     public function testLocale03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/locale/fr');
@@ -181,8 +183,8 @@ class DefaultControllerTest extends WebTestCase
     public function testCache02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/cache');
@@ -216,8 +218,8 @@ class DefaultControllerTest extends WebTestCase
     public function testTheme02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/theme/-1');
@@ -235,8 +237,8 @@ class DefaultControllerTest extends WebTestCase
     public function testTheme03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/theme/blue');
@@ -256,8 +258,8 @@ class DefaultControllerTest extends WebTestCase
     public function testTheme04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/theme/green');
@@ -277,11 +279,11 @@ class DefaultControllerTest extends WebTestCase
     public function testTheme05(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $client->request('GET', '/admin/theme/'.Setting::SETTING_DEFAULT_THEME_VALUE);
+        $client->request('GET', '/admin/theme/'.SettingName::SETTING_VALUE_DEFAULT_THEME);
 
         $client->followRedirect();
 
@@ -314,8 +316,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_MANAGE_SETTINGS)->getId();
@@ -334,8 +336,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/functionality/-1');
@@ -353,8 +355,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_AUDIT)->getId();
@@ -383,8 +385,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality05(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_CLEAR_CACHE)->getId();
@@ -413,8 +415,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality06(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_EDIT_IN_PLACE)->getId();
@@ -443,8 +445,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality07(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_CONFIRM_DELETE)->getId();
@@ -473,8 +475,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality08(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_FORM_WATCHER)->getId();
@@ -503,8 +505,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality09(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_MANAGE_SETTINGS)->getId();
@@ -533,8 +535,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality10(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_PROGRESSIVE_WEB_APP)->getId();
@@ -567,8 +569,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality11(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_LOCALE)->getId();
@@ -597,8 +599,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality12(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_THEME)->getId();
@@ -627,8 +629,8 @@ class DefaultControllerTest extends WebTestCase
     public function testFunctionality13(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Functionality::class)->findOneByName(FunctionalityName::FUNC_NAME_SWITCH_THEME)->getId();
@@ -663,11 +665,11 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_PROJECT_NAME)->getId();
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_PROJECT_NAME)->getId();
         $client->request('GET', "/admin/setting/$id/test");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -683,8 +685,8 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $client->request('GET', '/admin/setting/-1');
@@ -702,12 +704,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting04(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_PROJECT_NAME)->getId();
-        $value = Setting::SETTING_PROJECT_NAME_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_PROJECT_NAME)->getId();
+        $value = SettingName::SETTING_VALUE_PROJECT_NAME;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -727,12 +729,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting05(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_BASE_TITLE)->getId();
-        $value = Setting::SETTING_BASE_TITLE_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_BASE_TITLE)->getId();
+        $value = SettingName::SETTING_VALUE_BASE_TITLE;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -752,12 +754,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting06(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_DEFAULT_THEME)->getId();
-        $value = Setting::SETTING_DEFAULT_THEME_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_DEFAULT_THEME)->getId();
+        $value = SettingName::SETTING_VALUE_DEFAULT_THEME;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -778,12 +780,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting07(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_AUDIT_LIMIT)->getId();
-        $value = Setting::SETTING_AUDIT_LIMIT_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_AUDIT_LIMIT)->getId();
+        $value = SettingName::SETTING_VALUE_AUDIT_LIMIT;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -803,12 +805,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting08(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_VERTICAL_POSITION)->getId();
-        $value = Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION)->getId();
+        $value = SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -829,12 +831,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting09(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_HORIZONTAL_POSITION)->getId();
-        $value = Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION)->getId();
+        $value = SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -855,12 +857,12 @@ class DefaultControllerTest extends WebTestCase
     public function testSetting10(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_ADMIN_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_ADMIN,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(Setting::SETTING_TOASTR_HORIZONTAL_POSITION)->getId();
-        $value = Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE;
+        $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION)->getId();
+        $value = SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
         $client->xmlHttpRequest('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());

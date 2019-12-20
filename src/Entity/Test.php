@@ -10,6 +10,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Constants\TestContent;
 use App\Entity\Traits\BlameableEntityAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -23,8 +24,6 @@ class Test
 {
     use BlameableEntityAwareTrait;
     use TimestampableEntity;
-
-    public const TEXT_LENGTH = 15;
 
     /**
      * @ORM\Id()
@@ -46,7 +45,7 @@ class Test
      * @var string
      *
      * @Assert\NotBlank()
-     * @Assert\Length(min=Test::TEXT_LENGTH)
+     * @Assert\Length(min=TestContent::TEST_CONTENT_LENGTH_MAX)
      *
      * @ORM\Column(type="text")
      */

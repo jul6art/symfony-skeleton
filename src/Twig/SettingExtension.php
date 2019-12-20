@@ -11,7 +11,7 @@
 namespace App\Twig;
 
 use App\Entity\Setting;
-use App\Manager\SettingManagerAwareTrait;
+use App\Manager\Traits\SettingManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;

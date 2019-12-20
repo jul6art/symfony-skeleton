@@ -11,8 +11,8 @@
 namespace App\EventListener;
 
 use App\Event\MaintenanceEvent;
-use App\Manager\AuditManagerAwareTrait;
-use App\Manager\MaintenanceManagerAwareTrait;
+use App\Manager\Traits\AuditManagerAwareTrait;
+use App\Manager\Traits\MaintenanceManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\DBAL\DBALException;

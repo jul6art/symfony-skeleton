@@ -10,7 +10,7 @@
 
 namespace App\Command;
 
-use App\Manager\SessionManagerAwareTrait;
+use App\Manager\Traits\SessionManagerAwareTrait;
 use Doctrine\DBAL\DBALException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

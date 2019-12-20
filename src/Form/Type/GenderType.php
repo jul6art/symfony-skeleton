@@ -10,7 +10,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\User;
+use App\Entity\Constants\UserGender;
 use App\Validator\Constraints\Gender;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,8 +31,8 @@ class GenderType extends AbstractType
             'expanded' => true,
             'no_float' => true,
             'choices' => [
-                'form.user.gender.choices.m' => User::GENDER_MALE,
-                'form.user.gender.choices.f' => User::GENDER_FEMALE,
+                'form.user.gender.choices.m' => UserGender::USER_GENDER_MALE,
+                'form.user.gender.choices.f' => UserGender::USER_GENDER_FEMALE,
             ],
             'choice_translation_domain' => 'form',
             'constraints' => [

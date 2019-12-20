@@ -10,8 +10,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Constants\UserPassword;
 use App\Entity\User;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -118,6 +119,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setGender($faker->randomElement(self::GENDER_CHOICES))
             ->setFirstname($faker->firstName)
             ->setLastname($faker->lastName)
-            ->setPlainPassword(User::DEFAULT_PASSWORD);
+            ->setPlainPassword(UserPassword::USER_PASSWORD_DEFAULT_VALUE);
     }
 }

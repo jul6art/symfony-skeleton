@@ -12,8 +12,8 @@ namespace App\Security\Voter;
 
 use App\Entity\Constants\FunctionalityName;
 use App\Entity\Functionality;
-use App\Manager\FunctionalityManagerAwareTrait;
-use App\Manager\MaintenanceManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\MaintenanceManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 

@@ -12,10 +12,10 @@ namespace App\Controller;
 
 use App\Event\MaintenanceEvent;
 use App\Form\Maintenance\EditMaintenanceType;
-use App\Manager\MaintenanceManagerAwareTrait;
+use App\Manager\Traits\MaintenanceManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\MaintenanceVoter;
-use App\Service\RefererServiceAwareTrait;
+use App\Service\Traits\RefererServiceAwareTrait;
 use App\Transformer\MaintenanceTransformer;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;

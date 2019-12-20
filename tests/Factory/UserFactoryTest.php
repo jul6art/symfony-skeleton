@@ -8,8 +8,9 @@
 
 namespace App\Tests\Factory;
 
-use App\Entity\Group;
-use App\Entity\Setting;
+use App\Entity\Constants\GroupName;
+use App\Entity\Constants\SettingName;
+use App\Entity\Constants\UserPassword;
 use App\Entity\User;
 use App\Factory\UserFactory;
 use App\Manager\GroupManager;
@@ -58,7 +59,7 @@ class UserFactoryTest extends WebTestCase
         $client = static::createClient();
         $this->groupManager = $client->getContainer()->get('App\Manager\GroupManager');
         $this->settingLocale = $client->getContainer()->getParameter('locale');
-        $this->settingTheme = Setting::SETTING_DEFAULT_THEME_VALUE;
+        $this->settingTheme = SettingName::SETTING_VALUE_DEFAULT_THEME;
     }
 
     /**
@@ -70,7 +71,7 @@ class UserFactoryTest extends WebTestCase
      */
     public function testBuild(): void
     {
-        $group = Group::GROUP_NAME_USER;
+        $group = GroupName::GROUP_NAME_USER;
 
         $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
             ->setFirstname($this->faker->firstName)
@@ -78,7 +79,7 @@ class UserFactoryTest extends WebTestCase
             ->setUsername($this->faker->userName)
             ->setEmail($this->faker->email)
             ->setGender($this->faker->randomElement(['m', 'f']))
-            ->setPlainPassword(User::DEFAULT_PASSWORD);
+            ->setPlainPassword(UserPassword::USER_PASSWORD_DEFAULT_VALUE);
 
         $this->assertInstanceOf(User::class, $user);
 
@@ -94,7 +95,7 @@ class UserFactoryTest extends WebTestCase
      */
     public function testBuild02(): void
     {
-        $group = Group::GROUP_NAME_ADMIN;
+        $group = GroupName::GROUP_NAME_ADMIN;
 
         $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
             ->setFirstname($this->faker->firstName)
@@ -102,7 +103,7 @@ class UserFactoryTest extends WebTestCase
             ->setUsername($this->faker->userName)
             ->setEmail($this->faker->email)
             ->setGender($this->faker->randomElement(['m', 'f']))
-            ->setPlainPassword(User::DEFAULT_PASSWORD);
+            ->setPlainPassword(UserPassword::USER_PASSWORD_DEFAULT_VALUE);
 
         $this->assertInstanceOf(User::class, $user);
 

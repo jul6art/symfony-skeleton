@@ -10,7 +10,7 @@
 
 namespace App\MessageHandler;
 
-use App\Service\PublisherServiceAwareTrait;
+use App\Service\Traits\PublisherServiceAwareTrait;
 use App\Traits\LoggerAwareTrait;
 
 /**

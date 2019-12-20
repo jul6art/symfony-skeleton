@@ -10,7 +10,7 @@
 
 namespace App\MessageHandler;
 
-use App\Manager\SessionManagerAwareTrait;
+use App\Manager\Traits\SessionManagerAwareTrait;
 use App\Message\PurgeSessionsMessage;
 use Doctrine\DBAL\DBALException;
 

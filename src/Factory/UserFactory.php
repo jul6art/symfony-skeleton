@@ -11,6 +11,7 @@
 namespace App\Factory;
 
 use App\Entity\User;
+use App\Factory\Interfaces\FactoryInterface;
 use App\Manager\GroupManager;
 use Doctrine\ORM\NonUniqueResultException;
 

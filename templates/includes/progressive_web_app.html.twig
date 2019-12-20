@@ -2,7 +2,7 @@
     <!-- Progressive Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar" content="{{ theme_name() }}" />
-    <meta name="apple-mobile-web-app-title" content="{{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}" />
+    <meta name="apple-mobile-web-app-title" content="{{ setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_PROJECT_NAME'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_PROJECT_NAME')) }}" />
     <link rel="apple-touch-icon" href="{{ asset('build/images/logo.png') }}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('build/images/logo.png') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('build/images/logo.png') }}" />
@@ -17,7 +17,7 @@
     {# blob dynamic generated manifest not fully supported actually #}
     <link rel="manifest" href="{{ asset('manifest.json') }}" />
     {# <link rel="manifest" id="progressiveWebAppManifest"
-          data-name="{{ setting_value(constant('App\\Entity\\Setting::SETTING_PROJECT_NAME'), constant('App\\Entity\\Setting::SETTING_PROJECT_NAME_VALUE')) }}"
+          data-name="{{ setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_PROJECT_NAME'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_PROJECT_NAME')) }}"
           data-color="{{ theme_name() }}"
           data-icons="{{ [
               {

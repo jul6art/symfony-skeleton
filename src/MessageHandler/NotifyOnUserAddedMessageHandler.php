@@ -10,11 +10,11 @@
 
 namespace App\MessageHandler;
 
-use App\Entity\Group;
+use App\Entity\Constants\GroupName;
 use App\Entity\User;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use App\Message\NotifyOnUserAddedMessage;
-use App\Service\MailerServiceAwareTrait;
+use App\Service\Traits\MailerServiceAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Throwable;
 use Twig\Error\LoaderError;
@@ -42,8 +42,8 @@ class NotifyOnUserAddedMessageHandler extends AbstractMessageHandler
     {
         $admins = $this->userManager->findByGroupListExcepted(
             [
-                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_ADMIN),
-                $this->userManager->getGroupManager()->findOneByName(Group::GROUP_NAME_SUPER_ADMIN),
+                $this->userManager->getGroupManager()->findOneByName(GroupName::GROUP_NAME_ADMIN),
+                $this->userManager->getGroupManager()->findOneByName(GroupName::GROUP_NAME_SUPER_ADMIN),
             ],
             [$message->getId(), $message->getCreatedBy()]
         );

@@ -12,6 +12,8 @@ namespace App\Transformer;
 
 use App\Entity\Test;
 use App\Security\Voter\TestVoter;
+use App\Transformer\Traits\CellFormatterAwareTrait;
+use App\Transformer\Traits\DataTableTransformerAwareTrait;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;

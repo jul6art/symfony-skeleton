@@ -8,7 +8,7 @@
  * Time: 21:39.
  */
 
-namespace App\Repository;
+namespace App\Repository\Traits;
 
 use App\Entity\User;
 use Doctrine\DBAL\Types\Type;

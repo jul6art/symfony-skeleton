@@ -22,7 +22,7 @@ use Twig\TwigFunction;
  */
 class EditInPlaceExtension extends AbstractExtension
 {
-    const SESSION_KEY = 'edit_in_place';
+    private const SESSION_KEY = 'edit_in_place';
 
     /**
      * @var AuthorizationCheckerInterface

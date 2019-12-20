@@ -8,7 +8,9 @@
  * Time: 21:39.
  */
 
-namespace App\Manager;
+namespace App\Manager\Traits;
+
+use App\Manager\SettingManager;
 
 /**
  * Trait SettingManagerAwareTrait.

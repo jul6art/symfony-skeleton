@@ -8,7 +8,9 @@
  * Time: 21:39.
  */
 
-namespace App\Service;
+namespace App\Service\Traits;
+
+use App\Service\PublisherService;
 
 /**
  * Trait PublisherServiceAwareTrait.

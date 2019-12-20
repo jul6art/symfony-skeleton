@@ -11,11 +11,10 @@
 namespace App\Security\Voter;
 
 use App\Entity\Constants\FunctionalityName;
-use App\Entity\Functionality;
-use App\Entity\Setting;
+use App\Entity\Constants\SettingName;
 use App\Entity\User;
-use App\Manager\FunctionalityManagerAwareTrait;
-use App\Manager\SettingManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\SettingManagerAwareTrait;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -152,7 +151,7 @@ class UserVoter extends AbstractVoter
             AuditHelper::paramToNamespace(User::class),
             $subject instanceof User ? $subject->getId() : null,
             1,
-            $this->settingManager->findOneValueByName(Setting::SETTING_AUDIT_LIMIT, Setting::SETTING_AUDIT_LIMIT_VALUE)
+            $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingName::SETTING_VALUE_AUDIT_LIMIT)
         ));
     }
 

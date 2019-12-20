@@ -16,7 +16,7 @@
 <head>
     {% block head %}
         <title>
-            {% block title %}{{ setting_value(constant('App\\Entity\\Setting::SETTING_BASE_TITLE'), constant('App\\Entity\\Setting::SETTING_BASE_TITLE_VALUE')) }}{% endblock title %}
+            {% block title %}{{ setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_BASE_TITLE'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_BASE_TITLE')) }}{% endblock title %}
         </title>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>

@@ -3,14 +3,14 @@
     <ul class="setting-list">
         <li>
             {% for item in settings() %}
-                {% if item.name == constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME') %}
+                {% if item.name == constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_DEFAULT_THEME') %}
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
                                 <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
-                                    constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME'),
-                                    constant('App\\Entity\\Setting::SETTING_DEFAULT_THEME_VALUE')) %}
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_DEFAULT_THEME'),
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_DEFAULT_THEME')) %}
 
                                 {% for value in available_colors %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
@@ -20,15 +20,15 @@
                             </select>
                         </div>
                     </div>
-                {% elseif item.name == constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT') %}
+                {% elseif item.name == constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_AUDIT_LIMIT') %}
                     {% if is_granted(constant('App\\Security\\Voter\\FunctionalityVoter::AUDIT'), 'App\\Entity\\Functionality') %}
                         <div class="row">
                             <div class="form-group bootstrap-select col-xs-12">
                                 <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
                                     <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                     {% set currentValue = setting_value(
-                                        constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT'),
-                                        constant('App\\Entity\\Setting::SETTING_AUDIT_LIMIT_VALUE')) %}
+                                        constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_AUDIT_LIMIT'),
+                                        constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_AUDIT_LIMIT')) %}
 
                                     {% for value in [25, 100, 200, 500, 1000, 2000, 5000] %}
                                         <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>{{ value }}</option>
@@ -37,14 +37,14 @@
                             </div>
                         </div>
                     {% endif %}
-                {% elseif item.name == constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION') %}
+                {% elseif item.name == constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION') %}
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
                                 <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
-                                    constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'),
-                                    constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) %}
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION'),
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION')) %}
 
                                 {% for value in ['top', 'bottom'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
@@ -54,14 +54,14 @@
                             </select>
                         </div>
                     </div>
-                {% elseif item.name == constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION') %}
+                {% elseif item.name == constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION') %}
                     <div class="row">
                         <div class="form-group bootstrap-select col-xs-12">
                             <select class="form-control show-tick" name="{{ item.name }}" data-id="{{ item.id }}">
                                 <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
-                                    constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'),
-                                    constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) %}
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION'),
+                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION')) %}
 
                                 {% for value in ['left', 'center', 'right'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>

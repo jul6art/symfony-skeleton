@@ -60,8 +60,8 @@ class ChangePasswordType extends AbstractType
             'options' => [
                 'constraints' => [
                     new Length([
-                        'min' => User::LENGTH_MIN_PASSWORD,
-                        'max' => User::LENGTH_MAX_PASSWORD,
+                        'min' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MIN,
+                        'max' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MAX,
                     ]),
                 ],
             ],
@@ -72,8 +72,8 @@ class ChangePasswordType extends AbstractType
                     'autocomplete' => 'off',
                     'class' => 'password',
                     'placeholder' => 'form.user.new_password.label',
-                    'minLength' => User::LENGTH_MIN_PASSWORD,
-                    'maxLength' => User::LENGTH_MAX_PASSWORD,
+                    'minLength' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MIN,
+                    'maxLength' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MAX,
                 ],
             ],
             'second_options' => [
@@ -83,8 +83,8 @@ class ChangePasswordType extends AbstractType
                     'autocomplete' => 'off',
                     'class' => 'password_verification',
                     'placeholder' => 'form.user.new_password_confirmation.label',
-                    'minLength' => User::LENGTH_MIN_PASSWORD,
-                    'maxLength' => User::LENGTH_MAX_PASSWORD,
+                    'minLength' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MIN,
+                    'maxLength' => \App\Entity\Constants\UserPassword::USER_PASSWORD_LENGTH_MAX,
                 ],
             ],
             'invalid_message' => 'form.password_verification.error',

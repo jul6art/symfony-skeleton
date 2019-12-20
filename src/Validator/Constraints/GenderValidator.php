@@ -10,6 +10,7 @@
 
 namespace App\Validator\Constraints;
 
+use App\Entity\Constants\UserGender;
 use App\Entity\User;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -36,7 +37,7 @@ class GenderValidator extends ConstraintValidator
             return;
         }
 
-        if (!\in_array($value, [User::GENDER_MALE, User::GENDER_FEMALE])) {
+        if (!\in_array($value, [UserGender::USER_GENDER_MALE, UserGender::USER_GENDER_FEMALE])) {
             $this->context->buildViolation($constraint->message)
                           ->addViolation();
         }

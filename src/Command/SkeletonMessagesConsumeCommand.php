@@ -23,10 +23,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class SkeletonMessagesConsumeCommand extends Command
 {
-    const QUEUE_PRIORITY_HIGH = 'async_priority_high';
-    const QUEUE_PRIORITY_LOW = 'async_priority_low';
-    const QUEUE_PARAMETER_HIGH = 'high';
-    const QUEUE_PARAMETER_LOW = 'low';
+    private const QUEUE_PRIORITY_HIGH = 'async_priority_high';
+    private const QUEUE_PRIORITY_LOW = 'async_priority_low';
+    private const QUEUE_PARAMETER_HIGH = 'high';
+    private const QUEUE_PARAMETER_LOW = 'low';
 
     /**
      * @var string

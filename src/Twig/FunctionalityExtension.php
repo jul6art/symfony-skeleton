@@ -11,7 +11,7 @@
 namespace App\Twig;
 
 use App\Entity\Functionality;
-use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

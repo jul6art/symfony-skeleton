@@ -11,6 +11,7 @@
 namespace App\Factory;
 
 use App\Entity\Maintenance;
+use App\Factory\Interfaces\FactoryInterface;
 
 /**
  * Class MaintenanceFactory.

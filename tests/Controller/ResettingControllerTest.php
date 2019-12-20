@@ -8,6 +8,8 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\UserPassword;
+use App\Entity\Constants\UserUsername;
 use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
@@ -86,7 +88,7 @@ class ResettingControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[action="/resetting/send-email"] [type="submit"]')->form();
         $client->submit($form, [
-            'username' => User::DEFAULT_USER_USERNAME,
+            'username' => UserUsername::USER_USERNAME_DEFAULT_USER,
         ]);
 
         $crawler = $client->followRedirect();
@@ -109,7 +111,7 @@ class ResettingControllerTest extends WebTestCase
             ->getContainer()
             ->get('doctrine.orm.entity_manager')
             ->getRepository(User::class)
-            ->findOneByUsername(User::DEFAULT_ADMIN_USERNAME);
+            ->findOneByUsername(UserUsername::USER_USERNAME_DEFAULT_ADMIN);
 
         $client->request('GET', '/resetting/reset/'.$user->getConfirmationToken());
 
@@ -131,7 +133,7 @@ class ResettingControllerTest extends WebTestCase
             ->getContainer()
             ->get('doctrine.orm.entity_manager')
             ->getRepository(User::class)
-            ->findOneByUsername(User::DEFAULT_USER_USERNAME);
+            ->findOneByUsername(UserUsername::USER_USERNAME_DEFAULT_USER);
 
         $crawler = $client->request('GET', '/resetting/reset/'.$user->getConfirmationToken());
 
@@ -143,8 +145,8 @@ class ResettingControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[name="fos_user_resetting_form"] [type="submit"]')->form();
         $client->submit($form, [
-            'fos_user_resetting_form[plainPassword][first]' => User::DEFAULT_PASSWORD,
-            'fos_user_resetting_form[plainPassword][second]' => User::DEFAULT_PASSWORD,
+            'fos_user_resetting_form[plainPassword][first]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
+            'fos_user_resetting_form[plainPassword][second]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->followRedirect();

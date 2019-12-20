@@ -11,6 +11,7 @@
 namespace App\Transformer;
 
 use App\Entity\User;
+use App\Transformer\Traits\CellFormatterAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;

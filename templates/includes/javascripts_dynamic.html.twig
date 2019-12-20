@@ -7,8 +7,8 @@
         PUBLISH_URL = "{{ publish_url }}",
         FLASH_MESSAGES = {{ app.flashes|json_encode_with_quotes|raw }},
         TOASTR_POSITION = {
-            "horizontal": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_HORIZONTAL_POSITION_VALUE')) }}",
-            "vertical": "{{ setting_value(constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Setting::SETTING_TOASTR_VERTICAL_POSITION_VALUE')) }}",
+            "horizontal": "{{ setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION')) }}",
+            "vertical": "{{ setting_value(constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION'), constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION')) }}",
         },
         FUNCTIONALITIES = {};
 

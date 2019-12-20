@@ -11,6 +11,7 @@
 namespace App\Factory;
 
 use App\Entity\Setting;
+use App\Factory\Interfaces\FactoryInterface;
 
 /**
  * Class SettingFactory.

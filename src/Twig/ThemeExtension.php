@@ -10,10 +10,11 @@
 
 namespace App\Twig;
 
+use App\Entity\Constants\SettingName;
+use App\Entity\Constants\UserSetting;
 use App\Entity\Functionality;
-use App\Entity\Setting;
 use App\Entity\User;
-use App\Manager\SettingManagerAwareTrait;
+use App\Manager\Traits\SettingManagerAwareTrait;
 use App\Security\Voter\FunctionalityVoter;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -29,7 +30,7 @@ class ThemeExtension extends AbstractExtension
 {
     use SettingManagerAwareTrait;
 
-    const REQUEST_KEY = 'theme_name';
+    private const REQUEST_KEY = 'theme_name';
 
     /**
      * @var TokenStorageInterface
@@ -88,10 +89,10 @@ class ThemeExtension extends AbstractExtension
 
         if (!$request->request->has(self::REQUEST_KEY) or !\in_array($request->request->get(self::REQUEST_KEY), $this->available_colors)) {
             $user = $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
-            $theme = $this->settingManager->findOneValueByName(Setting::SETTING_DEFAULT_THEME, Setting::SETTING_DEFAULT_THEME_VALUE);
+            $theme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingName::SETTING_VALUE_DEFAULT_THEME);
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)) {
-                if ($user instanceof User and $user->hasSetting(User::SETTING_THEME)) {
+                if ($user instanceof User and $user->hasSetting(UserSetting::USER_SETTING_THEME)) {
                     $theme = $user->getTheme();
                 }
             }

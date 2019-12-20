@@ -21,7 +21,7 @@ use Twig\TwigFunction;
  */
 class GitExtension extends AbstractExtension
 {
-    const SESSION_KEY = 'git_version';
+    private const SESSION_KEY = 'git_version';
 
     /**
      * @var SessionInterface

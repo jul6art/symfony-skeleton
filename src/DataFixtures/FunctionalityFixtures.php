@@ -11,7 +11,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Constants\FunctionalityName;
-use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use ReflectionClass;

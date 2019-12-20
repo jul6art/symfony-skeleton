@@ -10,6 +10,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Constants\UserRole;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,18 +35,6 @@ class User extends BaseUser
 {
     use TimestampableEntity;
     use BlameableEntityAwareTrait;
-
-    public const ROLE_ADMIN = 'ROLE_ADMIN';
-    public const GENDER_MALE = 'm';
-    public const GENDER_FEMALE = 'f';
-    public const SETTING_LOCALE = 'locale';
-    public const SETTING_THEME = 'theme';
-    public const LENGTH_MIN_PASSWORD = 5;
-    public const LENGTH_MAX_PASSWORD = 32;
-    public const LENGTH_GENERATED_PASSWORD = 8;
-    public const DEFAULT_PASSWORD = 'devinthehood';
-    public const DEFAULT_ADMIN_USERNAME = 'admin';
-    public const DEFAULT_USER_USERNAME = 'user';
 
     /**
      * @ORM\Id
@@ -303,7 +292,7 @@ class User extends BaseUser
      * @param string $name
      * @param string $value
      *
-     * @return UserSetting|null
+     * @return User
      */
     public function __set($name, $value)
     {
@@ -315,6 +304,6 @@ class User extends BaseUser
      */
     public function isAdmin(): bool
     {
-        return $this->hasRole(self::ROLE_ADMIN) or $this->hasRole(self::ROLE_SUPER_ADMIN);
+        return $this->hasRole(UserRole::ROLE_ADMIN) or $this->hasRole(UserRole::ROLE_SUPER_ADMIN);
     }
 }

@@ -1,4 +1,4 @@
-{% if gender == constant('App\\Entity\\User::GENDER_FEMALE') %}
+{% if gender == constant('App\\Entity\\Constants\\UserGender::USER_GENDER_FEMALE') %}
     <span class="label bg-blue-grey">{{ 'table.user.gender.f'|trans({}, 'table') }}</span>
 {% else %}
     <span class="label bg-{{ theme_name() }}">{{ 'table.user.gender.m'|trans({}, 'table') }}</span>

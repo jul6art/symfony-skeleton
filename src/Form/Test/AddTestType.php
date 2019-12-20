@@ -10,6 +10,7 @@
 
 namespace App\Form\Test;
 
+use App\Entity\Constants\TestContent;
 use App\Entity\Test;
 use App\Form\Type\TextType;
 use App\Form\Type\WysiwygType;
@@ -47,7 +48,7 @@ class AddTestType extends AbstractType
             ->add('content', WysiwygType::class, [
                 'label' => 'form.test.content.label',
                 'required' => true,
-                'min_length' => Test::TEXT_LENGTH,
+                'min_length' => TestContent::TEST_CONTENT_LENGTH_MAX,
                 // test
                 'help' => 'form.test.name.help',
             ])

@@ -8,6 +8,8 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\UserPassword;
+use App\Entity\Constants\UserUsername;
 use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
@@ -65,8 +67,8 @@ class ChangePasswordControllerTest extends WebTestCase
     public function testChangePassword02(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->request('GET', '/profile/change-password');
@@ -81,7 +83,7 @@ class ChangePasswordControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[name="fos_user_change_password_form"] [type="submit"]')->form();
         $crawler = $client->submit($form, [
-            'fos_user_change_password_form[current_password]' => User::DEFAULT_PASSWORD,
+            'fos_user_change_password_form[current_password]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $this->save('result02.html', $client->getResponse()->getContent());
@@ -97,8 +99,8 @@ class ChangePasswordControllerTest extends WebTestCase
     public function testChangePassword03(): void
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => User::DEFAULT_USER_USERNAME,
-            'PHP_AUTH_PW' => User::DEFAULT_PASSWORD,
+            'PHP_AUTH_USER' => UserUsername::USER_USERNAME_DEFAULT_USER,
+            'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->request('GET', '/profile/change-password');
@@ -113,9 +115,9 @@ class ChangePasswordControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[name="fos_user_change_password_form"] [type="submit"]')->form();
         $client->submit($form, [
-            'fos_user_change_password_form[current_password]' => User::DEFAULT_PASSWORD,
-            'fos_user_change_password_form[plainPassword][first]' => User::DEFAULT_PASSWORD,
-            'fos_user_change_password_form[plainPassword][second]' => User::DEFAULT_PASSWORD,
+            'fos_user_change_password_form[current_password]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
+            'fos_user_change_password_form[plainPassword][first]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
+            'fos_user_change_password_form[plainPassword][second]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->followRedirect();

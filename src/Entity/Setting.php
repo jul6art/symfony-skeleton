@@ -24,20 +24,6 @@ class Setting
     use TimestampableEntity;
     use BlameableEntityAwareTrait;
 
-    public const SETTING_PROJECT_NAME = 'setting.project_name';
-    public const SETTING_BASE_TITLE = 'setting.base_title';
-    public const SETTING_DEFAULT_THEME = 'setting.default_theme';
-    public const SETTING_AUDIT_LIMIT = 'setting.audit_limit';
-    public const SETTING_TOASTR_VERTICAL_POSITION = 'setting.toastr_vertical_position';
-    public const SETTING_TOASTR_HORIZONTAL_POSITION = 'setting.toastr_horizontal_position';
-
-    public const SETTING_PROJECT_NAME_VALUE = 'Symfony skeleton';
-    public const SETTING_BASE_TITLE_VALUE = ' | Symfony Skeleton';
-    public const SETTING_DEFAULT_THEME_VALUE = 'blue';
-    public const SETTING_AUDIT_LIMIT_VALUE = 200;
-    public const SETTING_TOASTR_VERTICAL_POSITION_VALUE = 'bottom';
-    public const SETTING_TOASTR_HORIZONTAL_POSITION_VALUE = 'center';
-
     /**
      * @var int
      *

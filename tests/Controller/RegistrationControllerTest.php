@@ -8,6 +8,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Constants\UserPassword;
 use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
@@ -94,8 +95,8 @@ class RegistrationControllerTest extends WebTestCase
             'fos_user_registration_form[lastname]' => $this->faker->lastName,
             'fos_user_registration_form[username]' => $this->faker->userName,
             'fos_user_registration_form[email]' => $this->faker->email,
-            'fos_user_registration_form[plainPassword][first]' => User::DEFAULT_PASSWORD,
-            'fos_user_registration_form[plainPassword][second]' => User::DEFAULT_PASSWORD,
+            'fos_user_registration_form[plainPassword][first]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
+            'fos_user_registration_form[plainPassword][second]' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
         $crawler = $client->followRedirect();

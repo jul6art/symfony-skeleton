@@ -12,9 +12,9 @@ namespace App\Menu\Builder;
 
 use App\Entity\Test;
 use App\Entity\User;
-use App\Manager\MaintenanceManagerAwareTrait;
-use App\Manager\TestManagerAwareTrait;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\MaintenanceManagerAwareTrait;
+use App\Manager\Traits\TestManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use App\Security\Voter\DefaultVoter;
 use App\Security\Voter\MaintenanceVoter;
 use App\Security\Voter\TestVoter;

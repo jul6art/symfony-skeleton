@@ -8,7 +8,7 @@
  * Time: 21:39.
  */
 
-namespace App\Transformer;
+namespace App\Transformer\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;

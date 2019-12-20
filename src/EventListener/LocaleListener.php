@@ -11,9 +11,10 @@
 namespace App\EventListener;
 
 use App\Entity\Constants\FunctionalityName;
+use App\Entity\Constants\UserSetting;
 use App\Entity\User;
-use App\Manager\FunctionalityManagerAwareTrait;
-use App\Manager\UserManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\UserManagerAwareTrait;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -90,7 +91,7 @@ class LocaleListener
 
             if (
                 $user instanceof User
-                and $user->hasSetting(User::SETTING_LOCALE)
+                and $user->hasSetting(UserSetting::USER_SETTING_LOCALE)
             ) {
                 $userLocale = $user->getLocale();
 

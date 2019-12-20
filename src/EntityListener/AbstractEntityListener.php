@@ -10,7 +10,7 @@
 
 namespace App\EntityListener;
 
-use App\Manager\FunctionalityManagerAwareTrait;
+use App\Manager\Traits\FunctionalityManagerAwareTrait;
 use App\Traits\FlashBagAwareTrait;
 use App\Traits\TranslatorAwareTrait;
 
