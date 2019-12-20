@@ -12,6 +12,7 @@ namespace App\Security\Voter;
 
 use App\Entity\Constants\FunctionalityName;
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Maintenance;
 use App\Manager\Traits\FunctionalityManagerAwareTrait;
 use App\Manager\Traits\SettingManagerAwareTrait;
@@ -99,7 +100,7 @@ class MaintenanceVoter extends AbstractVoter
             AuditHelper::paramToNamespace(Maintenance::class),
             $subject instanceof Maintenance ? $subject->getId() : null,
             1,
-            $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingName::SETTING_VALUE_AUDIT_LIMIT)
+            $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingValue::SETTING_VALUE_AUDIT_LIMIT)
         ));
     }
 

@@ -56,18 +56,15 @@ URGENT
     revoir code pour php7.4
         sprintf %d quand nombres
         typing class properties
-        typing constantes (internal => private, public in constants dir => public)
         short fn naming
-        faire + d'interfaces
         et noter dans requirements etc
         
     backup-bundle
         https://github.com/kbond/ZenstruckBackupBundle
         
     inspirations de JL
-        dossier Constants
+        faire + d'interfaces
         embed fichiers twig pour remplacer include et extends
-        appeler les fonctions de manager direct dansd les extensions twig si c est juste pour faire un return 
         builderhelper like
         layoutselectorhandler like
    

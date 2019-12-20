@@ -10,7 +10,7 @@
                                 <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_DEFAULT_THEME'),
-                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_DEFAULT_THEME')) %}
+                                    constant('App\\Entity\\Constants\\SettingValue::SETTING_VALUE_DEFAULT_THEME')) %}
 
                                 {% for value in available_colors %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
@@ -28,7 +28,7 @@
                                     <option value="-1">{{ ('sidebar.' ~ item.name)|trans({}, 'sidebar') }}</option>
                                     {% set currentValue = setting_value(
                                         constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_AUDIT_LIMIT'),
-                                        constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_AUDIT_LIMIT')) %}
+                                        constant('App\\Entity\\Constants\\SettingValue::SETTING_VALUE_AUDIT_LIMIT')) %}
 
                                     {% for value in [25, 100, 200, 500, 1000, 2000, 5000] %}
                                         <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>{{ value }}</option>
@@ -44,7 +44,7 @@
                                 <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION'),
-                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION')) %}
+                                    constant('App\\Entity\\Constants\\SettingValue::SETTING_VALUE_TOASTR_VERTICAL_POSITION')) %}
 
                                 {% for value in ['top', 'bottom'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>
@@ -61,7 +61,7 @@
                                 <option value="-1">{{ ('sidebar.' ~ item.name ~ '.title')|trans({}, 'sidebar') }}</option>
                                 {% set currentValue = setting_value(
                                     constant('App\\Entity\\Constants\\SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION'),
-                                    constant('App\\Entity\\Constants\\SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION')) %}
+                                    constant('App\\Entity\\Constants\\SettingValue::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION')) %}
 
                                 {% for value in ['left', 'center', 'right'] %}
                                     <option value="{{ value }}"{{ currentValue == value ? ' selected' }}>

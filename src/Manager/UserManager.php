@@ -12,6 +12,7 @@ namespace App\Manager;
 
 use App\Entity\Constants\GroupName;
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Constants\UserPassword;
 use App\Entity\Group;
 use App\Entity\User;
@@ -77,7 +78,7 @@ class UserManager extends AbstractManager
      */
     public function create(): User
     {
-        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingName::SETTING_VALUE_DEFAULT_THEME);
+        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
         return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_USER, $this->locale, $defaultTheme);
     }
@@ -89,7 +90,7 @@ class UserManager extends AbstractManager
      */
     public function createAdmin(): User
     {
-        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingName::SETTING_VALUE_DEFAULT_THEME);
+        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
         return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_ADMIN, $this->locale, $defaultTheme);
     }
@@ -101,7 +102,7 @@ class UserManager extends AbstractManager
      */
     public function createSuperAdmin(): User
     {
-        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingName::SETTING_VALUE_DEFAULT_THEME);
+        $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
         return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_SUPER_ADMIN, $this->locale, $defaultTheme);
     }

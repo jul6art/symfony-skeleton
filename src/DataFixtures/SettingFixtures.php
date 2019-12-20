@@ -11,6 +11,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Manager\Traits\SettingManagerAwareTrait;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -28,12 +29,12 @@ class SettingFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $settings = [
-            SettingName::SETTING_NAME_PROJECT_NAME => SettingName::SETTING_VALUE_PROJECT_NAME,
-            SettingName::SETTING_NAME_BASE_TITLE => SettingName::SETTING_VALUE_BASE_TITLE,
-            SettingName::SETTING_NAME_DEFAULT_THEME => SettingName::SETTING_VALUE_DEFAULT_THEME,
-            SettingName::SETTING_NAME_AUDIT_LIMIT => SettingName::SETTING_VALUE_AUDIT_LIMIT,
-            SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION => SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION,
-            SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION => SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION,
+            SettingName::SETTING_NAME_PROJECT_NAME => SettingValue::SETTING_VALUE_PROJECT_NAME,
+            SettingName::SETTING_NAME_BASE_TITLE => SettingValue::SETTING_VALUE_BASE_TITLE,
+            SettingName::SETTING_NAME_DEFAULT_THEME => SettingValue::SETTING_VALUE_DEFAULT_THEME,
+            SettingName::SETTING_NAME_AUDIT_LIMIT => SettingValue::SETTING_VALUE_AUDIT_LIMIT,
+            SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION => SettingValue::SETTING_VALUE_TOASTR_VERTICAL_POSITION,
+            SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION => SettingValue::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION,
         ];
 
         array_walk($settings, function (string $value, string $key) use ($manager) {

@@ -11,6 +11,7 @@
 namespace App\Controller;
 
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Functionality;
 use App\Entity\Setting;
 use App\Manager\Traits\FunctionalityManagerAwareTrait;
@@ -283,7 +284,7 @@ class DefaultController extends AbstractFOSRestController
                              AuditHelper::paramToNamespace($class),
                              $id,
                              1,
-                             $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingName::SETTING_VALUE_AUDIT_LIMIT)
+                             $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_AUDIT_LIMIT, SettingValue::SETTING_VALUE_AUDIT_LIMIT)
                          ),
                          'users' => $this->userManager->findAllForAudit(),
                          'exclude' => $exclude,

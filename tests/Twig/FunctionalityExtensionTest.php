@@ -44,18 +44,4 @@ class FunctionalityExtensionTest extends TestCase
 
         $this->assertInstanceOf(TwigFunction::class, $functions[1]);
     }
-
-    /**
-     * Test App\\Twig\\FunctionalityExtension isFunctionalityActive Method.
-     *
-     * FunctionalityManager is null: return false
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function testIsFunctionalityActive(): void
-    {
-        $result = $this->functionalityExtension->isFunctionalityActive('');
-
-        $this->assertFalse($result);
-    }
 }

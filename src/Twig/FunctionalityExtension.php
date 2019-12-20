@@ -29,28 +29,8 @@ class FunctionalityExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('is_functionality_active', [$this, 'isFunctionalityActive']),
-            new TwigFunction('functionalities', [$this, 'getFunctionalities']),
+            new TwigFunction('is_functionality_active', [$this->functionalityManager, 'isActive']),
+            new TwigFunction('functionalities', [$this->functionalityManager, 'findAllByConfigured']),
         ];
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return bool
-     *
-     * @throws NonUniqueResultException
-     */
-    public function isFunctionalityActive(string $name): bool
-    {
-        return $this->functionalityManager->isActive($name);
-    }
-
-    /**
-     * @return Functionality[]
-     */
-    public function getFunctionalities(): array
-    {
-        return $this->functionalityManager->findAllByConfigured();
     }
 }

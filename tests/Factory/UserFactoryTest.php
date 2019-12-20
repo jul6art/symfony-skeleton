@@ -9,7 +9,7 @@
 namespace App\Tests\Factory;
 
 use App\Entity\Constants\GroupName;
-use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Constants\UserPassword;
 use App\Entity\User;
 use App\Factory\UserFactory;
@@ -59,7 +59,7 @@ class UserFactoryTest extends WebTestCase
         $client = static::createClient();
         $this->groupManager = $client->getContainer()->get('App\Manager\GroupManager');
         $this->settingLocale = $client->getContainer()->getParameter('locale');
-        $this->settingTheme = SettingName::SETTING_VALUE_DEFAULT_THEME;
+        $this->settingTheme = SettingValue::SETTING_VALUE_DEFAULT_THEME;
     }
 
     /**

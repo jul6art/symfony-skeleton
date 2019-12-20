@@ -45,22 +45,10 @@ class SettingExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('setting', [$this, 'getSetting']),
+            new TwigFunction('setting', [$this->settingManager, 'findOneByName']),
             new TwigFunction('setting_value', [$this, 'getSettingValue']),
-            new TwigFunction('settings', [$this, 'getSettings']),
+            new TwigFunction('settings', [$this->settingManager, 'findAll']),
         ];
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return Setting|null
-     *
-     * @throws NonUniqueResultException
-     */
-    public function getSetting(string $name): ?Setting
-    {
-        return $this->settingManager->findOneByName($name);
     }
 
     /**
@@ -91,13 +79,5 @@ class SettingExtension extends AbstractExtension
         } else {
             return $request->request->get($name);
         }
-    }
-
-    /**
-     * @return Setting[]
-     */
-    public function getSettings(): array
-    {
-        return $this->settingManager->findAll();
     }
 }

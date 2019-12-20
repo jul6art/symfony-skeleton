@@ -10,11 +10,11 @@ namespace App\Tests\Controller;
 
 use App\Entity\Constants\FunctionalityName;
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Constants\UserPassword;
 use App\Entity\Constants\UserUsername;
 use App\Entity\Functionality;
 use App\Entity\Setting;
-use App\Entity\User;
 use App\Tests\TestTrait;
 use Faker\Factory;
 use Faker\Generator;
@@ -283,7 +283,7 @@ class DefaultControllerTest extends WebTestCase
             'PHP_AUTH_PW' => UserPassword::USER_PASSWORD_DEFAULT_VALUE,
         ]);
 
-        $client->request('GET', '/admin/theme/'.SettingName::SETTING_VALUE_DEFAULT_THEME);
+        $client->request('GET', '/admin/theme/'.SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
         $client->followRedirect();
 
@@ -709,7 +709,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_PROJECT_NAME)->getId();
-        $value = SettingName::SETTING_VALUE_PROJECT_NAME;
+        $value = SettingValue::SETTING_VALUE_PROJECT_NAME;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -734,7 +734,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_BASE_TITLE)->getId();
-        $value = SettingName::SETTING_VALUE_BASE_TITLE;
+        $value = SettingValue::SETTING_VALUE_BASE_TITLE;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -759,7 +759,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_DEFAULT_THEME)->getId();
-        $value = SettingName::SETTING_VALUE_DEFAULT_THEME;
+        $value = SettingValue::SETTING_VALUE_DEFAULT_THEME;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -785,7 +785,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_AUDIT_LIMIT)->getId();
-        $value = SettingName::SETTING_VALUE_AUDIT_LIMIT;
+        $value = SettingValue::SETTING_VALUE_AUDIT_LIMIT;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -810,7 +810,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_VERTICAL_POSITION)->getId();
-        $value = SettingName::SETTING_VALUE_TOASTR_VERTICAL_POSITION;
+        $value = SettingValue::SETTING_VALUE_TOASTR_VERTICAL_POSITION;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -836,7 +836,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION)->getId();
-        $value = SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
+        $value = SettingValue::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
         $client->request('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());
@@ -862,7 +862,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $id = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Setting::class)->findOneByName(SettingName::SETTING_NAME_TOASTR_HORIZONTAL_POSITION)->getId();
-        $value = SettingName::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
+        $value = SettingValue::SETTING_VALUE_TOASTR_HORIZONTAL_POSITION;
         $client->xmlHttpRequest('GET', "/admin/setting/$id/$value");
 
         $this->save('result.html', $client->getResponse()->getContent());

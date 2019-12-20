@@ -11,6 +11,7 @@
 namespace App\Twig;
 
 use App\Entity\Constants\SettingName;
+use App\Entity\Constants\SettingValue;
 use App\Entity\Constants\UserSetting;
 use App\Entity\Functionality;
 use App\Entity\User;
@@ -89,7 +90,7 @@ class ThemeExtension extends AbstractExtension
 
         if (!$request->request->has(self::REQUEST_KEY) or !\in_array($request->request->get(self::REQUEST_KEY), $this->available_colors)) {
             $user = $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
-            $theme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingName::SETTING_VALUE_DEFAULT_THEME);
+            $theme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
             if ($this->authorizationChecker->isGranted(FunctionalityVoter::SWITCH_THEME, Functionality::class)) {
                 if ($user instanceof User and $user->hasSetting(UserSetting::USER_SETTING_THEME)) {
