@@ -14,14 +14,16 @@ use App\Entity\Test;
 use App\Factory\Interfaces\FactoryInterface;
 
 /**
- * Class TestFactory.
+ * Class TestFactory
+ * @package App\Factory
  */
-class TestFactory implements FactoryInterface
+final class TestFactory implements FactoryInterface
 {
     /**
+     * @param array $context
      * @return Test|mixed
      */
-    public static function create()
+    public static function create(array $context = [])
     {
         return new Test();
     }

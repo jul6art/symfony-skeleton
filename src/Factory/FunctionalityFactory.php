@@ -14,14 +14,16 @@ use App\Entity\Functionality;
 use App\Factory\Interfaces\FactoryInterface;
 
 /**
- * Class FunctionalityFactory.
+ * Class FunctionalityFactory
+ * @package App\Factory
  */
-class FunctionalityFactory implements FactoryInterface
+final class FunctionalityFactory implements FactoryInterface
 {
     /**
+     * @param array $context
      * @return Functionality|mixed
      */
-    public static function create()
+    public static function create(array $context = [])
     {
         return new Functionality();
     }

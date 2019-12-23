@@ -67,13 +67,19 @@ class UserFactoryTest extends WebTestCase
      *
      * User is not admin
      *
-     * @throws NonUniqueResultException
      */
-    public function testBuild(): void
+    public function testCreate(): void
     {
         $group = GroupName::GROUP_NAME_USER;
 
-        $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
+        $user = UserFactory::create([
+            'manager' => $this->groupManager,
+            'group' => $group,
+            'locale' => $this->settingLocale,
+            'theme' => $this->settingTheme,
+        ]);
+
+        $user
             ->setFirstname($this->faker->firstName)
             ->setLastname($this->faker->lastName)
             ->setUsername($this->faker->userName)
@@ -91,13 +97,19 @@ class UserFactoryTest extends WebTestCase
      *
      * User is admin
      *
-     * @throws NonUniqueResultException
      */
-    public function testBuild02(): void
+    public function testCreate02(): void
     {
         $group = GroupName::GROUP_NAME_ADMIN;
 
-        $user = (UserFactory::build($this->groupManager, $group, $this->settingLocale, $this->settingTheme))
+        $user = UserFactory::create([
+            'manager' => $this->groupManager,
+            'group' => $group,
+            'locale' => $this->settingLocale,
+            'theme' => $this->settingTheme,
+        ]);
+
+        $user
             ->setFirstname($this->faker->firstName)
             ->setLastname($this->faker->lastName)
             ->setUsername($this->faker->userName)

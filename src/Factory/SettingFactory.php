@@ -14,14 +14,16 @@ use App\Entity\Setting;
 use App\Factory\Interfaces\FactoryInterface;
 
 /**
- * Class SettingFactory.
+ * Class SettingFactory
+ * @package App\Factory
  */
-class SettingFactory implements FactoryInterface
+final class SettingFactory implements FactoryInterface
 {
     /**
+     * @param array $context
      * @return Setting|mixed
      */
-    public static function create()
+    public static function create(array $context = [])
     {
         return new Setting();
     }

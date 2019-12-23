@@ -80,7 +80,12 @@ class UserManager extends AbstractManager
     {
         $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
-        return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_USER, $this->locale, $defaultTheme);
+        return UserFactory::create([
+            'manager' => $this->groupManager,
+            'group' => GroupName::GROUP_NAME_USER,
+            'locale' => $this->locale,
+            'theme' => $defaultTheme,
+        ]);
     }
 
     /**
@@ -92,7 +97,12 @@ class UserManager extends AbstractManager
     {
         $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
-        return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_ADMIN, $this->locale, $defaultTheme);
+        return UserFactory::create([
+            'manager' => $this->groupManager,
+            'group' => GroupName::GROUP_NAME_ADMIN,
+            'locale' => $this->locale,
+            'theme' => $defaultTheme,
+        ]);
     }
 
     /**
@@ -104,7 +114,12 @@ class UserManager extends AbstractManager
     {
         $defaultTheme = $this->settingManager->findOneValueByName(SettingName::SETTING_NAME_DEFAULT_THEME, SettingValue::SETTING_VALUE_DEFAULT_THEME);
 
-        return UserFactory::build($this->groupManager, GroupName::GROUP_NAME_SUPER_ADMIN, $this->locale, $defaultTheme);
+        return UserFactory::create([
+            'manager' => $this->groupManager,
+            'group' => GroupName::GROUP_NAME_SUPER_ADMIN,
+            'locale' => $this->locale,
+            'theme' => $defaultTheme,
+        ]);
     }
 
     /**

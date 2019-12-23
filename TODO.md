@@ -50,6 +50,9 @@ URGENT
     CORRECTION
         ne pas envoyer de mail si user != enabled
         ne pas envoyer de mail à super-admin@devinthehood ?
+   
+    dossier src/Twig 
+        arreter de faire plusieurs calls sur la meme page dans les functions twig => listener avec twig globales
         
     install php7.4 sur serveur (après SNAPSHOT)
     https://github.com/github-changelog-generator/github-changelog-generator
@@ -67,9 +70,6 @@ URGENT
         embed fichiers twig pour remplacer include et extends
         builderhelper like
         layoutselectorhandler like
-   
-    dossier src/Twig 
-        arreter de faire plusieurs calls sur la meme page dans les functions twig => liistener?
     
     utilisateurs
         colonne avec switch disabled

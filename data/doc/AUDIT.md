@@ -58,7 +58,7 @@ Remove audits older than a year
 -------------------------------
 
 ```console
-bin/console audit:clean --no-confirm
+$ bin/console audit:clean --no-confirm
 ```
 
 License

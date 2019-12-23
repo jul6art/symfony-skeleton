@@ -14,14 +14,16 @@ use App\Entity\Maintenance;
 use App\Factory\Interfaces\FactoryInterface;
 
 /**
- * Class MaintenanceFactory.
+ * Class MaintenanceFactory
+ * @package App\Factory
  */
-class MaintenanceFactory implements FactoryInterface
+final class MaintenanceFactory implements FactoryInterface
 {
     /**
+     * @param array $context
      * @return Maintenance|mixed
      */
-    public static function create()
+    public static function create(array $context = [])
     {
         return new Maintenance();
     }

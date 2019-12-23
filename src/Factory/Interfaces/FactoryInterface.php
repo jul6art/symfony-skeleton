@@ -16,7 +16,8 @@ namespace App\Factory\Interfaces;
 interface FactoryInterface
 {
     /**
+     * @param array $context
      * @return mixed
      */
-    public static function create();
+    public static function create(array $context = []);
 }

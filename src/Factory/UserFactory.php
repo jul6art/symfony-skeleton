@@ -12,41 +12,22 @@ namespace App\Factory;
 
 use App\Entity\User;
 use App\Factory\Interfaces\FactoryInterface;
-use App\Manager\GroupManager;
-use Doctrine\ORM\NonUniqueResultException;
 
 /**
- * Class UserFactory.
+ * Class UserFactory
+ * @package App\Factory
  */
-class UserFactory implements FactoryInterface
+final class UserFactory implements FactoryInterface
 {
     /**
-     * @param GroupManager $groupManager
-     * @param string       $group
-     * @param string       $locale
-     * @param string       $defaultTheme
-     *
-     * @return User
-     *
-     * @throws NonUniqueResultException
-     */
-    public static function build(GroupManager $groupManager, string $group, string $locale, string $defaultTheme): User
-    {
-        $user = self::create();
-
-        $user
-            ->addGroup($groupManager->findOneByName($group))
-            ->setLocale($locale)
-            ->setTheme($defaultTheme);
-
-        return $user;
-    }
-
-    /**
+     * @param array $context
      * @return User|mixed
      */
-    public static function create()
+    public static function create(array $context = [])
     {
-        return new User();
+        return (new User())
+            ->addGroup($context['manager']->findOneByName($context['group']))
+            ->setLocale($context['locale'])
+            ->setTheme($context['theme']);
     }
 }

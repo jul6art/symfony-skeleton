@@ -112,7 +112,7 @@ Start server
 
 ```console
 sh hook_local.sh
-bin/console server:run
+$ bin/console server:run
 ```
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
