@@ -47,6 +47,29 @@ URGENT
 
     TESTER HELP ET ALERT AVEC TOUS LES TYPES D'INPUTS
     
+    impersonate locale sticky
+    
+        public function onSwitchUser(SwitchUserEvent $event)
+        {
+            $request = $event->getRequest();
+    
+            if ($request->hasSession() && ($session = $request->getSession())) {
+                $session->set(
+                    '_locale',
+                    // assuming your User has some getLocale() method
+                    $event->getTargetUser()->getLocale()
+                );
+            }
+        }
+    
+        public static function getSubscribedEvents()
+        {
+            return [
+                // constant for security.switch_user
+                SecurityEvents::SWITCH_USER => 'onSwitchUser',
+            ];
+        }
+    
     CORRECTION
         ne pas envoyer de mail si user != enabled
         ne pas envoyer de mail à super-admin@devinthehood ?
