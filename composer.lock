@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21191041e2246e43cf9dd4c19caabc0b",
+    "content-hash": "2c646a4ee73f39e2ac63641673fc6f48",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -52,41 +52,51 @@
         },
         {
             "name": "damienharper/doctrine-audit-bundle",
-            "version": "2.5.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DamienHarper/DoctrineAuditBundle.git",
-                "reference": "998d5112811d20fc1b17d30b305b0dc6500c1e91"
+                "reference": "f7f8d8a895097e9bc17191761d756b502c1482ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/998d5112811d20fc1b17d30b305b0dc6500c1e91",
-                "reference": "998d5112811d20fc1b17d30b305b0dc6500c1e91",
+                "url": "https://api.github.com/repos/DamienHarper/DoctrineAuditBundle/zipball/f7f8d8a895097e9bc17191761d756b502c1482ab",
+                "reference": "f7f8d8a895097e9bc17191761d756b502c1482ab",
                 "shasum": ""
             },
             "require": {
-                "pagerfanta/pagerfanta": "^2.1",
+                "doctrine/annotations": "^1.8",
+                "doctrine/doctrine-bundle": "^1.9|^2.0",
+                "doctrine/orm": "^2.7",
                 "php": ">=7.1",
-                "symfony/orm-pack": "^1.0",
-                "symfony/security-bundle": "^3.4 || ^4.0",
-                "white-october/pagerfanta-bundle": "^1.2"
+                "symfony/event-dispatcher": "^3.4|^4.0|^5.0",
+                "symfony/lock": "^3.4|^4.0|^5.0",
+                "symfony/security-bundle": "^3.4|^4.0|^5.0",
+                "symfony/translation": "^3.4|^4.0|^5.0",
+                "symfony/twig-bundle": "^3.4|^4.0|^5.0"
             },
             "conflict": {
-                "twig/twig": "<1.40|<2.9"
+                "doctrine/persistence": "<1.3"
             },
             "require-dev": {
+                "doctrine/doctrine-migrations-bundle": "^1.3|^2.0",
+                "friendsofphp/php-cs-fixer": "^2.15",
                 "gedmo/doctrine-extensions": "^2.4",
-                "matthiasnoback/symfony-dependency-injection-test": "^3.1 || ^4.0",
-                "phpstan/phpstan": "^0.11.2",
-                "phpstan/phpstan-doctrine": "^0.11.1",
-                "phpstan/phpstan-symfony": "^0.11.1",
-                "phpunit/phpunit": "^7.0 || ^8.0",
-                "stof/doctrine-extensions-bundle": "^1.3",
-                "symfony/lock": "^4.2",
-                "symfony/var-dumper": "^4.2",
+                "matthiasnoback/symfony-dependency-injection-test": "^3.1|^4.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-doctrine": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpstan/phpstan-symfony": "^0.12",
+                "phpunit/phpunit": "^7.0|^8.0",
+                "symfony/var-dumper": "^4.2|^5.0",
                 "twig/extensions": "^1.5"
             },
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "DH\\DoctrineAuditBundle\\": "src/DoctrineAuditBundle"
@@ -102,12 +112,14 @@
                     "email": "damien.harper@gmail.com"
                 }
             ],
-            "description": "This bundle creates audit logs for all doctrine ORM database related changes.",
+            "description": "Doctrine audits logs made easy.",
             "keywords": [
                 "Audit",
+                "audit-log",
+                "audit-trail",
                 "doctrine"
             ],
-            "time": "2019-09-04T07:23:24+00:00"
+            "time": "2020-02-06T23:50:57+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -2229,75 +2241,6 @@
             "time": "2019-12-17T09:22:43+00:00"
         },
         {
-            "name": "pagerfanta/pagerfanta",
-            "version": "v2.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/whiteoctober/Pagerfanta.git",
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-                "reference": "a53ff01d521648d9dbca19b93ac6bc75a59b0972",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.3",
-                "doctrine/phpcr-odm": "1.*",
-                "jackalope/jackalope-doctrine-dbal": "1.*",
-                "jmikola/geojson": "~1.0",
-                "mandango/mandango": "~1.0@dev",
-                "mandango/mondator": "~1.0@dev",
-                "phpunit/phpunit": "^6.5",
-                "propel/propel": "~2.0@dev",
-                "propel/propel1": "~1.6",
-                "ruflin/elastica": "~1.3",
-                "solarium/solarium": "~3.1"
-            },
-            "suggest": {
-                "doctrine/mongodb-odm": "To use the DoctrineODMMongoDBAdapter.",
-                "doctrine/orm": "To use the DoctrineORMAdapter.",
-                "doctrine/phpcr-odm": "To use the DoctrineODMPhpcrAdapter. >= 1.1.0",
-                "mandango/mandango": "To use the MandangoAdapter.",
-                "propel/propel": "To use the Propel2Adapter",
-                "propel/propel1": "To use the PropelAdapter",
-                "solarium/solarium": "To use the SolariumAdapter."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Pagerfanta\\": "src/Pagerfanta/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pablo Díez",
-                    "email": "pablodip@gmail.com"
-                }
-            ],
-            "description": "Pagination for PHP",
-            "keywords": [
-                "page",
-                "pagination",
-                "paginator",
-                "paging"
-            ],
-            "time": "2019-07-17T20:56:16+00:00"
-        },
-        {
             "name": "phpdocumentor/reflection-common",
             "version": "2.0.0",
             "source": {
@@ -4385,16 +4328,16 @@
         },
         {
             "name": "symfony/inflector",
-            "version": "v5.0.2",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/inflector.git",
-                "reference": "aaeb5e293294070d1b061fa3d7889bac69909320"
+                "reference": "e375603b6bd12e8e3aec3fc1b640ac18a4ef4cb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/inflector/zipball/aaeb5e293294070d1b061fa3d7889bac69909320",
-                "reference": "aaeb5e293294070d1b061fa3d7889bac69909320",
+                "url": "https://api.github.com/repos/symfony/inflector/zipball/e375603b6bd12e8e3aec3fc1b640ac18a4ef4cb2",
+                "reference": "e375603b6bd12e8e3aec3fc1b640ac18a4ef4cb2",
                 "shasum": ""
             },
             "require": {
@@ -4439,7 +4382,7 @@
                 "symfony",
                 "words"
             ],
-            "time": "2019-11-18T17:27:11+00:00"
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "symfony/intl",
@@ -5401,24 +5344,24 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v4.4.2",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "055fe3134f8f301ff44af314d83463b858ea6413"
+                "reference": "18617a8c26b97a262f816c78765eb3cd91630e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/055fe3134f8f301ff44af314d83463b858ea6413",
-                "reference": "055fe3134f8f301ff44af314d83463b858ea6413",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/18617a8c26b97a262f816c78765eb3cd91630e19",
+                "reference": "18617a8c26b97a262f816c78765eb3cd91630e19",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
-                "symfony/inflector": "^3.4|^4.0|^5.0"
+                "php": "^7.2.5",
+                "symfony/inflector": "^4.4|^5.0"
             },
             "require-dev": {
-                "symfony/cache": "^3.4|^4.0|^5.0"
+                "symfony/cache": "^4.4|^5.0"
             },
             "suggest": {
                 "psr/cache-implementation": "To cache access methods."
@@ -5426,7 +5369,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -5464,7 +5407,7 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2019-12-10T10:33:21+00:00"
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "symfony/property-info",
@@ -7191,67 +7134,6 @@
             "time": "2019-11-24T13:36:37+00:00"
         },
         {
-            "name": "white-october/pagerfanta-bundle",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git",
-                "reference": "6df560869b5e09a3acf920890ab40598998b30ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberPagerfantaBundle/zipball/6df560869b5e09a3acf920890ab40598998b30ae",
-                "reference": "6df560869b5e09a3acf920890ab40598998b30ae",
-                "shasum": ""
-            },
-            "require": {
-                "pagerfanta/pagerfanta": "^1.1.0|^2.0.0",
-                "php": ">=5.3.3",
-                "symfony/framework-bundle": "~2.3|~3.0|~4.0",
-                "symfony/property-access": "~2.3|~3.0|~4.0",
-                "symfony/translation": "~2.3|~3.0|~4.0",
-                "symfony/twig-bundle": "~2.3|~3.0|~4.0"
-            },
-            "conflict": {
-                "twig/twig": "<1.34|>=2.0,<2.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~3.7|~4.0|^5.0",
-                "symfony/symfony": "~2.3|~3.0|~4.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "WhiteOctober\\PagerfantaBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "Tests/",
-                    "TestsProject/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pablo Díez",
-                    "email": "pablodip@gmail.com"
-                }
-            ],
-            "description": "Bundle to use Pagerfanta with Symfony2",
-            "keywords": [
-                "page",
-                "paging"
-            ],
-            "time": "2019-12-02T14:19:37+00:00"
-        },
-        {
             "name": "willdurand/js-translation-bundle",
             "version": "2.6.6",
             "source": {
@@ -7460,6 +7342,7 @@
                 "code",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2019-12-10T19:21:15+00:00"
         },
         {
@@ -7514,6 +7397,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],
