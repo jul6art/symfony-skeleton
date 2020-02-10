@@ -10,7 +10,7 @@
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "damienharper/doctrine-audit-bundle": "^2.3",
+        "damienharper/doctrine-audit-bundle": "^3.3",
         "friendsofsymfony/jsrouting-bundle": "^2.3",
         "friendsofsymfony/rest-bundle": "2.6.0",
         "friendsofsymfony/user-bundle": "^2.1",
