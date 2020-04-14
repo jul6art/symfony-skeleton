@@ -15,7 +15,7 @@ use DH\DoctrineAuditBundle\AuditConfiguration;
 use DH\DoctrineAuditBundle\Helper\AuditHelper;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
-use DH\DoctrineAuditBundle\AuditManager as BaseAuditManager;
+use DH\DoctrineAuditBundle\Manager\AuditManager as BaseAuditManager;
 use Doctrine\ORM\Mapping\MappingException;
 
 /**
