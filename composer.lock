@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76ee2755ae379bca4f444abcbb5d74d5",
+    "content-hash": "d9d911f47e97ba5837030553d2b8f4bb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -8965,16 +8965,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.4.7",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "6937c1a1590da7c314537b4f3f741c9255a7072e"
+                "reference": "0258b43a94972abf1ee99ce2221359f8ac2a17fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/6937c1a1590da7c314537b4f3f741c9255a7072e",
-                "reference": "6937c1a1590da7c314537b4f3f741c9255a7072e",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/0258b43a94972abf1ee99ce2221359f8ac2a17fd",
+                "reference": "0258b43a94972abf1ee99ce2221359f8ac2a17fd",
                 "shasum": ""
             },
             "require": {
@@ -8992,7 +8992,7 @@
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 },
                 "thanks": {
                     "name": "phpunit/phpunit",
@@ -9026,7 +9026,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:54:36+00:00"
+            "time": "2020-03-27T16:56:45+00:00"
         },
         {
             "name": "symfony/profiler-pack",
