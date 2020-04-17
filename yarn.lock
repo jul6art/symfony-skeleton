@@ -1280,10 +1280,10 @@ bootstrap-notify@^3.1.3:
   resolved "https://registry.yarnpkg.com/bootstrap-notify/-/bootstrap-notify-3.1.3.tgz#7e98b3a696cf452a7b56727f0b3316a90037c10b"
   integrity sha1-fpizppbPRSp7VnJ/CzMWqQA3wQs=
 
-bootstrap-select@^1.13.10:
-  version "1.13.10"
-  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.13.10.tgz#b0cf57f8d448bc0488faba04ecaa2f4c5216e144"
-  integrity sha512-mwfyd+VWHY8wDN4je4Y8PPEaOAzDPUz95z5F5zxzlIqebqxtbrujclFWLrhkVOyETpsgZCL1rsfyEnHpAugtGg==
+bootstrap-select@^1.13.13:
+  version "1.13.13"
+  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.13.13.tgz#33976b55dad5f93786d8e2c01244894706452e86"
+  integrity sha512-VKIKuBAPT0KfS5XDppA0DL++THsd0Y0a0h+Xn5UDRjWb1pNXAylAQRcYVAWKA/4rOIloXyE719fyzNcLBFQExg==
 
 bootstrap@>=3.0:
   version "4.3.1"
