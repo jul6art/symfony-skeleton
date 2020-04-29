@@ -2,7 +2,7 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.28.0",
         "core-js": "^3.0.0",
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "node-sass": "^4.12.0",
         "prettier": "^1.18.2",
         "prettier-webpack-plugin": "^1.2.0",
