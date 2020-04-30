@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76ee2755ae379bca4f444abcbb5d74d5",
+    "content-hash": "872a60468d60576469aca392afa6fb17",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4830,25 +4830,25 @@
         },
         {
             "name": "symfony/messenger",
-            "version": "v4.4.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/messenger.git",
-                "reference": "24579ff4ed8fc5067d11bf34b1b2436006d440a4"
+                "reference": "e608fcd1ef55117c95318ca0b6512a0588a14cf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/messenger/zipball/24579ff4ed8fc5067d11bf34b1b2436006d440a4",
-                "reference": "24579ff4ed8fc5067d11bf34b1b2436006d440a4",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/e608fcd1ef55117c95318ca0b6512a0588a14cf6",
+                "reference": "e608fcd1ef55117c95318ca0b6512a0588a14cf6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "psr/log": "~1.0"
             },
             "conflict": {
                 "doctrine/persistence": "<1.3",
-                "symfony/event-dispatcher": "<4.3",
+                "symfony/event-dispatcher": "<4.4",
                 "symfony/framework-bundle": "<4.4",
                 "symfony/http-kernel": "<4.4"
             },
@@ -4856,16 +4856,16 @@
                 "doctrine/dbal": "^2.6",
                 "doctrine/persistence": "^1.3",
                 "psr/cache": "~1.0",
-                "symfony/console": "^3.4|^4.0|^5.0",
-                "symfony/dependency-injection": "^3.4.19|^4.1.8|^5.0",
-                "symfony/event-dispatcher": "^4.3|^5.0",
-                "symfony/http-kernel": "^4.4",
-                "symfony/process": "^3.4|^4.0|^5.0",
-                "symfony/property-access": "^3.4|^4.0|^5.0",
-                "symfony/serializer": "^3.4|^4.0|^5.0",
+                "symfony/console": "^4.4|^5.0",
+                "symfony/dependency-injection": "^4.4|^5.0",
+                "symfony/event-dispatcher": "^4.4|^5.0",
+                "symfony/http-kernel": "^4.4|^5.0",
+                "symfony/process": "^4.4|^5.0",
+                "symfony/property-access": "^4.4|^5.0",
+                "symfony/serializer": "^4.4|^5.0",
                 "symfony/service-contracts": "^1.1|^2",
-                "symfony/stopwatch": "^3.4|^4.0|^5.0",
-                "symfony/validator": "^3.4|^4.0|^5.0"
+                "symfony/stopwatch": "^4.4|^5.0",
+                "symfony/validator": "^4.4|^5.0"
             },
             "suggest": {
                 "enqueue/messenger-adapter": "For using the php-enqueue library as a transport."
@@ -4873,7 +4873,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -4900,7 +4900,7 @@
             ],
             "description": "Symfony Messenger Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:54:36+00:00"
+            "time": "2020-04-15T15:59:10+00:00"
         },
         {
             "name": "symfony/mime",
