@@ -115,6 +115,7 @@
                                 <span ng-if="column.sortable" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
                         {% endfor %}
+                            <th></th>
                         </tr>
                         <tr>
                             {% for column in columns %}
@@ -122,10 +123,10 @@
                                     column: column
                                 } only %}
                             {% endfor %}
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr editable-row ng-repeat="translation in $data track by $index" translation="translation" columns="columns" edit-type="editType"></tr>
                     </tbody>
                 </table>
             </div>

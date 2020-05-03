@@ -1,5 +1,5 @@
 <th>
     {% if column.filter and column.visible %}
-        <input data-toggle="translation_table_filter" type="text" name="{{ column.index }}" value="{{ (app.request.get('filter')[column.index])|default('') }}" class="form-control input-sm" />
+        <input data-toggle="translation_table_filter" type="text" name="{{ column.index }}" value="{{ (app.request.get(column.index))|default('') }}" class="form-control input-sm" />
     {% endif %}
 </th>
