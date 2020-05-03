@@ -20,6 +20,7 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('translate', './assets/js/translate.js')
     .addEntry('error', './assets/js/error.js')
     .addEntry('form', './assets/js/form.js')
     .addEntry('table', './assets/js/table.js')

@@ -67,7 +67,7 @@
                             <tbody>
                             {% for domain in domains %}
                                 <tr columns="columns">
-                                    <td><a href="{{ path('lexik_translation_grid') }}#?filter[_domain]={{ domain }}">{{ domain }}</a></td>
+                                    <td><a href="{{ path('lexik_translation_grid') }}?filter[_domain]={{ domain }}">{{ domain }}</a></td>
                                     {% for locale in locales %}
                                         <td class="text-center">
                                             <span class="text {{ stats[domain][locale]['completed'] == 100 ? 'text-success' : 'text-danger' }}">
@@ -108,8 +108,3 @@
         card_footer: ''
     } %}
 {% endblock lexik_content %}
-
-{% block lexik_javascript_footer %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/lexiktranslation/js/translation.js') }}"></script>
-{% endblock lexik_javascript_footer %}

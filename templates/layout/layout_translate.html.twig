@@ -1,5 +1,7 @@
 {% extends 'layout/layout_base.html.twig' %}
 
+{% trans_default_domain 'LexikTranslationBundle' %}
+
 {% block body_class %}
     {{ parent() }} translation-layout
 {% endblock body_class %}
@@ -21,9 +23,5 @@
     {{ parent() }}
     {{ encore_entry_script_tags('table') }}
 
-    {% block lexik_javascript_footer %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
-        <script src="{{ asset('bundles/lexiktranslation/ng-table/ng-table.min.js') }}"></script>
-    {% endblock %}
+    {% block lexik_javascript_footer %}{% endblock lexik_javascript_footer %}
 {% endblock javascripts %}

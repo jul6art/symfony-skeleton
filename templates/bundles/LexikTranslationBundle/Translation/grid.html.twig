@@ -50,7 +50,6 @@
 {% endblock lexik_content %}
 
 {% block lexik_javascript_footer %}
-    {{ parent() }}
     <script>
         var translationCfg = {
             locales: {{ locales|json_encode|raw }},
@@ -88,5 +87,6 @@
             }
         };
     </script>
-    <script src="{{ asset('bundles/lexiktranslation/js/translation.js') }}"></script>
+
+    {{ encore_entry_script_tags('translate') }}
 {% endblock lexik_javascript_footer %}

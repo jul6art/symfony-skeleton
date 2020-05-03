@@ -1,82 +1,111 @@
-{# Raw block to display the AngularJS template #}
-{% verbatim %}
+{% trans_default_domain 'LexikTranslationBundle' %}
+
+{% set labels = {
+    hideCol: 'translations.show_hide_columns'|trans,
+    toggleAllCol: 'translations.toggle_all_columns'|trans,
+    invalidateCache: 'translations.invalidate_cache'|trans,
+    allTranslations: 'translations.all_translations'|trans,
+    profiler: 'translations.profiler'|trans,
+    dataSource: 'translations.data_source'|trans,
+    latestProfiles: 'translations.latest_profiles'|trans,
+    profile: 'translations.profile'|trans,
+    saveRow: 'translations.save_row'|trans,
+    domain: 'translations.domain'|trans,
+    key: 'translations.key'|trans,
+    save: 'translations.save'|trans,
+    updateSuccess: 'translations.successfully_updated'|trans,
+    updateFail: 'translations.update_failed'|trans,
+    deleteSuccess: 'translations.successfully_deleted'|trans,
+    deleteFail: 'translations.delete_failed'|trans,
+    noTranslations: 'translations.no_translations'|trans,
+} %}
+
+{% set columns = [
+    {
+        title: "ID",
+        index: "_id",
+        edit: false,
+        delete: false,
+        filter: false,
+        sortable: true,
+        visible: true
+    },
+    {
+        title: labels.domain,
+        index: "_domain",
+        edit: false,
+        delete: false,
+        filter: { _domain: "text" },
+        sortable: true,
+        visible: true
+    },
+    {
+        title: labels.key,
+        index: "_key",
+        edit: false,
+        delete: true,
+        filter: { _key: "text" },
+        sortable: true,
+        visible: true
+    }
+] %}
+
+{% for locale in locales %}
+    {% set columns = columns|merge([{
+        title: locale|upper,
+        index: locale,
+        edit: true,
+        delete: true,
+        filter: { locale: "text" },
+        sortable: false,
+        visible: true
+    }]) %}
+{% endfor %}
+
 <div id="translation-grid" ng-app="translationApp" ng-controller="TranslationController">
-    <div ng-if="profilerTokens != null">
-        <div class="row" ng-controller="DataSourceController" >
-            <div class="col-md-2">
-                <label>{{ labels.dataSource }}:&nbsp;</label>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn" ng-class="defaultSourceClass" ng-click="resetSource()">
-                        {{ labels.allTranslations }}
-                    </button>
-                    <button type="button" class="btn" ng-class="tokenSourceClass" ng-click="useTokenAsSource()">
-                        {{ labels.profiler }}
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-5" ng-show="showProfiles">
-                <label>{{ labels.latestProfiles }}:&nbsp;</label>
-                <select ng-model="selectedToken" ng-change="changeToken(selectedToken)" ng-options="p.token as p.token+' - '+p.url for p in profilerTokens" class="form-control"></select>
-            </div>
-            <div class="col-md-2" ng-show="showProfiles">
-                <label>{{ labels.profile }}:&nbsp;</label>
-                <input type="text" ng-model="selectedToken" ng-change="changeToken(selectedToken)" class="form-control" />
-            </div>
-        </div>
-
-        <hr  />
-    </div>
-
     <div class="row margin-row grid-action-bar">
         <div class="col-md-12 btn-group">
-            <a ng-click="hideColumnsSelector = !hideColumnsSelector" class="btn btn-sm bg-{% endverbatim %}{{ theme_name() }}{% verbatim %} white waves-effect btn-manage-col">
-                <i class="material-icons">visibility_off</i>
-                <span class="hidden-xs">{{ labels.hideCol }}</span>
-            </a>
+{#            <a ng-click="hideColumnsSelector = !hideColumnsSelector" class="btn btn-sm bg-{{ theme_name() }} white waves-effect btn-manage-col">#}
+{#                <i class="material-icons">visibility_off</i>#}
+{#                <span class="hidden-xs">{{ labels.hideCol }}</span>#}
+{#            </a>#}
             <a ng-show="!autoCacheClean" ng-click="invalidateCache()" role="button" class="btn btn-sm bg-blue-grey white waves-effect btn-invalidate-cache">
                 <i class="material-icons">sync</i>
                 <span class="hidden-xs">{{ labels.invalidateCache }}</span>
             </a>
-            <div class="hidden" id="translationSharedMsgContent">
-                <div ng-show="sharedMsg.content != ''" class="pull-right label label-{{ sharedMsg.css }}">
-                    <span>
-                        <i class="glyphicon glyphicon-{{ sharedMsg.icon }}"></i>
-                        <span class="text">
-                            {{ sharedMsg.content }}
-                        </span>
-                    </span>
-                </div>
-            </div>
         </div>
     </div>
 
-    <div ng-show="hideColumnsSelector" class="row">
-        <div class="col-md-12">
-            <ul class="list-unstyled list-inline locales-list">
-                <li class="locale">
-                    <label for="toggle-all-columns" class="locale">
-                        <input type="checkbox" id="toggle-all-columns" ng-model="areAllColumnsSelected" ng-checked="areAllColumnsSelected" ng-click="toggleAllColumns()"/>
-                        {{ labels.toggleAllCol }}
-                    </label>
-                </li>
-            </ul>
-            <ul class="list-unstyled list-inline locales-list">
-                <li ng-repeat="column in columns track by $index" class="locale">
-                    <label for="toggle-{{ column.index }}">
-                        <input type="checkbox" id="toggle-{{ column.index }}" ng-model="column.visible" ng-click="toggleSimilar(column)" />
-                        {{ column.title }}
-                    </label>
-                </li>
-            </ul>
-        </div>
-    </div>
+{#    <div ng-show="hideColumnsSelector" class="row">#}
+{#        <div class="col-md-12">#}
+{#            <ul class="list-unstyled list-inline locales-list">#}
+{#                <li class="locale">#}
+{#                    <label for="toggle-all-columns" class="locale">#}
+{#                        <input type="checkbox" id="toggle-all-columns" ng-model="areAllColumnsSelected" ng-checked="areAllColumnsSelected" ng-click="toggleAllColumns()"/>#}
+{#                        {{ labels.toggleAllCol }}#}
+{#                    </label>#}
+{#                </li>#}
+{#            </ul>#}
+{#            <ul class="list-unstyled list-inline locales-list">#}
+{#                {% for column in columns %}#}
+{#                    <li ng-repeat="column in columns track by $index" class="locale">#}
+{#                        <label for="toggle-{{ column.index }}">#}
+{#                            <input type="checkbox" id="toggle-{{ column.index }}" ng-model="column.visible" ng-click="toggleSimilar(column)" />#}
+{#                            {{ column.title }}#}
+{#                        </label>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        </div>#}
+{#    </div>#}
 
     <div class="row margin-row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table ng-table="tableParams" show-filter="true" template-pagination="pager-template" class="table table-bordered table-striped">
+                <table id="translationTable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                        {% for column in columns %}
                             <th ng-repeat="column in columns track by $index"
                                 ng-show="column.visible"
                                 ng-click="sortGrid(column)"
@@ -85,13 +114,14 @@
                                 &nbsp;
                                 <span ng-if="column.sortable" class="glyphicon glyphicon-chevron-down"></span>
                             </th>
-                            <th class="col-save"></th>
+                        {% endfor %}
                         </tr>
                         <tr>
-                            <th ng-repeat="column in columns track by $index" ng-show="column.visible">
-                                <input ng-if="column.filter != false" ng-model="params.filter()[column.index]" type="text" name="{{ column.index }}" value="" class="form-control input-sm" />
-                            </th>
-                            <th></th>
+                            {% for column in columns %}
+                                {% include 'bundles/LexikTranslationBundle/Translation/dataTable/_filter.html.twig' with {
+                                    column: column
+                                } only %}
+                            {% endfor %}
                         </tr>
                     </thead>
                     <tbody>
@@ -99,7 +129,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="alert alert-info" role="alert" ng-if="tableParams.total() < 1">
+            <div id="translationNoTranslationsMessage" class="alert alert-info hidden" role="alert">
                 {{ labels.noTranslations }}
             </div>
         </div>
@@ -122,7 +152,7 @@
 
     <script type="text/ng-template" id="editable-row-template">
         <td ng-repeat="column in columns track by $index" ng-show="column.visible" ng-dblclick="enableMode('edit')">
-            <span ng-show="!column.edit || (column.edit && mode != 'edit')">{{ translation[column.index] }}</span>
+{#            <span ng-show="!column.edit || (column.edit && mode != 'edit')">{{ translation[column.index] }}</span>#}
             <div ng-switch on="editType">
                 <textarea ng-switch-when="textarea"
                        ng-if="column.edit"
@@ -150,13 +180,13 @@
         </td>
         <td class="text-center">
             <div class="actions btn-group">
-                <button ng-show="!mode" ng-click="enableMode('edit')" type="button" class="btn bg-{% endverbatim %}{{ theme_name() }}{% verbatim %} btn-sm">
+                <button ng-show="!mode" ng-click="enableMode('edit')" type="button" class="btn bg-{{ theme_name() }} btn-sm">
                     <i class="material-icons">edit</i>
                 </button>
                 <button ng-show="!mode" ng-click="enableMode('delete')" type="button" class="btn bg-red btn-sm">
                     <i class="material-icons">close</i>
                 </button>
-                <button ng-show="mode == 'edit'" ng-click="save($event, 'btn-save')" type="button" class="btn bg-{% endverbatim %}{{ theme_name() }}{% verbatim %} btn-sm">
+                <button ng-show="mode == 'edit'" ng-click="save($event, 'btn-save')" type="button" class="btn bg-{{ theme_name() }} btn-sm">
                     <i class="material-icons">save</i>
                 </button>
                 <button ng-show="mode != null" ng-click="disableMode()" type="button" class="btn bg-blue-grey btn-sm">
@@ -166,4 +196,3 @@
         </td>
     </script>
 </div>
-{% endverbatim %}

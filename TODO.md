@@ -42,6 +42,9 @@ optimisations
 bugs
 
     js require et imports de quelques scripts (voir script-loader ????)
+    
+    nouveau pour ce point
+        tester sans l autoprovide jquery de sf mais avec un jquery chargé à la main (pourrait corriger bcp de probs. js)
 
 URGENT
 
@@ -221,7 +224,6 @@ lexik translation bundle
 
     page / form d ajout de traduction
     tests phpunit
-    !! important réécrire la partie JS Angular
     javascript edit in place (utiliser route de l interface de trads ??)
         ckeditor-inline deja installé
         attention aux balises p
