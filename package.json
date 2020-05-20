@@ -48,7 +48,7 @@
         "jquery.are-you-sure": "^1.9.0",
         "jszip": "^3.2.1",
         "lodash": "4.17.15",
-        "moment": "2.19.3",
+        "moment": "2.26.0",
         "node-waves": "^0.7.6",
         "nouislider": "^14.0.3",
         "pdfmake": "^0.1.56",
