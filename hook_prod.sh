@@ -35,8 +35,8 @@ sudo chmod -R 777 /home/symfony-skeleton/public_html/var
 echo '--- CHECK VULNERABILITIES ---'
 ${PATH_PHP} bin/console security:check
 
-echo '--- TESTS LAUNCHING ---'
-./vendor/bin/simple-phpunit
+#echo '--- TESTS LAUNCHING ---'
+#./vendor/bin/simple-phpunit
 
 echo '--- OPTIMISATIONS ---'
 ${PATH_COMPOSER} dump-autoload --optimize --no-dev --classmap-authoritative
