@@ -199,7 +199,6 @@
             <arg value="--exclude=stats/"/>
             <arg value="--exclude=tmp/"/>
             <!-- EXCLUDE PROJECT FILES -->
-            <arg value="--exclude=.env"/>
             <arg value="--exclude=var/cache/"/>
             <arg value="--exclude=var/logs/"/>
             <arg value="--exclude=*.md"/>
