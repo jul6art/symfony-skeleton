@@ -54,10 +54,21 @@
         var translationCfg = {
             locales: {{ locales|json_encode|raw }},
             inputType: '{{ inputType }}',
-            autoCacheClean: {{ autoCacheClean ? 'true' : 'false' }},
-            profilerTokens: {{ tokens is not null ? (tokens|json_encode|raw) : 'null' }},
-            toggleSimilar: '{{ toggleSimilar }}',
             csrfToken: '{{ csrf_token('lexik-translation') }}',
+            button: {
+                cancel: {
+                    class: '',
+                    icon: 'fa fa-ban',
+                },
+                edit: {
+                    class: '',
+                    icon: 'fa fa-edit',
+                },
+                save: {
+                    class: '',
+                    icon: 'fa fa-save',
+                },
+            },
             url: {
                 list: '{{ path('lexik_translation_list') }}',
                 listByToken: '{{ path('lexik_translation_profiler', {'token': '-token-'}) }}',

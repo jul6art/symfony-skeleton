@@ -1,21 +1,7 @@
 $.Translate = {
   context: {},
-  columns: [],
-  tableParams: null,
-  defaultOptions: $.extend(
-    { page: 1, count: 20, filter: {}, sort: { _id: "asc" } },
-    new URLSearchParams(window.location.search)
-  ),
-  init: function() {
-    this.context.locales = translationCfg.locales;
-    this.context.editType = translationCfg.inputType;
-    this.context.autoCacheClean = translationCfg.autoCacheClean;
-    this.context.labels = translationCfg.label;
-    this.context.hideColumnsSelector = false;
-    this.context.areAllColumnsSelected = true;
-    this.context.profilerTokens = translationCfg.profilerTokens;
-    this.context.sharedMsg = null;
 
+  init: function() {
     this.context.table = $("#translationTable");
     this.context.noTranslationsMessage = $("#translationNoTranslationsMessage");
 
@@ -23,6 +9,7 @@ $.Translate = {
     this.button();
     this.filter();
   },
+
   draw: function() {
     let data = { _search: true, page: 1, rows: 20 };
 
@@ -46,11 +33,25 @@ $.Translate = {
 
   button: function() {
     this.context.table.on("click", 'tbody button[name="cancel"]', function() {
-      $.Translate.setRowButtons($(this).closest("tr"), false);
+      let row = $(this).closest("tr");
+      $.Translate.setRowButtons(row, false);
+      $.Translate.setRowCells(row, false);
     });
 
     this.context.table.on("click", 'tbody button[name="edit"]', function() {
-      $.Translate.setRowButtons($(this).closest("tr"), true);
+      let row = $(this).closest("tr");
+      $.Translate.setRowButtons(row, true);
+      $.Translate.setRowCells(row, true);
+    });
+
+    this.context.table.on("click", 'tbody button[name="save"]', function() {
+      let row = $(this).closest("tr");
+      $.Translate.setRowButtons(row, false);
+      $.Translate.setRowCells(row, false);
+
+      $.ajax({
+        url: ""
+      });
     });
   },
 
@@ -93,6 +94,7 @@ $.Translate = {
         tbody.append(tr);
 
         $.Translate.setRowButtons(tbody.find("tr#tableRow" + index), false);
+        $.Translate.setRowCells(tbody.find("tr#tableRow" + index), false);
       });
     }
   },
@@ -105,10 +107,14 @@ $.Translate = {
         '                <button type="button" name="save" class="btn bg-' +
         THEME_NAME +
         'btn-sm">\n' +
-        '                    <i class="material-icons">save</i>\n' +
+        '                    <i class="' +
+        translationCfg.button.save.icon +
+        '"></i>\n' +
         "                </button>\n" +
         '                <button type="button" name="cancel" class="btn bg-blue-grey btn-sm">\n' +
-        '                    <i class="material-icons">cancel</i>\n' +
+        '                    <i class="' +
+        translationCfg.button.cancel.icon +
+        '"></i>\n' +
         "                </button>\n" +
         "            </div>\n";
     } else {
@@ -117,15 +123,41 @@ $.Translate = {
         '                <button type="button" name="edit" class="btn bg-' +
         THEME_NAME +
         'btn-sm">\n' +
-        '                    <i class="material-icons">edit</i>\n' +
+        '                    <i class="' +
+        translationCfg.button.edit.icon +
+        '"></i>\n' +
         "                </button>\n" +
-        '                <button type="button" name="close" class="btn bg-red btn-sm">\n' +
-        '                    <i class="material-icons">close</i>\n' +
-        "                </button>\n" +
+        // '                <button type="button" name="close" class="btn bg-red btn-sm">\n' +
+        // '                    <i class="material-icons">close</i>\n' +
+        // "                </button>\n" +
         "            </div>\n";
     }
 
     $row.find("td.buttons").html(html);
+  },
+
+  setRowCells: function($row, edit) {
+    var cells = $row.find(
+      'td:not([name="_id"]):not([name="_domain"]):not([name="_key"]):not(.buttons)'
+    );
+
+    $.each(cells, function(index, cell) {
+      cell = $(cell);
+
+      if (edit) {
+        cell.html(
+          "<" +
+            translationCfg.inputType +
+            ' style="width: 100%">' +
+            decodeURI(cell.html()) +
+            "</" +
+            translationCfg.inputType +
+            ">"
+        );
+      } else {
+        cell.html(encodeURI(cell.find(translationCfg.inputType).val()));
+      }
+    });
   }
 };
 
