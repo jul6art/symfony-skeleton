@@ -17,8 +17,9 @@ ${PATH_PHP} bin/console cache:clear --env=dev
 ${PATH_PHP} bin/console cache:warmup --env=dev
 
 echo '--- DATABASE LOADING ---'
-${PATH_PHP} bin/console doctrine:schema:drop --force
-${PATH_PHP} bin/console doctrine:schema:update --force
+${PATH_PHP} bin/console doctrine:database:drop --force
+${PATH_PHP} bin/console doctrine:database:create
+#${PATH_PHP} bin/console doctrine:schema:update --force
 ${PATH_PHP} bin/console doctrine:migrations:migrate --no-interaction
 ${PATH_PHP} bin/console doctrine:fixtures:load --no-interaction
 ${PATH_PHP} bin/console audit:clean --no-confirm
