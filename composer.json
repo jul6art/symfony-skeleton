@@ -17,7 +17,7 @@
         "fzaninotto/faker": "^1.8",
         "gedmo/doctrine-extensions": "^2.4",
         "google/recaptcha": "^1.2",
-        "knplabs/knp-menu-bundle": "^2.0",
+        "knplabs/knp-menu-bundle": "^3.0",
         "lcobucci/jwt": "^3.3",
         "lexik/translation-bundle": "^4.0",
         "saacsos/randomgenerator": "^1.1",
