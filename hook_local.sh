@@ -35,13 +35,13 @@ ${PATH_PHP} bin/console bazinga:js-translation:dump public/js/
 echo '--- CHECK VULNERABILITIES ---'
 ${PATH_PHP} bin/console security:check
 
-echo '--- TESTS LAUNCHING ---'
+#echo '--- TESTS LAUNCHING ---'
 # OLD SYNTAX (to merge)
 # ./vendor/bin/simple-phpunit > tests_output.txt
 # echo 'tests output saved in tests_output.txt file'
 # cat tests_output.txt
 # ./vendor/bin/simple-phpunit --coverage-clover data/build/clover.xml
-./vendor/bin/simple-phpunit
-vendor/bin/php-coverage-badger data/build/clover.xml data/report/coverage.svg
+#./vendor/bin/simple-phpunit
+#vendor/bin/php-coverage-badger data/build/clover.xml data/report/coverage.svg
 
 echo '--- SUCCESSFULL DEPLOY ---'
