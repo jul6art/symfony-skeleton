@@ -15,8 +15,12 @@
     <property name="console_path" value="bin/console"/>
     <property name="parameters" value="/PATH/TO/PARAMETERS"/>
 
+<!--    <target name="build" description="Build"-->
+<!--            depends="info, parameters, composer, fosjs, yarn, cache, database_drop, database_create, database_migrate, lexik, fixtures, audit, security, unit_tests"-->
+<!--    />-->
+
     <target name="build" description="Build"
-            depends="info, parameters, composer, fosjs, yarn, cache, database_migrate, lexik, fixtures, audit, security, unit_tests"
+            depends="info, parameters, composer, fosjs, yarn, cache, database_drop, database_create, database_migrate, lexik, fixtures, audit, security"
     />
 
     <target name="deploy" description="Deploy and deployment process"
@@ -112,10 +116,15 @@
     <target name="database_drop" description="Database drop">
         <exec executable="${php}" failonerror="true">
             <arg value="${console_path}" />
-            <arg value="doctrine:schema:update" />
-            <arg value="--no-interaction" />
+            <arg value="doctrine:database:drop" />
             <arg value="--force" />
-            <arg value="--env=${symfony_env}" />
+        </exec>
+    </target>
+
+    <target name="database_create" description="Database create">
+        <exec executable="${php}" failonerror="true">
+            <arg value="${console_path}" />
+            <arg value="doctrine:database:create" />
         </exec>
     </target>
 
