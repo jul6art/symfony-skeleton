@@ -104,7 +104,7 @@ Testing
 
 ```console
 $ sh hook_local.sh
-./vendor/bin/simple-phpunit
+$ ./vendor/bin/simple-phpunit
 ```
 
 Start server
