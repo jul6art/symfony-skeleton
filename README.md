@@ -39,7 +39,7 @@ Installation
 ------------
 
 ```console
-git clone https://github.com/jul6art/symfony-skeleton.git
+$ git clone https://github.com/jul6art/symfony-skeleton.git
 ```
 
 
@@ -103,7 +103,7 @@ Testing
 -------
 
 ```console
-sh hook_local.sh
+$ sh hook_local.sh
 ./vendor/bin/simple-phpunit
 ```
 
@@ -111,7 +111,7 @@ Start server
 ------------
 
 ```console
-sh hook_local.sh
+$ sh hook_local.sh
 $ bin/console server:run
 ```
 
