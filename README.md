@@ -39,7 +39,7 @@ Installation
 ------------
 
 ```console
-$ git clone https://github.com/jul6art/symfony-skeleton.git
+git clone https://github.com/jul6art/symfony-skeleton.git
 ```
 
 
@@ -103,16 +103,16 @@ Testing
 -------
 
 ```console
-$ sh hook_local.sh
-$ ./vendor/bin/simple-phpunit
+sh hook_local.sh
+./vendor/bin/simple-phpunit
 ```
 
 Start server
 ------------
 
 ```console
-$ sh hook_local.sh
-$ bin/console server:run
+sh hook_local.sh
+bin/console server:run
 ```
 
 Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000)
