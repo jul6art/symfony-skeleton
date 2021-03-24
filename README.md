@@ -38,7 +38,7 @@ Includes
 Installation
 ------------
 
-```console
+```shell
 git clone https://github.com/jul6art/symfony-skeleton.git
 ```
 
@@ -102,7 +102,7 @@ Documentation
 Testing
 -------
 
-```console
+```shell
 sh hook_local.sh
 ./vendor/bin/simple-phpunit
 ```
@@ -110,7 +110,7 @@ sh hook_local.sh
 Start server
 ------------
 
-```console
+```shell
 sh hook_local.sh
 bin/console server:run
 ```
