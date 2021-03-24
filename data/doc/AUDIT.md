@@ -57,8 +57,8 @@ audit.actions.test01: 'Custom action from %planet% on element #%objectId%'
 Remove audits older than a year
 -------------------------------
 
-```console
-$ bin/console audit:clean --no-confirm
+```shell
+bin/console audit:clean --no-confirm
 ```
 
 License
