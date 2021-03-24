@@ -21,7 +21,7 @@ Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, 
 Requirements
 ------------
 
-* **php ^7.4**
+* **php ^7.4 || ^8.0**
 * **mysql** (for **postgresql**, **sqlite** or something else, you will need to update doctrine configuration)
 * **composer**
 * **yarn**
