@@ -53,14 +53,14 @@ Commands
 
 Purge outdated sessions
 
-```console
-$ bin/console skeleton:sessions:purge
+```shell
+bin/console skeleton:sessions:purge
 ```
 
 Consume queued messages
 
-```console
-$ bin/console skeleton:messages:consume
+```shell
+bin/console skeleton:messages:consume
 ```
 
 Theme
