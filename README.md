@@ -16,8 +16,6 @@ Base sf4 admin project
 
 > :warning: Work in progress so keep calm. The good news: this is maintained!
 
-Live demo available [here](https://symfony-skeleton.vsweb.be) (**user**: admin, **password**: devinthehood)
-
 Requirements
 ------------
 
