@@ -32,8 +32,10 @@ ce qu'ils portent est l'erreur la plus coûteuse de cet écosystème, parce qu'e
    (`column()`, `staticFilter()`, `apiFilter()`, `linkAction()`, `bulkDeleteAction()`) : chaque
    libellé passe par le traducteur, et c'est le seul garde-fou contre un en-tête en clé brute.
 2. Un `#[ApiResource]` sur l'entité, avec `GetCollection` gardé par un code de permission, plus les
-   filtres que les colonnes supposent (`OrderFilter` pour chaque `sortField`, `OrSearchFilter` pour
-   la recherche globale).
+   filtres que les colonnes supposent, déclarés par `#[QueryParameter]` (jamais `#[ApiFilter]`,
+   déprécié et refusé par `api-bundle` 2.x) : le gabarit `order[:property]` d'un
+   `CaseInsensitiveOrderFilter` pour chaque `sortField`, `search` et un `OrSearchFilter` pour la
+   recherche globale — `src/Entity/User.php` en est le modèle.
 3. Une action de contrôleur qui passe `columns_config`, `filters_config` et `actions_config`.
 4. Un gabarit qui inclut `_csrf.html.twig`, DANS la balise `<table>`.
 5. Une route POST par action de ligne, avec son `#[IsGranted]` et son jeton `datatable_action`.

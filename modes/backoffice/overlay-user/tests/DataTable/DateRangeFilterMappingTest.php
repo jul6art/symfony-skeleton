@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace App\Tests\DataTable;
 
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
-use ApiPlatform\Metadata\ApiFilter;
 use App\Entity\User;
 use App\Security\PermissionCodes;
+use App\Tests\Support\QueryParameters;
 use Jul6Art\AclBundle\Security\PermissionDecisionService;
 use Jul6Art\DatatableBundle\DataTable\AbstractDataTableConfigProvider;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
-use ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-use function count;
 use function in_array;
-use function is_array;
 use function is_string;
 use function sprintf;
 
@@ -118,10 +115,11 @@ final class DateRangeFilterMappingTest extends KernelTestCase
                 $mapped,
                 sprintf(
                     '%s déclare un filtre de plage sur « %s » que %s ne mappe pas : le filtre s\'affichera et ne '
-                    .'retirera aucune ligne. Ajouter #[ApiFilter(DateFilter::class, properties: [\'%s\'])].',
+                    .'retirera aucune ligne. Ajouter #[QueryParameter(key: \'%s\', filter: new DateFilter(), property: \'%s\')].',
                     $providerClass,
                     $param,
                     $entityClass,
+                    $param,
                     $param,
                 ),
             );
@@ -233,33 +231,10 @@ final class DateRangeFilterMappingTest extends KernelTestCase
     /**
      * @param class-string $entityClass
      *
-     * @return list<string> les propriétés couvertes par un `#[ApiFilter(DateFilter::class)]`
+     * @return list<string> les propriétés couvertes par un `DateFilter`
      */
     private static function dateFilteredProperties(string $entityClass): array
     {
-        $properties = [];
-
-        foreach (new ReflectionClass($entityClass)->getAttributes(ApiFilter::class) as $attribute) {
-            $arguments = $attribute->getArguments();
-
-            if (DateFilter::class !== ($arguments[0] ?? $arguments['filterClass'] ?? null)) {
-                continue;
-            }
-
-            $declared = $arguments['properties'] ?? $arguments[1] ?? [];
-            if (!is_array($declared)) {
-                continue;
-            }
-
-            foreach ($declared as $key => $value) {
-                // `['createdAt']` comme `['createdAt' => 'exclude_null']` : la propriété est la
-                // valeur dans le premier cas, la clé dans le second.
-                $properties[] = is_string($key) ? $key : (string) $value;
-            }
-        }
-
-        self::assertGreaterThanOrEqual(0, count($properties));
-
-        return $properties;
+        return QueryParameters::propertiesFilteredBy($entityClass, DateFilter::class);
     }
 }

@@ -11,6 +11,9 @@
 # colonne inter-tenants.
 
 datatable:
+  action:
+    default: "Action %type%"
+  actions: "Actions"
   # Les libellés propres à DataTables. Ils étaient écrits DANS le JavaScript du bundle — onze
   # phrases françaises et un anglais presque vide — jusqu'à sa v2. Un produit qui déclare une
   # troisième langue retombait donc sur un anglais à moitié rempli.
@@ -35,9 +38,25 @@ datatable:
   filter_apply: Appliquer
   filter_reset: Réinitialiser
   filter:
+    all: "Tous"
+    search: "Rechercher"
     input_too_short: Saisissez au moins un caractère
     searching: Recherche…
     no_results: Aucun résultat
+  # Select2 (datatable-bundle >= 2.6): its messages, read by the browser.
+  select2:
+    error_loading: "Les résultats ne peuvent pas être chargés."
+    input_too_long: "Supprimez %count% caractère(s)"
+    input_too_short: "Saisissez au moins %count% caractère(s)"
+    loading_more: "Chargement de résultats supplémentaires…"
+    maximum_selected: "Vous ne pouvez sélectionner que %count% élément(s)"
+    no_results: "Aucun résultat trouvé"
+    remove_all_items: "Supprimer tous les éléments"
+    remove_item: "Supprimer l'élément"
+    search: "Rechercher"
+    searching: "Recherche en cours…"
+  export:
+    button: "Exporter"
   status:
     active: Actif
     inactive: Inactif
@@ -116,3 +135,26 @@ datatable:
         title: Désactiver la sélection
         message: Désactiver les éléments sélectionnés ?
         confirm: Désactiver
+
+# Keyboard shortcuts (admin-bundle >= 1.14) — read by the BROWSER: the cheatsheet "?" opens, and
+# the capture widget of the settings screen.
+keyboard:
+  capture:
+    captured: "Retenu : %combo%"
+    default: "Par défaut : %default%"
+    meta_refused: "Les combinaisons avec Cmd ne sont pas acceptées."
+    press: "Appuyez sur la combinaison voulue…"
+    reset: "Revenir au défaut"
+    unsupported: "Touche non prise en charge — une lettre, un chiffre ou une touche de fonction."
+  cheatsheet:
+    close: "Fermer"
+    global:
+      back: "Revenir à la liste"
+      help: "Afficher cette aide"
+      new: "Ouvrir le formulaire de création"
+      save: "Enregistrer le formulaire"
+      save_and_new: "Enregistrer et en créer un autre"
+    section:
+      global: "Partout"
+      page: "Sur cet écran"
+    title: "Raccourcis clavier"

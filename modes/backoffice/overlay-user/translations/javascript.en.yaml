@@ -11,6 +11,9 @@
 # colonne inter-tenants.
 
 datatable:
+  action:
+    default: "Action %type%"
+  actions: "Actions"
   # Les libellés propres à DataTables. Ils étaient écrits DANS le JavaScript du bundle — onze
   # phrases françaises et un anglais presque vide — jusqu'à sa v2. Un produit qui déclare une
   # troisième langue retombait donc sur un anglais à moitié rempli.
@@ -35,9 +38,25 @@ datatable:
   filter_apply: Apply
   filter_reset: Reset
   filter:
+    all: "All"
+    search: "Search"
     input_too_short: Type at least one character
     searching: Searching…
     no_results: No result
+  # Select2 (datatable-bundle >= 2.6): its messages, read by the browser.
+  select2:
+    error_loading: "The results could not be loaded."
+    input_too_long: "Please delete %count% character(s)"
+    input_too_short: "Please enter %count% or more characters"
+    loading_more: "Loading more results…"
+    maximum_selected: "You can only select %count% item(s)"
+    no_results: "No results found"
+    remove_all_items: "Remove all items"
+    remove_item: "Remove item"
+    search: "Search"
+    searching: "Searching…"
+  export:
+    button: "Export"
   status:
     active: Active
     inactive: Inactive
@@ -116,3 +135,26 @@ datatable:
         title: Deactivate selection
         message: Deactivate the selected items?
         confirm: Deactivate
+
+# Keyboard shortcuts (admin-bundle >= 1.14) — read by the BROWSER: the cheatsheet "?" opens, and
+# the capture widget of the settings screen.
+keyboard:
+  capture:
+    captured: "Captured: %combo%"
+    default: "Default: %default%"
+    meta_refused: "Cmd combinations are not accepted."
+    press: "Press the combination you want…"
+    reset: "Reset to default"
+    unsupported: "Unsupported key — a letter, a digit or a function key."
+  cheatsheet:
+    close: "Close"
+    global:
+      back: "Back to the list"
+      help: "Show this help"
+      new: "Open the creation form"
+      save: "Save the form"
+      save_and_new: "Save and create another"
+    section:
+      global: "Everywhere"
+      page: "On this screen"
+    title: "Keyboard shortcuts"

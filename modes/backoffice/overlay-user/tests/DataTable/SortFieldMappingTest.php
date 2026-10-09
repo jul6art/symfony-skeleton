@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\Tests\DataTable;
 
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Metadata\ApiFilter;
 use App\Entity\User;
 use App\Security\PermissionCodes;
+use App\Tests\Support\QueryParameters;
 use Jul6Art\AclBundle\Security\PermissionDecisionService;
+use Jul6Art\ApiBundle\Filter\CaseInsensitiveOrderFilter;
 use Jul6Art\ApiBundle\Filter\ConcatOrderFilter;
 use Jul6Art\DatatableBundle\DataTable\AbstractDataTableConfigProvider;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
-use ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-use function is_array;
 use function is_string;
 use function sprintf;
 
@@ -39,7 +37,7 @@ use function sprintf;
  *
  * ⚠️ Le test lit **DEUX** filtres. `fullName` n'est pas une colonne Doctrine : seul le
  * `ConcatOrderFilter` d'`api-bundle` sait l'ordonner (`['fullName' => ['firstName', 'lastName']]`).
- * Un garde-fou qui ne connaîtrait que l'`OrderFilter` refuserait une configuration correcte, et
+ * Un garde-fou qui ne connaîtrait que le gabarit `order[:property]` refuserait une configuration correcte, et
  * pousserait à retirer un tri qui marche.
  *
  * ⚠️ Un provider nouveau s'ajoute ICI, dans `providers()` : la liste est explicite parce qu'un
@@ -77,7 +75,8 @@ final class SortFieldMappingTest extends KernelTestCase
                 sprintf(
                     '%s déclare la colonne « %s » triable, que %s ne mappe pas : le tri sera IGNORÉ en '
                     .'silence — l\'en-tête s\'allume et l\'ordre ne bouge pas. Ajouter la propriété à '
-                    .'#[ApiFilter(OrderFilter::class, …)], ou passer la colonne en readOnlyColumn() si '
+                    .'`properties` du #[QueryParameter(key: \'order[:property]\', …)], ou passer la colonne en '
+                    .'readOnlyColumn() si '
                     .'elle n\'est pas ordonnable (une valeur calculée en PHP ne l\'est jamais).',
                     $providerClass,
                     $sortField,
@@ -142,11 +141,11 @@ final class SortFieldMappingTest extends KernelTestCase
     /**
      * @param class-string $entityClass
      *
-     * @return list<string> les propriétés couvertes par un `#[ApiFilter(OrderFilter::class)]`
+     * @return list<string> les propriétés du gabarit `order[:property]` de l'entité
      */
     private static function orderFilterProperties(string $entityClass): array
     {
-        return self::filterProperties($entityClass, OrderFilter::class);
+        return self::filterProperties($entityClass, CaseInsensitiveOrderFilter::class);
     }
 
     /**
@@ -170,28 +169,6 @@ final class SortFieldMappingTest extends KernelTestCase
      */
     private static function filterProperties(string $entityClass, string $filterClass): array
     {
-        $properties = [];
-
-        foreach (new ReflectionClass($entityClass)->getAttributes(ApiFilter::class) as $attribute) {
-            $arguments = $attribute->getArguments();
-
-            if ($filterClass !== ($arguments[0] ?? $arguments['filterClass'] ?? null)) {
-                continue;
-            }
-
-            $declared = $arguments['properties'] ?? $arguments[1] ?? [];
-
-            if (!is_array($declared)) {
-                continue;
-            }
-
-            // `['id', 'name']` comme `['id' => 'ASC']` ou `['fullName' => ['firstName', …]]` : la
-            // propriété est la valeur dans le premier cas, la clé dans les deux autres.
-            foreach ($declared as $key => $value) {
-                $properties[] = is_string($key) ? $key : (string) $value;
-            }
-        }
-
-        return $properties;
+        return QueryParameters::propertiesFilteredBy($entityClass, $filterClass);
     }
 }

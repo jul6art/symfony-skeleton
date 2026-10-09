@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\ExactFilter;
+use ApiPlatform\Doctrine\Orm\Filter\PartialSearchFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\UserRepository;
 use App\Security\BackofficeLocales;
 use App\Security\PermissionCodes;
@@ -22,6 +22,7 @@ use Jul6Art\AdminBundle\Appearance\ColorMode;
 use Jul6Art\AdminBundle\Contract\AdminUserInterface;
 use Jul6Art\AdminBundle\Contract\AppearanceAwareInterface;
 use Jul6Art\AdminBundle\Entity\Traits\AppearancePreferencesTrait;
+use Jul6Art\ApiBundle\Filter\CaseInsensitiveOrderFilter;
 use Jul6Art\ApiBundle\Filter\ConcatOrderFilter;
 use Jul6Art\ApiBundle\Filter\OrSearchFilter;
 use Jul6Art\CoreBundle\Entity\Traits\IdTrait;
@@ -35,6 +36,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\SerializedName;
+use Symfony\Component\TypeInfo\Type\BuiltinType;
+use Symfony\Component\TypeInfo\TypeIdentifier;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use function in_array;
@@ -72,23 +75,28 @@ use function in_array;
     normalizationContext: ['groups' => ['user:read']],
     order: ['id' => 'DESC'],
 )]
-#[ApiFilter(SearchFilter::class, properties: ['email' => 'partial', 'isActive' => 'exact', 'roles' => 'partial'])]
-#[ApiFilter(OrSearchFilter::class, properties: ['email', 'firstName', 'lastName'])]
-#[ApiFilter(OrderFilter::class, properties: ['id', 'email', 'firstName', 'lastName', 'createdAt'])]
+// ⚠️ `#[QueryParameter]` et non `#[ApiFilter]` : déprécié par API Platform 4.4, et les filtres de
+// `jul6art/api-bundle` 2.x ne se déclarent plus que par paramètre — un `#[ApiFilter(OrSearchFilter…)]`
+// empêche le conteneur de compiler (« does not have argument $properties »).
+#[QueryParameter(key: 'email', filter: new PartialSearchFilter(caseSensitive: true), property: 'email')]
+#[QueryParameter(key: 'isActive', filter: new ExactFilter(), property: 'isActive', nativeType: new BuiltinType(TypeIdentifier::BOOL), castToNativeType: true)]
+#[QueryParameter(key: 'roles', filter: new PartialSearchFilter(caseSensitive: true), property: 'roles')]
+#[QueryParameter(key: 'search', filter: new OrSearchFilter(), properties: ['email', 'firstName', 'lastName'])]
+#[QueryParameter(key: 'order[:property]', filter: new CaseInsensitiveOrderFilter(), properties: ['id', 'email', 'firstName', 'lastName', 'createdAt'])]
 // ⚠️ `fullName` n'est PAS une colonne : c'est un getter qui concatène prénom et nom. Un
 // `OrderFilter` ordinaire écrirait `ORDER BY u.fullName` — champ inconnu, erreur DQL. Le
 // `ConcatOrderFilter` d'`api-bundle` existe pour ce cas exact et ordonne sur les deux colonnes
 // réelles. Sans lui, la colonne PRINCIPALE de l'écran des comptes promet un tri que le serveur
 // jette en silence, et `tests/DataTable/SortFieldMappingTest.php` le refuse — c'est le filtre
 // qu'il attend, pas un passage de la colonne en lecture seule.
-#[ApiFilter(ConcatOrderFilter::class, properties: ['fullName' => ['firstName', 'lastName']])]
+#[QueryParameter(key: 'order[fullName]', filter: new ConcatOrderFilter(['firstName', 'lastName']))]
 // ⚠️ Sans ce filtre, `createdAt[after]` et `createdAt[before]` sont IGNORÉS : API Platform jette
 // en silence un paramètre qu'aucun filtre ne réclame. La barre de filtres s'ouvrait, se
 // remplissait, affichait « depuis le … » et ne retirait AUCUNE ligne — 103 avant, 103 après un
 // `before=2020-01-01` (mesuré contre l'API le 2026-08-24). `OrderFilter` ne remplace rien : il
 // trie, il ne filtre pas. Toute colonne date déclarant un `dateRangeFilter()` côté provider a son
 // entrée ici, et `DateRangeFilterMappingTest` fait échouer la gate si les deux divergent.
-#[ApiFilter(DateFilter::class, properties: ['createdAt'])]
+#[QueryParameter(key: 'createdAt', filter: new DateFilter(), property: 'createdAt')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUserInterface, AdminUserInterface, AppearanceAwareInterface
 {
     /**

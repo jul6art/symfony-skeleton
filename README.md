@@ -201,8 +201,8 @@ interactive docs.
 
 Every mode also ships a smoke test — public pages and probes answer, protected
 areas stay closed — so `make qa` (php-cs-fixer, PHPStan level 8, PHPUnit) is
-green on a freshly generated project. Last measured on `backoffice`, 2026-08-26:
-**80 tests / 330 assertions in 6.6 s across 16 processes**, PHPStan clean,
+green on a freshly generated project. Last measured on `backoffice`, 2026-10-09:
+**93 tests / 416 assertions in 4.9 s across 16 processes**, PHPStan clean,
 php-cs-fixer without a diff.
 
 ## Usage
