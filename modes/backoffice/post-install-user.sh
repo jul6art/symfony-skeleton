@@ -22,8 +22,27 @@ env_default() {
 
 env_default MAILER_FROM 'noreply@localhost' \
     "L'expéditeur des mails transactionnels. Lu par \`config/services.yaml\`."
-env_default APP_REGISTRATION_ENABLED 1 \
+# ⚠️ `${REGISTRATION:-1}` et non `1` : c'est la valeur de `--no-registration`, comme dans les modes
+# web et admin. Écrite en dur, elle ouvrait l'inscription de tout back-office généré « fermé » — la
+# route /register répondait 200 sur devinthehood-back (2026-10-09).
+env_default APP_REGISTRATION_ENABLED "${REGISTRATION:-1}" \
     "L'inscription publique. À 0, la route /register répond 404 — pas 403, qui confirmerait son existence."
+
+# ⚠️ Fermer l'inscription, c'est AUSSI retirer son lien : la route répond 404, mais la page de
+# connexion d'admin-bundle affiche « Create an account » tant que `admin.routes.register` est
+# rempli (une route vide masque le lien). Les tests, eux, la gardent ouverte : FormThemeTest éprouve
+# le thème sur le formulaire d'inscription, le plus riche du mode.
+if [ "${REGISTRATION:-1}" = 0 ]; then
+    if [ -f config/packages/admin.yaml ]; then
+        printf '    admin.yaml : lien d'"'"'inscription retiré\n'
+        sed -i.bak "s/^\(        register:\) admin_security_register$/\1 ''/" config/packages/admin.yaml \
+            && rm -f config/packages/admin.yaml.bak
+    fi
+    if [ -f .env.test ] && ! grep -q '^APP_REGISTRATION_ENABLED=' .env.test; then
+        printf '    .env.test : inscription ouverte pour les tests\n'
+        printf '\n# Inscription fermée dans le projet, ouverte en test (FormThemeTest).\nAPP_REGISTRATION_ENABLED=1\n' >> .env.test
+    fi
+fi
 
 printf '    Paire de clés JWT…\n'
 if ! symfony console lexik:jwt:generate-keypair --skip-if-exists >/dev/null 2>&1; then
