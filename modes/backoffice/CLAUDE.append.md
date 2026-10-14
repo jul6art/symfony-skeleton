@@ -13,6 +13,7 @@ ce dépôt porte ce qui lui appartient — ses entités, son catalogue de permis
 | Les pages de connexion / inscription / mot de passe oublié | `jul6art/admin-bundle` | logo et nom viennent d'`admin.branding` |
 | L'écran d'apparence, les cinq colonnes `appearance_*` | `jul6art/admin-bundle` | `AppearancePreferencesTrait`, `AppearanceType` |
 | Le thème : jetons d'accent, densité, `.panel`, `.btn-*` | `jul6art/admin-bundle` | `assets/styles/*` du bundle, importés par `assets/styles/app.css` |
+| Le titre de la page dans la barre du haut, une fois son `<h1>` défilé | `jul6art/admin-bundle` (≥ 1.29) | `ui--page-title` : le nom d'une fiche va dans son `<h1>`, ou dans l'élément marqué `data-ui--page-title-target="source"` |
 | Les tableaux : pagination, tri, filtres, actions de masse, temps réel | `jul6art/datatable-bundle` | le contrôleur Stimulus, `AbstractDataTableConfigProvider` |
 | Les filtres API Platform (`OrSearchFilter`, tri insensible à la casse) | `jul6art/api-bundle` | |
 | Les types de formulaire (e-mail, mot de passe, montant, IBAN…) | `jul6art/ui-bundle` | |
