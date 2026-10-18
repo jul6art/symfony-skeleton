@@ -19,6 +19,9 @@ appearance:
         dark: Sombre
         system: Système
     accent:
+        # L'accent par défaut (AccentColor::Brand, admin-bundle ≥ 1.27) : celui que le projet déclare
+        # dans `assets/styles/app.css`. Sans libellé, l'écran Apparence affichait la clé brute.
+        brand: Couleur de la marque
         indigo: Indigo
         emerald: Émeraude
         rose: Rose

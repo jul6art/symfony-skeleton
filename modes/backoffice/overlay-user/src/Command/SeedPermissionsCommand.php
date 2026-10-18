@@ -19,9 +19,10 @@ use function sprintf;
 /**
  * Pose les permissions par défaut de chaque rôle, telles que `DefaultRolePermissions` les décrit.
  *
- * Idempotente : une permission déjà accordée n'est pas retouchée, donc la commande peut être
- * rejouée après un déploiement qui ajoute des codes. Elle ne RETIRE rien — ce que quelqu'un a
- * décoché dans l'écran est une décision, pas une dérive à corriger.
+ * Idempotente : une permission déjà DÉCIDÉE — accordée, ou refusée depuis l'écran des droits —
+ * n'est pas retouchée, donc la commande peut être rejouée après un déploiement qui ajoute des
+ * codes. Ce que quelqu'un a décoché est une décision, pas une dérive à corriger : la commande
+ * passait par `grantToRole()`, qui rouvrait un droit refusé ; elle passe par `seedRole()`.
  */
 #[AsCommand(name: 'app:permissions:seed', description: 'Pose les permissions par défaut des rôles')]
 final class SeedPermissionsCommand extends Command
@@ -41,7 +42,7 @@ final class SeedPermissionsCommand extends Command
 
         foreach (DefaultRolePermissions::map() as $role => $permissions) {
             foreach ($permissions as $permission) {
-                if ($this->store->grantToRole($role, $permission, null)) {
+                if ($this->store->seedRole($role, $permission)) {
                     ++$granted;
                 }
             }

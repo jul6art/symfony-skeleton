@@ -24,11 +24,16 @@
 #}
 {% use 'form_div_layout.html.twig' %}
 
+{#
+    ⚠️ `row_attr` est rendu sur le conteneur, comme dans `form_div_layout` : sans lui, un type qui
+    marque ses lignes (un `data-*` que lit un contrôleur Stimulus, une classe) perdait sa marque
+    sans erreur. Constaté sur devinthehood (`BlockType`, `data-block-type`), le 2026-10-09.
+#}
 {% block form_row %}
     {% if 'hidden' in form.vars.block_prefixes %}
         {{ form_widget(form) }}
     {% else %}
-        <div class="form-field">
+        <div{% with { attr: row_attr|merge({ class: ('form-field ' ~ row_attr.class|default(''))|trim }) } %}{{ block('attributes') }}{% endwith %}>
             {{ form_label(form) }}
             {% if form.vars.expanded|default(false) %}
                 {{ block('form_choice_grid') }}
@@ -190,7 +195,7 @@
         ? label|trans({}, translation_domain)
         : name|humanize %}
 
-    <div class="form-field form-field-checkbox">
+    <div{% with { attr: row_attr|merge({ class: ('form-field form-field-checkbox ' ~ row_attr.class|default(''))|trim }) } %}{{ block('attributes') }}{% endwith %}>
         <label class="toggle-row" for="{{ id }}">
             <span class="toggle-switch">
                 {{ form_widget(form, { attr: { class: 'toggle-switch-input' } }) }}

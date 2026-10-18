@@ -14,6 +14,15 @@ datatable:
   action:
     default: "Action %type%"
   actions: "Actions"
+  # Le réordonnancement à la main (datatable-bundle ≥ 2.9, `_reorder.html.twig`) : la colonne de la
+  # poignée, ses boutons et ce qu'annonce le lecteur d'écran.
+  reorder:
+    column: "Ordre"
+    up: "Monter"
+    down: "Descendre"
+    moved: "Déplacé en position %position% sur %total%."
+    conflict: "La liste a changé entre-temps : elle a été rechargée."
+    failed: "L'ordre n'a pas pu être enregistré."
   # Les libellés propres à DataTables. Ils étaient écrits DANS le JavaScript du bundle — onze
   # phrases françaises et un anglais presque vide — jusqu'à sa v2. Un produit qui déclare une
   # troisième langue retombait donc sur un anglais à moitié rempli.

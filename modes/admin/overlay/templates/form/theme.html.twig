@@ -1,8 +1,12 @@
 {# Thème de formulaire maison : utilitaires Tailwind, aucune dépendance à un plugin. #}
 {% use 'form_div_layout.html.twig' %}
 
+{#
+    ⚠️ `row_attr` est rendu sur le conteneur, comme dans `form_div_layout` : sans lui, un `data-*`
+    ou une classe posés sur la ligne par un type de formulaire se perdaient sans erreur.
+#}
 {% block form_row %}
-    <div class="mb-5">
+    <div{% with { attr: row_attr|merge({ class: ('mb-5 ' ~ row_attr.class|default(''))|trim }) } %}{{ block('attributes') }}{% endwith %}>
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
         {{- form_help(form) -}}
@@ -41,7 +45,7 @@
 {% endblock %}
 
 {% block checkbox_row %}
-    <div class="mb-5">
+    <div{% with { attr: row_attr|merge({ class: ('mb-5 ' ~ row_attr.class|default(''))|trim }) } %}{{ block('attributes') }}{% endwith %}>
         <label class="flex items-center gap-2 text-sm text-slate-700">
             {{- form_widget(form, {attr: {class: 'h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500'}}) -}}
             <span>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</span>

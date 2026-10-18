@@ -12,6 +12,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 use function sprintf;
@@ -126,6 +130,28 @@ final class FormThemeTest extends WebTestCase
                 sprintf('« %s » : le champ mot de passe doit porter son contrôleur de révélation.', $uri),
             );
         }
+    }
+
+    /**
+     * `row_attr` arrive sur le conteneur de la ligne, comme dans `form_div_layout` : un type qui
+     * marque ses lignes (un `data-*` lu par un contrôleur Stimulus) perdait sa marque sans erreur.
+     */
+    public function testTheRowCarriesItsRowAttr(): void
+    {
+        self::bootKernel();
+        // Sans jeton CSRF : hors requête, il n'y a pas de session où le ranger.
+        $form = static::getContainer()->get('form.factory')->createNamedBuilder('demo', FormType::class, null, ['csrf_protection' => false])
+            ->add('title', TextType::class, ['row_attr' => ['data-kind' => 'block', 'class' => 'extra']])
+            ->add('active', CheckboxType::class, ['required' => false, 'row_attr' => ['data-kind' => 'toggle']])
+            ->getForm();
+
+        $html = static::getContainer()->get('twig')
+            ->createTemplate('{{ form_row(form.title) }}{{ form_row(form.active) }}')
+            ->render(['form' => $form->createView()]);
+        $crawler = new Crawler($html);
+
+        self::assertSame(1, $crawler->filter('div.form-field.extra[data-kind="block"]')->count());
+        self::assertSame(1, $crawler->filter('div.form-field-checkbox[data-kind="toggle"]')->count());
     }
 
     /**

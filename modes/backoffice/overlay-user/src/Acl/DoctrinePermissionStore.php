@@ -98,6 +98,24 @@ final readonly class DoctrinePermissionStore implements PermissionStoreInterface
         return true;
     }
 
+    /**
+     * Pose la valeur par défaut d'un rôle si personne n'en a jamais décidé — et seulement alors.
+     * C'est ce qui rend `app:permissions:seed` relançable sans défaire l'écran des droits :
+     * `grantToRole()` repasserait à `true` une ligne qu'un administrateur a mise à `false`.
+     */
+    public function seedRole(string $roleCode, string $permission): bool
+    {
+        if ($this->rolePermissions->findOneForRole($roleCode, $permission) instanceof RolePermission) {
+            return false;
+        }
+
+        $this->entityManager->persist(
+            new RolePermission()->setRoleCode($roleCode)->setPermission($permission)->setGranted(true),
+        );
+
+        return true;
+    }
+
     #[Override]
     public function revokeFromRole(string $roleCode, string $permission, ?AclTenantInterface $tenant): bool
     {
