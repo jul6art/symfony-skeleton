@@ -42,6 +42,10 @@ core:
     # de lire les rapports de violation — une CSP appliquée trop tôt casse une page qui
     # marchait. Élargir `csp_policy` dès qu'un hôte tiers est appelé (CDN, EventSource,
     # analytics), sinon le navigateur bloque en silence.
+    # Un script inline demande le nonce de la page (`<script nonce="{{ csp_nonce() }}">`,
+    # core-bundle ≥ 3.6), que le listener ajoute à `script-src` ; jamais de `onclick="…"`, qui
+    # n'en a pas. Une page servie par un cache partagé cite plutôt ses scripts fixes par leur
+    # empreinte (`'sha256-…'`) : le même nonce y serait servi à tous.
     security_headers:
         enabled: true
         csp_enforce: false

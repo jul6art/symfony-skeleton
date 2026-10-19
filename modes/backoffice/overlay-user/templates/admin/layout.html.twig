@@ -6,13 +6,17 @@
     pare-feu `api`, stateless. Sans lui, chaque tableau reste vide avec un 401 silencieux en
     console — la page, elle, rend parfaitement. Toute page d'administration étend CE fichier,
     jamais `@Admin/layout.html.twig` en direct.
+
+    Le script est inline et porte un jeton propre au compte : seul le nonce de la page
+    (`csp_nonce()`, core-bundle ≥ 3.6) lui fait passer la politique de sécurité — une empreinte
+    changerait à chaque jeton.
 #}
 {% extends '@Admin/layout.html.twig' %}
 
 {% block head %}
     {{ parent() }}
     {% if app.user %}
-        <script>window.jwtToken = "{{ jwt_token() }}";</script>
+        <script nonce="{{ csp_nonce() }}">window.jwtToken = "{{ jwt_token() }}";</script>
     {% endif %}
 {% endblock %}
 
