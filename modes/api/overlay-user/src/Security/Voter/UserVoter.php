@@ -15,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * contrôleurs (`denyAccessUnlessGranted`), jamais un rôle. Les cinq attributs
  * sont déclarés même si l'API n'expose pas encore toutes les actions — une
  * nouvelle route nomme un attribut existant plutôt que d'en inventer un.
+ *
+ * Un compte en sujet — ou aucun, pour la liste et la création.
+ *
+ * @extends AbstractVoter<string, User|null>
  */
 final class UserVoter extends AbstractVoter
 {

@@ -15,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * contrôleurs et les gabarits, jamais un rôle. Les cinq attributs sont déclarés
  * même si le projet n'expose pas encore toutes les actions — une nouvelle route
  * nomme un attribut existant plutôt que d'en inventer un.
+ *
+ * Un compte en sujet — ou aucun, pour la liste et la création.
+ *
+ * @extends AbstractVoter<string, User|null>
  */
 final class UserVoter extends AbstractVoter
 {

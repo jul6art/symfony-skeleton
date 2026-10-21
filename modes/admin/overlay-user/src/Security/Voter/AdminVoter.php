@@ -14,6 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * Les décisions sur les entités administrées restent dans leur propre voter
  * (`UserVoter` pour les comptes) : celui-ci ne répond qu'à « peut-on entrer ? ».
+ *
+ * Aucun sujet : la décision porte sur le compte connecté seul.
+ *
+ * @extends AbstractVoter<string, null>
  */
 final class AdminVoter extends AbstractVoter
 {
