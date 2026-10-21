@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Translation;
 
 use Jul6Art\CoreBundle\Test\AbstractJsTranslationTestCase;
+use Override;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
 /**
@@ -43,7 +44,7 @@ final class JsTranslationTest extends AbstractJsTranslationTestCase
      *
      * @return list<string>
      */
-    #[\Override]
+    #[Override]
     protected static function javaScriptDirectories(): array
     {
         return [self::projectDir().'/assets'];
@@ -54,7 +55,7 @@ final class JsTranslationTest extends AbstractJsTranslationTestCase
      *
      * @return list<string>
      */
-    #[\Override]
+    #[Override]
     protected static function templateDirectories(): array
     {
         return [self::projectDir().'/templates'];
@@ -70,7 +71,7 @@ final class JsTranslationTest extends AbstractJsTranslationTestCase
      *
      * @return list<string>
      */
-    #[\Override]
+    #[Override]
     protected static function serverDirectories(): array
     {
         return [self::projectDir().'/templates', self::projectDir().'/src'];
