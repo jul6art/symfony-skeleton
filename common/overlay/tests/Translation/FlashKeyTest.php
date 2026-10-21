@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Translation;
 
-use App\Security\BackofficeLocales;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\TranslatorBagInterface;
@@ -33,10 +32,14 @@ final class FlashKeyTest extends KernelTestCase
         // l'autre diverger, et le traducteur retombe SILENCIEUSEMENT sur le repli : l'utilisateur
         // qui a choisi le français lit l'anglais, ou la clé. Vérifié le 2026-08-24 : retirer une
         // clé de `messages.fr.yaml` laissait ce test vert, puisque le défaut est `en`.
-        // Même règle que `ConstraintKeyTest`, qui contrôle ses deux locales depuis le 2026-08-23.
+        // Les langues sont celles que le projet active (`framework.enabled_locales`) : ce fichier est
+        // commun à tous les modes, et seul `backoffice` a sa liste `BackofficeLocales`, qu'il lit dans
+        // sa propre version de ce test.
+        $locales = static::getContainer()->getParameter('kernel.enabled_locales');
+        self::assertNotSame([], $locales, 'Aucune langue activée : framework.enabled_locales est vide.');
         $missing = [];
 
-        foreach (BackofficeLocales::SUPPORTED as $locale) {
+        foreach ($locales as $locale) {
             $catalogue = $translator->getCatalogue($locale);
 
             foreach ($this->flashKeys() as $file => $keys) {
