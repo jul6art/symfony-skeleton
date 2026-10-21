@@ -1,0 +1,3 @@
+# Les erreurs de la saisie du code sont traduites par scheb lui-même ; la limite d'essais vient
+# d'admin-bundle (`TwoFactorThrottleListener`).
+two_factor.throttled: "Trop d'essais : réessayez dans quelques minutes."

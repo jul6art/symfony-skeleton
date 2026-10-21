@@ -1,0 +1,6 @@
+# L'écran de double authentification de son compte est livré par `admin-bundle`. La ROUTE, elle,
+# appartient au projet : c'est ici que se décide son URL, donc aussi le pare-feu qui l'entoure.
+admin_account_two_factor:
+    resource: '@AdminBundle/Controller/TwoFactorController.php'
+    type: attribute
+    prefix: /admin

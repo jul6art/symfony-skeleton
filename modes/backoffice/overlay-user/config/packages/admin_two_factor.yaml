@@ -1,0 +1,17 @@
+# La double authentification (admin-bundle, `admin.two_factor`) : PROPOSÉE à chaque compte depuis son menu
+# (l'entrée vient de `admin.routes.two_factor`, dont le défaut est `admin_account_two_factor`), jamais
+# imposée. `required: true` l'imposerait à tous : un compte sans second facteur serait renvoyé sur l'écran
+# d'enrôlement avant toute autre page.
+#
+# Un fichier à part, dans la brique « comptes » : le second facteur n'a de sens qu'avec des comptes.
+admin:
+    two_factor:
+        enabled: true
+        required: false
+
+when@dev:
+    admin:
+        # Le lien de connexion de développement (`app:dev:login-link`) n'est pas soumis au code : il sert
+        # à parcourir les écrans sous n'importe quel compte de fixtures, et n'existe qu'ici.
+        two_factor:
+            exempt_routes: [dev_login_link_check]

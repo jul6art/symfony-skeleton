@@ -21,7 +21,9 @@ use Jul6Art\AclBundle\Contract\AclUserInterface;
 use Jul6Art\AdminBundle\Appearance\ColorMode;
 use Jul6Art\AdminBundle\Contract\AdminUserInterface;
 use Jul6Art\AdminBundle\Contract\AppearanceAwareInterface;
+use Jul6Art\AdminBundle\Contract\TwoFactorAwareInterface;
 use Jul6Art\AdminBundle\Entity\Traits\AppearancePreferencesTrait;
+use Jul6Art\AdminBundle\Entity\Traits\TwoFactorTrait;
 use Jul6Art\ApiBundle\Filter\CaseInsensitiveOrderFilter;
 use Jul6Art\ApiBundle\Filter\ConcatOrderFilter;
 use Jul6Art\ApiBundle\Filter\OrSearchFilter;
@@ -45,14 +47,16 @@ use function in_array;
 /**
  * Le compte.
  *
- * Il implémente quatre contrats, tous étroits, et c'est ce qui permet à quatre bundles de s'en
+ * Il implémente cinq contrats, tous étroits, et c'est ce qui permet à quatre bundles de s'en
  * servir sans qu'aucun ne l'impose :
  *
  * - `UserInterface` — Symfony ;
  * - `AclUserInterface` — le moteur de permissions. `getTenant()` rend `null` : cette application
  *   n'a pas de locataires, et le contrat l'a toujours prévu ;
  * - `AdminUserInterface` — ce que la coquille affiche : un nom, deux initiales, une photo ;
- * - `AppearanceAwareInterface` — les préférences d'affichage, dont cinq colonnes viennent du trait.
+ * - `AppearanceAwareInterface` — les préférences d'affichage, dont cinq colonnes viennent du trait ;
+ * - `TwoFactorAwareInterface` — la double authentification optionnelle, dont les deux colonnes
+ *   viennent elles aussi d'un trait.
  *
  * ⚠️ `getColorMode()` / `setColorMode()` ne sont PAS dans le trait, à dessein : presque toute
  * application a déjà une colonne pour ça sous son propre nom. Ces deux méthodes sont le
@@ -97,7 +101,7 @@ use function in_array;
 // trie, il ne filtre pas. Toute colonne date déclarant un `dateRangeFilter()` côté provider a son
 // entrée ici, et `DateRangeFilterMappingTest` fait échouer la gate si les deux divergent.
 #[QueryParameter(key: 'createdAt', filter: new DateFilter(), property: 'createdAt')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUserInterface, AdminUserInterface, AppearanceAwareInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUserInterface, AdminUserInterface, AppearanceAwareInterface, TwoFactorAwareInterface
 {
     /**
      * Les cinq colonnes `appearance_*`, livrées par `admin-bundle`. Elles ne sont volontairement
@@ -108,6 +112,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUser
     use SoftDeletableTrait;
 
     use TimestampableTrait;
+
+    /**
+     * La double authentification optionnelle (`admin.two_factor`) : les colonnes `totp_secret` et
+     * `totp_enabled_at`. Aucun groupe de sérialisation : le secret se relit pour vérifier un code, il
+     * ne se hache pas, et ne sort jamais de l'application.
+     */
+    use TwoFactorTrait;
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank]

@@ -1,0 +1,5 @@
+# La double authentification est configurée par `admin-bundle` (`admin.two_factor`,
+# `config/packages/admin_two_factor.yaml`) : le fournisseur TOTP et son émetteur, la page de saisie du
+# code, les jetons visés, les routes exemptées, la protection contre le rejeu et le limiteur. Ce fichier
+# n'ajoute rien — il reste pour que la recette de scheb ne le recrée pas.
+scheb_two_factor: ~

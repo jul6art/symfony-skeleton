@@ -55,3 +55,21 @@ security:
     new: New password
     confirm: Confirm
     wrong_current: The current password is incorrect.
+  two_factor:
+    title: "Two-factor authentication"
+    subtitle: "Enter the six-digit code from your authenticator app."
+    code: "Verification code"
+    submit: "Verify"
+    cancel: "Cancel and sign out"
+    page_title: "Two-factor authentication"
+    help: "A six-digit code, renewed every 30 seconds by an authenticator app (Aegis, Google Authenticator, 1Password…), is asked after your password."
+    required: "Two-factor authentication is required for your account. Turn it on to continue."
+    enabled_since: "On since %date%."
+    disable_help: "To turn it off, enter a current code from your app."
+    disable: "Turn off"
+    cannot_disable: "Two-factor authentication is required: it cannot be turned off."
+    step_scan: "Scan the QR code with your authenticator app."
+    step_confirm: "Enter the code it shows to confirm."
+    qr_alt: "Two-factor authentication enrolment QR code"
+    manual: "Or type this key by hand:"
+    enable: "Turn on"

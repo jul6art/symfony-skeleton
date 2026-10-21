@@ -8,6 +8,7 @@ nav:
   profile: My profile
   change_password: Password
   appearance: Appearance
+  two_factor: "Two-factor authentication"
   logout: Sign out
   performance: Performance
 action:
@@ -99,3 +100,5 @@ appearance.flash.saved: Preferences saved.
 # Unités de taille de fichier, passées au contrôleur `form--dropzone` : un bundle ne connaît
 # pas la langue de l'application qui l'embarque.
 form.file.units: B,KB,MB,GB
+security.two_factor.flash.enabled: "Two-factor authentication is on: a code will be asked at every sign-in."
+security.two_factor.flash.disabled: "Two-factor authentication is off."

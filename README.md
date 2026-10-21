@@ -170,6 +170,11 @@ roles.
 - **Accounts**: sign in (CSRF, remember me, throttling), sign up (closable,
   creates inactive accounts), forgotten password, change password, user CRUD
   with bulk actions, and a role × permission grid.
+- **Two-factor authentication, offered to every account**: a TOTP code turned on
+  from the account menu (QR code, first code to confirm), then asked after the
+  password; five wrong codes per quarter of an hour lock it. `admin.two_factor`
+  in `config/packages/admin_two_factor.yaml` decides whether it is offered
+  (`enabled`) and whether it is required (`required`).
 - **A parallel test suite.** `make test` runs `./paratest.sh` — one process per
   core minus two. Nothing to isolate between them: the suite runs on in-memory
   SQLite and every test builds its schema through `SchemaTool`, so each process

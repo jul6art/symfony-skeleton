@@ -38,6 +38,13 @@ security:
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
+            # La double authentification optionnelle (`admin.two_factor`, config/packages/admin_two_factor.yaml) :
+            # un compte qui l'a activée donne son code après son mot de passe. Les deux routes viennent de
+            # `config/routes/scheb_2fa.yaml`.
+            two_factor:
+                auth_form_path: 2fa_login
+                check_path: 2fa_login_check
+                enable_csrf: true
             logout:
                 path: admin_security_logout
                 target: admin_security_login
@@ -50,7 +57,14 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
+        # ⚠️ EN PREMIER : pendant la saisie du code, le jeton n'est pas encore authentifié.
+        - { path: ^/2fa, roles: IS_AUTHENTICATED_2FA_IN_PROGRESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        # Le choix de la langue, sur toutes les cartes d'authentification. ⚠️ La règle n'ouvre rien de
+        # plus (la route est déjà publique) : elle existe pour scheb, qui renvoie vers `/2fa` toute
+        # requête sans règle publique pendant la saisie du code — la page du code ne changerait pas
+        # de langue.
+        - { path: ^/locale$, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/reset-password, roles: PUBLIC_ACCESS }
         # La ceinture. La bretelle, c'est la décision explicite que porte chaque route — un

@@ -12,6 +12,7 @@ ce dépôt porte ce qui lui appartient — ses entités, son catalogue de permis
 | Le layout, la barre latérale, le menu de compte, les toasts | `jul6art/admin-bundle` | `@Admin/layout.html.twig`, ses blocs sont documentés en tête |
 | Les pages de connexion / inscription / mot de passe oublié | `jul6art/admin-bundle` | logo et nom viennent d'`admin.branding` |
 | L'écran d'apparence, les cinq colonnes `appearance_*` | `jul6art/admin-bundle` | `AppearancePreferencesTrait`, `AppearanceType` |
+| La double authentification : l'écran d'enrôlement, la page du code, la limite d'essais | `jul6art/admin-bundle` (≥ 1.33), sur `scheb/2fa-bundle` | `TwoFactorTrait`, `TotpEnrolment` ; la proposer ou l'imposer, c'est `admin.two_factor` (`config/packages/admin_two_factor.yaml`) |
 | Le thème : jetons d'accent, densité, `.panel`, `.btn-*` | `jul6art/admin-bundle` | `assets/styles/*` du bundle, importés par `assets/styles/app.css` |
 | Le titre de la page dans la barre du haut, une fois son `<h1>` défilé | `jul6art/admin-bundle` (≥ 1.29) | `ui--page-title` : le nom d'une fiche va dans son `<h1>`, ou dans l'élément marqué `data-ui--page-title-target="source"` |
 | Les tableaux : pagination, tri, filtres, actions de masse, temps réel | `jul6art/datatable-bundle` | le contrôleur Stimulus, `AbstractDataTableConfigProvider` |

@@ -55,3 +55,21 @@ security:
     new: Nouveau mot de passe
     confirm: Confirmation
     wrong_current: Le mot de passe actuel est incorrect.
+  two_factor:
+    title: "Double authentification"
+    subtitle: "Saisissez le code à six chiffres de votre application d'authentification."
+    code: "Code de vérification"
+    submit: "Vérifier"
+    cancel: "Annuler et se déconnecter"
+    page_title: "Double authentification"
+    help: "Un code à six chiffres, renouvelé toutes les 30 secondes par une application d'authentification (Aegis, Google Authenticator, 1Password…), est demandé après le mot de passe."
+    required: "La double authentification est obligatoire pour votre compte. Activez-la pour continuer."
+    enabled_since: "Activée depuis le %date%."
+    disable_help: "Pour la désactiver, saisissez un code en cours de votre application."
+    disable: "Désactiver"
+    cannot_disable: "La double authentification est obligatoire : elle ne se désactive pas."
+    step_scan: "Scannez le QR code avec votre application d'authentification."
+    step_confirm: "Saisissez le code qu'elle affiche pour confirmer."
+    qr_alt: "QR code d'enrôlement de la double authentification"
+    manual: "Ou saisissez cette clé à la main :"
+    enable: "Activer"

@@ -8,6 +8,7 @@ nav:
   profile: Mon profil
   change_password: Mot de passe
   appearance: Apparence
+  two_factor: "Double authentification"
   logout: Déconnexion
   performance: Performance
 action:
@@ -98,3 +99,5 @@ appearance.flash.saved: Préférences enregistrées.
 # Unités de taille de fichier, passées au contrôleur `form--dropzone` : un bundle ne connaît
 # pas la langue de l'application qui l'embarque.
 form.file.units: o,Ko,Mo,Go
+security.two_factor.flash.enabled: "Double authentification activée : un code vous sera demandé à chaque connexion."
+security.two_factor.flash.disabled: "Double authentification désactivée."
