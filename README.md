@@ -271,11 +271,38 @@ sfnew() { /PATH/TO/symfony-skeleton/bin/new-project "$@"; }
    Flex manages), and `modes/<mode>/CLAUDE.append.md` to `CLAUDE.md`
 6. replaces the placeholders in the copied files
 7. runs the `post-install.sh` hooks if they exist
-8. `git init` + initial commit
+8. runs `common/devtools.sh`: the project's workflow map (see below)
+9. `git init` + initial commit
 
 Since `composer` is not installed globally on this machine, everything goes
 through `symfony composer`. If the `php` on the `PATH` is broken, the script
 automatically looks for the most recent PHP ≥ 8.5 in the Homebrew directories.
+
+## DevTools — every project is born documented
+
+Every mode installs [`jul6art/devtools`](https://github.com/jul6art/devtools) as
+a dev dependency, and the generation ends — after the mode hooks, which add
+code, and before the first commit — with `common/devtools.sh`:
+
+- the bridge is registered in `config/bundles.php` for `dev` and `test` only,
+  never `all`: production does not have the class;
+- `devtools init` writes `.devtools/` and adds its work areas to `.gitignore`;
+  `.devtools/config.xml` then gets the console of the skeleton
+  (`symfony console`, in every mode), its exclusions (`assets/vendor`,
+  `public/bundles`, `config/jwt`) and pages written in French;
+- `devtools claude:install --skill --hooks --mcp --agents`: the skills that
+  write the pages and answer from them, the hooks that give Claude Code the
+  workflows a file reaches before it edits it and refuse to end a task while
+  the gate fails, the MCP server (`mcp/sdk` comes with it) and the verifier;
+- a first `workflows:inspect --no-ai`: the facts of every route, command and
+  component, in `docs/workflows/`, committed with the skeleton. Claude writes
+  the prose later, with `/devtools-inspect`.
+
+`--docker` changes nothing here: `symfony new --docker` puts the services in
+containers, not PHP, and `symfony console` is what passes their variables to a
+command. The generated `CLAUDE.md` points at `docs/workflows/workflows.md`,
+the map to read before modifying a workflow, and the `Makefile` gains
+`make docs` and `make docs-check`. `--no-extras` installs none of it.
 
 ## Placeholders
 
@@ -289,10 +316,11 @@ Usable in any overlay file:
 ```
 common/
   packages.txt            # composer require, every mode
-  packages-dev.txt        # composer require --dev, every mode
+  packages-dev.txt        # composer require --dev, every mode (jul6art/devtools among them)
   gitignore.append        # macOS, IDE, node… appended to the Flex .gitignore
   overlay/                # files copied into every project
   post-install.sh         # (optional) post-generation hook
+  devtools.sh             # the workflow map, after every hook, before the first commit
 modes/
   web/
     mode.conf             # DESCRIPTION + SYMFONY_NEW_FLAGS

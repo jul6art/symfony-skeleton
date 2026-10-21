@@ -367,6 +367,15 @@ for hook in $HOOKS; do
     fi
 done
 
+# DevTools après les hooks — ils ajoutent du code, donc des workflows — et avant le premier commit,
+# qui embarque la carte des workflows, `.devtools/` et `.claude/`.
+if [ "$NO_EXTRAS" = 0 ]; then
+    log "DevTools — la carte des workflows"
+    if [ "$DRY_RUN" = 0 ]; then
+        PROJECT_DIR="$PROJECT_DIR" bash "$COMMON_DIR/devtools.sh"
+    fi
+fi
+
 if [ "$NO_GIT" = 0 ]; then
     log "Dépôt git"
     # symfony new clone symfony/skeleton : on repart d'un dépôt vierge pour ne

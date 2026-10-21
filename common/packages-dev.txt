@@ -9,6 +9,8 @@ phpstan/phpstan
 phpstan/extension-installer
 phpstan/phpstan-symfony
 phpstan/phpstan-doctrine
+jul6art/devtools:^3.4               # la carte des workflows, les hooks et le serveur MCP de Claude Code
+mcp/sdk:^0.9                        # le serveur MCP de DevTools (bin/console devtools:mcp:serve)
 
 # Suggestions :
 # rector/rector

@@ -9,7 +9,7 @@ COMPOSER := symfony composer
 CONSOLE  := symfony console
 
 .PHONY: help install start stop logs cc db-create db-diff db-migrate db-reset \
-        fixtures test test-serial cs cs-fix stan qa
+        fixtures test test-serial cs cs-fix stan qa docs docs-check
 
 help: ## Liste les cibles disponibles
 	@grep -hE '^[a-zA-Z0-9_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -72,6 +72,12 @@ stan: ## Analyse statique
 	$(PHP) vendor/bin/phpstan analyse --memory-limit=1G
 
 qa: cs stan test ## Style + analyse statique + tests
+
+docs: ## Met à jour la carte des workflows (docs/workflows/), sans IA
+	$(PHP) vendor/bin/devtools workflows:inspect --no-ai
+
+docs-check: ## Échoue si la carte des workflows ne reflète plus le code
+	$(PHP) vendor/bin/devtools workflows:check
 
 # Cibles spécifiques au mode ({{MODE}}) et ajouts locaux.
 -include .make/*.mk
