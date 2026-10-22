@@ -102,3 +102,4 @@ appearance.flash.saved: Preferences saved.
 form.file.units: B,KB,MB,GB
 security.two_factor.flash.enabled: "Two-factor authentication is on: a code will be asked at every sign-in."
 security.two_factor.flash.disabled: "Two-factor authentication is off."
+security.two_factor.flash.backup_codes: "New backup codes generated: the previous ones no longer work."

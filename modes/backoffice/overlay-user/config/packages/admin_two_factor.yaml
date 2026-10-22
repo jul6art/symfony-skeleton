@@ -8,6 +8,9 @@ admin:
     two_factor:
         enabled: true
         required: false
+        # Dix codes à usage unique pour un téléphone perdu, montrés une fois à l'activation ; un code de
+        # secours vaut un code en cours à la connexion et sur l'écran du compte.
+        backup_codes: true
 
 when@dev:
     admin:

@@ -17,3 +17,4 @@ two_factor:
     not_blank: "Enter the six-digit code."
     format: "The code has six digits."
     invalid: "That code is not the right one: check your phone's clock and try again."
+    format_or_backup: "Enter the six-digit code from your app, or a backup code (10 characters)."

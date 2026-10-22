@@ -17,3 +17,4 @@ two_factor:
     not_blank: "Saisissez le code à six chiffres."
     format: "Le code compte six chiffres."
     invalid: "Ce code n'est pas le bon : vérifiez l'heure de votre téléphone et réessayez."
+    format_or_backup: "Saisissez le code à six chiffres de votre application, ou un code de secours (10 caractères)."

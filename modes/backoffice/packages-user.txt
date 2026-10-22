@@ -5,4 +5,5 @@ symfonycasts/reset-password-bundle  # jetons de réinitialisation de mot de pass
 lexik/jwt-authentication-bundle     # JWT pour l'API et pour les widgets Select2 en AJAX
 scheb/2fa-bundle                    # double authentification (admin.two_factor d'admin-bundle)
 scheb/2fa-totp                      # son fournisseur TOTP
+scheb/2fa-backup-code               # ses codes de secours, pour un téléphone perdu
 endroid/qr-code                     # le QR code de l'écran d'enrôlement

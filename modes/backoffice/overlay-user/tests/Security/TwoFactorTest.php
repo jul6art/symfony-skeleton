@@ -106,6 +106,62 @@ final class TwoFactorTest extends WebTestCase
         self::assertSame('fr', $crawler->filter('html')->attr('lang'));
     }
 
+    /**
+     * Les codes de secours : dix, tirés à l'activation et montrés sur la page qui suit —
+     * elle seule ; ensuite l'écran les compte.
+     */
+    public function testActivationShowsTenBackupCodesOnce(): void
+    {
+        $user = $this->user();
+        $this->client->loginUser($user);
+        $crawler = $this->client->request('GET', '/admin/account/two-factor');
+        $secret = $user->getTotpAuthenticationConfiguration()?->getSecret();
+        if (null === $secret || '' === $secret) {
+            self::fail('L\'écran pose un secret en attente.');
+        }
+
+        $this->client->submit($crawler->filter('form[name=two_factor_enable]')->form(['two_factor_enable[code]' => TOTP::createFromSecret($secret)->now()]));
+        $crawler = $this->client->followRedirect();
+
+        self::assertCount(10, $crawler->filter('[data-new-backup-codes] li'));
+        self::assertMatchesRegularExpression('/^[A-Z2-9]{5}-[A-Z2-9]{5}$/', trim($crawler->filter('[data-new-backup-codes] li')->first()->text()));
+
+        $crawler = $this->client->request('GET', '/admin/account/two-factor');
+        self::assertCount(0, $crawler->filter('[data-new-backup-codes]'), 'Une seule fois : recharger ne les remontre pas.');
+        self::assertSame('10', $crawler->filter('[data-backup-codes-left]')->attr('data-backup-codes-left'));
+    }
+
+    /**
+     * ⚠️ Le téléphone perdu : un code de secours ouvre la session à la place du code — une seule fois.
+     */
+    public function testABackupCodeSignsInOnceInsteadOfTheApp(): void
+    {
+        $secret = static::getContainer()->get(TotpAuthenticatorInterface::class)->generateSecret();
+        if ('' === $secret) {
+            self::fail('scheb tire un secret non vide.');
+        }
+        $user = $this->user($secret);
+        $user->replaceBackupCodes(['K7QM2-XW9RT']);
+        $this->entityManager->flush();
+
+        foreach ([true, false] as $accepted) {
+            $this->signIn($user);
+            $crawler = $this->client->request('GET', '/2fa');
+            $this->client->submit($crawler->filter('[data-totp-backup] form')->form(['_auth_code' => 'k7qm2-xw9rt']));
+            $location = (string) $this->client->getResponse()->headers->get('Location');
+
+            if ($accepted) {
+                self::assertStringNotContainsString('/2fa', $location, 'Le code de secours ouvre la session.');
+                $this->client->request('GET', '/logout');
+            } else {
+                self::assertStringContainsString('/2fa', $location, 'Déjà servi, il est refusé.');
+            }
+        }
+
+        $this->entityManager->clear();
+        self::assertSame(0, $this->entityManager->find(User::class, $user->getId())?->countBackupCodes());
+    }
+
     public function testAnAccountWithoutItSignsInAsBefore(): void
     {
         $this->signIn($this->user());

@@ -21,8 +21,10 @@ use Jul6Art\AclBundle\Contract\AclUserInterface;
 use Jul6Art\AdminBundle\Appearance\ColorMode;
 use Jul6Art\AdminBundle\Contract\AdminUserInterface;
 use Jul6Art\AdminBundle\Contract\AppearanceAwareInterface;
+use Jul6Art\AdminBundle\Contract\BackupCodeAwareInterface;
 use Jul6Art\AdminBundle\Contract\TwoFactorAwareInterface;
 use Jul6Art\AdminBundle\Entity\Traits\AppearancePreferencesTrait;
+use Jul6Art\AdminBundle\Entity\Traits\TwoFactorBackupCodesTrait;
 use Jul6Art\AdminBundle\Entity\Traits\TwoFactorTrait;
 use Jul6Art\ApiBundle\Filter\CaseInsensitiveOrderFilter;
 use Jul6Art\ApiBundle\Filter\ConcatOrderFilter;
@@ -47,7 +49,7 @@ use function in_array;
 /**
  * Le compte.
  *
- * Il implémente cinq contrats, tous étroits, et c'est ce qui permet à quatre bundles de s'en
+ * Il implémente six contrats, tous étroits, et c'est ce qui permet à quatre bundles de s'en
  * servir sans qu'aucun ne l'impose :
  *
  * - `UserInterface` — Symfony ;
@@ -56,7 +58,8 @@ use function in_array;
  * - `AdminUserInterface` — ce que la coquille affiche : un nom, deux initiales, une photo ;
  * - `AppearanceAwareInterface` — les préférences d'affichage, dont cinq colonnes viennent du trait ;
  * - `TwoFactorAwareInterface` — la double authentification optionnelle, dont les deux colonnes
- *   viennent elles aussi d'un trait.
+ *   viennent elles aussi d'un trait ;
+ * - `BackupCodeAwareInterface` — ses codes de secours, une colonne de plus, d'un trait.
  *
  * ⚠️ `getColorMode()` / `setColorMode()` ne sont PAS dans le trait, à dessein : presque toute
  * application a déjà une colonne pour ça sous son propre nom. Ces deux méthodes sont le
@@ -101,7 +104,7 @@ use function in_array;
 // trie, il ne filtre pas. Toute colonne date déclarant un `dateRangeFilter()` côté provider a son
 // entrée ici, et `DateRangeFilterMappingTest` fait échouer la gate si les deux divergent.
 #[QueryParameter(key: 'createdAt', filter: new DateFilter(), property: 'createdAt')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUserInterface, AdminUserInterface, AppearanceAwareInterface, TwoFactorAwareInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUserInterface, AdminUserInterface, AppearanceAwareInterface, TwoFactorAwareInterface, BackupCodeAwareInterface
 {
     /**
      * Les cinq colonnes `appearance_*`, livrées par `admin-bundle`. Elles ne sont volontairement
@@ -112,6 +115,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, AclUser
     use SoftDeletableTrait;
 
     use TimestampableTrait;
+
+    /**
+     * Les codes de secours de la double authentification : la colonne `totp_backup_codes`, des empreintes
+     * SHA-256 — un code ne se relit jamais une fois montré.
+     */
+    use TwoFactorBackupCodesTrait;
 
     /**
      * La double authentification optionnelle (`admin.two_factor`) : les colonnes `totp_secret` et

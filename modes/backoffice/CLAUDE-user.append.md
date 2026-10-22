@@ -3,8 +3,9 @@
 
 Trois entités, et la frontière entre elles est le sujet :
 
-- **`User`** — le compte. Il implémente cinq contrats étroits (`UserInterface`,
-  `AclUserInterface`, `AdminUserInterface`, `AppearanceAwareInterface`, `TwoFactorAwareInterface`),
+- **`User`** — le compte. Il implémente six contrats étroits (`UserInterface`,
+  `AclUserInterface`, `AdminUserInterface`, `AppearanceAwareInterface`, `TwoFactorAwareInterface`,
+  `BackupCodeAwareInterface`),
   ce qui permet à quatre bundles de s'en servir sans qu'aucun ne l'impose. `getTenant()` rend `null` : pas de locataires
   ici, et le contrat l'a toujours prévu.
 - **`RolePermission`** — ce qu'un rôle a le droit de faire. Une ligne par couple, avec un booléen :

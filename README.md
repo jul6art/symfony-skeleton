@@ -174,7 +174,10 @@ roles.
   from the account menu (QR code, first code to confirm), then asked after the
   password; five wrong codes per quarter of an hour lock it. `admin.two_factor`
   in `config/packages/admin_two_factor.yaml` decides whether it is offered
-  (`enabled`) and whether it is required (`required`).
+  (`enabled`) and whether it is required (`required`). Ten single-use **backup
+  codes** are drawn when it is turned on and shown once; one stands in for the
+  app's code at sign-in and on the account screen, so a lost phone does not
+  lock the account (`backup_codes`).
 - **A parallel test suite.** `make test` runs `./paratest.sh` — one process per
   core minus two. Nothing to isolate between them: the suite runs on in-memory
   SQLite and every test builds its schema through `SchemaTool`, so each process

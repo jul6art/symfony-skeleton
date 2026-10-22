@@ -101,3 +101,4 @@ appearance.flash.saved: Préférences enregistrées.
 form.file.units: o,Ko,Mo,Go
 security.two_factor.flash.enabled: "Double authentification activée : un code vous sera demandé à chaque connexion."
 security.two_factor.flash.disabled: "Double authentification désactivée."
+security.two_factor.flash.backup_codes: "Nouveaux codes de secours générés : les précédents ne fonctionnent plus."
